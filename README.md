@@ -50,3 +50,17 @@ Uygulamanın omurgası artık konular.
 Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), karışık çalışma, kendine açıklama, açık anlatım + önce tanıma sonra üretme (Norris & Ortega 2000; VanPatten).
 
 **Ezber köşesi** (yeni sekme, konu derslerinden ayrı): A1 / A2 / B1 olarak ayrılmış 33 tablo (zamirler, artikeller, iyelik, Präsens, sein/haben, Modalverben, ön ekler, Wo/Wohin/Woher, edatlar, TeKaMoLo, bağlaçlar, Präteritum, Perfekt, sıfat ekleri, Genitiv, Relativpronomen, Konjunktiv II, Passiv …). Her tabloda ezber taktiği (DOGFU, „aus bei mit nach seit von zu“ şarkısı, m-r-m-n, be-emp-ent-er-ge-miss-ver-zer …), sesli dinleme, "Kapat ve hatırla", 12 soruluk test (bildiğin hücreler yazarak sorulur), hücre bazında ilerleme ve 1-3-7-14-30 gün aralıklı tekrar.
+
+## v6
+
+**Konu dersleri bağlantı kurarak öğretiyor.**
+
+- **Ders sekmesi ve adım adım "Anla"**: her konu bildiğin bir şeyden başlar (köprü + hatırlama sorusu), hangi "büyük fikrin" parçası olduğunu gösterir, mantığını anlatır, bir Türkçe cümleden Almancasını adım adım kurar, Türkçe ile kıyaslar, "neden?" sorularıyla düşündürür, sık karıştırılanları ayırır, hafıza kancası verir ve ileride nerede karşına çıkacağını söyler. 40 konunun hepsi.
+- **Bağlantı haritası**: 40 konu 9 büyük fikre bağlı (cümle mengenesi, yan cümlede fiil sona, bağlaç aileleri, hâller, sıfat ekleri, zaman çizgisi, Konjunktiv II, zu + mastar, fiil + edat). Her ailede konular ve ezber tabloları bir arada.
+- **Daha az test**: Tanı 8, Kur 4 + 4, Pekiştir 8 soru.
+
+**Hata koçu** (çevrimdışı):
+
+- Yanlış cevapta hatanın türünü bulur (hâl seçimi, artikel cinsi, haben/sein, fiil eki, Umlaut ve Konjunktiv II, Partizip, zaman, zu, kelime sırası, yan cümlede fiil, bağlaç seçimi, karşılaştırma) ve ne yaptığını, neden olmadığını, nasıl düşünmen gerektiğini, neyle karıştırdığını ve neyi çalışman gerektiğini söyler.
+- **Hata haritası**: hataların türlere göre birikir; Bugün'de "odak noktan", İlerleme'de son 14 günün özeti.
+- **Yazı kontrolü**: Üret ve Schreiben'de yazdığın cümlelerde tipik hataları arar (fiil 2. sırada, yan cümlede fiil sonda, haben/sein, edattan sonra hâl, koymak/durmak fiilleri, özne-fiil uyumu, modal + mastar, isimlerde büyük harf).
