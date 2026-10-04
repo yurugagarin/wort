@@ -3698,7 +3698,7 @@ var HSRC=['Menschen','Nicos Weg','Easy German','Podcast','Film / Dizi','Radyo'];
 function todays(list){return list[hash(today()+list.length)%list.length];}
 
 /* ---------------- arayüz durumu ---------------- */
-var TAB='bugun', OPEN=null, W={q:null,day:'',step:'q',pick:null,n0:0}, X=null, STACK=[], lastScore=null;
+var TAB='bugun', OPEN=null, W={q:null,day:'',step:'q',pick:null,n0:0,seen:{}}, X=null, STACK=[], lastScore=null;
 var RL=2*Math.PI*45;
 var ICON={back:'<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>'};
 
@@ -3843,12 +3843,12 @@ function buildQueue(){
   due.sort(function(a,b){var x=S.srs[a].d,y=S.srs[b].d;return x<y?-1:x>y?1:Math.random()-.5;});
   var nw=pickNew(newLeft()),q=[];
   while(due.length||nw.length){if(due.length)q.push(due.shift());if(due.length)q.push(due.shift());if(nw.length)q.push(nw.shift());}
-  W={q:q,day:t,step:'q',pick:null,n0:q.length};
+  W={q:q,day:t,step:'q',pick:null,n0:q.length,seen:{},cur:null};
 }
 function vKelimeler(){
   var n=wordsReady(),c=counts();
   var h='<div class="card dark-card next"><div class="eyebrow">Kelime tekrarı · günlük</div><div class="t">'+(n?n+' kart seni bekliyor':'Bugünlük tamam')+'</div>'+
-    '<div class="muted small">Kelimeyi gör, anlamını hatırla, sonra cevaba bak. Ne kadar iyi bildiğini seç; uygulama tekrar zamanını buna göre ayarlar.</div>'+
+    '<div class="muted small">Yeni kelimeyi önce Türkçesiyle tanırsın, sonra sorulur: Almancadan Türkçeye, Türkçeden Almancaya. Bildiklerin seyrek, bilemediklerin sık gelir.</div>'+
     '<button class="btn lime big wide" data-act="review">'+(n?'Başla':'Havuzdan 5 yeni kelime')+'</button>'+
     '<div class="srs num"><div><b>'+c.due+'</b><span>vadesi gelen</span></div><div><b>'+c.lrn+'</b><span>öğreniliyor</span></div><div><b>'+c.sat+'</b><span>oturdu</span></div></div></div>';
   h+='<div class="card"><div class="eyebrow">Alıştırmalar · oyunlar</div><div class="tiles">'+
@@ -4046,39 +4046,72 @@ function advance(){
   drawPage();$('page').scrollTop=0;
 }
 
-/* --- kelime tekrarı --- */
+/* --- kelime tekrarı: anlam odaklı ---
+   Yeni kelime önce tanıtılır (Almanca + Türkçe + örnek), birkaç kart sonra sorulur.
+   Soru türü kelimenin aşamasına göre: Almanca→Türkçe seç, Türkçe→Almanca seç,
+   sonra Almancasını kendin hatırla. Artikel ayrıca sorulmaz; kelimenin önünde
+   renkli durur (der mavi, die gül, das yeşil) ve böyle akılda kalır. */
+function deLabel(c){var a=ART(c.a);return (a?'<span class="art" style="color:var(--'+a+')">'+a+'</span> ':'')+esc(c.w);}
+function deText(c){var a=ART(c.a);return (a?a+' ':'')+c.w;}
+function rvType(id){
+  var s=S.srs[id];
+  if(!s&&!W.seen[id])return 'intro';
+  if(!s||s.n===0)return 'de2tr';
+  if(s.n===1)return 'tr2de';
+  return hash(id+today())%2?'recall':'tr2de';
+}
+function rvOpts(c,type){
+  var src=c.kalip?KL.map(function(k,i){return card('k:'+i);}):POOL.filter(function(e){return e.p===c.p&&Math.abs(e.l-(c.l||2))<=1;});
+  if(src.length<8)src=POOL;
+  var key=type==='de2tr'?function(x){return x.tr;}:deText,right=key(c),o=[right],g=0;
+  while(o.length<4&&g++<80){var d=src[Math.floor(Math.random()*src.length)];if(!d||d.id===c.id)continue;var v=key(d);if(v&&o.indexOf(v)<0&&v.length<70)o.push(v);}
+  return {right:right,o:shuffle(o)};
+}
+function rvCard(c,big){
+  var pl=plural(c),ru=ART(c.a)&&c.p==='n'?rule(c):'';
+  return '<div class="de" lang="de" style="font-size:'+(big?'30':'24')+'px;font-family:var(--f-disp)">'+deLabel(c)+'</div>'+
+    '<div class="tr" style="font-size:'+(big?'24':'20')+'px">'+esc(c.tr)+'</div>'+
+    (pl?'<div class="pl" lang="de">çoğul: die '+esc(pl)+'</div>':c.f?'<div class="pl" lang="de">'+esc(c.f)+'</div>':'')+
+    (c.ex?'<div class="ex" lang="de">'+hl(c.ex)+'</div>':'')+(ru?'<div class="rule">'+esc(ru)+'</div>':'');
+}
 function pReview(){
   var q=W.q,b='';
   if(!q.length){
     var d=peek(today())||{};
-    b='<div class="card rv"><div class="eyebrow">Kelime tekrarı</div><div class="tr">Bugünlük tamam!</div><p class="muted">'+(d.w||0)+' kart tekrar ettin. Yarın vadesi gelenler burada olacak.</p>'+
-      '<button class="btn dark big wide" data-act="more">Havuzdan 5 yeni kelime daha</button><button class="btn lime big wide" data-act="close">Kapat</button></div>';
+    b='<div class="card rv"><div class="eyebrow">Kelime tekrarı</div><div class="tr">Bugünlük tamam!</div><p class="muted">'+(d.w||0)+' cevap verdin. Yarın tekrar zamanı gelenler burada olacak.</p>'+
+      '<button class="btn dark big wide" data-act="more">5 yeni kelime daha öğren</button><button class="btn lime big wide" data-act="close">Kapat</button></div>';
     return {t:'Kelime tekrarı',b:b};
   }
-  var id=q[0],c=card(id),fresh=!S.srs[id];
+  var id=q[0],c=card(id);
   if(!c){q.shift();return pReview();}
-  var done=W.n0-q.length;
+  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty};if(ty==='de2tr'||ty==='tr2de'){var r=rvOpts(c,ty);W.cur.right=r.right;W.cur.o=r.o;}W.step='q';W.pick=null;}
+  var cu=W.cur,done=W.n0-q.length;
   b=progBar(done,Math.max(W.n0,done+1));
-  if(W.step==='q'){
-    b+='<div class="card rv front"><div class="src">'+esc(srcLabel(c))+(fresh?' · yeni':'')+'</div><div class="word" lang="de">'+esc(c.w)+'</div>';
-    if(c.p==='n'&&c.a)b+='<div class="ask">1. Artikeli ne?</div><div class="arts">'+['der','die','das'].map(function(a){return '<button data-act="art" data-v="'+a+'" style="--a:var(--'+a+');--at:var(--'+a+'-t)">'+a+'</button>';}).join('')+'</div><p class="note">Sonra anlamını göreceksin.</p>';
-    else b+='<div class="ask">Türkçesi ne? Önce kafanda cevapla.</div><button class="btn dark big wide" data-act="show">Cevabı göster</button>';
-    return {t:'Kelime tekrarı',b:b+'</div>'};
+  if(cu.type==='intro'){
+    b+='<div class="card rv"><div class="src">Yeni kelime · '+esc(srcLabel(c))+'</div>'+rvCard(c,true)+'</div>'+
+      '<p class="note center">Okunuşunu içinden söyle, örnek cümleyi oku. Birkaç kart sonra sorulacak.</p>'+
+      '<button class="btn lime big wide" data-act="rvok">Tamam, devam</button><button class="link center" data-act="rvknown">Bunu zaten biliyorum · 30 gün sorma</button>';
+    return {t:'Kelime tekrarı',b:b};
   }
-  var a=ART(c.a),ok=W.pick===a,pl=plural(c),ru=a&&c.p==='n'?rule(c):'';
-  b+='<div class="card rv" style="background:'+(a?'var(--'+a+'-t)':'')+'"><div class="src">'+esc(srcLabel(c))+'</div>'+
-    '<div class="tr">'+esc(c.tr)+'</div>'+
-    '<div class="de" lang="de" style="--ac:var(--'+(a||'ink')+')">'+(a?'<span class="art">'+a+'</span> ':'')+esc(c.w)+'</div>'+
-    (pl?'<div class="pl" lang="de">çoğul: die '+esc(pl)+'</div>':c.f?'<div class="pl" lang="de">'+esc(c.f)+'</div>':'')+
-    (W.pick?'<div class="res" style="color:'+(ok?'var(--ok)':'var(--bad)')+'">'+(ok?'Artikel doğru!':'Artikel: '+a+' (sen "'+W.pick+'" dedin)')+'</div>':'')+
-    (c.ex?'<div class="ex" lang="de">'+hl(c.ex)+'</div>':'')+(ru?'<div class="rule">'+esc(ru)+'</div>':'')+'</div>';
-  b+='<div class="ask center">'+(a&&c.p==='n'?'2. ':'')+'Ne kadar iyi biliyordun?</div><div class="grade">'+
-    '<button class="g0" data-act="grade" data-g="0">Bilmiyordum<small>az sonra yine sorulur</small></button>'+
-    '<button data-act="grade" data-g="1">Zor hatırladım<small>'+ivl(next(id,1))+' sonra</small></button>'+
-    '<button class="g2" data-act="grade" data-g="2">Biliyordum<small>'+ivl(next(id,2))+' sonra</small></button></div>'+
-    (fresh?'<button class="link center" data-act="grade" data-g="3">Bunu zaten iyi biliyorum · 30 gün sorma</button>':'')+
-    '<p class="note center">Seçince sıradaki kelime gelir.</p>';
+  if(cu.type==='recall'){
+    if(W.step==='q')return {t:'Kelime tekrarı',b:b+'<div class="card rv front"><div class="src">'+esc(srcLabel(c))+'</div><div class="ask">Almancası ne?</div><div class="tr">'+esc(c.tr)+'</div>'+
+      '<p class="note">Önce kafanda söyle (artikeliyle), sonra kontrol et.</p></div><button class="btn dark big wide" data-act="rvshow">Göster</button>'};
+    return {t:'Kelime tekrarı',b:b+'<div class="card rv">'+rvCard(c,true)+'</div><div class="ask center">Doğru hatırladın mı?</div>'+
+      '<div class="row"><button class="btn big wide" style="border-color:var(--bad)" data-act="rvself" data-v="0">Hayır</button><button class="btn big wide" style="border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))" data-act="rvself" data-v="1">Evet</button></div>'};
+  }
+  var de2tr=cu.type==='de2tr';
+  b+='<div class="card rv"><div class="src">'+esc(srcLabel(c))+'</div><div class="ask">'+(de2tr?'Türkçesi hangisi?':'Almancası hangisi?')+'</div>'+
+    (de2tr?'<div class="word" lang="de">'+deLabel(c)+'</div>':'<div class="tr">'+esc(c.tr)+'</div>')+'</div>';
+  b+='<div class="opts">'+cu.o.map(function(o){var cl=W.pick?(o===cu.right?'ok':o===W.pick?'no':''):'';return '<button'+(de2tr?'':' lang="de"')+' class="'+cl+'" data-act="rvpick" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
+  if(W.pick){var ok=W.pick===cu.right;
+    b+='<div class="row"><b class="res" style="flex:1;color:'+(ok?'var(--ok)':'var(--bad)')+'">'+(ok?'Richtig!':'Yanlış · birazdan yine sorulacak')+'</b><button class="btn dark big" style="flex:1" data-act="rvnext">Devam</button></div>'+
+      '<div class="card rv" style="padding:14px">'+rvCard(c,false)+'</div>';}
   return {t:'Kelime tekrarı',b:b};
+}
+function rvAdvance(requeue){
+  var id=W.q.shift();if(requeue)W.q.splice(Math.min(3,W.q.length),0,id);
+  W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;setStreak();
+  if(!W.q.length&&wordDone(peek(today())))toast('Kelime görevi tamam · +30 puan');
 }
 
 /* --- alıştırma: kelimelerle cümle kur --- */
@@ -4247,14 +4280,12 @@ var ACT={
   hsrc:function(b){var d=day();d.hs=d.hs===b.dataset.v?'':b.dataset.v;save();render();},
   spr:function(){var d=day();d.spr=!d.spr;save();render();},
   review:function(){if(!W.q||W.day!==today())buildQueue();if(!W.q.length)ACT.more();openPage({kind:'review'});},
-  art:function(b){W.pick=b.dataset.v;W.step='a';drawPage();},
-  show:function(){W.pick=null;W.step='a';drawPage();},
-  grade:function(b){
-    var g=+b.dataset.g,id=W.q.shift();grade(id,g);
-    if(g===0)W.q.splice(Math.min(3,W.q.length),0,id);
-    W.step='q';W.pick=null;drawPage();$('page').scrollTop=0;setStreak();
-    if(!W.q.length&&wordDone(peek(today())))toast('Kelime görevi tamam · +30 puan');
-  },
+  rvok:function(){var id=W.q.shift();W.seen[id]=1;W.q.splice(Math.min(2,W.q.length),0,id);W.cur=null;drawPage();$('page').scrollTop=0;},
+  rvknown:function(){grade(W.q[0],3);rvAdvance(false);},
+  rvpick:function(b){if(W.pick)return;W.pick=b.dataset.v;var id=W.q[0],s=S.srs[id],ok=W.pick===W.cur.right;W.cur.ok=ok;grade(id,ok?(s&&s.n>=1?2:1):0);drawPage();},
+  rvnext:function(){rvAdvance(!W.cur.ok);},
+  rvshow:function(){W.step='a';drawPage();},
+  rvself:function(b){var g=b.dataset.v==='1'?2:0;grade(W.q[0],g);rvAdvance(g===0);},
   more:function(){var d=day();d.npx=(d.npx||0)+5;save();var skip={};(W.q||[]).forEach(function(i){skip[i]=1;});var n=pickNew(5,skip);if(!n.length){toast('Havuzda yeni kelime kalmadı');return;}W.q=(W.q||[]).concat(n);W.n0=(W.n0||0)+n.length;if(X&&X.kind==='review')drawPage();},
   addcard:function(b){var id=b.dataset.id,t=today();if(!S.srs[id]){S.srs[id]={i:0,e:2.5,n:0,d:t,a:t};save();if(W.q&&W.q.indexOf(id)<0){W.q.push(id);W.n0=(W.n0||0)+1;}}
     b.outerHTML='<span class="tag">destede</span>';toast('Kelime tekrarına eklendi');},
