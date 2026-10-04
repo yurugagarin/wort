@@ -320,6 +320,10 @@ textarea.inp{min-height:110px;resize:vertical;line-height:1.5}
 .gsent:last-child{border-bottom:0}
 .gsent b{font-family:var(--f-disp);font-weight:500;font-size:16px}
 .gsent span{font-size:12px;color:var(--ink2)}
+.sum{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--les);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.sum b{display:block;font-family:var(--f-disp);font-size:16px;font-weight:600;margin-bottom:3px}
+.sum p{font-size:14px;line-height:1.6;color:var(--ink2)}
+.sum p b{display:inline;font-family:var(--f-body);font-size:14px;font-weight:700;color:var(--ink);margin:0}
 .expl{font-size:14px;line-height:1.5;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--les);border-radius:12px;padding:10px 12px}
 
 /* blitz ve lücke */
@@ -2791,7 +2795,7 @@ try{var _mq=matchMedia('(prefers-color-scheme: dark)');if(_mq.addEventListener)_
 var S;
 function blank(){return {v:1,start:today(),srs:{},mine:[],days:{},gram:{},gdone:{},
   set:{exam:'',examName:'Goethe-Zertifikat B1',newPerDay:10,lv:{1:true,2:true,3:true}},
-  best:{blitz:0},seq:0,
+  best:{blitz:0},seq:0,gnote:{},gfocus:'',
   /* v2+ için ayrılmış alanlar: Claude düzeltmeleri, ses arşivi, Almanca haftalık özet */
   ext:{}};}
 function migrate(s){
@@ -3244,6 +3248,136 @@ var G=[
  ['Das kommt nicht in Frage.','Bu söz konusu bile olamaz.'],
  ['Ich habe mit ihm Kontakt aufgenommen.','Onunla iletişime geçtim.']]]
 ];
+/* ---------------- konu özetleri (Türkçe) ----------------
+   Biçim: [başlık, metin]. Metinde *…* Almanca örnektir (kalın), satır sonu \n. */
+var GS={
+g1:[['Ne işe yarar?','Konuşmada geçmişi anlatmanın ana yolu. "Dün ne yaptın?" sorusunun cevabı neredeyse her zaman Perfekt\'tir.'],
+ ['Nasıl kurulur?','haben/sein çekimli hâliyle 2. sırada, Partizip II en sonda:\n*Ich habe gestern Pizza gegessen.*\nDüzenli fiil: ge + kök + t → *gemacht, gekauft, gelernt*\nDüzensiz fiil: ge + (değişen) kök + en → *gegangen, getrunken, geschrieben*\nAyrılabilen fiil: ön ek + ge + kök → *eingekauft, aufgestanden*\n-ieren ile biten ve be-, ver-, er-, ent- ile başlayanlar ge- almaz → *trainiert, besucht, verstanden*'],
+ ['haben mi, sein mi?','Yer değiştirme (gehen, fahren, fliegen, laufen, kommen) ve durum değişimi (aufstehen, einschlafen, werden) → *sein*.\nAyrıca sein, bleiben, passieren → *sein*.\nGeri kalan çoğunluk → *haben*.'],
+ ['Dikkat','Partizip cümlenin sonuna gider; araya ne girerse girsin: *Ich bin am Wochenende mit dem Zug nach Hamburg gefahren.*'],
+ ['Türkçe ile','Türkçedeki "-dı/-di" geçmişi. Fark şu: Almanca fiili ikiye böler, baş (habe/bin) öne, son (gemacht) en arkaya gider.']],
+g2:[['Ne işe yarar?','Geçmişte "yapabildim, zorundaydım, istedim, izin vardı" demek için. Modal fiillerde konuşmada da Perfekt yerine bu kullanılır.'],
+ ['Nasıl kurulur?','Kök + te, Umlaut düşer:\nkönnen → *konnte* · müssen → *musste* · dürfen → *durfte*\nwollen → *wollte* · sollen → *sollte* · mögen → *mochte*\nÇekim: ich konnte, du konntest, er konnte, wir konnten, ihr konntet, sie konnten\nAsıl fiil mastar hâlinde en sonda: *Ich musste gestern lange arbeiten.*'],
+ ['Dikkat','ich ve er/sie/es aynı, ek almaz: *er konnte*.\n"möchte"nin geçmişi yoktur; yerine *wollte* kullanılır: *Ich wollte einen Kaffee.*'],
+ ['Türkçe ile','"yapmak zorundaydım" = *ich musste … machen*\n"yapamadım" = *ich konnte … nicht machen*']],
+g3:[['Ne işe yarar?','weil = çünkü (sebep) · dass = -dığını (içerik) · wenn = -se / -dığında (koşul, zaman).'],
+ ['Nasıl kurulur?','Yan cümlede çekimli fiil en sona gider: *…, weil ich müde bin.*\nYardımcı fiil varsa en sonda o durur: *…, weil ich lange gearbeitet habe.* / *…, dass ich morgen arbeiten muss.*\nYan cümle başa gelirse ana cümle fiille başlar: *Wenn es regnet, bleibe ich zu Hause.* (fiil, virgül, fiil)'],
+ ['Dikkat','*denn* de "çünkü" demek ama ana cümle kurar, fiil yerinde kalır: *…, denn ich bin müde.*\nAyrılabilen fiil yan cümlede birleşir: *…, weil ich früh aufstehe.*'],
+ ['Türkçe ile','Türkçede fiil hep sondadır; Almanca yan cümle bu yüzden sana tanıdık gelecek.']],
+g4:[['Ne işe yarar?','Dokuz edat (in, an, auf, über, unter, vor, hinter, neben, zwischen) hem Dativ hem Akkusativ alabilir. Hangisini alacağını soru belirler.'],
+ ['Nasıl kurulur?','Wo? (nerede, durum) → Dativ: *Das Buch liegt auf dem Tisch.*\nWohin? (nereye, hareket) → Akkusativ: *Ich lege das Buch auf den Tisch.*\nÇiftler: liegen (Dat.) ↔ legen (Akk.) · stehen ↔ stellen · sitzen ↔ setzen · hängen ↔ hängen\nKısaltmalar: in dem = *im*, in das = *ins*, an dem = *am*, an das = *ans*'],
+ ['Artikel tablosu','Dativ: dem (der) · der (die) · dem (das) · den + n (çoğul)\nAkkusativ: den (der) · die (die) · das (das) · die (çoğul)'],
+ ['Türkçe ile','Wo = "-de" (masada) → Dativ. Wohin = "-e" (masaya) → Akkusativ.']],
+g5:[['Ne işe yarar?','Bazı fiillerin nesnesi Dativ olur. Çoğu Türkçede de "-e" ile kurulur: birine yardım etmek, birine teşekkür etmek.'],
+ ['Sık kullanılanlar','helfen, danken, gefallen, gehören, schmecken, passen, gratulieren, antworten, glauben (birine), fehlen, wehtun, zuhören'],
+ ['Zamirler','mir, dir, ihm, ihr, ihm, uns, euch, ihnen, Ihnen'],
+ ['Dikkat','*Das gefällt mir.* = Bu hoşuma gidiyor. Özne "das"tır, "ich" değil!\n*Mir ist kalt.* = Üşüyorum.\n"Ich helfe dich" değil, *Ich helfe dir*.']],
+g6:[['Ne işe yarar?','Eylem öznenin kendisine döner. Bazı fiiller ise sırf kalıp olarak dönüşlüdür (sich freuen, sich beeilen).'],
+ ['Zamirler','ich → mich · du → dich · er/sie/es → sich · wir → uns · ihr → euch · sie/Sie → sich\nVücut bölümüyle Dativ: *Ich wasche mir die Hände.*'],
+ ['Sık kullanılanlar','sich freuen, sich treffen, sich beeilen, sich erholen, sich duschen, sich fühlen, sich ausruhen, sich interessieren für, sich erinnern an'],
+ ['Dikkat','Perfekt\'te hep haben: *Ich habe mich gefreut.*\nYan cümlede zamir özneden hemen sonra: *…, weil ich mich auf den Urlaub freue.*'],
+ ['Türkçe ile','Türkçedeki "-n" ve "-ş" ekleri (yıkanmak, buluşmak) çoğu zaman dönüşlü fiile denk gelir.']],
+g7:[['Nasıl kurulur?','Karşılaştırma: sıfat + er + als → *schneller als*\nEn üstünlük: am + sıfat + sten → *am schnellsten*\nİsmin önünde: *der schnellste Läufer*'],
+ ['Umlaut ve düzensizler','alt → älter → am ältesten · groß → größer · jung → jünger · kalt → kälter\ngut – besser – am besten\nviel – mehr – am meisten\ngern – lieber – am liebsten\nhoch – höher – am höchsten'],
+ ['Dikkat','Karşılaştırmada *als*, eşitlikte *so … wie*: *Er ist so groß wie ich.*\n"mehr schnell" denmez, *schneller* denir.'],
+ ['Türkçe ile','"daha" = -er, "en" = am …-sten.']],
+g8:[['Ne işe yarar?','Rica ederken kibarlık katar. Mağazada, ofiste, telefonda her gün lazım olur.'],
+ ['Kalıplar','*Könnten Sie …?* = …ebilir misiniz?\n*Würden Sie …?* = …r mısınız?\n*Ich hätte gern …* = … istiyorum (kibar)\n*Dürfte ich …?* = …ebilir miyim?'],
+ ['Çekim','ich könnte, du könntest, er könnte, wir könnten\nich hätte, du hättest · ich würde, du würdest'],
+ ['Dikkat','Asıl fiil mastar hâlinde en sonda: *Könnten Sie mir bitte helfen?*']],
+g9:[['Kural','der/die/das (ve dieser, jeder, welcher) sonrası sıfat ya -e ya -en alır.\n-e: Nominativ tekil (*der neue Plan, die neue Idee, das neue Auto*) ve Akkusativ\'de die/das (*die neue Idee, das neue Auto*)\n-en: geri kalan her yer: *den neuen Plan*, tüm Dativ (*mit dem neuen Plan*), tüm çoğul (*die neuen Pläne*)'],
+ ['İpucu','Artikel cinsiyeti zaten gösterdiği için sıfat sadece -e ya da -en alır. Emin değilsen -en de: çoğu durumda doğrudur.'],
+ ['Türkçe ile','Türkçede sıfat değişmez. Almancada sıfat önündeki artikele göre ek alır.']],
+g10:[['Liste','*vor* + Dat. = önce: vor dem Essen\n*nach* + Dat. = sonra: nach der Arbeit\n*seit* + Dat. = -den beri (hâlâ sürüyor): seit einem Jahr\n*in* + Dat. = sonra (gelecekte): in zwei Wochen\n*ab* = itibaren: ab Montag · *bis* = kadar: bis Freitag\n*für* + Akk. = süresince (plan): für zwei Wochen\n*um* = saat: um acht Uhr · *am* = gün: am Montag, am Abend · *im* = ay, mevsim: im Mai, im Sommer'],
+ ['Dikkat','seit ile şimdiki zaman kullanılır: *Ich lerne seit einem Jahr Deutsch.*\nvor geçmişte "önce" demektir: *vor zwei Jahren* = iki yıl önce.']],
+g11:[['Kural','ein/kein/mein sonrası sıfat, artikelin göstermediği cinsiyeti kendisi gösterir.\nNom.: *ein neuer Plan* (der) · *eine neue Idee* (die) · *ein neues Auto* (das)\nAkk.: *einen neuen Plan* · *eine neue Idee* · *ein neues Auto*\nDativ\'de hep -en: *mit einem neuen Plan*'],
+ ['Artikelsiz','Sıfat artikelin sonunu alır: *frischer Kaffee* (der) · *frische Milch* (die) · *frisches Brot* (das) · *mit frischem Gemüse* (dem)'],
+ ['Dikkat','Çoğulda kein/mein ile hep -en: *keine guten Ideen*. Artikelsiz çoğul -e: *gute Ideen*.']],
+g12:[['Ne işe yarar?','Bazı fiiller sabit bir edatla gelir. Edatı fiille birlikte ezberle.'],
+ ['Sık kullanılanlar','warten auf + Akk. · sich freuen auf (gelecek) / über (olan) · denken an + Akk. · sich interessieren für · sprechen über · Angst haben vor + Dat. · teilnehmen an + Dat. · sich kümmern um · träumen von'],
+ ['Soru ve cevap','Şey sorulurken: wo(r) + edat → *Worauf wartest du?*\nŞey için cevap: da(r) + edat → *Ich warte darauf.*\n(Edat ünlüyle başlıyorsa araya r girer: worüber, darauf)\nKişi için: edat + zamir → *Auf wen wartest du? – Auf ihn.*'],
+ ['Dikkat','*Ich freue mich auf den Urlaub* (gelecek) ↔ *Ich freue mich über das Geschenk* (oldu).']],
+g13:[['Nasıl kurulur?','Girişler: *Weißt du, …* · *Können Sie mir sagen, …* · *Ich möchte wissen, …*\nW-sorusu: soru kelimesi kalır, fiil sona: *Weißt du, wann der Zug kommt?*\nEvet/hayır sorusu: ob + fiil sona: *Ich weiß nicht, ob er kommt.*'],
+ ['Dikkat','ob ≠ wenn. Koşul "eğer" → wenn; "-ip -mediğini" → ob.'],
+ ['Türkçe ile','"Trenin ne zaman geldiğini biliyor musun?" Türkçede de soru cümlenin içine gömülür.']],
+g14:[['Kalıplar','Tavsiye: *Du solltest …* (yapmalısın) · *An deiner Stelle würde ich …*\nDilek: *Ich würde gern …* · *Ich hätte gern …* · *Ich wäre gern …*\nKoşul: *Wenn ich Zeit hätte, würde ich …*'],
+ ['Biçim','Çoğu fiil: würde + mastar.\nsein, haben ve modallar kendi biçimiyle: wäre, hätte, könnte, müsste, sollte.'],
+ ['Dikkat','"würde haben" yerine *hätte*, "würde sein" yerine *wäre* daha doğal.'],
+ ['Türkçe ile','"-sa … -ırdı": Zamanım olsa giderdim = *Wenn ich Zeit hätte, würde ich gehen.*']],
+g15:[['Ne işe yarar?','Kimin yaptığı önemli değil, ne yapıldığı önemli: tarifler, kurallar, haberler.'],
+ ['Nasıl kurulur?','werden (çekimli) + Partizip II en sonda: *Das Essen wird gekocht.*\nwerden: ich werde, du wirst, er wird, wir werden, ihr werdet, sie werden\nYapan söylenecekse von + Dativ: *Das Haus wird von Profis renoviert.*\nÖznesiz de olur: *Hier wird gearbeitet.*'],
+ ['Dikkat','werden + mastar = gelecek zaman. werden + Partizip II = edilgen.'],
+ ['Türkçe ile','"-ıl/-ın" edilgen eki: yapılır, kesilir, açılır.']],
+g16:[['Nasıl kurulur?','İlgi zamiri isme göre seçilir (der/die/das, çoğulda die); hâli ise yan cümledeki görevine göre:\nNominativ: der, die, das, die\nAkkusativ: den, die, das, die\nFiil yan cümlenin sonuna gider, virgülle ayrılır:\n*Der Mann, der dort steht, …* / *Der Mann, den ich kenne, …*'],
+ ['Dikkat','Cinsiyet öndeki isimden, hâl yan cümleden gelir.'],
+ ['Türkçe ile','Türkçede ek önden gelir: "okuduğum kitap". Almancada sonra: *das Buch, das ich lese*.']],
+g17:[['Ne zaman?','Bazı fiil ve kalıplardan sonra ikinci eylem zu + mastarla gelir:\nLust haben, Zeit haben, versuchen, anfangen, aufhören, vergessen, vorhaben, Es ist wichtig/schwer/schön …'],
+ ['Nasıl kurulur?','zu + mastar en sonda: *Ich habe keine Lust, heute zu kochen.*\nAyrılabilen fiilde zu araya girer: *aufzustehen, einzukaufen*'],
+ ['Dikkat','Modal fiillerden sonra zu yok: *Ich muss kochen*. Aynı şekilde möchten, werden, lassen + mastar.']],
+g18:[['Nasıl kurulur?','Ana cümle, virgül, deshalb, çekimli fiil, özne:\n*Ich bin müde, deshalb gehe ich ins Bett.*\nAynı anlamda: deswegen, darum, daher.'],
+ ['weil ile karşılaştır','weil sebebi verir ve fiili sona yollar: *Ich gehe ins Bett, weil ich müde bin.*\ndeshalb sonucu verir, fiil hemen arkasından gelir.'],
+ ['Dikkat','"deshalb ich gehe" yanlış; doğrusu *deshalb gehe ich*.']],
+g19:[['Ne işe yarar?','Yazıda (hikâye, haber, rapor) geçmiş zaman. Konuşmada sadece sein, haben ve modal fiillerde.'],
+ ['Nasıl kurulur?','Düzenli: kök + te → *machte, kaufte, arbeitete*\nDüzensiz: kök değişir → *ging, kam, sah, aß, trank, fuhr, schrieb, las*\nsein: war, warst, war, waren, wart, waren\nhaben: hatte, hattest, hatte, hatten, hattet, hatten'],
+ ['Dikkat','ich ve er/sie/es aynı, ek yok: *ich ging, er ging*.\nDüzensiz fiilleri üç biçimiyle ezberle: *gehen – ging – gegangen*.']],
+g20:[['Nereye?','*zu* + Dat. (kişi, kurum): zum Arzt, zur Arbeit\n*nach* (şehir, artikelsiz ülke, eve): nach Berlin, nach Hause\n*in* + Akk. (içine, artikelli ülke): ins Kino, in die Türkei'],
+ ['Nerede?','*bei* + Dat. (kişide, iş yerinde): beim Arzt, bei Siemens\n*in* + Dat.: im Kino · *zu Hause*'],
+ ['Nereden?','*aus* + Dat. (içinden, memleket): aus dem Haus, aus der Türkei\n*von* + Dat. (kişiden, yerden): vom Arzt, vom Training'],
+ ['Dikkat','*zu Hause* = evde · *nach Hause* = eve']],
+g21:[['Nasıl kurulur?','obwohl yan cümle kurar, fiil sona: *…, obwohl ich müde bin.*\ntrotzdem ana cümlede ilk yerde, fiil hemen arkasında: *Ich bin müde, trotzdem trainiere ich.*\nobwohl başta: *Obwohl ich müde bin, trainiere ich.*\nİsimle: trotz + Genitiv: *trotz des Regens*'],
+ ['Hatırlatma','obwohl, weil gibi çalışır; trotzdem, deshalb gibi.'],
+ ['Türkçe ile','obwohl = -mesine rağmen · trotzdem = yine de']],
+g22:[['Kural','Geçmişte tek sefer ya da tek dönem → als: *Als ich ein Kind war, …* / *Als ich ankam, …*\nGeçmişte tekrarlanan → (immer) wenn: *Wenn ich nach Hause kam, …*\nŞimdi ve gelecek → wenn: *Wenn ich Zeit habe, …*\nİkisi de yan cümle, fiil sonda.'],
+ ['Dikkat','Soru "ne zaman?" ise wann: *Ich weiß nicht, wann er kommt.*']],
+g23:[['Nasıl kurulur?','hatte/war + Partizip II: *Ich hatte gegessen. Er war gegangen.*\nhaben/sein seçimi Perfekt\'teki gibi.'],
+ ['nachdem ile','Önce olan Plusquamperfekt, sonra olan Präteritum ya da Perfekt:\n*Nachdem ich gegessen hatte, ging ich spazieren.*'],
+ ['Türkçe ile','"-mıştı": Anahtarı unutmuştum = *Ich hatte den Schlüssel vergessen.*']],
+g24:[['Bağlaçlar','*bevor* = -meden önce · *während* = -irken · *seit(dem)* = -den beri · *bis* = -e kadar\nHepsi yan cümle, fiil sona gider.'],
+ ['Edat olarak','vor dem Essen · während des Essens (Genitiv) · seit dem Umzug · bis zum Abend'],
+ ['Dikkat','seit ile çoğunlukla şimdiki zaman: *Seit ich hier wohne, schlafe ich besser.*']],
+g25:[['Nasıl kurulur?','Dativ ilgi zamirleri: dem (der) · der (die) · dem (das) · denen (çoğul)\nDativ fiilleriyle: *die Frau, der ich helfe*\nEdatlı fiilde edat zamirin önüne gelir:\n*der Freund, mit dem ich trainiere*\n*die Firma, bei der ich arbeite*\n*das Thema, über das wir sprechen*'],
+ ['Dikkat','Edat zamirin yanında kalır, cümle sonuna kaçmaz.']],
+g26:[['Nasıl kurulur?','hätte/wäre + Partizip II: *Ich hätte das gemacht. Ich wäre gekommen.*\nKoşul: *Wenn ich mehr gelernt hätte, hätte ich bestanden.*\nModal fiille pişmanlık: *Ich hätte früher anfangen sollen.*'],
+ ['Türkçe ile','"-saydı … -ırdı": Arasaydın gelirdim = *Wenn du angerufen hättest, wäre ich gekommen.*']],
+g27:[['Nasıl kurulur?','Artikel: des (eril/nötr, isim -s/-es alır) · der (dişil ve çoğul)\n*des Mannes, des Kindes, der Frau, der Kinder*\nein → eines/einer · mein → meines/meiner'],
+ ['Genitiv alan edatlar','wegen, trotz, während, statt, innerhalb, außerhalb'],
+ ['Dikkat','Konuşmada sahiplik çoğu zaman von + Dativ ile söylenir: *das Auto von meinem Bruder*.\nEril ve nötr isim de ek alır: *des Regens, des Tages*.']],
+g28:[['Kural','Özne aynıysa: um … zu + mastar sonda: *Ich trainiere, um fit zu bleiben.*\nÖzne farklıysa: damit + yan cümle: *Ich erkläre es, damit du es verstehst.*\nAyrılabilen: *um früh aufzustehen*'],
+ ['Dikkat','um … zu ile modal fiil kullanılmaz.'],
+ ['Türkçe ile','um … zu = -mek için · damit = -sin diye']],
+g29:[['Bağlaçlar','*sowohl … als auch* = hem … hem\n*weder … noch* = ne … ne\n*entweder … oder* = ya … ya\n*nicht nur … sondern auch* = sadece … değil … de'],
+ ['Dikkat','weder … noch zaten olumsuzdur, ayrıca nicht eklenmez: *Er hat weder Zeit noch Lust.*']],
+g30:[['Nasıl kurulur?','werden (çekimli) + mastar en sonda: *Ich werde die Prüfung machen.*'],
+ ['Ne zaman?','Gelecek plan ve söz: *Ich werde ab jetzt jeden Tag üben.*\nTahmin (wohl ile): *Er wird wohl im Büro sein.*'],
+ ['Dikkat','Gündelik dilde Präsens + zaman ifadesi daha sık: *Morgen fahre ich nach Berlin.*']],
+g31:[['Zamanlar','Präsens: *wird gebaut*\nPräteritum: *wurde gebaut*\nPerfekt: *ist gebaut worden* (geworden değil, worden!)\nModal fiille: *muss gebaut werden*, *kann repariert werden*'],
+ ['Dikkat','Edilgen Perfekt\'te yardımcı fiil hep sein: *Das Paket ist geliefert worden.*']],
+g32:[['Hangi isimler?','Çoğunlukla -e ile biten eril canlılar (der Kollege, der Junge, der Kunde, der Name) ve -ent, -ant, -ist ile bitenler (der Student, der Präsident, der Journalist). Ayrıca der Mensch, der Nachbar, der Herr.'],
+ ['Kural','Nominativ dışında her yerde -(e)n alır: *der Kollege → den Kollegen → dem Kollegen → des Kollegen*'],
+ ['Dikkat','Yazıda unutulması çok sık görülen bir hata: *Ich frage den Kollegen* ("den Kollege" değil).']],
+g33:[['Nasıl kurulur?','je + karşılaştırma + yan cümle (fiil sona), desto + karşılaştırma + ana cümle (fiil hemen arkasında):\n*Je mehr ich übe, desto besser spreche ich.*'],
+ ['Türkçe ile','"ne kadar … o kadar" ya da "-dıkça": Pratik yaptıkça daha iyi konuşuyorum.']],
+g34:[['Partizip I','Mastar + d, etken ve eşzamanlı: *das schlafende Kind* (uyuyan çocuk), *steigende Preise* (artan fiyatlar)'],
+ ['Partizip II','Edilgen ya da tamamlanmış: *das gekochte Ei* (haşlanmış yumurta), *ein gebrauchtes Auto* (ikinci el araba)'],
+ ['Dikkat','İkisi de normal sıfat gibi ek alır: *die steigenden Preise, mit gekochtem Reis*.'],
+ ['Türkçe ile','Partizip I ≈ "-en/-an", Partizip II ≈ "-miş/-ılmış".']],
+g35:[['Kural','ohne … zu = -meden: *Er ist gegangen, ohne sich zu verabschieden.*\nstatt … zu = -mek yerine: *Statt zu kochen, bestellen wir Pizza.*\nÖzne farklıysa: ohne dass / statt dass + yan cümle.'],
+ ['Dikkat','zu + mastar en sonda; ayrılabilen fiilde zu araya girer: *ohne mich aufzuwärmen*.']],
+g36:[['Anlamlar','Bir işi başkasına yaptırmak: *Ich lasse das Auto reparieren.*\nİzin vermek: *Lass mich bitte ausreden!*\nBırakmak: *Ich lasse die Tasche im Auto.*\nÖneri: *Lass uns gehen!* = Hadi gidelim!'],
+ ['Perfekt','Başka fiille: *Ich habe das Auto reparieren lassen.* (gelassen değil)'],
+ ['Türkçe ile','"-tır/-dır" ettirgen eki: kestirmek = *schneiden lassen*.']],
+g37:[['Bağlaçlar','*indem* = -erek (yöntem): *Ich bleibe fit, indem ich trainiere.*\n*sodass* = öyle ki / bu yüzden (sonuç): *Es regnete, sodass das Spiel ausfiel.*\nİkisi de yan cümle, fiil sonda.'],
+ ['İpucu','"Nasıl?" sorusunun cevabıysa indem; "Sonuç ne oldu?" sorusununsa sodass.']],
+g38:[['Ne zaman hangisi?','*was*: alles, nichts, etwas, das, vieles ve en üstünlükten sonra: *alles, was ich weiß*; *das Beste, was …*\n*wo*: yer bildirirken: *die Stadt, wo ich wohne*\n*wo(r) + edat*: bütün cümleye ya da edatlı fiile gönderme: *…, worüber ich mich freue.*'],
+ ['Dikkat','Somut isimde normal ilgi zamiri de olur: *die Stadt, in der ich wohne* = *die Stadt, wo ich wohne*.']],
+g39:[['Kalıplar','Gerçekleşmemiş dilek: *Wenn ich doch mehr Zeit hätte!* · *Ich wünschte, ich könnte …*\nGeçmiş dilek: *Wenn ich nur früher angefangen hätte!*\nGerçek dışı karşılaştırma: *Er tut so, als ob er alles wüsste.*'],
+ ['Dikkat','als ob yan cümle kurar, fiil sona: *…, als ob er krank wäre.*'],
+ ['Türkçe ile','"keşke …" = Wenn … doch …! · "-mış gibi" = als ob']],
+g40:[['Ne işe yarar?','Anlamı isimden gelen kalıplar; özellikle yazılı Almanca ve B1 sınavında çok çıkar. Kalıp olarak ezberle.'],
+ ['Sık kullanılanlar','eine Entscheidung treffen = karar vermek\neine Frage stellen = soru sormak\nRücksicht nehmen auf = gözetmek\nin Frage kommen = söz konusu olmak\nKontakt aufnehmen = iletişime geçmek\neinen Rat geben = tavsiye vermek\nBescheid sagen = haber vermek\nzur Verfügung stehen = hizmetinde olmak'],
+ ['Dikkat','Fiil isme göre seçilir: "eine Frage fragen" değil, *eine Frage stellen*.']]
+};
+function rich(t){return esc(t).replace(/\*([^*]+)\*/g,'<b lang="de">$1</b>').replace(/\n/g,'<br>');}
 var GBY={};G.forEach(function(g){GBY[g[0]]=g;});
 var BANDS=['A2.1','A2.2','B1.1','B1.2'];
 var STL={ok:'oturdu',wip:'çalışılıyor',next:'sırada'};
@@ -3255,6 +3389,7 @@ function setG(id,v){
   save();
 }
 function curTopic(){
+  if(S.gfocus&&GBY[S.gfocus])return GBY[S.gfocus];
   var i;for(i=0;i<G.length;i++)if(gst(G[i][0])==='wip')return G[i];
   for(i=0;i<G.length;i++)if(gst(G[i][0])!=='ok')return G[i];
   return G[hash(today())%G.length];
@@ -3483,11 +3618,11 @@ function vWeg(){
     h+='<div class="card exam"><div class="n num">'+Math.max(0,n)+'</div><div><b>'+(n>=0?'gün kaldı':'gün geçti')+' · '+esc(S.set.examName)+'</b><small>'+trDate(S.set.exam)+'</small></div></div>';
   }else h+='<div class="card exam"><div><b>'+esc(S.set.examName)+'</b><small>Sınav tarihi yok. Somut bir gün daha çok çalıştırır.</small></div><button class="btn sm" data-act="settings">Tarih seç</button></div>';
   h+='<div class="card"><div class="row"><div class="eyebrow">Gramer haritası · Menschen A2.1 → B1</div><div class="sp"></div><span class="eyebrow num">'+ok+' / '+G.length+'</span></div>'+
-    '<div class="small muted" style="margin-top:4px">Durumu değiştirmek için sağdaki etikete dokun; konunun anlatımı için adına.</div>';
+    '<div class="small muted" style="margin-top:4px">Konunun adına dokun: Türkçe özet, örnekler, kurs notun ve alıştırma. Sağdaki etiket durumu değiştirir.</div>';
   BANDS.forEach(function(b){
     var gs=G.filter(function(g){return g[1]===b;}),bo=gs.filter(function(g){return gst(g[0])==='ok';}).length;
     h+='<div class="band"><div class="bh"><b>'+b+'</b><span class="small muted num">'+bo+' / '+gs.length+' oturdu</span></div><ul class="gl">'+
-      gs.map(function(g){var s=gst(g[0]);return '<li><button class="nm" data-act="topic" data-id="'+g[0]+'"><span class="dot" style="background:'+STC[s]+'"></span><span lang="de">'+esc(g[2])+'</span></button><button class="st '+s+'" data-act="gcycle" data-id="'+g[0]+'">'+STL[s]+'</button></li>';}).join('')+'</ul></div>';
+      gs.map(function(g){var s=gst(g[0]);return '<li><button class="nm" data-act="topic" data-id="'+g[0]+'"><span class="dot" style="background:'+STC[s]+'"></span><span lang="de">'+esc(g[2])+'</span>'+(S.gfocus===g[0]?'<span class="chip on" style="padding:1px 8px;font-size:10px">bugün</span>':'')+'</button><button class="st '+s+'" data-act="gcycle" data-id="'+g[0]+'">'+STL[s]+'</button></li>';}).join('')+'</ul></div>';
   });
   return h+'</div>';
 }
@@ -3569,7 +3704,8 @@ function shSatz(){
   if(X.intro){
     var g=X.intro;
     return h+'<div class="expl">'+esc(g[3])+'</div><div style="margin:12px 0">'+g[4].slice(0,2).map(function(s){return '<div class="gsent"><b lang="de">'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>';}).join('')+'</div>'+
-      '<button class="btn dark wide" data-act="szgo">Başla · '+X.items.length+' cümle kur</button>';
+      '<button class="btn dark wide" data-act="szgo">Başla · '+X.items.length+' cümle kur</button>'+
+      '<div class="row" style="justify-content:center;gap:18px;margin-top:14px"><button class="link" data-act="topic" data-id="'+g[0]+'">Konunun Türkçe özeti</button><button class="link" data-act="pickother">Başka konu seç</button></div>';
   }
   if(X.i>=X.items.length){
     return h+'<div style="text-align:center;padding:20px 0"><div class="big">'+X.ok+' / '+X.items.length+'</div><p class="muted" style="margin-top:6px">'+(X.ok===X.items.length?'Hepsi doğru. Sehr gut!':'Yanlışlar da öğretir; yarın yine gel.')+'</p></div>'+
@@ -3669,12 +3805,16 @@ function blitzTick(){
 
 /* --- gramer konusu --- */
 function shTopic(){
-  var g=GBY[X.id],s=gst(g[0]);
+  var g=GBY[X.id],s=gst(g[0]),sum=GS[g[0]]||[],foc=S.gfocus===g[0];
   return head('Gramer · '+g[1],'<span lang="de">'+esc(g[2])+'</span>')+
-    '<div class="expl">'+esc(g[3])+'</div>'+
-    '<div class="card" style="margin:12px 0;padding:4px 14px">'+g[4].map(function(x){return '<div class="gsent"><b lang="de">'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>';}).join('')+'</div>'+
-    '<div class="sec"><div class="lb">Durum</div><div class="seg">'+['next','wip','ok'].map(function(v){return '<button class="'+(s===v?'on':'')+'" data-act="gset" data-id="'+g[0]+'" data-v="'+v+'">'+STL[v]+'</button>';}).join('')+'</div></div>'+
-    '<button class="btn dark wide" data-act="gpractice" data-id="'+g[0]+'">Alıştırma · 6 cümle kur</button>';
+    '<div class="sec"><div class="seg">'+['next','wip','ok'].map(function(v){return '<button class="'+(s===v?'on':'')+'" data-act="gset" data-id="'+g[0]+'" data-v="'+v+'">'+STL[v]+'</button>';}).join('')+'</div></div>'+
+    '<div class="row" style="gap:8px;margin-bottom:16px"><button class="btn dark wide" data-act="gpractice" data-id="'+g[0]+'">Alıştır</button>'+
+      '<button class="btn wide'+(foc?' lime':'')+'" data-act="gfocus" data-id="'+g[0]+'">'+(foc?'✓ Bugünün konusu':'Bugün bunu çalış')+'</button></div>'+
+    '<div class="eyebrow" style="margin-bottom:8px">Türkçe özet</div>'+
+    (sum.length?sum:[['Kısaca',g[3]]]).map(function(x){return '<div class="sum"><b>'+esc(x[0])+'</b><p>'+rich(x[1])+'</p></div>';}).join('')+
+    '<div class="eyebrow" style="margin:16px 0 6px">Örnek cümleler</div>'+
+    '<div class="card" style="padding:4px 14px">'+g[4].map(function(x){return '<div class="gsent"><b lang="de">'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>';}).join('')+'</div>'+
+    '<div class="sec field" style="margin-top:16px"><span>Kurs notum</span><textarea class="inp" data-in="gnote" data-id="'+g[0]+'" placeholder="Hocanın anlattıkları, kendi örneklerin, aklına takılanlar…">'+esc(S.gnote[g[0]]||'')+'</textarea><div class="note">Yazdıkça kaydedilir; bu konuyu her açtığında burada durur.</div></div>';
 }
 
 /* --- kelime ekle --- */
@@ -3771,6 +3911,8 @@ var ACT={
   gcycle:function(b){var id=b.dataset.id,s=gst(id);setG(id,s==='next'?'wip':s==='wip'?'ok':'next');render();},
   gset:function(b){setG(b.dataset.id,b.dataset.v);drawSheet();},
   gpractice:function(b){startGram(GBY[b.dataset.id]);},
+  gfocus:function(b){var id=b.dataset.id;S.gfocus=S.gfocus===id?'':id;if(S.gfocus&&gst(id)==='next')setG(id,'wip');save();drawSheet();toast(S.gfocus?'Bugünkü gramer görevi bu konu':'Sıradaki konuya dönüldü');},
+  pickother:function(){closeSheet();TAB='weg';render();var c=document.querySelector('.band');if(c)c.scrollIntoView({behavior:'smooth',block:'start'});toast('Bir konuya dokun, "Bugün bunu çalış" de');},
   addw:function(){openSheet({kind:'add',art:'die',src:'form'});},
   awart:function(b){keepAdd();X.art=b.dataset.v;drawSheet();},
   awsrc:function(b){keepAdd();X.src=b.dataset.v;drawSheet();},
@@ -3808,6 +3950,7 @@ document.addEventListener('input',function(e){
   var el=e.target,k=el.dataset&&el.dataset.in;if(!k)return;
   if(k==='sch'){var d=day();d.sch=el.value;save();var n=$('schN');if(n)n.textContent=sentN(d.sch)+' / 3 cümle';refreshScore();}
   else if(k==='q'){$('qres').innerHTML=searchHtml(el.value);}
+  else if(k==='gnote'){var id=el.dataset.id;if(el.value.trim())S.gnote[id]=el.value;else delete S.gnote[id];save();}
 });
 document.addEventListener('change',function(e){
   var el=e.target,k=el.dataset&&el.dataset.in;if(!k)return;
