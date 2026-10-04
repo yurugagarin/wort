@@ -36,3 +36,17 @@ Uygulamanın omurgası artık konular.
 - **Defter**: "bunu demek istedim / bunu duydum" notları; çevrimdışı ön analiz (hangi konu, senin seviyende mi, daha basit nasıl söylenir) ve Claude'a yapıştırmak için hazır mesaj.
 - **İlerleme**: A2/B1 yüzdesi, bitiş tahmini, sınava bugün girsen modül tahmini, puan takvimi.
 - Alt sayfalar yerine tam ekran sayfalar (sağa sola kayma giderildi).
+
+## v5
+
+**Konu dersleri derinleşti: her konu 5 aşama, günlere yayılır (~1 hafta).**
+
+1. **Anla**: tam Türkçe özet, 6 örnek cümle, "kendine anlat" adımı, 4 "hangisi doğru?" sorusu.
+2. **Tanı**: 12 şıklı boşluk doldurma (konu başına 12 soru), %75 ile geçilir.
+3. **Kur**: 6 soruda cevabı yazarak verirsin (ä ö ü ß tuşları, ipucu), 6 cümleyi kendin kurarsın; %70 ile geçilir.
+4. **Üret** (ertesi gün açılır): kendi hayatından en az 3 cümle, kontrol listesi, isteğe bağlı "Claude'a düzelttir" kopyası. Yazdıkların Schreiben görevine de sayılır.
+5. **Pekiştir**: 1, 3, 7, 14, 30 gün arayla 12 soruluk karışık tekrar (2 soru önceki konulardan). 2 başarılı tekrar = konu oturdu.
+
+Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), karışık çalışma, kendine açıklama, açık anlatım + önce tanıma sonra üretme (Norris & Ortega 2000; VanPatten).
+
+**Ezber köşesi** (yeni sekme, konu derslerinden ayrı): A1 / A2 / B1 olarak ayrılmış 33 tablo (zamirler, artikeller, iyelik, Präsens, sein/haben, Modalverben, ön ekler, Wo/Wohin/Woher, edatlar, TeKaMoLo, bağlaçlar, Präteritum, Perfekt, sıfat ekleri, Genitiv, Relativpronomen, Konjunktiv II, Passiv …). Her tabloda ezber taktiği (DOGFU, „aus bei mit nach seit von zu“ şarkısı, m-r-m-n, be-emp-ent-er-ge-miss-ver-zer …), sesli dinleme, "Kapat ve hatırla", 12 soruluk test (bildiğin hücreler yazarak sorulur), hücre bazında ilerleme ve 1-3-7-14-30 gün aralıklı tekrar.
