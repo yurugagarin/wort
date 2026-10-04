@@ -24,3 +24,15 @@ A2'den B1'e kişisel Almanca defteri. FORM ailesinden: aynı mimari, aynı tasar
 Sonraki sürümler: Claude ile yazma/konuşma düzeltmesi, ses kaydı arşivi, Almanca haftalık özet, bildirimler.
 
 Kelime havuzu, Goethe listelerinin konu ve sıklık mantığına göre bu proje için hazırlandı; resmî listelerin kopyası değildir.
+
+## v3
+
+Uygulamanın omurgası artık konular.
+
+- **Bugün**: tek "Sıradaki adım" düğmesi ve 5 adımlı günlük plan, günün kalıbı.
+- **Konular**: A2.1 → B1.2 arası 40 konu. Her konu bir ders: Türkçe özet, konunun kelimeleri, 8 boşluk doldurma + cümle kurma, yüzde ilerleme. %80 = oturdu; sonra 2, 5, 12, 30 gün sonra tekrar.
+- **Seviye testi**: 30 kelime + 40 gramer sorusu; bilinen konular %50'den başlar, bilinmeyenler öncelikli olur.
+- **Kelimeler**: tam ekran kelime tekrarı (Türkçe karşılık büyük), Kalıplar (A1/A2/B1 hazır cümleler), Artikel-Blitz, Lücke, Satzbau.
+- **Defter**: "bunu demek istedim / bunu duydum" notları; çevrimdışı ön analiz (hangi konu, senin seviyende mi, daha basit nasıl söylenir) ve Claude'a yapıştırmak için hazır mesaj.
+- **İlerleme**: A2/B1 yüzdesi, bitiş tahmini, sınava bugün girsen modül tahmini, puan takvimi.
+- Alt sayfalar yerine tam ekran sayfalar (sağa sola kayma giderildi).
