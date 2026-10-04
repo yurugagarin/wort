@@ -64,3 +64,9 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - Yanlış cevapta hatanın türünü bulur (hâl seçimi, artikel cinsi, haben/sein, fiil eki, Umlaut ve Konjunktiv II, Partizip, zaman, zu, kelime sırası, yan cümlede fiil, bağlaç seçimi, karşılaştırma) ve ne yaptığını, neden olmadığını, nasıl düşünmen gerektiğini, neyle karıştırdığını ve neyi çalışman gerektiğini söyler.
 - **Hata haritası**: hataların türlere göre birikir; Bugün'de "odak noktan", İlerleme'de son 14 günün özeti.
 - **Yazı kontrolü**: Üret ve Schreiben'de yazdığın cümlelerde tipik hataları arar (fiil 2. sırada, yan cümlede fiil sonda, haben/sein, edattan sonra hâl, koymak/durmak fiilleri, özne-fiil uyumu, modal + mastar, isimlerde büyük harf).
+
+## v7
+
+- **Konuya geri dön**: konu sayfasında tamamlanmış her aşamanın yanında "Yeniden yap" var; "Bu konuyu baştan al" ile aşamalar sıfırlanır (yazdıkların ve notun kalır). "Biliyorum" diye işaretli konularda da aşamalar görünür.
+- **Masaüstü**: geniş ekranda sol kenar çubuğu, iki-üç sütunlu düzen, geniş ders sayfası ve klavye kısayolları (1–4 şık seç, Enter devam, Esc kapat). Chrome/Edge'de "Uygulamayı yükle" ile ayrı bir masaüstü uygulaması olarak açılır. Aynı adres olduğu için her güncelleme iki cihazda da görünür.
+- **Cihazlar arası senkron**: Ayarlar → "Cihazlar arası senkron". GitHub'da yalnız *gist* izinli bir anahtar oluşturulur, iki cihaza da yapıştırılır. Veriler hesabındaki gizli bir gist'te durur; her açılışta, değişiklikten birkaç saniye sonra ve açıkken 2 dakikada bir kayıpsız birleştirilerek eşitlenir.
