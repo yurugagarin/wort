@@ -70,3 +70,12 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - **Konuya geri dön**: konu sayfasında tamamlanmış her aşamanın yanında "Yeniden yap" var; "Bu konuyu baştan al" ile aşamalar sıfırlanır (yazdıkların ve notun kalır). "Biliyorum" diye işaretli konularda da aşamalar görünür.
 - **Masaüstü**: geniş ekranda sol kenar çubuğu, iki-üç sütunlu düzen, geniş ders sayfası ve klavye kısayolları (1–4 şık seç, Enter devam, Esc kapat). Chrome/Edge'de "Uygulamayı yükle" ile ayrı bir masaüstü uygulaması olarak açılır. Aynı adres olduğu için her güncelleme iki cihazda da görünür.
 - **Cihazlar arası senkron**: Ayarlar → "Cihazlar arası senkron". GitHub'da yalnız *gist* izinli bir anahtar oluşturulur, iki cihaza da yapıştırılır. Veriler hesabındaki gizli bir gist'te durur; her açılışta, değişiklikten birkaç saniye sonra ve açıkken 2 dakikada bir kayıpsız birleştirilerek eşitlenir.
+
+## v8
+
+- **Puan dökümü**: Bugün ekranında her görevin puanı (alınan / en fazla), ne yapıldığı ve **ne eksik kaldığı** ("Eksik: 4 kart", "Aşamayı bitir ya da 6 soru") ve kalan puanlar. "Puan nasıl hesaplanır?" açıklaması. Yeni dağılım: Kelime 30 · Konu 25 · Ezber 25 · Yazma 20.
+- **Dakika girme kaldırıldı**: Hören, Sprechen ve Lesen dakika kayıtları yok. Yerine gerçek alıştırmalar: **Diktat** (cümle Almanca okunur, duyduğunu yazarsın, kelime kelime kontrol) ve kartlarda, örneklerde, kalıplarda 🔊 telaffuz.
+- **Sorular denetlendi**: bütün konu soruları, ezber tabloları ve 2323 kelime tek tek kontrol edildi ve bağımsız ikinci bir kontrolden geçti. Birden fazla doğru şık kalmadı; yazarak cevapta eşdeğer doğrular kabul ediliyor; her yanlış şık için "neden yanlış" açıklaması var.
+- **Cümle kurma**: bir cümlenin bütün doğru sıraları kabul ediliyor ve gösteriliyor ("Benimki de doğru" kalktı).
+- **Ezber köşesi**: şıklar yalnız aynı türden hücrelerden (ek sorusunda ekler, fiil sorusunda o fiilin biçimleri). Her tabloda **hafıza teknikleri** (kısaltma, ritim, imge, hafıza sarayı, desen, Türkçe köprü …), **ritimle dinle** (satır satır, tekrar için aralıklı), **desenleri göster** (değişen ekler renkli), **boş tabloyu doldur** (ezberden yazma). Bugünün ezberi ve ezber yolu.
+- **Masaüstü**: kenar çubuğunda Araçlar (Bağlantı haritası, Hata haritam, Diktat, Kalıplar, Ayarlar); puan kartı iki sütun; geniş tablolar tam tablo olarak.
