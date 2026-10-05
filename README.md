@@ -79,3 +79,10 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - **Cümle kurma**: bir cümlenin bütün doğru sıraları kabul ediliyor ve gösteriliyor ("Benimki de doğru" kalktı).
 - **Ezber köşesi**: şıklar yalnız aynı türden hücrelerden (ek sorusunda ekler, fiil sorusunda o fiilin biçimleri). Her tabloda **hafıza teknikleri** (kısaltma, ritim, imge, hafıza sarayı, desen, Türkçe köprü …), **ritimle dinle** (satır satır, tekrar için aralıklı), **desenleri göster** (değişen ekler renkli), **boş tabloyu doldur** (ezberden yazma). Bugünün ezberi ve ezber yolu.
 - **Masaüstü**: kenar çubuğunda Araçlar (Bağlantı haritası, Hata haritam, Diktat, Kalıplar, Ayarlar); puan kartı iki sütun; geniş tablolar tam tablo olarak.
+
+## v9 · Rapor
+
+- **? düğmesi:** Her sayfanın sağ üstünde. Bir soruda kafan karışınca bas, ne anlamadığını yaz. Not, o anki soruyla (seçenekler, senin cevabın, doğru cevap) birlikte saklanır.
+- **Her cevap kaydedilir:** Günlük ve konu/tablo bazında doğru-yanlış sayıları; yanlışların ayrıntısı (son 800).
+- **Rapor sayfası** (İlerleme sekmesi ya da masaüstünde Araçlar → Rapor · Claude): Son rapordan beri / 7 gün / 30 gün / tümü. "Raporu kopyala" ile claude.ai'ye yapıştırılacak metin hazırlanır. Metnin başında Claude'a ne yapacağı yazar: hata kalıpları, notlarına cevap, öncelikler, 7 günlük plan, alıştırma.
+- Notlar ve cevap kayıtları senkronla iki cihazda birleşir.
