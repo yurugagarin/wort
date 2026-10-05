@@ -86,3 +86,13 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - **Her cevap kaydedilir:** Günlük ve konu/tablo bazında doğru-yanlış sayıları; yanlışların ayrıntısı (son 800).
 - **Rapor sayfası** (İlerleme sekmesi ya da masaüstünde Araçlar → Rapor · Claude): Son rapordan beri / 7 gün / 30 gün / tümü. "Raporu kopyala" ile claude.ai'ye yapıştırılacak metin hazırlanır. Metnin başında Claude'a ne yapacağı yazar: hata kalıpları, notlarına cevap, öncelikler, 7 günlük plan, alıştırma.
 - Notlar ve cevap kayıtları senkronla iki cihazda birleşir.
+
+## v10 · Kelime öğrenme yeniden
+
+- **Önce tahmin:** Yeni kelime örnek cümlenin içinde gelir; anlamını 4 şıktan tahmin edersin, sonra kart açılır. İlk gerçek soru oturumun sonunda gelir.
+- **Zorluk basamakları:** Türkçe → Almanca seç · artikeliyle yaz · cümlede boşluk doldur · sonra yaz/boşluk karışık. Doğru: bir basamak yukarı; artikel ya da yazım hatası: aynı basamak; yanlış: bir basamak aşağı. "Doğru hatırladın mı?" kaldırıldı.
+- **Bağlantılar:** Kartta parçalar (Kühl + Schrank, ab- + fahren), birlikte kullanıldığı kalıplar ve kelime ailesi.
+- **Hafıza kancası:** Her kartta 🪝 düğmesi: çevrimdışı ipuçları, "Claude'a kanca ürettir" (istek kopyalanır, claude.ai açılır) ve kendi kancan. Kanca kelime her geldiğinde görünür. 3 kez kaçan kelimede kanca kutusu kendiliğinden açılır.
+- **Zor kelimeler kartı** (Kelime sekmesi): kancasız zor kelimeler için toplu istek; Claude'un `kelime :: kanca` cevabı yapıştırılınca kancalar kelimelere dağıtılır. Raporda da aynı istek var.
+- **Yeni kelime sırası:** Başlangıç destesi (spor, mutfak…) kaldırıldı; önce A1, sonra A2, sonra B1.
+- İsteğe bağlı: iyi bilinen kelimeyle kendi cümleni yaz, Yazma görevine eklenir.
