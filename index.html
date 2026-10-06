@@ -348,7 +348,12 @@ a.btn{display:flex;align-items:center;justify-content:center;text-decoration:non
 .story p{font-size:15px;line-height:1.5}
 .story .snd{font-size:13px;color:var(--ink2)}
 .story .sc{color:var(--die);letter-spacing:.02em}
-.story .sm{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.story .sm{color:var(--ok);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.story .sa{color:var(--ink2)}
+.story .snd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:15px}
+.story .snd span[lang]{font-weight:700;color:var(--ink)}
+.story .arr{color:var(--ink3)}
+.story .mean{font-size:13px;color:var(--ink2)}
 .leech{margin-top:10px;color:var(--die);font-weight:600}
 .hkbox{margin-top:12px;text-align:left;background:var(--card2);border:1.5px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px}
 .hkbox textarea{text-align:left;min-height:72px;font-size:14.5px}
@@ -6159,9 +6164,9 @@ function hkTips(c){
 function hkPrompt(c){
   var d=deText(c);
   if(arguments[1])return 'Almanca kelime: '+d+' ('+c.tr+').\nBen Türkçe konuşan bir Almanca öğrencisiyim. Melik Duyar\'ın hafıza tekniğiyle bu kelime için 3 farklı hikâye kancası yaz:\n'+
-    '1) Almanca kelimenin OKUNUŞUNA benzeyen, herkesin bildiği somut bir Türkçe kelime bul (ses benzeri),\n2) bu Türkçe kelimeyle anlamı ('+c.tr+') birleştiren absürt, abartılı, somut, hareketli bir sahne kur; içinde ben olayım, ses/renk/acı gibi duyular olsun.\n'+
+    '1) Almanca kelimenin okunuşundaki BÜTÜN heceleri sırayla, sesi neredeyse aynı Türkçe kelimelerle karşıla (yalnız ilk hece yetmez; ör. Eifersucht → AYFER + SUÇ, Termin → TERMİNAL),\n2) bu Türkçe kelimeleri anlamla ('+c.tr+') birleştiren absürt, abartılı, somut, hareketli bir sahne kur; Türkçe anlam hikâyede BÜYÜK HARFLE açıkça geçsin; içinde ben olayım, ses/renk/acı gibi duyular olsun.\n'+
     (ART(c.a)?'İsim olduğu için sahnenin sonunda nesne artikel eylemini yapsın: der → mavi PATLAR, die → kırmızı ALEV ALIR, das → yeşil CAM GİBİ KIRILIR.\n':'')+
-    'Her hikâye en fazla 2 cümle. En sonda en iyisini tek satırda şu biçimde yaz:\n'+d+' :: SES BENZERİ | hikâye';
+    'Her hikâye en fazla 2 cümle. En sonda en iyisini tek satırda şu biçimde yaz:\n'+d+' :: heceler = SES1 + SES2 | ANLAM | hikâye';
   return 'Almanca kelime: '+d+' ('+c.tr+')'+(c.ex?'. Örnek cümle: '+plain(c.ex):'')+'.\n'+
     'Ben Türkçe konuşan bir Almanca öğrencisiyim (A2→B1). Bu kelimeyi'+(ART(c.a)?' artikeliyle birlikte':'')+' kalıcı olarak hatırlamam için 3 kısa hafıza kancası öner:\n'+
     '1) Almanca kelimenin sesini Türkçe bir kelimeye bağlayan canlı, komik bir sahne,\n'+
@@ -6175,14 +6180,23 @@ function hkyLoad(cb){if(HKY){if(cb)cb();return;}if(HKYL)return;HKYL=1;
   fetch('hikaye.json',{cache:'force-cache'}).then(function(r){return r.json();}).then(function(d){HKY=d||{};if(cb)cb();}).catch(function(){HKYL=0;});}
 function hkyOf(c){if(!HKY||!c)return null;var k=(ART(c.a)?c.a+' ':'')+c.w;return HKY[k]||HKY[c.w]||null;}
 function storyFmt(t){return esc(t).replace(/\*([^*]+)\*/g,'<b class="sm">$1</b>').replace(/([A-ZÇĞİÖŞÜÂ]{2,}(?:\s+[A-ZÇĞİÖŞÜÂ]{2,})*)/g,'<b class="sc">$1</b>');}
+/* büyük harfli sözcükleri sınıflar: anlam (yeşil), artikel eylemi, ses benzeri (kırmızı) */
+function storyFmt2(t,mean){
+  var mr=String(mean||'').toLocaleUpperCase('tr').replace(/[^A-ZÇĞİÖŞÜÂ ]/g,'').split(' ')[0]||'',mk=mr.slice(0,Math.max(3,Math.min(5,mr.length-1)));
+  return esc(t).replace(/\*([^*]+)\*/g,'$1').replace(/([A-ZÇĞİÖŞÜÂ]{2,}(?:\s+[A-ZÇĞİÖŞÜÂ]{2,})*)/g,function(m){
+    var cl=/^(PATLA|ALEV|CAM G|KIRIL)/.test(m)?'sa':mk&&m.indexOf(mk)===0?'sm':'sc';return '<b class="'+cl+'">'+m+'</b>';});
+}
 function storyBox(id,c){
   var h=hkyOf(c);
   if(!HKY)return '<div class="story"><div class="eyebrow">📖 Hikâye kancası</div><p class="small muted">Hikâye yükleniyor…</p></div>';
-  return '<div class="story"><div class="eyebrow">📖 Hikâye kancası · Melik Duyar yöntemi</div>'+
-    (h?'<div class="snd"><span lang="de">'+esc(c.w)+'</span> → sesi: <b class="sc">'+esc(h[0])+'</b></div><p>'+storyFmt(h[1])+'</p>'+
-      '<p class="small muted">Gözlerini kapat, sahneyi 5 saniye canlandır: renk, ses, hareket. Sonra kelimeyi yüksek sesle söyle.</p>'+
-      '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="hkstsave">Kancam bu olsun</button><button class="btn sm" data-act="hkai2">✨ Claude\'dan başka hikâye</button></div>':
-      '<p class="small muted">Bu kelime için hazır hikâye yok. Claude\'a Melik Duyar tarzı bir hikâye yazdır: istek kopyalanır, claude.ai açılır.</p><button class="btn sm" data-act="hkai2">✨ Claude\'a hikâye yazdır</button>')+'</div>';
+  var b='<div class="story"><div class="eyebrow">📖 Hikâye kancası · Melik Duyar yöntemi</div>';
+  if(h&&h.length>=4)b+='<div class="snd"><span lang="de">'+esc(h[0])+'</span><span class="arr">→</span><b class="sc">'+esc(h[1])+'</b></div>'+
+    '<div class="mean">Anlamı: <b class="sm">'+esc(h[2])+'</b></div><p>'+storyFmt2(h[3],h[2])+'</p>';
+  else if(h)b+='<div class="snd"><span lang="de">'+esc(c.w)+'</span><span class="arr">→</span><b class="sc">'+esc(h[0])+'</b></div><p>'+storyFmt(h[1])+'</p>';
+  if(h)b+='<p class="small muted">Gözlerini kapat, sahneyi 5 saniye canlandır: renk, ses, hareket. Sonra Almanca kelimeyi yüksek sesle söyle.</p>'+
+    '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="hkstsave">Kancam bu olsun</button><button class="btn sm" data-act="hkai2">✨ Claude\'dan başka hikâye</button></div>';
+  else b+='<p class="small muted">Bu kelimenin hazır hikâyesi henüz yok (hikâyeler sırayla ekleniyor). Claude\'a Melik Duyar tarzı bir hikâye yazdır: istek kopyalanır, claude.ai açılır.</p><button class="btn sm" data-act="hkai2">✨ Claude\'a hikâye yazdır</button>';
+  return b+'</div>';
 }
 function hkBlock(id,c){
   var h=hkOf(id),lp=(S.srs[id]&&S.srs[id].lp)||0;
@@ -6206,7 +6220,7 @@ function hkParse(txt,ids){
 function hardWords(){var a=[];for(var id in S.srs){var s=S.srs[id];if((s.lp||0)>=2&&card(id))a.push(id);}return a.sort(function(x,y){return (S.srs[y].lp||0)-(S.srs[x].lp||0);});}
 function hkBatchPrompt(ids){
   return 'Ben Türkçe konuşan bir Almanca öğrencisiyim (A2→B1). Aşağıdaki kelimeleri sık unutuyorum. Her biri için Melik Duyar tekniğiyle bir hikâye kancası yaz: '+
-    '1) Almanca kelimenin OKUNUŞUNA benzeyen somut bir Türkçe kelime bul, 2) onu anlamla birleştiren absürt, abartılı, somut, hareketli bir sahne kur. İsimlerde sahnenin sonunda nesne artikel eylemini yapsın (der → mavi PATLAR, die → kırmızı ALEV ALIR, das → yeşil CAM GİBİ KIRILIR). Her kanca en fazla 2 cümle.\n'+
+    '1) Almanca kelimenin okunuşundaki BÜTÜN heceleri sırayla, sesi neredeyse aynı Türkçe kelimelerle karşıla (yalnız ilk hece yetmez), 2) bu kelimeleri anlamla birleştiren absürt, abartılı, somut, hareketli bir sahne kur; Türkçe anlam hikâyede BÜYÜK HARFLE açıkça geçsin. İsimlerde sahnenin sonunda nesne artikel eylemini yapsın (der → mavi PATLAR, die → kırmızı ALEV ALIR, das → yeşil CAM GİBİ KIRILIR). Her kanca en fazla 2 cümle.\n'+
     'Cevabını YALNIZ şu biçimde ver, her kelime tek satır (uygulamaya yapıştıracağım):\nkelime :: kanca\n\n'+
     ids.map(function(id){var c=card(id);return deText(c)+' ('+c.tr+')';}).join('\n');
 }
@@ -6491,7 +6505,7 @@ var ACT={
   rvidk:function(){var cu=W.cur;if(!cu||cu.res)return;var c=card(cu.id);cu.val='';cu.res='no';cu.m='Doğrusu: *'+rvRight(c,cu.type)+'*';rvGrade(cu.id,'no');drawPage();},
   hkopen:function(){W.hk=W.cur&&W.cur.id;W.hkv=null;drawPage();setTimeout(function(){var t=document.querySelector('#page [data-in="hk"]');if(t)t.scrollIntoView({block:'center'});},40);},
   hkstory:function(){var id=W.cur&&W.cur.id;W.hs=id;hkyLoad(function(){if(X&&X.kind==='review')drawPage();});drawPage();},
-  hkstsave:function(){var id=W.hs,c=card(id),h=hkyOf(c);if(!h)return;S.hk=S.hk||{};S.hk[id]={t:h[0]+' → '+h[1].replace(/\*/g,''),u:Date.now()};save();drawPage();toast('Hikâye kancan oldu · kelime her geldiğinde görünecek');},
+  hkstsave:function(){var id=W.hs,c=card(id),h=hkyOf(c);if(!h)return;S.hk=S.hk||{};S.hk[id]={t:h.length>=4?h[0]+' → '+h[1]+' = '+h[2]+'\n'+h[3]:h[0]+' → '+h[1].replace(/\*/g,''),u:Date.now()};save();drawPage();toast('Hikâye kancan oldu · kelime her geldiğinde görünecek');},
   hkai2:function(){var c=card(W.hs||(W.cur&&W.cur.id));if(!c)return;copyText(hkPrompt(c,1),'İstek kopyalandı · claude.ai\'ye yapıştır');window.open('https://claude.ai/new','_blank','noopener');},
   hkx:function(){W.hk=null;W.hkv=null;drawPage();},
   hksave:function(){var id=W.hk,el=document.querySelector('#page [data-in="hk"]'),t=String(el?el.value:'').trim();if(!id)return;S.hk=S.hk||{};if(t.indexOf('::')>=0&&hkParse(t,[id]))t=S.hk[id].t;if(t)S.hk[id]={t:t,u:Date.now()};else if(S.hk[id])S.hk[id]={t:'',u:Date.now()};W.hk=null;W.hkv=null;save();drawPage();toast(t?'Kanca kaydedildi · kelime her geldiğinde görünecek':'Kanca silindi');},

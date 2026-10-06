@@ -113,3 +113,9 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - Havuzdaki kelimelerin hazır hikâyeleri `hikaye.json` dosyasında; ilk gerektiğinde bir kez indirilir.
 - Yeni kelime tanıtılırken ve yanlış cevaptan sonra hikâye kendiliğinden açılır; "Kancam bu olsun" ile kalıcı kancan yapılır.
 - Hazır hikâyesi olmayan kelimelerde (kendi eklediklerin, konu kelimeleri) "Claude'a hikâye yazdır" aynı kurallarla istek hazırlar.
+
+## v13 · Hikâye kancası: bütün heceler + anlam
+
+- Hikâyeler yeniden yazılıyor: Almanca okunuştaki **bütün heceler** sırayla, sesi neredeyse aynı Türkçe kelimelerle karşılanıyor (ör. *Ei·fer·sucht* → AYFER + SUÇ, *Ter·min* → TERMİNAL).
+- Türkçe anlam ayrı satırda ve hikâyenin içinde büyük harfle geçiyor; kartta ses kelimeleri kırmızı, anlam yeşil.
+- Hikâyeler A1 → A2 → B1 sırasıyla, hazır oldukça `hikaye.json`a eklenip kendiliğinden yayına alınıyor.
