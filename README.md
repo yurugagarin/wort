@@ -106,3 +106,10 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - **Sesli söyle:** Kart açılınca ve cevaptan sonra kelime otomatik seslendirilir (ses ve hız değişir); Ayarlar'dan kapatılabilir.
 - **Benzerlik karışması:** Aynı gün aynı kümeden (renkler, günler, aylar, sayılar, aile…) ya da aynı anlamdan iki yeni kelime gelmez.
 - **Artikel imgesi:** der patlar, die alev alır, das cam gibi kırılır (renklerle birlikte).
+
+## v12 · Hikâye kancası (Melik Duyar yöntemi)
+
+- Her kelime kartında ikinci hafıza kancası: **📖 Hikâye kancası**. İki kural: 1) Almanca kelimenin okunuşuna benzeyen Türkçe kelime (ses benzeri), 2) onu anlamla birleştiren absürt, abartılı, somut, hareketli bir sahne. İsimlerde sahne artikel eylemiyle biter (der → mavi patlar, die → kırmızı alev alır, das → yeşil cam gibi kırılır).
+- Havuzdaki kelimelerin hazır hikâyeleri `hikaye.json` dosyasında; ilk gerektiğinde bir kez indirilir.
+- Yeni kelime tanıtılırken ve yanlış cevaptan sonra hikâye kendiliğinden açılır; "Kancam bu olsun" ile kalıcı kancan yapılır.
+- Hazır hikâyesi olmayan kelimelerde (kendi eklediklerin, konu kelimeleri) "Claude'a hikâye yazdır" aynı kurallarla istek hazırlar.
