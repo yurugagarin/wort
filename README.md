@@ -96,3 +96,13 @@ Dayanak: geri çağırma pratiği ve aralıklı tekrar (Dunlosky vd. 2013), kar�
 - **Zor kelimeler kartı** (Kelime sekmesi): kancasız zor kelimeler için toplu istek; Claude'un `kelime :: kanca` cevabı yapıştırılınca kancalar kelimelere dağıtılır. Raporda da aynı istek var.
 - **Yeni kelime sırası:** Başlangıç destesi (spor, mutfak…) kaldırıldı; önce A1, sonra A2, sonra B1.
 - İsteğe bağlı: iyi bilinen kelimeyle kendi cümleni yaz, Yazma görevine eklenir.
+
+## v11 · Araştırmaya göre kelime ezberi
+
+- **FSRS-5 zamanlama:** SM-2 yerine açık kaynak FSRS (700+ milyon tekrardan öğrenilmiş varsayılan ağırlıklar). Her kartın kararlılığı ve zorluğu tutulur; tekrar, hatırlama ihtimali %90'a düştüğünde gelir. Eski kartlar ilk tekrarlarında kendiliğinden taşınır.
+- **Dinleyerek tanıma:** İleri basamakta kelime sesli okunur, anlamını seçersin (Hören için de).
+- **Kelimenin tamamı:** İleri basamakta isimlerde çoğul (die Tische), fiillerde Perfekt (ist gegangen) sorulur; yardımcı fiil hatası hata haritasına gider.
+- **Farklı bağlamlar:** Boşluk sorusunda kelime kendi örneği dışında konu, kalıp ve ezber cümlelerinde de karşına çıkar.
+- **Sesli söyle:** Kart açılınca ve cevaptan sonra kelime otomatik seslendirilir (ses ve hız değişir); Ayarlar'dan kapatılabilir.
+- **Benzerlik karışması:** Aynı gün aynı kümeden (renkler, günler, aylar, sayılar, aile…) ya da aynı anlamdan iki yeni kelime gelmez.
+- **Artikel imgesi:** der patlar, die alev alır, das cam gibi kırılır (renklerle birlikte).
