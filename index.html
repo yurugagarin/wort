@@ -5622,18 +5622,22 @@ function vKonular(){
   h+='<div class="card dark-card next"><div class="eyebrow">Bugünün konusu · '+esc(tp[1])+(tdue(tp[0])?' · tekrar':'')+'</div><div class="t" lang="de">'+esc(tp[2])+'</div>'+
     bar(tprog(tp[0]),'var(--lime)')+'<div class="muted small">%'+pct(tprog(tp[0]))+' · '+esc(liSub(tp[0]))+'</div>'+
     '<div class="row">'+(a.k?'<button class="btn lime big" style="flex:2" data-act="lesson" data-id="'+tp[0]+'" data-s="'+a.k+'">'+esc(STT[a.k])+'</button>':'<div class="small" style="flex:2;color:var(--lime)">Bugünlük tamam. '+esc(nextReview(tp[0]))+'.</div>')+
-    '<button class="btn big" style="flex:1;background:transparent;color:var(--on-char);border-color:rgba(255,255,255,.25)" data-act="topic" data-id="'+tp[0]+'">Konuyu aç</button></div></div>';
+    '<button class="btn big" style="flex:1;background:transparent;color:var(--on-char);border-color:rgba(255,255,255,.25)" data-act="topic" data-id="'+tp[0]+'">Konu özeti ve aşamalar</button></div></div>';
+  var nx=G.filter(function(g){return g[0]!==tp[0]&&tstat(g[0])==='next';})[0];
+  if(nx&&(!a.k||tdue(tp[0])||a.k==='rv'||a.k==='uret'))h+='<div class="card"><div class="eyebrow">Yanında yeni bir konu · '+esc(nx[1])+'</div><div style="font-weight:700;font-size:17px;margin:4px 0" lang="de">'+esc(nx[2])+'</div>'+
+    '<p class="small muted">Bugünkü konunun tekrarı kısa sürer; bu boşlukta yeni bir konuya başlayabilirsin. İki konu birlikte yürür, ikisi de puana sayılır.</p>'+
+    '<button class="btn lime wide" style="margin-top:8px" data-act="lesson" data-id="'+nx[0]+'" data-s="anla">Yeni konuya başla · Aşama 1</button></div>';
   var due=G.filter(function(g){return tdue(g[0])&&g[0]!==tp[0];});
   if(due.length)h+='<div class="card"><div class="eyebrow">Tekrar zamanı gelenler</div><ul class="tl" style="margin-top:6px">'+due.map(topicLi).join('')+'</ul></div>';
   var open=G.filter(function(g){return g[0]!==tp[0]&&!tdue(g[0])&&tstat(g[0])==='wip'&&nextAct(g[0]).k;});
   if(open.length)h+='<div class="card"><div class="eyebrow">Yarım kalanlar · devam edebilirsin</div><ul class="tl" style="margin-top:6px">'+open.slice(0,4).map(topicLi).join('')+'</ul></div>';
-  h+=hubsCard();
   h+='<div class="seg">'+['A2','B1'].map(function(v){return '<button class="'+(seg===v?'on':'')+'" data-act="kseg" data-v="'+v+'">'+v+' konuları · %'+pct(v==='A2'?L.a2g:L.b1g)+'</button>';}).join('')+'</div>';
   BANDS.filter(function(b){return b.indexOf(seg)===0;}).forEach(function(b){
     var gs=G.filter(function(g){return g[1]===b;}),bp=bandProg(b),ok=gs.filter(function(g){return tstat(g[0])==='ok';}).length;
     h+='<div class="card band"><div class="bh"><b>'+b+'</b><span class="small muted num">'+ok+'/'+gs.length+' oturdu · %'+pct(bp)+'</span></div>'+bar(bp,'var(--das)')+
       '<ul class="tl" style="margin-top:8px">'+gs.map(topicLi).join('')+'</ul></div>';
   });
+  h+='<details class="card"><summary><b>Konular arası bağlantılar</b> <span class="small muted">isteğe bağlı</span></summary><p class="small muted" style="margin:8px 0">Bazı konular aynı mantığı paylaşır (ör. hâl ekleri, fiilin cümledeki yeri). Bir aileyi açınca o mantığı ve ona bağlı konuları tek sayfada görürsün. Ders çalışmak için gerekmez; bağlantıyı görmek istersen bak.</p>'+hubsCard().replace(/^<div class="card">/,'<div>')+'</details>';
   h+='<p class="note center">Her konu 5 aşama: Anla → Tanı → Kur → (ertesi gün) Üret → günlere yayılan tekrar. Bir konu ~1 hafta sürer; aynı anda 2–3 konu yürütmek en verimlisi. Renkler: gri sırada · sarı çalışılıyor · yeşil oturdu.</p>';
   return h;
 }
@@ -5719,7 +5723,6 @@ function vIlerleme(){
   var ets=errTop(4);
   h+='<div class="card"><div class="row"><div class="eyebrow">Hata haritam · son 14 gün</div><div class="sp"></div><button class="link" data-act="golink" data-to="err">Ayrıntı</button></div>'+
     (ets.length?'<div class="meter">'+ets.map(function(e){var m=ERRC[e[0]];return '<div><div class="h">'+esc(m[0])+'<span>'+e[1]+' hata</span></div>'+bar(Math.min(1,e[1]/Math.max(5,ets[0][1])),'var(--die)','thick')+'<div class="k">'+esc(m[1])+'</div></div>';}).join('')+'</div>':'<p class="small muted" style="margin-top:6px">Henüz hata kaydı yok. Derslerde ve ezber testlerinde yaptığın hataların türü burada birikir; nereye odaklanman gerektiğini gösterir.</p>')+'</div>';
-  h+='<div class="card"><div class="row"><div class="eyebrow">Ezber köşesi</div><div class="sp"></div><button class="link" data-act="tab" data-v="ezber">Aç</button></div><div class="meter">'+[1,2,3].map(function(l){var p=ezLvProg(l),ts=EZ.filter(function(t){return t.lv===l;});return '<div><div class="h">'+LV[l]+' tabloları<span>%'+pct(p)+'</span></div>'+bar(p,'var(--das)','thick')+'<div class="k">'+ts.filter(function(t){return ezProg(t.id)>=.8;}).length+' / '+ts.length+' tablo oturdu</div></div>';}).join('')+'</div></div>';
   var verdictE=E.lo>=60?'Bugün girsen geçme ihtimalin yüksek.':E.lo>=45?'Yaklaşıyorsun; en zayıf modülüne yüklen.':'Henüz erken; her modülde 60 gerekiyor.';
   h+='<div class="card"><div class="eyebrow">Sınava bugün girsem? · '+esc(S.set.examName)+'</div><h2 style="margin-top:6px">'+verdictE+'</h2>'+
     '<div class="meter">'+E.m.map(function(x){return '<div><div class="h">'+x[0]+'<span>'+x[2]+' / 100</span></div><div class="mbar" style="--c:var(--'+x[1]+')"><i style="width:'+x[2]+'%"></i><s></s></div><div class="k">'+esc(x[3])+'</div></div>';}).join('')+'</div>'+
