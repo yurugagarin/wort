@@ -14,6 +14,14 @@ def pool():
         if k in seen:continue
         seen.add(k);w.append((int(f[0]),k,f[5]))
     w.sort(key=lambda x:x[0]);return w
+ART_RE=re.compile(r'(ALEV AL|PATLAMA|PATLIYOR|PATLAR\b|CAM GİBİ|KIRILIYOR|KIRILIR)')
+def noart(t):
+    # hikâyelerin sonundaki artikel eylemini (patlar / alev alır / cam gibi kırılır) çıkarır: hikâyeler birbirine benzemesin
+    m=ART_RE.search(t)
+    if not m:return t
+    head=t[:m.start()];cut=max(head.rfind(x) for x in ('; ','. ',' ve ',', ','! '))
+    if cut<len(t)*0.4:return t
+    return t[:cut].rstrip(' ,;')+('' if t[:cut].rstrip().endswith(('!','?','.')) else '.')
 def parse():
     keys={k for _,k,_ in pool()};out={};bad=[]
     for f in sorted(glob.glob(R+'parca/*.txt')):
@@ -23,7 +31,7 @@ def parse():
             k,v=l.split('::',1);k=k.strip().strip('`*- ')
             p=[x.strip() for x in v.split(' | ')]
             if k not in keys or len(p)!=3 or ' = ' not in p[0] or len(p[2])<25 or not p[1]:bad.append(l[:100]);continue
-            syl,snd=p[0].split(' = ',1);out[k]=[syl.strip(),snd.strip(),p[1],p[2]]
+            syl,snd=p[0].split(' = ',1);out[k]=[syl.strip(),snd.strip(),p[1],noart(p[2])]
     return out,bad
 cmd=sys.argv[1] if len(sys.argv)>1 else 'merge'
 if cmd=='todo':

@@ -6165,7 +6165,7 @@ function hkPrompt(c){
   var d=deText(c);
   if(arguments[1])return 'Almanca kelime: '+d+' ('+c.tr+').\nBen Türkçe konuşan bir Almanca öğrencisiyim. Melik Duyar\'ın hafıza tekniğiyle bu kelime için 3 farklı hikâye kancası yaz:\n'+
     '1) Almanca kelimenin okunuşundaki BÜTÜN heceleri sırayla, sesi neredeyse aynı Türkçe kelimelerle karşıla (yalnız ilk hece yetmez; ör. Eifersucht → AYFER + SUÇ, Termin → TERMİNAL),\n2) bu Türkçe kelimeleri anlamla ('+c.tr+') birleştiren absürt, abartılı, somut, hareketli bir sahne kur; Türkçe anlam hikâyede BÜYÜK HARFLE açıkça geçsin; içinde ben olayım, ses/renk/acı gibi duyular olsun.\n'+
-    (ART(c.a)?'İsim olduğu için sahnenin sonunda nesne artikel eylemini yapsın: der → mavi PATLAR, die → kırmızı ALEV ALIR, das → yeşil CAM GİBİ KIRILIR.\n':'')+
+    'Her şey gözde canlandırılabilsin; tabelada/kapıda yazı ya da birinin sözüyle anlam verme, anlam bir nesneye ya da eyleme dönüşsün. Artikel eylemi (patlama, alev) ekleme.\n'+
     'Her hikâye en fazla 2 cümle. En sonda en iyisini tek satırda şu biçimde yaz:\n'+d+' :: heceler = SES1 + SES2 | ANLAM | hikâye';
   return 'Almanca kelime: '+d+' ('+c.tr+')'+(c.ex?'. Örnek cümle: '+plain(c.ex):'')+'.\n'+
     'Ben Türkçe konuşan bir Almanca öğrencisiyim (A2→B1). Bu kelimeyi'+(ART(c.a)?' artikeliyle birlikte':'')+' kalıcı olarak hatırlamam için 3 kısa hafıza kancası öner:\n'+
@@ -6220,7 +6220,7 @@ function hkParse(txt,ids){
 function hardWords(){var a=[];for(var id in S.srs){var s=S.srs[id];if((s.lp||0)>=2&&card(id))a.push(id);}return a.sort(function(x,y){return (S.srs[y].lp||0)-(S.srs[x].lp||0);});}
 function hkBatchPrompt(ids){
   return 'Ben Türkçe konuşan bir Almanca öğrencisiyim (A2→B1). Aşağıdaki kelimeleri sık unutuyorum. Her biri için Melik Duyar tekniğiyle bir hikâye kancası yaz: '+
-    '1) Almanca kelimenin okunuşundaki BÜTÜN heceleri sırayla, sesi neredeyse aynı Türkçe kelimelerle karşıla (yalnız ilk hece yetmez), 2) bu kelimeleri anlamla birleştiren absürt, abartılı, somut, hareketli bir sahne kur; Türkçe anlam hikâyede BÜYÜK HARFLE açıkça geçsin. İsimlerde sahnenin sonunda nesne artikel eylemini yapsın (der → mavi PATLAR, die → kırmızı ALEV ALIR, das → yeşil CAM GİBİ KIRILIR). Her kanca en fazla 2 cümle.\n'+
+    '1) Almanca kelimenin okunuşundaki BÜTÜN heceleri sırayla, sesi neredeyse aynı Türkçe kelimelerle karşıla (yalnız ilk hece yetmez), 2) bu kelimeleri anlamla birleştiren absürt, abartılı, somut, hareketli bir sahne kur; Türkçe anlam hikâyede BÜYÜK HARFLE açıkça geçsin. Her şey gözde canlandırılabilsin; yazı ya da söz ile anlam verme; hikâyeler birbirine benzemesin. 2-3 cümle.\n'+
     'Cevabını YALNIZ şu biçimde ver, her kelime tek satır (uygulamaya yapıştıracağım):\nkelime :: kanca\n\n'+
     ids.map(function(id){var c=card(id);return deText(c)+' ('+c.tr+')';}).join('\n');
 }
