@@ -6177,7 +6177,7 @@ function hkPrompt(c){
    Havuzdaki her kelimenin hazır hikâyesi hikaye.json'da; ilk gerektiğinde bir kez indirilir. */
 var HKY=null,HKYL=0;
 function hkyLoad(cb){if(HKY){if(cb)cb();return;}if(HKYL)return;HKYL=1;
-  fetch('hikaye.json',{cache:'force-cache'}).then(function(r){return r.json();}).then(function(d){HKY=d||{};if(cb)cb();}).catch(function(){HKYL=0;});}
+  fetch('hikaye.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){HKY=d||{};if(cb)cb();}).catch(function(){HKYL=0;});}
 function hkyOf(c){if(!HKY||!c)return null;var k=(ART(c.a)?c.a+' ':'')+c.w;return HKY[k]||HKY[c.w]||null;}
 function storyFmt(t){return esc(t).replace(/\*([^*]+)\*/g,'<b class="sm">$1</b>').replace(/([A-ZÇĞİÖŞÜÂ]{2,}(?:\s+[A-ZÇĞİÖŞÜÂ]{2,})*)/g,'<b class="sc">$1</b>');}
 /* büyük harfli sözcükleri sınıflar: anlam (yeşil), artikel eylemi, ses benzeri (kırmızı) */
