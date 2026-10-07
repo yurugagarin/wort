@@ -13,7 +13,7 @@ Sonra, uygulama düzeni ("ne nerede, neyden sonra ne yapacağım" net olsun; ayn
 8. [YAPILDI] Kelime sekmesi: Alıştırmalar/oyunlar hangi kelimeleri kapsıyor açıkça yazsın. "Oturdu" için ne gerekir açıkla. "Oturdu" ve "öğreniliyor" sayılarına tıklayınca kelime listesi açılsın.
 9. [YAPILDI] "Claude'a kanca ürettir" her yerden kaldırılsın (tek tek ve toplu).
 10. [YAPILDI] ? notları rapora girmesin; Defter'e taşınsın (Defter daha kullanışlı olsun). Rapor sadeleştirilecek (sonra).
-11. [KARŞILAŞTIRILDI, kullanıcı onayı bekliyor: eksik görünen A2 konuları: denn/sondern/aber (ana cümle bağlaçları), welcher / was für ein, belirsiz zamirler (einer, keiner, jemand, niemand, etwas, nichts), Dativ+Akkusativ nesne sırası (Ich gebe es ihm), sıra sayıları ve tarih (am ersten Mai), werden + isim/sıfat (Ich werde müde)] A2 konularının tamamı var mı kontrol et (kurstaki konular eksik olabilir) — Goethe A2/B1 müfredatıyla karşılaştır.
+11. [YAPILDI: 6 eksik A2 konusu eklendi: g41 denn/sondern/aber, g42 welcher/was für ein, g43 sıra sayıları ve tarih, g44 Dativ+Akkusativ sırası, g45 belirsiz zamirler, g46 werden + isim/sıfat; her biri tam ders (Anla/Tanı/Kur/Üret, bağlantılar, alıştırmalar)] A2 konularının tamamı var mı kontrol et (kurstaki konular eksik olabilir) — Goethe A2/B1 müfredatıyla karşılaştır.
 12. [YAPILDI] Kelime hataları (yazım/artikel) genel hata haritasından çıkarılsın; hata haritası geliştirilsin.
 13. [YAPILDI] Diktat kaldırılsın.
 14. [YAPILDI: + ile eklenen kalıplar Yazma görevinde "Bugünün kalıbı" olur, kullanınca ✓] Kalıplar: "+" ile kelime tekrarına ekleme; günlük hayatta işe yarayacak şekilde geliştir.
