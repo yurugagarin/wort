@@ -1,0 +1,10 @@
+der Rand :: Rand (rant) = RANT | KENAR | Uçurumun KENARında, gökten yağan RANT paralarını kepçeyle topluyorsun; kâğıtlar yüzüne şaklıyor, mürekkep kokusu genzini yakıyor, kenar mavi bir PATLAMAYLA dağılıyor.
+die Durchsage :: Durch·sa·ge (durh-za-ge) = DUR + SAGA | ANONS | Hoparlördeki ANONS önce "DUR!" diye bağırıyor, sonra bitmek bilmeyen bir SAGA okuyor; kulakların çınlıyor, anons kırmızı ALEV ALIYOR.
+der Schalter :: Schal·ter (şal-ta) = ŞALTER | GİŞE; DÜĞME | Bilet GİŞEsinde bekliyorsun; memur dev bir ŞALTERi indirince tavandan DÜĞMEler şakır şakır yağıyor, yanık kablo kokusu burnuna doluyor, gişe mavi bir PATLAMAYLA dağılıyor.
+der Fahrgast :: Fahr·gast (far-gast) = FAR + GASP | YOLCU | Gece otobüsünde bir YOLCU koca bir FARı GASP edip koltuklara ışık saçarak koşuyor; motor gümlüyor, yanık lastik kokusu doluyor, yolcu mavi bir PATLAMAYLA dağılıyor.
+der Passagier :: Pas·sa·gier (pa-sa-jir) = PASAJ + ER | YOLCU | Geminin güvertesi koca bir alışveriş PASAJına dönmüş; bir ER her YOLCUya kocaman birer lokum dağıtıyor, güverte gül kokuyor, yolcu mavi bir PATLAMAYLA dağılıyor.
+der Flug :: Flug (fluk) = FLÜT | UÇUŞ | Uçağın kanadında FLÜT çalıyorsun; her notada UÇUŞ hızlanıyor, bulutlar yüzüne çarpıyor, kulakların tıkanıyor, uçuş mavi bir PATLAMAYLA dağılıyor.
+die Bordkarte :: Bord·kar·te (bort-kar-te) = BORÇ + KARTAL | BİNİŞ KARTI | Boynunda BORÇ levhası asılı bir KARTAL, gagasında BİNİŞ KARTIyla uçak kapısına koşuyor; kanat çırpınca bilet fırtınası kopuyor, biniş kartı kırmızı ALEV ALIYOR.
+das Handgepäck :: Hand·ge·päck (hant-ge-pek) = HAN + KEPEK | EL BAGAJI | Eski bir HANın avlusunda omzundaki EL BAGAJIndan KEPEK yağıyor; kepek yüzüne yapışıp seni hapşırtıyor, el bagajı yeşil CAM GİBİ KIRILIYOR.
+der Zoll :: Zoll (tsol) = SOL | GÜMRÜK | GÜMRÜKte memur "SOL kolunu kaldır!" diye gürlüyor; kaldırınca kolundan yüzlerce çorap fırlıyor, bagaj bandı çığlık atıyor, gümrük mavi bir PATLAMAYLA dağılıyor.
+die Reisekasse :: Rei·se·kas·se (ray-ze-ka-se) = RAY + ZEKASI | SEYAHAT BÜTÇESİ | Gözlüklü dev bir RAY, bütün ZEKASIyla SEYAHAT BÜTÇEni hesaplıyor; sen kumbaranı sımsıkı tutuyorsun, bozuk paralar şıngırdıyor, kumbara kırmızı ALEV ALIYOR.
