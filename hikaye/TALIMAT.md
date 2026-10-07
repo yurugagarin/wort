@@ -7,10 +7,10 @@ GİRDİ: {IN}  (her satır: `<anahtar> = <Türkçe anlam>`)
 `<anahtar> :: <heceler> (<Türkçe harflerle okunuş>) = <SES1> + <SES2> ... | <ANLAM> | <hikâye>`
 
 ÖRNEKLER (bu kalitede yaz):
-die Eifersucht :: Ei·fer·sucht (ay-fer-zuht) = AYFER + SUÇ | KISKANÇLIK | AYFER sevgilisini başkasıyla görünce KISKANÇLIKtan bütün tabakları kırıyor; polis kapıda bağırıyor: "AYFER SUÇlu!" Mutfak kırmızı ALEV ALIYOR.
-der Termin :: Ter·min (ter-min) = TERMİNAL | RANDEVU | RANDEVUna yetişmek için dev TERMİNALde valizlerle koşuyorsun, hoparlör RANDEVU saatini bağırıyor; terminal mavi bir PATLAMAYLA dağılıyor.
-die Tasche :: Ta·sche (ta-şe) = TAŞA | ÇANTA | ÇANTAnı öfkeyle TAŞA vuruyorsun, içinden yüzlerce minik ÇANTA fırlıyor; çanta kırmızı ALEV ALIYOR.
-das Haus :: Haus (haus) = HAVUZ | EV | EVinin salonunda kocaman bir HAVUZ var, koltuklar suda yüzüyor, sen çorabınla dalıyorsun; ev yeşil CAM GİBİ KIRILIYOR.
+die Eifersucht :: Ei·fer·sucht (ay-fer-zuht) = AYFER + SUÇ | KISKANÇLIK | AYFER sevgilisini başkasıyla görünce KISKANÇLIKtan bütün tabakları kırıyor; polisler kapıyı kırıp kelepçeyi takıyor, tabak kırıkları ayaklarının altında çatırdıyor: AYFER SUÇüstü yakalandı.
+der Termin :: Ter·min (ter-min) = TERMİNAL | RANDEVU | RANDEVUna yetişmek için dev TERMİNALde valizlerle koşuyorsun, hoparlör RANDEVU saatini bağırıyor; kalkış panosundaki RANDEVU saati yanıp sönüyor, nefes nefese kapıya varıyorsun.
+die Tasche :: Ta·sche (ta-şe) = TAŞA | ÇANTA | ÇANTAnı öfkeyle TAŞA vuruyorsun, içinden yüzlerce minik ÇANTA fırlıyor; minik çantalar kurbağa gibi ayaklarının dibinde zıplıyor.
+das Haus :: Haus (haus) = HAVUZ | EV | EVinin salonunda kocaman bir HAVUZ var, koltuklar suda yüzüyor, sen çorabınla dalıyorsun; buzdolabı yanından vapur gibi süzülüp geçiyor.
 vergessen :: ver·ges·sen (fer-ge-sın) = VERGİ + ESEN | UNUTMAK | VERGİ kâğıtlarını ESEN dev bir rüzgâr kafandan geçip her şeyi siliyor; ne yapacağını UNUTUYORsun, kafan bomboş çınlıyor.
 trotz :: trotz (trots) = TROTUAR | RAĞMEN | Sağanak yağmura RAĞMEN TROTUARda mayonla şezlonga uzanmış güneşleniyorsun; damlalar şakır şakır yüzüne çarpıyor.
 erleichtert :: er·leich·tert (er-layh-tert) = ER + LAYT + DERT | RAHATLAMIŞ | ER üniformanla dev çuvalı açıyorsun, içinden LAYT kola fışkırıyor ve bütün DERTlerin buhar olup uçuyor; RAHATLAMIŞ bir "ohh" çekip yere yığılıyorsun.
@@ -20,8 +20,11 @@ KURALLAR:
 1. BÜTÜN HECELER: Almanca kelimenin okunuşundaki BÜTÜN heceleri sırayla Türkçe kelimelerle karşıla. Yalnız ilk heceyi karşılamak YASAK. KÖTÜ örnekler: Eifersucht → AYVA (yalnız "ay"), Neid → NAYLON ("-lon" fazlalık, "t" eksik).
 2. SES ÇOK YAKIN OLMALI: Türkçe kelime(ler) yüksek sesle söylendiğinde Almanca okunuşa neredeyse aynı gelmeli. Fazladan hece en aza insin. Bir Türkçe kelime birkaç heceyi birden karşılayabiliyorsa onu seç (Termin → TERMİNAL, Eifersucht → AYFER + SUÇ). Herkesin bildiği kelimeler, isimler (Ayfer, Hasan), yer adları, markalar serbest. Okunuşu yazılışa göre değil sese göre düşün: w=v, v=f, z=ts, s+ünlü=z, ei=ay, ie=i, eu/äu=oy, sch=ş, ch=h, baştaki st/sp=şt/şp, ä=e, j=y, ß=s, sondaki -er≈-a, -en≈-ın, ünlüden sonra h okunmaz.
 3. ANLAM HİKÂYEDE: <ANLAM> alanına kelimenin Türkçe karşılığını BÜYÜK HARFLE yaz (girdideki anlamdan, en temel tek kelime ya da kısa ifade). Bu anlam hikâyenin İÇİNDE BÜYÜK HARFLE açıkça geçmeli (ek alabilir: RANDEVUna, UNUTUYORsun) ve olayın merkezinde olmalı. Ses kelimeleri de hikâyede BÜYÜK HARFLE ve SIRAYLA geçmeli; ses kelimesi ile anlam aynı sahnede birbirine dokunmalı.
-4. HİKÂYE: absürt, abartılı, SOMUT, hareketli, gözde canlanan tek sahne; içinde "sen" ol; ses/koku/acı gibi duyular. En fazla 2 cümle, en fazla ~230 karakter. Düzgün Türkçe (ç ğ ı ö ş ü). Kaba, cinsel, şiddet içerikli değil.
-5. İSİMLERDE ARTİKEL (yalnız artikelli anahtarlarda): sahnenin sonunda nesne der → mavi bir PATLAMAYLA dağılır, die → kırmızı ALEV ALIR, das → yeşil CAM GİBİ KIRILIR. Diğer kelimelerde yok.
+4. HİKÂYE: absürt, abartılı, SOMUT, hareketli, gözde canlanan tek sahne; içinde "sen" ol; ses/koku/acı gibi duyular. Düzgün Türkçe (ç ğ ı ö ş ü). Kaba, cinsel, şiddet içerikli değil.
+5. ARTİKELE TAKILMA: Hikâyenin sonuna patlama / alev / kırılma gibi artikel eylemi EKLEME. Her hikâye kendine özgü olsun; birbirine benzeyen hikâyeler birbirine karışır.
+   SOMUT OL: Her şey gözde canlandırılabilsin (nesne, renk, hareket, ses, koku). "Tabelada/kapıda şu yazıyordu", "biri şöyle bağırıyor" gibi YAZI ya da SÖZ ile anlam vermek YASAK; anlam bir nesneye, bir eyleme, bir görüntüye dönüşsün.
+   ANLAM KOPMASIN: Ses kelimeleri ile anlam aynı olayın içinde mantıklı bir bağla birleşsin. Hikâye iyi oturacaksa 2-3 cümle, ~320 karaktere kadar uzun olabilir.
+   İYİ ÖRNEK: Fortschritt :: Fort·schritt (fort-şrit) = FORD + ŞERİT | İLERLEME | Sen FORD marka bir kamyonla otoyolun ŞERİTinde uçuyorsun, motor kulaklarını sağır ediyor; ön camda dev bir İLERLEME çubuğu yüzde yüze doluyor.
 6. Anahtarı girdideki gibi AYNEN yaz (artikel dahil). Satır atlama, açıklama ekleme.
 
 KALİTE KONTROLÜ: Her satırı yazmadan önce SES kelimelerini içinden yüksek sesle söyle; Almanca okunuşa neredeyse aynı gelmiyorsa ya da bir hece açıkta kaldıysa daha iyisini bul.
