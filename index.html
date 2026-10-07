@@ -347,6 +347,9 @@ a.btn{display:flex;align-items:center;justify-content:center;text-decoration:non
 .hkr{justify-content:center;gap:16px;flex-wrap:wrap}
 .pth{display:flex;gap:10px;align-items:flex-end;height:110px;margin-top:10px}.pth>div{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
 .pth .bars{display:flex;gap:3px;align-items:flex-end;height:80px}.pth .bars i{width:10px;border-radius:3px 3px 0 0;display:block}.pth span{font-size:10px;color:var(--ink3)}
+.kday{display:flex;flex-direction:column;gap:2px;border:1.5px dashed var(--line);border-radius:12px;padding:8px 12px;margin:8px 0}
+.kday span{font-size:11px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em}.kday b{font-size:15px}.kday i{font-size:13px;color:var(--ink2);font-style:normal}
+.kday.ok{border-style:solid;border-color:var(--ok)}.kday.ok span{color:var(--ok)}
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mgrid>div{display:flex;flex-direction:column;gap:8px}
 .mgrid button,.mgrid .mdone{min-height:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);padding:8px;font-size:14px;font-weight:600}
 .mgrid button.on{border-color:var(--ink);background:var(--card2)}.mgrid button.no{border-color:var(--bad)}.mgrid .mdone{display:flex;align-items:center;justify-content:center;opacity:.35;text-decoration:line-through}
@@ -5606,11 +5609,17 @@ function taskHtml(t){
   if(OPEN===t.id)h+='<div class="tbody">'+taskBody(t.id)+'</div>';
   return h+'</div>';
 }
+/* günün kalıbı: tekrar destendeki kalıplardan (yoksa seviyene uygun olandan) biri; yazında kullanırsan işaretlenir */
+function dayKalip(){var mine=[];KL.forEach(function(k,i){if(S.srs['k:'+i])mine.push(i);});
+  var src=mine.length?mine:KL.map(function(_,i){return i;}).filter(function(i){return KL[i][0]<=(curBand()<2?2:3);});
+  return src.length?KL[src[hash(today()+'kd')%src.length]]:null;}
+function kalipUsed(k,txt){var w=norm(k[2]).split(' ').slice(0,3).join(' ');return !!w&&norm(txt||'').indexOf(w)>=0;}
 function taskBody(id){
   var d=day();
   if(id==='sch'){
-    var p=todays(SCH),tp=todayTopic();
-    return '<div class="prompt"><div class="de" lang="de">'+esc(p[0])+'</div><div class="tr">'+esc(p[1])+'. Bir cümlede bugünkü konuyu (<b>'+esc(tp[2])+'</b>) kullanmayı dene.</div></div>'+
+    var tp=todayTopic(),pr=upr(tp[0]),kk=dayKalip(),used=kk&&kalipUsed(kk,d.sch);
+    return '<div class="prompt"><div class="de" lang="de">'+esc(pr[1]||tp[2])+'</div><div class="tr">'+esc(pr[0])+' Bugünkü konu: <b>'+esc(tp[2])+'</b>.</div></div>'+
+      (kk?'<div class="kday'+(used?' ok':'')+'"><span>Bugünün kalıbı · yazında kullan'+(used?' ✓':'')+'</span><b lang="de">'+esc(kk[2])+'</b><i>'+esc(kk[3])+'</i></div>':'')+
       '<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
       '<div class="small muted num" id="schN">'+sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır</div>'+
       '<button class="btn sm" style="align-self:flex-start" data-act="schk">Cümlelerimi kontrol et</button>'+(SCHK&&SCHK.t===(d.sch||'')?checkHtml(SCHK.r,d.sch):'');
@@ -6724,7 +6733,7 @@ document.addEventListener('click',function(e){
 });
 document.addEventListener('input',function(e){
   var el=e.target,k=el.dataset&&el.dataset.in;if(!k)return;
-  if(k==='sch'){var d=day();d.sch=el.value;save();var n=$('schN');if(n)n.textContent=sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır';refreshScore();}
+  if(k==='sch'){var d=day();d.sch=el.value;save();var n=$('schN');if(n)n.textContent=sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır';refreshScore();var kd=document.querySelector('.kday');if(kd){var kk=dayKalip(),u=kk&&kalipUsed(kk,d.sch);kd.classList.toggle('ok',!!u);kd.querySelector('span').textContent='Bugünün kalıbı · yazında kullan'+(u?' ✓':'');}}
   else if(k==='q'){$('qres').innerHTML=searchHtml(el.value);}
   else if(k==='nans'){S.notes.forEach(function(n){if(n.id===el.dataset.id)n.ans=el.value;});save();}
   else if(k==='ty'||k==='dk'){if(X)X.val=el.value;}
@@ -6916,7 +6925,7 @@ function copyText(t,ok){
 function pKalip(){
   var lv=X.lv||0,cats=[],by={};
   KL.forEach(function(k,i){if(lv&&k[0]!==lv)return;if(!by[k[1]]){by[k[1]]=[];cats.push(k[1]);}by[k[1]].push(i);});
-  var b='<div><div class="eyebrow">Kalıplar</div><h1>Hazır cümleler</h1></div><p class="small muted">Kitaplarda az geçen ama her gün işine yarayan kısa cümleler. Tekrarına eklediklerin kelime tekrarında sorulur.</p>'+
+  var b='<div><div class="eyebrow">Kalıplar</div><h1>Hazır cümleler</h1></div><p class="small muted">Her gün işine yarayan kısa cümleler. <b>+</b> ile eklediklerin iki yerde çalışır: kelime tekrarında Türkçesinden Almancasını hatırlarsın ve Bugün sayfasındaki Yazma görevinde "Bugünün kalıbı" olarak karşına çıkar; yazında kullanınca ✓ alır. Kullandığın kalıp, konuşurken de aklına gelir.</p>'+
     '<div class="seg">'+[[0,'Hepsi'],[1,'A1'],[2,'A2'],[3,'B1']].map(function(o){return '<button class="'+(lv===o[0]?'on':'')+'" data-act="klv" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
   cats.forEach(function(c){
     var ids=by[c],rest=ids.filter(function(i){return !S.srs['k:'+i];}).length;
