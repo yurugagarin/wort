@@ -18,3 +18,15 @@ Sonra, uygulama düzeni ("ne nerede, neyden sonra ne yapacağım" net olsun; ayn
 13. [YAPILDI] Diktat kaldırılsın.
 14. Kalıplar: "+" ile kelime tekrarına ekleme; günlük hayatta işe yarayacak şekilde geliştir.
 15. Genel: her şey öğrenme ve bağlantı kurma üzerine; bir şeyi nereden çalıştıysa oradan tekrar bakabilsin.
+
+## Tur 2 (kullanıcı notları)
+16. Konu cümlelerini kelime tekrarına karıştır (bitirilen konuların cümleleri aralıklı tekrar).
+17. Defter cümleleri tek tıkla tekrar kartı olsun.
+18. Ayda bir deneme sınavı + sonuç grafiği + sınav takvimi buna dayansın.
+19. Bugün: konu bittiyse "Konuyu aç" yerine "bugünlük bitti, yarın ne var" + yanında yeni konu.
+20. Seviye testinin "biliyorum" işaretlerini sıfırla; bütün konular baştan.
+21. Konu durumları görünsün: hangi konu hangi aşamada, hangileri tekrar bekliyor, ne zaman.
+22. Bugünün 4 adımı birbirine bağlansın (ortak tema: bugünkü konu → ilgili tablo, konu kelimeleri, konuyla yazma).
+23. Artikel-Blitz kaldır; yerine daha işe yarar oyun.
+24. Zor kelimeler tıklanınca kelime kartı/hikâye açılsın; zor kelimeleri çalış düğmesi.
+25. Claude raporu: kısa analiz — neye takılıyorum, neden, ileride nerede engel olur, neye ağırlık vermeliyim.
