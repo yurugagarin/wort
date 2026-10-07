@@ -3146,6 +3146,11 @@ function migrate(s){
     s.scv=8;}
   /* tur 2: seviye testinin işaretleri sıfırlanır; bütün konular baştan */
   if(!s.gs1&&typeof GBY!=='undefined'){var td0=today();for(k in s.gx){var g0=s.gx[k];if(g0&&g0.stg&&g0.stg.kur&&g0.stg.kur!=='test'&&GBY[k])GBY[k][4].slice(0,3).forEach(function(_,i){var kk='gs:'+k+':'+i;if(!s.srs[kk])s.srs[kk]={i:0,e:2.5,n:0,d:td0,a:td0,st:0,nw:1,u:Date.now()};});}s.gs1=1;}
+  /* seviye testinden kalan ilerleme (base, işaretler, kelime tahmini) tamamen silinir */
+  if(!s.rk2){for(k in s.gx){var g2=s.gx[k];if(!g2)continue;delete g2.base;delete g2.known;delete g2.pri;
+      if(g2.stg)for(var sk2 in g2.stg)if(g2.stg[sk2]==='test')delete g2.stg[sk2];
+      if(!g2.last&&!(g2.rv||[]).length){delete s.gx[k];delete s.gdone[k];}}
+    s.vest=null;s.rk2=1;}
   if(!s.rk1){for(k in s.gx){var gx0=s.gx[k];if(!gx0)continue;if(gx0.known){delete gx0.known;delete s.gdone[k];}
       if(gx0.stg)for(var sk in gx0.stg)if(gx0.stg[sk]==='test')delete gx0.stg[sk];delete gx0.pri;}
     s.rk1=1;}
@@ -7180,6 +7185,9 @@ function vEzber(){
   if(lv===1)h+='<p class="note" style="margin:0 4px">A1 tabloları her şeyin temeli: sınavda en çok hata buradan çıkar. Sırayla git; bildiklerini hızlıca test edip geç.</p>';
   var ts=EZ.filter(function(t){return t.lv===lv;}),ok=ts.filter(function(t){return ezProg(t.id)>=.8;}).length;
   h+='<div class="card band"><div class="bh"><b>'+LV[lv]+' · ezber yolu</b><span class="small muted num">'+ok+'/'+ts.length+' tablo oturdu</span></div>'+bar(ezLvProg(lv),'var(--das)')+'<ul class="tl" style="margin-top:8px">'+ts.map(ezLi).join('')+'</ul></div>';
+  var cats={};EZ.forEach(function(t){(cats[t.cat]=cats[t.cat]||[]).push(t);});
+  h+='<div class="card"><div class="eyebrow">Bütün tablolar · '+EZ.length+'</div><p class="small muted" style="margin:4px 0 8px">Aradığın tabloyu türüne göre bul (ör. Modalverben: Fiil).</p>'+
+    Object.keys(cats).map(function(c){return '<div class="small" style="margin-top:8px;font-weight:800;color:var(--ink3)">'+esc(c)+'</div><div class="chips" style="margin-top:4px">'+cats[c].map(function(t){return '<button class="chip" data-act="ezopen" data-id="'+t.id+'">'+esc(t.t)+' <span class="muted">'+LV[t.lv]+' · %'+pct(ezProg(t.id))+'</span></button>';}).join('')+'</div>';}).join('')+'</div>';
   h+='<div class="card"><div class="eyebrow">Ezber nasıl kalıcı olur?</div><ul class="tips">'+EZTIPS.map(function(x){return '<li><b>'+esc(x[0])+'</b> '+rich(x[1])+'</li>';}).join('')+'</ul></div>';
   return h;
 }
