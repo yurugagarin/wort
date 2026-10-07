@@ -16,8 +16,8 @@ Sonra, uygulama düzeni ("ne nerede, neyden sonra ne yapacağım" net olsun; ayn
 11. [KARŞILAŞTIRILDI, kullanıcı onayı bekliyor: eksik görünen A2 konuları: denn/sondern/aber (ana cümle bağlaçları), welcher / was für ein, belirsiz zamirler (einer, keiner, jemand, niemand, etwas, nichts), Dativ+Akkusativ nesne sırası (Ich gebe es ihm), sıra sayıları ve tarih (am ersten Mai), werden + isim/sıfat (Ich werde müde)] A2 konularının tamamı var mı kontrol et (kurstaki konular eksik olabilir) — Goethe A2/B1 müfredatıyla karşılaştır.
 12. [YAPILDI] Kelime hataları (yazım/artikel) genel hata haritasından çıkarılsın; hata haritası geliştirilsin.
 13. [YAPILDI] Diktat kaldırılsın.
-14. Kalıplar: "+" ile kelime tekrarına ekleme; günlük hayatta işe yarayacak şekilde geliştir.
-15. Genel: her şey öğrenme ve bağlantı kurma üzerine; bir şeyi nereden çalıştıysa oradan tekrar bakabilsin.
+14. [YAPILDI: + ile eklenen kalıplar Yazma görevinde "Bugünün kalıbı" olur, kullanınca ✓] Kalıplar: "+" ile kelime tekrarına ekleme; günlük hayatta işe yarayacak şekilde geliştir.
+15. [YAPILDI: tema kartı, tek tablo dizini, konu durumu listesi] Genel: her şey öğrenme ve bağlantı kurma üzerine; bir şeyi nereden çalıştıysa oradan tekrar bakabilsin.
 
 ## Tur 2 (kullanıcı notları)
 16. [YAPILDI] Konu cümlelerini kelime tekrarına karıştır (bitirilen konuların cümleleri aralıklı tekrar).
