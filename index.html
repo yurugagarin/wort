@@ -6646,7 +6646,11 @@ function wordLinks(c){
     (fa.length?'<div><span>Kelime ailesi</span><p>'+fa.map(function(e){var a=ART(e.a);return '<b lang="de">'+(a?a+' ':'')+esc(e.w)+'</b> '+esc(e.tr);}).join(' · ')+'</p></div>':'')+'</div>';
 }
 /* --- hafıza kancası --- */
-function hkOf(id){return S.hk&&S.hk[id]&&S.hk[id].t?S.hk[id].t:'';}
+/* "Kancam bu olsun" ile hazır hikâyeden kopyalanan kancalar, hikâye güncellenince güncel hâliyle görünür; elle yazılanlar olduğu gibi kalır */
+function hkCopy(t){return /^[^\n]+ → [^\n]+ = [^\n]+\n/.test(t||'');}
+function hkOf(id){var x=S.hk&&S.hk[id];if(!x||!x.t)return '';
+  if((x.src==='hky'||hkCopy(x.t))&&HKY){var hh=hkyOf(card(id));if(hh&&hh.length>=4)return hh[0]+' → '+hh[1]+' = '+hh[2]+'\n'+hh[3];}
+  return x.t;}
 var GCOL={der:'mavi',die:'kırmızı',das:'yeşil'},GACT={der:'patlarken',die:'alev alırken',das:'cam gibi kırılırken'};
 function hkTips(c){
   var t=[],a=ART(c.a),p=wordParts(c);
@@ -7010,7 +7014,7 @@ var ACT={
   rvidk:function(){var cu=W.cur;if(!cu||cu.res)return;var c=card(cu.id);cu.val='';cu.res='no';cu.m='Doğrusu: *'+rvRight(c,cu.type)+'*';rvGrade(cu.id,'no');drawPage();},
   hkopen:function(){W.hk=W.cur&&W.cur.id;W.hkv=null;drawPage();setTimeout(function(){var t=document.querySelector('#page [data-in="hk"]');if(t)t.scrollIntoView({block:'center'});},40);},
   hkstory:function(){var id=W.cur&&W.cur.id;W.hs=id;hkyLoad(function(){if(X&&X.kind==='review')drawPage();});drawPage();},
-  hkstsave:function(){var id=W.hs,c=card(id),h=hkyOf(c);if(!h)return;S.hk=S.hk||{};S.hk[id]={t:h.length>=4?h[0]+' → '+h[1]+' = '+h[2]+'\n'+h[3]:h[0]+' → '+h[1].replace(/\*/g,''),u:Date.now()};save();drawPage();toast('Hikâye kancan oldu · kelime her geldiğinde görünecek');},
+  hkstsave:function(){var id=W.hs,c=card(id),h=hkyOf(c);if(!h)return;S.hk=S.hk||{};S.hk[id]={t:h.length>=4?h[0]+' → '+h[1]+' = '+h[2]+'\n'+h[3]:h[0]+' → '+h[1].replace(/\*/g,''),u:Date.now(),src:'hky'};save();drawPage();toast('Hikâye kancan oldu · kelime her geldiğinde görünecek');},
   hkai2:function(){var c=card(W.hs||(W.cur&&W.cur.id));if(!c)return;copyText(hkPrompt(c,1),'İstek kopyalandı · claude.ai\'ye yapıştır');window.open('https://claude.ai/new','_blank','noopener');},
   hkx:function(){W.hk=null;W.hkv=null;drawPage();},
   hksave:function(){var id=W.hk,el=document.querySelector('#page [data-in="hk"]'),t=String(el?el.value:'').trim();if(!id)return;S.hk=S.hk||{};if(t.indexOf('::')>=0&&hkParse(t,[id]))t=S.hk[id].t;if(t)S.hk[id]={t:t,u:Date.now()};else if(S.hk[id])S.hk[id]={t:'',u:Date.now()};W.hk=null;W.hkv=null;save();drawPage();toast(t?'Kanca kaydedildi · kelime her geldiğinde görünecek':'Kanca silindi');},
