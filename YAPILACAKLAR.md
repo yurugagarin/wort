@@ -30,3 +30,11 @@ Sonra, uygulama düzeni ("ne nerede, neyden sonra ne yapacağım" net olsun; ayn
 23. [YAPILDI] Artikel-Blitz kaldır; yerine daha işe yarar oyun.
 24. [YAPILDI] Zor kelimeler tıklanınca kelime kartı/hikâye açılsın; zor kelimeleri çalış düğmesi.
 25. [YAPILDI] Claude raporu: kısa analiz — neye takılıyorum, neden, ileride nerede engel olur, neye ağırlık vermeliyim.
+
+## Tur 3 (8 Ekim: "baştan sona her şey doğru çalışıyor mu, tek bakışta anlaşılsın")
+Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görevi 25 puan aldı ama başlıkta "Modalverben" yazıyordu, sanki Modalverben bitmiş gibi.
+26. [ ] Bugün "Konu" görevi: puan hangi konudan geldiyse o yazsın (bugün çalışılan her konu ayrı satır: konu · aşama · sonuç). Günün konusu ile yapılan iş karışmasın.
+27. [ ] Bugün yaptıkların: saatli günlük kayıt (kelime, konu aşaması, ezber tablosu, yazma, oyun) — uygulamayı kapatıp açınca "bugün ne yaptım" bir bakışta.
+28. [ ] Geçmiş: İlerleme'de her gün için ne yapıldığı (takvimde güne dokununca o günün kaydı); her konu sayfasında o konunun geçmişi (hangi gün hangi aşama, sonuç).
+29. [ ] Sırada ne var: yarın ve önümüzdeki 7 gün (konu tekrarları, ezber tekrarları, kelime kartı sayısı) tek kartta.
+30. [ ] Baştan sona denetim: Bugün/puan, konu yaşam döngüsü, kelime, ezber, ilerleme/senkron — bulunan bütün hatalar düzeltilsin (denetim raporları: scratchpad dışında da özetlensin).
