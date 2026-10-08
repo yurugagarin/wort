@@ -44,3 +44,4 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - Hikâyeler: hikaye/UZUN.md talimatıyla 4 ajan (IN=hikaye/uzun/wNN.txt, OUT=hikaye/parca/wNN.txt; ilk tur u01-u08 kısmen bitti, kalanlar w01-w04'te). Ajan çıktıdaki anahtarları atlayıp kaldığı yerden sürer. Her 10 satır GitHub'a kaydedilir.
   Bitenleri canlıya almak: python3 hikaye/araclar.py merge → hikaye.json'ı commit et → main'e birleştir (scratchpad/v13/main yok ise: git fetch; git checkout --detach origin/main; git merge dalı; git push origin HEAD:main).
 - Denetim (madde 30): bulgular denetim/audit_*.md içinde. Her bulguyu düzelt, düzeltileni dosyada [DÜZELTİLDİ] diye işaretle.
+32. [YAPILDI] Kurs tablosu düzeninde tam ifadeli sıfat eki tabloları (der/die/das ve ein/kein/mein + sıfat + isim; hafıza teknikleri, renkli desen) + Ezber/Konular/Kelime'de tablo ve konu araması.
