@@ -31,7 +31,8 @@ def parse():
             k,v=l.split('::',1);k=k.strip().strip('`*- ')
             p=[x.strip() for x in v.split(' | ')]
             if k not in keys or len(p)!=3 or ' = ' not in p[0] or len(p[2])<25 or not p[1]:bad.append(l[:100]);continue
-            syl,snd=p[0].split(' = ',1);out[k]=[syl.strip(),snd.strip(),p[1],noart(p[2])]
+            syl,snd=p[0].split(' = ',1);uz=os.path.basename(f).startswith(('u','z'))
+            out[k]=[syl.strip(),snd.strip(),p[1],p[2] if uz else noart(p[2])]
     return out,bad
 cmd=sys.argv[1] if len(sys.argv)>1 else 'merge'
 if cmd=='todo':
