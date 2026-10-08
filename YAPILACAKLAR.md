@@ -37,7 +37,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 27. [YAPILDI] Bugün yaptıkların: saatli günlük kayıt (kelime, konu aşaması, ezber tablosu, yazma, oyun) — uygulamayı kapatıp açınca "bugün ne yaptım" bir bakışta.
 28. [YAPILDI] Geçmiş: İlerleme'de her gün için ne yapıldığı (takvimde güne dokununca o günün kaydı); her konu sayfasında o konunun geçmişi (hangi gün hangi aşama, sonuç).
 29. [YAPILDI] Sırada ne var: yarın ve önümüzdeki 7 gün (konu tekrarları, ezber tekrarları, kelime kartı sayısı) tek kartta.
-30. [ ] Baştan sona denetim: Bugün/puan, konu yaşam döngüsü, kelime, ezber, ilerleme/senkron — bulunan bütün hatalar düzeltilsin (denetim raporları: scratchpad dışında da özetlensin).
+30. [YAPILDI: denetim/DURUM.md] Baştan sona denetim: Bugün/puan, konu yaşam döngüsü, kelime, ezber, ilerleme/senkron — bulunan bütün hatalar düzeltilsin (denetim raporları: scratchpad dışında da özetlensin).
 31. [ ] Kancalar yeniden (kullanıcı, 8 Ekim): "umtauschen → UMUT adlı satıcıya TAVŞAN peluşu" gibi hikâyeler zayıf. Ses benzerliği iyi ama: soyut isimler (Umut) kişi adı olarak kullanılmasın; tek cümleye sıkıştırma; sonda kargaşa/çığlık/titreme yok. Uzun (3-5 cümle), mantıklı, sebep-sonuç zinciri olan, somut ve görsel hikâye; anlam (BÜYÜK HARF) olayın merkezinde. A2+B1 hepsi uzun hâliyle yeniden yazılıyor: kurallar hikaye/UZUN.md (girdiler hikaye/uzun/u01-u08, çıktılar hikaye/parca/u01-u08; yarıda kalırsa aynı komutla devam). Ek kurallar: nadir kelime yok (MUSK gibi), kişi adı yok (çok ünlüler hariç; "Şeyda'yı nasıl aklımda tutayım"). Kullanıcının kaydettiği kopya kancalar güncel hikâyeyi gösterir.
 
 ### KOTA BİTERSE NASIL DEVAM EDİLİR (Claude için not)
