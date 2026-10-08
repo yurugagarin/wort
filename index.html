@@ -607,7 +607,7 @@ input.ty{font-size:20px;text-align:center;font-family:var(--f-disp);padding:13px
 .t3{display:block;font-size:12px;color:var(--die);font-weight:600;margin-top:1px}
 .task.done .t3{display:none}
 .t4{display:flex;flex-direction:column;gap:1px;margin-top:2px}.t4:empty{display:none}
-.t4 span{font-size:12px;color:var(--ink2);font-weight:600;line-height:1.4}
+.t4 span{font-size:12px;color:var(--ink2);font-weight:600;line-height:1.4}.t4 .more{color:var(--wrn)}
 .lgl{list-style:none;margin-top:6px}
 .lgl li{border-top:1px solid var(--line2)}.lgl li:first-child{border-top:0}
 .lgl li>button,.lgl li>div{display:flex;align-items:flex-start;gap:8px;width:100%;padding:8px 0;text-align:left;background:none;border:0;color:inherit;font:inherit}
@@ -3191,6 +3191,7 @@ function save(){S.mt=Date.now();saveLocal();if(typeof syncSoon==='function')sync
 function touch(f){S.fmt=S.fmt||{};S.fmt[f]=Date.now();}
 function peek(k){return S.days[k]||null;}
 function day(){var k=today();return S.days[k]||(S.days[k]={});}
+function xday(){var k=(typeof X!=='undefined'&&X&&X.day)||today();return S.days[k]||(S.days[k]={});}
 
 /* ---------------- etkinlik kaydı: ne zaman ne yaptım ----------------
    Her çalışma saatiyle kaydedilir. k: w kelime · g konu aşaması · e ezber · y yazma · o oyun · p deneme testi.
@@ -3198,7 +3199,7 @@ function day(){var k=today();return S.days[k]||(S.days[k]={});}
 var LGMAX=4000;
 function nowHM(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
 function hmMin(s){var p=String(s||'0:0').split(':');return (+p[0])*60+(+p[1]||0);}
-function lgAdd(e){S.lg=S.lg||[];e.d=today();e.t=e.t2=nowHM();e.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);S.lg.push(e);if(S.lg.length>LGMAX)S.lg=S.lg.slice(-LGMAX);return e;}
+function lgAdd(e){S.lg=S.lg||[];e.d=e.d||today();e.t=e.t2=nowHM();e.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);S.lg.push(e);if(S.lg.length>LGMAX)S.lg=S.lg.slice(-LGMAX);return e;}
 function lgBump(k,ref,f){
   var L=S.lg||(S.lg=[]),t=today(),now=nowHM(),e=null;
   for(var i=L.length-1;i>=0&&i>=L.length-40;i--){var x=L[i];if(x.d!==t)break;if(x.k===k&&(x.ref||'')===(ref||'')){if(k==='y'||hmMin(now)-hmMin(x.t2)<=30)e=x;break;}}
@@ -3310,7 +3311,10 @@ function fsNext(s,G,t){
 function fsIvl(S){return Math.min(365,Math.max(1,Math.round(S/FFAC*(Math.pow(FRET,1/FDEC)-1))));}
 function ivl(n){if(n<=0)return 'bugün';if(n===1)return 'yarın';if(n<31)return n+' gün';if(n<365)return Math.round(n/30)+' ay';return Math.round(n/365)+' yıl';}
 /* yeni kelime: tanıtıldığı gün sorulmaz; ilk soru yarın (kelime de konu gibi bir gece bekler) */
+function queueNew(id,now){if(S.srs[id])return false;S.gwq=S.gwq||[];if(S.gwq.indexOf(id)<0)S.gwq.push(id);
+  if(now&&W.q&&W.day===today()&&W.q.indexOf(id)<0){W.q.push(id);W.n0=(W.n0||0)+1;var d=day();if(d.wt!=null)d.wt++;}return true;}
 function introDone(id){
+  ensureTarget();if(S.gwq){var gi=S.gwq.indexOf(id);if(gi>=0)S.gwq.splice(gi,1);}
   if(S.srs[id])return;var t=today(),d=day();
   S.srs[id]={i:0,e:2.5,n:0,d:addD(t,1),a:t,st:0,nw:1,u:Date.now()};
   d.wd=d.wd||{};if(!d.wd[id]){d.wd[id]=1;d.w=(d.w||0)+1;}if(id.indexOf('p:')===0)d.np=(d.np||0)+1;lgBump('w','',function(e){e.n++;e.nw=(e.nw||0)+1;});save();
@@ -3337,9 +3341,9 @@ function counts(){
   for(var id in S.srs){var s=S.srs[id];if(s.i>=21)sat++;else lrn++;if(s.d<=t&&card(id))due++;}
   return {due:due,lrn:lrn,sat:sat};
 }
-function newLeft(){var d=peek(today())||{};return Math.max(0,S.set.newPerDay+(d.npx||0)-(d.np||0));}
+function newLeft(){var d=peek(today())||{};return Math.max(0,(d.ncap!=null?d.ncap:S.set.newPerDay)+(d.npx||0)-(d.np||0));}
 function newCands(){
-  var mk={},st=[],r=[],i;
+  var mk={},st=(S.gwq||[]).filter(function(k){return !S.srs[k]&&card(k);}),r=[],i;
   for(i=0;i<S.mine.length;i++)mk[(S.mine[i].a?S.mine[i].a+' ':'')+S.mine[i].w]=1;
   for(i=0;i<POOL.length;i++){var e=POOL[i];
     if(S.srs[e.id]||mk[e.k])continue;
@@ -3368,13 +3372,18 @@ var CSET={};[['renk','rot blau grün gelb schwarz weiß braun grau orange rosa l
 /* günün kelime hedefi gün başında sabitlenir: vadesi gelen + yeni, en çok 25 */
 function ensureTarget(){
   var d=day();
-  if(d.wt==null){var c=counts(),nc=newCands();d.wt=Math.min(25,c.due+Math.min(newLeft(),nc.st.length+nc.r.length));save();}
+  if(d.wt==null){var c=counts(),nc=newCands();
+    /* tekrar birikmişse yeni kelime azalır: 20'nin üstündeki her 5 bekleyen kart için 1 yeni eksik */
+    d.ncap=Math.max(0,S.set.newPerDay-Math.floor(Math.max(0,c.due-20)/5));
+    d.wt=Math.min(25,c.due+Math.min(newLeft(),nc.st.length+nc.r.length));save();}
 }
 
 /* ---------------- puan ---------------- */
+var SDE=/(^|[^a-zäöüß])(ich|du|er|sie|es|wir|ihr|und|oder|aber|nicht|der|die|das|den|dem|ein|eine|einen|einem|ist|bin|bist|sind|war|habe|hast|hat|haben|hatte|mit|von|zu|auf|für|in|im|am|an|nach|bei|mein|meine|meinen|dein|sein|gern|sehr|heute|morgen|gestern|auch|noch|schon|dann|wenn|weil|dass|man|kein|keine|wird|werde|kann|muss|will|möchte|mich|mir|dich|dir|uns|was|wie|wo)(?![a-zäöüß])/i;
 function sentN(t){
   if(!t)return 0;
-  return t.split(/[.!?…]+/).filter(function(x){return (x.match(/[A-Za-zÄÖÜäöüß]+/g)||[]).length>=3;}).length;
+  /* Almanca cümle: en az 3 kelime, Türkçeye özgü harf yok, en az bir Almanca işaret (sık kelime ya da ä ö ü ß) */
+  return t.split(/[.!?…\n]+/).filter(function(x){return (x.match(/[A-Za-zÄÖÜäöüß]+/g)||[]).length>=3&&!/[çğışİıÇĞŞ]/.test(x)&&(/[äöüßÄÖÜ]/.test(x)||SDE.test(x));}).length;
 }
 /* Günlük puan · 100: dakika girmek yok; her puan uygulamada yapılan gerçek bir çalışmadan gelir.
    Kelime tekrarı 30 · Konu 25 (bir aşamayı bitir ya da 10 soru) · Ezber 25 (bir tablo testi ya da 12 cevap) · Yazma 20 (3 cümle) */
@@ -3673,7 +3682,7 @@ g28:["Ich trainiere, ___ fit zu bleiben.|um|damit|für|Özne aynı (antrenman ya
 g29:["Ich trinke sowohl Kaffee ___ Tee.|als auch|oder|noch|*sowohl* her zaman *als auch* ile tamamlanır: *sowohl … als auch* = hem … hem. (*wie auch* de doğru ama daha seyrek.)|wie auch|*oder* olmaz: *oder* *entweder* ile eşleşir (*entweder … oder*), *sowohl* ile değil.|*noch* olmaz: *noch* *weder* ile eşleşir (*weder … noch*), *sowohl* ile değil.","Er hat weder Zeit ___ Lust.|noch|oder|als auch|*weder* ikinci parçada hep *noch* ister: *weder … noch* = ne … ne.||*oder* olmaz: *oder* *entweder* ile eşleşir; *weder*'in eşi *noch*'tur.|*als auch* olmaz: *als auch* *sowohl* ile eşleşir; *weder*'den sonra *noch* gelir.","Wir fahren entweder heute ___ morgen.|oder|noch|sondern|*entweder* ikinci parçada *oder* ister: *entweder … oder* = ya … ya.||*noch* olmaz: *noch* *weder* ile eşleşir (ne … ne); burada *entweder* var.|*sondern* olmaz: *sondern* *nicht nur* ile eşleşir; *entweder*'in eşi *oder*'dir.","Sie spricht nicht nur Deutsch, ___ Englisch.|sondern auch|als auch|oder|*nicht nur* ikinci parçada *sondern auch* ister: *nicht nur …, sondern auch …* = sadece … değil, … de.||*als auch* olmaz: *als auch* yalnız *sowohl* ile eşleşir, *nicht nur* ile değil.|*oder* olmaz: *oder* *entweder* ile eşleşir; *nicht nur*'dan sonra *sondern auch* gelir.","Das Essen war ___ warm noch lecker.|weder|sowohl|entweder|İkinci parçada *noch* var; onun eşi *weder*'dir: *weder warm noch lecker* = ne sıcak ne lezzetli.||*sowohl* olmaz: *sowohl*'un eşi *als auch*'tır, *noch* değil.|*entweder* olmaz: *entweder*'in eşi *oder*'dir, *noch* değil.","Das Hotel ist zwar teuer, ___ sehr schön.|aber|sondern|oder|*zwar … aber* = gerçi … ama: önce bir şeyi kabul eder, sonra karşıtını söylersin. *aber* yerine *doch/jedoch* da olur.|doch/jedoch|*sondern* olmaz: *sondern* yalnız olumsuzdan sonra gelir (*nicht …, sondern*); *zwar*'ın eşi *aber*'dir.|*oder* olmaz: *oder* seçenek bildirir; *zwar* ile karşıtlık için *aber* gerekir.","___ du kommst mit, oder ich gehe allein.|Entweder|Weder|Sowohl|İkinci parçada *oder* var; onun eşi *entweder*'dir: *Entweder …, oder …* = ya … ya da …||*Weder* olmaz: *weder*'in eşi *noch*'tur, *oder* değil.|*Sowohl* olmaz: *sowohl*'un eşi *als auch*'tır, *oder* değil.","Ich mag ___ Hunde als auch Katzen.|sowohl|weder|entweder|İkinci parçada *als auch* var; onun eşi *sowohl*'dur: hem köpekleri hem kedileri severim.||*weder* olmaz: *weder*'in eşi *noch*'tur, *als auch* değil.|*entweder* olmaz: *entweder*'in eşi *oder*'dir, *als auch* değil."],
 g30:["Ich ___ nächstes Jahr die Prüfung machen.|werde|wird|wirst|Futur I: *werden* özneye göre çekimlenir, mastar sona gider. *ich* ile *werde*: *Ich werde … machen.*||*wird* olmaz: *wird* *er/sie/es* çekimidir; *ich* ile *werde* gerekir.|*wirst* olmaz: *wirst* *du* çekimidir; *ich* ile *werde* gerekir.","Morgen ___ es regnen.|wird|werden|wirst|*es* üçüncü tekil kişidir: *es wird* + mastar sonda (*regnen*).||*werden* olmaz: *werden* *wir/sie* çekimidir; *es* ile *wird* gerekir.|*wirst* olmaz: *wirst* *du* çekimidir; *es* ile *wird* gerekir.","___ du am Wochenende Zeit haben?|Wirst|Wird|Werdet|*du* ile *werden* → *wirst*; evet/hayır sorusunda başa gelir, mastar *haben* sonda kalır.||*Wird* olmaz: *wird* *er/sie/es* çekimidir; *du* ile *wirst* gerekir.|*Werdet* olmaz: *werdet* *ihr* çekimidir; *du* ile *wirst* gerekir.","Wir werden das schon ___.|schaffen|geschafft|schafft|Futur I'de yalnız *werden* çekimlenir; asıl fiil mastar hâlinde sona gider: *werden … schaffen*.||*geschafft* olmaz: Partizip II Perfekt içindir; *werden*'den sonra mastar gelir.|*schafft* olmaz: asıl fiil çekimlenmez; çekimli fiil zaten *werden*, sonda mastar kalır.","Er ___ wohl noch im Büro sein.|wird|wirst|werden|*werden* + *wohl* tahmin bildirir (herhalde). *er* ile *wird*: *Er wird wohl … sein.*||*wirst* olmaz: *wirst* *du* çekimidir; *er* ile *wird* gerekir.|*werden* olmaz: *werden* *wir/sie* çekimidir; *er* ile *wird* gerekir.","Ihr ___ sehen, das klappt!|werdet|wird|werden|*ihr* ile *werden* → *werdet*. *Ihr werdet sehen* = göreceksiniz.||*wird* olmaz: *wird* *er/sie/es* çekimidir; *ihr* ile *werdet* gerekir.|*werden* olmaz: *werden* *wir/sie* çekimidir; *ihr* ile *werdet* gerekir.","Ich werde ab jetzt jeden Tag ___.|üben|geübt|übe|*werde* çekimli fiildir; asıl fiil çekimsiz mastar olarak cümle sonuna gider: *werde … üben*.||*geübt* olmaz: Partizip II Perfekt ya da edilgen içindir; Futur I'de mastar gelir.|*übe* olmaz: çekimli fiil zaten *werde*; sonda çekimsiz mastar *üben* olmalı.","Die Preise ___ weiter steigen.|werden|wird|wurden|*die Preise* çoğuldur (*sie*): *sie werden* + mastar *steigen*.||*wird* olmaz: *wird* tekildir; çoğul özne *die Preise* ile *werden* gerekir.|*wurden* olmaz: *wurden* geçmiş zamandır (Präteritum); gelecek için *werden* + mastar gerekir."],
 g31:["Das Haus ___ 1950 gebaut.|wurde|worden|hat|Edilgen Präteritum: *wurde* + Partizip II. Geçmişte bir kez yapılan iş: *wurde … gebaut*.||*worden* olmaz: *worden* tek başına çekimli fiil olamaz; yalnız Perfekt'te *ist … worden* içinde gelir.|*hat* olmaz: edilgende *haben* kullanılmaz; ev yapan değil, yapılan şeydir.","Die Besprechung ist abgesagt ___.|worden|geworden|werden|Edilgen Perfekt: *ist* + Partizip II + *worden*. Edilgende *werden*'in Partizip'i *ge-* almaz: *worden*.||*geworden* olmaz: *geworden* 'olmak' anlamındaki *werden* içindir; edilgende *worden* gelir.|*werden* olmaz: *ist … werden* diye bir yapı yok; Perfekt edilgende *worden* gelir.","Der Antrag muss bis Freitag abgegeben ___.|werden|worden|wird|Modal fiilli edilgen: modal çekimlenir, sonda Partizip II + *werden*: *muss abgegeben werden*. (*abgegeben sein* de doğru.)|sein|*worden* olmaz: *worden* yalnız Perfekt edilgende (*ist … worden*) gelir; modalden sonra *werden* gerekir.|*wird* olmaz: çekimli fiil zaten *muss*; sonda çekimsiz *werden* olmalı.","Die Pakete ___ gestern geliefert.|wurden|wurde|werden|*gestern* → edilgen Präteritum. Özne *die Pakete* çoğul olduğu için *wurden* + Partizip II.||*wurde* olmaz: *wurde* tekildir; çoğul *die Pakete* ile *wurden* gerekir.|*werden* olmaz: bu şimdiki zaman; *gestern* geçmişi gösterir, *wurden* gerekir.","Hier darf nicht geraucht ___.|werden|worden|wird|Modal fiilli edilgen: *darf* + Partizip II + *werden*. Kimin yaptığı önemli değil, genel bir yasak anlatır.||*worden* olmaz: *worden* yalnız Perfekt edilgende (*ist … worden*) gelir; modalden sonra *werden*.|*wird* olmaz: çekimli fiil zaten *darf*; sonda çekimsiz *werden* gerekir.","Die Ergebnisse ___ schon veröffentlicht worden.|sind|haben|werden|Edilgen Perfekt'te yardımcı fiil hep *sein*: çoğul *die Ergebnisse* → *sind … worden*. (*waren … worden* = Plusquamperfekt, o da doğru.)|waren|*haben* olmaz: edilgen Perfekt *haben* almaz; *sein* + Partizip II + *worden* gerekir.|*werden* olmaz: *worden* ile Perfekt kurulur, o da *sein* ister; *werden … worden* yanlış.","Das Auto kann morgen ___ werden.|repariert|reparieren|repariere|Edilgende asıl fiil Partizip II olur: *repariert werden* = tamir edilmek.||*reparieren* olmaz: mastar + *werden* edilgen değildir; araba tamir edilen şey, Partizip II *repariert* gerekir.|*repariere* olmaz: bu *ich* çekimi; burada Partizip II *repariert* gerekir.","Das Museum ___ vor zwei Jahren eröffnet.|wurde|wird|worden|*vor zwei Jahren* geçmişi gösterir: edilgen Präteritum *wurde* + Partizip II (*eröffnet*).||*wird* olmaz: *wird* şimdiki/gelecek zamandır; *vor zwei Jahren* ile *wurde* gerekir.|*worden* olmaz: *worden* çekimli fiil olamaz; yalnız *ist … worden* içinde kullanılır."],
-g32:["Ich frage den ___.|Kollegen|Kollege|Kolleges|*Kollege* n-Deklination ismidir: Nominativ dışında *-n* alır. *fragen* Akkusativ ister → *den Kollegen*.||*Kollege* olmaz: bu Nominativ hâli; Akkusativ'de *-n* eklenir: *den Kollegen*.|*Kolleges* olmaz: n-Deklination isimleri *-s* almaz, hep *-n* alır.","Kennst du den neuen ___?|Studenten|Student|Studente|*-ent* ile biten eril canlılar n-Deklination'dır: Akkusativ'de *-en* alır → *den Studenten*.||*Student* olmaz: bu Nominativ; *den*'den sonra *-en* eklenir: *Studenten*.|*Studente* olmaz: böyle bir biçim yok; ek *-e* değil *-en*'dir.","Wir helfen dem ___.|Nachbarn|Nachbar|Nachbare|*helfen* Dativ ister; *Nachbar* n-Deklination ismidir, Dativ'de *-n* alır → *dem Nachbarn*.||*Nachbar* olmaz: bu Nominativ hâli; Dativ'de *-n* eklenir: *dem Nachbarn*.|*Nachbare* olmaz: böyle bir biçim yok; ek *-e* değil *-n*'dir.","Ich spreche mit dem ___.|Kunden|Kunde|Kundes|*mit* Dativ ister; *Kunde* n-Deklination ismidir → *dem Kunden*.||*Kunde* olmaz: bu Nominativ; Dativ'de *-n* eklenir: *dem Kunden*.|*Kundes* olmaz: n-Deklination isimleri *-s* almaz, *-n* alır.","Das ist das Auto des ___.|Journalisten|Journalist|Journalists|Genitiv'de n-Deklination isimleri *-s* değil *-(e)n* alır: *des Journalisten*.||*Journalist* olmaz: Genitiv'de ek gerekir; *-ist* ile bitenler *-en* alır.|*Journalists* olmaz: Genitiv *-s* normal eril isimler içindir; *Journalist* *-en* alır.","Der ___ spielt Fußball.|Junge|Jungen|Junges|Özne Nominativ'dedir; n-Deklination isimleri Nominativ tekilde ek almaz → *der Junge*.||*Jungen* olmaz: *-n* yalnız Nominativ dışında ya da çoğulda eklenir; tekil özne *der Junge*'dir.|*Junges* olmaz: n-Deklination isimleri *-s* almaz; Nominativ'de ek yok.","Hast du den ___ vergessen?|Namen|Name|Names|*Name* de n-Deklination'a girer: Akkusativ'de *-n* alır → *den Namen*.||*Name* olmaz: bu Nominativ; *vergessen* Akkusativ ister: *den Namen*.|*Names* olmaz: Akkusativ'de *-s* eklenmez; doğru biçim *den Namen*.","Ich habe einen ___ getroffen.|Touristen|Tourist|Touriste|*treffen* Akkusativ ister; *-ist* ile biten *Tourist* n-Deklination'dır → *einen Touristen*.||*Tourist* olmaz: bu Nominativ; Akkusativ'de *-en* eklenir.|*Touriste* olmaz: böyle bir biçim yok; ek *-e* değil *-en*'dir."],
+g32:["Ich frage den ___. (der Kollege)|Kollegen|Kollege|Kolleges|*Kollege* n-Deklination ismidir: Nominativ dışında *-n* alır. *fragen* Akkusativ ister → *den Kollegen*.||*Kollege* olmaz: bu Nominativ hâli; Akkusativ'de *-n* eklenir: *den Kollegen*.|*Kolleges* olmaz: n-Deklination isimleri *-s* almaz, hep *-n* alır.", "Kennst du den neuen ___? (der Student)|Studenten|Student|Studente|*-ent* ile biten eril canlılar n-Deklination'dır: Akkusativ'de *-en* alır → *den Studenten*.||*Student* olmaz: bu Nominativ; *den*'den sonra *-en* eklenir: *Studenten*.|*Studente* olmaz: böyle bir biçim yok; ek *-e* değil *-en*'dir.", "Wir helfen dem ___. (der Nachbar)|Nachbarn|Nachbar|Nachbare|*helfen* Dativ ister; *Nachbar* n-Deklination ismidir, Dativ'de *-n* alır → *dem Nachbarn*.||*Nachbar* olmaz: bu Nominativ hâli; Dativ'de *-n* eklenir: *dem Nachbarn*.|*Nachbare* olmaz: böyle bir biçim yok; ek *-e* değil *-n*'dir.", "Ich spreche mit dem ___. (der Kunde)|Kunden|Kunde|Kundes|*mit* Dativ ister; *Kunde* n-Deklination ismidir → *dem Kunden*.||*Kunde* olmaz: bu Nominativ; Dativ'de *-n* eklenir: *dem Kunden*.|*Kundes* olmaz: n-Deklination isimleri *-s* almaz, *-n* alır.", "Das ist das Auto des ___. (der Journalist)|Journalisten|Journalist|Journalists|Genitiv'de n-Deklination isimleri *-s* değil *-(e)n* alır: *des Journalisten*.||*Journalist* olmaz: Genitiv'de ek gerekir; *-ist* ile bitenler *-en* alır.|*Journalists* olmaz: Genitiv *-s* normal eril isimler içindir; *Journalist* *-en* alır.", "Der ___ spielt Fußball. (der Junge)|Junge|Jungen|Junges|Özne Nominativ'dedir; n-Deklination isimleri Nominativ tekilde ek almaz → *der Junge*.||*Jungen* olmaz: *-n* yalnız Nominativ dışında ya da çoğulda eklenir; tekil özne *der Junge*'dir.|*Junges* olmaz: n-Deklination isimleri *-s* almaz; Nominativ'de ek yok.", "Hast du den ___ vergessen? (der Name)|Namen|Name|Names|*Name* de n-Deklination'a girer: Akkusativ'de *-n* alır → *den Namen*.||*Name* olmaz: bu Nominativ; *vergessen* Akkusativ ister: *den Namen*.|*Names* olmaz: Akkusativ'de *-s* eklenmez; doğru biçim *den Namen*.", "Ich habe einen ___ getroffen. (der Tourist)|Touristen|Tourist|Touriste|*treffen* Akkusativ ister; *-ist* ile biten *Tourist* n-Deklination'dır → *einen Touristen*.||*Tourist* olmaz: bu Nominativ; Akkusativ'de *-en* eklenir.|*Touriste* olmaz: böyle bir biçim yok; ek *-e* değil *-en*'dir."],
 g33:["Je mehr ich übe, ___ besser spreche ich.|desto|als|dann|*je* + yan cümleden sonra ana cümle *desto* + karşılaştırma ile başlar (= o kadar). *umso* da aynı anlamda doğrudur.|umso|*als* olmaz: *als* karşılaştırmada 'den/dan' demektir; *je*'nin eşi *desto*'dur.|*dann* olmaz: bu *wenn … dann* kalıbı değil; *je*'nin eşi *desto* (ya da *umso*).","Je früher wir anfangen, desto schneller ___ fertig.|sind wir|wir sind|sein wir|*desto schneller* ilk yeri tutar, çekimli fiil hemen ardından, özne sonra gelir: *sind wir*. *werden wir* da doğru.|werden wir|*wir sind* olmaz: *desto schneller*'den sonra önce fiil gelmeli: *sind wir*.|*sein wir* olmaz: fiil çekimsiz kalmış; *wir* ile *sind* olur.","Je länger ich ___, desto mehr verstehe ich. (hier, leben)|hier lebe|lebe hier|hier leben|*je* ile başlayan kısım yan cümledir: çekimli fiil en sona gider → *je länger ich hier lebe*.||*lebe hier* olmaz: *je* yan cümlesinde fiil sonda olmalı, *hier*'den sonra.|*hier leben* olmaz: fiil çekimsiz; *ich* ile *lebe* olur.","___ älter er wird, desto ruhiger wird er.|Je|Desto|Wenn|Fiili sonda olan ilk kısım *je* ile başlar, ikinci kısım *desto* ile: ne kadar … o kadar.||*Desto* olmaz: *desto* ikinci (ana) cümleyi başlatır; ilk kısım *je* ister.|*Wenn* olmaz: *wenn* + karşılaştırma olmaz; *desto*'nun eşi *je*'dir.","Je öfter ich die Wörter wiederhole, desto ___ merke ich sie mir. (leicht)|leichter|leicht|am leichtesten|*desto*'dan sonra karşılaştırma (Komparativ) gelir: *leicht* → *leichter*.||*leicht* olmaz: *desto*'dan sonra karşılaştırma eki *-er* gerekir.|*am leichtesten* olmaz: bu Superlativ; *desto*'dan sonra *-er* hâli gelir.","Je schwerer das Gewicht ist, ___ weniger Wiederholungen schaffe ich.|desto|wie|dann|İkinci kısım *desto* + karşılaştırma ile başlar: *desto weniger* = o kadar az. *umso* da doğru.|umso|*wie* olmaz: *wie* eşitlik karşılaştırmasıdır; *je*'nin eşi *desto*'dur.|*dann* olmaz: bu *wenn … dann* kalıbı değil; *je* ile *desto* (ya da *umso*) gelir.","Je mehr du schläfst, desto ___ bist du. (fit)|fitter|fit|am fittesten|*desto*'dan sonra karşılaştırma gelir: *fit* → *fitter* (kısa ünlüden sonra *t* ikilenir).||*fit* olmaz: *desto*'dan sonra karşılaştırma eki *-er* gerekir.|*am fittesten* olmaz: Superlativ; *desto* ile Komparativ *fitter* kullanılır.","Je teurer das Hotel ist, desto besser ___ der Service sein. (sollen)|sollte|sollen|sollst|*desto besser*'den hemen sonra çekimli fiil gelir; özne *der Service* (er) → *sollte* (ya da *soll*), *sein* sonda.|soll|*sollen* olmaz: fiil çekimsiz; özne *der Service* (er) → *sollte/soll*.|*sollst* olmaz: *du* çekimi; özne *der Service* (er) olduğu için *sollte/soll*."],
 g34:["Das ___ Kind ist süß. (schlafen)|schlafende|geschlafene|schlafend|Çocuk şu an uyuyor → etken, eşzamanlı: Partizip I *schlafend*; *das* + tekil → *-e*: *schlafende*.||*geschlafene* olmaz: *schlafen* nesnesiz fiil, Partizip II sıfat olmaz; 'uyuyan' → Partizip I.|*schlafend* olmaz: isimden önce sıfat eki gerekir: *das schlafende Kind*.","Ich esse gern ___ Eier. (kochen)|gekochte|kochende|gekocht|Yumurtalar haşlanmış → edilgen/bitmiş: Partizip II *gekocht*; artikelsiz çoğul → *-e*: *gekochte*.||*kochende* olmaz: Partizip I 'kaynayan/pişiren' demek; yumurta haşlanmış → Partizip II.|*gekocht* olmaz: isimden önce sıfat eki gerekir: *gekochte Eier*.","Wir haben ein ___ Auto gekauft. (gebrauchen)|gebrauchtes|gebrauchendes|gebraucht|Araba kullanılmış → Partizip II *gebraucht*; *ein* + *das Auto* → *-es*: *ein gebrauchtes Auto* (ikinci el).||*gebrauchendes* olmaz: Partizip I 'kullanan' demek; araba kullanılmış → Partizip II.|*gebraucht* olmaz: isimden önce ek gerekir; *ein* + *das* → *gebrauchtes*.","Die ___ Preise sind ein Problem. (steigen)|steigenden|gestiegen|steigende|Şu an artan fiyatlar → Partizip I; *die* + çoğul → *-en*: *steigenden*. 'Artmış' anlamında *gestiegenen* da doğru.|gestiegenen|*gestiegen* olmaz: isimden önce ek gerekir; *die* + çoğul → *-en* (*gestiegenen*).|*steigende* olmaz: *die* + çoğul isimden önce sıfat eki *-en* olur: *steigenden*.","Der ___ Computer funktioniert wieder. (reparieren)|reparierte|reparierende|repariert|Bilgisayar tamir edilmiş → Partizip II *repariert*; *der* + tekil → *-e*: *der reparierte Computer*.||*reparierende* olmaz: Partizip I 'tamir eden' demek; bilgisayar tamir edilmiş → Partizip II.|*repariert* olmaz: isimden önce sıfat eki gerekir: *der reparierte Computer*.","Das ist ein gut ___ Job. (bezahlen)|bezahlter|gebezahlter|bezahlt|İş iyi ödeniyor → edilgen: Partizip II *bezahlt*; *ein* + *der Job* (Nominativ) → *-er*: *bezahlter*.||*gebezahlter* olmaz: *be-* ile başlayan fiiller Partizip II'de *ge-* almaz: *bezahlt*.|*bezahlt* olmaz: isimden önce ek gerekir; *ein* + *der* → *bezahlter*.","Vorsicht, ___ Wasser! (kochen)|kochendes|kochend|gekochte|Su şu an kaynıyor → Partizip I *kochend*; artikelsiz *das Wasser* → *-es*: *kochendes Wasser*.||*kochend* olmaz: isimden önce sıfat eki gerekir: *kochendes Wasser*.|*gekochte* olmaz: ek yanlış (artikelsiz *das* → *-es*); uyarı şu an kaynayan su için → Partizip I.","Die Polizei sucht das ___ Fahrrad. (stehlen)|gestohlene|stehlende|gestohlen|Bisiklet çalınmış → Partizip II *gestohlen*; *das* + tekil → *-e*: *das gestohlene Fahrrad*.||*stehlende* olmaz: Partizip I 'çalan' demek; bisiklet çalınmış → Partizip II.|*gestohlen* olmaz: isimden önce sıfat eki gerekir: *das gestohlene Fahrrad*."],
 g35:["Er ist gegangen, ohne sich zu ___. (verabschieden)|verabschieden|verabschiedet|verabschiedete|*ohne … zu*'dan sonra yalın mastar gelir: *ohne sich zu verabschieden* = vedalaşmadan.||*verabschiedet* olmaz: *zu*'dan sonra Partizip değil, mastar gelir.|*verabschiedete* olmaz: *zu*'dan sonra geçmiş zaman çekimi değil, mastar gelir.","___ zu Hause zu bleiben, gehen wir heute ins Kino.|Statt|Ohne|Um|Evde kalmak yerine sinemaya gidiyoruz → *statt … zu* (= -mek yerine). *Anstatt* da doğru.|Anstatt|*Ohne* olmaz: 'evde kalmadan sinemaya gitmek' anlamsız; iki seçenekten biri seçiliyor → *statt*.|*Um* olmaz: *um … zu* amaç bildirir ('evde kalmak için'); anlam 'yerine' olmalı.","Sie geht nie aus dem Haus, ___ ihr Handy mitzunehmen.|ohne|statt|um|Telefonunu almadan asla evden çıkmaz → *ohne … zu* (= -meden).||*statt* olmaz: 'telefonu almak yerine evden çıkmaz' anlamsız; burada anlam '-meden' → *ohne*.|*um* olmaz: *um … zu* amaç bildirir ('almak için'); burada anlam '-meden'.","Ich trainiere nie, ohne mich ___. (aufwärmen)|aufzuwärmen|zu aufwärmen|aufwärmen|Ayrılabilen fiilde *zu* ön ek ile kökün arasına girer ve bitişik yazılır: *auf-zu-wärmen*.||*zu aufwärmen* olmaz: ayrılabilen fiilde *zu* araya girer: *aufzuwärmen*.|*aufwärmen* olmaz: *ohne … zu* yapısında *zu* eksik kalamaz.","Statt Auto ___, nehme ich das Rad.|zu fahren|fahren|fährt|*statt … zu* yapısında mastar *zu* ile en sonda: *statt Auto zu fahren* = araba kullanmak yerine.||*fahren* olmaz: *statt … zu* yapısında *zu* eksik kalamaz.|*fährt* olmaz: çekimli fiil değil, *zu* + mastar gerekir.","Er ging weg, ohne ___ ich es merkte.|dass|zu|wenn|Arkada ayrı bir özne (*ich*) ve çekimli fiil var → *ohne dass* + yan cümle (fiil sonda).||*zu* olmaz: *ohne … zu* mastarla kurulur; burada özne *ich* ve çekimli *merkte* var.|*wenn* olmaz: *ohne*'den sonra yan cümle yalnızca *dass* ile kurulur.","Statt zu ___, haben wir Pizza bestellt. (kochen)|kochen|gekocht|kocht|*statt zu*'dan sonra yalın mastar gelir: *statt zu kochen* = yemek yapmak yerine.||*gekocht* olmaz: *zu*'dan sonra Partizip II değil, mastar gelir.|*kocht* olmaz: *zu*'dan sonra çekimli fiil değil, mastar gelir.","Ohne viel zu ___, kann man nicht gewinnen. (üben)|üben|geübt|übt|*ohne … zu* yapısında *zu*'dan sonra yalın mastar gelir: *ohne viel zu üben* = çok çalışmadan.||*geübt* olmaz: *zu*'dan sonra Partizip II değil, mastar gelir.|*übt* olmaz: *zu*'dan sonra çekimli fiil değil, mastar gelir."],
@@ -3723,7 +3732,7 @@ g28:["Ich spare, ___ ich reisen kann.|damit|um|für|Arkada özneli (*ich*) ve ç
 g29:["Er spricht ___ Englisch noch Französisch.|weder|sowohl|entweder|*noch* ile eşleşen *weder*'dir: *weder Englisch noch Französisch* = ne İngilizce ne Fransızca.||*sowohl* olmaz: *sowohl*'un eşi *als auch*'tır, *noch* değil.|*entweder* olmaz: *entweder*'in eşi *oder*'dir, *noch* değil.","Ich trinke ___ Kaffee oder Tee.|entweder|weder|sowohl|*oder* ile eşleşen *entweder*'dir: *entweder Kaffee oder Tee* = ya kahve ya çay.||*weder* olmaz: *weder*'in eşi *noch*'tur, *oder* değil.|*sowohl* olmaz: *sowohl*'un eşi *als auch*'tır, *oder* değil.","Sie ist nicht nur klug, ___ auch nett.|sondern|als|oder|*nicht nur …, sondern auch …* kalıbında *auch*'tan önce *sondern* gelir: sadece akıllı değil, nazik de.||*als* olmaz: *als auch* yalnız *sowohl* ile kullanılır; *nicht nur*'un eşi *sondern auch*'tır.|*oder* olmaz: *oder* *entweder* ile eşleşir; *nicht nur*'dan sonra *sondern* gelir.","Wir haben sowohl Hunger ___ Durst.|als auch|noch|oder|*sowohl* hep *als auch* ile tamamlanır: *sowohl Hunger als auch Durst* = hem açız hem susadık.|wie auch|*noch* olmaz: *noch* *weder* ile eşleşir; *sowohl*'un eşi *als auch*'tır.|*oder* olmaz: *oder* *entweder* ile eşleşir; *sowohl*'un eşi *als auch*'tır."],
 g30:["Ich ___ dich morgen anrufen.|werde|wird|werden|*ich* ile *werden* → *werde*; ayrılabilen fiil mastarda bitişik kalır ve sona gider: *anrufen*.||*wird* olmaz: *wird* *er/sie/es* çekimidir; *ich* ile *werde* gerekir.|*werden* olmaz: *werden* *wir/sie* çekimidir; *ich* ile *werde* gerekir.","Wir ___ bald umziehen.|werden|wird|werdet|*wir* ile *werden* → *werden*; mastar *umziehen* sonda.||*wird* olmaz: *wird* *er/sie/es* çekimidir; *wir* ile *werden* gerekir.|*werdet* olmaz: *werdet* *ihr* çekimidir; *wir* ile *werden* gerekir.","Morgen ___ es bestimmt schneien.|wird|werden|wurde|*es* ile *wird*; *morgen* geleceği gösterir, mastar *schneien* sonda.||*werden* olmaz: *werden* çoğul çekimdir; *es* ile *wird* gerekir.|*wurde* olmaz: *wurde* geçmiş zamandır; *morgen* ile gelecek için *wird* gerekir.","Was ___ ihr am Wochenende machen?|werdet|werden|wird|*ihr* ile *werdet*; soru kelimesinden hemen sonra çekimli fiil gelir, mastar *machen* sonda.||*werden* olmaz: *werden* *wir/sie* çekimidir; *ihr* ile *werdet* gerekir.|*wird* olmaz: *wird* *er/sie/es* çekimidir; *ihr* ile *werdet* gerekir."],
 g31:["Die Brücke ___ letztes Jahr repariert.|wurde|wird|hat|*letztes Jahr* → geçmiş: edilgen Präteritum *wurde* + Partizip II (*repariert*).||*wird* olmaz: *wird* şimdiki/gelecek zaman edilgenidir; *letztes Jahr* ile *wurde* gerekir.|*hat* olmaz: köprü tamir eden değil, tamir edilendir; edilgende *haben* kullanılmaz.","Der Brief ist schon geschrieben ___.|worden|geworden|werden|Edilgen Perfekt: *ist* + Partizip II + *worden* (*ge-* olmadan).||*geworden* olmaz: *geworden* 'olmak' anlamındaki *werden* içindir; edilgende *worden* gelir.|*werden* olmaz: *ist … werden* yanlış; Perfekt edilgen *ist … worden* ile kurulur.","Die Hausaufgaben müssen heute gemacht ___.|werden|worden|wird|Modal fiilli edilgen: *müssen* + Partizip II + *werden*: *müssen gemacht werden*. (*gemacht sein* de doğru.)|sein|*worden* olmaz: *worden* yalnız Perfekt edilgende gelir; modalden sonra *werden* gerekir.|*wird* olmaz: çekimli fiil zaten *müssen*; sonda çekimsiz *werden* olmalı.","Das Fenster kann nicht geöffnet ___.|werden|worden|wird|Modal fiilli edilgen: *kann* + Partizip II + *werden*: *kann nicht geöffnet werden* = açılamıyor.|sein|*worden* olmaz: *worden* yalnız Perfekt edilgende gelir; modalden sonra *werden* gerekir.|*wird* olmaz: çekimli fiil zaten *kann*; sonda çekimsiz *werden* olmalı."],
-g32:["Ich kenne den ___ nicht.|Herrn|Herr|Herre|*Herr* tekilde Nominativ dışında *-n* alır: *den Herrn* (çoğulu *die Herren*).||*Herr* olmaz: bu Nominativ; Akkusativ'de *-n* eklenir: *den Herrn*.|*Herre* olmaz: böyle bir biçim yok; tekil Akkusativ *Herrn*'dir.","Wir sprechen mit dem ___.|Präsidenten|Präsident|Präsidente|*mit* Dativ ister; *-ent* ile biten *Präsident* n-Deklination'dır → *dem Präsidenten*.||*Präsident* olmaz: bu Nominativ; Dativ'de *-en* eklenir.|*Präsidente* olmaz: böyle bir biçim yok; ek *-e* değil *-en*'dir.","Die Polizei sucht den ___.|Dieb|Dieben|Diebe|*Dieb* normal eril isimdir, n-Deklination'a girmez: tekil Akkusativ'de ek almaz → *den Dieb*.||*Dieben* olmaz: bu Dativ çoğul biçimi; *Dieb* tekil Akkusativ'de ek almaz.|*Diebe* olmaz: bu çoğul; *den* burada tekil eril Akkusativ, *Dieb* ek almaz.","Das ist das Büro des ___.|Kollegen|Kollege|Kolleges|Genitiv'de n-Deklination isimleri *-s* değil *-n* alır: *des Kollegen*.||*Kollege* olmaz: Genitiv'de ek gerekir: *des Kollegen*.|*Kolleges* olmaz: Genitiv *-s* normal eril isimler içindir; *Kollege* *-n* alır."],
+g32:["Ich kenne den ___ nicht. (der Herr)|Herrn|Herr|Herre|*Herr* tekilde Nominativ dışında *-n* alır: *den Herrn* (çoğulu *die Herren*).||*Herr* olmaz: bu Nominativ; Akkusativ'de *-n* eklenir: *den Herrn*.|*Herre* olmaz: böyle bir biçim yok; tekil Akkusativ *Herrn*'dir.", "Wir sprechen mit dem ___. (der Präsident)|Präsidenten|Präsident|Präsidente|*mit* Dativ ister; *-ent* ile biten *Präsident* n-Deklination'dır → *dem Präsidenten*.||*Präsident* olmaz: bu Nominativ; Dativ'de *-en* eklenir.|*Präsidente* olmaz: böyle bir biçim yok; ek *-e* değil *-en*'dir.", "Die Polizei sucht den ___. (der Dieb)|Dieb|Dieben|Diebe|*Dieb* normal eril isimdir, n-Deklination'a girmez: tekil Akkusativ'de ek almaz → *den Dieb*.||*Dieben* olmaz: bu Dativ çoğul biçimi; *Dieb* tekil Akkusativ'de ek almaz.|*Diebe* olmaz: bu çoğul; *den* burada tekil eril Akkusativ, *Dieb* ek almaz.", "Das ist das Büro des ___. (der Kollege)|Kollegen|Kollege|Kolleges|Genitiv'de n-Deklination isimleri *-s* değil *-n* alır: *des Kollegen*.||*Kollege* olmaz: Genitiv'de ek gerekir: *des Kollegen*.|*Kolleges* olmaz: Genitiv *-s* normal eril isimler içindir; *Kollege* *-n* alır."],
 g33:["Je mehr Sport ich mache, ___ fitter bin ich.|desto|als|wie|*je* ile başlayan cümlenin eşi *desto* + karşılaştırma: *desto fitter bin ich*. *umso* da doğru.|umso|*als* olmaz: *als* 'den/dan' anlamında karşılaştırmadır; burada *desto* gerekir.|*wie* olmaz: *wie* eşitlik bildirir; *je*'nin eşi *desto*'dur.","Je wärmer es ist, desto lieber ___ draußen. (ich, sitzen)|sitze ich|ich sitze|sitzen ich|*desto lieber* ilk yeri tutar, çekimli fiil hemen ardından, özne sonra gelir: *sitze ich*.||*ich sitze* olmaz: *desto lieber*'den sonra önce fiil gelmeli: *sitze ich*.|*sitzen ich* olmaz: fiil çekimsiz; *ich* ile *sitze* olur.","___ früher du kommst, desto besser.|Je|Desto|Wenn|Fiili sonda olan ilk kısım *je* ile başlar; *desto besser* = o kadar iyi.||*Desto* olmaz: *desto* ikinci kısmı başlatır; ilk kısım *je* ister.|*Wenn* olmaz: *wenn* + karşılaştırma olmaz; *desto*'nun eşi *je*'dir.","Je länger ich warte, ___ nervöser werde ich.|desto|dann|als|*je* kısmından sonra ana cümle *desto* + karşılaştırma ile başlar: *desto nervöser*. *umso* da doğru.|umso|*dann* olmaz: bu *wenn … dann* kalıbı değil; *je*'nin eşi *desto*'dur.|*als* olmaz: *als* 'den/dan' anlamında karşılaştırmadır, *desto* yerine geçmez."],
 g34:["Die ___ Kinder machen viel Lärm. (spielen)|spielenden|gespielten|spielend|Çocuklar şu an oynuyor → Partizip I *spielend*; *die* + çoğul → *-en*: *die spielenden Kinder*.||*gespielten* olmaz: Partizip II edilgen anlam verir ('oynanmış'); çocuklar oynayan → Partizip I.|*spielend* olmaz: isimden önce ek gerekir; *die* + çoğul → *spielenden*.","Wir haben ein frisch ___ Zimmer bekommen. (renovieren)|renoviertes|renovierendes|renoviert|Oda yeni yenilenmiş → Partizip II *renoviert*; *ein* + *das Zimmer* → *-es*: *renoviertes*.||*renovierendes* olmaz: Partizip I 'yenileyen' demek; oda yenilenmiş → Partizip II.|*renoviert* olmaz: isimden önce ek gerekir; *ein* + *das* → *renoviertes*.","Der ___ Brief liegt noch auf dem Tisch. (unterschreiben)|unterschriebene|unterschreibende|unterschrieben|Mektup imzalanmış → Partizip II *unterschrieben*; *der* + tekil → *-e*: *der unterschriebene Brief*.||*unterschreibende* olmaz: Partizip I 'imzalayan' demek; mektup imzalanmış → Partizip II.|*unterschrieben* olmaz: isimden önce sıfat eki gerekir: *der unterschriebene Brief*.","Das ___ Baby braucht seine Mutter. (weinen)|weinende|geweinte|weinend|Bebek şu an ağlıyor → Partizip I *weinend*; *das* + tekil → *-e*: *das weinende Baby*.||*geweinte* olmaz: *weinen* nesnesiz fiil, Partizip II sıfat olmaz; 'ağlayan' → Partizip I.|*weinend* olmaz: isimden önce sıfat eki gerekir: *das weinende Baby*."],
 g35:["Sie ging, ohne etwas ___ sagen.|zu|um|für|*ohne* + … + *zu* + mastar: *ohne etwas zu sagen* = bir şey söylemeden.||*um* olmaz: *um* ayrı bir bağlaçtır (*um … zu*); mastardan hemen önce *zu* gelmeli.|*für* olmaz: *für* edattır, mastardan önce kullanılmaz; *zu* gerekir.","Statt ___, spielt er Computer. (lernen)|zu lernen|lernen|gelernt|*statt … zu* + mastar: *statt zu lernen* = ders çalışmak yerine.||*lernen* olmaz: *statt* ile *zu* eksik kalamaz: *statt zu lernen*.|*gelernt* olmaz: Partizip II değil, *zu* + mastar gerekir.","Er fährt los, ohne ___. (tanken)|zu tanken|tanken|getankt|*ohne … zu* + mastar: *ohne zu tanken* = benzin almadan.||*tanken* olmaz: *ohne* ile *zu* eksik kalamaz: *ohne zu tanken*.|*getankt* olmaz: Partizip II değil, *zu* + mastar gerekir.","Ohne dass ich es ___, war er weg. (merken)|merkte|zu merken|gemerkt|*ohne dass* yan cümle kurar: çekimli fiil sonda → *merkte*. *gemerkt habe/hatte/hätte* da doğru.|gemerkt habe/gemerkt hatte/gemerkt hätte|*zu merken* olmaz: *ohne dass* yan cümlesinde *zu* + mastar değil, çekimli fiil gelir.|*gemerkt* olmaz: yardımcı fiil eksik; tek başına Partizip II yetmez."],
@@ -5705,7 +5714,9 @@ function mcs(id){return (GX[id]||[]).concat(GX2[id]||[]);}
 function gpeek(id){return S.gx[id]||{m:{}};}
 function gxs(id){var x=S.gx[id]||(S.gx[id]={m:{}});if(!x.stg)x.stg={};if(!x.rv)x.rv=[];if(!x.m)x.m={};return x;}
 function wid(id,i){return 't:'+id+':'+i;}
-function wordsAdded(id){var w=GW[id]||[],n=0;for(var i=0;i<w.length;i++)if(S.srs[wid(id,i)])n++;return n;}
+/* konu kelimesi havuzda zaten varsa havuzdaki kart kullanılır (aynı kelime iki ayrı kart olmasın) */
+function gwId(id,i){var w=(GW[id]||[])[i];if(!w)return wid(id,i);var pk=PK[(w[3]?w[3]+' ':'')+w[0]]||PK[w[0]];return pk?pk.id:wid(id,i);}
+function wordsAdded(id){var w=GW[id]||[],q=S.gwq||[],n=0;for(var i=0;i<w.length;i++){var k=gwId(id,i);if(S.srs[k]||S.srs[wid(id,i)]||q.indexOf(k)>=0)n++;}return n;}
 function stgDone(id,k){var x=gpeek(id);return !!(x.stg&&x.stg[k]);}
 function stgAll(id){return STG.every(function(s){return stgDone(id,s[0]);});}
 function nRv(id){return (gpeek(id).rv||[]).length;}
@@ -5720,7 +5731,13 @@ function pct(p){return Math.round(p*100);}
 function tdue(id){var x=gpeek(id);return !!(stgAll(id)&&!x.known&&x.due&&x.due<=today());}
 /* konunun sıradaki adımı: {k: aşama ya da 'rv', wait: açılacağı gün} */
 function gsAdd(id){var g=GBY[id];if(!g)return;var t=today();g[4].slice(0,3).forEach(function(_,i){var k='gs:'+id+':'+i;if(!S.srs[k])S.srs[k]={i:0,e:2.5,n:0,d:addD(t,2),a:t,st:0,nw:1,u:Date.now()};});}
-function newTopic(ex){return G.filter(function(g){return g[0]!==ex&&tstat(g[0])==='next';})[0]||null;}
+/* günün konusu bugünlük bittiyse önerilecek ikinci konu: önce yarım kalan (işi açık) konu, yoksa ve aynı anda 3'ten az konu yürüyorsa yeni konu */
+function newTopic(ex){
+  var cont=G.filter(function(g){return g[0]!==ex&&tstat(g[0])==='wip'&&nextAct(g[0]).k;})[0];if(cont)return cont;
+  if(G.filter(function(g){return tstat(g[0])==='wip';}).length>=3)return null;
+  return G.filter(function(g){return g[0]!==ex&&tstat(g[0])==='next';})[0]||null;}
+function ntBtn(nt,cls){var a=nextAct(nt[0]),k=a.k||'anla',lb=tstat(nt[0])==='wip'?'Devam: '+nt[2]+' · '+actLabel(a):'Yeni konu: '+nt[2];
+  return '<button class="btn '+(cls||'lime')+' big wide" data-act="lesson" data-id="'+nt[0]+'" data-s="'+k+'">'+esc(lb)+'</button>';}
 function topicEz(id){var r=[],seen={};
   for(var hid in HUB){if(hubMembers(hid).indexOf('g:'+id)>=0)hubMembers(hid).forEach(function(x){if(x.indexOf('ez:')===0&&EZBY[x.slice(3)]&&!seen[x]){seen[x]=1;r.push(x.slice(3));}});}
   (JSON.stringify(GL[id]||'').match(/ez:[a-z0-9]+/g)||[]).forEach(function(x){if(EZBY[x.slice(3)]&&!seen[x]){seen[x]=1;r.unshift(x.slice(3));}});
@@ -5753,11 +5770,13 @@ function pickTopic(){
 /* günün konusu: "bugün bunu çalış" seçildiyse o; değilse gün içinde sabit, işi bitince sıradaki */
 function todayTopic(){
   var d=day();
+  if(S.gfocus&&GBY[S.gfocus]&&tstat(S.gfocus)==='ok'){S.gfocus='';touch('gfocus');}
   if(d.gtDone&&GBY[d.gt])return GBY[d.gt];
-  if(S.gfocus&&GBY[S.gfocus]&&nextAct(S.gfocus).k)return GBY[S.gfocus];
+  if(S.gfocus&&GBY[S.gfocus]&&(nextAct(S.gfocus).k||d.gt===S.gfocus)){if(d.gt!==S.gfocus){d.gt=S.gfocus;save();}return GBY[S.gfocus];}
   if(d.gt&&GBY[d.gt]&&(nextAct(d.gt).k||d.gtDone))return GBY[d.gt];
   var g=pickTopic();d.gt=g[0];save();return g;
 }
+function upr1(s){s=String(s||'');return s.charAt(0).toUpperCase()+s.slice(1);}
 function nextReview(id){
   var a=nextAct(id);if(gpeek(id).known)return 'biliyorum olarak işaretli';
   if(a.k)return 'sıradaki: '+actLabel(a);
@@ -5809,7 +5828,7 @@ var SCH=[['Was hast du heute trainiert?','Bugün ne çalıştın, antrenmanın n
 function todays(list){return list[hash(today()+list.length)%list.length];}
 
 /* ---------------- arayüz durumu ---------------- */
-var TAB='bugun', OPEN=null, W={q:null,day:'',step:'q',pick:null,n0:0,seen:{}}, X=null, STACK=[], lastScore=null;
+var W0=null,TAB='bugun', OPEN=null, W={q:null,day:'',step:'q',pick:null,n0:0,seen:{}}, X=null, STACK=[], lastScore=null;
 var RL=2*Math.PI*45;
 var ICON={back:'<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>'};
 
@@ -5818,10 +5837,10 @@ function bar(p,c,cls){return '<div class="bar'+(cls?' '+cls:'')+'" style="--c:'+
 function setStreak(){var st=streak(),el=$('streak');el.querySelector('span').textContent=st+' gün seri';el.classList.toggle('off',st===0);}
 
 function render(){
-  setStreak();
+  RDAY=today();
   [].forEach.call($('tabs').children,function(b){var on=b.dataset.v===TAB;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);});
   var h=TAB==='bugun'?vBugun():TAB==='konular'?vKonular():TAB==='ezber'?vEzber():TAB==='kelimeler'?vKelimeler():TAB==='defter'?vDefter():vIlerleme();
-  $('main').innerHTML='<div class="scr">'+h+'</div>';
+  $('main').innerHTML='<div class="scr">'+h+'</div>';setStreak();
   if(TAB==='bugun')animRing();
 }
 function animRing(){
@@ -5950,28 +5969,31 @@ function taskDefs(d){
       s:d.wt===0?'Bugün sorulacak kart yok · tam puan':rem===0?'Tamam · '+(d.w||0)+' kart':(d.w||0)+' / '+d.wt+' kart',
       need:rem>0?rem+' kart kaldı (~'+Math.max(1,Math.round(rem/3))+' dk)':'',
       how:'Bugünün kartlarının hepsi (vadesi gelenler + yeni kelimeler) = 30. Her kart bir pay.'},
-    {id:'gram',c:'var(--les)',t:'Konu: '+gT[2],did:didG(),
+    {id:'gram',c:'var(--les)',t:'Konu: '+gT[2],did:didG(),more:(function(){var o=G.filter(function(g){return tdue(g[0])&&g[0]!==gT[0];}).map(function(g){return g[2];});return o.length?'Tekrarı bekleyen başka konu: '+o.join(', ')+(f.gram>=1?' (isteğe bağlı)':''):'';})(),
       s:f.gram>=1?(gl.length?'Tamam':d.gs?'Tamam · bir aşama geçildi':'Tamam · '+g+' soru'):(ta.k?'Sıradaki: '+actLabel(ta):'Bugünlük aşama yok')+' · '+Math.min(g,10)+' / 10 soru',
-      need:f.gram<1?(ta.k?tp[2]+': '+(PASS[ta.k]?actLabel(ta).replace(/^Aşama \d · /,'')+' aşamasını geç (en az %'+pct(PASS[ta.k])+')':actLabel(ta).replace(/^Aşama \d · /,'')+' aşamasını bitir')+' ya da '+(10-Math.min(g,10))+' soru daha':tp[2]+': bugünlük işi bitti ('+nextReview(tp[0])+'). Puan için yeni bir konuya başla.'):'',
+      need:f.gram<1?(ta.k?tp[2]+': '+(PASS[ta.k]?actLabel(ta).replace(/^Aşama \d · /,'')+' aşamasını geç (en az %'+pct(PASS[ta.k])+')':actLabel(ta).replace(/^Aşama \d · /,'')+' aşamasını bitir')+' ya da '+(10-Math.min(g,10))+' soru daha':tp[2]+': bugünlük işi bitti ('+nextReview(tp[0])+'). Puan için '+(newTopic(tp[0])&&tstat(newTopic(tp[0])[0])==='wip'?'yarım kalan konuna devam et':'yeni bir konuya başla')+' ya da 10 soruluk alıştırma yap.'):'',
       how:'Bir konu aşamasını geçmek (Tanı %75, Kur %70, tekrar %80 ile ya da Üret) ya da 10 konu sorusu = 25. Anla okuma aşamasıdır; 3 sorusu 10 soruya sayılır.'},
     {id:'ez',c:'var(--das)',t:'Ezber: '+eT,did:didE(),
       s:f.ez>=1?'Tamam · '+(d.ezt?d.ezt+' tablo çalışması':ez+' cevap'):(ed?ed+' tablo tekrar bekliyor · ':'')+Math.min(ez,12)+' / 12 cevap',
       need:f.ez<1?'Bir tablo testi ya da boş tablo doldurma (ya da '+(12-Math.min(ez,12))+' cevap daha)':'',
       how:'Bir ezber testi (en az 6 soru ya da tablonun tamamı), "Boş tabloyu doldur" (en az 6 hücre) ya da 12 ezber cevabı = 25.'},
-    {id:'sch',c:'var(--sch)',t:'Yazma · 3 cümle · '+tp[2],
+    {id:'sch',c:'var(--sch)',t:'Yazma · 3 Almanca cümle',
       s:sn>=3?'Tamam · '+sn+' cümle':sn+' / 3 cümle',
       need:sn<3?(3-sn)+' cümle daha':'',
-      how:'En az 3 kelimelik 3 cümle = 20. Konu aşaması "Üret"te yazdıkların da sayılır.'}
+      how:'En az 3 kelimelik 3 Almanca cümle = 20 (Türkçe ya da anlamsız satırlar sayılmaz). Konu aşaması "Üret"te yazdıkların da sayılır.'}
   ];
   return T.map(function(t,i){t.n=i+1;t.f=f[t.id];t.p=p[t.id];t.max=MAX[t.id];return t;});
 }
 function nextHtml(tasks,tp){
   var nx=null;tasks.forEach(function(x){if(!nx&&x.f<1)nx=x;});
-  if(!nx)return '<div class="card dark-card next" id="nextC" data-sig="done"><div class="eyebrow">Bugün</div><div class="t">Bugünün planı tamam. Ausgezeichnet!</div><div class="muted small">İstersen başka bir ezber tablosu çalış ya da yeni bir konuya başla.</div></div>';
+  if(!nx){var ta0=nextAct(tp[0]),nt0=newTopic(tp[0]);
+    return '<div class="card dark-card next" id="nextC" data-sig="done"><div class="eyebrow">Bugün · 100 / 100</div><div class="t">Bugünün planı tamam. Ausgezeichnet!</div><div class="muted small">Bundan sonrası isteğe bağlı, puana eklenmez ama öğrenmeye eklenir. Yarın ne var: aşağıda "Sırada".</div>'+
+      (ta0.k?'<button class="btn lime big wide" data-act="lesson" data-id="'+tp[0]+'" data-s="'+ta0.k+'">'+esc(tp[2])+' · '+esc(ACTB[ta0.k])+'</button>':nt0?ntBtn(nt0):'')+
+      '<button class="btn big wide" style="background:transparent;color:var(--on-char);border-color:rgba(255,255,255,.25)" data-act="tab" data-v="ezber">Başka bir ezber tablosu</button></div>';}
   var nt=newTopic(tp[0]),lbl={wort:'Kelime tekrarına başla',gram:nextAct(tp[0]).k?ACTB[nextAct(tp[0]).k]:(nt?'Yeni konu: '+nt[2]:'Karışık konu alıştırması'),ez:'Ezbere başla',sch:'Yazmaya başla'}[nx.id];
-  if(nx.id==='gram'&&!nextAct(tp[0]).k)return '<div class="card dark-card next" id="nextC" data-sig="gramnew"><div class="eyebrow">Sıradaki adım · '+nx.n+'/'+tasks.length+' · +'+(nx.max-nx.p)+' puan</div><div class="t">'+esc(nx.t)+'</div><div class="muted small">'+esc(nx.need)+'</div>'+(nt?'<button class="btn lime big wide" data-act="lesson" data-id="'+nt[0]+'" data-s="anla">'+esc(lbl)+'</button>':'<button class="btn lime big wide" data-act="lesson" data-id="'+tp[0]+'" data-s="free">'+lbl+'</button>')+'</div>';
+  if(nx.id==='gram'&&!nextAct(tp[0]).k)return '<div class="card dark-card next" id="nextC" data-sig="gramnew"><div class="eyebrow">Sıradaki adım · '+nx.n+'/'+tasks.length+' · +'+(nx.max-nx.p)+' puan</div><div class="t">'+esc(nx.t)+'</div><div class="muted small">'+esc(nx.need)+'</div>'+(nt?ntBtn(nt):'<button class="btn lime big wide" data-act="lesson" data-id="'+tp[0]+'" data-s="free">'+lbl+'</button>')+'</div>';
   return '<div class="card dark-card next" id="nextC" data-sig="'+esc(nx.id+'|'+(nx.need||nx.s)+'|'+(nx.max-nx.p))+'"><div class="eyebrow">Sıradaki adım · '+nx.n+'/'+tasks.length+' · +'+(nx.max-nx.p)+' puan</div><div class="t">'+esc(nx.t)+'</div><div class="muted small">'+esc(nx.need||nx.s)+'</div>'+
-    '<button class="btn lime big wide" data-act="task" data-id="'+nx.id+'">'+lbl+'</button></div>';
+    '<button class="btn lime big wide" data-act="task" data-open="1" data-id="'+nx.id+'">'+lbl+'</button></div>';
 }
 function remLine(tasks){
   var r=tasks.filter(function(t){return t.f<1;});
@@ -5985,11 +6007,11 @@ function vBugun(){
     '<div class="v"><b class="num" id="scoreN">'+s+'</b><small>/ 100</small></div></div>'+
     '<div class="meta"><div class="eyebrow">Heute</div><div class="date" lang="de">'+deDate(t)+'</div>'+
     '<div class="verdict" id="verdict">'+verdict(s,d)+'</div><div class="segs" id="segs">'+segs(tasks)+'</div><div id="remL">'+remLine(tasks)+'</div></div></div>';
-  if(S.ptest&&dd(S.ptest.date,t)>=30)h+='<div class="card"><div class="eyebrow">Aylık deneme</div><p class="small" style="margin-top:4px">Son ölçümün '+trShort(S.ptest.date)+'. Ayda bir 10 dakikalık deneme, ilerlemeni gerçek bir sayıyla gösterir.</p><button class="btn wide" style="margin-top:8px" data-act="ptest">Denemeyi yap</button></div>';
   if(!S.ptest)h+='<div class="card"><div class="eyebrow">İlk adım</div><h2 style="margin:4px 0 6px">Önce seviyeni ölçelim</h2>'+
     '<p class="muted small">10 dakikalık test: kelime ve gramer. Hangi konuları bildiğini, nereden başlaman gerektiğini ve sınava ne kadar yakın olduğunu buna göre hesaplarım.</p>'+
     '<button class="btn lime wide big" style="margin-top:12px" data-act="ptest">Seviye testine başla</button></div>';
   h+=nextHtml(tasks,tp);
+  if(S.ptest&&dd(S.ptest.date,t)>=30)h+='<div class="card"><div class="eyebrow">Aylık deneme · puana girmez</div><p class="small" style="margin-top:4px">Son ölçümün '+trShort(S.ptest.date)+'. Ayda bir 10 dakikalık deneme, ilerlemeni gerçek bir sayıyla gösterir.</p><button class="btn wide" style="margin-top:8px" data-act="ptest">Denemeyi yap</button></div>';
   h+='<div class="card scorec"><div class="row"><div class="eyebrow">Bugünün puanı</div><div class="sp"></div><b class="num" id="scoreN2" style="font-family:var(--f-disp);font-size:20px">'+s+'<small style="font-size:12px;color:var(--ink3)"> / 100</small></b></div>'+
     '<div class="tasks">'+tasks.map(taskHtml).join('')+'</div>'+
     '<details class="howto"><summary>Puan nasıl hesaplanır?</summary><ul>'+tasks.map(function(x){return '<li><b>'+esc(x.id==='gram'?'Konu':x.id==='ez'?'Ezber':x.id==='sch'?'Yazma':'Kelime')+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+
@@ -5999,9 +6021,10 @@ function vBugun(){
   h+='<div class="card" id="todayLog"><div class="row"><div class="eyebrow">Bugün yaptıkların · '+LGT.length+'</div><div class="sp"></div><button class="link" data-act="dayv" data-v="'+t+'">Ayrıntı</button></div>'+lgHtml(LGT)+'</div>';
   h+=upCard();
   var tez=topicEz(tp[0]).slice(0,2).map(function(x){return EZBY[x].t;});
-  h+='<div class="card theme"><div class="eyebrow">Bugünün teması · '+esc(tp[1])+'</div><div style="font-weight:700;font-size:17px;margin:2px 0 6px" lang="de">'+esc(tp[2])+'</div>'+
-    '<p class="small muted">Dört adım aynı konunun etrafında: <b>Ezber</b> bu konunun tablosundan'+(tez.length?' ('+esc(tez.join(', '))+')':'')+', <b>Konu</b> bu konunun aşaması, <b>Kelime</b>'+(wordsAdded(tp[0])<(GW[tp[0]]||[]).length?' — konunun kelimelerini de ekleyebilirsin':' bu konunun kelimeleriyle')+', <b>Yazma</b>: '+esc(upr(tp[0])[0])+'</p>'+
-    (wordsAdded(tp[0])<(GW[tp[0]]||[]).length?'<button class="btn sm" style="margin-top:8px" data-act="gwadd" data-id="'+tp[0]+'">Konunun '+((GW[tp[0]]||[]).length-wordsAdded(tp[0]))+' kelimesini kelime tekrarına ekle</button>':'')+'</div>';
+  h+='<div class="card theme"><div class="eyebrow">Günün konusu · '+esc(tp[1])+' · bağlantılar</div><div style="font-weight:700;font-size:17px;margin:2px 0 6px" lang="de">'+esc(tp[2])+'</div>'+
+    '<p class="small muted">'+(tez.length?'Bu konuya bağlı ezber tabloları: <b>'+esc(tez.join(', '))+'</b> (Ezber görevi vadesi gelen tabloyu öne alır). ':'')+'Yazma için öneri: '+esc(upr(tp[0])[0])+'</p>'+
+    (tez.length?chips(topicEz(tp[0]).slice(0,2).map(function(x){return 'ez:'+x;})):'')+
+    (wordsAdded(tp[0])<(GW[tp[0]]||[]).length?'<button class="btn sm" style="margin-top:8px" data-act="gwadd" data-id="'+tp[0]+'">Konunun '+((GW[tp[0]]||[]).length-wordsAdded(tp[0]))+' kelimesini yeni kelime sırasına al</button>':'')+'</div>';
   var et=errTop(1);
   if(et.length){var em=ERRC[et[0][0]];h+='<div class="card"><div class="row"><div class="eyebrow">Odak noktan · hata haritası</div><div class="sp"></div><button class="link" data-act="golink" data-to="err">Tümü</button></div><div style="font-weight:700;font-size:16px;margin-top:6px">'+esc(em[0])+'</div><div class="small muted">Son 14 günde '+et[0][1]+' hata · '+esc(em[1])+'</div>'+chips(em[2])+'</div>';}
   var due=G.filter(function(g){return tdue(g[0])&&g[0]!==tp[0];});
@@ -6009,7 +6032,7 @@ function vBugun(){
   return h;
 }
 function segs(tasks){return tasks.map(function(t){var pc=Math.round(t.f*100);return '<span style="flex:'+t.max+';background:linear-gradient(90deg,'+t.c+' '+pc+'%,var(--line) '+pc+'%)"></span>';}).join('');}
-function didHtml(t){return (t.did||[]).map(function(x){return '<span>Bugün: '+esc(x)+'</span>';}).join('');}
+function didHtml(t){return (t.did||[]).map(function(x){return '<span>Bugün: '+esc(x)+'</span>';}).join('')+(t.more?'<span class="more">'+esc(t.more)+'</span>':'');}
 function taskHtml(t){
   var cls='task'+(t.f>=1?' done':t.f>0?' part':''),exp=t.id==='sch';
   var h='<div class="'+cls+'" style="--c:'+t.c+'" data-task="'+t.id+'"><button class="trow" data-act="task" data-id="'+t.id+'">'+
@@ -6021,7 +6044,7 @@ function taskHtml(t){
   return h+'</div>';
 }
 /* günün kalıbı: tekrar destendeki kalıplardan (yoksa seviyene uygun olandan) biri; yazında kullanırsan işaretlenir */
-function dayKalip(){var mine=[];KL.forEach(function(k,i){if(S.srs['k:'+i])mine.push(i);});
+function dayKalip(){var mine=[],q=S.gwq||[];KL.forEach(function(k,i){if(S.srs['k:'+i]||q.indexOf('k:'+i)>=0)mine.push(i);});
   var src=mine.length?mine:KL.map(function(_,i){return i;}).filter(function(i){return KL[i][0]<=(curBand()<2?2:3);});
   return src.length?KL[src[hash(today()+'kd')%src.length]]:null;}
 function kalipUsed(k,txt){var w=norm(k[2]).split(' ').slice(0,3).join(' ');return !!w&&norm(txt||'').indexOf(w)>=0;}
@@ -6062,7 +6085,7 @@ var KSEG=null;
 function topicLi(g){
   var id=g[0],p=tprog(id),st=tstat(id),due=tdue(id);
   return '<li><button data-act="topic" data-id="'+id+'"><span class="dot" style="background:'+STC[st]+'"></span><span class="nm"><b lang="de">'+esc(g[2])+'</b><span class="sub">'+esc(liSub(id))+'</span>'+bar(p,STC[st]==='var(--ink4)'?'var(--ink4)':STC[st])+'</span>'+
-    (due?'<span class="tag due">tekrar</span>':S.gfocus===id?'<span class="tag wip">bugün</span>':'')+'<span class="pc num">%'+pct(p)+'</span></button></li>';
+    (due?'<span class="tag due">tekrar</span>':todayTopic()[0]===id?'<span class="tag wip">bugün</span>':'')+'<span class="pc num">%'+pct(p)+'</span></button></li>';
 }
 function vKonular(){
   var L=levels(),tp=todayTopic(),a=nextAct(tp[0]),seg=KSEG||(curBand()<2?'A2':'B1'),h='';
@@ -6072,17 +6095,16 @@ function vKonular(){
     (S.ptest?'':'<button class="btn wide" style="margin-top:12px" data-act="ptest">Seviye testi yap · nereden başlayacağımı göster</button>')+'</div>';
   h+='<div class="card dark-card next"><div class="eyebrow">Bugünün konusu · '+esc(tp[1])+(tdue(tp[0])?' · tekrar':'')+'</div><div class="t" lang="de">'+esc(tp[2])+'</div>'+
     bar(tprog(tp[0]),'var(--lime)')+'<div class="muted small">%'+pct(tprog(tp[0]))+' · '+esc(liSub(tp[0]))+'</div>'+
-    '<div class="row">'+(a.k?'<button class="btn lime big" style="flex:2" data-act="lesson" data-id="'+tp[0]+'" data-s="'+a.k+'">'+esc(STT[a.k])+'</button>':'<div class="small" style="flex:2;color:var(--lime)">Bugünlük tamam. '+esc(nextReview(tp[0]))+'.</div>')+
+    '<div class="row">'+(a.k?'<button class="btn lime big" style="flex:2" data-act="lesson" data-id="'+tp[0]+'" data-s="'+a.k+'">'+esc(STT[a.k])+'</button>':'<div class="small" style="flex:2;color:var(--lime)">Bugünlük tamam. '+esc(upr1(nextReview(tp[0])))+'.</div>')+
     '<button class="btn big" style="flex:1;background:transparent;color:var(--on-char);border-color:rgba(255,255,255,.25)" data-act="topic" data-id="'+tp[0]+'">Konu özeti ve aşamalar</button></div></div>';
   var mine=G.filter(function(g){return tstat(g[0])!=='next';});
   if(mine.length)h+='<div class="card"><div class="eyebrow">Çalıştığım konular · '+mine.length+'</div><p class="small muted" style="margin:4px 0 6px">Her konunun hangi aşamada olduğu ve sıradaki işin ne zaman olduğu.</p><ul class="tl">'+mine.map(topicLi).join('')+'</ul></div>';
-  var nx=G.filter(function(g){return g[0]!==tp[0]&&tstat(g[0])==='next';})[0];
-  if(nx&&(!a.k||tdue(tp[0])||a.k==='rv'||a.k==='uret'))h+='<div class="card"><div class="eyebrow">Yanında yeni bir konu · '+esc(nx[1])+'</div><div style="font-weight:700;font-size:17px;margin:4px 0" lang="de">'+esc(nx[2])+'</div>'+
-    '<p class="small muted">Bugünkü konunun tekrarı kısa sürer; bu boşlukta yeni bir konuya başlayabilirsin. İki konu birlikte yürür, ikisi de puana sayılır.</p>'+
-    '<button class="btn lime wide" style="margin-top:8px" data-act="lesson" data-id="'+nx[0]+'" data-s="anla">Yeni konuya başla · Aşama 1</button></div>';
+  var nx=newTopic(tp[0]),nxw=nx&&tstat(nx[0])==='wip';
+  if(nx&&(!a.k||tdue(tp[0])||a.k==='rv'||a.k==='uret'))h+='<div class="card"><div class="eyebrow">'+(nxw?'Yanında yarım kalan konun':'Yanında yeni bir konu')+' · '+esc(nx[1])+'</div><div style="font-weight:700;font-size:17px;margin:4px 0" lang="de">'+esc(nx[2])+'</div>'+
+    '<p class="small muted">'+(nxw?'Bugünkü konunun işi kısa; bu boşlukta yarım kalan konuna devam et. Yeni konuya, yarım kalanlar bitince geç.':'Bugünkü konunun tekrarı kısa sürer; bu boşlukta yeni bir konuya başlayabilirsin. Aynı anda en çok 3 konu yürür.')+'</p>'+ntBtn(nx)+'</div>';
   var due=G.filter(function(g){return tdue(g[0])&&g[0]!==tp[0];});
   if(due.length)h+='<div class="card"><div class="eyebrow">Tekrar zamanı gelenler</div><ul class="tl" style="margin-top:6px">'+due.map(topicLi).join('')+'</ul></div>';
-  var open=G.filter(function(g){return g[0]!==tp[0]&&!tdue(g[0])&&tstat(g[0])==='wip'&&nextAct(g[0]).k;});
+  var open=G.filter(function(g){return g[0]!==tp[0]&&(!nx||g[0]!==nx[0])&&!tdue(g[0])&&tstat(g[0])==='wip'&&nextAct(g[0]).k;});
   if(open.length)h+='<div class="card"><div class="eyebrow">Yarım kalanlar · devam edebilirsin</div><ul class="tl" style="margin-top:6px">'+open.slice(0,4).map(topicLi).join('')+'</ul></div>';
   h+='<div class="seg">'+['A2','B1'].map(function(v){return '<button class="'+(seg===v?'on':'')+'" data-act="kseg" data-v="'+v+'">'+v+' konuları · %'+pct(v==='A2'?L.a2g:L.b1g)+'</button>';}).join('')+'</div>';
   BANDS.filter(function(b){return b.indexOf(seg)===0;}).forEach(function(b){
@@ -6110,6 +6132,8 @@ function vKelimeler(){
   var nn=(W.q||[]).filter(function(id){return !S.srs[id];}).length,nr=n-nn;
   var h='<div class="card dark-card next"><div class="eyebrow">Kelime tekrarı · günlük · bugünün puanına girer (30 puan)</div><div class="t">'+(n?n+' kart seni bekliyor':'Bugünlük tamam')+'</div>'+
     (n?'<div class="small" style="margin:4px 0 8px"><b>'+nr+'</b> tekrar (daha önce öğrendiğin, tekrar zamanı gelen) · <b>'+nn+'</b> yeni kelime</div>':'')+
+    (function(){var d=day(),rem=Math.max(0,(d.wt||0)-(d.w||0));return '<div class="small" style="margin:0 0 8px"><b>Puan hedefi: '+(d.w||0)+' / '+(d.wt||0)+' kart</b>'+(rem?' · '+rem+' kart kaldı':' · tamam')+(n>rem&&rem>=0&&n?' · hedefin üstündekiler isteğe bağlı, yarına kalabilir':'')+
+      (d.ncap!=null&&d.ncap<S.set.newPerDay?'<br>Biriken tekrar çok olduğu için bugün en çok '+d.ncap+' yeni kelime (normalde '+S.set.newPerDay+').':'')+'</div>';})()+
     '<div class="muted small">Yeni kelime: anlamını cümlede tahmin edersin, kartı ve hikâye kancasını görürsün; ilk soru <b>yarın</b> gelir. Tekrarlar zamanla zorlaşır: seç → artikeliyle yaz → cümlede boşluk doldur. Bildiklerin seyrek, bilemediklerin sık gelir.</div>'+
     '<button class="btn lime big wide" data-act="review">'+(n?'Başla':'Havuzdan 5 yeni kelime')+'</button>'+
     '<div class="srs num"><button data-act="wlist" data-v="due"><b>'+c.due+'</b><span>tekrarı gelen ›</span></button><button data-act="wlist" data-v="lrn"><b>'+c.lrn+'</b><span>öğreniliyor ›</span></button><button data-act="wlist" data-v="sat"><b>'+c.sat+'</b><span>oturdu ›</span></button></div>'+
@@ -6136,9 +6160,10 @@ function pWlist(){
     return '<div class="r"><span class="w" lang="de" style="color:var(--'+(a||'ink')+')">'+(a?a+' ':'')+esc(c.w)+'</span><span class="m">'+esc(c.tr)+'</span><span class="tag'+((x.i||0)>=21?' ok':'')+'">'+(x.d<=t?'bugün':trShort(x.d))+'</span></div>';}).join('')+'</div>'};
 }
 /* --- oyun: eşleştir (öğrenilen kelimeler) --- */
-function matchRound(){var ids=shuffle(Object.keys(S.srs).filter(function(id){var c=card(id);return c&&!c.gs&&c.w.length<30;})).slice(0,5);
-  return ids.map(function(id){var c=card(id);return {id:id,de:deText(c),tr:c.tr};});}
-function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};hkyLoad(function(){if(X&&X.kind==='wcard')drawPage();});
+function matchRound(){var sd={},st={},out=[];shuffle(Object.keys(S.srs)).forEach(function(id){if(out.length>=5)return;var c=card(id);if(!c||c.gs||c.w.length>=30)return;
+    var de=deText(c).toLowerCase(),tr=String(c.tr).toLowerCase();if(sd[de]||st[tr]||out.some(function(x){return trSame(x.tr,c.tr);}))return;sd[de]=st[tr]=1;out.push({id:id,de:deText(c),tr:c.tr});});
+  return out;}
+function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};if(!HKY)hkyLoad(function(){if(X&&X.kind==='wcard')drawPage();});
   var x=S.srs[id]||{};
   return {t:deText(c),b:'<div class="card rv">'+rvCard(c,true)+wordLinks(c)+storyBox(id,c)+(hkOf(id)?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(hkOf(id))+'</p></div>':'')+'</div>'+
     '<p class="small muted center">'+(x.lp?x.lp+' kez unuttun · ':'')+'sıradaki tekrar: '+(x.d?trShort(x.d):'—')+'</p>'};}
@@ -6225,7 +6250,7 @@ function vIlerleme(){
 
 /* ================= SAYFALAR (tam ekran) ================= */
 function stopSay(){if(typeof SAYQ!=='undefined'){SAYQ++;try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}}}
-function openPage(x){stopSay();if(X)STACK.push(X);X=x;var p=$('page');p.hidden=false;document.body.style.overflow='hidden';drawPage();p.scrollTop=0;}
+function openPage(x){stopSay();if(X)STACK.push(X);if(!x.day)x.day=today();X=x;var p=$('page');p.hidden=false;document.body.style.overflow='hidden';drawPage();p.scrollTop=0;}
 function closePage(){
   stopSay();if(X&&X.timer)clearInterval(X.timer);
   if(STACK.length){X=STACK.pop();drawPage();$('page').scrollTop=0;return;}
@@ -6248,11 +6273,11 @@ var STDESC={
   tani:'8 şıklı soru. Her yanlışta neyi neyle karıştırdığını anlatırım. %75 ile geçilir.',
   kur:'4 soruda cevabı sen yazarsın, 4 cümleyi sen kurarsın. %70 ile geçilir.',
   uret:'Kendi hayatından en az 3 cümle yaz. Araya bir gece girsin diye ertesi gün açılır.',
-  rv:'Günlere yayılan karışık tekrar: 1, 3 ve 7 gün sonra. 2 başarılı tekrar = konu oturdu.'
+  rv:'Günlere yayılan karışık tekrar: Üret\'ten 1 gün sonra, sonra 3 gün sonra. 2 başarılı tekrar (%80) = konu oturdu; sonra 7, 14, 30, 60 günde bir kontrol.'
 };
 var STT={anla:'Aşama 1 · Anla',tani:'Aşama 2 · Tanı',kur:'Aşama 3 · Kur',uret:'Aşama 4 · Üret',rv:'Pekiştir · tekrar',free:'Serbest alıştırma',retry:'Yanlışları tekrar'};
 var ACTB={anla:'Aşama 1 · Anla · derse başla',tani:'Aşama 2 · Tanı · 8 soru',kur:'Aşama 3 · Kur · 8 soru',uret:'Aşama 4 · Üret · yazmaya başla',rv:'Pekiştir · 8 soruluk tekrar'};
-var PASS={tani:.75,kur:.7,rv:.8};
+var PASS={anla:.6,tani:.75,kur:.7,rv:.8};
 function stagePath(id){
   var x=gpeek(id),a=nextAct(id),h='<ol class="path">';
   STG.forEach(function(s,i){
@@ -6271,10 +6296,10 @@ function stagePath(id){
 function liSub(id){
   var x=gpeek(id),a=nextAct(id),n=0;if(x.known)return 'biliyorum olarak işaretli';
   STG.forEach(function(s){if(stgDone(id,s[0]))n++;});
-  if(tstat(id)==='ok')return 'oturdu'+(x.due?' · tekrar '+trShort(x.due):'');
+  if(tstat(id)==='ok')return 'oturdu'+(tdue(id)?' · kontrol bekliyor'+(dd(x.due,today())>0?' ('+dd(x.due,today())+' gün gecikti)':''):x.due?' · kontrol '+trShort(x.due):'');
   if(x.lapse&&stgAll(id))return 'son tekrar geçilmedi · yeniden '+(x.due&&x.due>today()?trShort(x.due):'bugün');
   if(!n&&!x.last)return 'başlanmadı';
-  return n+'/4 aşama'+(a.k?' · sıradaki: '+(a.k==='rv'?'tekrar':STT[a.k].split(' · ')[1]):a.wait?' · '+(dd(today(),a.wait)<=1?'yarın':trShort(a.wait)):'');
+  return n+'/4 aşama'+(a.k?' · sıradaki: '+(a.k==='rv'?'tekrar'+(x.due&&dd(x.due,today())>0?' ('+dd(x.due,today())+' gün gecikti)':''):STT[a.k].split(' · ')[1]):a.wait?' · '+(a.w==='uret'?'Üret':'tekrar')+' '+(dd(today(),a.wait)<=1?'yarın':trShort(a.wait)):'');
 }
 function pTopic(){
   var g=GBY[X.id],id=g[0],p=tprog(id),st=tstat(id),x=gpeek(id),tab=X.tab||'ders',foc=S.gfocus===id,a=nextAct(id);
@@ -6287,19 +6312,19 @@ function pTopic(){
   else if(st==='ok'||x.known)b+='<button class="btn big wide" style="margin-top:12px" data-act="lesson" data-id="'+id+'" data-s="free">Karışık alıştırma · 8 soru</button>';
   else b+='<div class="wait">'+esc(nextReview(id).replace(/^./,function(c){return c.toUpperCase();}))+'. Bugün başka bir konuyla devam et: aynı anda 2–3 konu yürütmek daha kalıcı.</div>'+
     '<button class="btn big wide" data-act="lesson" data-id="'+id+'" data-s="free">Yine de alıştırma yap · aşamaya sayılmaz</button>';
-  b+='<div class="row" style="margin-top:8px"><button class="btn wide" data-act="gfocus" data-id="'+id+'">'+(foc?'✓ Bugünün konusu':'Bugün bunu çalış')+'</button><button class="btn wide" data-act="gknown" data-id="'+id+'">'+(x.known?'✓ Biliyorum':'Zaten biliyorum')+'</button></div>'+
+  b+='<div class="row" style="margin-top:8px"><button class="btn wide" data-act="gfocus" data-id="'+id+'">'+(foc?'✓ Öncelikli konum':'Öncelikli konum yap')+'</button><button class="btn wide" data-act="gknown" data-id="'+id+'">'+(x.known?'✓ Biliyorum':'Zaten biliyorum')+'</button></div>'+
     (tprog(id)>0||x.last||x.known?'<button class="link center" style="margin-top:12px;display:block;margin-left:auto;margin-right:auto" data-act="greset" data-id="'+id+'">Bu konuyu baştan al</button>':'')+
-    (x.known||st==='ok'?'':'<p class="note" style="margin-top:10px">Bir konu yaklaşık 1 hafta sürer: ilk gün Anla, Tanı, Kur; ertesi gün Üret; sonra 1, 3 ve 7 gün arayla tekrar. Biraz unutup yeniden hatırlamak, bilgiyi kalıcı yapan şeydir.</p>')+'</div>';
+    (x.known||st==='ok'?'':'<p class="note" style="margin-top:10px">Bir konu yaklaşık 1 hafta sürer: ilk gün Anla, Tanı, Kur; ertesi gün Üret; Üret\'ten 1 gün sonra 1. tekrar, ondan 3 gün sonra 2. tekrar. İki tekrar da %80 ise konu oturur; sonra 7, 14, 30, 60 günde bir kısa kontrol gelir. Biraz unutup yeniden hatırlamak, bilgiyi kalıcı yapan şeydir.</p>')+'</div>';
   b+=topicHistHtml(id);
   b+='<div class="seg">'+[['ders','Ders'],['kel','Kelimeler'],['orn','Örnekler'],['not','Notum']].map(function(o){return '<button class="'+(tab===o[0]?'on':'')+'" data-act="ttab" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
   if(tab==='ders')b+=dersHtml(id);
   else if(tab==='kel'){
     var wl=GW[id]||[],added=wordsAdded(id);
     b+='<p class="small muted">Bu konuyu kullanabilmek için bilmen gereken kelimeler ve biçimleri. Kelime tekrarına eklersen her gün aralıklı olarak sorulur.</p>'+
-      (added<wl.length?'<button class="btn dark wide" data-act="gwadd" data-id="'+id+'">'+(wl.length-added)+' kelimeyi kelime tekrarına ekle</button>':'<div class="tag ok" style="align-self:flex-start">Hepsi kelime tekrarında</div>')+
-      '<div class="card" style="padding:2px 14px">'+wl.map(function(w,i){var s=S.srs[wid(id,i)],a=ART(w[3]);
+      (added<wl.length?'<button class="btn dark wide" data-act="gwadd" data-id="'+id+'">'+(wl.length-added)+' kelimeyi yeni kelime sırasına al</button>':'<div class="tag ok" style="align-self:flex-start">Hepsi kelime tekrarında</div>')+
+      '<div class="card" style="padding:2px 14px">'+wl.map(function(w,i){var s=S.srs[wid(id,i)]||S.srs[gwId(id,i)],a=ART(w[3]);
         return '<div class="wl"><div class="w"><b lang="de" style="color:var(--'+(a||'ink')+')">'+(a?a+' ':'')+esc(w[0])+'</b><span>'+(w[1]?'<span lang="de" style="color:var(--ink)">'+esc(w[1])+'</span> · ':'')+esc(w[2])+'</span></div>'+
-          (s?'<span class="tag'+(s.n>=1?' ok':'')+'">'+(s.n>=1?'öğrenildi':'eklendi')+'</span>':'')+'</div>';}).join('')+'</div>';
+          (s?'<span class="tag'+(s.n>=1?' ok':'')+'">'+(s.n>=1?'öğrenildi':'eklendi')+'</span>':(S.gwq||[]).indexOf(gwId(id,i))>=0?'<span class="tag">sırada</span>':'')+'</div>';}).join('')+'</div>';
   }
   else if(tab==='orn')b+=exHtml(g);
   else{
@@ -6319,6 +6344,18 @@ function mcItem(id,o,t){var f=o.s.split('|'),it={t:t,tid:id,k:o.k,q:f[0],c:f[1],
   if(t==='mc')it.o=shuffle([f[1],f[2],f[3]]);
   if(t==='hc'){var ww=f[2+Math.floor(Math.random()*2)],r=f[0].replace('___',f[1]),w=f[0].replace('___',ww);it.c=r;it.o=shuffle([r,w]);it.cw=f[1];it.wmap={};it.wmap[r]=f[1];it.wmap[w]=ww;}
   return it;}
+/* yazarak sorulabilir mi? Cevap ya parantez ipucundan (fiil, isim) türetilir ya da yalnız dilbilgisi kelimesidir
+   (artikel, zamir, yardımcı fiil, bağlaç, edat…). İçerik kelimesi ipucusuz yazdırılmaz: tahmin gerektirir, şıklı sorulur. */
+var FUNCW={};('der die das den dem des ein eine einen einem einer eines kein keine keinen keinem keiner keines mein meine meinen meinem meiner dein deine deinen deinem deiner sein seine seinen seinem seiner ihr ihre ihren ihrem ihrer unser unsere unseren unserem euer eure '+
+ 'ich du er sie es wir mich dich ihn uns euch mir dir ihm ihnen sich man jemand jemanden jemandem niemand niemanden niemandem etwas nichts alle alles einer keiner eins keins welcher welche welches welchen welchem was wer wen wem wessen wo wohin woher wann wie warum '+
+ 'bin bist ist sind seid war warst waren wart gewesen habe hast hat haben habt hatte hattest hatten hattet gehabt werde wirst wird werden werdet wurde wurdest wurden geworden worden würde würdest würden wäre wärst wären hätte hättest hätten '+
+ 'kann kannst können könnt konnte konntest konnten könnte könnten muss musst müssen müsst musste mussten müsste darf darfst dürfen durfte durften dürfte soll sollst sollen sollte sollten will willst wollen wollte wollten möchte möchtest möchten mag magst mögen '+
+ 'lasse lässt lassen ließ und oder aber denn sondern weil dass wenn ob als obwohl trotzdem deshalb deswegen darum damit um zu während bevor nachdem seit seitdem bis sobald indem sodass je desto umso sowohl weder noch entweder nicht auch '+
+ 'in an auf über unter vor hinter neben zwischen mit nach bei von aus für gegen ohne durch wegen trotz statt am im ins ans aufs zum zur vom beim worauf darauf woran daran wofür dafür womit damit worüber darüber wovon davon wozu dazu woraus daraus '+
+ 'erste ersten erster zweite zweiten dritte dritten mehr am meisten besser besten lieber liebsten').split(' ').forEach(function(w){FUNCW[w]=1;});
+function tyOk(o){var f=String(o.s).split('|'),q=f[0]||'',c=String(f[1]||'').toLowerCase();
+  if(/\([^)]+\)/.test(q.split('___')[1]||'')||/\([^)]+\)\s*$/.test(q))return true;
+  return c.split(/\s+/).every(function(w){w=w.replace(/[.,!?]/g,'');return !w||w.length<=3||FUNCW[w];});}
 function szItem(id,o){return {t:'sz',tid:id,k:o.k,de:o.s[0],tr:o.s[1],alts:o.s[2]||[]};}
 function tItems(id,k){
   var g=GBY[id],x=gxs(id);
@@ -6326,14 +6363,15 @@ function tItems(id,k){
   var L=mcs(id).map(function(s,i){return {s:s,k:'x'+i};}),Z=g[4].map(function(s,i){return {s:s,k:'s'+i};}),out=[];
   if(k==='anla')return pick(L,3).map(function(o){return mcItem(id,o,'hc');});
   if(k==='tani')return pick(L,8).map(function(o){return mcItem(id,o,'mc');});
-  if(k==='kur'){var ty=pick(L,4),sz=pick(Z,4);for(var i=0;i<4;i++){if(ty[i])out.push(mcItem(id,ty[i],'ty'));if(sz[i])out.push(szItem(id,sz[i]));}return out;}
+  if(k==='kur'){var ty=pick(L.filter(tyOk),4);if(ty.length<4)ty=ty.concat(pick(L.filter(function(o){return !tyOk(o);}),4-ty.length));
+    var sz=pick(Z,4);for(var i=0;i<4;i++){if(ty[i])out.push(mcItem(id,ty[i],tyOk(ty[i])?'ty':'mc'));if(sz[i])out.push(szItem(id,sz[i]));}return out;}
   var a=pick(L,6),zz=pick(Z,k==='rv'?1:2);
-  a.forEach(function(o,i){out.push(mcItem(id,o,k==='rv'?(i<3?'mc':i<5?'ty':'hc'):(i<3?'mc':'ty')));});
+  a.forEach(function(o,i){var tt=k==='rv'?(i<3?'mc':i<5?'ty':'hc'):(i<3?'mc':'ty');if(tt==='ty'&&!tyOk(o))tt='mc';out.push(mcItem(id,o,tt));});
   zz.forEach(function(o){out.push(szItem(id,o));});
   if(k==='rv'){
     var oth=shuffle(G.filter(function(g2){return g2[0]!==id&&stgDone(g2[0],'tani');})).slice(0,1);
     oth.forEach(function(g2){var l2=mcs(g2[0]),j=Math.floor(Math.random()*l2.length);out.push(mcItem(g2[0],{s:l2[j],k:'x'+j},'mc'));});
-    if(oth.length<1){var more=pick(L,12).filter(function(o){return !a.some(function(q){return q.k===o.k;});});more.slice(0,1-oth.length).forEach(function(o){out.push(mcItem(id,o,'ty'));});}
+    if(oth.length<1){var more=pick(L,12).filter(function(o){return !a.some(function(q){return q.k===o.k;});});more.slice(0,1-oth.length).forEach(function(o){out.push(mcItem(id,o,tyOk(o)?'ty':'mc'));});}
   }
   return shuffle(out);
 }
@@ -6348,14 +6386,14 @@ function startStage(id,k,only){
 function prepItem(o){var it=o.items[o.i];o.dg=null;o.pick=null;o.state=null;o.val='';o.tyres=null;o.hint=0;if(it&&(it.t==='sz'||o.kind==='satz'))prepSatz(o,it);}
 function lessonRecord(ok){
   var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;
-  gxs(it.tid||X.id).m[it.k]=ok?1:0;var d=day();d.g=(d.g||0)+1;save();
+  gxs(it.tid||X.id).m[it.k]=ok?1:0;var d=xday();d.g=(d.g||0)+1;save();
 }
 function recordAny(ok){if(X.kind==='ezq')ezRecord(ok);else lessonRecord(ok);}
 function lessonIntro(){
   var g=GBY[X.id],k=X.stg,n=X.items.length,b='<div><div class="eyebrow">'+STT[k]+' · '+esc(g[1])+'</div><h1 lang="de">'+esc(g[2])+'</h1></div>';
   if(k==='anla'&&GL[X.id])return anlaHtml();
   if(k==='anla'){
-    b+='<p class="muted">Acele etme: önce kuralı oku, örneklere bak. Sonra 4 kısa soru.</p>'+sumHtml(X.id)+
+    b+='<p class="muted">Acele etme: önce kuralı oku, örneklere bak. Sonra 3 kısa soru (en az 2\'si doğru olmalı).</p>'+sumHtml(X.id)+
       '<div class="eyebrow" style="margin:4px">Örnek cümleler · sesli oku</div>'+exHtml(g)+
       '<div class="tipbox"><div class="eyebrow">Kendine anlat</div><p>Özete bakmadan, kuralı Türkçe tek bir cümleyle yüksek sesle söyle: <b>ne zaman</b> kullanılır, <b>nasıl</b> kurulur? Kendine açıklamak, okuyup geçmekten çok daha kalıcıdır.</p></div>'+
       '<button class="btn lime big wide" data-act="lgo">Anladım · 3 kontrol sorusu</button>';
@@ -6411,35 +6449,35 @@ function pLesson(){
   return {t:esc(g[2]),r:'<span class="small muted">'+(STT[X.stg]||'').split(' · ')[0]+'</span>',b:b};
 }
 function lessonEnd(){
-  var id=X.id,n=X.items.length,acc=n?X.ok/n:0,k=X.stg,t=today(),x=gxs(id);
+  var id=X.id,n=X.items.length,acc=n?X.ok/n:0,k=X.stg,t=X.day||today(),x=gxs(id);
   if(!X.fin){
-    X.fin=1;x.last=t;X.pass=k==='anla'||acc>=(PASS[k]||0);
+    X.fin=1;x.last=t;X.pass=acc>=(PASS[k]||0);var first=!x.stg[k];
     if((k==='anla'||k==='tani'||k==='kur')&&X.pass&&!x.stg[k])x.stg[k]=t;
     if(k==='kur'&&X.pass)gsAdd(id);
-    if(X.pass&&(k==='tani'||k==='kur'||k==='rv')){xday().gs=1;}
+    if(X.pass&&((first&&(k==='tani'||k==='kur'))||k==='rv')){xday().gs=1;}
     if(k==='rv'){if(X.pass){if(x.rv.indexOf(t)<0)x.rv.push(t);delete x.lapse;x.due=addD(t,RVI[Math.min(x.rv.length-1,RVI.length-1)]);}else{x.due=addD(t,1);x.lapse=t;}}
     if(tstat(id)==='ok'&&!S.gdone[id])S.gdone[id]=t;
-    var d=day();
+    var d=xday();
     /* bugün gerçekten çalışılan konu, günün konusu olur (Bugün'de başlık ile yapılan iş ayrışmasın) */
     if(X.pass&&k!=='free'&&k!=='retry'&&(!d.gtDone||d.gt===id)){d.gt=id;d.gtDone=1;}
-    lgAdd({k:'g',ref:id,s:k,c:X.ok,n:n,ok:X.pass&&k!=='free'&&k!=='retry'?1:0,nx:k==='rv'?x.due:''});
+    lgAdd({d:t,k:'g',ref:id,s:k,c:X.ok,n:n,ok:X.pass&&k!=='free'&&k!=='retry'?1:0,nx:k==='rv'?x.due:''});
     save();
   }
   var p1=tprog(id),a=nextAct(id),wrong=X.items.filter(function(it,i){return X.res[i]==='no';}),wl=(GW[id]||[]).length,added=wordsAdded(id);
   var msg;
-  if(k==='anla')msg='Kuralı gördün. Şimdi tanıma alıştırması: '+STT.tani+'.';
-  else if(k==='free'||k==='retry')msg=acc>=.8?'Çok iyi.':'Yanlışlarına bir göz at; tekrar karşına çıkacaklar.';
+  if(k==='anla')msg=X.pass?'Kuralı gördün. Şimdi tanıma alıştırması: '+STT.tani+'.':'3 sorudan en az 2\'si gerekli. Anlatımı bir kez daha oku (özellikle "Mantığı" ve "Karıştırma"), sonra yeniden dene.';
+  else if(k==='free'||k==='retry')msg=(acc>=.8?'Çok iyi.':'Yanlışlarına bir göz at; tekrar karşına çıkacaklar.')+(a.k&&a.k!=='uret'?' Dikkat: bu alıştırma aşamaya sayılmaz; '+actLabel(a)+' hâlâ seni bekliyor.':'');
   else if(k==='rv')msg=X.pass?'Tekrar başarılı. '+(tstat(id)==='ok'?'Bu konu artık oturdu; arada bir yine sorulacak.':'Bir sonraki tekrar daha ileri bir günde.'):'Bu sefer %80 olmadı; konu yarın tekrar karşına gelecek. Unutup yeniden hatırlamak öğrenmenin parçası.';
   else msg=X.pass?'Geçtin! Aşama tamam.':'Geçmek için %'+pct(PASS[k])+' lazım. Yanlışlarına bak, özeti bir kez daha oku ve yeniden dene; acele yok.';
   var b='<div class="center" style="padding:16px 0 4px"><div class="eyebrow">'+STT[k]+' bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
     '<p class="muted" style="margin-top:6px">'+esc(msg)+'</p></div>';
   b+='<div class="card"><div class="row"><span class="small muted">Konu ilerlemesi</span><div class="sp"></div><b class="num">%'+pct(X.p0)+' → %'+pct(p1)+'</b></div><div style="margin-top:8px">'+bar(p1,'var(--ok)','thick')+'</div>'+
     (gpeek(id).known?'':stagePath(id))+'</div>';
-  if(a.k&&k!=='free'&&k!=='retry')b+='<button class="btn lime big wide" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">'+(a.k===k?'Aşamayı yeniden dene':'Devam: '+ACTB[a.k])+'</button>';
-  else if(!a.k&&a.wait)b+='<div class="wait">'+esc(nextReview(id).replace(/^./,function(c){return c.toUpperCase();}))+'. Uygulama o gün hatırlatacak.</div>';
+  if(a.k)b+='<button class="btn lime big wide" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">'+(a.k===k?'Aşamayı yeniden dene':(k==='free'||k==='retry')?'Şimdi: '+ACTB[a.k]:'Devam: '+ACTB[a.k])+'</button>';
+  else if(!a.k&&a.wait)b+='<div class="wait">'+esc(nextReview(id).replace(/^./,function(c){return c.toUpperCase();}))+'. O gün Bugün sayfasında ve Sırada kartında çıkacak.</div>';
   if(wrong.length)b+='<button class="btn big wide" data-act="lwrong">Yanlış yaptığım '+wrong.length+' soruyu tekrar et</button>';
-  if(added<wl.length&&k!=='retry')b+='<button class="btn dark big wide" data-act="gwadd" data-id="'+id+'">Konunun '+(wl-added)+' kelimesini kelime tekrarına ekle</button>';
-  b+='<button class="btn big wide" data-act="topic" data-id="'+id+'">Konuya dön</button><button class="btn'+(a.k&&k!=='free'&&k!=='retry'?'':' lime')+' big wide" data-act="closeall">Bitti</button>';
+  if(added<wl.length&&k!=='retry')b+='<button class="btn dark big wide" data-act="gwadd" data-id="'+id+'">Konunun '+(wl-added)+' kelimesini yeni kelime sırasına al</button>';
+  b+='<button class="btn big wide" data-act="topic" data-id="'+id+'">Konuya dön</button><button class="btn'+(a.k?'':' lime')+' big wide" data-act="closeall">Bitti</button>';
   return b;
 }
 
@@ -6570,7 +6608,7 @@ function rvType(id){
   if(st===1)return 'write';
   if(st===2)return cz?'cloze':'write';
   var pool=['write'];if(cz)pool.push('cloze');if(canSay())pool.push('listen');
-  if(st>=4){if(c.p==='n'&&plural(c))pool.push('plural');if(c.p==='v'&&/^(hat|ist) \S/.test(c.f||''))pool.push('perf');}
+  if(st>=4){if(c.p==='n'&&plural(c))pool.push('plural');if(c.p==='v'&&perfOf(c))pool.push('perf');}
   return pool[hash(id+today())%pool.length];
 }
 /* farklı bağlamlar: boşluk sorusunda kelime, kendi örneği dışında başka cümlelerde de karşına çıkar */
@@ -6597,9 +6635,9 @@ function rvJudge(c,type,val){
   if(type==='cloze'){var t=norm(clozeOf(c));if(v===t)return {r:'ok'};if(near(v,t))return {r:'near',m:'Yazımına dikkat: *'+clozeOf(c)+'*.'};
     if(norm(c.w)===v&&v!==t)return {r:'near',m:'Kelime doğru, ama cümlede bu biçimde: *'+clozeOf(c)+'*.'};return {r:'no'};}
   if(type==='plural'){var pl=norm(plural(c)),vv=v.replace(/^die /,'');if(vv===pl)return {r:'ok'};if(vv===norm(c.w))return {r:'no',m:'Bu tekil hâli. Çoğulu: *die '+plural(c)+'*.'};if(near(vv,pl))return {r:'near',m:'Yazımına dikkat: *die '+plural(c)+'*.'};return {r:'no'};}
-  if(type==='perf'){var pf=norm(c.f),px=pf.split(' '),vx=v.split(' ');if(v===pf)return {r:'ok'};
-    if(vx.length>=2&&vx.slice(1).join(' ')===px.slice(1).join(' ')&&vx[0]!==px[0])return {r:'art',m:'Partizip doğru, yardımcı fiil yanlış: *'+c.f+'*. Hareket/durum değişimi → sein; diğerleri → haben.',aux:1};
-    if(near(v,pf))return {r:'near',m:'Yazımına dikkat: *'+c.f+'*.'};return {r:'no'};}
+  if(type==='perf'){var pff=perfOf(c),pf=norm(pff),px=pf.split(' '),vx=v.split(' ');if(v===pf)return {r:'ok'};
+    if(vx.length>=2&&vx.slice(1).join(' ')===px.slice(1).join(' ')&&vx[0]!==px[0])return {r:'art',m:'Partizip doğru, yardımcı fiil yanlış: *'+pff+'*. Hareket/durum değişimi → sein; diğerleri → haben.',aux:1};
+    if(near(v,pf))return {r:'near',m:'Yazımına dikkat: *'+pff+'*.'};return {r:'no'};}
   var a=ART(c.a),w=norm(c.w);
   if(a){var tk=v.split(' '),ta=/^(der|die|das)$/.test(tk[0])?tk.shift():'',body=tk.join(' ');
     var wok=body===w,wnear=!wok&&near(body,w),aok=ta===a||(!!c.a2&&ta===c.a2);
@@ -6610,6 +6648,11 @@ function rvJudge(c,type,val){
     return {r:'no'};}
   if(v===w)return {r:'ok'};
   if(near(v,w))return {r:'near',m:'Yazımına dikkat: *'+c.w+'*.'};
+  var wc=w.replace(/[…\/+]/g,' ').replace(/\s+/g,' ').trim(),vc=v.replace(/[…\/+]/g,' ').replace(/\s+/g,' ').trim();
+  if(wc&&vc===wc)return {r:'ok'};
+  if(/^sich /.test(w)&&(v===w.slice(5)||near(v,w.slice(5))))return {r:'near',m:'*sich*\'i unutma: *'+c.w+'*.'};
+  var syn=POOL.filter(function(e){return e.id!==c.id&&trSame(e.tr,c.tr)&&norm(e.w)===v.replace(/^(der|die|das) /,'');})[0];
+  if(syn)return {r:'near',m:'*'+deText(syn)+'* de aynı anlama gelir, doğru. Bu kartta istenen: *'+deText(c)+'*.',syn:1};
   return {r:'no'};
 }
 /* --- kelimenin bağlantıları (çevrimdışı) --- */
@@ -6748,14 +6791,14 @@ function pReview(){
   var q=W.q,b='';
   if(!q.length){
     var d=peek(today())||{};
-    if(W.hard){W.q=null;return {t:'Zor kelimeler',b:'<div class="card rv"><div class="tr">Zor kelimeler bitti</div><p class="muted">Yanlış yaptıkların yine sık gelecek. Hikâyelerini bir kez daha oku.</p><button class="btn lime big wide" data-act="close">Kapat</button></div>'};}
+    if(W.hard){W=W0||{q:null,day:'',step:'q',pick:null,n0:0,seen:{}};W0=null;return {t:'Zor kelimeler',b:'<div class="card rv"><div class="tr">Zor kelimeler bitti</div><p class="muted">Yanlış yaptıkların yine sık gelecek. Hikâyelerini bir kez daha oku.</p><button class="btn lime big wide" data-act="close">Kapat</button></div>'};}
     b='<div class="card rv"><div class="eyebrow">Kelime tekrarı</div><div class="tr">Bugünlük tamam!</div><p class="muted">'+(d.w||0)+' cevap verdin. Yarın tekrar zamanı gelenler burada olacak.</p>'+
       '<button class="btn dark big wide" data-act="more">5 yeni kelime daha öğren</button><button class="btn lime big wide" data-act="close">Kapat</button></div>';
     return {t:'Kelime tekrarı',b:b};
   }
   var id=q[0],c=card(id);
   if(!c){q.shift();return pReview();}
-  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty};W.hk=null;W.hkv=null;W.val='';W.hs=null;hkyLoad();
+  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
     if(ty==='cloze'){var cs=ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];}
@@ -6814,7 +6857,8 @@ function pReview(){
   }
   return {t:'Kelime tekrarı',b:b};
 }
-function rvRight(c,t){return t==='cloze'?clozeOf(c):t==='plural'?'die '+plural(c):t==='perf'?c.f:t==='listen'?c.tr:deText(c);}
+function perfOf(c){var m=String(c&&c.f||'').match(/(hat|ist) [^·]+$/);return m?m[0].trim():'';}
+function rvRight(c,t){return t==='cloze'?clozeOf(c):t==='plural'?'die '+plural(c):t==='perf'?perfOf(c):t==='listen'?c.tr:deText(c);}
 /* üretme etkisi: kelimeyi duymak ve yüksek sesle tekrar etmek hatırlamayı artırır; ses ve hız her seferinde biraz değişir (akustik çeşitlilik) */
 var SAYV=0;
 function sayVar(t){if(!canSay())return;SAYQ++;try{speechSynthesis.cancel();}catch(e){}
@@ -6919,7 +6963,7 @@ function startTest(){
 function pTest(){
   var n=X.items.length,b;
   if(X.i<0)return {t:'Seviye testi',b:'<div><div class="eyebrow">Seviye testi · ~10 dk</div><h1>Neredesin, ölçelim</h1></div>'+
-    '<div class="card"><p><b>1. Kelime</b> · 30 soru (A1, A2, B1)<br><b>2. Gramer</b> · 40 konu, her birinden 1 soru</p><p class="small muted" style="margin-top:8px">Bilmiyorsan tahmin etme, "Bilmiyorum"a bas; sonuç böylece daha doğru çıkar. İstediğin an "Testi bitir" diyebilirsin, cevapladığın kısım kaydedilir.</p></div>'+
+    '<div class="card"><p><b>1. Kelime</b> · 30 soru (A1, A2, B1)<br><b>2. Gramer</b> · '+G.length+' konu, her birinden 1 soru</p><p class="small muted" style="margin-top:8px">Bilmiyorsan tahmin etme, "Bilmiyorum"a bas; sonuç böylece daha doğru çıkar. İstediğin an "Testi bitir" diyebilirsin, cevapladığın kısım kaydedilir.</p></div>'+
     '<button class="btn lime big wide" data-act="tgo">Başla</button>'};
   if(X.i>=n||X.fin)return {t:'Seviye testi',b:testEnd()};
   var it=X.items[X.i];
@@ -7006,12 +7050,12 @@ var ACT={
     if(id==='wort'){ACT.review();return;}
     if(id==='ez'){var dl=ezDueList();if(dl.length>1)ACT.ezmix();else openPage({kind:'ez',id:ezToday().id,hide:false,rev:{}});return;}
     if(id==='gram'){var tid=todayTopic()[0],a=nextAct(tid);if(a.k)startStage(tid,a.k);else openPage({kind:'topic',id:tid,tab:'ders',rv:{}});return;}
-    OPEN=OPEN===id?null:id;render();
+    OPEN=b.dataset.open?id:(OPEN===id?null:id);render();
     var el=document.querySelector('[data-task="'+id+'"]');if(el&&OPEN)el.scrollIntoView({behavior:'smooth',block:'start'});
   },
-  review:function(){if(!W.q||W.day!==today())buildQueue();if(!W.q.length)ACT.more();openPage({kind:'review'});},
+  review:function(){if(W.hard&&W0){W=W0;W0=null;}if(!W.q||W.day!==today())buildQueue();openPage({kind:'review'});},
   rvok:function(){var id=W.q.shift();W.seen[id]=1;introDone(id);W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
-  rvknown:function(){grade(W.q[0],3);rvAdvance(false);},
+  rvknown:function(){var id=W.q[0];grade(id,3);var s=S.srs[id],t=today();if(s&&s.i<30){s.i=30;s.d=addD(t,30);s.fs=Math.max(s.fs||0,30);save();}rvAdvance(false);},
   rvpick:function(b){if(W.pick)return;W.pick=b.dataset.v;if(W.cur.type==='intro'){rvSay(card(W.q[0]));W.hs=W.q[0];}if(W.cur.type!=='intro'){W.cur.res=W.pick===W.cur.right?'ok':'no';if(W.cur.res==='no')W.cur.m='Doğrusu: *'+W.cur.right+'*';rvGrade(W.q[0],W.cur.res);}drawPage();},
   autosay:function(b){S.set.auto=b.dataset.v==='1';touch('set');save();drawPage();},
   rvplay:function(){var c=card(W.q[0]);if(c)sayVar(deText(c));},
@@ -7032,7 +7076,7 @@ var ACT={
   rvshow:function(){W.step='a';drawPage();},
   rvself:function(b){var g=b.dataset.v==='1'?2:0,c=card(W.q[0]);grade(W.q[0],g);if(c)logAns('w','w',g>0,c.tr+' → Almancası? (kendin hatırla)',g>0?deText(c):'(hatırlayamadım)',deText(c),'');rvAdvance(g===0);},
   more:function(){var d=day();d.npx=(d.npx||0)+5;save();var skip={};(W.q||[]).forEach(function(i){skip[i]=1;});var n=pickNew(5,skip);if(!n.length){toast('Havuzda yeni kelime kalmadı');return;}W.q=(W.q||[]).concat(n);W.n0=(W.n0||0)+n.length;if(X&&X.kind==='review')drawPage();},
-  addcard:function(b){var id=b.dataset.id,t=today();if(!S.srs[id]){S.srs[id]={i:0,e:2.5,n:0,d:t,a:t};save();if(W.q&&W.q.indexOf(id)<0){W.q.push(id);W.n0=(W.n0||0)+1;}}
+  addcard:function(b){var id=b.dataset.id;if(queueNew(id,true))save();
     b.outerHTML='<span class="tag">destede</span>';toast('Kelime tekrarına eklendi');},
   topic:function(b){var id=b.dataset.id;if(X&&(X.kind==='lesson'||X.kind==='uret'))X=STACK.length?STACK.pop():null;if(X&&X.kind==='topic'&&X.id===id){X.tab='ders';drawPage();$('page').scrollTop=0;return;}openPage({kind:'topic',id:id,tab:'ders',rv:{}});},
   ttab:function(b){X.tab=b.dataset.v;drawPage();},
@@ -7079,8 +7123,8 @@ var ACT={
   usave:function(){var id=X.id,x=gxs(id),txt=(x.wd||'').trim(),t=today();
     if(sentN(txt)<3){toast('En az 3 cümle yaz (her biri en az 3 kelime)');return;}
     if(!X.ck[0]||!X.ck[1]||!X.ck[2]){toast('Önce kontrol listesini işaretle');return;}
-    x.w=(x.w||[]).concat([{d:t,t:txt}]);delete x.wd;x.last=t;if(!x.stg.uret)x.stg.uret=t;if(!x.due||x.due<=t)x.due=addD(t,1);
-    var d=day();d.g=(d.g||0)+3;d.gs=1;d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+txt;if(!d.gtDone||d.gt===id){d.gt=id;d.gtDone=1;}
+    var first=!x.stg.uret;x.w=(x.w||[]).concat([{d:t,t:txt}]);delete x.wd;x.last=t;if(first){x.stg.uret=t;if(!x.due||x.due<=t)x.due=addD(t,1);}
+    var d=day();d.g=(d.g||0)+3;if(first)d.gs=1;d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+txt;if(!d.gtDone||d.gt===id){d.gt=id;d.gtDone=1;}
     lgAdd({k:'g',ref:id,s:'uret',c:sentN(txt),n:sentN(txt),ok:1,nx:x.due});lgBump('y','',function(e){e.n=sentN(d.sch);});save();
     closePage();toast('Üret tamam · cümlelerin Schreiben görevine de sayıldı');},
   ezopen:function(b){if(X&&(X.kind==='ezq'||X.kind==='ezfill'))X=STACK.length?STACK.pop():null;if(X&&X.kind==='ez'&&X.id===b.dataset.id){drawPage();return;}openPage({kind:'ez',id:b.dataset.id,hide:false,rev:{}});},
@@ -7091,9 +7135,10 @@ var ACT={
   ezmix:function(){var d=ezDueList().slice(0,4).map(function(t){return t.id;});if(!d.length){toast('Tekrar bekleyen tablo yok');return;}startEz(d);},
   ezwrong:function(){startEz(X.tids,wrongCopy());},
   say:function(b){say(b.dataset.t);},
-  gfocus:function(b){var id=b.dataset.id;S.gfocus=S.gfocus===id?'':id;touch('gfocus');if(S.gfocus){var d=day();d.gt=id;delete d.gtDone;}save();drawPage();toast(S.gfocus?'Bugünün konusu: '+GBY[id][2]:'Günün konusunu uygulama seçecek');},
+  gfocus:function(b){var id=b.dataset.id;S.gfocus=S.gfocus===id?'':id;touch('gfocus');if(S.gfocus){var d=day();d.gt=id;delete d.gtDone;}save();drawPage();toast(S.gfocus?'Öncelikli konu: '+GBY[id][2]+' · Bugün ve sonraki günlerde önce bu gelir':'Günün konusunu uygulama seçecek');},
   gknown:function(b){var id=b.dataset.id,x=gxs(id);x.known=!x.known;x.kt=Date.now();if(!x.known)delete x.known;if(S.gdone[id]&&!stgAll(id))delete S.gdone[id];save();drawPage();},
-  gwadd:function(b){var id=b.dataset.id,t=today(),n=0;(GW[id]||[]).forEach(function(w,i){var k=wid(id,i);if(!S.srs[k]){S.srs[k]={i:0,e:2.5,n:0,d:t,a:t};n++;if(W.q&&W.day===t){W.q.push(k);W.n0=(W.n0||0)+1;}}});save();drawPage();toast(n+' kelime kelime tekrarına eklendi');},
+  gwadd:function(b){var id=b.dataset.id,n=0;S.gwq=S.gwq||[];(GW[id]||[]).forEach(function(w,i){var k=gwId(id,i);if(!S.srs[k]&&!S.srs[wid(id,i)]&&S.gwq.indexOf(k)<0){S.gwq.push(k);n++;}});save();if(X)drawPage();else render();
+    toast(n?n+' kelime sıraya alındı · yeni kelime olarak önce bunlar tanıtılacak (günde '+S.set.newPerDay+')':'Bu konunun kelimeleri zaten sırada');},
   szadd:function(b){var j=+b.dataset.j;X.placed.push(X.bank.splice(j,1)[0]);if(!X.bank.length)szCheck();drawPage();},
   szrem:function(b){if(X.state)return;var j=+b.dataset.j;X.bank.push(X.placed.splice(j,1)[0]);drawPage();},
   szclear:function(){X.bank=X.bank.concat(X.placed);X.placed=[];drawPage();},
@@ -7108,11 +7153,12 @@ var ACT={
     drawPage();},
   gsback:function(){W.cur.pl.pop();drawPage();},
   wcard:function(b){openPage({kind:'wcard',id:b.dataset.id});},
-  hardgo:function(){var q=hardWords().slice(0,15);if(!q.length)return;W={q:shuffle(q),day:today(),step:'q',pick:null,n0:q.length,seen:{},cur:null,hard:1};openPage({kind:'review'});},
+  hardgo:function(){var q=hardWords().slice(0,15);if(!q.length)return;if(!W.hard)W0=W;W={q:shuffle(q),day:today(),step:'q',pick:null,n0:q.length,seen:{},cur:null,hard:1};openPage({kind:'review'});},
   match:function(){var o={kind:'match',r:0,ok:0,tot:0};if(!matchStart(o))return;if(X&&X.kind==='match'){X=o;drawPage();}else openPage(o);},
   mpick:function(b){var v=b.dataset.v,i=+v.slice(1);X.bad=null;
     if(v[0]==='l'){X.sel=i;drawPage();return;}
     if(X.sel==null){toast('Önce soldan Almanca kelimeyi seç');return;}
+    if(X.sel!==i&&X.p[X.sel].tr===X.p[i].tr)i=X.sel;
     if(X.sel===i){X.p[i].done=1;X.tot++;if(!X.miss[i])X.ok++;sayVar(X.p[i].de);X.sel=null;
       if(X.p.every(function(x){return x.done;})){X.r++;if(X.r<3)matchStart(X);}}
     else{X.miss[X.sel]=1;X.bad='r'+i;}
@@ -7136,11 +7182,10 @@ var ACT={
     if(PK[k]&&S.srs[PK[k].id]){toast('Bu kelime zaten kelime tekrarında');return;}
     var ex=(X.ex||'').trim();
     if(ex&&ex.indexOf('*')<0){var re=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'[A-Za-zÄÖÜäöüß]*)','i');ex=ex.replace(re,'$1*$2*');}
-    var id=uid('m:'),t=today();
+    var id=uid('m:');
     S.mine.push({id:id,a:a,w:w,f:(X.f||'').trim(),tr:tr,ex:ex,src:X.src,p:a?'n':'x',l:0});
-    S.srs[id]={i:0,e:2.5,n:0,d:t,a:t};save();
-    if(W.q&&W.day===t){W.q.push(id);W.n0=(W.n0||0)+1;}
-    closePage();toast((a?a+' ':'')+w+' eklendi · bugün sorulacak');
+    queueNew(id,true);save();
+    closePage();toast((a?a+' ':'')+w+' eklendi · bugün tanıtılır, ilk soru yarın');
   },
   settings:function(){if(X&&X.kind==='set')return;openPage({kind:'set'});},
   theme:function(b){themePref=b.dataset.v;try{localStorage.setItem(THEMEKEY,themePref);}catch(e){}applyTheme();drawPage();},
@@ -7159,7 +7204,7 @@ document.addEventListener('click',function(e){
 });
 document.addEventListener('input',function(e){
   var el=e.target,k=el.dataset&&el.dataset.in;if(!k)return;
-  if(k==='sch'){var d=day();d.sch=el.value;if(sentN(d.sch)||lgFind('y'))lgBump('y','',function(e){e.n=sentN(d.sch);});save();var n=$('schN');if(n)n.textContent=sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır';refreshScore();var kd=document.querySelector('.kday');if(kd){var kk=dayKalip(),u=kk&&kalipUsed(kk,d.sch);kd.classList.toggle('ok',!!u);kd.querySelector('span').textContent='Bugünün kalıbı · yazında kullan'+(u?' ✓':'');}}
+  if(k==='sch'){if(RDAY&&today()!==RDAY){render();return;}var d=day();d.sch=el.value;if(sentN(d.sch)||lgFind('y'))lgBump('y','',function(e){e.n=sentN(d.sch);});save();var n=$('schN');if(n)n.textContent=sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır';refreshScore();var kd=document.querySelector('.kday');if(kd){var kk=dayKalip(),u=kk&&kalipUsed(kk,d.sch);kd.classList.toggle('ok',!!u);kd.querySelector('span').textContent='Bugünün kalıbı · yazında kullan'+(u?' ✓':'');}}
   else if(k==='q'){$('qres').innerHTML=searchHtml(el.value);}
   else if(k==='nans'){S.notes.forEach(function(n){if(n.id===el.dataset.id)n.ans=el.value;});save();}
   else if(k==='ty'||k==='dk'){if(X)X.val=el.value;}
@@ -7184,7 +7229,11 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Enter'&&!e.shiftKey&&e.target&&e.target.dataset&&e.target.dataset.in==='dk'){e.preventDefault();ACT.dkcheck();}
   if(e.key==='Enter'&&e.target&&e.target.dataset&&e.target.dataset.in==='ezf'){e.preventDefault();var ins=[].filter.call(document.querySelectorAll('#page .fin'),function(x){return x.offsetParent!==null;}),ix=ins.indexOf(e.target);if(ins[ix+1])ins[ix+1].focus();else ACT.ezfcheck();}
 });
-document.addEventListener('visibilitychange',function(){if(!document.hidden&&W.day&&W.day!==today()){W.q=null;if(!X)render();}});
+/* gün değişimi: uygulama açıkken gece yarısı geçerse ekran yeni güne geçer (açık ders/test başladığı güne yazar) */
+var RDAY=null;
+function dayRoll(){if(RDAY&&today()!==RDAY){W.q=null;if(!X)render();}}
+document.addEventListener('visibilitychange',function(){if(!document.hidden)dayRoll();});
+setInterval(dayRoll,30000);
 
 /* ================= DEFTERİM: "bunu nasıl derim?" ve "bunu duydum" =================
    Çevrimdışı ön analiz: cümlenin hangi gramer konusunu gerektirdiğini tahmin eder,
@@ -7354,9 +7403,9 @@ function pKalip(){
   var b='<div><div class="eyebrow">Kalıplar</div><h1>Hazır cümleler</h1></div><p class="small muted">Her gün işine yarayan kısa cümleler. <b>+</b> ile eklediklerin iki yerde çalışır: kelime tekrarında Türkçesinden Almancasını hatırlarsın ve Bugün sayfasındaki Yazma görevinde "Bugünün kalıbı" olarak karşına çıkar; yazında kullanınca ✓ alır. Kullandığın kalıp, konuşurken de aklına gelir.</p>'+
     '<div class="seg">'+[[0,'Hepsi'],[1,'A1'],[2,'A2'],[3,'B1']].map(function(o){return '<button class="'+(lv===o[0]?'on':'')+'" data-act="klv" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
   cats.forEach(function(c){
-    var ids=by[c],rest=ids.filter(function(i){return !S.srs['k:'+i];}).length;
+    var ids=by[c],rest=ids.filter(function(i){return !S.srs['k:'+i]&&(S.gwq||[]).indexOf('k:'+i)<0;}).length;
     b+='<div class="card" style="padding:12px 16px 4px"><div class="row"><div class="eyebrow">'+esc(c)+'</div><div class="sp"></div>'+(rest?'<button class="btn sm" data-act="kadd" data-ids="'+ids.join(',')+'">Hepsini ekle ('+rest+')</button>':'<span class="tag ok">eklendi</span>')+'</div>'+
-      ids.map(function(i){var k=KL[i],s=S.srs['k:'+i];return '<div class="wl"><div class="w"><b lang="de">'+esc(k[2])+spkBtn(k[2])+'</b><span>'+esc(k[3])+' · '+LV[k[0]]+'</span></div>'+(s?'<span class="tag'+(s.n>=1?' ok':'')+'">'+(s.n>=1?'öğrenildi':'eklendi')+'</span>':'<button class="btn sm" data-act="kadd" data-ids="'+i+'">+</button>')+'</div>';}).join('')+'</div>';
+      ids.map(function(i){var k=KL[i],s=S.srs['k:'+i];return '<div class="wl"><div class="w"><b lang="de">'+esc(k[2])+spkBtn(k[2])+'</b><span>'+esc(k[3])+' · '+LV[k[0]]+'</span></div>'+(s?'<span class="tag'+(s.n>=1?' ok':'')+'">'+(s.n>=1?'öğrenildi':'eklendi')+'</span>':(S.gwq||[]).indexOf('k:'+i)>=0?'<span class="tag">sırada</span>':'<button class="btn sm" data-act="kadd" data-ids="'+i+'">+</button>')+'</div>';}).join('')+'</div>';
   });
   return {t:'Kalıplar',b:b};
 }
@@ -7371,14 +7420,15 @@ ACT.ndel=function(b){if(!confirm('Not silinsin mi?'))return;S.tomb=S.tomb||{};S.
 ACT.ncard=function(b){
   var n=null;S.notes.forEach(function(x){if(x.id===b.dataset.id)n=x;});var de=($('nde').value||'').trim();
   if(!de){toast('Önce doğru Almanca cümleyi yaz');return;}
-  n.de=de;var id=uid('m:'),t=today();
-  S.mine.push({id:id,a:'',w:de,f:'',tr:n.k==='say'?n.t:(n.ans||'').slice(0,120)||'Defterimden',ex:'',src:'defter',p:'x',l:0});
-  S.srs[id]={i:0,e:2.5,n:0,d:t,a:t};n.done=true;save();if(W.q&&W.day===t){W.q.push(id);W.n0=(W.n0||0)+1;}
-  drawPage();toast('Kelime tekrarına eklendi');
+  var tr=n.k==='say'?n.t:(n.ans||'').slice(0,120);if(!String(tr||'').trim()){tr=(window.prompt('Bu cümlenin Türkçe anlamı ne? (kartta soru olarak çıkacak)','')||'').trim();if(!tr){toast('Türkçe anlam olmadan kart yapılamaz');return;}}
+  n.de=de;var id=uid('m:');
+  S.mine.push({id:id,a:'',w:de,f:'',tr:tr,ex:'',src:'defter',p:'x',l:0});
+  queueNew(id,true);n.done=true;save();
+  drawPage();toast('Eklendi · bugün tanıtılır, ilk soru yarın');
 };
 ACT.kalip=function(){openPage({kind:'kalip',lv:0});};
 ACT.klv=function(b){X.lv=+b.dataset.v;drawPage();};
-ACT.kadd=function(b){var t=today(),n=0,redraw=X?drawPage:render;b.dataset.ids.split(',').forEach(function(i){var k='k:'+i;if(!S.srs[k]){S.srs[k]={i:0,e:2.5,n:0,d:t,a:t};n++;if(W.q&&W.day===t){W.q.push(k);W.n0=(W.n0||0)+1;}}});save();redraw();toast(n+' kalıp tekrarına eklendi');};
+ACT.kadd=function(b){var n=0,redraw=X?drawPage:render;b.dataset.ids.split(',').forEach(function(i){if(queueNew('k:'+i,true))n++;});save();redraw();toast(n+' kalıp eklendi · bugün tanıtılır, ilk soru yarın');};
 
 function wrongCopy(){return X.items.filter(function(it,i){return X.res[i]==='no';}).map(function(it){var c={};for(var k in it)c[k]=it[k];if(c.o)c.o=shuffle(c.o.slice());return c;});}
 function focusTy(){var el=document.querySelector('#page [data-in="ty"]');if(el){try{el.focus();var n=el.value.length;el.setSelectionRange(n,n);}catch(e){}}}
@@ -7462,7 +7512,7 @@ function ezMark(it,ok){var e=ezs(it.tz),t=today();e.v=8;e.cd=e.cd||{};
   if(!ok){e.c[it.k]=0;delete e.cd[it.k];}
   else if(e.cd[it.k]!==t){e.c[it.k]=(e.c[it.k]||0)+1;e.cd[it.k]=t;}
   e.last=t;}
-function ezRecord(ok){var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;ezMark(it,ok);var d=day();d.ez=(d.ez||0)+1;save();}
+function ezRecord(ok){var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;ezMark(it,ok);var d=xday();d.ez=(d.ez||0)+1;save();}
 function pEzq(){
   var n=X.items.length,ttl=X.tids.length>1?'Karışık ezber':esc(EZBY[X.tids[0]].t);
   if(X.i>=n)return {t:ttl,b:ezEnd()};
@@ -7486,7 +7536,7 @@ function ezEnd(){
     X.items.forEach(function(it,i){var p=per[it.tz]||(per[it.tz]=[0,0]);p[1]++;if(X.res[i]==='ok')p[0]++;});
     X.per=per;ezSchedule(per,X.retry);
     var tot=0;X.tids.forEach(function(id){tot+=ezCells(EZBY[id]).length;});
-    if(!X.retry&&n>=Math.min(6,tot)){var d=day();d.ezt=(d.ezt||0)+1;}
+    if(!X.retry&&n>=Math.min(6,tot)){var d=xday();d.ezt=(d.ezt||0)+1;}
     lgAdd({k:'e',ref:X.tids.join(','),s:X.retry?'retry':'test',c:X.ok,n:n,ok:!X.retry&&n&&X.ok/n>=.8?1:0,nx:X.tids.length===1?ezpeek(X.tids[0]).due||'':''});
     save();
   }
@@ -7604,7 +7654,7 @@ function pEzFill(){
   return {t:'Boş tablo',b:b};
 }
 function ezFillCheck(){
-  var t=EZBY[X.id],cells=ezFillCells(t),ok=0,d=day();X.res8={};
+  var t=EZBY[X.id],cells=ezFillCells(t),ok=0,d=xday();X.res8={};
   var nf=0,prev=X.again&&X.prev||{};
   cells.forEach(function(c){var v=X.vals[c.k]||'',acc=ezAcc(t,c.k),good=!!v.trim()&&acc.some(function(a){return ezN(a)===ezN(v);});
     X.res8[c.k]=good?'ok':'no';if(good)ok++;if(prev[c.k]==='ok')return;if(v.trim())nf++;ezMark({tz:t.id,k:c.k},good);});
@@ -8385,7 +8435,7 @@ function pHub(){
   return {t:'Bağlantı haritası',b:b};
 }
 function hubsCard(){
-  return '<div class="card"><div class="eyebrow">Bağlantı haritası · 9 büyük fikir</div><p class="small muted" style="margin-top:4px">40 konu aslında 9 temel mantığın çeşitlemesi. Bir aileyi aç, konuların nasıl bağlandığını gör.</p><ul class="tl" style="margin-top:6px">'+
+  return '<div class="card"><div class="eyebrow">Bağlantı haritası · 9 büyük fikir</div><p class="small muted" style="margin-top:4px">'+G.length+' konu aslında 9 temel mantığın çeşitlemesi. Bir aileyi aç, konuların nasıl bağlandığını gör.</p><ul class="tl" style="margin-top:6px">'+
     HUBO.map(function(hid){var h=HUB[hid],p=hubProg(hid),n=hubMembers(hid).filter(function(x){return x.indexOf('g:')===0;}).length;
       return '<li><button data-act="golink" data-to="hub:'+hid+'"><span class="dot" style="background:var(--les)"></span><span class="nm"><b>'+esc(h.t)+'</b><span class="sub">'+esc(h.s)+' · '+n+' konu</span>'+bar(p,'var(--les)')+'</span><span class="pc num">%'+pct(p)+'</span></button></li>';}).join('')+'</ul></div>';
 }
@@ -8531,6 +8581,7 @@ function mergeS(L,R){
     M.err[k]={n:Math.max(e1.n||0,e2.n||0),d:later(e1.d,e2.d),h:h,ex:(e1.n||0)>=(e2.n||0)?e1.ex:cp(e2.ex)};}
   var tomb=cp(L.tomb||{});for(k in (R.tomb||{}))tomb[k]=1;M.tomb=tomb;
   M.qn=unionId(L.qn,R.qn,tomb).sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0;});
+  var gq={};M.gwq=(L.gwq||[]).concat(R.gwq||[]).filter(function(k){if(gq[k])return false;gq[k]=1;return true;});
   M.wl=unionId(L.wl,R.wl,{}).sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0;});if(M.wl.length>WLMAX)M.wl=M.wl.slice(-WLMAX);
   M.al=cp(L.al||{});for(k in (R.al||{})){var a1=M.al[k]||(M.al[k]={});for(var sk in R.al[k]){var u=a1[sk]||[0,0],v=R.al[k][sk];a1[sk]=[Math.max(u[0],v[0]),Math.max(u[1],v[1])];}}
   M.at=cp(L.at||{});for(k in (R.at||{})){var u2=M.at[k]||[0,0,''],v2=R.at[k];M.at[k]=[Math.max(u2[0],v2[0]),Math.max(u2[1],v2[1]),later(u2[2],v2[2])||''];}
@@ -8620,7 +8671,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
