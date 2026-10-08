@@ -86,3 +86,39 @@ Satır numaraları: scratchpad/v22/base/index.html
 - Kök neden: `rpText` (8021-8099) silinen bölümlerden sonra numaralar güncellenmemiş; `var nh=…` (8069) hesaplanıp kullanılmıyor.
 - Düzeltme: başlıkları sayaçla üret (`var sec=0;function H(t){o.push('## '+(++sec)+'. '+t);}`), `nh` satırını sil.
 
+## [ÖNEM: yüksek] Kelime tekrarı açıkken senkron gelirse "Devam" düğmesi çalışmıyor (sayfa hatası)
+- Kullanıcı ne görüyor: Telefonda kelime tekrarı yaparken başka uygulamaya geçip dönüyor (ya da 2 dk'lık otomatik eşitleme çalışıyor) ve bilgisayarda o gün bir şey değişmişse: ekrandaki kartta "Devam"a / "Doğru tahmin → devam"a basınca hiçbir şey olmuyor; kart aynı kalıyor. Kapatıp yeniden açmak gerekiyor.
+- Tekrar: `ezber/t9_sync.js` (GitHub API `page.route` ile taklit edildi; uzak kayıtta yeni bir not var). Kart cevaplandıktan sonra `synow` → `sync sonrası W.q: null X: review` → `rvok` → `PAGEERROR TypeError: Cannot read properties of null (reading 'shift')`.
+- Kök neden: `sync()` 8367: birleşme bir şey değiştirdiyse koşulsuz `W.q=null` yapıyor; açık `review` sayfası `W.q`'yu kullanmaya devam ediyor (`rvAdvance` 6666, `ACT.rvok` 6843, `pReview` 6578 `q.length`). Tetikleyiciler: `visibilitychange` (8426), 2 dk aralık (8425), `online`.
+- Düzeltme: `if(!(X&&X.kind==='review'))W.q=null; else W.stale=1;` ve review kapanınca/bitince `W.stale` ise kuyruğu yeniden kur; ya da `rvAdvance`/`pReview` başında `if(!W.q)buildQueue();`.
+
+## [ÖNEM: orta] Bir cihazda "Tüm verileri sil" / "Yedek yükle" yapılırsa, öteki cihaz o arada bir şey kaydettiyse eski veriler her iki cihaza geri geliyor
+- Kullanıcı ne görüyor: Telefonda bütün verileri silip temiz başlıyor. Dizüstü (açık sekme/çevrimdışı) sıfırlamadan sonra herhangi bir kayıt yaptıysa, eşitlemeden sonra eski kelimeler, ezber tabloları ve günler telefona da geri geliyor. Yedekten geri yüklemede de aynı.
+- Tekrar: `ezber/t10_resetghost.js` → `phone: srs 0, ez 0, days 0` (sıfırlanmış) → `phoneAfter: srs 4, ez 1, days 1`.
+- Kök neden: `mergeS` 8321-8322: uzak `rz` yalnız `R.rz > L.mt-1` ise uygulanıyor; değilse normal birleşme yapılıp `M.rz=max` ile sıfırlama "tüketilmiş" sayılıyor, eski veriler korunarak buluta yazılıyor.
+- Düzeltme: `R.rz>L.rz` ise her durumda `R`'yi temel al; L'den yalnız `mt>R.rz` olan değişiklikleri (zaman damgalı alanlar: srs.u, hk.u, qn/wl/notes d) taşı. En basit: `R.rz>(L.rz||0)` → `return R` ve kullanıcıya "öteki cihazda veriler sıfırlandı" uyarısı.
+
+## [ÖNEM: orta] "Bu konuyu baştan al" öteki cihazdaki sonraki çalışmayı siliyor
+- Kullanıcı ne görüyor: Telefonda Perfekt'i "baştan al"dı; dizüstünde (henüz eşitlenmemiş) Perfekt Anla+Tanı'yı yeniden geçti. Eşitlemeden sonra iki aşama da yok.
+- Tekrar: `ezber/t11_mergeday.js` → `g1_after: {"m":{},"stg":{},"rv":[],"w":[],"rs":1000}` (B'nin 2000'deki anla/tani kaybolur).
+- Kök neden: `mergeGx` 8307: `rs` farklıysa büyük `rs`'li nesne bütünüyle kazanıyor; diğer taraftaki `rs`'den sonraki aşama tarihleri (`stg[k]` ≥ reset günü) atılıyor.
+- Düzeltme: `rs` kazanan nesneye, diğer taraftan `stg[k]`/`rv` tarihlerinden reset anından sonra olanları ekle (aşama tarihine saat yoksa `last>=resetGünü` koşuluyla).
+
+## [ÖNEM: düşük] İki cihazın günlük konu/ezber seçimi birleşince alfabetik küçük olan kazanıyor (g10 > g2'yi ezer)
+- Kullanıcı ne görüyor: Bugün başlığı gün ortasında başka bir konuya/tabloya dönebiliyor; seçilen, kullanıcının çalıştığı değil, kimliği alfabetik olarak önce gelen ("g10" < "g2", "art" < "seinhaben").
+- Tekrar: `ezber/t11_mergeday.js` → `{ ezd: 'art', gt: 'g10' }` (A: seinhaben/g2, B: art/g10).
+- Kök neden: `mergeDay` 8302: `(k==='ezd'||k==='gt')?(x<y?x:y)`.
+- Düzeltme: günün ilk seçim zamanını sakla (`d.gtT`) ve önce seçileni koru; ya da çalışılan tablo/konu kaydı (bkz. ilk bulgu) varsa onu başlığa yaz.
+
+## [ÖNEM: orta] Kısmi "Boş tabloyu doldur" oturmuş tabloyu sıfırlıyor ve tekrarını yarına çekiyor
+- Kullanıcı ne görüyor: "Belirli artikel" %100 oturmuş, sıradaki tekrar 20 Eki. Sadece ilk satırı (3 hücre) doldurup "Kontrol et"e basınca sonuç "3 / 12", tablo **%25**'e düşüyor, tekrar **15 Eki**'ye (yarın) çekiliyor. Boş bıraktığı 9 hücre "bilmiyorum" sayıldı ama ekran bunu önceden söylemiyor (yalnız "Bilmediğin hücreyi boş bırak").
+- Tekrar: `ezber/t2_ezfill.js` → `10-13 test sonrası {n:3, due:'2026-10-20', cells2:12}` → `kısmi doldurma sonrası {n:3, due:'2026-10-15', cells2:3, cells … "1-0":0 …}`.
+- Kök neden: `ezFillCheck` 7427-7434: boş hücre için de `ezMark(...,false)` (seriyi 0'a çeker); `per=[ok,cells.length]` ile `ezSchedule` boşları da payda sayıp <%80 → `due=yarın`.
+- Düzeltme: boş hücreleri işaretleme/paydaya katma (yalnız doldurulanları değerlendir) ya da "Kontrol et"ten önce "9 hücre boş: bilmiyorum sayılacak" uyarısı göster; tablo vadesi gelmemişse kısmi doldurma `due`'yu öne çekmesin.
+
+## [ÖNEM: orta] "Oturdu" üç ekranda üç farklı anlamda; ezber için tanımı hiç yazmıyor
+- Kullanıcı ne görüyor: Kelimeler: "oturdu = tekrar aralığı 21 günü geçti" (açıklanmış). Konular: "oturdu = 5 aşama + 2 tekrar". Ezber: "%100 oturdu / 1/12 tablo oturdu" — bir hücreyi art arda 2 kez doğru bilmek (aynı dakikada bile) ve hücrelerin %80'i; bu tanım arayüzde yok. Test sonucu "12/12 Harika" iken tablo %0 görünmesinin sebebi de bu.
+- Tekrar: `ezber/t1_ezdays.js`, `ezber/t8_kalipacts.js` (kural tablosu: "6 / 6 Harika … Fiil 2. sırada %0").
+- Kök neden: `ezProg` 7231 (seri≥2), `ezLi` 7435-7439, `vEzber` 7450 ("tablo oturdu"), `pEz` 7385 "hücre oturdu"; açıklama metni (`pEz` notu 7399) tanım vermiyor.
+- Düzeltme: Ezber'de "oturdu" yerine "ezberlendi" ve tanımı ekrana yaz ("bir hücre iki ayrı günde doğru bilinince ezberlenmiş sayılır"); test sonucunda "%0 → bu test 12 hücrenin ilk doğrusu; yarınki testte doğru bilirsen ezberlenir" gibi açıklama.
+
