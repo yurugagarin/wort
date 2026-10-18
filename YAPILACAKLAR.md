@@ -47,11 +47,11 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 32. [YAPILDI] Kurs tablosu düzeninde tam ifadeli sıfat eki tabloları (der/die/das ve ein/kein/mein + sıfat + isim; hafıza teknikleri, renkli desen) + Ezber/Konular/Kelime'de tablo ve konu araması.
 
 ## Tur 4 · Yeniden tasarım (18 Ekim, kullanıcı onayladı: "söylediklerinin hepsini yap")
-33. [ ] Günün çalışması: Bugün'de tek "Başla/Devam" düğmesi; kelime → konu → ezber → yazma sırayla, aralarda geçiş ekranı, sonunda özet.
-34. [ ] 4 sekme: Bugün · Yol · Kütüphane (konular, tablolar, kelimeler+oyunlar, kalıplar, defter, tek arama) · Ben (ilerleme, geçmiş, sınav, rapor, ayarlar).
-35. [ ] Ortak durum dili: Yeni → Öğreniyorum → Tekrar zamanı → Oturdu; kelime/konu/tablo aynı rozet ve renk; yüzde yerine adım.
-36. [ ] Yol haritası: A1 temel tablolar + A2.1 → B1.2 konular dikey patika, bağlı tablolar yan durak, "Buradasın".
-37. [ ] Odak modu: alıştırmada cevap paneli alttan, "Neden?" kapalı, düğmeler altta.
+33. [YAPILDI] Günün çalışması: Bugün'de tek "Başla/Devam" düğmesi; kelime → konu → ezber → yazma sırayla, aralarda geçiş ekranı, sonunda özet.
+34. [YAPILDI] 4 sekme: Bugün · Yol · Kütüphane (konular, tablolar, kelimeler+oyunlar, kalıplar, defter, tek arama) · Ben (ilerleme, geçmiş, sınav, rapor, ayarlar).
+35. [YAPILDI] Ortak durum dili: Yeni → Öğreniyorum → Tekrar zamanı → Oturdu; kelime/konu/tablo aynı rozet ve renk; yüzde yerine adım.
+36. [YAPILDI] Yol haritası: A1 temel tablolar + A2.1 → B1.2 konular dikey patika, bağlı tablolar yan durak, "Buradasın".
+37. [YAPILDI] Odak modu: alıştırmada cevap paneli alttan, "Neden?" kapalı, düğmeler altta.
 38. [ ] Az yazı: ana ekranlarda tek satır, açıklamalar ⓘ altında.
-39. [ ] Bağlılık: çalışma sonu özeti, seri dondurma hakkı, haftalık hedef, kilometre taşları, sınav geri sayımı.
+39. [YAPILDI] Bağlılık: çalışma sonu özeti, seri dondurma hakkı, haftalık hedef, kilometre taşları, sınav geri sayımı.
 40. [ ] Görsel dil: alan renkleri her yerde aynı, kart içinde kart yok, masaüstünde iki sütun.
