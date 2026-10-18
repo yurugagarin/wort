@@ -45,3 +45,13 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
   Bitenleri canlıya almak: python3 hikaye/araclar.py merge → hikaye.json'ı commit et → main'e birleştir (scratchpad/v13/main yok ise: git fetch; git checkout --detach origin/main; git merge dalı; git push origin HEAD:main).
 - Denetim (madde 30): bulgular denetim/audit_*.md içinde. Her bulguyu düzelt, düzeltileni dosyada [DÜZELTİLDİ] diye işaretle.
 32. [YAPILDI] Kurs tablosu düzeninde tam ifadeli sıfat eki tabloları (der/die/das ve ein/kein/mein + sıfat + isim; hafıza teknikleri, renkli desen) + Ezber/Konular/Kelime'de tablo ve konu araması.
+
+## Tur 4 · Yeniden tasarım (18 Ekim, kullanıcı onayladı: "söylediklerinin hepsini yap")
+33. [YAPILDI] Günün çalışması: Bugün'de tek "Başla/Devam" düğmesi; kelime → konu → ezber → yazma sırayla, aralarda geçiş ekranı, sonunda özet.
+34. [YAPILDI] 4 sekme: Bugün · Yol · Kütüphane (konular, tablolar, kelimeler+oyunlar, kalıplar, defter, tek arama) · Ben (ilerleme, geçmiş, sınav, rapor, ayarlar).
+35. [YAPILDI] Ortak durum dili: Yeni → Öğreniyorum → Tekrar zamanı → Oturdu; kelime/konu/tablo aynı rozet ve renk; yüzde yerine adım.
+36. [YAPILDI] Yol haritası: A1 temel tablolar + A2.1 → B1.2 konular dikey patika, bağlı tablolar yan durak, "Buradasın".
+37. [YAPILDI] Odak modu: alıştırmada cevap paneli alttan, "Neden?" kapalı, düğmeler altta.
+38. [ ] Az yazı: ana ekranlarda tek satır, açıklamalar ⓘ altında.
+39. [YAPILDI] Bağlılık: çalışma sonu özeti, seri dondurma hakkı, haftalık hedef, kilometre taşları, sınav geri sayımı.
+40. [ ] Görsel dil: alan renkleri her yerde aynı, kart içinde kart yok, masaüstünde iki sütun.
