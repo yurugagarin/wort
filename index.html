@@ -776,12 +776,6 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
   <button role="tab" data-act="tab" data-v="yol"><svg viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/></svg>Yol</button>
   <button role="tab" data-act="tab" data-v="kutup"><svg viewBox="0 0 24 24"><path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="M16.5 4.8l3.7-.9 3.3 15.6-3.7.8z" transform="translate(-2.2 0)"/></svg>Kütüphane</button>
   <button role="tab" data-act="tab" data-v="ben"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Ben</button>
-  <span class="dxl">Araçlar</span>
-  <button class="dx" data-act="hubs"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.2 7.2l7.4.4M7.3 8.2l3.6 7.6M16.9 9.2l-3.8 6.8"/></svg>Bağlantı haritası</button>
-  <button class="dx" data-act="rapor"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h7"/></svg>Rapor · Claude</button>
-  <button class="dx" data-act="golink" data-to="err"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Hata haritam</button>
-  <button class="dx" data-act="kalip"><svg viewBox="0 0 24 24"><path d="M5 6h14M5 11h14M5 16h9"/></svg>Kalıplar</button>
-  <button class="dx" data-act="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Ayarlar</button>
 </nav>
 
 <div class="page" id="page" hidden></div>
@@ -6422,7 +6416,7 @@ function vIlerleme(){
     (S.ptest?'<span class="small muted">test: '+trShort(S.ptest.date)+'</span>':'<button class="btn sm" data-act="ptest">Seviye testi</button>')+'</div>'+
     '<div class="meter"><div><div class="h">A2 tamamlandı<span>%'+pct(L.A2)+'</span></div>'+bar(L.A2,'var(--das)','thick')+'<div class="k">Gramer %'+pct(L.a2g)+' · A1 kelime %'+pct(L.v1)+' · A2 kelime %'+pct(L.v2)+' · ezber %'+pct((L.e1+L.e2)/2)+'</div></div>'+
     '<div><div class="h">B1 tamamlandı<span>%'+pct(L.B1)+'</span></div>'+bar(L.B1,'var(--les)','thick')+'<div class="k">Gramer %'+pct(L.b1g)+' · B1 kelime %'+pct(L.v3)+' · ezber %'+pct(L.e3)+'</div></div></div>'+
-    (S.ptest?'':'<p class="note" style="margin-top:10px">Henüz test yok: zaten bildiklerini uygulama bilmiyor. Seviye testi bu sayıları gerçeğe yaklaştırır.</p>')+'</div>';
+    (S.ptest?'':'<details class="ihelp"><summary>ⓘ Açıklama</summary><p class="note" style="margin-top:10px">Henüz test yok: zaten bildiklerini uygulama bilmiyor. Seviye testi bu sayıları gerçeğe yaklaştırır.</p></details>')+'</div>';
   h+=histCard();
   h+=pthCard();
   var r=pace(),remA2=G.filter(function(g){return (g[1]==='A2.1'||g[1]==='A2.2')&&tstat(g[0])!=='ok';}).length,remAll=G.filter(function(g){return tstat(g[0])!=='ok';}).length;
@@ -6433,7 +6427,7 @@ function vIlerleme(){
     '<div><b class="num">'+(remAll?(fb1?trDate(fb1):'—'):'Bitti')+'</b><span>B1 sonu bu hızla ('+remAll+' konu kaldı)</span></div>'+
     '<div><b class="num">'+(r?String(Math.round(r*10)/10).replace('.',','):'0')+'</b><span>haftada biten konu (son 4 hafta)</span></div>'+
     '<div><b class="num">'+(S.set.exam?String(need).replace('.',','):'—')+'</b><span>'+(S.set.exam?'sınava yetişmek için haftada gereken konu':'sınav tarihi yok (Ayarlar)')+'</span></div></div>'+
-    (r?'':'<p class="note" style="margin-top:10px">Konular oturdukça (5 aşama + 2 tekrar) tempon hesaplanır ve tarihler çıkar. Önerim: haftada 2 konu.</p>')+'</div>';
+    (r?'':'<details class="ihelp"><summary>ⓘ Açıklama</summary><p class="note" style="margin-top:10px">Konular oturdukça (5 aşama + 2 tekrar) tempon hesaplanır ve tarihler çıkar. Önerim: haftada 2 konu.</p></details>')+'</div>';
   var nq=(S.qn||[]).length,nw=(S.wl||[]).filter(function(x){return !S.rp||x.d>=S.rp;}).length;
   h+='<div class="card rpcard"><div class="row"><div><div class="eyebrow">Rapor · Claude\'a analiz ettir</div><p class="small muted" style="margin-top:4px">'+(S.rp?'Son rapordan beri ':'Şimdiye kadar ')+nw+' yanlış · '+nq+' kafa karışıklığı notu birikti.</p></div><div class="sp"></div><button class="btn sm" data-act="rapor">Raporu aç</button></div></div>';
   var ets=errTop(4);
@@ -6442,7 +6436,7 @@ function vIlerleme(){
   var verdictE=E.lo>=60?'Bugün girsen geçme ihtimalin yüksek.':E.lo>=45?'Yaklaşıyorsun; en zayıf modülüne yüklen.':'Henüz erken; her modülde 60 gerekiyor.';
   h+='<div class="card"><div class="eyebrow">Sınava bugün girsem? · '+esc(S.set.examName)+'</div><h2 style="margin-top:6px">'+verdictE+'</h2>'+
     '<div class="meter">'+E.m.map(function(x){return '<div><div class="h">'+x[0]+'<span>'+x[2]+' / 100</span></div><div class="mbar" style="--c:var(--'+x[1]+')"><i style="width:'+x[2]+'%"></i><s></s></div><div class="k">'+esc(x[3])+'</div></div>';}).join('')+'</div>'+
-    '<p class="note" style="margin-top:12px">Çizgi = geçme sınırı (60). Bu, gramer ilerlemen, kelime bilgin, ezber tabloların ve yazdıklarından yapılan kaba bir tahmin. Gerçek ölçü Goethe\'nin ücretsiz Modelltest\'idir.</p>'+
+    '<details class="ihelp"><summary>ⓘ Açıklama</summary><p class="note" style="margin-top:12px">Çizgi = geçme sınırı (60). Bu, gramer ilerlemen, kelime bilgin, ezber tabloların ve yazdıklarından yapılan kaba bir tahmin. Gerçek ölçü Goethe\'nin ücretsiz Modelltest\'idir.</p></details>'+
     (S.set.exam?'<div class="row" style="margin-top:10px"><b class="num" style="font-family:var(--f-disp);font-size:24px;color:var(--ink)">'+Math.max(0,dd(t,S.set.exam))+' gün</b><span class="small muted">sınava kaldı · '+trDate(S.set.exam)+'</span></div>':'<button class="btn wide" style="margin-top:10px" data-act="settings">Sınav tarihini gir</button>')+'</div>';
   var m0=addD(monday(t),-35);
   h+='<div class="card"><div class="eyebrow">Puan takvimi · son 6 hafta · güne dokun</div><div class="heat num">'+['Pt','Sa','Ça','Pe','Cu','Ct','Pz'].map(function(x){return '<div class="dn">'+x+'</div>';}).join('');
@@ -6530,7 +6524,7 @@ function pTopic(){
     '<button class="btn big wide" data-act="lesson" data-id="'+id+'" data-s="free">Yine de alıştırma yap · aşamaya sayılmaz</button>';
   b+='<div class="row" style="margin-top:8px"><button class="btn wide" data-act="gfocus" data-id="'+id+'">'+(foc?'✓ Öncelikli konum':'Öncelikli konum yap')+'</button><button class="btn wide" data-act="gknown" data-id="'+id+'">'+(x.known?'✓ Biliyorum':'Zaten biliyorum')+'</button></div>'+
     (tprog(id)>0||x.last||x.known?'<button class="link center" style="margin-top:12px;display:block;margin-left:auto;margin-right:auto" data-act="greset" data-id="'+id+'">Bu konuyu baştan al</button>':'')+
-    (x.known||st==='ok'?'':'<p class="note" style="margin-top:10px">Bir konu yaklaşık 1 hafta sürer: ilk gün Anla, Tanı, Kur; ertesi gün Üret; Üret\'ten 1 gün sonra 1. tekrar, ondan 3 gün sonra 2. tekrar. İki tekrar da %80 ise konu oturur; sonra 7, 14, 30, 60 günde bir kısa kontrol gelir. Biraz unutup yeniden hatırlamak, bilgiyi kalıcı yapan şeydir.</p>')+'</div>';
+    (x.known||st==='ok'?'':'<details class="ihelp"><summary>ⓘ Bir konu nasıl ilerler?</summary><p class="note" style="margin-top:6px">Bir konu yaklaşık 1 hafta sürer: ilk gün Anla, Tanı, Kur; ertesi gün Üret; Üret\'ten 1 gün sonra 1. tekrar, ondan 3 gün sonra 2. tekrar. İki tekrar da %80 ise konu oturur; sonra 7, 14, 30, 60 günde bir kısa kontrol gelir. Biraz unutup yeniden hatırlamak, bilgiyi kalıcı yapan şeydir.</p></details>')+'</div>';
   b+=topicHistHtml(id);
   b+='<div class="seg">'+[['ders','Ders'],['kel','Kelimeler'],['orn','Örnekler'],['not','Notum']].map(function(o){return '<button class="'+(tab===o[0]?'on':'')+'" data-act="ttab" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
   if(tab==='ders')b+=dersHtml(id);
