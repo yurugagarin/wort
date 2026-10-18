@@ -3392,10 +3392,10 @@ function grade(id,g){
   var was=s.i;
   if(!fresh&&!s.nw)fsInit(s,t);delete s.nw;fsNext(s,g+1,t);
   if(g===0){s.n=0;s.i=0;s.lp=(s.lp||0)+1;s.d=t;}
-  else{s.i=fsIvl(s.fs);s.n++;s.d=addD(t,s.i);}
+  else{s.i=fsIvl(s.fs);if(s.i>=3)s.i=Math.max(2,s.i+Math.round((Math.random()*2-1)*Math.max(1,s.i*.05)));s.n++;s.d=addD(t,s.i);}  /* ±%5 dağıtma: aynı gün öğrenilenler aynı güne yığılmasın */
   s.u=Date.now();
   /* kelime görevi: bugünün kartlarından doğru bilinip bugünlük kapanan her kart bir pay (aynı kart bir kez) */
-  var done1=wasDue&&g>0&&!(d.wd&&d.wd[id]);if(done1){d.wd=d.wd||{};d.wd[id]=1;d.w=(d.w||0)+1;}
+  var done1=wasDue&&g>0&&!(d.wd&&d.wd[id]);if(done1){d.wd=d.wd||{};d.wd[id]=1;d.w=(d.w||0)+1;if(!fresh)d.wrv=(d.wrv||0)+1;}
   lgBump('w','',function(e){e.a=(e.a||0)+1;if(g>0)e.c++;if(done1)e.n++;});
   if(fresh&&id.indexOf('p:')===0)d.np=(d.np||0)+1;
   if(was<21&&s.i>=21)d.sat=(d.sat||0)+1;   /* "oturdu" eşiği: 21 gün */
@@ -3437,10 +3437,12 @@ var CSET={};[['renk','rot blau grün gelb schwarz weiß braun grau orange rosa l
 /* günün kelime hedefi gün başında sabitlenir: vadesi gelen + yeni, en çok 25 */
 function ensureTarget(){
   var d=day();
-  if(d.wt==null){var c=counts(),nc=newCands();
-    /* tekrar birikmişse yeni kelime azalır: 20'nin üstündeki her 5 bekleyen kart için 1 yeni eksik */
-    d.ncap=Math.max(0,S.set.newPerDay-Math.floor(Math.max(0,c.due-20)/5));
-    d.wt=Math.min(25,c.due+Math.min(newLeft(),nc.st.length+nc.r.length));save();}
+  if(d.wt==null){var due=dueSorted().length,cap=wCap(),nc=newCands();
+    /* tekrar birikmişse yeni kelime azalır, kota dolmuşsa hiç gelmez */
+    d.ncap=Math.max(0,Math.min(S.set.newPerDay-Math.floor(Math.max(0,due-20)/5),cap-due));
+    d.rcap=Math.min(cap,due);
+    d.wt=d.rcap+Math.min(newLeft(),nc.st.length+nc.r.length);save();}
+  else if(d.rcap==null){d.rcap=Math.min(wCap(),Math.max(0,d.wt-(d.ncap||0)));save();}
 }
 
 /* ---------------- puan ---------------- */
@@ -6312,11 +6314,17 @@ function konuBands(L,seg){var h='';
 }
 
 /* ================= KELİMELER ================= */
+/* günlük kelime kotası: süre ayarından (dakika × ~3 kart). Birikmiş tekrarlar kotayı aşarsa kalanlar sonraki günlere kalır. */
+function wCap(){return (S.set.wmin||15)*3;}
+/* öncelik: hâlâ öğrenilen (aralığı 7 günden kısa) kartlar önce; sonra hatırlanma ihtimali yüksek olanlar (az emekle kurtarılır) */
+function dueSorted(){var t=today(),L=[],id;for(id in S.srs){var s=S.srs[id];if(s.d<=t&&card(id))L.push(id);}
+  function pr(x){var s=S.srs[x];if(!s.fs)return 2;return fsR(Math.max(0,dd(s.lr||s.d,t)),s.fs);}
+  L.sort(function(a,b){var la=(S.srs[a].i||0)<7,lb=(S.srs[b].i||0)<7;if(la!==lb)return la?-1:1;return pr(b)-pr(a);});
+  return L;}
+function wBacklog(){var d=day(),n=dueSorted().length,inQ=(W.q||[]).filter(function(id){return S.srs[id];}).length;return Math.max(0,n-inQ);}
 function buildQueue(){
   ensureTarget();
-  var t=today(),due=[],id;
-  for(id in S.srs)if(S.srs[id].d<=t&&card(id))due.push(id);
-  due.sort(function(a,b){var x=S.srs[a].d,y=S.srs[b].d;return x<y?-1:x>y?1:Math.random()-.5;});
+  var t=today(),d=day(),done=d.wrv!=null?d.wrv:(d.w||0),due=dueSorted().slice(0,Math.max(0,d.rcap+(d.rx||0)-done));
   var nw=pickNew(newLeft()),q=[];
   while(due.length||nw.length){if(due.length)q.push(due.shift());if(due.length)q.push(due.shift());if(nw.length)q.push(nw.shift());}
   W={q:q,day:t,step:'q',pick:null,n0:q.length,seen:{},cur:null};
@@ -6327,7 +6335,8 @@ function vKelimeler(){
   var h='<div class="card dark-card next"><div class="eyebrow">Kelime tekrarı · günlük · bugünün puanına girer (30 puan)</div><div class="t">'+(n?n+' kart seni bekliyor':'Bugünlük tamam')+'</div>'+
     (n?'<div class="small" style="margin:4px 0 8px"><b>'+nr+'</b> tekrar (daha önce öğrendiğin, tekrar zamanı gelen) · <b>'+nn+'</b> yeni kelime</div>':'')+
     (function(){var d=day(),rem=Math.max(0,(d.wt||0)-(d.w||0));return '<div class="small" style="margin:0 0 8px"><b>Puan hedefi: '+(d.w||0)+' / '+(d.wt||0)+' kart</b>'+(rem?' · '+rem+' kart kaldı':' · tamam')+(n>rem&&rem>=0&&n?' · hedefin üstündekiler isteğe bağlı, yarına kalabilir':'')+
-      (d.ncap!=null&&d.ncap<S.set.newPerDay?'<br>Biriken tekrar çok olduğu için bugün en çok '+d.ncap+' yeni kelime (normalde '+S.set.newPerDay+').':'')+'</div>';})()+
+      (d.ncap!=null&&d.ncap<S.set.newPerDay?'<br>Biriken tekrar çok olduğu için bugün en çok '+d.ncap+' yeni kelime (normalde '+S.set.newPerDay+').':'')+
+      (wBacklog()?'<br>Birikmiş '+wBacklog()+' kart günlük kotanın ('+(S.set.wmin||15)+' dk) dışında; her gün öncelik sırasıyla eriyor.':'')+'</div>';})()+
     '<details class="ihelp"><summary>ⓘ Nasıl çalışır?</summary><div class="muted small">Yeni kelime: anlamını cümlede tahmin edersin, kartı ve (A2-B1 kelimelerinde) hikâye kancasını görürsün; ilk soru <b>yarın</b> gelir. Tekrarlar zamanla zorlaşır: seç → artikeliyle yaz → cümlede boşluk doldur. Bildiklerin seyrek, bilemediklerin sık gelir.</div></details>'+
     '<button class="btn lime big wide" data-act="review">'+(n?'Başla':'Havuzdan 5 yeni kelime')+'</button>'+
     '<div class="srs num"><button data-act="wlist" data-v="due"><b>'+c.due+'</b><span>tekrarı gelen ›</span></button><button data-act="wlist" data-v="lrn"><b>'+c.lrn+'</b><span>öğreniliyor ›</span></button><button data-act="wlist" data-v="sat"><b>'+c.sat+'</b><span>oturdu ›</span></button></div>'+
@@ -7004,7 +7013,8 @@ function pReview(){
     var d=peek(today())||{};
     if(W.hard){W=W0||{q:null,day:'',step:'q',pick:null,n0:0,seen:{}};W0=null;return {t:'Zor kelimeler',b:'<div class="card rv"><div class="tr">Zor kelimeler bitti</div><p class="muted">Yanlış yaptıkların yine sık gelecek. Hikâyelerini bir kez daha oku.</p><button class="btn lime big wide" data-act="close">Kapat</button></div>'};}
     b='<div class="card rv"><div class="eyebrow">Kelime tekrarı</div><div class="tr">Bugünlük tamam!</div><p class="muted">'+(d.w||0)+' kart tamam'+(d.wt?' (hedef '+d.wt+')':'')+'. Yarın tekrar zamanı gelenler burada olacak.</p>'+
-      '<button class="btn dark big wide" data-act="more">5 yeni kelime daha öğren</button><button class="btn lime big wide" data-act="close">Kapat</button></div>';
+      (wBacklog()?'<p class="small muted">Birikmiş '+wBacklog()+' kart var; önceliğe göre sonraki günlere yayılıyor. Vaktin varsa:</p><button class="btn big wide" data-act="morerev">20 birikmiş kart daha</button>':'')+
+      (wBacklog()?'':'<button class="btn dark big wide" data-act="more">5 yeni kelime daha öğren</button>')+'<button class="btn lime big wide" data-act="close">Kapat</button></div>';
     return {t:'Kelime tekrarı',b:b};
   }
   var id=q[0],c=card(id);
@@ -7089,7 +7099,9 @@ function rvGrade(id,res){
 
 function rvAdvance(requeue){
   if(W.day&&W.day!==today()&&!W.hard){buildQueue();toast('Yeni gün başladı · bugünün kartları');drawPage();return;}
-  var id=W.q.shift();if(requeue)W.q.splice(Math.min(3,W.q.length),0,id);
+  var id=W.q.shift();
+  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard){W.lap[id]=1;W.q.splice(Math.min(4,W.q.length),0,id);}
+    else{var s=S.srs[id],d=day();if(s){s.d=addD(today(),1);d.wd=d.wd||{};if(!d.wd[id]&&!W.hard){d.wd[id]=1;d.w=(d.w||0)+1;d.wrv=(d.wrv||0)+1;}save();}}}
   W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;setStreak();
   if((!W.q||!W.q.length)&&wordDone(peek(today())))toast('Kelime görevi tamam · +30 puan');
 }
@@ -7233,6 +7245,7 @@ function pSet(){
     '<div class="card sec"><div class="lb">Sınav</div><select class="inp" data-in="examName">'+['Goethe-Zertifikat B1','telc Deutsch B1','ÖSD Zertifikat B1','Deneme sınavı'].map(function(o){return '<option'+(S.set.examName===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select>'+
       '<input class="inp" type="date" data-in="exam" value="'+esc(S.set.exam)+'"><div class="note">Tarih, İlerleme ekranındaki geri sayımı ve haftalık tempo hesabını besler.</div></div>'+
     '<div class="card sec"><div class="lb">Seviye testi</div><button class="btn wide" data-act="ptest">'+(S.ptest?'Testi yeniden yap (son: '+trShort(S.ptest.date)+')':'Seviye testine başla')+'</button></div>'+
+    '<div class="card sec"><div class="lb">Günlük kelime süresi</div><div class="seg">'+[10,15,20,30].map(function(n){return '<button class="'+((S.set.wmin||15)===n?'on':'')+'" data-act="wmin" data-v="'+n+'">'+n+' dk</button>';}).join('')+'</div><p class="note" style="margin-top:6px">Günde en çok ~'+wCap()+' tekrar kartı. Birikenler önceliğe göre sonraki günlere yayılır; birikme varken yeni kelime gelmez.</p></div>'+
     '<div class="card sec"><div class="lb">Günlük yeni kelime (havuzdan)</div><div class="seg">'+[5,10,15,20].map(function(n){return '<button class="'+(S.set.newPerDay===n?'on':'')+'" data-act="npd" data-v="'+n+'">'+n+'</button>';}).join('')+'</div>'+
       '<div class="lb" style="margin-top:6px">Kelimeyi otomatik seslendir (kart açılınca ve cevaptan sonra)</div><div class="seg">'+[['1','Açık'],['0','Kapalı']].map(function(x){return '<button class="'+((S.set.auto!==false)===(x[0]==='1')?'on':'')+'" data-act="autosay" data-v="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>'+
       '<div class="lb" style="margin-top:6px">Havuzdan gelen seviyeler</div><div class="row" style="gap:6px">'+[1,2,3].map(function(l){return '<button class="chip'+(S.set.lv[l]?' on':'')+'" data-act="lv" data-v="'+l+'">'+LV[l]+' · '+cnt[l]+'</button>';}).join('')+'</div></div>'+
@@ -7397,6 +7410,8 @@ var ACT={
   },
   settings:function(){if(X&&X.kind==='set')return;openPage({kind:'set'});},
   theme:function(b){themePref=b.dataset.v;try{localStorage.setItem(THEMEKEY,themePref);}catch(e){}applyTheme();drawPage();},
+  wmin:function(b){S.set.wmin=+b.dataset.v;touch('set');var d=day();if(d.rcap!=null){var due=dueSorted().length+(d.wrv||0);d.rcap=Math.min(wCap(),due);d.wt=d.rcap+(d.ncap||0);}save();W.q=null;drawPage();},
+  morerev:function(){var d=day();d.rx=(d.rx||0)+20;save();W.q=null;buildQueue();if(X&&X.kind==='review')drawPage();else ACT.review();toast('20 birikmiş kart eklendi · puana ek, isteğe bağlı');},
   npd:function(b){S.set.newPerDay=+b.dataset.v;touch('set');save();W.q=null;drawPage();},
   lv:function(b){var l=b.dataset.v;S.set.lv[l]=!S.set.lv[l];touch('set');save();W.q=null;drawPage();},
   export:function(){download('wort-yedek-'+today()+'.json',JSON.stringify(S));toast('Yedek indirildi');},
