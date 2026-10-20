@@ -6320,6 +6320,13 @@ function ydLine(d){
   return '<div class="ydl"><span>Dünden · kelimeleri yazında kullan</span><p>'+ids.map(function(id){var c=card(id),used=t.indexOf(' '+norm(c.w)+' ')>=0,rv=used||(d.ydr&&d.ydr[id]);
     return rv?'<b lang="de" class="'+(used?'ok':'')+'">'+deC(deText(c))+(used?' ✓':'')+'</b>':'<button class="chip" data-act="ydrev" data-id="'+esc(id)+'">'+esc(c.tr)+'</button>';}).join(' ')+'</p></div>';
 }
+function deLine(t){var L=String(t||'').split(/\n+/).map(function(l){return l.replace(/^[\s>*\-•\d.)"„“`]+|[*"“`]+$/g,'').replace(/\*\*/g,'').trim();}).filter(function(l){return l.split(/\s+/).length>=3&&!/[çğışİ]/.test(l)&&/\b(ich|du|wir|Sie|er|es|der|die|das|ist|bin|habe|hat|kann|können|möchte|nicht|ein|eine)\b/.test(l);});
+  return L.length?L[0].replace(/^[^:]{0,30}:\s*/,function(m){return /[çğışİ]|almanca|doğru/i.test(m)?'':m;}):'';}
+/* Defter'de Almancasını bulduğun ("demek istedim") cümle 14 gün içinde yazında geçmediyse günün kalıbı yerine çıkar */
+function defterKalip(){
+  var c=S.notes.filter(function(n){var de=n.de||n.dg;if(n.k!=='say'||!de)return false;
+    for(var i=0;i<14;i++){var dd0=peek(addD(today(),-i));if(dd0&&dd0.sch&&kalipUsed([0,'',de,''],dd0.sch)&&addD(today(),-i)!==today())return false;}return true;});
+  return c.length?c[hash(today()+'nd')%c.length]:null;}
 function kKey(c){var ws=String(c.w).replace(/[.,!?;:„“"…]/g,' ').split(/\s+/).filter(function(w){return w.length>2&&!KSTOP[norm(w)];});
   return ws.sort(function(a,b){return b.length-a.length;})[0]||'';}
 /* kelime düzeyinde fark: bütün kalıbı yazarken yalnız farklı olan kelime işaretlenir */
@@ -6337,7 +6344,9 @@ function taskBody(id){
     var YF=[['Serbest','',''],['Arkadaşına mesaj','Liebe …, / Lieber …,','Viele Grüße'],['Forum yorumu','Ich finde, dass …','Meiner Meinung nach …'],['Resmî e-posta','Sehr geehrte Damen und Herren,','Mit freundlichen Grüßen']],yf=YF[hash(today()+'yf')%YF.length];
     return '<div class="prompt"><div class="de" lang="de">'+esc(pr[1]||tp[2])+'</div><div class="tr">'+esc(pr[0])+' Bugünkü konu: <b>'+esc(tp[2])+'</b>.</div>'+
       '<div class="small" style="margin-top:6px">Bugünün biçimi: <b>'+yf[0]+'</b>'+(yf[1]?' · başla: <i lang="de">'+esc(yf[1])+'</i>'+(yf[2]?' · bitir: <i lang="de">'+esc(yf[2])+'</i>':''):' · istediğin gibi yaz')+'</div></div>'+
-      (kk?(function(){var ki=KL.indexOf(kk),seen=!!S.srs['k:'+ki],hid=seen&&!used&&d.kdr!==ki;
+      (defterKalip()?(function(){var n=defterKalip(),de=n.de||n.dg,u=kalipUsed([0,'',de,''],d.sch);
+        return '<div class="kday'+(u?' ok':'')+'"><span>Defterinden · yazında kullan'+(u?' ✓':'')+'</span><b lang="de">'+esc(de)+'</b><i>'+esc(n.t)+'</i></div>';})():
+      kk?(function(){var ki=KL.indexOf(kk),seen=!!S.srs['k:'+ki],hid=seen&&!used&&d.kdr!==ki;
         /* daha önce gördüğün kalıp: önce Türkçesi, Almancasını hatırlamaya çalış, sonra aç */
         return '<div class="kday'+(used?' ok':'')+'"><span>Bugünün kalıbı · yazında kullan'+(used?' ✓':'')+'</span>'+(hid?'<i style="font-style:normal;font-weight:700">'+esc(kk[3])+' → Almancası?</i><button class="btn sm" style="align-self:flex-start;margin-top:6px" data-act="kdrev" data-i="'+ki+'">Hatırladım, göster</button>':'<b lang="de">'+esc(kk[2])+'</b><i>'+esc(kk[3])+'</i>')+'</div>';})():'')+
       ydLine(d)+'<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
@@ -7705,11 +7714,13 @@ document.addEventListener('click',function(e){
 });
 document.addEventListener('input',function(e){
   var el=e.target,k=el.dataset&&el.dataset.in;if(!k)return;
-  if(k==='sch'){if(RDAY&&today()!==RDAY){render();return;}var d=day();d.sch=el.value;if(sentN(d.sch)||lgFind('y'))lgBump('y','',function(e){e.n=sentN(d.sch);});save();var n=$('schN');if(n)n.innerHTML=schCount(d.sch);refreshScore();var kd=document.querySelector('.kday');if(kd){var kk=dayKalip(),u=kk&&kalipUsed(kk,d.sch);kd.classList.toggle('ok',!!u);kd.querySelector('span').textContent='Bugünün kalıbı · yazında kullan'+(u?' ✓':'');}}
+  if(k==='sch'){if(RDAY&&today()!==RDAY){render();return;}var d=day();d.sch=el.value;if(sentN(d.sch)||lgFind('y'))lgBump('y','',function(e){e.n=sentN(d.sch);});save();var n=$('schN');if(n)n.innerHTML=schCount(d.sch);refreshScore();var kd=document.querySelector('.kday');if(kd){var dn=defterKalip(),kk=dn?[0,'',dn.de||dn.dg,'']:dayKalip(),u=kk&&kalipUsed(kk,d.sch);kd.classList.toggle('ok',!!u);kd.querySelector('span').textContent=(dn?'Defterinden':'Bugünün kalıbı')+' · yazında kullan'+(u?' ✓':'');}}
   else if(k==='q'){var fr=findAll(el.value),ch=fr.ez.map(function(x){return 'ez:'+x;}).concat(fr.g.map(function(x){return 'g:'+x;})).slice(0,6);$('qres').innerHTML=(String(el.value).trim().length>=2&&ch.length?'<div class="small muted" style="margin:6px 0 2px">Tablolar ve konular:</div>'+chips(ch):'')+searchHtml(el.value);}
   if(k==='fq'){var fq=el.nextElementSibling;if(fq)fq.innerHTML=fsHtml(el.value);}
   if(k==='kq'){var kq=el.nextElementSibling;if(kq)kq.innerHTML=fsHtml(el.value)+(String(el.value).trim().length>=2?'<div class="card"><div class="eyebrow">Kelimeler</div><div class="qres">'+searchHtml(el.value)+'</div></div>':'');}
-  else if(k==='nans'){S.notes.forEach(function(n){if(n.id===el.dataset.id)n.ans=el.value;});save();}
+  else if(k==='nans'){S.notes.forEach(function(n){if(n.id===el.dataset.id){n.ans=el.value;
+    /* Claude'un cevabı yapıştırılınca Almanca cümle alanı kendiliğinden dolar */
+    var nd=$('nde'),g=deLine(el.value);if(nd&&!nd.value.trim()&&g){nd.value=g;n.dg=g;}}});save();}
   else if(k==='ty'||k==='dk'){if(X)X.val=el.value;}
   else if(k==='qn'){if(X)X.qnv=el.value;}
   else if(k==='wt'){W.val=el.value;}
