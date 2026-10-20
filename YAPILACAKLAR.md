@@ -90,7 +90,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 28. Ders sekmesi: önce bir dakikalık öz
 - [x] 29. Cümle kurmaya tek bir "tuzak" parça
 - [x] 30. Ritimle dinle gerçekten parça parça olsun
-- [ ] 31. Bir hafıza tekniği seç, o seninle gelsin
+- [x] 31. Bir hafıza tekniği seç, o seninle gelsin
 - [ ] 32. Tablo sayfasında tek ana düğme: sıradaki adım
 - [ ] 33. Desenler doğru yeri boyasın, ikizler aynı renk olsun
 - [ ] 34. Büyük tabloları parça parça öğret
