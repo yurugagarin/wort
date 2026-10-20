@@ -479,6 +479,7 @@ details.rvall{margin-top:8px}details.wfold{margin-top:12px;text-align:left}detai
 .fb .ac-der,.fb .ac-die,.fb .ac-das,.fb mark{display:inline}
 s .ac-der,s .ac-die,s .ac-das{text-decoration:line-through}
 .coach.lite{padding:10px 12px}.coach.lite p{margin:4px 0 0;font-size:14px;line-height:1.5}.coach.lite p:first-child{margin-top:0}
+.preq .q{font-size:18px;margin-top:6px}.preq .opts button{min-height:44px}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -7795,6 +7796,7 @@ ACT.sgo=function(){SESS={t0:Date.now()};var nx=sessNext();if(!nx){openPage({kind
 ACT.snext=function(){var nx=sessNext();STACK=[];X=null;$('page').hidden=true;if(!nx){openPage({kind:'sdone'});return;}sessLaunch(nx.id);};
 ACT.spause=function(){SESS=null;closeAll();};
 ACT.sdone=function(){openPage({kind:'sdone'});};
+ACT.prepick=function(b){if(!X||!X.pre)return;if(b.dataset.f==='1')X.pre.g2=b.dataset.v;else X.pre.g=b.dataset.v;drawPage();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
 ACT.klv=function(b){X.lv=+b.dataset.v;drawPage();};
@@ -8864,6 +8866,16 @@ function glIleri(gl){return (gl.ileri||[]).length?'<div class="kopru ileri">'+gl
 var RULE1={"g1": "haben/sein 2. yerde, Partizip II en sonda; hareket ve değişim bildiren fiiller sein alır.", "g2": "Modalın noktalarını sil, -te ekle: können → konnte, müssen → musste.", "g3": "weil, dass, wenn yan cümle açar: çekimli fiil en sona gider.", "g4": "Nerede? (durma) → Dativ, nereye? (hareket) → Akkusativ: im Kino · ins Kino.", "g5": "helfen, danken, gefallen, gehören … nesneyi Dativ'de ister: Ich helfe dir.", "g6": "Dönüşlü zamir özneye uyar: ich → mich, du → dich, er/sie/es → sich.", "g7": "daha → sıfat + -er (+ als), en → am + sıfat + -sten.", "g8": "Kibar rica Konjunktiv II ile: Könnten Sie …? Würden Sie …? Ich hätte gern …", "g9": "der/die/das sonrası sıfat: Nominativ tekil ve die/das Akkusativ'de -e, geri kalan her yerde -en.", "g10": "Saat um, gün am, ay ve mevsim im; vor, nach, seit Dativ alır.", "g11": "Artikel cinsi göstermiyorsa sıfat gösterir: ein neuer Plan, ein neues Auto.", "g12": "Fiil edatını yanında taşır; şey için worauf? diye sor, darauf de: Ich warte darauf.", "g13": "Dolaylı soru bir yan cümledir: fiil sona gider, soru kelimesi yoksa ob gelir.", "g14": "Tavsiye Du solltest … ile, dilek Ich würde gern … / Ich wäre gern … ile söylenir.", "g15": "werden + Partizip II: yapan değil, yapılan iş önemli.", "g16": "İlgi zamiri artikel gibidir (der, die, das; eril Akkusativ'de den), fiil yan cümlenin sonunda.", "g17": "Modal yoksa ikinci fiil zu + mastar olarak en sona gider; ayrılan fiilde zu araya girer: aufzustehen.", "g18": "deshalb sonucu bildirir ve 1. yeri alır: fiil hemen arkasından gelir (deshalb bleibe ich).", "g19": "Yazının geçmişi: düzenli fiil -te alır (machte), düzensizde kök değişir (ging, kam).", "g20": "Kişiye zu, şehir ve ülkeye nach, binanın içine in; bei = yanında, aus/von = -den.", "g21": "obwohl yan cümle açar (fiil sona), trotzdem 1. yeri alır (fiil hemen arkasında).", "g22": "Geçmişte bir kez olan → als; her seferinde ya da şimdi/gelecekte → wenn.", "g23": "Geçmişte daha önce olan: hatte/war + Partizip II; nachdem bu cümleyi açar.", "g24": "bevor = -meden önce, während = -irken, seit = -den beri, bis = -e kadar; fiil sona.", "g25": "Dativ ilgi zamiri: dem, der, dem, çoğulda denen; edat zamirin önüne geçer.", "g26": "Geçmişte olmamış durum: hätte/wäre + Partizip II (Ich hätte es gemacht).", "g27": "Sahip arkaya geçer: das Auto meines Bruders; wegen, trotz, während Genitiv ister.", "g28": "Özne aynıysa um … zu + mastar, özne değişiyorsa damit + yan cümle.", "g29": "hem-hem sowohl … als auch, ne-ne weder … noch, ya-ya entweder … oder.", "g30": "werden 2. yerde, mastar en sonda: gelecek, tahmin ya da söz.", "g31": "Zamanı werden taşır: wurde gebaut · ist gebaut worden · muss gebaut werden.", "g32": "Bazı eril canlılar (-e, -ent, -ist, -ant) Nominativ dışında -(e)n alır: den Kollegen.", "g33": "je + -er … (fiil sona), desto + -er + fiil hemen arkasında.", "g34": "-end = şu an yapan (das schlafende Kind), Partizip II = yapılmış (das gekochte Ei).", "g35": "ohne … zu = -meden, statt … zu = -mek yerine; zu + mastar en sonda.", "g36": "lassen + mastar = bir işi başkasına yaptırmak: Ich lasse das Auto reparieren.", "g37": "indem = -erek (nasıl?), sodass = öyle ki (sonuç); ikisinde de fiil sona.", "g38": "Bakılacak isim yoksa (alles, nichts, etwas) ilgi zamiri was, yer için wo.", "g39": "Keşke: Wenn ich doch … hätte!; -mış gibi: als ob + Konjunktiv II.", "g40": "İsim + fiil blok hâlinde öğrenilir: eine Entscheidung treffen, eine Frage stellen.", "g41": "aber, denn, sondern sayılmaz (0. yer): arkalarından normal ana cümle, fiil 2. yerde.", "g42": "welcher? seçenekler arasından seçer (der gibi çekilir), was für ein? türü sorar.", "g43": "1-19 sayıya -t, 20 ve üstüne -st: der zweite, der zwanzigste; düzensiz: erste, dritte, siebte.", "g44": "İki isim: önce Dativ, sonra Akkusativ; iki zamir: önce Akkusativ (Ich gebe es ihm).", "g45": "jemand/niemand kişi, etwas/nichts şey, einer/keiner bir tane/hiçbiri; man er gibi çekilir.", "g46": "werden bir değişimi anlatır: Ich werde müde = yoruluyorum, Sie wird Ärztin."};
 function ruleCard(id){var r=RULE1[id];if(!r)return '';var gl=GL[id]||{};
   return '<div class="rcard"><div class="eyebrow">Kural</div><p class="r1">'+rich(r)+'</p>'+(gl.kanca?'<p class="r2">🪝 '+rich(gl.kanca)+'</p>':'')+'</div>';}
+/* Anla'nın başında puansız tek tahmin sorusu (cevap söylenmez); sonunda aynı soru yine gelir ve "baştaki tahminin → şimdi" görünür */
+function preQ(fin){
+  if(!X.pre){var L=mcs(X.id);if(!L.length)return '';var f=L[Math.floor(Math.random()*L.length)].split('|');if(!f[1]||!f[2])return '';X.pre={q:f[0],c:f[1],o:shuffle([f[1],f[2]])};}
+  var P=X.pre,g=fin?P.g2:P.g,pt=esc(P.q).split('___'),blank=function(v,cl){return v?'<b class="'+(cl||'')+'">'+esc(v)+'</b>':'<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>';};
+  var b='<div class="card preq"><div class="eyebrow">'+(fin?'Baştaki soru · şimdi?':'Önce tahmin et · puansız')+'</div><div class="q" lang="de">'+pt[0]+blank(fin&&g?P.c:g,fin&&g?'ok':'')+(pt[1]||'')+'</div>';
+  if(!g)b+='<div class="opts" style="margin-top:8px">'+P.o.map(function(o){return '<button lang="de" data-act="prepick" data-v="'+esc(o)+'" data-f="'+(fin?1:0)+'">'+esc(o)+'</button>';}).join('')+'</div>';
+  else if(!fin)b+='<p class="small muted">Tahminin not edildi. Cevabı anlatımın sonunda göreceksin.</p>';
+  else b+='<p class="small" style="margin-top:6px">'+(P.g?'Baştaki tahminin: <b lang="de">'+esc(P.g)+'</b> → şimdi: ':'Cevabın: ')+'<b lang="de">'+esc(g)+'</b> '+(g===P.c?'<span style="color:var(--ok)">✓</span>':'<span style="color:var(--bad)">✗ · doğrusu '+esc(P.c)+'</span>')+'</p>';
+  return b+'</div>';
+}
 /* "Önce hatırla": önce kuralı hafızandan söyle, sonra kural kartını aç (bulamasan bile denemek öğrenmeyi güçlendirir) */
 function recallCard(id){
   if(X&&X.rc)return ruleCard(id);
@@ -8890,7 +8902,7 @@ function anlaHtml(){
   b+='<div class="dots">'+ANLA.map(function(a,i){return '<i class="'+(i<k?'d':i===k?'c':'')+'"></i>';}).join('')+'</div>';
   b+='<div><div class="eyebrow">Aşama 1 · Anla · '+(k+1)+'/'+n+'</div><h1>'+esc(sc[1])+'</h1></div>';
   var nextBtn='<button class="btn lime big wide" data-act="anext">Devam</button>';
-  if(sc[0]==='kopru')b+='<p class="muted">Yeni bir şeyi ancak bildiğin bir şeye bağlarsan aklında kalır. <b lang="de">'+esc(g[2])+'</b> şunlara dayanıyor:</p>'+glKopru(gl);
+  if(sc[0]==='kopru')b+=preQ(false)+'<p class="muted">Yeni bir şeyi ancak bildiğin bir şeye bağlarsan aklında kalır. <b lang="de">'+esc(g[2])+'</b> şunlara dayanıyor:</p>'+glKopru(gl);
   else if(sc[0]==='hub')b+=(gl.hub||[]).map(function(h){return hubHtml(h,id);}).join('');
   else if(sc[0]==='mantik')b+=ruleCard(id)+'<div class="sum"><p>'+rich(gl.mantik)+'</p></div><details class="card"><summary>Kuralların kısa özeti</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(id)+'</div></details>';
   else if(sc[0]==='adim'){var ad=X.ad||1,tot=gl.adim?gl.adim.s.length:0;
@@ -8900,7 +8912,7 @@ function anlaHtml(){
   else if(sc[0]==='neden')b+='<p class="muted">Cevabı açmadan önce birkaç saniye kendin düşün. "Neden?" diye sormak bilgiyi bildiklerine bağlar.</p>'+glNeden(gl);
   else if(sc[0]==='karis')b+=glKaris(gl)+glKanca(gl);
   else{
-    b+=exHtml(g)+recallCard(id)+glIleri(gl);
+    b+=preQ(true)+exHtml(g)+recallCard(id)+glIleri(gl);
     nextBtn='<button class="btn lime big wide" data-act="lgo">Anladım · 3 kontrol sorusu</button>';
   }
   b+=nextBtn+(k>0?'<button class="link center" data-act="aprev">‹ Önceki</button>':'');
