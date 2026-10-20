@@ -72,7 +72,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 10. Kendi yazdığın cümle boşluk sorusu olarak geri gelsin
 - [x] 11. Artikel rengi her yerde aynı
 - [x] 12. Ses köprüsü ve slogan öne, tekrarda yalnız bu iki satır
-- [ ] 13. Yeni kelime ekranı: kanca kartın altında, tek talimat
+- [x] 13. Yeni kelime ekranı: kanca kartın altında, tek talimat
 - [ ] 14. Zor kelimede hazır hikâye, kendi kancan senin üslubunda
 - [ ] 15. Hikâye kutusunun rengi kelimenin artikel rengi olsun
 - [ ] 16. "Kancam bu olsun" doğru kelimeye kaydetsin

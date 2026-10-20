@@ -471,7 +471,7 @@ a.btn{display:flex;align-items:center;justify-content:center;text-decoration:non
 mark.dx{background:none;color:var(--bad);text-decoration:underline;text-underline-offset:3px;font-weight:800}
 .slo{margin:8px 0 2px;font-weight:700;font-size:15px;line-height:1.45}
 .slo .sm{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
-details.rvall{margin-top:8px}details.rvall>summary{cursor:pointer;color:var(--ink3);font-size:14px;list-style:none}details.rvall>summary::-webkit-details-marker{display:none}details.rvall[open]>summary{margin-bottom:8px}
+details.rvall{margin-top:8px}details.wfold{margin-top:12px;text-align:left}details.rvall>summary{cursor:pointer;color:var(--ink3);font-size:14px;list-style:none}details.rvall>summary::-webkit-details-marker{display:none}details.rvall[open]>summary{margin-bottom:8px}
 .ac-der,.ac-der .art,.rv .ac-der .art{color:var(--der)}.ac-die,.ac-die .art,.rv .ac-die .art{color:var(--die)}.ac-das,.ac-das .art,.rv .ac-das .art{color:var(--das)}
 .fb .ac-der,.fb .ac-die,.fb .ac-das,.fb mark{display:inline}
 s .ac-der,s .ac-die,s .ac-das{text-decoration:line-through}
@@ -6977,10 +6977,12 @@ function wordColl(c){
   KL.forEach(function(k){if(out.length<3&&hit(k[2]))out.push([k[2],k[3]]);});
   return out;
 }
-function wordLinks(c){
+function wordLinks(c,fold){
   if(c&&c.gs)return '';
   var p=wordParts(c),co=wordColl(c),fa=wordFam(c);
   if(!p&&!co.length&&!fa.length)return '';
+  /* fold: yeni kelime ekranında tek kapalı satır; ilk karşılaşmada dikkat kelimeyle sahnesinde kalsın */
+  if(fold)return '<details class="rvall wfold"><summary>'+(fa.length?'Kelime ailesi':'Bağlantılar')+' ('+((p?1:0)+co.length+fa.length)+') ›</summary>'+wordLinks(c)+'</details>';
   return '<div class="wlk">'+(p?'<div><span>Parçalar</span><p>'+p+'</p></div>':'')+
     (co.length?'<div><span>Birlikte kullanılır</span><p>'+co.map(function(x){return '<b lang="de">'+esc(x[0])+'</b> · '+esc(x[1]);}).join('<br>')+'</p></div>':'')+
     (fa.length?'<div><span>Kelime ailesi</span><p>'+fa.map(function(e){var a=ART(e.a);return '<b lang="de">'+(a?a+' ':'')+esc(e.w)+'</b> '+esc(e.tr);}).join(' · ')+'</p></div>':'')+'</div>';
@@ -7039,9 +7041,9 @@ function storyBox(id,c,mode){
       (mode==='short'?'<details class="rvall"><summary>Hikâyenin tamamı ›</summary>'+body+'</details>':body);}
   else if(h)b+='<div class="snd"><span lang="de">'+esc(c.w)+'</span><span class="arr">→</span><b class="sc">'+esc(h[0])+'</b></div><p>'+storyFmt(h[1])+'</p>';
   if(h){var x=S.hk&&S.hk[id],mine=x&&(x.src==='hky'||hkCopy(x.t));
-    if(mode!=='short')b+='<p class="small muted">Gözlerini kapat, sahneyi 5 saniye canlandır: renk, ses, hareket. Sonra Almanca kelimeyi yüksek sesle söyle.</p>';
+    if(mode==='full')b+='<p class="small muted">Gözlerini kapat, sahneyi 5 saniye canlandır: renk, ses, hareket. Sonra Almanca kelimeyi yüksek sesle söyle.</p>';
     b+='<div class="row" style="gap:8px;flex-wrap:wrap">'+(mine?'<span class="small" style="color:var(--ok);font-weight:700">✓ Kancan</span>':'<button class="btn sm" data-act="hkstsave" data-id="'+esc(id)+'">Kancam bu olsun</button>')+'</div>';}
-  else b+='<p class="small muted">Bu kelimenin hazır hikâyesi henüz yok. Aşağıdaki 🪝 Hafıza kancası ile kendi kancanı yazabilirsin.</p>';
+  else return '';
   return b+'</div>';
 }
 function hkBlock(id,c){
@@ -7052,11 +7054,11 @@ function hkBlock(id,c){
     '<textarea class="inp" data-in="hk" rows="3" placeholder="Kendi kancan: kısa, komik, görsel. Ör: Termin → “ter-min”: terleyerek randevuya koşan bir adam.">'+esc(W.hkv!=null?W.hkv:h)+'</textarea>'+
     '<div class="row"><button class="btn sm" data-act="hkx">Kapat</button><div class="sp"></div><button class="btn lime sm" data-act="hksave">Kaydet</button></div></div>';
   /* kancan hazır hikâyenin kopyasıysa hikâye kutusu bir kez görünür; aynı hikâye iki kez yazılmaz */
-  var hx=S.hk&&S.hk[id],cpy=hx&&(hx.src==='hky'||hkCopy(hx.t))&&!!hkyOf(c),show=W.hs===id||cpy,mode=W.cur&&W.cur.id===id&&W.cur.type==='intro'?'full':'short';
+  var hx=S.hk&&S.hk[id],cpy=hx&&(hx.src==='hky'||hkCopy(hx.t))&&!!hkyOf(c),show=W.hs===id||cpy,mode=W.cur&&W.cur.id===id&&W.cur.type==='intro'?'intro':'short',none=HKY&&!hkyOf(c);
   return (h&&!cpy?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(h)+'</p></div>':'')+
     (lp>=3&&!h?'<p class="note leech">Bu kelime '+lp+' kez kaçtı. Bir kanca bul; zor kelimeler kancayla çok daha kolay kalır.</p>':'')+
     (show?storyBox(id,c,mode):'')+
-    '<div class="row hkr">'+(show?'':'<button class="link hkl" data-act="hkstory">📖 Hikâye kancası</button>')+'<button class="link hkl" data-act="hkopen">🪝 '+(h?'Kancayı düzenle':'Hafıza kancası')+'</button></div>';
+    '<div class="row hkr">'+(show||none?'':'<button class="link hkl" data-act="hkstory">📖 Hikâye kancası</button>')+'<button class="link hkl" data-act="hkopen">🪝 '+(h?'Kancayı düzenle':'Hafıza kancası')+'</button></div>';
 }
 /* yapıştırılan metinden "kelime :: kanca" satırlarını bulur */
 function hkParse(txt,ids){
@@ -7155,8 +7157,8 @@ function pReview(){
     var gok=W.pick===cu.right,kn=W.pick==='\u0001kn';
     b+=(kn?'<div class="fb no"><b>Tanıdık geliyor ama henüz yazamıyorsun</b><span>Normal öğrenelim'+(cu.val?' · senin yazdığın: <s lang="de">'+esc(cu.val)+'</s>':'')+'</span></div>':
       '<div class="fb '+(gok?'ok':'no')+'"><b>'+(gok?'Doğru tahmin!':'Tahminin: '+esc(W.pick))+'</b>'+(gok?'':'<span>Sorun değil, tahmin etmen yeterli.</span>')+'</div>')+
-      '<div class="card rv">'+src+rvCard(c,true)+wordLinks(c)+hkBlock(id,c)+'</div>'+
-      '<p class="note center">Kelimeyi duyduğun gibi <b>yüksek sesle</b> iki kez söyle, örnek cümleyi sesli oku: sesli söylenen kelime daha iyi kalır. Bugün sorulmayacak: ilk soru yarın gelecek, böylece gerçekten hatırlayıp hatırlamadığını görürsün.</p>'+
+      '<div class="card rv">'+src+rvCard(c,true)+hkBlock(id,c)+wordLinks(c,1)+'</div>'+
+      '<p class="note center">'+(hkyOf(c)&&hkyOf(c).length>=4?'Sahneyi 5 sn canlandır · sloganı ve kelimeyi sesli söyle · ilk soru yarın':'Kelimeyi ve örnek cümleyi sesli söyle · ilk soru yarın')+'</p>'+
       '<button class="btn lime big wide" data-act="rvok">Tamam, devam</button>';
     return {t:'Kelime tekrarı',b:b};
   }
