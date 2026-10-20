@@ -7105,15 +7105,23 @@ function pReview(){
   }
   if(cu.type==='intro'){
     var ex=c.ex?'<div class="ex exq" lang="de">'+hl(c.ex)+spkBtn(plain(c.ex))+'</div>':'';
+    if(W.kn===id&&!W.pick){   /* "biliyorum" diyene 5 saniyelik kanıt: Türkçesinden Almancasını yaz */
+      b+='<div class="card rv"><div class="src">Biliyor musun? · yazarak göster</div><div class="ask">Almancasını yaz'+(ART(c.a)?' · artikeliyle':'')+'</div><div class="tr">'+esc(c.tr)+'</div></div>'+
+        '<input class="inp ty" lang="de" data-in="wt" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="'+(ART(c.a)?'der / die / das + kelime':'Almancası')+'">'+
+        '<div class="keys">'+['ä','ö','ü','ß'].map(function(k){return '<button class="key" data-act="tyk" data-v="'+k+'" lang="de">'+k+'</button>';}).join('')+'</div>'+
+        '<div class="dock"><button class="btn dark big wide" data-act="rvkncheck">Kontrol et</button><button class="link center" data-act="rvknx">Vazgeç, normal öğreneyim</button></div>';
+      return {t:'Kelime tekrarı',b:b};
+    }
     if(!W.pick){
       b+='<div class="card rv"><div class="src">Yeni kelime · önce tahmin et</div>'+(ex?ex+'<div class="ask">Bu cümlede <b lang="de">'+esc(c.w)+'</b> ne demek olabilir?</div>':'<div class="word" lang="de">'+deLabel(c)+spkBtn(deText(c))+'</div><div class="ask">Tahmin et: ne demek?</div>')+'</div>'+
         '<div class="opts">'+cu.o.map(function(o){return '<button data-act="rvpick" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>'+
         '<p class="note center">Bilmiyorsan da tahmin et: önce tahmin etmek, cevabı sonra daha iyi hatırlatır.</p>'+
-        '<button class="link center" data-act="rvknown">Bunu zaten biliyorum · 30 gün sorma</button>';
+        '<button class="link center" data-act="rvkn">Biliyorum · yazarak göster</button>';
       return {t:'Kelime tekrarı',b:b};
     }
-    var gok=W.pick===cu.right;
-    b+='<div class="fb '+(gok?'ok':'no')+'"><b>'+(gok?'Doğru tahmin!':'Tahminin: '+esc(W.pick))+'</b>'+(gok?'':'<span>Sorun değil, tahmin etmen yeterli.</span>')+'</div>'+
+    var gok=W.pick===cu.right,kn=W.pick==='\u0001kn';
+    b+=(kn?'<div class="fb no"><b>Tanıdık geliyor ama henüz yazamıyorsun</b><span>Normal öğrenelim'+(cu.val?' · senin yazdığın: <s lang="de">'+esc(cu.val)+'</s>':'')+'</span></div>':
+      '<div class="fb '+(gok?'ok':'no')+'"><b>'+(gok?'Doğru tahmin!':'Tahminin: '+esc(W.pick))+'</b>'+(gok?'':'<span>Sorun değil, tahmin etmen yeterli.</span>')+'</div>')+
       '<div class="card rv">'+src+rvCard(c,true)+wordLinks(c)+hkBlock(id,c)+'</div>'+
       '<p class="note center">Kelimeyi duyduğun gibi <b>yüksek sesle</b> iki kez söyle, örnek cümleyi sesli oku: sesli söylenen kelime daha iyi kalır. Bugün sorulmayacak: ilk soru yarın gelecek, böylece gerçekten hatırlayıp hatırlamadığını görürsün.</p>'+
       '<button class="btn lime big wide" data-act="rvok">Tamam, devam</button>';
@@ -7357,6 +7365,12 @@ var ACT={
 
   review:function(){if(W.hard&&W0){W=W0;W0=null;}if(!W.q||W.day!==today())buildQueue();openPage({kind:'review'});},
   rvok:function(){var id=W.q.shift();W.seen[id]=1;introDone(id);W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
+  rvkn:function(){W.kn=W.q[0];drawPage();var e=document.querySelector('#page [data-in="wt"]');if(e)e.focus();},
+  rvknx:function(){W.kn=null;drawPage();},
+  rvkncheck:function(){var id=W.q[0],c=card(id),el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}
+    var j=rvJudge(c,'write',v);W.kn=null;
+    if(j.r==='ok'||j.r==='near'){toast('Biliyorsun · 30 gün sorulmayacak');ACT.rvknown();return;}
+    W.cur.val=v;W.pick='\u0001kn';W.hs=id;rvSay(c);drawPage();},
   rvknown:function(){var id=W.q[0];grade(id,3);var s=S.srs[id],t=today();if(s&&s.i<30){s.i=30;s.d=addD(t,30);s.fs=Math.max(s.fs||0,30);save();}rvAdvance(false);},
   rvpick:function(b){if(W.pick)return;W.pick=b.dataset.v;if(W.cur.type==='intro'){rvSay(card(W.q[0]));W.hs=W.q[0];}if(W.cur.type!=='intro'){W.cur.res=W.pick===W.cur.right?'ok':'no';if(W.cur.res==='no')W.cur.m='Doğrusu: *'+W.cur.right+'*';rvGrade(W.q[0],W.cur.res);}drawPage();},
   autosay:function(b){S.set.auto=b.dataset.v==='1';touch('set');save();drawPage();},
@@ -7532,7 +7546,7 @@ document.addEventListener('change',function(e){
 var LASTIN=null;document.addEventListener('focusin',function(e){var t=e.target;if(t&&/INPUT|TEXTAREA/.test(t.tagName)&&t.closest&&t.closest('#page'))LASTIN=t;});
 document.addEventListener('keydown',function(e){
   if(e.key==='Enter'&&e.target&&e.target.dataset&&e.target.dataset.in==='ty'){e.preventDefault();ACT.tycheck();}
-  if(e.key==='Enter'&&e.target&&e.target.dataset&&e.target.dataset.in==='wt'){e.preventDefault();ACT.rvcheck();}
+  if(e.key==='Enter'&&e.target&&e.target.dataset&&e.target.dataset.in==='wt'){e.preventDefault();if(W.kn&&W.kn===W.q[0]&&!W.pick)ACT.rvkncheck();else ACT.rvcheck();}
   if(e.key==='Enter'&&!e.shiftKey&&e.target&&e.target.dataset&&e.target.dataset.in==='dk'){e.preventDefault();ACT.dkcheck();}
   if(e.key==='Enter'&&e.target&&e.target.dataset&&e.target.dataset.in==='ezf'){e.preventDefault();var ins=[].filter.call(document.querySelectorAll('#page .fin'),function(x){return x.offsetParent!==null;}),ix=ins.indexOf(e.target);if(ins[ix+1])ins[ix+1].focus();else ACT.ezfcheck();}
 });
