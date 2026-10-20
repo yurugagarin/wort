@@ -61,7 +61,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 68 öneri: ONERILER.md (7 alan, 23 ajanlı inceleme + iki mercekli eleştiri). Kullanıcı: HEPSİNİ yap, her maddeden sonra canlıya al. Ayrıntı her madde için ONERILER.md'de (aynı numara).
 
 - [x] 1. Basamak sırası: önce boşluk, sonra yazma
-- [ ] 2. "Bilmiyorum" önce ipucu versin
+- [x] 2. "Bilmiyorum" önce ipucu versin
 - [ ] 3. Yanlış kart biraz daha geç ve aynı türde dönsün
 - [ ] 4. Hata kutusu neyi karıştırdığını göstersin
 - [ ] 5. Doğruda kısa ekran, yanlışta tam ekran
