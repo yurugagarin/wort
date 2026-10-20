@@ -6170,6 +6170,11 @@ function msCard(){S.ms=S.ms||{};var got=MS.filter(function(m){return S.ms[m[0]];
 function examChip(){if(!S.set.exam)return '<button class="chip" data-act="settings">Sınav tarihi ekle</button>';var n=dd(today(),S.set.exam);return '<span class="chip ex">'+(n>0?'Sınava '+n+' gün':n===0?'Sınav bugün!':'Sınav geçti')+'</span>';}
 var WREV=0;
 function warmQ(){var y=addD(today(),-1),L=(S.wl||[]).filter(function(x){return x.d===y&&(x.s==='g'||x.s==='ez')&&x.q&&x.c;});return L.length?L[hash(today()+'wu')%L.length]:null;}
+/* bu haftaki küçük ama gerçek ilerleme (pazartesiden bu yana) */
+function weekLine(){var t=today(),dw=(pd(t).getDay()+6)%7,ws=addD(t,-dw),st=0,nw=0,ez=0;
+  (S.lg||[]).forEach(function(e){if(e.d>=ws&&e.ok&&e.k==='g')st++;if(e.d>=ws&&e.ok&&e.k==='e')ez++;});
+  for(var id in S.srs){var x=S.srs[id];if(x&&x.a&&x.a>=ws&&id.indexOf('gs:')!==0)nw++;}
+  return '<p class="small" style="grid-column:1/-1;margin:2px 0 0;color:var(--ink2)">Bu hafta: <b style="display:inline;font-size:inherit;font-family:inherit">+'+st+'</b> konu adımı · <b style="display:inline;font-size:inherit;font-family:inherit">+'+nw+'</b> kelime'+(ez?' · <b style="display:inline;font-size:inherit;font-family:inherit">+'+ez+'</b> ezber testi':'')+'</p>';}
 function vBugun(){
   ensureTarget();frzCheck();frzEarn();var nw=msCheck();if(nw.length)setTimeout(function(){toast('🏅 '+nw[0]);},400);
   var t=today(),d=day(),s=total(d),T=taskDefs(d),nx=sessNext(),done=T.filter(function(x){return x.f>=1;}).length,mins=T.reduce(function(a,x){return a+taskMin(x);},0);
@@ -6205,7 +6210,7 @@ function vYol(){
   var L=levels(),tp=todayTopic()[0],h='';
   var okA2=G.filter(function(g){return g[1].indexOf('A2')===0&&tstat(g[0])==='ok';}).length,nA2=G.filter(function(g){return g[1].indexOf('A2')===0;}).length;
   var okB1=G.filter(function(g){return g[1].indexOf('B1')===0&&tstat(g[0])==='ok';}).length,nB1=G.filter(function(g){return g[1].indexOf('B1')===0;}).length;
-  h+='<div class="card yolsum"><div><b class="num">'+okA2+'<small>/'+nA2+'</small></b><span>A2 konusu oturdu</span></div><div><b class="num">'+okB1+'<small>/'+nB1+'</small></b><span>B1 konusu oturdu</span></div><div><b class="num">'+counts().sat+'</b><span>kelime oturdu</span></div></div>';
+  h+='<div class="card yolsum"><div><b class="num">'+okA2+'<small>/'+nA2+'</small></b><span>A2 konusu oturdu</span></div><div><b class="num">'+okB1+'<small>/'+nB1+'</small></b><span>B1 konusu oturdu</span></div><div><b class="num">'+counts().sat+'</b><span>kelime oturdu</span></div>'+weekLine()+'</div>';
   h+='<div class="stleg">'+['yeni','ogren','tekrar','oturdu'].map(stBadge).join('')+'</div>';
   var base=EZ.filter(function(t){return t.lv===1;});
   h+='<div class="yol"><div class="yb"><b>Temel · A1 tabloları</b><span>'+base.filter(function(t){return stTable(t.id)==='oturdu';}).length+' / '+base.length+' oturdu</span></div>'+
