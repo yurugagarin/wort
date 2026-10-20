@@ -127,4 +127,4 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 65. Odak hatan günün Ezber adımına karışsın
 - [x] 66. Satzbau'daki cümle sırası hataları da haritaya girsin
 - [x] 67. Deneme sonunda bilemediklerini gör
-- [ ] 68. Rapor: öneriler uygulamadaki adlarla gelsin
+- [x] 68. Rapor: öneriler uygulamadaki adlarla gelsin

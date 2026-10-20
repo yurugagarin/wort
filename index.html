@@ -9000,7 +9000,7 @@ function rpText(per){
   o.push('Lütfen Türkçe, KISA bir analiz yaz (en fazla bir sayfa). Tek tek hataları sayma; desenleri bul:');
   o.push('1. **En çok neye takılıyorum?** En önemli 3 zayıf noktayı söyle (ör. Dativ, fiilin yeri, Perfekt yardımcı fiili) ve her birinin altında yatan yanlış düşünceyi bir cümleyle açıkla.');
   o.push('2. **Bu ileride nerede engel olur?** Her zayıf noktanın B1\'de hangi konuları ve sınavın hangi bölümünü (Lesen, Hören, Schreiben, Sprechen) etkileyeceğini söyle.');
-  o.push('3. **Neye ağırlık vermeliyim?** Önümüzdeki hafta için öncelik sırasıyla 3 somut öneri (uygulamadaki bölümlere göre: Konu, Ezber, Kelime, Yazma).');
+  o.push('3. **Neye ağırlık vermeliyim?** Önümüzdeki hafta için öncelik sırasıyla 3 somut öneri. Her öneride uygulamadaki çalışma yerinin adını aynen kullan (6. bölümde her hata türünün yanında "Çalış:" ile yazdım; ör. "Ezber: Dativ alan edatlar", "Konu: Wechselpräpositionen").');
   o.push('4. **İyi gidenler:** Kısaca neyi iyi yaptığımı söyle.');
   o.push('Ayrıntılı tablo, uzun liste ya da alıştırma yazma.');
   o.push('');
@@ -9046,7 +9046,8 @@ function rpText(per){
   var cats=[];for(k in (S.err||{}))cats.push([k,errRecent(k,14),S.err[k].n||0]);
   cats.sort(function(a,b){return b[1]-a[1]||b[2]-a[2];});
   if(cats.length)cats.forEach(function(c){var m=ERRC[c[0]]||[c[0],''],e=S.err[c[0]];
-    o.push('- **'+m[0]+'** ('+m[1]+'): son 14 gün '+c[1]+', toplam '+c[2]+(e.ex&&e.ex.length?' · örnek: '+e.ex.slice(0,2).map(function(x){return '"'+cut(x.q,90)+'" '+(x.c?'(ben: '+(x.g||'—')+', doğru: '+x.c+')':'(sorunlu: '+(x.g||'')+')');}).join('; '):''));});
+    var wh=(ERRC[c[0]]&&ERRC[c[0]][2]||[]).concat((e.ex||[]).map(function(x){return x.r;})).filter(function(x,i,a){return x&&a.indexOf(x)===i&&linkName(x);}).slice(0,3).map(function(x){return linkName(x).replace(/^Ezber · /,'Ezber: ').replace(/^Konu · /,'Konu: ').replace(/^Büyük fikir · /,'Büyük fikir: ');});
+    o.push('- **'+m[0]+'** ('+m[1]+'): son 14 gün '+c[1]+', toplam '+c[2]+(wh.length?' · Çalış: '+wh.join('; '):'')+(e.ex&&e.ex.length?' · örnek: '+e.ex.slice(0,2).map(function(x){return '"'+cut(x.q,90)+'" '+(x.c?'(ben: '+(x.g||'—')+', doğru: '+x.c+')':'(sorunlu: '+(x.g||'')+')');}).join('; '):''));});
   else o.push('Kayıt yok.');
   o.push('');
   o.push('## 7. Yanlış cevaplarım ('+R.wl.length+')');
@@ -9468,7 +9469,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
