@@ -92,7 +92,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 30. Ritimle dinle gerçekten parça parça olsun
 - [x] 31. Bir hafıza tekniği seç, o seninle gelsin
 - [x] 32. Tablo sayfasında tek ana düğme: sıradaki adım
-- [ ] 33. Desenler doğru yeri boyasın, ikizler aynı renk olsun
+- [x] 33. Desenler doğru yeri boyasın, ikizler aynı renk olsun
 - [ ] 34. Büyük tabloları parça parça öğret
 - [ ] 35. Hücreyi gerçek bir cümlenin içinde sor
 - [ ] 36. Tekrar gününde önce boş tabloyu doldur
