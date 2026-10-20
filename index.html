@@ -6491,7 +6491,7 @@ function pWlist(){
     return '<div class="r"><span class="w" lang="de" style="color:var(--'+(a||'ink')+')">'+(a?a+' ':'')+esc(c.w)+'</span><span class="m">'+esc(c.tr)+'</span><span class="tag'+((x.i||0)>=21?' ok':'')+'">'+(x.d<=t?'bugün':trShort(x.d))+'</span></div>';}).join('')+'</div>'};
 }
 /* --- oyun: eşleştir (öğrenilen kelimeler) --- */
-function matchRound(){var sd={},st={},out=[];shuffle(Object.keys(S.srs)).forEach(function(id){if(out.length>=5)return;var c=card(id);if(!c||c.gs||c.w.length>=30)return;
+function matchRound(){var sd={},st={},out=[];weakFirst(gameIds(),5).forEach(function(id){if(out.length>=5)return;var c=card(id);if(!c||c.gs||c.w.length>=30)return;
     var de=deText(c).toLowerCase(),tr=String(c.tr).toLowerCase();if(sd[de]||st[tr]||out.some(function(x){return trSame(x.tr,c.tr);}))return;sd[de]=st[tr]=1;out.push({id:id,de:deText(c),tr:c.tr});});
   return out;}
 function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};if(!HKY)hkyLoad(function(){if(X&&X.kind==='wcard')drawPage();});
@@ -7434,7 +7434,7 @@ function rvAdvance(requeue){
 function wordSatzItems(n){
   var c=[],seen={};
   function add(de,tr,alts){de=plain(String(de||'')).trim();if(!de||seen[de])return;var k=szToks(de).length;if(k<4||k>12)return;seen[de]=1;c.push({t:'sz',de:de,tr:tr,alts:alts||[]});}
-  shuffle(Object.keys(S.srs).map(card).filter(function(e){return e&&e.sa&&e.ex;})).forEach(function(e){if(c.length<n){var a=ART(e.a);add(e.ex,'İpucu: '+(a?a+' ':'')+e.w+' = '+e.tr,e.alts);}});
+  weakFirst(gameIds().filter(function(id){var e=card(id);return e.sa&&e.ex;}),n).map(card).forEach(function(e){if(c.length<n){var a=ART(e.a);add(e.ex,'İpucu: '+(a?a+' ':'')+e.w+' = '+e.tr,e.alts);}});
   var tp=todayTopic(),gs=G.filter(function(g){return g[0]===tp[0]||tstat(g[0])!=='next';});
   if(gs.length<3)gs=G.filter(function(g){return BANDS.indexOf(g[1])<=Math.max(1,curBand());});
   var src=[];gs.forEach(function(g){g[4].forEach(function(e){src.push(e);});});
@@ -7450,9 +7450,12 @@ function pSatz(){
 }
 
 /* --- Lücke --- */
+/* oyunlar: turun en çok yarısı unuttuğun ya da hâlâ öğrendiğin kelimelerden; bugün tanıştıkların girmez (ilk soru yarın) */
+function gameIds(){var t=today();return Object.keys(S.srs).filter(function(id){var x=S.srs[id];return x&&x.a!==t&&card(id);});}
+function weakFirst(ids,n){var w=shuffle(ids.filter(function(id){var x=S.srs[id];return (x.lp||0)>0||(x.i||0)<7;})).slice(0,Math.floor(n/2)),r=shuffle(ids.filter(function(id){return w.indexOf(id)<0;}));return w.concat(r);}
 function startLuck(){
-  var ids=Object.keys(S.srs).map(card).filter(function(e){return e&&/\*[^*]+\*/.test(e.ex||'');});
-  var c=shuffle(ids).slice(0,10);
+  var ids=weakFirst(gameIds().filter(function(id){return /\*[^*]+\*/.test(card(id).ex||'');}),10).map(card);
+  var c=shuffle(ids.slice(0,10));
   if(c.length<10)shuffle(POOL.filter(function(e){return S.set.lv[e.l]&&/\*[^*]+\*/.test(e.ex);})).forEach(function(e){if(c.length<10&&c.indexOf(e)<0)c.push(e);});
   var items=c.map(function(e){
     var m=e.ex.match(/^(.*?)\*([^*]+)\*(.*)$/),ans=m[2],opts=[ans],guard=0,same=POOL.filter(function(o){return o.p===e.p&&o!==e;});
