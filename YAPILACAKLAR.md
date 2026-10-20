@@ -114,7 +114,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 52. Gün sonu özeti: kısa liste, kelimeleri kendin hatırla
 - [x] 53. Yarın satırı: düz Türkçe ve süre
 - [x] 54. "Vaktim az" bağlantısı: en etkili 7 dakika
-- [ ] 55. Geri dönüş günü: suçluluk yerine kolay başlangıç
+- [x] 55. Geri dönüş günü: suçluluk yerine kolay başlangıç
 - [ ] 56. Yol: bu haftaki ilerleme görünsün
 - [ ] 57. Kilometre taşları: sıradakine ne kadar kaldı
 - [ ] 58. "Ne zaman çalışacağım" planı: tek satır
