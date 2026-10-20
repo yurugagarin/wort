@@ -6190,12 +6190,14 @@ function weekLine(){var t=today(),dw=(pd(t).getDay()+6)%7,ws=addD(t,-dw),st=0,nw
   (S.lg||[]).forEach(function(e){if(e.d>=ws&&e.ok&&e.k==='g')st++;if(e.d>=ws&&e.ok&&e.k==='e')ez++;});
   for(var id in S.srs){var x=S.srs[id];if(x&&x.a&&x.a>=ws&&id.indexOf('gs:')!==0)nw++;}
   return '<p class="small" style="grid-column:1/-1;margin:2px 0 0;color:var(--ink2)">Bu hafta: <b style="display:inline;font-size:inherit;font-family:inherit">+'+st+'</b> konu adımı · <b style="display:inline;font-size:inherit;font-family:inherit">+'+nw+'</b> kelime'+(ez?' · <b style="display:inline;font-size:inherit;font-family:inherit">+'+ez+'</b> ezber testi':'')+'</p>';}
+var PLANS=['Sabah kahvesiyle','Öğle arasında','İşten dönünce','Akşam yemeğinden sonra'];
 function vBugun(){
   ensureTarget();frzCheck();frzEarn();var nw=msCheck();if(nw.length)setTimeout(function(){toast('🏅 '+nw[0]);},400);
   var t=today(),d=day(),s=total(d),T=taskDefs(d),nx=sessNext(),done=T.filter(function(x){return x.f>=1;}).length,mins=T.reduce(function(a,x){return a+taskMin(x);},0);
   var h='<div class="bg-head"><div><div class="eyebrow">'+esc(deDate(t))+'</div><div class="bg-meta">'+examChip()+'<span class="chip">Bu hafta '+weekDone()+' / '+(S.set.wg||5)+'</span></div></div></div>';
   if(!S.ptest)h+='<div class="card"><div class="eyebrow">İlk adım</div><h2 style="margin:4px 0 6px">Önce seviyeni ölçelim</h2><p class="muted small">10 dakikalık kelime ve gramer testi; nereden başlayacağını gösterir.</p><button class="btn lime wide big" style="margin-top:10px" data-act="ptest">Seviye testine başla</button></div>';
   h+='<div class="card sess"><div class="row"><div class="eyebrow">Bugünün çalışması'+(nx?' · ~'+mins+' dk':'')+'</div><div class="sp"></div><b class="num sc">'+s+'<small> / 100</small></b></div>'+
+    (S.set.plan&&nx?'<p class="small muted" style="margin:2px 0 6px">Planın: '+PLANS[S.set.plan-1].toLocaleLowerCase('tr')+' · ~'+mins+' dk</p>':'')+
     '<ul class="tasks2">'+T.map(function(x){var st=x.f>=1?'d':nx&&nx.id===x.id?'n':x.f>0?'h':'';
       return '<li><button class="t2r '+st+'" style="--c:'+x.c+'" data-act="task" data-id="'+x.id+'"><span class="ic">'+(x.f>=1?'✓':st==='n'?'▶':'')+'</span><span class="tx"><b>'+TLAB[x.id]+'</b><span>'+esc(taskSub(x))+'</span></span><span class="pt num">'+x.p+'<small>/'+x.max+'</small></span></button></li>';}).join('')+'</ul>'+
     (nx?'<button class="btn lime big wide" data-act="sgo">'+(done?'Devam et · '+TLAB[nx.id]+' →':'Başla →')+'</button>':'<button class="btn lime big wide" data-act="sdone">Bugün tamam ✓ · özeti gör</button>')+
@@ -7566,6 +7568,8 @@ function pSet(){
     '<div class="card sec"><div class="lb">Sınav</div><select class="inp" data-in="examName">'+['Goethe-Zertifikat B1','telc Deutsch B1','ÖSD Zertifikat B1','Deneme sınavı'].map(function(o){return '<option'+(S.set.examName===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select>'+
       '<input class="inp" type="date" data-in="exam" value="'+esc(S.set.exam)+'"><div class="note">Tarih, İlerleme ekranındaki geri sayımı ve haftalık tempo hesabını besler.</div></div>'+
     '<div class="card sec"><div class="lb">Seviye testi</div><button class="btn wide" data-act="ptest">'+(S.ptest?'Testi yeniden yap (son: '+trShort(S.ptest.date)+')':'Seviye testine başla')+'</button></div>'+
+    '<div class="card sec"><div class="lb">Hangi alışkanlığından hemen sonra çalışacaksın?</div><div class="seg" style="flex-wrap:wrap">'+PLANS.map(function(x,i){return '<button class="'+(S.set.plan===i+1?'on':'')+'" data-act="plan" data-v="'+(i+1)+'">'+x+'</button>';}).join('')+'</div>'+
+      '<p class="note" style="margin-top:6px">"X olunca çalışırım" diye sabit bir an seçmek, alışkanlığı kendiliğinden tetikler. Seçersen Bugün\'de Başla\'nın üstünde küçük bir satır olarak görünür.'+(S.set.plan?' <button class="link" data-act="plan" data-v="0">Kaldır</button>':'')+'</p></div>'+
     '<div class="card sec"><div class="lb">Günlük kelime süresi</div><div class="seg">'+[10,15,20,30].map(function(n){return '<button class="'+((S.set.wmin||15)===n?'on':'')+'" data-act="wmin" data-v="'+n+'">'+n+' dk</button>';}).join('')+'</div><p class="note" style="margin-top:6px">Günde en çok ~'+wCap()+' tekrar kartı. Birikenler önceliğe göre sonraki günlere yayılır; birikme varken yeni kelime gelmez.</p></div>'+
     '<div class="card sec"><div class="lb">Günlük yeni kelime (havuzdan)</div><div class="seg">'+[5,10,15,20].map(function(n){return '<button class="'+(S.set.newPerDay===n?'on':'')+'" data-act="npd" data-v="'+n+'">'+n+'</button>';}).join('')+'</div>'+
       '<div class="lb" style="margin-top:6px">Kelimeyi otomatik seslendir (kart açılınca ve cevaptan sonra)</div><div class="seg">'+[['1','Açık'],['0','Kapalı']].map(function(x){return '<button class="'+((S.set.auto!==false)===(x[0]==='1')?'on':'')+'" data-act="autosay" data-v="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>'+
@@ -8000,6 +8004,7 @@ ACT.kdrev=function(b){var d=day();d.kdr=+b.dataset.i;save();render();if(X&&X.kin
 ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
 /* vaktim az: o gün yeni kelime yok, tekrar zamanı gelmiş en çok 20 kart; seri korunur, diğer görevler isteğe bağlı */
 ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSorted().length;d.rcap=Math.min(20,due+(d.wrv||0));d.wt=Math.max(d.w||0,d.rcap);save();W.q=null;toast('Kısa gün · ~7 dk');ACT.sgo();};
+ACT.plan=function(b){var v=+b.dataset.v;if(v)S.set.plan=v;else delete S.set.plan;touch('set');save();if(X)drawPage();else render();};
 ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
