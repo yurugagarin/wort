@@ -68,7 +68,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 6. Kelime ailesi ve bağlantılar yalnız doğruysa çıksın
 - [x] 7. Seçmeli şıklar birbirine benzesin
 - [x] 8. "Zaten biliyorum" dersen bir kez yazarak göster
-- [ ] 9. Hızlı bildiğin kart daha seyrek gelsin
+- [x] 9. Hızlı bildiğin kart daha seyrek gelsin
 - [ ] 10. Kendi yazdığın cümle boşluk sorusu olarak geri gelsin
 - [ ] 11. Artikel rengi her yerde aynı
 - [ ] 12. Ses köprüsü ve slogan öne, tekrarda yalnız bu iki satır
