@@ -6107,14 +6107,20 @@ function pSbreak(){
   b+='<div class="dock"><button class="btn lime big wide" data-act="snext">Devam: '+esc(TLAB[nx.id])+' →</button><button class="link center" data-act="spause">Ara ver · sonra Bugün\'den devam ederim</button></div>';
   return {t:'Günün çalışması',b:b};
 }
+var SDREV={};
 function pSdone(){
   var t=today(),d=day(),L=lgDay(t),nw=msCheck(),U=upcoming(1)[0];
   var b='<div class="sb-top"><div class="big-emoji">🎉</div><div class="eyebrow">Günün çalışması tamam</div><h1>'+total(d)+' / 100</h1><p class="muted">🔥 '+streak()+' gün seri'+(S.frz?' · ❄ '+S.frz+' dondurma hakkı':'')+' · bu hafta '+weekDone()+' / '+(S.set.wg||5)+' gün</p></div>';
   if(nw.length)b+='<div class="card ms-new">'+nw.map(function(x){return '<div>🏅 '+esc(x)+'</div>';}).join('')+'</div>';
-  b+='<div class="card"><div class="eyebrow">Bugün öğrendiklerin</div>'+lgHtml(L)+'</div>';
+  /* tek satır özet, ayrıntı kapalı */
+  var T=taskDefs(d),gl=L.filter(function(e){return e.k==='g'&&e.n;}).slice(-1)[0],line=[T.filter(function(x){return x.f>=1;}).length+' görev',(d.w||0)+' kart'];
+  if(gl)line.push((STT[gl.s]||'Konu').replace(/^Aşama \d · /,'')+' '+gl.c+'/'+gl.n+(gl.ok?' ✓':''));
+  if(sentN(d.sch||''))line.push(sentN(d.sch)+' cümle');
+  b+='<div class="card"><div class="eyebrow">Bugün</div><p style="margin-top:4px;font-weight:700">'+esc(line.join(' · '))+'</p><details class="rvall"><summary>Ayrıntı ›</summary>'+lgHtml(L)+'</details></div>';
   var nwd=(S.lg||[]).filter(function(e){return e.d===t&&e.k==='w';}).reduce(function(s,e){return s+(e.nw||0);},0);
   if(nwd){var ids=Object.keys(S.srs).filter(function(id){return S.srs[id].a===t&&card(id);}).slice(0,8);
-    if(ids.length)b+='<div class="card"><div class="eyebrow">Bugün tanıştığın kelimeler</div><div class="wchips">'+ids.map(function(id){var c=card(id);return '<button class="lchip" data-act="wcard" data-id="'+esc(id)+'"><b lang="de">'+deC(deText(c))+'</b> · '+esc(c.tr)+'</button>';}).join('')+'</div></div>';}
+    /* uyumadan önce: yalnız Türkçesi; Almancasını hatırla, dokununca açılır */
+    if(ids.length)b+='<div class="card"><div class="eyebrow">Bugün tanıştığın kelimeler · Almancası?</div><div class="wchips">'+ids.map(function(id){var c=card(id);return SDREV[id]?'<button class="lchip" data-act="wcard" data-id="'+esc(id)+'"><b lang="de">'+deC(deText(c))+'</b> · '+esc(c.tr)+'</button>':'<button class="lchip" data-act="sdrev" data-id="'+esc(id)+'">'+esc(c.tr)+' → ?</button>';}).join('')+'</div></div>';}
   b+='<div class="card"><div class="eyebrow">Yarın</div><p style="margin-top:4px">'+U.w+' kelime kartı'+(U.it.length?' · '+U.it.map(function(x){return esc(x.t)+' '+esc(x.s);}).join(' · '):'')+'</p></div>';
   b+='<div class="dock"><button class="btn lime big wide" data-act="spause">Kapat</button></div>';
   return {t:'Bugün tamam',b:b};
@@ -7963,6 +7969,7 @@ ACT.prepick=function(b){if(!X||!X.pre)return;if(b.dataset.f==='1')X.pre.g2=b.dat
 function ezMarkStep(id,k){S.ezst=S.ezst||{};var o=S.ezst[id]||(S.ezst[id]={});if(!o[k]){o[k]=1;save();if(X&&X.kind==='ez')setTimeout(drawPage,0);}}
 ACT.memmine=function(b){var id=b.dataset.id,i=+b.dataset.i;S.mw=S.mw||{};if(i<0)delete S.mw[id];else{S.mw[id]=i;toast('Senin yolun · yanlış yapınca bu kanca hatırlatılır');}save();drawPage();};
 ACT.kdrev=function(b){var d=day();d.kdr=+b.dataset.i;save();render();if(X&&X.kind==='yaz')drawPage();};
+ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
 ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};

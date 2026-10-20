@@ -111,7 +111,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 49. Defter ön analizi doğru konuya göndersin
 - [x] 50. Sabah ısınması: dünden 1 soru
 - [x] 51. Ara ekranı olanı doğru söylesin, çift "bitti" ekranı kalksın
-- [ ] 52. Gün sonu özeti: kısa liste, kelimeleri kendin hatırla
+- [x] 52. Gün sonu özeti: kısa liste, kelimeleri kendin hatırla
 - [ ] 53. Yarın satırı: düz Türkçe ve süre
 - [ ] 54. "Vaktim az" bağlantısı: en etkili 7 dakika
 - [ ] 55. Geri dönüş günü: suçluluk yerine kolay başlangıç
