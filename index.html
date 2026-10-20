@@ -6821,6 +6821,7 @@ function rvType(id){
   if(id.indexOf('gs:')===0)return 'gs';
   var s=S.srs[id],c=card(id);
   if(!s&&!W.seen[id])return 'intro';
+  if(W.rt&&W.rt[id])return W.rt[id];   /* oturumda geri gelen kart yanıldığın türde sorulur */
   var st=rvSt(s);
   if(st<=0||!c)return 'tr2de';
   if(/[…\/+]/.test(c.w))return 'tr2de';
@@ -7003,8 +7004,8 @@ function hardCard(){
 var KHB=false;
 /* --- sayfa --- */
 function rvFb(cu,c){
-  var r=cu.res,ok=r==='ok';
-  var head=ok?'Richtig!':r==='hint'?'İpucuyla buldun · birazdan yine sorulacak':r==='near'?'Neredeyse · doğru sayıldı':r==='art'?'Artikel yanlış':'Yanlış · birazdan yine sorulacak';
+  var r=cu.res,ok=r==='ok',again=W.hard?'':W.lap&&W.lap[cu.id]?'yarın yine gelecek':'oturumda bir kez daha sorulacak';
+  var head=ok?'Richtig!':r==='hint'?'İpucuyla buldun'+(again?' · '+again:''):r==='near'?'Neredeyse · doğru sayıldı':r==='art'?'Artikel yanlış':'Yanlış'+(again?' · '+again:'');
   return '<div class="fb '+(ok||r==='near'||r==='hint'?'ok':'no')+'"><b>'+head+'</b>'+(cu.m?'<span>'+rich(cu.m)+'</span>':'')+
     (cu.val&&!ok?'<span>Senin cevabın: <s lang="de">'+esc(cu.val)+'</s></span>':'')+'</div>';
 }
@@ -7108,7 +7109,7 @@ function rvGrade(id,res){
 function rvAdvance(requeue){
   if(W.day&&W.day!==today()&&!W.hard){buildQueue();toast('Yeni gün başladı · bugünün kartları');drawPage();return;}
   var id=W.q.shift();
-  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard){W.lap[id]=1;W.q.splice(Math.min(4,W.q.length),0,id);}
+  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard){W.lap[id]=1;W.rt=W.rt||{};if(W.cur&&W.cur.type&&W.cur.type!=='gs')W.rt[id]=W.cur.type;W.q.splice(Math.min(10,W.q.length),0,id);}
     else{var s=S.srs[id],d=day();if(s){s.d=addD(today(),1);d.wd=d.wd||{};if(!d.wd[id]&&!W.hard){d.wd[id]=1;d.w=(d.w||0)+1;d.wrv=(d.wrv||0)+1;}save();}}}
   W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;setStreak();
   if((!W.q||!W.q.length)&&wordDone(peek(today())))toast('Kelime görevi tamam · +30 puan');
