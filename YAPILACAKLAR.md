@@ -81,7 +81,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 19. Kuralın tek cümlesi: hep aynı yerde, aynı biçimde
 - [x] 20. "Önce hatırla" gerçek hatırlama olsun
 - [x] 21. Anla'nın başında tek tahmin sorusu
-- [ ] 22. Anla: büyük tablo kapalı, son adımı önce sen söyle
+- [x] 22. Anla: büyük tablo kapalı, son adımı önce sen söyle
 - [ ] 23. Tekrar, öğrenmeden kolay olmasın
 - [ ] 24. Karışık sorular kardeş konudan gelsin, adı sonra görünsün
 - [ ] 25. Aşama sonunda tek dikkat noktası
