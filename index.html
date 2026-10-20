@@ -425,11 +425,14 @@ a.btn{display:flex;align-items:center;justify-content:center;text-decoration:non
 .mgrid button,.mgrid .mdone{min-height:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);padding:8px;font-size:14px;font-weight:600}
 .mgrid button.on{border-color:var(--ink);background:var(--card2)}.mgrid button.no{border-color:var(--bad)}.mgrid .mdone{display:flex;align-items:center;justify-content:center;opacity:.35;text-decoration:line-through}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.story{margin-top:12px;text-align:left;border-radius:14px;padding:12px 14px;background:color-mix(in srgb,var(--die) 9%,var(--card));border:1.5px solid color-mix(in srgb,var(--die) 35%,var(--line));display:flex;flex-direction:column;gap:6px}
+.story{margin-top:12px;text-align:left;border-radius:14px;padding:12px 14px;background:color-mix(in srgb,var(--sac,var(--ink3)) 9%,var(--card));border:1.5px solid color-mix(in srgb,var(--sac,var(--ink3)) 60%,var(--line));display:flex;flex-direction:column;gap:6px}
 .story p{font-size:15px;line-height:1.5}
 .story .snd{font-size:13px;color:var(--ink2)}
-.story .sc{color:var(--die);letter-spacing:.02em}
-.story .sm{color:var(--ok);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+/* kutunun kenarı ve başlığı kelimenin artikel renginde; ses kelimesi ve anlam renksiz kalın, anlamın altı çizili */
+.story.sa-der{--sac:var(--der)}.story.sa-die{--sac:var(--die)}.story.sa-das{--sac:var(--das)}
+.story>.eyebrow{color:var(--sac,var(--ink3))}
+.story .sc,.slo .sc{color:var(--ink);letter-spacing:.02em}
+.story .sm,.slo .sm{color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 .story .sa{color:var(--ink2)}
 .story .snd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:15px}
 .story .snd span[lang]{font-weight:700;color:var(--ink)}
@@ -7032,7 +7035,7 @@ function hkyRest(h){var t=String(h[3]||'').trim(),m=t.match(/[^.!?]+[.!?]+["”]
 function storyBox(id,c,mode){
   var h=hkyOf(c);
   if(!HKY)return '<div class="story"><div class="eyebrow">📖 Hikâye kancası</div><p class="small muted">Hikâye yükleniyor…</p></div>';
-  var b='<div class="story"><div class="eyebrow">📖 Hikâye kancası</div>';
+  var ar=ART(c.a),b='<div class="story'+(ar?' sa-'+ar:'')+'"><div class="eyebrow">📖 Hikâye kancası</div>';
   if(h&&h.length>=4){var slo=hkySlogan(c),rest=hkyRest(h),body='<p>'+storyFmt2(rest,h[2])+'</p>';
     b+='<div class="snd"><span lang="de">'+esc(h[0])+'</span>'+(canSay()?'<button class="spk" data-act="say" data-t="'+esc(deText(c))+'" data-r=".6" aria-label="yavaş dinle">🔊</button>':'')+
       '<span class="arr">≈</span><b class="sc">'+esc(h[1])+'</b><span class="arr">→</span><b class="sm">'+esc(String(h[2]).toLocaleLowerCase('tr'))+'</b></div>'+
