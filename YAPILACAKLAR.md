@@ -66,7 +66,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 4. Hata kutusu neyi karıştırdığını göstersin
 - [x] 5. Doğruda kısa ekran, yanlışta tam ekran
 - [x] 6. Kelime ailesi ve bağlantılar yalnız doğruysa çıksın
-- [ ] 7. Seçmeli şıklar birbirine benzesin
+- [x] 7. Seçmeli şıklar birbirine benzesin
 - [ ] 8. "Zaten biliyorum" dersen bir kez yazarak göster
 - [ ] 9. Hızlı bildiğin kart daha seyrek gelsin
 - [ ] 10. Kendi yazdığın cümle boşluk sorusu olarak geri gelsin

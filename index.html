@@ -6855,6 +6855,14 @@ function rvOpts(c,type){
   var src=c.kalip?KL.map(function(k,i){return card('k:'+i);}):POOL.filter(function(e){return e.p===c.p&&Math.abs(e.l-(c.l||2))<=1;});
   if(src.length<8)src=POOL;
   var key=type==='de2tr'?function(x){return x.tr;}:deText,right=key(c),o=[right],g=0;
+  /* "Almancası hangisi?": bir şık doğruya benzesin: önce daha önce karıştırdığın kelime, yoksa aynı başlangıçlı ya da aynı sonlu bir kelime */
+  if(type==='tr2de'&&!c.kalip){
+    var ok1=function(d){return d&&d.id!==c.id&&d.w!==c.w&&!trSame(d.tr,c.tr)&&deText(d).length<70;};
+    var sim=((S.cf&&S.cf[c.id])||[]).map(card).filter(ok1).slice(0,1);
+    if(!sim.length&&c.w.length>=5){var lw=c.w.toLowerCase(),h3=lw.slice(0,3),t4=lw.slice(-4);
+      sim=POOL.filter(function(d){if(!ok1(d)||d.p!==c.p||/\s/.test(d.w))return false;var dw=d.w.toLowerCase();return dw.slice(0,3)===h3||dw.slice(-4)===t4;});}
+    if(sim.length){var sd=sim[Math.floor(Math.random()*sim.length)];if(o.indexOf(deText(sd))<0)o.push(deText(sd));}
+  }
   while(o.length<4&&g++<120){var d=src[Math.floor(Math.random()*src.length)];if(!d||d.id===c.id||d.w===c.w||trSame(d.tr,c.tr))continue;var v=key(d);if(v&&o.indexOf(v)<0&&v.length<70&&!o.some(function(x){return x.toLowerCase()===v.toLowerCase();}))o.push(v);}
   return {right:right,o:shuffle(o)};
 }
@@ -8987,7 +8995,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
