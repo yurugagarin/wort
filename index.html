@@ -6602,14 +6602,19 @@ function tItems(id,k){
   if(k==='tani')return pick(L,8).map(function(o){return mcItem(id,o,'mc');});
   if(k==='kur'){var ty=pick(L.filter(tyOk),4);if(ty.length<4)ty=ty.concat(pick(L.filter(function(o){return !tyOk(o);}),4-ty.length));
     var sz=pick(Z,4);for(var i=0;i<4;i++){if(ty[i])out.push(mcItem(id,ty[i],tyOk(ty[i])?'ty':'mc'));if(sz[i])out.push(szItem(id,sz[i]));}return out;}
-  var a=pick(L,6),zz=pick(Z,k==='rv'?1:2);
-  a.forEach(function(o,i){var tt=k==='rv'?(i<3?'mc':i<5?'ty':'hc'):(i<3?'mc':'ty');if(tt==='ty'&&!tyOk(o))tt='mc';out.push(mcItem(id,o,tt));});
-  zz.forEach(function(o){out.push(szItem(id,o));});
+  /* Pekiştir öğrenmeden kolay olmasın: 4 yazma, 1 cümle kurma, 1 şıklı, 2 karışık; "hangisi doğru?" yok */
   if(k==='rv'){
-    var oth=shuffle(G.filter(function(g2){return g2[0]!==id&&stgDone(g2[0],'tani');})).slice(0,1);
-    oth.forEach(function(g2){var l2=mcs(g2[0]),j=Math.floor(Math.random()*l2.length);out.push(mcItem(g2[0],{s:l2[j],k:'x'+j},'mc'));});
-    if(oth.length<1){var more=pick(L,12).filter(function(o){return !a.some(function(q){return q.k===o.k;});});more.slice(0,1-oth.length).forEach(function(o){out.push(mcItem(id,o,tyOk(o)?'ty':'mc'));});}
+    var tw=pick(L.filter(tyOk),4),rest=pick(L.filter(function(o){return !tw.some(function(q){return q.k===o.k;});}),5-tw.length);
+    tw.forEach(function(o){out.push(mcItem(id,o,'ty'));});rest.forEach(function(o){out.push(mcItem(id,o,'mc'));});
+    pick(Z,1).forEach(function(o){out.push(szItem(id,o));});
+    var oth=shuffle(G.filter(function(g2){return g2[0]!==id&&stgDone(g2[0],'tani');})).slice(0,2);
+    oth.forEach(function(g2){var l2=mcs(g2[0]),j=Math.floor(Math.random()*l2.length),o2={s:l2[j],k:'x'+j};out.push(mcItem(g2[0],o2,tyOk(o2)?'ty':'mc'));});
+    if(oth.length<2){var more=pick(L,14).filter(function(o){return !tw.concat(rest).some(function(q){return q.k===o.k;});});more.slice(0,2-oth.length).forEach(function(o){out.push(mcItem(id,o,tyOk(o)?'ty':'mc'));});}
+    return shuffle(out);
   }
+  var a=pick(L,6),zz=pick(Z,2);
+  a.forEach(function(o,i){var tt=i<3?'mc':'ty';if(tt==='ty'&&!tyOk(o))tt='mc';out.push(mcItem(id,o,tt));});
+  zz.forEach(function(o){out.push(szItem(id,o));});
   return shuffle(out);
 }
 function startStage(id,k,only){
@@ -6636,7 +6641,7 @@ function lessonIntro(){
       '<button class="btn lime big wide" data-act="lgo">Anladım · 3 kontrol sorusu</button>';
     return b;
   }
-  var what={tani:'8 soru, şıklı. Yanlış yaparsan neyi neyle karıştırdığını ve nasıl düşünmen gerektiğini söylerim. Geçmek için %75.',kur:'8 soru: 4\'ünde cevabı kendin yazarsın, 4\'ünde cümleyi kendin kurarsın. Geçmek için %70. ä ö ü ß için tuşlar var; ae, oe, ue, ss yazman da kabul.',rv:'8 karışık soru, 1\'i önceki konulardan. Geçmek için %80. Geçersen sıradaki tekrar daha ileri bir güne kayar.'}[k];
+  var what={tani:'8 soru, şıklı. Yanlış yaparsan neyi neyle karıştırdığını ve nasıl düşünmen gerektiğini söylerim. Geçmek için %75.',kur:'8 soru: 4\'ünde cevabı kendin yazarsın, 4\'ünde cümleyi kendin kurarsın. Geçmek için %70. ä ö ü ß için tuşlar var; ae, oe, ue, ss yazman da kabul.',rv:'8 soru: 4\'ünde cevabı yazarsın, 1 cümle kurarsın, 1 şıklı, 2\'si önceki konulardan. Geçmek için %80. Geçersen sıradaki tekrar daha ileri bir güne kayar.'}[k];
   b+=recallCard(X.id)+
     '<details class="card"><summary>Uzun özet</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(X.id)+'</div></details>'+
     '<p class="muted">'+what+'</p><button class="btn lime big wide" data-act="lgo">Başla</button>';
