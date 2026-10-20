@@ -469,6 +469,9 @@ a.btn{display:flex;align-items:center;justify-content:center;text-decoration:non
 .fb.no{background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid color-mix(in srgb,var(--bad) 35%,transparent)}
 .fb b{display:block;margin-bottom:2px}
 mark.dx{background:none;color:var(--bad);text-decoration:underline;text-underline-offset:3px;font-weight:800}
+.slo{margin:8px 0 2px;font-weight:700;font-size:15px;line-height:1.45}
+.slo .sm{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+details.rvall{margin-top:8px}details.rvall>summary{cursor:pointer;color:var(--ink3);font-size:14px;list-style:none}details.rvall>summary::-webkit-details-marker{display:none}details.rvall[open]>summary{margin-bottom:8px}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
 .sz-tr{font-size:16px;color:var(--ink2);text-align:center;padding:6px 0}
 .sz-ans{min-height:100px;border:1.5px dashed var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;background:var(--card)}
@@ -6804,7 +6807,7 @@ function advance(){
 function deLabel(c){var a=ART(c.a);return (a?'<span class="art" style="color:var(--'+a+')">'+a+'</span> ':'')+esc(c.w);}
 function deText(c){var a=ART(c.a);return (a?a+' ':'')+c.w;}
 function rvCard(c,big){
-  var pl=plural(c),ru=ART(c.a)&&c.p==='n'?rule(c):'';
+  var pl=plural(c),ru=ART(c.a)&&c.p==='n'?rule(c):'';if(/^Kural yok/.test(ru))ru='';
   return '<div class="de" lang="de" style="font-size:'+(big?'30':'24')+'px;font-family:var(--f-disp)">'+deLabel(c)+spkBtn(deText(c))+'</div>'+
     '<div class="tr" style="font-size:'+(big?'24':'20')+'px">'+esc(c.tr)+'</div>'+
     (pl?'<div class="pl" lang="de">çoğul: die '+esc(pl)+'</div>':c.f?'<div class="pl" lang="de">'+esc(c.f)+'</div>':'')+
@@ -6955,6 +6958,7 @@ function storyFmt2(t,mean){
   return esc(t).replace(/\*([^*]+)\*/g,'$1').replace(/([A-ZÇĞİÖŞÜÂ]{2,}(?:\s+[A-ZÇĞİÖŞÜÂ]{2,})*)/g,function(m){
     var cl=/^(PATLA|ALEV|CAM G|KIRIL)/.test(m)?'sa':mk&&m.indexOf(mk)===0?'sm':'sc';return '<b class="'+cl+'">'+m+'</b>';});
 }
+function hkySlogan(c){var h=hkyOf(c);if(!h||h.length<4)return '';var m=String(h[3]).trim().match(/[^.!?]+[.!?]+["”]?|[^.!?]+$/g);return m?m[m.length-1].trim():'';}
 function storyBox(id,c){
   var h=hkyOf(c);
   if(!HKY)return '<div class="story"><div class="eyebrow">📖 Hikâye kancası</div><p class="small muted">Hikâye yükleniyor…</p></div>';
@@ -6974,7 +6978,8 @@ function hkBlock(id,c){
     
     '<textarea class="inp" data-in="hk" rows="3" placeholder="Kendi kancan: kısa, komik, görsel. Ör: Termin → “ter-min”: terleyerek randevuya koşan bir adam.">'+esc(W.hkv!=null?W.hkv:h)+'</textarea>'+
     '<div class="row"><button class="btn sm" data-act="hkx">Kapat</button><div class="sp"></div><button class="btn lime sm" data-act="hksave">Kaydet</button></div></div>';
-  return (h?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(h)+'</p></div>':'')+
+  var hx=S.hk&&S.hk[id],dup=W.hs===id&&hx&&(hx.src==='hky'||hkCopy(hx.t));
+  return (h&&!dup?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(h)+'</p></div>':'')+
     (lp>=3&&!h?'<p class="note leech">Bu kelime '+lp+' kez kaçtı. Bir kanca bul; zor kelimeler kancayla çok daha kolay kalır.</p>':'')+
     (W.hs===id?storyBox(id,c):'')+
     '<div class="row hkr">'+(W.hs===id?'':'<button class="link hkl" data-act="hkstory">📖 Hikâye kancası</button>')+'<button class="link hkl" data-act="hkopen">🪝 '+(h?'Kancayı düzenle':'Hafıza kancası')+'</button></div>';
@@ -7093,7 +7098,13 @@ function pReview(){
   }
   if(cu.res||W.pick){
     if(!cu.res)cu.res=W.pick===cu.right?'ok':'no';
-    b+=rvFb(cu,c)+'<div class="card rv" style="padding:14px">'+rvCard(c,false)+wordLinks(c)+hkBlock(id,c)+'</div>';
+    /* doğruda kısa kart (kelime, örnek, slogan, sonraki tekrar), yanlışta kartın tamamı */
+    if(cu.res==='ok'&&!W.hs&&!W.hk){var sv=S.srs[id],nd=sv&&sv.d?dd(today(),sv.d):0,slo=hkySlogan(c);
+      b+=rvFb(cu,c)+'<div class="card rv" style="padding:14px"><div class="de" lang="de" style="font-size:24px;font-family:var(--f-disp)">'+deLabel(c)+spkBtn(deText(c))+'</div><div class="tr" style="font-size:17px">'+esc(c.tr)+'</div>'+
+        (c.ex?'<div class="ex" lang="de">'+hl(c.ex)+spkBtn(c.ex)+'</div>':'')+(slo?'<p class="slo">'+storyFmt2(slo,(hkyOf(c)||[])[2])+'</p>':'')+
+        (nd>0?'<p class="small muted">Sonraki tekrar: '+(nd===1?'yarın':nd+' gün sonra')+'</p>':'')+
+        '<details class="rvall"><summary>Kartın tamamı ›</summary>'+rvCard(c,false)+wordLinks(c)+hkBlock(id,c)+'</details></div>';}
+    else b+=rvFb(cu,c)+'<div class="card rv" style="padding:14px">'+rvCard(c,false)+wordLinks(c)+hkBlock(id,c)+'</div>';
     if(cu.res==='ok'&&rvSt(S.srs[id])>=3)b+='<details class="card own"'+(W.ows?' open':'')+'><summary>✍️ Bu kelimeyle kendi cümleni yaz <span class="small muted">isteğe bağlı · Yazma görevine sayılır</span></summary>'+
       '<textarea class="inp" lang="de" data-in="ows" rows="2" spellcheck="false" placeholder="Schreib einen Satz mit „'+esc(c.w)+'“ …">'+esc(W.ows||'')+'</textarea><button class="btn sm" data-act="owsave">Yazma görevine ekle</button></details>';
     b+='<div class="dock"><button class="btn dark big wide" data-act="rvnext">Devam</button></div>';
