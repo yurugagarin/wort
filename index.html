@@ -6121,7 +6121,10 @@ function pSdone(){
   if(nwd){var ids=Object.keys(S.srs).filter(function(id){return S.srs[id].a===t&&card(id);}).slice(0,8);
     /* uyumadan önce: yalnız Türkçesi; Almancasını hatırla, dokununca açılır */
     if(ids.length)b+='<div class="card"><div class="eyebrow">Bugün tanıştığın kelimeler · Almancası?</div><div class="wchips">'+ids.map(function(id){var c=card(id);return SDREV[id]?'<button class="lchip" data-act="wcard" data-id="'+esc(id)+'"><b lang="de">'+deC(deText(c))+'</b> · '+esc(c.tr)+'</button>':'<button class="lchip" data-act="sdrev" data-id="'+esc(id)+'">'+esc(c.tr)+' → ?</button>';}).join('')+'</div></div>';}
-  b+='<div class="card"><div class="eyebrow">Yarın</div><p style="margin-top:4px">'+U.w+' kelime kartı'+(U.it.length?' · '+U.it.map(function(x){return esc(x.t)+' '+esc(x.s);}).join(' · '):'')+'</p></div>';
+  /* yarın: düz cümle ve süre */
+  var kc=Math.min(U.w,wCap()),pt=[kc+' kart'],mn=Math.ceil(kc/3);
+  U.it.slice(0,3).forEach(function(x){if(x.k==='g'&&/Üret/.test(x.s)){pt.push(x.t+' ile kendi 3 cümlen');mn+=6;}else if(x.k==='g'){pt.push(x.t+' tekrarı');mn+=6;}else{pt.push(x.t+' tablosu');mn+=4;}});
+  b+='<div class="card"><div class="eyebrow">Yarın</div><p style="margin-top:4px"><b>Yarın ~'+Math.max(5,Math.round(mn/5)*5)+' dk:</b> '+esc(pt.join(' · '))+'</p></div>';
   b+='<div class="dock"><button class="btn lime big wide" data-act="spause">Kapat</button></div>';
   return {t:'Bugün tamam',b:b};
 }
