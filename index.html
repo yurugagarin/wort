@@ -6707,6 +6707,9 @@ function lessonEnd(){
     /* bugün gerçekten çalışılan konu, günün konusu olur (Bugün'de başlık ile yapılan iş ayrışmasın) */
     if(X.pass&&k!=='free'&&k!=='retry'&&(!d.gtDone||d.gt===id)){d.gt=id;d.gtDone=1;}
     lgAdd({d:t,k:'g',ref:id,s:k,c:X.ok,n:n,ok:X.pass&&k!=='free'&&k!=='retry'?1:0,nx:k==='rv'?x.due:''});
+    /* tek dikkat noktası: bu turda en sık yapılan hata türü; bir sonraki aşamanın "Önce hatırla" kartında yine görünür */
+    if(k!=='retry'){var cn={},top=null;(X.dgs||[]).forEach(function(q){cn[q.cat]=(cn[q.cat]||0)+1;if(!top||cn[q.cat]>cn[top.cat])top=q;});
+      if(top)x.fx={t:ERRC[top.cat][0],n:cn[top.cat],q:oneLine(top.think||''),stg:k,d:t};else if(x.fx&&x.fx.stg!==k)delete x.fx;}
     save();
   }
   var p1=tprog(id),a=nextAct(id),wrong=X.items.filter(function(it,i){return X.res[i]==='no';}),wl=(GW[id]||[]).length,added=wordsAdded(id);
@@ -6714,9 +6717,11 @@ function lessonEnd(){
   if(k==='anla')msg=X.pass?'Kuralı gördün. Şimdi tanıma alıştırması: '+STT.tani+'.':'3 sorudan en az 2\'si gerekli. Anlatımı bir kez daha oku (özellikle "Mantığı" ve "Karıştırma"), sonra yeniden dene.';
   else if(k==='free'||k==='retry')msg=(acc>=.8?'Çok iyi.':'Yanlışlarına bir göz at; tekrar karşına çıkacaklar.')+(a.k&&a.k!=='uret'?' Dikkat: bu alıştırma aşamaya sayılmaz; '+actLabel(a)+' hâlâ seni bekliyor.':'');
   else if(k==='rv')msg=X.pass?'Tekrar başarılı. '+(tstat(id)==='ok'?'Bu konu artık oturdu; arada bir yine sorulacak.':'Bir sonraki tekrar daha ileri bir günde.'):'Bu sefer %80 olmadı; konu yarın tekrar karşına gelecek. Unutup yeniden hatırlamak öğrenmenin parçası.';
-  else msg=X.pass?'Geçtin! Aşama tamam.':'Geçmek için %'+pct(PASS[k])+' lazım. Yanlışlarına bak, özeti bir kez daha oku ve yeniden dene; acele yok.';
+  else msg=X.pass?'Geçtin! Aşama tamam.':'Geçmek için %'+pct(PASS[k])+' lazım. Aşağıdaki dikkat noktasına bak ve yeniden dene; acele yok.';
+  if(k==='anla'&&!X.pass)msg='3 sorudan en az 2\'si gerekli. Kural kartına bir kez daha bak, sonra yeniden dene.';
   var b='<div class="center" style="padding:16px 0 4px"><div class="eyebrow">'+STT[k]+' bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
     '<p class="muted" style="margin-top:6px">'+esc(msg)+'</p></div>';
+  if(x.fx&&x.fx.stg===k&&x.fx.d===t)b+='<div class="tipbox"><div class="eyebrow">Bu turda en çok</div><p><b>'+esc(x.fx.t)+'</b> ('+x.fx.n+' kez)'+(x.fx.q?' · bir dahaki sefere: '+rich(x.fx.q):'')+'</p></div>';
   b+='<div class="card"><div class="row"><span class="small muted">Konu ilerlemesi</span><div class="sp"></div><b class="num">%'+pct(X.p0)+' → %'+pct(p1)+'</b></div><div style="margin-top:8px">'+bar(p1,'var(--ok)','thick')+'</div>'+
     (gpeek(id).known?'':stagePath(id))+'</div>';
   if(a.k)b+='<button class="btn lime big wide" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">'+(a.k===k?'Aşamayı yeniden dene':(k==='free'||k==='retry')?'Şimdi: '+ACTB[a.k]:'Devam: '+ACTB[a.k])+'</button>';
@@ -8810,6 +8815,7 @@ function noteWrong(it,g){
   if(!it)return;var d=itemDiag(it,g);X.dg=d;
   if(it.nt){var gw=it.t==='hc'&&it.wmap?it.wmap[g]:g,j=(it.wl||[]).indexOf(gw);if(j<0&&gw!=null){var ng=norm(gw);(it.wl||[]).forEach(function(w,i){if(j<0&&norm(w)===ng)j=i;});}if(j>=0&&it.nt[j])d.why=it.nt[j];}
   if(j>=0&&it.nt&&it.nt[j])d.nt=1;
+  if(d.sure!==false&&ERRC[d.cat]&&!/^(genel|yazim|ezb)$/.test(d.cat))X.dgs=(X.dgs||[]).concat([d]);
   if((X.kind==='lesson'||X.kind==='ezq')&&(d.sure!==false||d.nt))errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
     c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g)});
 }
@@ -8892,8 +8898,9 @@ function preQ(fin){
 }
 /* "Önce hatırla": önce kuralı hafızandan söyle, sonra kural kartını aç (bulamasan bile denemek öğrenmeyi güçlendirir) */
 function recallCard(id){
-  if(X&&X.rc)return ruleCard(id);
-  return '<div class="tipbox"><div class="eyebrow">Önce hatırla</div><p>Bu konunun kuralı tek cümlede neydi? Ekrana bakmadan sesli söyle, bir de örnek cümle kur.</p>'+
+  var fx=gpeek(id).fx,fl=fx&&X&&fx.stg!==X.stg?'<p class="small" style="margin-top:6px">⚠️ Geçen tur en çok: <b>'+esc(fx.t)+'</b>'+(fx.q?' · '+rich(fx.q):'')+'</p>':'';
+  if(X&&X.rc)return ruleCard(id)+(fl?'<div class="tipbox">'+fl+'</div>':'');
+  return '<div class="tipbox"><div class="eyebrow">Önce hatırla</div><p>Bu konunun kuralı tek cümlede neydi? Ekrana bakmadan sesli söyle, bir de örnek cümle kur.</p>'+fl+
     '<button class="btn dark wide" style="margin-top:8px" data-act="rcopen">Söyledim, aç</button></div>';
 }
 function dersHtml(id){
