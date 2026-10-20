@@ -95,7 +95,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 33. Desenler doğru yeri boyasın, ikizler aynı renk olsun
 - [x] 34. Büyük tabloları parça parça öğret
 - [x] 35. Hücreyi gerçek bir cümlenin içinde sor
-- [ ] 36. Tekrar gününde önce boş tabloyu doldur
+- [x] 36. Tekrar gününde önce boş tabloyu doldur
 - [ ] 37. Yanlışta tablonun karıştırdığın kısmını göster
 - [ ] 38. Kapat ve hatırla: sütun sütun ve sesli
 - [ ] 39. Yarı oturan hücreleri de göster
