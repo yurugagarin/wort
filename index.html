@@ -8817,6 +8817,11 @@ function hubMembers(hid){
 function hubProg(hid){var gs=hubMembers(hid).filter(function(x){return x.indexOf('g:')===0&&GBY[x.slice(2)];}),s=0;gs.forEach(function(x){s+=tprog(x.slice(2));});return gs.length?s/gs.length:0;}
 function hubHtml(hid,cur,full){
   var h=HUB[hid];if(!h)return '';
+  /* Anla · Büyük resim: yalnız konunun kendi satırı açık, aile ve tablolar "Bütün aile ›" altında */
+  if(full==='anla'){var mine=(h.rows||[]).filter(function(r){return r[2]==='g:'+cur;});
+    return '<div class="hub"><div class="eyebrow">Büyük fikir · <span lang="de">'+esc(h.de)+'</span></div><div class="ht">'+esc(h.t)+'</div>'+
+      (mine.length?'<div class="kl">'+mine.map(function(r){return '<div class="klr on"><span class="kll">'+esc(r[0])+'</span><span class="kls" lang="de">'+segHtml(r[1])+'</span></div>';}).join('')+'</div>':'<p>'+rich(h.x)+'</p>')+
+      '<details class="rvall"><summary>Bütün aile ›</summary>'+hubHtml(hid,cur).replace(/^<div class="hub">/,'<div>')+'</details></div>';}
   var b='<div class="hub"><div class="eyebrow">Büyük fikir · <span lang="de">'+esc(h.de)+'</span></div><div class="ht">'+esc(h.t)+'</div><p>'+rich(h.x)+'</p>';
   if(h.rows&&h.rows.length)b+='<div class="kl">'+h.rows.map(function(r){return '<div class="klr'+(cur&&r[2]==='g:'+cur?' on':'')+'"><span class="kll">'+esc(r[0])+'</span><span class="kls" lang="de">'+segHtml(r[1])+'</span></div>';}).join('')+'</div>'+
     (hid==='klammer'||hid==='sona'?'<div class="klk"><span class="sg v1">çekimli fiil</span>'+(hid==='klammer'?' <span class="sg v2">ikinci parça</span>':'')+'</div>':'');
@@ -8903,11 +8908,12 @@ function anlaHtml(){
   b+='<div><div class="eyebrow">Aşama 1 · Anla · '+(k+1)+'/'+n+'</div><h1>'+esc(sc[1])+'</h1></div>';
   var nextBtn='<button class="btn lime big wide" data-act="anext">Devam</button>';
   if(sc[0]==='kopru')b+=preQ(false)+'<p class="muted">Yeni bir şeyi ancak bildiğin bir şeye bağlarsan aklında kalır. <b lang="de">'+esc(g[2])+'</b> şunlara dayanıyor:</p>'+glKopru(gl);
-  else if(sc[0]==='hub')b+=(gl.hub||[]).map(function(h){return hubHtml(h,id);}).join('');
+  else if(sc[0]==='hub')b+=(gl.hub||[]).map(function(h){return hubHtml(h,id,'anla');}).join('');
   else if(sc[0]==='mantik')b+=ruleCard(id)+'<div class="sum"><p>'+rich(gl.mantik)+'</p></div><details class="card"><summary>Kuralların kısa özeti</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(id)+'</div></details>';
   else if(sc[0]==='adim'){var ad=X.ad||1,tot=gl.adim?gl.adim.s.length:0;
     b+='<p class="muted">Türkçe bir cümleden yola çıkıp Almancasını birlikte kuralım. Her adımda bir karar var.</p>'+glAdim(gl,ad);
-    if(ad<tot)nextBtn='<button class="btn dark big wide" data-act="adim">Sonraki adım</button>';}
+    if(ad===tot-1){b+='<div class="tipbox"><div class="eyebrow">Son adım</div><p>Bitmiş cümleyi önce sen söyle: „'+esc(gl.adim.tr)+'“</p></div>';nextBtn='<button class="btn dark big wide" data-act="adim">Söyledim, göster</button>';}
+    else if(ad<tot)nextBtn='<button class="btn dark big wide" data-act="adim">Sonraki adım</button>';}
   else if(sc[0]==='tr')b+='<p class="muted">Türkçe bazen yardım eder, bazen yanıltır. İkisini yan yana koy:</p>'+glTr(gl);
   else if(sc[0]==='neden')b+='<p class="muted">Cevabı açmadan önce birkaç saniye kendin düşün. "Neden?" diye sormak bilgiyi bildiklerine bağlar.</p>'+glNeden(gl);
   else if(sc[0]==='karis')b+=glKaris(gl)+glKanca(gl);
