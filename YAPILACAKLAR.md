@@ -103,7 +103,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 41. Konu aynı kalsın, yazma biçimi her gün değişsin
 - [x] 42. Yazma'da tek "Dünden" satırı
 - [x] 43. Hata kutusu: önce sen düzelt, sonra doğrusunu gör
-- [ ] 44. Konuyu kullandın mı? Sayaçta görünsün
+- [x] 44. Konuyu kullandın mı? Sayaçta görünsün
 - [ ] 45. Her kalıba bir "ne zaman söylersin" satırı
 - [ ] 46. Kalıp kartına ara basamak: önce anahtar kelimeyi yaz
 - [ ] 47. Defterdeki cümlen yazında geri gelsin
