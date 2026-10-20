@@ -6320,6 +6320,13 @@ function ydLine(d){
   return '<div class="ydl"><span>Dünden · kelimeleri yazında kullan</span><p>'+ids.map(function(id){var c=card(id),used=t.indexOf(' '+norm(c.w)+' ')>=0,rv=used||(d.ydr&&d.ydr[id]);
     return rv?'<b lang="de" class="'+(used?'ok':'')+'">'+deC(deText(c))+(used?' ✓':'')+'</b>':'<button class="chip" data-act="ydrev" data-id="'+esc(id)+'">'+esc(c.tr)+'</button>';}).join(' ')+'</p></div>';
 }
+function kKey(c){var ws=String(c.w).replace(/[.,!?;:„“"…]/g,' ').split(/\s+/).filter(function(w){return w.length>2&&!KSTOP[norm(w)];});
+  return ws.sort(function(a,b){return b.length-a.length;})[0]||'';}
+/* kelime düzeyinde fark: bütün kalıbı yazarken yalnız farklı olan kelime işaretlenir */
+function wordDiff(val,right){var a=String(val).toLowerCase().replace(/[.,!?;:]/g,'').split(/\s+/).filter(Boolean),bw=String(right).split(/\s+/),b=bw.map(function(w){return w.toLowerCase().replace(/[.,!?;:]/g,'');}),n=a.length,m=b.length,L=[],i,j,o=[];
+  for(i=n;i>=0;i--){L[i]=[];for(j=m;j>=0;j--)L[i][j]=i===n||j===m?0:a[i]===b[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);}
+  i=0;j=0;while(j<m){if(i<n&&a[i]===b[j]){o.push(esc(bw[j]));i++;j++;}else if(i<n&&L[i+1][j]>=L[i][j+1])i++;else{o.push('<mark class="dx">'+esc(bw[j])+'</mark>');j++;}}
+  return o.join(' ');}
 function kalipKeys(k){var ws=norm(String(k[2]).replace(/[…/]/g,' ')).split(' ').filter(function(w){return w&&w.length>1&&!KSTOP[w];});return ws.length?ws.slice(0,3):norm(k[2]).split(' ').filter(Boolean).slice(0,3);}
 function kalipUsed(k,txt){var t=' '+norm(txt||'')+' ',ks=kalipKeys(k);return ks.length>0&&ks.every(function(w){return t.indexOf(' '+w+' ')>=0;});}
 function taskBody(id){
@@ -6984,6 +6991,7 @@ function rvType(id){
   var st=rvSt(s);
   if(st<=0||!c)return 'tr2de';
   if(/[…\/+]/.test(c.w))return 'tr2de';
+  if(c.kalip&&st===1&&kKey(c))return 'cloze';   /* kalıpta ara basamak: önce anahtar kelimeyi yaz (Ich habe keine ___.) */
   if(isPhrase(c))return 'write';
   var cz=clozeOf(c);
   if(st===1)return cz?'cloze':'write';
@@ -7235,11 +7243,12 @@ function rvFb(cu,c){
   var r=cu.res,ok=r==='ok',again=W.hard?'':W.lap&&W.lap[cu.id]?'yarın yine gelecek':'oturumda bir kez daha sorulacak';
   var head=ok?'Richtig!':r==='hint'?'İpucuyla buldun'+(again?' · '+again:''):r==='near'?'Neredeyse · doğru sayıldı':r==='art'?'Artikel yanlış':'Yanlış'+(again?' · '+again:'');
   var mine=cu.val||(r==='no'&&cu.type==='tr2de'?W.pick:''),oth=cu.oth&&card(cu.oth),rt=rvRight(c,cu.type),m=cu.m?(/^Doğrusu: \*[^*]+\*$/.test(cu.m)?'Doğrusu: <b lang="de">'+deC(rt)+'</b>':rich(cu.m)):'';
-  if(cu.val&&(r==='near'||r==='no')&&/^(write|cloze|plural|perf)$/.test(cu.type)&&lev(norm(cu.val),norm(rt))<=3){
+  if(c.kalip&&cu.val&&cu.type==='write'&&(r==='near'||r==='no'))m=(r==='near'?'Yazımına dikkat: ':'Doğrusu: ')+'<b lang="de">'+wordDiff(cu.val,rt)+'</b>';
+  else if(cu.val&&(r==='near'||r==='no')&&/^(write|cloze|plural|perf)$/.test(cu.type)&&lev(norm(cu.val),norm(rt))<=3){
     if(/^Yazımına dikkat/.test(cu.m||''))m='Yazımına dikkat: <b lang="de">'+diffMark(cu.val,rt)+'</b>';
     else if(/^Doğrusu/.test(cu.m||''))m='Doğrusu: <b lang="de">'+diffMark(cu.val,rt)+'</b>';}
   return '<div class="fb '+(ok||r==='near'||r==='hint'?'ok':'no')+'"><b>'+head+'</b>'+(m?'<span>'+m+'</span>':'')+
-    (mine&&!ok&&r!=='hint'?'<span>Senin '+(cu.val?'yazdığın':'seçtiğin')+': <s lang="de">'+deC(mine)+'</s>'+(oth?' = '+esc(oth.tr):'')+'</span>':'')+'</div>';
+    (mine&&!ok&&r!=='hint'?'<span>Senin '+(cu.val?'yazdığın':'seçtiğin')+': '+(c.kalip&&cu.val&&cu.type==='write'?'<span lang="de">'+wordDiff(rt,cu.val)+'</span>':'<s lang="de">'+deC(mine)+'</s>')+(oth?' = '+esc(oth.tr):'')+'</span>':'')+'</div>';
 }
 function pReview(){
   var q=W.q,b='';
@@ -7256,7 +7265,8 @@ function pReview(){
   if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now()};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
-    if(ty==='cloze'){var ow=ownFor(c),cs=ow.length?ow:ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];if(W.cur.cz[3])W.cur.czf=W.cur.cz[3];}
+    if(ty==='cloze'&&c.kalip){W.cur.cz=[c.w,''];W.cur.czf=kKey(c);}
+    else if(ty==='cloze'){var ow=ownFor(c),cs=ow.length?ow:ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];if(W.cur.cz[3])W.cur.czf=W.cur.cz[3];}
     if(ty==='listen')setTimeout(function(){if(X&&X.kind==='review'&&W.cur&&W.cur.id===id&&!W.cur.res)sayVar(deText(c));},300);
     W.step='q';W.pick=null;}
   var cu=W.cur,done=W.n0-q.length,src='<div class="src">'+esc(srcLabel(c))+'</div>';
