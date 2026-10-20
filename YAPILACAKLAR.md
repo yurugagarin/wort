@@ -121,7 +121,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 59. Oyunlar önce zayıf kelimelerini sorsun
 - [x] 60. Yanlış soru turun sonunda bir kez daha gelsin
 - [x] 61. Lücke'de şıklar aynı kalıpta olsun
-- [ ] 62. Oyunda yanlıştan sonra doğru renk, ses ve slogan
+- [x] 62. Oyunda yanlıştan sonra doğru renk, ses ve slogan
 - [ ] 63. Hata örnekleri kendi yanlışınla mini soru olsun
 - [ ] 64. Hata kartı: gidişat ve tek önerilen bağlantı
 - [ ] 65. Odak hatan günün Ezber adımına karışsın

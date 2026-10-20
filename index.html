@@ -7473,15 +7473,16 @@ function startLuck(){
     cand.sort(function(a,b){return b[0]-a[0];}).forEach(function(c){if(opts.length<4&&!opts.some(function(x){return x.toLowerCase()===c[1].toLowerCase();}))opts.push(c[1]);});
     return {e:e,pre:m[1].replace(/\*/g,''),ans:ans,post:m[3].replace(/\*/g,''),opts:shuffle(opts)};
   });
+  if(!HKY)hkyLoad(function(){if(X&&X.kind==='luck')drawPage();});
   openPage({kind:'luck',items:items,i:0,ok:0,res:[],pick:null});
 }
 function pLuck(){
   var n=X.items.length;
   if(X.i>=n)return {t:'Lücke',b:'<div class="center" style="padding:20px 0"><div class="big">'+X.ok+' / '+X.items.filter(function(x){return !x.again;}).length+'</div><p class="muted" style="margin-top:6px">Boşluk doldurma bitti.</p></div>'+gConfHtml()+'<button class="btn big wide" data-act="luecke">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
   var it=X.items[X.i],e=it.e,a=ART(e.a);
-  var b=progBar(X.i,n)+'<div class="eyebrow center" style="margin-top:8px">Boşluğa hangi kelime gelir?</div><div class="q" lang="de">'+esc(it.pre)+(X.pick?'<b class="'+(X.pick===it.ans?'ok':'no')+'">'+esc(it.ans)+'</b>':'<u>&nbsp;</u>')+esc(it.post)+'</div>'+
+  var b=progBar(X.i,n)+'<div class="eyebrow center" style="margin-top:8px">Boşluğa hangi kelime gelir?</div><div class="q" lang="de">'+esc(it.pre)+(X.pick?'<b class="ok">'+esc(it.ans)+'</b>':'<u>&nbsp;</u>')+esc(it.post)+'</div>'+
     '<p class="small muted center">İpucu: '+esc(e.tr)+'</p><div class="opts">'+it.opts.map(function(o){var c=X.pick?(o===it.ans?'ok':o===X.pick?'no':''):'';return '<button lang="de" class="'+c+'" data-act="upick" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
-  if(X.pick)b+='<div class="fb '+(X.pick===it.ans?'ok':'no')+'"><b lang="de" style="color:var(--'+(a||'ink')+')">'+(a?a+' ':'')+esc(e.w)+'</b>'+esc(e.tr)+'</div><button class="btn dark big wide" data-act="unext">Devam</button>';
+  if(X.pick){var slo=hkySlogan(e);b+='<div class="fb '+(X.pick===it.ans?'ok':'no')+'"><b lang="de">'+deC(deText(e))+'</b>'+esc(e.tr)+(slo?'<span class="slo" style="font-size:14px">🪝 '+storyFmt2(slo,(hkyOf(e)||[])[2])+'</span>':'')+'</div><button class="btn dark big wide" data-act="unext">Devam</button>';}
   return {t:'Lücke · boşluk doldur',b:b};
 }
 
@@ -7716,6 +7717,7 @@ var ACT={
   satzw:function(){var it=wordSatzItems(8);if(!it.length){toast('Önce birkaç kelime çalış');return;}if(X&&X.kind==='satz'){STACK=[];X=null;}var o={kind:'satz',items:it,i:0,ok:0,res:[]};prepSatz(o,it[0]);openPage(o);},
   luecke:function(){if(X&&X.kind==='luck'){STACK=[];X=null;}startLuck();},
   upick:function(b){if(X.pick)return;X.pick=b.dataset.v;var it=X.items[X.i],ok=X.pick===it.ans;X.res[X.i]=ok?'ok':'no';if(ok&&!it.again)X.ok++;
+    if(S.set.auto!==false)sayVar((it.pre+it.ans+it.post).replace(/\s+/g,' ').trim());
     if(!ok){gConf(it.pre.trim()+' ___ '+it.post.trim()+' → '+it.ans);if(!it.again){var c2={};for(var k in it)c2[k]=it[k];c2.again=1;c2.opts=shuffle(it.opts.slice());X.items.push(c2);}}logAns('lk','lk',ok,it.pre+'…'+it.post+' (ipucu: '+it.e.tr+')',X.pick,it.ans,'');drawPage();},
   unext:function(){X.i++;X.pick=null;drawPage();},
   blitz:function(){openPage({kind:'blitz',run:false,end:false,ok:0,n:0,miss:[]});},
