@@ -69,7 +69,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 7. Seçmeli şıklar birbirine benzesin
 - [x] 8. "Zaten biliyorum" dersen bir kez yazarak göster
 - [x] 9. Hızlı bildiğin kart daha seyrek gelsin
-- [ ] 10. Kendi yazdığın cümle boşluk sorusu olarak geri gelsin
+- [x] 10. Kendi yazdığın cümle boşluk sorusu olarak geri gelsin
 - [ ] 11. Artikel rengi her yerde aynı
 - [ ] 12. Ses köprüsü ve slogan öne, tekrarda yalnız bu iki satır
 - [ ] 13. Yeni kelime ekranı: kanca kartın altında, tek talimat
