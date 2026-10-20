@@ -6154,6 +6154,8 @@ function msCard(){S.ms=S.ms||{};var got=MS.filter(function(m){return S.ms[m[0]];
 
 /* ---------------- BUGÜN ---------------- */
 function examChip(){if(!S.set.exam)return '<button class="chip" data-act="settings">Sınav tarihi ekle</button>';var n=dd(today(),S.set.exam);return '<span class="chip ex">'+(n>0?'Sınava '+n+' gün':n===0?'Sınav bugün!':'Sınav geçti')+'</span>';}
+var WREV=0;
+function warmQ(){var y=addD(today(),-1),L=(S.wl||[]).filter(function(x){return x.d===y&&(x.s==='g'||x.s==='ez')&&x.q&&x.c;});return L.length?L[hash(today()+'wu')%L.length]:null;}
 function vBugun(){
   ensureTarget();frzCheck();frzEarn();var nw=msCheck();if(nw.length)setTimeout(function(){toast('🏅 '+nw[0]);},400);
   var t=today(),d=day(),s=total(d),T=taskDefs(d),nx=sessNext(),done=T.filter(function(x){return x.f>=1;}).length,mins=T.reduce(function(a,x){return a+taskMin(x);},0);
@@ -6164,8 +6166,11 @@ function vBugun(){
       return '<li><button class="t2r '+st+'" style="--c:'+x.c+'" data-act="task" data-id="'+x.id+'"><span class="ic">'+(x.f>=1?'✓':st==='n'?'▶':'')+'</span><span class="tx"><b>'+TLAB[x.id]+'</b><span>'+esc(taskSub(x))+'</span></span><span class="pt num">'+x.p+'<small>/'+x.max+'</small></span></button></li>';}).join('')+'</ul>'+
     (nx?'<button class="btn lime big wide" data-act="sgo">'+(done?'Devam et · '+TLAB[nx.id]+' →':'Başla →')+'</button>':'<button class="btn lime big wide" data-act="sdone">Bugün tamam ✓ · özeti gör</button>')+
     '<details class="howto"><summary>ⓘ Puan nasıl hesaplanır?</summary><ul>'+T.map(function(x){return '<li><b>'+TLAB[x.id]+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+'<li>Seri: kelime görevini bitirdiğin her gün. Haftada 7 gün seri = 1 dondurma hakkı (en çok 2); çalışamadığın bir gün seriyi korur.</li><li>Haftalık hedef: 75+ puanlı gün sayısı.</li></ul></details></div>';
-  var LGT=lgDay(t);
-  h+='<div class="card"><div class="row"><div class="eyebrow">Bugün yaptıkların · '+LGT.length+'</div><div class="sp"></div><button class="link" data-act="dayv" data-v="'+t+'">Ayrıntı</button></div>'+lgHtml(LGT.slice(-6))+(LGT.length>6?'<p class="small muted">… ve '+(LGT.length-6)+' kayıt daha</p>':'')+'</div>';
+  var LGT=lgDay(t),wu=!LGT.length&&warmQ();
+  /* sabah ısınması: gün başında boş "Bugün yaptıkların" yerine dün konu ya da ezberde yanıldığın tek soru (puansız) */
+  if(wu)h+='<div class="card warm"><div class="eyebrow">Isınma · dünden 1 soru</div><p class="q" style="font-size:17px;margin-top:6px" lang="de">'+esc(wu.q)+'</p>'+
+    (WREV?'<p style="margin-top:6px"><b class="ok" lang="de">'+esc(wu.c)+'</b>'+(wu.g?' <span class="small muted">· dün: <s lang="de">'+esc(wu.g)+'</s></span>':'')+'</p>':'<p class="small muted" style="margin-top:4px">Önce kendin söyle, sonra aç.</p><button class="btn sm" style="margin-top:6px" data-act="wrev">Söyledim, aç</button>')+'</div>';
+  else h+='<div class="card"><div class="row"><div class="eyebrow">Bugün yaptıkların · '+LGT.length+'</div><div class="sp"></div><button class="link" data-act="dayv" data-v="'+t+'">Ayrıntı</button></div>'+lgHtml(LGT.slice(-6))+(LGT.length>6?'<p class="small muted">… ve '+(LGT.length-6)+' kayıt daha</p>':'')+'</div>';
   h+=upCard();
   var more='';
   if(S.ptest&&dd(S.ptest.date,t)>=30)more+='<div class="mrow"><span>Aylık deneme zamanı (son: '+trShort(S.ptest.date)+') · puana girmez</span><button class="btn sm" data-act="ptest">Yap</button></div>';
@@ -7953,6 +7958,7 @@ ACT.prepick=function(b){if(!X||!X.pre)return;if(b.dataset.f==='1')X.pre.g2=b.dat
 function ezMarkStep(id,k){S.ezst=S.ezst||{};var o=S.ezst[id]||(S.ezst[id]={});if(!o[k]){o[k]=1;save();if(X&&X.kind==='ez')setTimeout(drawPage,0);}}
 ACT.memmine=function(b){var id=b.dataset.id,i=+b.dataset.i;S.mw=S.mw||{};if(i<0)delete S.mw[id];else{S.mw[id]=i;toast('Senin yolun · yanlış yapınca bu kanca hatırlatılır');}save();drawPage();};
 ACT.kdrev=function(b){var d=day();d.kdr=+b.dataset.i;save();render();if(X&&X.kind==='yaz')drawPage();};
+ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
 ACT.klv=function(b){X.lv=+b.dataset.v;drawPage();};
