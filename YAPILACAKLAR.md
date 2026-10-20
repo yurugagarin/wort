@@ -107,7 +107,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 45. Her kalıba bir "ne zaman söylersin" satırı
 - [x] 46. Kalıp kartına ara basamak: önce anahtar kelimeyi yaz
 - [x] 47. Defterdeki cümlen yazında geri gelsin
-- [ ] 48. Kafamı karıştıranlar: önce düşün, sonra aç
+- [x] 48. Kafamı karıştıranlar: önce düşün, sonra aç
 - [ ] 49. Defter ön analizi doğru konuya göndersin
 - [ ] 50. Sabah ısınması: dünden 1 soru
 - [ ] 51. Ara ekranı olanı doğru söylesin, çift "bitti" ekranı kalksın
