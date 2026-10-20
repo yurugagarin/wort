@@ -123,7 +123,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 61. Lücke'de şıklar aynı kalıpta olsun
 - [x] 62. Oyunda yanlıştan sonra doğru renk, ses ve slogan
 - [x] 63. Hata örnekleri kendi yanlışınla mini soru olsun
-- [ ] 64. Hata kartı: gidişat ve tek önerilen bağlantı
+- [x] 64. Hata kartı: gidişat ve tek önerilen bağlantı
 - [ ] 65. Odak hatan günün Ezber adımına karışsın
 - [ ] 66. Satzbau'daki cümle sırası hataları da haritaya girsin
 - [ ] 67. Deneme sonunda bilemediklerini gör
