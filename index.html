@@ -6498,15 +6498,19 @@ function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};if(!HKY)hkyLoa
   var x=S.srs[id]||{};
   return {t:deText(c),b:'<div class="card rv">'+rvCard(c,true)+wordLinks(c)+storyBox(id,c,'full')+(hkOf(id)&&!(S.hk[id].src==='hky'||hkCopy(S.hk[id].t))?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(hkOf(id))+'</p></div>':'')+'</div>'+
     '<p class="small muted center">'+(x.lp?x.lp+' kez unuttun · ':'')+'sıradaki tekrar: '+(x.d?trShort(x.d):'—')+'</p>'};}
+/* oyun sonunda kısa "Karıştırdıkların" listesi */
+function gConf(t){if(!X)return;X.conf=X.conf||[];if(X.conf.indexOf(t)<0)X.conf.push(t);}
+function gConfHtml(){return X&&X.conf&&X.conf.length?'<div class="card"><div class="eyebrow">Karıştırdıkların</div>'+X.conf.slice(0,8).map(function(t){return '<p class="small" lang="de" style="margin-top:4px">'+esc(t)+'</p>';}).join('')+'</div>':'';}
 function pMatch(){
   if(X.r>=3&&!X.lgd){X.lgd=1;lgAdd({k:'o',s:'match',c:X.ok,n:X.tot});save();}
-  if(X.r>=3)return {t:'Eşleştir',b:'<div class="center" style="padding:20px 0"><div class="big num">'+X.ok+' / '+X.tot+'</div><p class="muted">ilk denemede doğru eşleşme</p></div><button class="btn big wide" data-act="match">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
+  if(X.r>=3)return {t:'Eşleştir',b:'<div class="center" style="padding:20px 0"><div class="big num">'+X.ok+' / '+X.tot+'</div><p class="muted">ilk denemede doğru eşleşme</p></div>'+gConfHtml()+'<button class="btn big wide" data-act="match">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
   var P=X.p,L=X.L,R=X.R;
   var b=progBar(X.r,3)+'<p class="small muted center" style="margin:6px 0">Soldan bir Almanca, sağdan anlamını seç.</p><div class="mgrid"><div>'+L.map(function(i){var x=P[i];return x.done?'<span class="mdone">'+deC(x.de)+'</span>':'<button class="'+(X.sel===i?'on':'')+(X.bad==='l'+i?' no':'')+'" lang="de" data-act="mpick" data-v="l'+i+'">'+deC(x.de)+'</button>';}).join('')+'</div><div>'+
     R.map(function(i){var x=P[i];return x.done?'<span class="mdone">'+esc(x.tr)+'</span>':'<button class="'+(X.bad==='r'+i?' no':'')+'" data-act="mpick" data-v="r'+i+'">'+esc(x.tr)+'</button>';}).join('')+'</div></div>';
   return {t:'Eşleştir',b:b};
 }
-function matchStart(o){o.p=matchRound();if(o.p.length<3){toast('Önce birkaç kelime öğren');return false;}o.L=shuffle(o.p.map(function(_,i){return i;}));o.R=shuffle(o.p.map(function(_,i){return i;}));o.sel=null;o.bad=null;o.miss={};return true;}
+function matchStart(o){var carry=(o.p||[]).filter(function(x,i){return o.miss&&o.miss[i];}).map(function(x){return {id:x.id,de:x.de,tr:x.tr};});
+  o.p=carry.concat(matchRound().filter(function(x){return !carry.some(function(c){return c.id===x.id||trSame(c.tr,x.tr);});})).slice(0,5);if(o.p.length<3){toast('Önce birkaç kelime öğren');return false;}o.L=shuffle(o.p.map(function(_,i){return i;}));o.R=shuffle(o.p.map(function(_,i){return i;}));o.sel=null;o.bad=null;o.miss={};return true;}
 /* ---------------- genel arama: ezber tabloları + konular (başlık, Almanca adı, hücreler, notlar, örnekler) ----------------
    Türkçe harfsiz yazım da bulunur: "sifat" → sıfat, "Gaeste" → Gäste. */
 function snorm(s){return norm(String(s||'').replace(/\*/g,'').replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase().replace(/ı/g,'i').replace(/ş/g,'s').replace(/ç/g,'c').replace(/ğ/g,'g'));}
@@ -6981,7 +6985,9 @@ function szCheck(){
   var key=X.placed.map(function(i){return X.toks[i].toLowerCase();}).join(' '),mi=-1;
   X.okset.forEach(function(s,i){if(mi<0&&s.key===key)mi=i;});
   var ok=mi>=0;X.state=ok?'ok':'no';X.match=ok?mi:null;
-  if(X.kind==='lesson'||X.kind==='ezq')recordAny(ok);else{X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;}
+  if(X.kind==='lesson'||X.kind==='ezq')recordAny(ok);else{var it0=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok&&!it0.again)X.ok++;
+    /* oyunda yanlış cümle turun sonunda bir kez daha */
+    if(!ok&&X.kind==='satz'){gConf((it0.de||'').replace(/\*/g,''));if(!it0.again){var c3={};for(var k in it0)c3[k]=it0[k];c3.again=1;X.items.push(c3);}}}
   if(!ok)noteWrong(X.items[X.i],'');
   if(!ok&&X.trap&&X.placed.indexOf(X.trap.i)>=0){var tr=X.trap;X.dg={cat:tr.cat,t:'Tuzak',nt:1,sure:true,to:[],why:'Tuzak: *'+tr.w+'* değil *'+tr.r.toLowerCase()+'* · '+tr.why};}
   itemLog(X.items[X.i],ok,placedTxt());
@@ -7444,7 +7450,7 @@ function wordSatzItems(n){
 }
 function pSatz(){
   var n=X.items.length,b='';
-  if(X.i>=n)return {t:'Satzbau',b:'<div class="center" style="padding:20px 0"><div class="big">'+X.ok+' / '+n+'</div><p class="muted" style="margin-top:6px">Cümle kurma bitti.</p></div><button class="btn big wide" data-act="satzw">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
+  if(X.i>=n)return {t:'Satzbau',b:'<div class="center" style="padding:20px 0"><div class="big">'+X.ok+' / '+X.items.filter(function(x){return !x.again;}).length+'</div><p class="muted" style="margin-top:6px">Cümle kurma bitti.</p></div>'+gConfHtml()+'<button class="btn big wide" data-act="satzw">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
   b=progBar(X.i,n)+satzBody(X,X.items[X.i]);
   return {t:'Satzbau · cümle kur',b:b};
 }
@@ -7466,7 +7472,7 @@ function startLuck(){
 }
 function pLuck(){
   var n=X.items.length;
-  if(X.i>=n)return {t:'Lücke',b:'<div class="center" style="padding:20px 0"><div class="big">'+X.ok+' / '+n+'</div><p class="muted" style="margin-top:6px">Boşluk doldurma bitti.</p></div><button class="btn big wide" data-act="luecke">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
+  if(X.i>=n)return {t:'Lücke',b:'<div class="center" style="padding:20px 0"><div class="big">'+X.ok+' / '+X.items.filter(function(x){return !x.again;}).length+'</div><p class="muted" style="margin-top:6px">Boşluk doldurma bitti.</p></div>'+gConfHtml()+'<button class="btn big wide" data-act="luecke">Yeniden</button><button class="btn lime big wide" data-act="close">Bitti</button>'};
   var it=X.items[X.i],e=it.e,a=ART(e.a);
   var b=progBar(X.i,n)+'<div class="eyebrow center" style="margin-top:8px">Boşluğa hangi kelime gelir?</div><div class="q" lang="de">'+esc(it.pre)+(X.pick?'<b class="'+(X.pick===it.ans?'ok':'no')+'">'+esc(it.ans)+'</b>':'<u>&nbsp;</u>')+esc(it.post)+'</div>'+
     '<p class="small muted center">İpucu: '+esc(e.tr)+'</p><div class="opts">'+it.opts.map(function(o){var c=X.pick?(o===it.ans?'ok':o===X.pick?'no':''):'';return '<button lang="de" class="'+c+'" data-act="upick" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
@@ -7704,7 +7710,8 @@ var ACT={
   sznext:function(){advance();},
   satzw:function(){var it=wordSatzItems(8);if(!it.length){toast('Önce birkaç kelime çalış');return;}if(X&&X.kind==='satz'){STACK=[];X=null;}var o={kind:'satz',items:it,i:0,ok:0,res:[]};prepSatz(o,it[0]);openPage(o);},
   luecke:function(){if(X&&X.kind==='luck'){STACK=[];X=null;}startLuck();},
-  upick:function(b){if(X.pick)return;X.pick=b.dataset.v;var it=X.items[X.i],ok=X.pick===it.ans;X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;logAns('lk','lk',ok,it.pre+'…'+it.post+' (ipucu: '+it.e.tr+')',X.pick,it.ans,'');drawPage();},
+  upick:function(b){if(X.pick)return;X.pick=b.dataset.v;var it=X.items[X.i],ok=X.pick===it.ans;X.res[X.i]=ok?'ok':'no';if(ok&&!it.again)X.ok++;
+    if(!ok){gConf(it.pre.trim()+' ___ '+it.post.trim()+' → '+it.ans);if(!it.again){var c2={};for(var k in it)c2[k]=it[k];c2.again=1;c2.opts=shuffle(it.opts.slice());X.items.push(c2);}}logAns('lk','lk',ok,it.pre+'…'+it.post+' (ipucu: '+it.e.tr+')',X.pick,it.ans,'');drawPage();},
   unext:function(){X.i++;X.pick=null;drawPage();},
   blitz:function(){openPage({kind:'blitz',run:false,end:false,ok:0,n:0,miss:[]});},
   gsp:function(b){var cu=W.cur;cu.pl.push(+b.dataset.v);
@@ -7720,7 +7727,7 @@ var ACT={
     if(X.sel!==i&&X.p[X.sel].tr===X.p[i].tr)i=X.sel;
     if(X.sel===i){X.p[i].done=1;X.tot++;if(!X.miss[i])X.ok++;sayVar(X.p[i].de);X.sel=null;
       if(X.p.every(function(x){return x.done;})){X.r++;if(X.r<3)matchStart(X);}}
-    else{X.miss[X.sel]=1;X.bad='r'+i;}
+    else{X.miss[X.sel]=1;X.bad='r'+i;gConf(X.p[X.sel].de+' = '+X.p[X.sel].tr);}
     drawPage();},
   bgo:function(){X.pool=blitzPool();if(!X.pool.length){toast('İsim yok');return;}X.run=true;X.end=false;X.ok=0;X.n=0;X.miss=[];X.fb='';X.last='';X.t0=Date.now();blitzNext();drawPage();if(X.timer)clearInterval(X.timer);X.timer=setInterval(blitzTick,100);},
   bpick:function(b){if(!X.run)return;var c=X.cur,ok=b.dataset.v===c.a||(!!c.a2&&b.dataset.v===c.a2);X.n++;if(ok){X.ok++;X.fb='ok';X.last=c.a+' '+c.w+' ✓';}else{X.fb='no';X.last=c.a+' '+c.w+' · '+c.tr;if(X.miss.indexOf(c)<0)X.miss.push(c);}logAns('bl','bl',ok,'Artikel: '+c.w+' ('+c.tr+')',b.dataset.v,c.a,'');blitzNext();drawPage();},
