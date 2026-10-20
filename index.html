@@ -6829,8 +6829,24 @@ function prepSatz(o,it){
   (it.alts||[]).forEach(function(c){var d=szDecode(c,o.disp,o.end);if(d&&!seen[d.key]){seen[d.key]=1;o.okset.push(d);}});
   var idx=o.toks.map(function(_,i){return i;}),tries=0;
   do{shuffle(idx);tries++;}while(idx.length>1&&tries<12&&o.okset.some(function(s){return s.key===idx.map(function(k){return o.toks[k].toLowerCase();}).join(' ');}));
-  o.bank=idx;o.placed=[];o.state=null;o.match=null;
+  o.bank=idx;o.placed=[];o.state=null;o.match=null;o.nsol=o.toks.length;o.trap=null;
+  /* konu cümlesinde tek "tuzak" parça: konunun asıl kararını da sen ver (bin ↔ habe, dem ↔ den, weil ↔ denn …) */
+  if(o.kind==='lesson'){for(var ti=0;ti<o.toks.length;ti++){var tw=o.toks[ti].toLowerCase(),tp=SZTRAP[tw];if(!tp||o.toks.some(function(x){return x.toLowerCase()===tp[0];}))continue;
+    var alt=tp[0],ix2=o.toks.length;o.toks=o.toks.concat([ti===0?alt.charAt(0).toUpperCase()+alt.slice(1):alt]);o.disp=o.disp.concat([alt]);
+    o.bank.splice(Math.floor(Math.random()*(o.bank.length+1)),0,ix2);o.trap={i:ix2,w:alt,r:o.toks[ti],why:tp[1],cat:tp[2]};break;}}
 }
+var SZTRAP=(function(){var t={};function P(a,b,wa,wb,cat){t[a]=[b,wa,cat];t[b]=[a,wb,cat];}
+  var sv='hareket ya da durum değişimi → sein',hv='hareket ya da değişim yok → haben';
+  P('bin','habe',sv,hv,'aux');P('bist','hast',sv,hv,'aux');P('ist','hat',sv,hv,'aux');P('sind','haben',sv,hv,'aux');P('seid','habt',sv,hv,'aux');
+  P('war','hatte',sv,hv,'aux');P('waren','hatten',sv,hv,'aux');
+  P('dem','den','kime? nerede? → Dativ: dem','kimi? neyi? nereye? → Akkusativ: den','hal');
+  P('mir','mich','kime? → Dativ: mir','kimi? → Akkusativ: mich','zamir');P('dir','dich','kime? → Dativ: dir','kimi? → Akkusativ: dich','zamir');
+  P('ihm','ihn','kime? → Dativ: ihm','kimi? → Akkusativ: ihn','zamir');
+  P('weil','denn','weil fiili sona yollar','denn fiili yerinde bırakır (0. yer)','bag');
+  P('dass','das','yan cümle bağlacı: dass (çift s), fiil sona','artikel ya da ilgi zamiri: das','bag');
+  P('könnte','konnte','hayal ya da kibarlık → könnte','gerçek geçmiş → konnte','konj');P('würde','wurde','hayal ya da kibarlık → würde','gerçek geçmiş ya da edilgen → wurde','konj');
+  P('hätte','hatte','hayal → hätte','gerçek geçmiş → hatte','konj');
+  return t;})();
 function szWord(o,i,j){var w=o.disp[i];return j===0?w.charAt(0).toUpperCase()+w.slice(1):w;}
 function szList(o,skip){return o.okset.filter(function(s,i){return i!==skip;}).map(function(s){return '<div class="szalt" lang="de">'+esc(s.txt)+'</div>';}).join('');}
 function satzBody(o,it){
@@ -6862,6 +6878,7 @@ function szCheck(){
   var ok=mi>=0;X.state=ok?'ok':'no';X.match=ok?mi:null;
   if(X.kind==='lesson'||X.kind==='ezq')recordAny(ok);else{X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;}
   if(!ok)noteWrong(X.items[X.i],'');
+  if(!ok&&X.trap&&X.placed.indexOf(X.trap.i)>=0){var tr=X.trap;X.dg={cat:tr.cat,t:'Tuzak',nt:1,sure:true,to:[],why:'Tuzak: *'+tr.w+'* değil *'+tr.r.toLowerCase()+'* · '+tr.why};}
   itemLog(X.items[X.i],ok,placedTxt());
 }
 function advance(){
@@ -7556,7 +7573,7 @@ var ACT={
   gknown:function(b){var id=b.dataset.id,x=gxs(id);x.known=!x.known;x.kt=Date.now();if(!x.known)delete x.known;if(S.gdone[id]&&!stgAll(id))delete S.gdone[id];save();drawPage();},
   gwadd:function(b){var id=b.dataset.id,n=0;S.gwq=S.gwq||[];(GW[id]||[]).forEach(function(w,i){var k=gwId(id,i);if(/^(der|die|das) /.test(w[0])&&!w[3])return;if(!S.srs[k]&&!S.srs[wid(id,i)]&&S.gwq.indexOf(k)<0){S.gwq.push(k);n++;}});save();if(X)drawPage();else render();
     toast(n?n+' kelime sıraya alındı · yeni kelime olarak önce bunlar tanıtılacak (günde '+S.set.newPerDay+')':'Bu konunun kelimeleri zaten sırada');},
-  szadd:function(b){var j=+b.dataset.j;X.placed.push(X.bank.splice(j,1)[0]);if(!X.bank.length)szCheck();drawPage();},
+  szadd:function(b){var j=+b.dataset.j;X.placed.push(X.bank.splice(j,1)[0]);if(!X.bank.length||(X.nsol&&X.placed.length>=X.nsol))szCheck();drawPage();},
   szrem:function(b){if(X.state)return;var j=+b.dataset.j;X.bank.push(X.placed.splice(j,1)[0]);drawPage();},
   szclear:function(){X.bank=X.bank.concat(X.placed);X.placed=[];drawPage();},
   sznext:function(){advance();},
