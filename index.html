@@ -6636,8 +6636,8 @@ function lessonIntro(){
     return b;
   }
   var what={tani:'8 soru, şıklı. Yanlış yaparsan neyi neyle karıştırdığını ve nasıl düşünmen gerektiğini söylerim. Geçmek için %75.',kur:'8 soru: 4\'ünde cevabı kendin yazarsın, 4\'ünde cümleyi kendin kurarsın. Geçmek için %70. ä ö ü ß için tuşlar var; ae, oe, ue, ss yazman da kabul.',rv:'8 karışık soru, 1\'i önceki konulardan. Geçmek için %80. Geçersen sıradaki tekrar daha ileri bir güne kayar.'}[k];
-  b+='<div class="tipbox"><div class="eyebrow">Önce hatırla</div><p>Özete bakmadan 10 saniye düşün: bu konunun kuralı neydi? Bir örnek cümle söyle. Hatırlamaya çalışmak, cevabı bulamasan bile öğrenmeyi güçlendirir.</p></div>'+
-    '<details class="card"><summary>Özeti göster</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(X.id)+'</div></details>'+
+  b+=recallCard(X.id)+
+    '<details class="card"><summary>Uzun özet</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(X.id)+'</div></details>'+
     '<p class="muted">'+what+'</p><button class="btn lime big wide" data-act="lgo">Başla</button>';
   return b;
 }
@@ -7795,6 +7795,7 @@ ACT.sgo=function(){SESS={t0:Date.now()};var nx=sessNext();if(!nx){openPage({kind
 ACT.snext=function(){var nx=sessNext();STACK=[];X=null;$('page').hidden=true;if(!nx){openPage({kind:'sdone'});return;}sessLaunch(nx.id);};
 ACT.spause=function(){SESS=null;closeAll();};
 ACT.sdone=function(){openPage({kind:'sdone'});};
+ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
 ACT.klv=function(b){X.lv=+b.dataset.v;drawPage();};
 ACT.kadd=function(b){var n=0,redraw=X?drawPage:render;b.dataset.ids.split(',').forEach(function(i){if(queueNew('k:'+i,true))n++;});save();redraw();toast(n+' kalıp eklendi · bugün tanıtılır, ilk soru yarın');};
@@ -8863,6 +8864,12 @@ function glIleri(gl){return (gl.ileri||[]).length?'<div class="kopru ileri">'+gl
 var RULE1={"g1": "haben/sein 2. yerde, Partizip II en sonda; hareket ve değişim bildiren fiiller sein alır.", "g2": "Modalın noktalarını sil, -te ekle: können → konnte, müssen → musste.", "g3": "weil, dass, wenn yan cümle açar: çekimli fiil en sona gider.", "g4": "Nerede? (durma) → Dativ, nereye? (hareket) → Akkusativ: im Kino · ins Kino.", "g5": "helfen, danken, gefallen, gehören … nesneyi Dativ'de ister: Ich helfe dir.", "g6": "Dönüşlü zamir özneye uyar: ich → mich, du → dich, er/sie/es → sich.", "g7": "daha → sıfat + -er (+ als), en → am + sıfat + -sten.", "g8": "Kibar rica Konjunktiv II ile: Könnten Sie …? Würden Sie …? Ich hätte gern …", "g9": "der/die/das sonrası sıfat: Nominativ tekil ve die/das Akkusativ'de -e, geri kalan her yerde -en.", "g10": "Saat um, gün am, ay ve mevsim im; vor, nach, seit Dativ alır.", "g11": "Artikel cinsi göstermiyorsa sıfat gösterir: ein neuer Plan, ein neues Auto.", "g12": "Fiil edatını yanında taşır; şey için worauf? diye sor, darauf de: Ich warte darauf.", "g13": "Dolaylı soru bir yan cümledir: fiil sona gider, soru kelimesi yoksa ob gelir.", "g14": "Tavsiye Du solltest … ile, dilek Ich würde gern … / Ich wäre gern … ile söylenir.", "g15": "werden + Partizip II: yapan değil, yapılan iş önemli.", "g16": "İlgi zamiri artikel gibidir (der, die, das; eril Akkusativ'de den), fiil yan cümlenin sonunda.", "g17": "Modal yoksa ikinci fiil zu + mastar olarak en sona gider; ayrılan fiilde zu araya girer: aufzustehen.", "g18": "deshalb sonucu bildirir ve 1. yeri alır: fiil hemen arkasından gelir (deshalb bleibe ich).", "g19": "Yazının geçmişi: düzenli fiil -te alır (machte), düzensizde kök değişir (ging, kam).", "g20": "Kişiye zu, şehir ve ülkeye nach, binanın içine in; bei = yanında, aus/von = -den.", "g21": "obwohl yan cümle açar (fiil sona), trotzdem 1. yeri alır (fiil hemen arkasında).", "g22": "Geçmişte bir kez olan → als; her seferinde ya da şimdi/gelecekte → wenn.", "g23": "Geçmişte daha önce olan: hatte/war + Partizip II; nachdem bu cümleyi açar.", "g24": "bevor = -meden önce, während = -irken, seit = -den beri, bis = -e kadar; fiil sona.", "g25": "Dativ ilgi zamiri: dem, der, dem, çoğulda denen; edat zamirin önüne geçer.", "g26": "Geçmişte olmamış durum: hätte/wäre + Partizip II (Ich hätte es gemacht).", "g27": "Sahip arkaya geçer: das Auto meines Bruders; wegen, trotz, während Genitiv ister.", "g28": "Özne aynıysa um … zu + mastar, özne değişiyorsa damit + yan cümle.", "g29": "hem-hem sowohl … als auch, ne-ne weder … noch, ya-ya entweder … oder.", "g30": "werden 2. yerde, mastar en sonda: gelecek, tahmin ya da söz.", "g31": "Zamanı werden taşır: wurde gebaut · ist gebaut worden · muss gebaut werden.", "g32": "Bazı eril canlılar (-e, -ent, -ist, -ant) Nominativ dışında -(e)n alır: den Kollegen.", "g33": "je + -er … (fiil sona), desto + -er + fiil hemen arkasında.", "g34": "-end = şu an yapan (das schlafende Kind), Partizip II = yapılmış (das gekochte Ei).", "g35": "ohne … zu = -meden, statt … zu = -mek yerine; zu + mastar en sonda.", "g36": "lassen + mastar = bir işi başkasına yaptırmak: Ich lasse das Auto reparieren.", "g37": "indem = -erek (nasıl?), sodass = öyle ki (sonuç); ikisinde de fiil sona.", "g38": "Bakılacak isim yoksa (alles, nichts, etwas) ilgi zamiri was, yer için wo.", "g39": "Keşke: Wenn ich doch … hätte!; -mış gibi: als ob + Konjunktiv II.", "g40": "İsim + fiil blok hâlinde öğrenilir: eine Entscheidung treffen, eine Frage stellen.", "g41": "aber, denn, sondern sayılmaz (0. yer): arkalarından normal ana cümle, fiil 2. yerde.", "g42": "welcher? seçenekler arasından seçer (der gibi çekilir), was für ein? türü sorar.", "g43": "1-19 sayıya -t, 20 ve üstüne -st: der zweite, der zwanzigste; düzensiz: erste, dritte, siebte.", "g44": "İki isim: önce Dativ, sonra Akkusativ; iki zamir: önce Akkusativ (Ich gebe es ihm).", "g45": "jemand/niemand kişi, etwas/nichts şey, einer/keiner bir tane/hiçbiri; man er gibi çekilir.", "g46": "werden bir değişimi anlatır: Ich werde müde = yoruluyorum, Sie wird Ärztin."};
 function ruleCard(id){var r=RULE1[id];if(!r)return '';var gl=GL[id]||{};
   return '<div class="rcard"><div class="eyebrow">Kural</div><p class="r1">'+rich(r)+'</p>'+(gl.kanca?'<p class="r2">🪝 '+rich(gl.kanca)+'</p>':'')+'</div>';}
+/* "Önce hatırla": önce kuralı hafızandan söyle, sonra kural kartını aç (bulamasan bile denemek öğrenmeyi güçlendirir) */
+function recallCard(id){
+  if(X&&X.rc)return ruleCard(id);
+  return '<div class="tipbox"><div class="eyebrow">Önce hatırla</div><p>Bu konunun kuralı tek cümlede neydi? Ekrana bakmadan sesli söyle, bir de örnek cümle kur.</p>'+
+    '<button class="btn dark wide" style="margin-top:8px" data-act="rcopen">Söyledim, aç</button></div>';
+}
 function dersHtml(id){
   var gl=GL[id],g=GBY[id];
   if(!gl)return ruleCard(id)+sumHtml(id);
@@ -8893,7 +8900,7 @@ function anlaHtml(){
   else if(sc[0]==='neden')b+='<p class="muted">Cevabı açmadan önce birkaç saniye kendin düşün. "Neden?" diye sormak bilgiyi bildiklerine bağlar.</p>'+glNeden(gl);
   else if(sc[0]==='karis')b+=glKaris(gl)+glKanca(gl);
   else{
-    b+=exHtml(g)+'<div class="tipbox"><div class="eyebrow">Kendine anlat</div><p>Ekrana bakmadan, kuralı Türkçe tek bir cümleyle yüksek sesle söyle: <b>neye bağlı</b>, <b>ne zaman</b> kullanılır, <b>nasıl</b> kurulur? Kendine anlatabildiğin şeyi öğrenmişsindir.</p></div>'+glIleri(gl);
+    b+=exHtml(g)+recallCard(id)+glIleri(gl);
     nextBtn='<button class="btn lime big wide" data-act="lgo">Anladım · 3 kontrol sorusu</button>';
   }
   b+=nextBtn+(k>0?'<button class="link center" data-act="aprev">‹ Önceki</button>':'');
