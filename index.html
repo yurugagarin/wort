@@ -6824,6 +6824,26 @@ function rvCard(c,big){
 function rvSt(s){return !s?0:s.st!=null?s.st:s.n>=2?2:s.n>=1?1:0;}
 function isPhrase(c){return !!(c.kalip||c.topic||(!ART(c.a)&&/\s/.test(c.w)&&!/^sich /.test(c.w)));}
 function clozeOf(c){var m=c.ex&&c.ex.match(/\*([^*]+)\*/);return m?m[1]:'';}
+/* boşluk sorusunun cevabı: kendi cümlende kelime başka biçimde geçiyorsa o biçim */
+function czOf(c){return (W.cur&&W.cur.id===c.id&&W.cur.czf)||clozeOf(c);}
+/* kendi yazdığın hatasız cümleler (Yazma, Üret, kelime kartı): boşluk sorusunda önce bunlar kullanılır */
+var OWNC=null;
+function ownSents(){
+  var src=[],k,key=0;
+  for(k in S.days)if(S.days[k].sch){src.push([S.days[k].sch,k]);key+=S.days[k].sch.length;}
+  for(k in S.gx)(S.gx[k].w||[]).forEach(function(x){if(x&&x.t){src.push([x.t,x.d||'']);key+=x.t.length;}});
+  if(OWNC&&OWNC.k===key)return OWNC.v;
+  var out=[],seen={};
+  src.forEach(function(x){(String(x[0]).replace(/\n+/g,' ').match(/[^.!?]+[.!?]?/g)||[]).forEach(function(t){t=t.trim();
+    if(t.split(/\s+/).length<4||t.length>110||seen[t])return;seen[t]=1;if(!/[.!?]$/.test(t))t+='.';
+    try{if(checkText(t).length)return;}catch(e){return;}out.push([t,x[1]]);});});
+  OWNC={k:key,v:out};return out;
+}
+function ownFor(c){
+  var fs=[clozeOf(c),c.w].filter(function(f,i,a){return f&&!/\s/.test(f)&&a.indexOf(f)===i;}),r=[];
+  ownSents().forEach(function(x){fs.some(function(f){if(new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^A-Za-zÄÖÜäöüß]|$)').test(x[0])){r.push([x[0],'',x[1],f]);return true;}return false;});});
+  return r;
+}
 function rvType(id){
   if(id.indexOf('gs:')===0)return 'gs';
   var s=S.srs[id],c=card(id);
@@ -6869,8 +6889,8 @@ function rvOpts(c,type){
 /* yazılı cevap kontrolü: ok · near (yazım ya da eksik artikel) · art (artikel yanlış) · no */
 function rvJudge(c,type,val){
   var v=norm(val),near=function(x,y){return !!x&&lev(x,y)<=(y.length>12?2:1);};
-  if(type==='cloze'){var t=norm(clozeOf(c));if(v===t)return {r:'ok'};if(near(v,t))return {r:'near',m:'Yazımına dikkat: *'+clozeOf(c)+'*.'};
-    if(norm(c.w)===v&&v!==t)return {r:'near',m:'Kelime doğru, ama cümlede bu biçimde: *'+clozeOf(c)+'*.'};return {r:'no'};}
+  if(type==='cloze'){var t=norm(czOf(c));if(v===t)return {r:'ok'};if(near(v,t))return {r:'near',m:'Yazımına dikkat: *'+czOf(c)+'*.'};
+    if(norm(c.w)===v&&v!==t)return {r:'near',m:'Kelime doğru, ama cümlede bu biçimde: *'+czOf(c)+'*.'};return {r:'no'};}
   if(type==='plural'){var pl=norm(plural(c)),vv=v.replace(/^die /,'');if(vv===pl)return {r:'ok'};if(vv===norm(c.w))return {r:'no',m:'Bu tekil hâli. Çoğulu: *die '+plural(c)+'*.'};if(near(vv,pl))return {r:'near',m:'Yazımına dikkat: *die '+plural(c)+'*.'};return {r:'no'};}
   if(type==='perf'){var pff=perfOf(c),pf=norm(pff),px=pf.split(' '),vx=v.split(' ');if(v===pf)return {r:'ok'};
     if(vx.length>=2&&vx.slice(1).join(' ')===px.slice(1).join(' ')&&vx[0]!==px[0])return {r:'art',m:'Partizip doğru, yardımcı fiil yanlış: *'+pff+'*. Hareket/durum değişimi → sein; diğerleri → haben.',aux:1};
@@ -7089,7 +7109,7 @@ function pReview(){
   if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now()};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
-    if(ty==='cloze'){var cs=ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];}
+    if(ty==='cloze'){var ow=ownFor(c),cs=ow.length?ow:ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];if(W.cur.cz[3])W.cur.czf=W.cur.cz[3];}
     if(ty==='listen')setTimeout(function(){if(X&&X.kind==='review'&&W.cur&&W.cur.id===id&&!W.cur.res)sayVar(deText(c));},300);
     W.step='q';W.pick=null;}
   var cu=W.cur,done=W.n0-q.length,src='<div class="src">'+esc(srcLabel(c))+'</div>';
@@ -7133,9 +7153,9 @@ function pReview(){
     b+='<div class="opts">'+cu.o.map(function(o){var cl=W.pick?(o===cu.right?'ok':o===W.pick?'no':''):'';return '<button'+(li?'':' lang="de"')+' class="'+cl+'" data-act="rvpick" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
   }else{
     var cz=cu.type==='cloze',ty2=cu.type,ask;
-    if(cz){var cs0=cu.cz||[plain(c.ex),''],fm=clozeOf(c),ix=cs0[0].search(new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+fm.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^A-Za-zÄÖÜäöüß]|$)'));
+    if(cz){var cs0=cu.cz||[plain(c.ex),''],fm=czOf(c),ix=cs0[0].search(new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+fm.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^A-Za-zÄÖÜäöüß]|$)'));
       if(ix>0||(ix===0&&cs0[0].indexOf(fm)!==0))ix++;if(ix<0)ix=0;
-      ask='<div class="ask">Boşluğa hangi kelime gelir?</div><div class="ex exq" lang="de">'+esc(cs0[0].slice(0,ix))+(cu.res?'<b class="'+(cu.res==='no'?'no':'ok')+'">'+esc(fm)+'</b>':'<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>')+esc(cs0[0].slice(ix+fm.length))+'</div><div class="small muted">ipucu: '+esc(c.tr)+(cs0[1]?' · cümle: '+esc(cs0[1]):'')+'</div>';}
+      ask='<div class="ask">Boşluğa hangi kelime gelir?</div><div class="ex exq" lang="de">'+esc(cs0[0].slice(0,ix))+(cu.res?'<b class="'+(cu.res==='no'?'no':'ok')+'">'+esc(fm)+'</b>':'<u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>')+esc(cs0[0].slice(ix+fm.length))+'</div><div class="small muted">ipucu: '+esc(c.tr)+(cs0[1]?' · cümle: '+esc(cs0[1]):'')+'</div>'+(cs0[3]?'<div class="small" style="color:var(--das);margin-top:4px">✍️ Senin cümlen'+(cs0[2]?' · '+trShort(cs0[2]):'')+'</div>':'');}
     else if(ty2==='plural')ask='<div class="ask">Çoğulu nedir?</div><div class="word" lang="de">'+deLabel(c)+'</div><div class="small muted">'+esc(c.tr)+'</div>';
     else if(ty2==='perf')ask='<div class="ask">Perfekt: yardımcı fiil + Partizip</div><div class="word" lang="de">er/sie ___ </div><div class="small muted"><b lang="de">'+esc(c.w)+'</b> · '+esc(c.tr)+'</div>';
     else ask='<div class="ask">Almancasını yaz'+(ART(c.a)?' · artikeliyle':'')+'</div><div class="tr">'+esc(c.tr)+'</div>';
@@ -7164,10 +7184,10 @@ function perfOf(c){var m=String(c&&c.f||'').match(/(hat|ist) [^·]+$/);return m?
 /* "Bilmiyorum"un ilk dokunuşu: hikâyesi olan kelimede ses kelimesi, olmayanda ilk harf ve harf sayısı */
 function rvHint(c,type){
   var h=hkyOf(c);if(h&&h.length>=4&&h[1])return 'Ses ipucu: <b>'+esc(h[1])+'</b>';
-  var t=type==='cloze'?clozeOf(c):c.w;
+  var t=type==='cloze'?czOf(c):c.w;
   return 'İlk harf: <b lang="de" class="num">'+esc(t.split('').map(function(ch,i){return i===0?ch:/\s/.test(ch)?' ':'_';}).join(' '))+'</b> · '+t.replace(/\s/g,'').length+' harf';
 }
-function rvRight(c,t){return t==='cloze'?clozeOf(c):t==='plural'?'die '+plural(c):t==='perf'?perfOf(c):t==='listen'?c.tr:deText(c);}
+function rvRight(c,t){return t==='cloze'?czOf(c):t==='plural'?'die '+plural(c):t==='perf'?perfOf(c):t==='listen'?c.tr:deText(c);}
 /* üretme etkisi: kelimeyi duymak ve yüksek sesle tekrar etmek hatırlamayı artırır; ses ve hız her seferinde biraz değişir (akustik çeşitlilik) */
 var SAYV=0;
 function sayVar(t){if(!canSay())return;SAYQ++;try{speechSynthesis.cancel();}catch(e){}
@@ -7182,7 +7202,7 @@ function rvGrade(id,res){
   grade(id,g);s=S.srs[id];s.st=res==='ok'?st+1:res==='no'?Math.max(0,st-1):st;
   W.cur.ok=res!=='no'&&res!=='hint';
   rvSay(c);
-  if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?clozeOf(c):W.cur.type==='listen'?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':res==='hint'?'İpucuyla':'');
+  if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?czOf(c):W.cur.type==='listen'?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':res==='hint'?'İpucuyla':'');
   if(res==='no'&&c){var o=W.cur.type==='tr2de'?deFind(W.pick||''):/^(write|cloze)$/.test(W.cur.type)&&W.cur.val?deFind(W.cur.val):null;if(o&&o.id!==id&&o.w!==c.w){W.cur.oth=o.id;cfAdd(id,o.id);}}
   if(res==='no'&&(s.lp||0)>=3&&!hkOf(id))W.hk=id;
   if(res==='no')W.hs=id;
