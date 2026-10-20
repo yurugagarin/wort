@@ -6164,7 +6164,22 @@ function msCheck(){S.ms=S.ms||{};var first=!S.msi,nw=[];MS.forEach(function(m){i
 function msCard(){S.ms=S.ms||{};var got=MS.filter(function(m){return S.ms[m[0]];}),next=MS.filter(function(m){return !S.ms[m[0]];}).slice(0,3);
   return '<div class="card"><div class="eyebrow">Kilometre taşları · '+got.length+' / '+MS.length+'</div>'+
     (got.length?'<ul class="msl">'+got.slice().reverse().map(function(m){return '<li>🏅 '+esc(m[1])+'<span>'+trShort(S.ms[m[0]])+'</span></li>';}).join('')+'</ul>':'<p class="small muted" style="margin-top:6px">Henüz yok. İlk taş: '+esc(next[0][1])+'.</p>')+
-    (next.length?'<p class="small muted" style="margin-top:8px">Sıradakiler: '+next.map(function(m){return esc(m[1]);}).join(' · ')+'</p>':'')+'</div>';}
+    (msNext().length?'<p class="small muted" style="margin-top:8px">Sıradakiler: '+msNext().join(' · ')+'</p>':'')+'</div>';}
+/* her türün en yakın hedefi ve ne kadar kaldığı: 50 kelime · 24/50 · İlk konu · Perfekt 3/6 · 7 gün seri · 5/7 */
+function msNext(){
+  var out=[],seen={};
+  MS.forEach(function(m){if(S.ms[m[0]])return;var k=m[0].charAt(0);if(seen[k])return;seen[k]=1;var n=+(m[0].slice(1))||0,txt='';
+    if(k==='w')txt=n+' kelime · '+counts().sat+'/'+n;
+    else if(k==='t'){var okn=G.filter(function(g){return tstat(g[0])==='ok';}).length;
+      if(n===1){var best=null;G.forEach(function(g){var st=topicSteps(g[0]);if(st>0&&st<6&&(!best||st>best[1]))best=[g[2],st];});txt='İlk konu'+(best?' · <span lang="de">'+esc(best[0])+'</span> '+best[1]+'/6':'');}
+      else txt=n+' konu · '+okn+'/'+n;}
+    else if(k==='e'){var en=EZ.filter(function(t){return ezProg(t.id)>=.8;}).length;txt=n+' tablo · '+en+'/'+n;}
+    else if(k==='s')txt=n+' gün seri · '+streak()+'/'+n;
+    else if(k==='b'){var bd=m[0]==='bA21'?'A2.1':m[0]==='bA22'?'A2.2':m[0]==='bB11'?'B1.1':'B1.2',gs=G.filter(function(g){return g[1]===bd;});txt=bd+' · '+gs.filter(function(g){return tstat(g[0])==='ok';}).length+'/'+gs.length+' konu';}
+    else txt=esc(m[1]);
+    out.push(k==='t'&&n===1?txt:esc(txt));});
+  return out;
+}
 
 /* ---------------- BUGÜN ---------------- */
 function examChip(){if(!S.set.exam)return '<button class="chip" data-act="settings">Sınav tarihi ekle</button>';var n=dd(today(),S.set.exam);return '<span class="chip ex">'+(n>0?'Sınava '+n+' gün':n===0?'Sınav bugün!':'Sınav geçti')+'</span>';}
