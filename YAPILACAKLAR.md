@@ -56,3 +56,6 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 39. [YAPILDI] Bağlılık: çalışma sonu özeti, seri dondurma hakkı, haftalık hedef, kilometre taşları, sınav geri sayımı.
 40. [YAPILDI] Görsel dil: alan renkleri her yerde aynı, kart içinde kart yok, masaüstünde iki sütun.
 41. [YAPILDI] Kelime yükü: günlük süre ayarı (varsayılan 15 dk ≈ 45 kart), birikenler öncelik sırasıyla günlere yayılır, birikme varken yeni kelime yok, yanlış kart günde bir kez geri gelir, tekrar tarihleri ±%5 dağıtılır, isteğe bağlı +20 kart.
+
+## Tur 5 · Öğrenmeyi kolaylaştırma önerileri (20 Ekim)
+68 öneri: ONERILER.md (7 alan, 23 ajanlı inceleme + iki mercekli eleştiri). Kullanıcı hangilerinin uygulanacağını seçecek; seçilen numaralar buraya yazılıp uygulanacak.
