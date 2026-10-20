@@ -480,6 +480,8 @@ details.rvall{margin-top:8px}details.wfold{margin-top:12px;text-align:left}detai
 s .ac-der,s .ac-die,s .ac-das{text-decoration:line-through}
 .coach.lite{padding:10px 12px}.coach.lite p{margin:4px 0 0;font-size:14px;line-height:1.5}.coach.lite p:first-child{margin-top:0}
 .preq .q{font-size:18px;margin-top:6px}.preq .opts button{min-height:44px}
+.utr{display:flex;flex-direction:column;gap:1px;padding:6px 10px;border-left:3px solid var(--line);margin:4px 0;font-size:13px;color:var(--ink3)}.utr span[lang]{color:var(--ink2)}
+.utr.ok{border-left-color:var(--ok)}.utr.ok span:last-child{color:var(--ok)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -6734,15 +6736,52 @@ function lessonEnd(){
 
 /* --- Aşama 4: Üret (kendi cümlelerin) --- */
 function upr(id){return PR[id]||['Bu konuyu kullanarak kendi hayatından 3 cümle yaz.','','Konunun kuralını doğru uyguladım mı?'];}
+/* Üret: konunun yapısı cümlede var mı? Yumuşak not; kaydı hiçbir zaman engellemez */
+var KONJ2W='würde|würdest|würden|würdet|hätte|hättest|hätten|hättet|wäre|wärst|wären|wärt|könnte|könntest|könnten|sollte|solltest|sollten|müsste|dürfte';
+var UTR={
+  g1:['Perfekt',function(t,w){return /\b(habe|hast|hat|haben|habt|bin|bist|ist|sind|seid)\b/i.test(t)&&w.some(partLike);}],
+  g23:['Plusquamperfekt',function(t,w){return /\b(hatte|hattest|hatten|hattet|war|warst|waren|wart)\b/i.test(t)&&w.some(partLike);}],
+  g2:['modal Präteritum',/\b(konnte|musste|wollte|durfte|sollte)(st|n|t)?\b/i],
+  g3:['yan cümle (weil, dass, wenn)',/\b(weil|dass|wenn)\b/i],
+  g13:['dolaylı soru',/,\s*(ob|wann|wo|warum|wie|was|wer|wohin|woher)\b/i],
+  g15:['Passiv',function(t,w){return /\b(wird|werden|werde|wirst|werdet)\b/i.test(t)&&w.some(partLike);}],
+  g31:['Passiv',function(t,w){return /\b(wurde|wurden|worden|werden)\b/i.test(t)&&w.some(partLike);}],
+  g17:['zu + mastar',/\bzu [a-zäöüß]+en\b|\b[a-zäöüß]+zu[a-zäöüß]+en\b/i],
+  g28:['um … zu / damit',/\bum\b[^.!?]*\bzu\b|\bdamit\b/i],
+  g35:['ohne / statt … zu',/\b(ohne|statt)\b[^.!?]*\bzu\b/i],
+  g21:['obwohl / trotzdem',/\b(obwohl|trotzdem)\b/i],
+  g22:['als / wenn',/\b(als|wenn)\b/i],
+  g24:['bevor / während / seit / bis',/\b(bevor|während|seit|seitdem|bis)\b/i],
+  g37:['indem / sodass',/\b(indem|sodass)\b/i],
+  g33:['je … desto',/\bje\b[^.!?]*\bdesto\b/i],
+  g29:['iki parçalı bağlaç',/\b(sowohl|weder|entweder|nicht nur)\b/i],
+  g41:['aber / denn / sondern',/\b(aber|denn|sondern)\b/i],
+  g18:['deshalb / deswegen / darum',/\b(deshalb|deswegen|darum)\b/i],
+  g30:['Futur',/\b(werde|wirst|wird|werden|werdet)\b[^.!?]*\b[a-zäöüß]+en[.!?]?\s*$/i],
+  g8:['Konjunktiv II',new RegExp('\\b('+KONJ2W+')\\b','i')],g14:['Konjunktiv II',new RegExp('\\b('+KONJ2W+')\\b','i')],
+  g26:['Konjunktiv II geçmiş',/\b(hätte|hättest|hätten|hättet|wäre|wärst|wären|wärt)\b/i],g39:['Konjunktiv II',new RegExp('\\b('+KONJ2W+')\\b','i')],
+  g7:['karşılaştırma',/\b[a-zäöüß]+er als\b|\bam [a-zäöüß]+sten\b/i],
+  g16:['ilgi cümlesi',/,\s*(der|die|das|den|dem|denen|deren|dessen)\b/i],g25:['ilgi cümlesi',/,\s*([a-zäöüß]+ )?(dem|der|denen|deren|dessen|den|die|das)\b/i],
+  g36:['lassen',/\b(lasse|lässt|lassen|lasst|ließ|ließen)\b/i],
+  g6:['dönüşlü zamir',/\b(mich|dich|sich|uns|euch)\b/i],
+  g12:['da(r)/wo(r) + edat',/\b(wo|da)r?(auf|an|für|über|mit|von|nach|zu|um|aus|bei)\b/i]
+};
+var UTRT=0;
+function utrHtml(id,txt){
+  var u=UTR[id];if(!u)return '';
+  var ss=(String(txt||'').replace(/\n+/g,' ').match(/[^.!?]+[.!?]?/g)||[]).map(function(x){return x.trim();}).filter(function(x){return x.split(/\s+/).length>=3;});
+  if(!ss.length)return '';
+  return ss.map(function(t){var w=t.replace(/[,.!?;:„“"]/g,' ').split(/\s+/).filter(Boolean),ok=typeof u[1]==='function'?u[1](t,w):u[1].test(t);
+    return '<div class="utr'+(ok?' ok':'')+'"><span lang="de">'+esc(t.length>48?t.slice(0,46)+'…':t)+'</span><span>'+(ok?'✓ '+esc(u[0])+' var':'bu cümlede '+esc(u[0])+' göremedim')+'</span></div>';}).join('');
+}
 function pUret(){
   var g=GBY[X.id],id=g[0],x=gxs(id),pr=upr(id),txt=x.wd||'',n=sentN(txt);
-  var ck=[pr[2],'Konunun yapısını en az 2 cümlede kullandım','Cümlelerimi bir kez sesli okudum'];
   var b='<div><div class="eyebrow">Aşama 4 · Üret · '+esc(g[1])+'</div><h1 lang="de">'+esc(g[2])+'</h1></div>'+
     '<div class="card"><div class="eyebrow">Görev</div><p style="margin-top:6px;font-weight:600;font-size:16px">'+esc(pr[0])+'</p>'+(pr[1]?'<p class="small muted" style="margin-top:6px">Şöyle başlayabilirsin: <b lang="de" style="color:var(--ink)">'+esc(pr[1])+'</b></p>':'')+'</div>'+
     '<details class="card"><summary>Örnek cümlelere ve özete bak</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+exHtml(g)+sumHtml(id)+'</div></details>'+
     '<textarea class="inp" lang="de" data-in="uret" data-id="'+id+'" spellcheck="false" autocapitalize="sentences" style="min-height:150px" placeholder="'+esc(pr[1]||'Schreib hier …')+'">'+esc(txt)+'</textarea>'+
     '<div class="small muted num" id="uN">'+n+' / 3 cümle · en az 3 kelimelik her cümle sayılır</div>'+
-    '<div class="card"><div class="eyebrow">Kendini kontrol et</div>'+ck.map(function(c,j){return '<button class="ckl'+(X.ck[j]?' on':'')+'" data-act="uck" data-j="'+j+'"><span class="bx">'+(X.ck[j]?'✓':'')+'</span><span>'+esc(c)+'</span></button>';}).join('')+'</div>'+
+    '<div id="uTr">'+utrHtml(id,txt)+'</div>'+(pr[2]?'<p class="small muted">'+esc(pr[2])+' · bitince cümlelerini bir kez sesli oku.</p>':'')+
     '<button class="btn dark big wide" data-act="ucheck">Yazdıklarımı kontrol et</button>'+(X.chk?checkHtml(X.chk,x.wd):'')+
     '<button class="btn big wide" data-act="uclaude">Claude\'a düzelttir · metni kopyala</button><p class="note">İsteğe bağlı ve ücretsiz: kopyalanan metni claude.ai sohbetine yapıştır, hatalarını Türkçe açıklar.</p>'+
     '<button class="btn lime big wide" data-act="usave">Kaydet ve aşamayı bitir</button>';
@@ -7497,7 +7536,6 @@ var ACT={
   uclaude:function(){var x=gpeek(X.id);if(!(x.wd||'').trim()){toast('Önce birkaç cümle yaz');return;}copyText(uretPrompt(X.id,x.wd),'Kopyalandı · claude.ai sohbetine yapıştır');},
   usave:function(){var id=X.id,x=gxs(id),txt=(x.wd||'').trim(),t=today();
     if(sentN(txt)<3){toast('En az 3 cümle yaz (her biri en az 3 kelime)');return;}
-    if(!X.ck[0]||!X.ck[1]||!X.ck[2]){toast('Önce kontrol listesini işaretle');return;}
     var first=!x.stg.uret;x.w=(x.w||[]).concat([{d:t,t:txt}]);delete x.wd;x.last=t;if(first){x.stg.uret=t;if(!x.due||x.due<=t)x.due=addD(t,1);}
     var d=day();d.g=(d.g||0)+3;if(first)d.gs=1;d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+txt;if(!d.gtDone||d.gt===id){d.gt=id;d.gtDone=1;}
     lgAdd({k:'g',ref:id,s:'uret',c:sentN(txt),n:sentN(txt),ok:1,nx:x.due});lgBump('y','',function(e){e.n=sentN(d.sch);});save();
@@ -7592,7 +7630,7 @@ document.addEventListener('input',function(e){
   else if(k==='hk'){W.hkv=el.value;}
   else if(k==='ows'){W.ows=el.value;}
   else if(k==='ezf'){if(X&&X.vals)X.vals[el.dataset.k]=el.value;}
-  else if(k==='uret'){var x=gxs(el.dataset.id);x.wd=el.value;save();var u=$('uN');if(u)u.textContent=sentN(el.value)+' / 3 cümle · en az 3 kelimelik her cümle sayılır';}
+  else if(k==='uret'){var x=gxs(el.dataset.id);x.wd=el.value;save();var u=$('uN');if(u)u.textContent=sentN(el.value)+' / 3 cümle · en az 3 kelimelik her cümle sayılır';var ut=$('uTr');if(ut){clearTimeout(UTRT);UTRT=setTimeout(function(){ut.innerHTML=utrHtml(el.dataset.id,el.value);},500);}}
   else if(k==='gnote'){var id=el.dataset.id;if(el.value.trim())S.gnote[id]=el.value;else delete S.gnote[id];save();}
 });
 document.addEventListener('change',function(e){
