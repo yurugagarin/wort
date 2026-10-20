@@ -79,7 +79,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 17. Eski 18 absürt A1 hikâyesi kalksın
 - [x] 18. Hata panelini sadeleştir, yanlış açıklamayı sustur
 - [x] 19. Kuralın tek cümlesi: hep aynı yerde, aynı biçimde
-- [ ] 20. "Önce hatırla" gerçek hatırlama olsun
+- [x] 20. "Önce hatırla" gerçek hatırlama olsun
 - [ ] 21. Anla'nın başında tek tahmin sorusu
 - [ ] 22. Anla: büyük tablo kapalı, son adımı önce sen söyle
 - [ ] 23. Tekrar, öğrenmeden kolay olmasın
