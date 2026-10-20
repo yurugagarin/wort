@@ -482,6 +482,10 @@ s .ac-der,s .ac-die,s .ac-das{text-decoration:line-through}
 .preq .q{font-size:18px;margin-top:6px}.preq .opts button{min-height:44px}
 .utr{display:flex;flex-direction:column;gap:1px;padding:6px 10px;border-left:3px solid var(--line);margin:4px 0;font-size:13px;color:var(--ink3)}.utr span[lang]{color:var(--ink2)}
 .utr.ok{border-left-color:var(--ok)}.utr.ok span:last-child{color:var(--ok)}
+details.dsec{border-top:1px solid var(--line);padding:10px 4px}details.dsec>summary{cursor:pointer;list-style:none;display:flex;flex-direction:column;gap:1px}
+details.dsec>summary::-webkit-details-marker{display:none}details.dsec>summary b{font-family:var(--f-disp);font-size:17px;font-weight:600}details.dsec>summary b::after{content:" ›";color:var(--ink3)}
+details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>summary b::after{content:" ⌄"}.dsb{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.dex p{margin-top:4px;font-size:16px}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -6521,14 +6525,14 @@ function stagePath(id){
   var x=gpeek(id),a=nextAct(id),h='<ol class="path">';
   STG.forEach(function(s,i){
     var v=x.stg&&x.stg[s[0]],now=a.k===s[0],wt=!a.k&&a.w===s[0];
-    h+='<li class="'+(v?'done':now?'now':wt?'wt':'')+'"><span class="n">'+(v?'✓':i+1)+'</span><span class="tx"><b>'+s[1]+'</b><span>'+
-      (v?(v==='test'?'seviye testinde bildin, atlandı':'tamam · '+trShort(v)):wt?'yarın açılır':esc(STDESC[s[0]]))+'</span></span>'+
+    h+='<li class="'+(v?'done':now?'now':wt?'wt':'')+'"><span class="n">'+(v?'✓':i+1)+'</span><span class="tx"><b>'+s[1]+(v?' · '+(v==='test'?'testte bildin':trShort(v)):'')+'</b>'+
+      (now?'<span>'+esc(STDESC[s[0]])+'</span>':wt?'<span>yarın açılır</span>':'')+'</span>'+
       (v&&X&&X.kind==='topic'?'<button class="redo" data-act="lesson" data-id="'+id+'" data-s="'+s[0]+'">Yeniden yap</button>':'')+'</li>';
   });
   var nr=nRv(id);
   var ok2=nr>=2&&!x.lapse;
   h+='<li class="'+(ok2?'done':a.k==='rv'?'now':a.w==='rv'?'wt':'')+'"><span class="n">'+(ok2?'✓':5)+'</span><span class="tx"><b>Pekiştir'+(nr?' · '+nr+' tekrar geçildi':'')+'</b><span>'+
-    (x.lapse?'son tekrar geçilmedi ('+trShort(x.lapse)+') · ':'')+(a.k==='rv'?'tekrar zamanı geldi':a.w==='rv'?'sıradaki tekrar: '+trShort(x.due):esc(STDESC.rv))+'</span></span>'+
+    (x.lapse?'son tekrar geçilmedi ('+trShort(x.lapse)+') · ':'')+(a.k==='rv'?'tekrar zamanı geldi · '+esc(STDESC.rv):a.w==='rv'?'sıradaki tekrar: '+trShort(x.due):'')+'</span></span>'+
     (nr&&X&&X.kind==='topic'?'<button class="redo" data-act="lesson" data-id="'+id+'" data-s="free">Alıştırma</button>':'')+'</li>';
   return h+'</ol>';
 }
@@ -8944,15 +8948,21 @@ function recallCard(id){
 function dersHtml(id){
   var gl=GL[id],g=GBY[id];
   if(!gl)return ruleCard(id)+sumHtml(id);
-  return ruleCard(id)+secH('1 · Bildiğin yerden başla','Bu konu neye dayanıyor?')+glKopru(gl)+
-    secH('2 · Büyük resim','Bu konu hangi ailenin parçası?')+(gl.hub||[]).map(function(h){return hubHtml(h,id);}).join('')+
-    secH('3 · Mantığı','Neden böyle?')+'<div class="sum"><p>'+rich(gl.mantik)+'</p></div>'+
-    secH('4 · Kısa özet','Kurallar bir arada')+sumHtml(id)+
-    secH('5 · Adım adım kur')+glAdim(gl)+
-    secH('6 · Türkçe ile karşılaştır','Nerede benziyor, nerede ayrılıyor?')+glTr(gl)+
-    secH('7 · Neden?','Önce sen düşün')+glNeden(gl)+
-    secH('8 · Karıştırma')+glKaris(gl)+glKanca(gl)+
-    (gl.ileri&&gl.ileri.length?secH('9 · Bu yapı ileride'):'')+glIleri(gl);
+  /* önce bir dakikalık öz: kural, bitmiş örnek (sesli), en sık karıştırma; dokuz bölüm altta kapalı başlıklar */
+  var ad=gl.adim&&gl.adim.s.length?gl.adim.s[gl.adim.s.length-1][1]:'',k0=(gl.karis||[])[0];
+  var sec=function(t,sub,c){return c?'<details class="dsec"><summary><b>'+t+'</b>'+(sub?'<span>'+sub+'</span>':'')+'</summary><div class="dsb">'+c+'</div></details>':'';};
+  return ruleCard(id)+
+    (ad?'<div class="card dex"><div class="eyebrow">Bitmiş örnek</div><p lang="de"><b>'+esc(ad)+'</b>'+spkBtn(ad)+'</p><p class="small muted">'+esc(gl.adim.tr)+'</p></div>':'')+
+    (k0?'<div class="karis"><div class="eyebrow">En sık karıştırma</div><div class="kp"><span lang="de">'+rich(k0[0])+'</span><i>↔</i><span lang="de">'+rich(k0[1])+'</span></div><p>'+rich(k0[2])+'</p></div>':'')+
+    sec('1 · Bildiğin yerden başla','Bu konu neye dayanıyor?',glKopru(gl))+
+    sec('2 · Büyük resim','Bu konu hangi ailenin parçası?',(gl.hub||[]).map(function(h){return hubHtml(h,id);}).join(''))+
+    sec('3 · Mantığı','Neden böyle?','<div class="sum"><p>'+rich(gl.mantik)+'</p></div>')+
+    sec('4 · Kısa özet','Kurallar bir arada',sumHtml(id))+
+    sec('5 · Adım adım kur','',glAdim(gl))+
+    sec('6 · Türkçe ile karşılaştır','Nerede benziyor, nerede ayrılıyor?',glTr(gl))+
+    sec('7 · Neden?','Önce sen düşün',glNeden(gl))+
+    sec('8 · Karıştırma','',glKaris(gl)+glKanca(gl))+
+    sec('9 · Bu yapı ileride','',glIleri(gl));
 }
 /* Aşama 1 · Anla: adım adım anlatım */
 var ANLA=[['kopru','Bildiğin yerden başla'],['hub','Büyük resim'],['mantik','Mantığı'],['adim','Adım adım kur'],['tr','Türkçe ile karşılaştır'],['neden','Neden?'],['karis','Karıştırma'],['orn','Örnekler ve kendine anlat']];
