@@ -6322,7 +6322,7 @@ function taskBody(id){
         return '<div class="kday'+(used?' ok':'')+'"><span>Bugünün kalıbı · yazında kullan'+(used?' ✓':'')+'</span>'+(hid?'<i style="font-style:normal;font-weight:700">'+esc(kk[3])+' → Almancası?</i><button class="btn sm" style="align-self:flex-start;margin-top:6px" data-act="kdrev" data-i="'+ki+'">Hatırladım, göster</button>':'<b lang="de">'+esc(kk[2])+'</b><i>'+esc(kk[3])+'</i>')+'</div>';})():'')+
       ydLine(d)+'<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
       '<div class="small muted num" id="schN">'+sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır</div>'+
-      '<button class="btn sm" style="align-self:flex-start" data-act="schk">Cümlelerimi kontrol et</button>'+(SCHK&&SCHK.t===(d.sch||'')?checkHtml(SCHK.r,d.sch):'');
+      '<button class="btn sm" style="align-self:flex-start" data-act="schk">Cümlelerimi kontrol et</button>'+(SCHK&&SCHK.t===(d.sch||'')?checkHtml(SCHK.r,d.sch,SCHK.prev):'');
   }
   return '';
 }
@@ -6818,7 +6818,7 @@ function pUret(){
     '<textarea class="inp" lang="de" data-in="uret" data-id="'+id+'" spellcheck="false" autocapitalize="sentences" style="min-height:150px" placeholder="'+esc(pr[1]||'Schreib hier …')+'">'+esc(txt)+'</textarea>'+
     '<div class="small muted num" id="uN">'+n+' / 3 cümle · en az 3 kelimelik her cümle sayılır</div>'+
     '<div id="uTr">'+utrHtml(id,txt)+'</div>'+(pr[2]?'<p class="small muted">'+esc(pr[2])+' · bitince cümlelerini bir kez sesli oku.</p>':'')+
-    '<button class="btn dark big wide" data-act="ucheck">Yazdıklarımı kontrol et</button>'+(X.chk?checkHtml(X.chk,x.wd):'')+
+    '<button class="btn dark big wide" data-act="ucheck">Yazdıklarımı kontrol et</button>'+(X.chk?checkHtml(X.chk,x.wd,X.chkp):'')+
     '<button class="btn big wide" data-act="uclaude">Claude\'a düzelttir · metni kopyala</button><p class="note">İsteğe bağlı ve ücretsiz: kopyalanan metni claude.ai sohbetine yapıştır, hatalarını Türkçe açıklar.</p>'+
     '<button class="btn lime big wide" data-act="usave">Kaydet ve aşamayı bitir</button>';
   if((x.w||[]).length)b+='<div class="eyebrow" style="margin:4px">Daha önce yazdıkların</div>'+x.w.slice().reverse().map(function(w){return '<div class="card"><div class="small muted">'+trShort(w.d)+'</div><p lang="de" style="margin-top:4px;white-space:pre-wrap">'+esc(w.t)+'</p></div>';}).join('');
@@ -7558,8 +7558,8 @@ var ACT={
   anext:function(){X.as=(X.as||0)+1;drawPage();$('page').scrollTop=0;},
   aprev:function(){X.as=Math.max(0,(X.as||0)-1);drawPage();$('page').scrollTop=0;},
   adim:function(){X.ad=(X.ad||1)+1;drawPage();},
-  ucheck:function(){var x=gpeek(X.id),t=x.wd||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}X.chk=checkText(t);if(X.chkt!==t){X.chkt=t;X.chk.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});}drawPage();},
-  schk:function(){var d=day(),t=d.sch||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}SCHK={t:t,r:checkText(t)};if(SCHK.r.length)SCHK.r.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});
+  ucheck:function(){var x=gpeek(X.id),t=x.wd||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}X.chkp=X.chkt!=null&&X.chkt!==t?X.chk:null;X.chk=checkText(t);if(X.chkt!==t){X.chkt=t;X.chk.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});}drawPage();},
+  schk:function(){var d=day(),t=d.sch||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}SCHK={t:t,r:checkText(t),prev:SCHK&&SCHK.t!==t?SCHK.r:null};if(SCHK.r.length)SCHK.r.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});
     d.schErr=SCHK.r.slice(0,2).map(function(c){return {f:c.f,cat:c.cat,t:c.t,to:c.to?c.to[0]:''};});save();render();},
   ydrev:function(b){var d=day();d.ydr=d.ydr||{};d.ydr[b.dataset.id]=1;save();render();if(X&&X.kind==='yaz')drawPage();},
   lgo:function(){X.i=0;prepItem(X);drawPage();$('page').scrollTop=0;},
@@ -8745,11 +8745,17 @@ function checkText(text){
   });
   return out;
 }
-function checkHtml(list,txt){
+function checkHtml(list,txt,prev){
   if(!String(txt||'').trim())return '';
-  if(!list.length)return '<div class="coach ok"><div class="ct">Tipik hatalardan birini bulamadım</div><p>Fiil yerleri, haben/sein, edatlardan sonraki hâller, fiil ekleri ve büyük harfler kontrol edildi. Otomatik kontrol her hatayı yakalayamaz; emin olmak istersen Claude\'a sor.</p></div>';
-  return '<div class="eyebrow" style="margin:4px">Otomatik kontrol · '+list.length+' olası hata</div>'+list.map(function(x){
-    return '<div class="coach"><div class="ct">'+rich(x.t)+'</div><div class="sent" lang="de">'+esc(x.s).replace(esc(x.f),'<mark>'+esc(x.f)+'</mark>')+'</div><p><b>Neden:</b> '+rich(x.why)+'</p>'+(x.think?'<p><b>Nasıl düşün:</b> '+rich(x.think)+'</p>':'')+chips(x.to)+'</div>';}).join('')+
+  if(!list.length)return (prev&&prev.length?'<div class="coach ok"><div class="ct">✓ Düzelttin · '+prev.length+' hata</div></div>':'')+'<div class="coach ok"><div class="ct">Tipik hatalardan birini bulamadım</div><p>Fiil yerleri, haben/sein, edatlardan sonraki hâller, fiil ekleri ve büyük harfler kontrol edildi. Otomatik kontrol her hatayı yakalayamaz; emin olmak istersen Claude\'a sor.</p></div>';
+  /* önce sen düzelt: işaretli parça → nasıl düşün → kendin düzelt; doğrusu "Doğrusunu göster" arkasında; düzelttiğin hata "✓ Düzelttin" olur */
+  var fx=(prev||[]).filter(function(p){return !list.some(function(x){return x.cat===p.cat&&x.f===p.f;})&&String(txt).indexOf(p.f)<0;});
+  return '<div class="eyebrow" style="margin:4px">Otomatik kontrol · '+list.length+' olası hata</div>'+
+    fx.map(function(p){return '<div class="coach ok"><div class="ct">✓ Düzelttin</div><div class="sent" lang="de"><s>'+esc(p.f)+'</s></div></div>';}).join('')+
+    list.map(function(x){
+    return '<div class="coach"><div class="sent" lang="de">'+esc(x.s).replace(esc(x.f),'<mark>'+esc(x.f)+'</mark>')+'</div>'+
+      '<p><b>Nasıl düşün:</b> '+rich(x.think||x.t)+'</p><p class="small muted">Yukarıda kendin düzelt, sonra yeniden kontrol et.</p>'+
+      '<details><summary>Doğrusunu göster</summary><p><b>'+rich(x.t)+'</b> · '+rich(x.why)+'</p></details>'+chips((x.to||[]).slice(0,1))+'</div>';}).join('')+
     '<p class="note">Otomatik kontrol tipik hataları arar; bazen yanılabilir. Tam düzeltme için Claude\'a kopyala.</p>';
 }
 
