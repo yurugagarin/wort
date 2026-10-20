@@ -490,6 +490,7 @@ details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>su
 .ydl{border-radius:12px;padding:8px 12px;background:var(--card2);border-left:3px solid var(--wrn)}.ydl.ok{border-left-color:var(--ok)}.ydl>span{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
 .ydl p{margin:4px 0 0;font-size:14px;line-height:1.5}.ydl b.ok{color:var(--ok)}.ydl .chip{margin:2px 4px 2px 0}
 .nez{margin-top:8px;font-size:13.5px;color:var(--ink2);background:var(--card2);border-radius:10px;padding:6px 10px}
+.card.back{padding:10px 14px;font-size:14px;color:var(--ink2)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -3476,6 +3477,8 @@ function ensureTarget(){
   if(d.wt==null){var due=dueSorted().length,cap=wCap(),nc=newCands();
     /* tekrar birikmişse yeni kelime azalır, kota dolmuşsa hiç gelmez */
     d.ncap=Math.max(0,Math.min(S.set.newPerDay-Math.floor(Math.max(0,due-20)/5),cap-due));
+    /* 2+ gün aradan sonra dönüş günü: önce unutmaya başlayan kartlar, yeni kelime yok */
+    var la='';for(var dk in S.days)if(dk<today()&&dk>la&&total(S.days[dk])>0)la=dk;if(la&&dd(la,today())>=3){d.back=1;d.ncap=0;}
     d.rcap=Math.min(cap,due);
     d.wt=d.rcap+Math.min(newLeft(),nc.st.length+nc.r.length);save();}
   else if(d.rcap==null){d.rcap=Math.min(wCap(),Math.max(0,d.wt-(d.ncap||0)));save();}
@@ -6179,6 +6182,7 @@ function vBugun(){
     (d.short?'<p class="small muted center" style="margin-top:6px">Kısa gün: yeni kelime yok, en çok 20 tekrar kartı · diğer görevler isteğe bağlı</p>':nx&&!wordDone(d)?'<button class="link center" style="display:block;margin:8px auto 0" data-act="short">Vaktim az · ~7 dk</button>':'')+
     '<details class="howto"><summary>ⓘ Puan nasıl hesaplanır?</summary><ul>'+T.map(function(x){return '<li><b>'+TLAB[x.id]+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+'<li>Seri: kelime görevini bitirdiğin her gün. Haftada 7 gün seri = 1 dondurma hakkı (en çok 2); çalışamadığın bir gün seriyi korur.</li><li>Haftalık hedef: 75+ puanlı gün sayısı.</li></ul></details></div>';
   var LGT=lgDay(t),wu=!LGT.length&&warmQ();
+  if(d.back&&!done)h=h.replace('<div class="card sess">','<div class="card back"><b>Tekrar hoş geldin</b> · bugün önce unutmaya başlayan kartlar, yeni kelime yok.</div><div class="card sess">');
   /* sabah ısınması: gün başında boş "Bugün yaptıkların" yerine dün konu ya da ezberde yanıldığın tek soru (puansız) */
   if(wu)h+='<div class="card warm"><div class="eyebrow">Isınma · dünden 1 soru</div><p class="q" style="font-size:17px;margin-top:6px" lang="de">'+esc(wu.q)+'</p>'+
     (WREV?'<p style="margin-top:6px"><b class="ok" lang="de">'+esc(wu.c)+'</b>'+(wu.g?' <span class="small muted">· dün: <s lang="de">'+esc(wu.g)+'</s></span>':'')+'</p>':'<p class="small muted" style="margin-top:4px">Önce kendin söyle, sonra aç.</p><button class="btn sm" style="margin-top:6px" data-act="wrev">Söyledim, aç</button>')+'</div>';
