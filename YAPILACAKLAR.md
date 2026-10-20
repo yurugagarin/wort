@@ -97,7 +97,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 35. Hücreyi gerçek bir cümlenin içinde sor
 - [x] 36. Tekrar gününde önce boş tabloyu doldur
 - [x] 37. Yanlışta tablonun karıştırdığın kısmını göster
-- [ ] 38. Kapat ve hatırla: sütun sütun ve sesli
+- [x] 38. Kapat ve hatırla: sütun sütun ve sesli
 - [ ] 39. Yarı oturan hücreleri de göster
 - [ ] 40. Günün kalıbı: önce hatırla, doğru tanınsın
 - [ ] 41. Konu aynı kalsın, yazma biçimi her gün değişsin
