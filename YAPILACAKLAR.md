@@ -58,7 +58,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 41. [YAPILDI] Kelime yükü: günlük süre ayarı (varsayılan 15 dk ≈ 45 kart), birikenler öncelik sırasıyla günlere yayılır, birikme varken yeni kelime yok, yanlış kart günde bir kez geri gelir, tekrar tarihleri ±%5 dağıtılır, isteğe bağlı +20 kart.
 
 ## Tur 5 · Öğrenmeyi kolaylaştırma önerileri (20 Ekim)
-68 öneri: ONERILER.md (7 alan, 23 ajanlı inceleme + iki mercekli eleştiri). Kullanıcı: HEPSİNİ yap, her maddeden sonra canlıya al. Ayrıntı her madde için ONERILER.md'de (aynı numara).
+68 öneri: ONERILER.md (7 alan, 23 ajanlı inceleme + iki mercekli eleştiri). Kullanıcı: HEPSİNİ yap, her maddeden sonra canlıya al. **[YAPILDI: 68/68 canlıda, 20 Ekim. Sonda bütün ezber tabloları ve 46 konunun bütün aşamaları hatasız tarandı.]** Ayrıntı her madde için ONERILER.md'de (aynı numara).
 
 - [x] 1. Basamak sırası: önce boşluk, sonra yazma
 - [x] 2. "Bilmiyorum" önce ipucu versin
