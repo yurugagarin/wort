@@ -557,6 +557,7 @@ input.ty{font-size:20px;text-align:center;font-family:var(--f-disp);padding:13px
 .ezt tbody th{font-weight:600;color:var(--ink2);font-size:13px}
 .ezt td span{font-weight:700;font-family:var(--f-disp);font-size:16px}
 .ezt td span.m,.ezc span.m{color:var(--das)}
+.ezt td span.h1,.ezc span.h1{text-decoration:underline;text-decoration-color:var(--das);text-decoration-thickness:2px;text-underline-offset:4px}
 .ezcolb{cursor:pointer}.ezcolb small{font-size:10.5px;font-weight:700;color:var(--ink3);border:1px solid var(--line);border-radius:999px;padding:0 6px;margin-left:4px;font-family:var(--f-ui,inherit)}
 .ezt td span.nw,.ezc span.nw{white-space:nowrap}
 .ezt td span.tw0,.ezc span.tw0{background:var(--der-t);border-radius:6px;padding:0 4px}.ezt td span.tw1,.ezc span.tw1{background:var(--wrn-t);border-radius:6px;padding:0 4px}.ezt td span.tw2,.ezc span.tw2{background:var(--die-t);border-radius:6px;padding:0 4px}
@@ -8118,7 +8119,7 @@ function patOn(t){return X.pat!=null?!!X.pat:S.set.pat!==false;}
 function ezCell(t,r,c,e){
   var v=t.rows[r][c+1],k=r+'-'+c,dr=t.drill.indexOf(c)>=0,st=e.c[k]||0;
   if(X.hide&&(!X.hc||X.hc[c])&&dr&&!X.rev[k]&&v&&v!=='—'&&ezInPart(t,k))return '<button class="cv" data-act="ezrev" data-k="'+k+'">?</button>';
-  return '<span class="'+(dr&&st>=2?'m':'')+(patOn(t)&&dr&&!t.phr?ezTwin(t,r,c):'')+(String(v).length<=8?' nw':'')+'" lang="de">'+(patOn(t)&&t.phr?ezPhrPat(t,r,c,v):patOn(t)&&dr?ezPat(t,r,c,v):esc(v))+'</span>';
+  return '<span class="'+(dr&&st>=2?'m':dr&&st===1?'h1':'')+(patOn(t)&&dr&&!t.phr?ezTwin(t,r,c):'')+(String(v).length<=8?' nw':'')+'" lang="de">'+(patOn(t)&&t.phr?ezPhrPat(t,r,c,v):patOn(t)&&dr?ezPat(t,r,c,v):esc(v))+'</span>';
 }
 function ezTable(t,cellFn){
   var e=ezpeek(t.id),sp=canSay();cellFn=cellFn||ezCell;
@@ -8164,7 +8165,7 @@ function ezActs(t,kural,nc){
 function pEz(){
   var t=EZBY[X.id],p=ezProg(t.id),kural=t.kind==='kural',nc=ezCells(t).length;
   var b='<div><div class="eyebrow">'+LV[t.lv]+' · '+esc(t.cat)+'</div><h1>'+esc(t.t)+'</h1><p class="muted small" lang="de" style="margin-top:4px">'+esc(t.s)+'</p></div>'+
-    '<div class="card"><div class="row"><b class="big num" style="font-size:30px">%'+pct(p)+'</b><div class="sp"></div><div class="small muted" style="text-align:right">'+esc(ezStatus(t.id))+'<br>'+Math.round(p*nc)+' / '+nc+' '+(kural?'cümle':'hücre')+' oturdu</div></div><div style="margin-top:8px">'+bar(p,'var(--das)','thick')+'</div>'+
+    '<div class="card"><div class="row"><b class="big num" style="font-size:30px">%'+pct(p)+'</b><div class="sp"></div><div class="small muted" style="text-align:right">'+esc(ezStatus(t.id))+'<br>'+Math.round(p*nc)+' / '+nc+' '+(kural?'cümle':'hücre')+' oturdu'+(function(){var e=ezpeek(t.id),h=ezCells(t).filter(function(x){return (e.c[x.k]||0)===1;}).length;return h?'<br><span style="color:var(--das)">'+h+' yarı yolda</span>':'';})()+'</div></div><div style="margin-top:8px">'+bar(p,'var(--das)','thick')+'</div>'+
     (ezPart(t)?'<p class="small" style="margin-top:8px"><b>Parça '+(ezPart(t).i+1)+' / '+ezPart(t).n+'</b>'+(ezPart(t).name?' · '+esc(ezPart(t).name):'')+'</p>':'')+ezActs(t,kural,nc)+'</div>';
   if(!kural){
     b+='<div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn'+(X.hide?' dark':'')+'" data-act="ezhide">'+(X.hide?'✓ Kapalı · dokunarak aç':'Kapat ve hatırla')+'</button>'+
@@ -8210,9 +8211,9 @@ function ezFillCheck(){
   d.ez=(d.ez||0)+nf;X.nfTot=(X.nfTot||0)+nf;if(!X.ezted&&X.nfTot>=Math.min(6,cells.length)){d.ezt=(d.ezt||0)+1;X.ezted=1;}
   lgAdd({k:'e',ref:t.id,s:X.again?'fill2':'fill',c:ok,n:cells.length,ok:!X.again&&ok/cells.length>=.8?1:0,nx:ezpeek(t.id).due||''});save();
 }
-function ezNextLine(tid){var e=ezpeek(tid),cs=ezCells(EZBY[tid]),n=0;cs.forEach(function(x){if((e.c[x.k]||0)>=2)n++;});
+function ezNextLine(tid){var e=ezpeek(tid),cs=ezCells(EZBY[tid]),n=0,h=0;cs.forEach(function(x){if((e.c[x.k]||0)>=2)n++;else if((e.c[x.k]||0)===1)h++;});
   var dn=e.due?dd(today(),e.due):null;
-  return '<p class="small" style="margin-top:6px"><b>'+esc(EZBY[tid].t)+'</b>: '+(e.due?'sıradaki tekrar '+trShort(e.due)+' ('+(dn<=0?'bugün':dn===1?'yarın':dn+' gün sonra')+')':'tekrar tarihi yok')+' · '+n+' / '+cs.length+' hücre oturdu</p>';}
+  return '<p class="small" style="margin-top:6px"><b>'+esc(EZBY[tid].t)+'</b>: '+(e.due?'sıradaki tekrar '+trShort(e.due)+' ('+(dn<=0?'bugün':dn===1?'yarın':dn+' gün sonra')+')':'tekrar tarihi yok')+' · '+n+' / '+cs.length+' hücre oturdu'+(h?' · <span style="color:var(--das)">'+h+' hücre yarı yolda</span>, bir sonraki tekrarda doğru bilirsen oturur':'')+'</p>';}
 function ezLi(t){
   var p=ezProg(t.id),du=ezDue(t.id),e=ezpeek(t.id),ss=stTable(t.id),tc=tableCells(t.id);
   return '<li><button data-act="ezopen" data-id="'+t.id+'"><span class="dot" style="background:'+STS[ss][1]+'"></span><span class="nm"><b>'+esc(t.t)+'</b><span class="sub" lang="de">'+esc(t.s)+'</span>'+bar(p,'var(--das)')+'</span>'+
