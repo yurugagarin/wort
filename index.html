@@ -6079,7 +6079,10 @@ function taskSub(t){
 function sessLaunch(id){
   if(id==='wort'){ACT.review();return;}
   if(id==='gram'){var tp=todayTopic(),a=nextAct(tp[0]);if(a.k){startStage(tp[0],a.k);return;}var nt=newTopic(tp[0]);if(nt){startStage(nt[0],nextAct(nt[0]).k||'anla');return;}startStage(tp[0],'free');return;}
-  if(id==='ez'){var et=ezToday();if(!ezpeek(et.id).last)openPage({kind:'ez',id:et.id,hide:false,rev:{}});else startEz([et.id]);return;}
+  if(id==='ez'){var et=ezToday(),ee=ezpeek(et.id);if(!ee.last)openPage({kind:'ez',id:et.id,hide:false,rev:{}});
+    /* 16 ve daha az hücreli tabloda tekrar günleri sırayla: boş tablo, test (ipucusuz yazmak en güçlü hatırlama) */
+    else if(et.kind!=='kural'&&ezCells(et).length<=16&&ezFillCells(et).length>=4&&(!ee.fl||ee.fl<ee.last))openPage({kind:'ezfill',id:et.id,vals:{},res8:null});
+    else startEz([et.id]);return;}
   openPage({kind:'yaz'});
 }
 /* bir sayfa kapanınca (çalışma sürüyorsa) geçiş ekranı ya da özet */
@@ -8195,7 +8198,7 @@ function pEzFill(){
 }
 function ezFillCheck(){
   var t=EZBY[X.id],cells=ezFillCells(t),ok=0,d=xday();X.res8={};
-  var nf=0,prev=X.again&&X.prev||{};
+  var nf=0,prev=X.again&&X.prev||{};ezs(t.id).fl=today();
   cells.forEach(function(c){var v=X.vals[c.k]||'',acc=ezAcc(t,c.k),good=!!v.trim()&&acc.some(function(a){return ezN(a)===ezN(v);});
     X.res8[c.k]=good?'ok':'no';if(good)ok++;if(prev[c.k]==='ok')return;if(v.trim())nf++;ezMark({tz:t.id,k:c.k},good);});
   var per={};per[t.id]=[ok,cells.length];ezSchedule(per,X.again);
@@ -9175,7 +9178,7 @@ function mergeS(L,R){
     var eb=cp(((y.n||0)>(x.n||0)||((y.n||0)===(x.n||0)&&(y.last||'')>(x.last||'')))?y:x);
     eb.c={};[x.c||{},y.c||{}].forEach(function(c){for(var ck in c)eb.c[ck]=Math.max(eb.c[ck]||0,c[ck]||0);});
     if(x.cd||y.cd){eb.cd={};[x.cd||{},y.cd||{}].forEach(function(c){for(var ck in c)eb.cd[ck]=later(eb.cd[ck],c[ck]);});}
-    if(x.best||y.best)eb.best=Math.max(x.best||0,y.best||0);eb.last=later(x.last,y.last);M.ez[id]=eb;}
+    if(x.best||y.best)eb.best=Math.max(x.best||0,y.best||0);eb.last=later(x.last,y.last);if(x.fl||y.fl)eb.fl=later(x.fl,y.fl);M.ez[id]=eb;}
   M.err=M.err||{};for(k in (R.err||{})){var e1=M.err[k],e2=R.err[k];if(!e1){M.err[k]=cp(e2);continue;}
     var h=cp(e1.h||{});for(var dk in (e2.h||{}))h[dk]=Math.max(h[dk]||0,e2.h[dk]);
     M.err[k]={n:Math.max(e1.n||0,e2.n||0),d:later(e1.d,e2.d),h:h,ex:(e1.n||0)>=(e2.n||0)?e1.ex:cp(e2.ex)};}
