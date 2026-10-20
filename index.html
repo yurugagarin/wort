@@ -7553,7 +7553,17 @@ function testEnd(){
     '<div class="card"><div class="eyebrow">Kelime</div><div class="meter">'+[1,2,3].map(function(l){var r=P.v[l];if(!r||!r[1])return '';return '<div><div class="h">'+LV[l]+'<span>'+r[0]+' / '+r[1]+'</span></div>'+bar(r[0]/r[1],['','var(--das)','var(--der)','var(--les)'][l],'thick')+'</div>';}).join('')+'</div></div>'+
     '<div class="card"><div class="eyebrow">Gramer</div><div class="meter">'+BANDS.map(function(b){var r=P.g[b];if(!r)return '';return '<div><div class="h">'+b+'<span>'+r[0]+' / '+r[1]+'</span></div>'+bar(r[0]/r[1],'var(--les)','thick')+'</div>';}).join('')+'</div>'+
     '<p class="small muted" style="margin-top:10px">Bu bir ölçüm: konuları atlatmaz, her konuyu baştan çalışırsın. Ayda bir tekrar et; sonuçların İlerleme sayfasında grafikte görünür.</p></div>'+
-    '<button class="btn lime big wide" data-act="tab" data-v="konular">Konulara geç</button>';
+    testMiss()+'<button class="btn lime big wide" data-act="tab" data-v="konular">Konulara geç</button>';
+}
+/* deneme sonunda bilemediklerin: kelimeler "weit = uzak" biçiminde, tek düğmeyle yeni kelime sırasına; yanlış yapılan konuların bağlantıları */
+function testMiss(){
+  var w=[],g=[];X.ans.forEach(function(a){if(a.ok)return;var it=X.items[a.i];if(it.t==='v'){if(w.indexOf(it.e)<0)w.push(it.e);}else if(g.indexOf(it.id)<0)g.push(it.id);});
+  if(!w.length&&!g.length)return '';
+  var nq=w.filter(function(e){return !S.srs[e.id]&&(S.gwq||[]).indexOf(e.id)<0;});
+  return '<details class="card"><summary><b>Bilemediklerin · '+(w.length+g.length)+'</b> ›</summary>'+
+    (w.length?'<div style="margin-top:8px">'+w.map(function(e){return '<p class="small" style="margin:2px 0"><b lang="de">'+deC(deText(e))+'</b> = '+esc(e.tr)+'</p>';}).join('')+
+      (nq.length?'<button class="btn sm" style="margin-top:8px" data-act="tmissq">'+nq.length+' kelimeyi yeni kelime sırasına al</button>':'<p class="small muted">Hepsi zaten kelime sıranda.</p>')+'</div>':'')+
+    (g.length?'<div class="eyebrow" style="margin-top:10px">Gramerde yanlış yaptığın konular</div>'+chips(g.map(function(id){return 'g:'+id;})):'')+'</details>';
 }
 
 /* --- kendi kelimen --- */
@@ -8024,6 +8034,7 @@ ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
 ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSorted().length;d.rcap=Math.min(20,due+(d.wrv||0));d.wt=Math.max(d.w||0,d.rcap);save();W.q=null;toast('Kısa gün · ~7 dk');ACT.sgo();};
 ACT.plan=function(b){var v=+b.dataset.v;if(v)S.set.plan=v;else delete S.set.plan;touch('set');save();if(X)drawPage();else render();};
 ACT.exq=function(b){if(!EXQ[b.dataset.k])EXQ[b.dataset.k]=b.dataset.v;if(X)drawPage();};
+ACT.tmissq=function(){var n=0;X.ans.forEach(function(a){var it=X.items[a.i];if(!a.ok&&it.t==='v'&&!S.srs[it.e.id]&&(S.gwq||[]).indexOf(it.e.id)<0){queueNew(it.e.id,false);n++;}});save();toast(n+' kelime sıraya alındı');drawPage();};
 ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
