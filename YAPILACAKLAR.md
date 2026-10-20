@@ -63,7 +63,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 1. Basamak sırası: önce boşluk, sonra yazma
 - [x] 2. "Bilmiyorum" önce ipucu versin
 - [x] 3. Yanlış kart biraz daha geç ve aynı türde dönsün
-- [ ] 4. Hata kutusu neyi karıştırdığını göstersin
+- [x] 4. Hata kutusu neyi karıştırdığını göstersin
 - [ ] 5. Doğruda kısa ekran, yanlışta tam ekran
 - [ ] 6. Kelime ailesi ve bağlantılar yalnız doğruysa çıksın
 - [ ] 7. Seçmeli şıklar birbirine benzesin
