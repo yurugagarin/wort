@@ -9016,10 +9016,15 @@ function qnText(){var o=['Almanca öğrenirken kafamı karıştıran noktalar a�
 function qnCard(){var qn=(S.qn||[]).slice().reverse();
   return '<div class="card"><div class="row"><div class="eyebrow">Kafamı karıştıranlar · '+qn.length+' not</div><div class="sp"></div>'+(qn.length?'<button class="link" data-act="qncopy">Claude\'a sormak için kopyala</button>':'')+'</div>'+
     (qn.length?'<div class="qnl">'+qn.slice(0,QALL?999:8).map(function(n){return '<div class="qni"><div class="small muted">'+trShort(n.d)+' · '+esc(SRCN[n.s]||n.s)+(n.k?' · '+esc(keyLabel(n.k)):n.w?' · '+esc(n.w):'')+'</div>'+
-      (n.q?'<div class="qnq"><span lang="de">'+esc(n.q)+'</span>'+(n.r?'<span>'+(n.r==='ok'?'doğru':'yanlış')+(n.g?' · sen: '+esc(n.g):'')+(n.c?' · doğrusu: '+esc(n.c):'')+'</span>':'')+'</div>':'')+
-      '<p>'+esc(n.t)+'</p><button class="link" data-act="qndel" data-id="'+n.id+'">Sil</button></div>';}).join('')+'</div>'+(qn.length>8&&!QALL?'<button class="link center" data-act="qall">Hepsini göster ('+qn.length+')</button>':''):
+      /* bir günden eski notta doğrusu gizli: önce kendin çöz, sonra aç; açınca "Artık biliyorum ✓" */
+      (function(){var old=n.d<today()&&n.c,shown=!old||QREV[n.id];
+        return (n.q?'<div class="qnq"><span lang="de">'+esc(n.q)+'</span>'+(n.r?'<span>'+(n.r==='ok'?'doğru':'yanlış')+(n.g?' · sen: '+esc(n.g):'')+(n.c&&shown?' · doğrusu: '+esc(n.c):'')+'</span>':'')+'</div>':'')+
+        '<p>'+esc(n.t)+'</p>'+(old&&!shown?'<button class="btn sm" data-act="qnrev" data-id="'+n.id+'">Önce düşün · doğrusunu aç</button>':
+          old?'<button class="btn sm" data-act="qnknow" data-id="'+n.id+'">Artık biliyorum ✓</button>':'<button class="link" data-act="qndel" data-id="'+n.id+'">Sil</button>');})()+'</div>';}).join('')+'</div>'+(qn.length>8&&!QALL?'<button class="link center" data-act="qall">Hepsini göster ('+qn.length+')</button>':''):
       '<p class="small muted" style="margin-top:6px">Bir soruda kafan karışınca sağ üstteki <b>?</b> düğmesine bas ve yaz; not o soruyla birlikte buraya gelir.</p>')+'</div>';}
-var QALL=0;
+var QALL=0,QREV={};
+ACT.qnrev=function(b){QREV[b.dataset.id]=1;if(X)drawPage();else render();};
+ACT.qnknow=function(b){S.tomb=S.tomb||{};S.tomb[b.dataset.id]=1;S.qn=(S.qn||[]).filter(function(n){return n.id!==b.dataset.id;});save();toast('Not kaldırıldı · aferin');if(X)drawPage();else render();};
 ACT.qncopy=function(){copyText(qnText(),'Notlar kopyalandı · claude.ai\'ye yapıştır');};
 
 
