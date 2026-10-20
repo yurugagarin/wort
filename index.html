@@ -7086,7 +7086,7 @@ function pReview(){
   }
   var id=q[0],c=card(id);
   if(!c){q.shift();return pReview();}
-  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
+  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now()};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
     if(ty==='cloze'){var cs=ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];}
@@ -7176,6 +7176,9 @@ function rvSay(c){if(S.set.auto!==false&&c)sayVar(deText(c));}
 /* cevabı puanla ve basamağı güncelle */
 function rvGrade(id,res){
   var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok'||res==='hint',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1;
+  /* en az 2 kez bilinmiş kart ipucusuz ve çok hızlı bilinirse "kolay": daha uzun arayla gelir (ekranda bir şey değişmez) */
+  if(res==='ok'&&s&&s.n>=2&&W.cur&&W.cur.t0&&!W.cur.hint){var el=Date.now()-W.cur.t0,typed=/^(write|cloze|plural|perf)$/.test(W.cur.type);
+    if(el<=(typed?2500+250*String(rvRight(c,W.cur.type)).length:2500))g=3;}
   grade(id,g);s=S.srs[id];s.st=res==='ok'?st+1:res==='no'?Math.max(0,st-1):st;
   W.cur.ok=res!=='no'&&res!=='hint';
   rvSay(c);
