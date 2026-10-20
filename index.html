@@ -486,6 +486,7 @@ details.dsec{border-top:1px solid var(--line);padding:10px 4px}details.dsec>summ
 details.dsec>summary::-webkit-details-marker{display:none}details.dsec>summary b{font-family:var(--f-disp);font-size:17px;font-weight:600}details.dsec>summary b::after{content:" ›";color:var(--ink3)}
 details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>summary b::after{content:" ⌄"}.dsb{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .dex p{margin-top:4px;font-size:16px}
+.ezq-s{display:block;font-size:18px;line-height:1.5}.ezq-tr{display:block;font-size:13px;color:var(--ink3);margin-top:4px}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -7931,6 +7932,31 @@ function ezAcc(t,k){var p=k.split('-'),r=+p[0],c=+p[1],v=ezStrip(t.rows[r][c+1])
 function ezAsk(t,r,c){var tpl=(t.colAsk&&t.colAsk[c])||t.ask||'';return tpl?tpl.replace(/\{row\}/g,t.rows[r][0]).replace(/\{col\}/g,t.cols[c]).replace(/\{c0\}/g,t.rows[r][1]).replace(/\{b\}/g,(t.base&&t.base[r])||''):'';}
 function ezRowHtml(t,r){var row=t.rows[r];return '<span class="ezrow">'+esc(row[0])+': <b lang="de">'+row.slice(1).filter(function(v){return v&&v!=='—';}).map(esc).join(' · ')+'</b></span>';}
 function ezNote(t,c){var n=t.colNote&&t.colNote[c];return n?'<span class="ezrow ezn">'+rich(n)+'</span>':'';}
+/* fiil tablolarında testin en çok üçte biri gerçek bir cümlenin içinde: "Wir ___ heute zu Hause. (sein)"; cevabı soruda zaten yazan hücreler önce */
+var SENTX=null;
+function sentIdx(){if(SENTX)return SENTX;SENTX=[];var seen={};function add(de,tr){de=plain(String(de||''));if(!de||!tr||seen[de]||de.length>80)return;seen[de]=1;SENTX.push([de,tr]);}
+  EZ.forEach(function(t){(t.ex||[]).forEach(function(e){add(e[0],e[1]);});});G.forEach(function(g){g[4].forEach(function(e){add(e[0],e[1]);});});KL.forEach(function(k){add(k[2],k[3]);});return SENTX;}
+function ezSent(t,it,need,used){
+  var a=it.c,f=ezStrip(a);if(!f||/\s/.test(f)||f.length<2)return null;
+  var re=new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?=[^A-Za-zÄÖÜäöüß]|$)'),hit=null;
+  sentIdx().forEach(function(x){if(re.test(x[0])&&!used[x[0]]&&(!need||need.test(x[0]))&&(!hit||x[0].length<hit[0].length))hit=x;});
+  if(!hit)return null;var m=hit[0].match(re),i=m.index+m[1].length;
+  return [hit[0].slice(0,i)+'___'+hit[0].slice(i+f.length),hit[1]];
+}
+function ezInSent(t,its){
+  if(t.cat!=='Fiil'||!t.rows)return;var q=Math.floor(its.length/3),c=[],used={};
+  var pers=/^(ich|du|er|wir|ihr|sie)\b/i.test(t.rows[0][0]);
+  its.forEach(function(it){if(it.t!=='ty'&&it.t!=='mc')return;var p=it.k.split('-'),r=+p[0],cc=+p[1];
+    /* satırlar kişi ise cümlede o kişi geçmeli (wir arbeiten ≠ mastar arbeiten); satırlar fiilse yalnız fiil biçimi sütunları */
+    var need=null;if(pers){var ps=String(t.rows[r][0]).replace(/\(.*?\)/g,'').trim().split('/').map(function(x){return x.trim();}).filter(Boolean);need=new RegExp('(^|[^A-Za-zÄÖÜäöüß])('+ps.join('|')+')([^A-Za-zÄÖÜäöüß]|$)',/sie/i.test(ps.join(''))?'i':'i');}
+    else if(/fiil|artikel|hâl/i.test(t.cols[cc]))return;
+    var sn=ezSent(t,it,need,used);if(!sn)return;used[sn[0]+'']=1;
+    var hint=pers?t.cols[cc]:String(t.rows[r][0]).replace(/\(.*?\)/g,'').trim();
+    c.push({it:it,sn:sn,hint:hint,pri:norm(ezStrip(it.c))===norm(t.cols[cc])?0:1});});
+  c.sort(function(x,y){return x.pri-y.pri;}).slice(0,q).forEach(function(x){var pt=esc(x.sn[0]).split('___');
+    x.it.qh='<span class="ezq-s" lang="de">'+pt[0]+'<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>'+(pt[1]||'')+' <span class="muted">('+esc(x.hint)+')</span></span><span class="ezq-tr">'+esc(x.sn[1])+'</span>';
+    x.it.qt=x.sn[0]+' ('+x.hint+')';x.it.lab=t.t+' · cümlede';});
+}
 function ezItem(t,cell){
   if(cell.s!=null){var e=t.ex[cell.s];return {t:'sz',tz:t.id,k:cell.k,de:e[0],tr:e[1],alts:e[2]||[]};}
   var row=t.rows[cell.r],a=row[cell.c+1],st=ezpeek(t.id).c[cell.k]||0,acc=ezAcc(t,cell.k),an={};
@@ -7973,7 +7999,7 @@ function startEz(tids,only){
   var items=only;
   if(!items){
     items=[];var per=tids.length===1?12:Math.max(3,Math.ceil(12/tids.length));
-    tids.forEach(function(tid){var t=EZBY[tid];ezPick(t,t.kind==='kural'?Math.min(per,6):per).forEach(function(c){items.push(ezItem(t,c));});});
+    tids.forEach(function(tid){var t=EZBY[tid],its=ezPick(t,t.kind==='kural'?Math.min(per,6):per).map(function(c){return ezItem(t,c);});ezInSent(t,its);items=items.concat(its);});
     if(tids.length>1)shuffle(items);
   }
   if(X&&(X.kind==='ezq'||X.kind==='ezfill'))X=STACK.length?STACK.pop():null;
