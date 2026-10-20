@@ -478,6 +478,7 @@ details.rvall{margin-top:8px}details.wfold{margin-top:12px;text-align:left}detai
 .ac-der,.ac-der .art,.rv .ac-der .art{color:var(--der)}.ac-die,.ac-die .art,.rv .ac-die .art{color:var(--die)}.ac-das,.ac-das .art,.rv .ac-das .art{color:var(--das)}
 .fb .ac-der,.fb .ac-die,.fb .ac-das,.fb mark{display:inline}
 s .ac-der,s .ac-die,s .ac-das{text-decoration:line-through}
+.coach.lite{padding:10px 12px}.coach.lite p{margin:4px 0 0;font-size:14px;line-height:1.5}.coach.lite p:first-child{margin-top:0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
 .sz-tr{font-size:16px;color:var(--ink2);text-align:center;padding:6px 0}
 .sz-ans{min-height:100px;border:1.5px dashed var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;background:var(--card)}
@@ -6647,7 +6648,7 @@ function mcBody(it){
   b+='<div class="opts'+(it.t==='hc'?' hc':'')+'">'+it.o.map(function(o){var c=X.pick?(o===it.c?'ok':o===X.pick?'no':''):'';return '<button lang="de" class="'+c+'" data-act="lpick" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
   if(X.pick){var ok=X.pick===it.c;
     b+='<div class="sheet '+(ok?'ok':'no')+'">'+(ok?'<div class="fb ok"><b>Richtig!</b></div>'+(it.ex||it.ctx?'<details><summary>Neden?</summary><div class="fb ok">'+(it.ex?'<span>'+rich(it.ex)+'</span>':'')+(it.ctx||'')+'</div></details>':''):
-      '<div class="fb no"><b>Doğrusu: <span lang="de" class="inl">'+esc(it.c)+'</span></b>'+(it.ctx||'')+'</div>'+coachHtml(X.dg)+(it.ex?'<div class="exn"><b>Doğru cevap neden doğru?</b> '+rich(it.ex)+'</div>':''))+
+      '<div class="fb no"><b>Doğrusu: <span lang="de" class="inl">'+esc(it.c)+'</span></b>'+(X.pick?'<span>Senin cevabın: <s lang="de">'+esc(X.pick)+'</s></span>':'')+(it.ctx||'')+'</div>'+coachLite(X.dg,it))+
       '<button class="btn dark big wide" data-act="lnext">Devam</button></div>';}
   return b;
 }
@@ -6667,7 +6668,7 @@ function tyBody(o,it){
       '<div class="dock"><button class="btn dark big wide" data-act="tycheck">Kontrol et</button><button class="link center" data-act="tyidk">Bilmiyorum, göster</button></div>';
   }else{
     b+='<div class="sheet '+(ok?'ok':'no')+'">'+(ok?'<div class="fb ok"><b>Richtig!</b></div>'+(it.ex||it.ctx?'<details><summary>Neden?</summary><div class="fb ok">'+(it.ex?'<span>'+rich(it.ex)+'</span>':'')+(it.ctx||'')+'</div></details>':''):
-      '<div class="fb no"><b>Doğrusu: <span lang="de" class="inl">'+esc(it.c)+'</span></b>'+(o.val?'<span>Senin cevabın: <s lang="de">'+esc(o.val)+'</s></span>':'')+(it.ctx||'')+'</div>'+coachHtml(o.dg)+(it.ex?'<div class="exn"><b>Doğru cevap neden doğru?</b> '+rich(it.ex)+'</div>':''))+
+      '<div class="fb no"><b>Doğrusu: <span lang="de" class="inl">'+esc(it.c)+'</span></b>'+(o.val?'<span>Senin cevabın: <s lang="de">'+esc(o.val)+'</s></span>':'')+(it.ctx||'')+'</div>'+coachLite(o.dg,it))+
       '<button class="btn dark big wide" data-act="lnext">Devam</button></div>';
   }
   return b;
@@ -6784,7 +6785,7 @@ function satzBody(o,it){
     var mt=o.okset[o.match]||o.okset[0];
     b+='<div class="sheet ok"><div class="fb ok"><b>Richtig!</b><span lang="de">'+esc(mt.txt)+'</span></div>'+(o.okset.length>1?'<details><summary>Bu sıralar da doğru</summary>'+szList(o,o.match)+'</details>':'')+'<button class="btn dark big wide" data-act="sznext">Devam</button></div>';
   }else{
-    b+='<div class="sheet no"><div class="fb no"><b>'+(o.okset.length>1?'Doğru sıralar:':'Doğrusu:')+'</b>'+szList(o,-1)+'</div>'+coachHtml(o.dg)+'<button class="btn dark big wide" data-act="sznext">Devam</button></div>';
+    b+='<div class="sheet no"><div class="fb no"><b>'+(o.okset.length>1?'Doğru sıralar:':'Doğrusu:')+'</b>'+szList(o,-1)+'</div>'+coachLite(o.dg,it)+'<button class="btn dark big wide" data-act="sznext">Devam</button></div>';
   }
   if(it.hint)b+='<p class="note center">'+it.hint+'</p>';
   return b;
@@ -8150,6 +8151,7 @@ var ERRC={
   zamir:['Zamir','ich/mich/mir, er/ihn/ihm …',['ez:pron','ez:reflex']],
   yazim:['Yazım','Tek harf, büyük harf',[]],
   ezb:['Ezber tablosu','Satır ya da sütun karışıyor',[]],
+  sifat:['Sıfat eki','Artikel, cins ve hâle göre -e / -en / -er / -es / -em',['g:g9','g:g11','ez:adjbest','ez:adjein']],
   genel:['Konunun kuralı','Konunun ana kuralı',[]]
 };
 var CASEN={N:'Nominativ',A:'Akkusativ',D:'Dativ',G:'Genitiv'};
@@ -8293,7 +8295,7 @@ function diagnose(c,g,q,tid){
         (tr&&!tr.c?' '+tr.why:'');
       d.think='Önce sor: önümde hâl seçen bir edat ya da fiil var mı? Yoksa kelimenin görevine bak: özne mi (N), -i mi (A), -e mi (D)?';
       d.cmp=['sen: *'+Gv+'* → '+CASEN[gotC]+' · '+CASEQ[gotC],'doğru: *'+C+'* → '+CASEN[need]+' · '+CASEQ[need]];
-      d.to=[tr&&tr.to,pron?'ez:pron':'ez:art','hub:hal'];
+      d.to=[tr&&tr.to,pron?'ez:pron':'ez:art','hub:hal'];d.sure=!!(tr&&tr.c===need)||cc.length===1;
       if(tid==='g6')d.why+=' Dönüşlü fiilde: cümlede başka bir Akkusativ nesne varsa zamir Dativ olur (*Ich wasche mir die Hände*), yoksa Akkusativ (*Ich wasche mich*).';
       if(tid==='g16'||tid==='g25'||tid==='g38')d.why+=' İlgi zamirinde cinsi önceki isimden, hâli ise yan cümledeki görevinden alırsın.';
       return fin(d,tid,q);
@@ -8303,7 +8305,7 @@ function diagnose(c,g,q,tid){
       d.cat='cins';d.t='Hâl doğru ('+CASEN[need]+'), cins karıştı';
       d.why=(n&&na?'*'+n+'* '+(na==='der'?'eril':na==='die'?'dişil':'nötr')+': *'+na+' '+n+'*. ':'')+CASEN[need]+' hâlinde '+(gg?GENN[gg.charAt(0)]:'bu')+' biçim *'+C+'*. Sen *'+Gv+'* yazdın; o, aynı hâlin '+GENN[(gens(Gv,need)||'m').charAt(0)]+' biçimi.';
       d.think='Kelimeyi hep artikeliyle öğren (der Tisch, die Tür). Sonra hâl tablosunda o cinsin satırından ilerle.';
-      d.to=['ez:art','ez:ein'];return fin(d,tid,q);
+      d.to=['ez:art','ez:ein'];d.sure=!!(n&&na);return fin(d,tid,q);
     }
   }
   /* 4. bağlaç / karşılaştırma */
@@ -8320,6 +8322,14 @@ function diagnose(c,g,q,tid){
     d.cat='komp';d.t='Karşılaştırma biçimi karıştı';
     d.why='Temel biçim (*gut*), karşılaştırma (*besser … als*), en üstün (*am besten*). Cümlede *als* varsa iki şeyi kıyaslıyorsun → Komparativ.';
     d.think='Cümlede "als" ya da "am … -sten" ipucu var mı?';d.to=['ez:kompar','g:g7'];return fin(d,tid,q);
+  }
+  /* 4b. sıfat eki: aynı sıfatın iki ek biçimi (kleine ↔ kleiner, gekocht ↔ gekochte); fiil eki ya da zaman sanılmasın */
+  var adjS=function(w){return w.replace(/(e|er|en|em|es)$/,'');};
+  if(C.indexOf(' ')<0&&Gv.indexOf(' ')<0&&cl!==gl&&!FINF[cl]&&!FINF[gl]&&!cases(C)&&(adjS(cl)===adjS(gl)||adjS(cl)===gl||cl===adjS(gl))&&adjS(cl).length>=3&&!(VINFok(cl)&&VINFok(gl))){
+    d.cat='sifat';d.t='Sıfat eki karıştı';
+    d.why='Doğrusu *'+C+'*. İsimden önceki sıfatın eki artikele, cinse ve hâle bakar.';
+    d.think='Önce artikel: der/die/das ailesi mi, ein/kein mi, artikel yok mu? Artikel cinsi ve hâli gösteriyorsa sıfat -e/-en; göstermiyorsa sıfat kendisi gösterir (-er, -es, -em).';
+    d.to=['g:g9','g:g11','ez:adjbest','ez:adjein'];d.sure=!!nounAfter(q);return fin(d,tid,q);
   }
   /* 5. zu */
   var cz=/(^|\s)zu(\s|$)/.test(cl),gz=/(^|\s)zu(\s|$)/.test(gl);
@@ -8347,7 +8357,8 @@ function diagnose(c,g,q,tid){
     d.think='Fiil düzenli mi düzensiz mi, ön eki ayrılıyor mu, ayrılmıyor mu? Üç soru, üç karar.';return fin(d,tid,q);
   }
   /* 8. zaman */
-  if(isPast(cl)!==isPast(gl)&&(stripU(cl).slice(0,2)===stripU(gl).slice(0,2)||HAB[cl]&&HAB[gl]||SEI[cl]&&SEI[gl])){
+  var PSTR=/^(ging|kam|sah|gab|nahm|fand|blieb|schrieb|sprach|fuhr|aß|trank|dachte|brachte|wusste|lief|las|traf|stand|lag|saß|rief|hielt|fiel|schlief|wurde|kannte)/,vb=function(w){return !!(FINF[w]||vstem(w)||VINFok(w)||PSTR.test(w));};
+  if(isPast(cl)!==isPast(gl)&&(vb(cl)||vb(gl))&&!partLike(C)&&(stripU(cl).slice(0,2)===stripU(gl).slice(0,2)||HAB[cl]&&HAB[gl]||SEI[cl]&&SEI[gl])){
     var sig=/(gestern|früher|letzte|letzten|letztes|als kind|damals|vorgestern|vor \w+ (jahren|tagen|wochen))/i.exec(q);
     d.cat='zaman';d.t=isPast(cl)?'Burada geçmiş zaman lazım':'Burada şimdiki zaman lazım';
     d.why=isPast(cl)?(sig?'Cümlede *'+sig[0]+'* var: geçmişi anlatıyor. ':'Cümle geçmişi anlatıyor. ')+'*sein, haben* ve modallar konuşmada da Präteritum ile söylenir: war, hatte, konnte, musste.':'Cümle şimdiyi ya da her zaman olanı anlatıyor → Präsens.';
@@ -8355,8 +8366,9 @@ function diagnose(c,g,q,tid){
   }
   /* 9. kişi eki */
   var cp=0;while(cp<cl.length&&cp<gl.length&&cl[cp]===gl[cp])cp++;
-  if(C.indexOf(' ')<0&&cp>=2&&cl.length-cp<=3&&gl.length-cp<=3&&!cases(C)){
-    var su=subjOf(q),fw=whoForm(Gv);
+  /* yalnız fiilde: sıfat ekini (schöne ↔ schönen) "fiil eki" sanma */
+  if(C.indexOf(' ')<0&&cp>=2&&cl.length-cp<=3&&gl.length-cp<=3&&!cases(C)&&(FINF[cl]||vstem(cl)||VINFok(cl))&&(FINF[gl]||vstem(gl)||VINFok(gl))){
+    var su=subjOf(q),fw=whoForm(Gv);d.sure=!!su;
     d.cat='kisi';d.t='Fiil eki özneye uymuyor';
     var cw=whoForm(C);d.why=(su?'Özne *'+su+'*. ':'')+'Doğru biçim *'+C+'*'+(cw?' ('+cw+' biçimi)':'')+'. Senin yazdığın *'+Gv+'*'+(fw?', *'+fw+'* biçimi.':'.');
     d.think='Fiili yazmadan önce özneyi bul (çoğu zaman fiilin hemen önünde ya da arkasında), sonra eki seç: ich -e · du -st · er -t · wir -en · ihr -t · sie -en.';
@@ -8379,6 +8391,7 @@ function diagnose(c,g,q,tid){
   d.to=['g:'+tid];return fin(d,tid,q);
 }
 function fin(d,tid,q){
+  if(d.sure==null)d.sure=!/^(genel|yazim)$/.test(d.cat);
   if(tid&&GBY[tid]&&d.to.indexOf('g:'+tid)<0&&d.cat!=='genel')d.to.push('g:'+tid);
   d.to=d.to.filter(Boolean);return d;
 }
@@ -8432,6 +8445,17 @@ function errLog(d,ex){
 }
 function errRecent(cat,days){var e=S.err&&S.err[cat];if(!e)return 0;var n=0,t=today();for(var k in e.h)if(dd(k,t)<days)n+=e.h[k];return n;}
 function errTop(n){var a=[];for(var k in (S.err||{}))if(k!=='genel'&&k!=='yazim'){var r=errRecent(k,14);if(r)a.push([k,r]);}return a.sort(function(x,y){return y[1]-x[1];}).slice(0,n);}
+/* konu sorusunda yanlış paneli: soruya özel not, tek satır "neden doğru", emin olunan teşhiste tek satır "Nasıl düşün".
+   Emin olunmayan teşhis gösterilmez (hata haritasına da yazılmaz). */
+function oneLine(t){t=String(t||'').trim();var m=t.match(/^[\s\S]*?[^\d\s][.!](?=\s|$)/);return m?m[0]:t;}
+function coachLite(d,it){
+  if(!d)return '';var L=[],sure=d.sure!==false;
+  if(d.nt)L.push('<p>'+rich(d.why)+'</p>');
+  if(it&&it.ex)L.push('<p><b>Neden:</b> '+rich(oneLine(it.ex))+'</p>');
+  else if(sure&&d.why&&!d.nt)L.push('<p><b>Neden:</b> '+rich(oneLine(d.why))+'</p>');
+  if(sure&&d.think&&d.cat!=='genel')L.push('<p><b>Nasıl düşün:</b> '+rich(oneLine(d.think))+'</p>');
+  return L.length?'<div class="coach lite">'+L.join('')+'</div>':'';
+}
 /* geri bildirim kartı */
 function coachHtml(d){
   if(!d)return '';
@@ -8771,7 +8795,8 @@ function itemDiag(it,g){
 function noteWrong(it,g){
   if(!it)return;var d=itemDiag(it,g);X.dg=d;
   if(it.nt){var gw=it.t==='hc'&&it.wmap?it.wmap[g]:g,j=(it.wl||[]).indexOf(gw);if(j<0&&gw!=null){var ng=norm(gw);(it.wl||[]).forEach(function(w,i){if(j<0&&norm(w)===ng)j=i;});}if(j>=0&&it.nt[j])d.why=it.nt[j];}
-  if(X.kind==='lesson'||X.kind==='ezq')errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
+  if(j>=0&&it.nt&&it.nt[j])d.nt=1;
+  if((X.kind==='lesson'||X.kind==='ezq')&&(d.sure!==false||d.nt))errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
     c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g)});
 }
 /* --- bağlantılı ders: büyük fikirler ve konu anlatımı --- */
