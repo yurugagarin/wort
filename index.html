@@ -487,6 +487,8 @@ details.dsec>summary::-webkit-details-marker{display:none}details.dsec>summary b
 details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>summary b::after{content:" ⌄"}.dsb{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .dex p{margin-top:4px;font-size:16px}
 .ezq-s{display:block;font-size:18px;line-height:1.5}.ezq-tr{display:block;font-size:13px;color:var(--ink3);margin-top:4px}
+.ydl{border-radius:12px;padding:8px 12px;background:var(--card2);border-left:3px solid var(--wrn)}.ydl.ok{border-left-color:var(--ok)}.ydl>span{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.ydl p{margin:4px 0 0;font-size:14px;line-height:1.5}.ydl b.ok{color:var(--ok)}.ydl .chip{margin:2px 4px 2px 0}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -6295,6 +6297,16 @@ function dayKalip(){var mine=[],q=S.gwq||[];KL.forEach(function(k,i){if(S.srs['k
   return src.length?KL[src[hash(today()+'kd')%src.length]]:null;}
 /* kalıbı kullandın mı? Ayırt edici kelimelerine bakılır: "Ich habe keine Ahnung" için keine + Ahnung; "Ich habe keine Zeit" sayılmaz */
 var KSTOP={};('ich du er sie es wir ihr man mir mich dir dich uns euch ihm ihn ihnen der die das den dem des ein eine einen einem einer ist bin bist sind seid hat habe hast haben habt und oder aber nicht sehr auch noch so zu in im an am auf mit für von bitte was wie wo ja nein mal da dann').split(' ').forEach(function(w){KSTOP[w]=1;});
+/* Yazma'nın üstünde tek "Dünden" satırı: dün denetleyicinin bulduğu hata, yoksa dün tanıştığın en çok 3 kelime (Türkçesi; dokununca Almancası) */
+function ydLine(d){
+  var y=addD(today(),-1),yd=peek(y)||{},t=' '+norm(d.sch||'')+' ';
+  if(yd.schErr&&yd.schErr.length){var e=yd.schErr[0],now=(d.sch&&sentN(d.sch))?checkText(d.sch):null,fw=norm(e.f).split(' ')[0],fixed=now&&!!fw&&t.indexOf(' '+fw+' ')>=0&&!now.some(function(x){return x.cat===e.cat;});
+    return '<div class="ydl'+(fixed?' ok':'')+'"><span>Dünden</span><p><b lang="de">'+esc(e.f)+'</b> · '+rich(e.t)+(fixed?' · <b>✓ Bu sefer doğru</b>':' → bugün doğru yap')+'</p></div>';}
+  var ids=Object.keys(S.srs).filter(function(id){return id.indexOf('p:')===0&&S.srs[id].a===y&&card(id);}).slice(0,3);
+  if(!ids.length)return '';
+  return '<div class="ydl"><span>Dünden · kelimeleri yazında kullan</span><p>'+ids.map(function(id){var c=card(id),used=t.indexOf(' '+norm(c.w)+' ')>=0,rv=used||(d.ydr&&d.ydr[id]);
+    return rv?'<b lang="de" class="'+(used?'ok':'')+'">'+deC(deText(c))+(used?' ✓':'')+'</b>':'<button class="chip" data-act="ydrev" data-id="'+esc(id)+'">'+esc(c.tr)+'</button>';}).join(' ')+'</p></div>';
+}
 function kalipKeys(k){var ws=norm(String(k[2]).replace(/[…/]/g,' ')).split(' ').filter(function(w){return w&&w.length>1&&!KSTOP[w];});return ws.length?ws.slice(0,3):norm(k[2]).split(' ').filter(Boolean).slice(0,3);}
 function kalipUsed(k,txt){var t=' '+norm(txt||'')+' ',ks=kalipKeys(k);return ks.length>0&&ks.every(function(w){return t.indexOf(' '+w+' ')>=0;});}
 function taskBody(id){
@@ -6308,7 +6320,7 @@ function taskBody(id){
       (kk?(function(){var ki=KL.indexOf(kk),seen=!!S.srs['k:'+ki],hid=seen&&!used&&d.kdr!==ki;
         /* daha önce gördüğün kalıp: önce Türkçesi, Almancasını hatırlamaya çalış, sonra aç */
         return '<div class="kday'+(used?' ok':'')+'"><span>Bugünün kalıbı · yazında kullan'+(used?' ✓':'')+'</span>'+(hid?'<i style="font-style:normal;font-weight:700">'+esc(kk[3])+' → Almancası?</i><button class="btn sm" style="align-self:flex-start;margin-top:6px" data-act="kdrev" data-i="'+ki+'">Hatırladım, göster</button>':'<b lang="de">'+esc(kk[2])+'</b><i>'+esc(kk[3])+'</i>')+'</div>';})():'')+
-      '<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
+      ydLine(d)+'<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
       '<div class="small muted num" id="schN">'+sentN(d.sch)+' / 3 cümle · en az 3 kelimelik her cümle sayılır</div>'+
       '<button class="btn sm" style="align-self:flex-start" data-act="schk">Cümlelerimi kontrol et</button>'+(SCHK&&SCHK.t===(d.sch||'')?checkHtml(SCHK.r,d.sch):'');
   }
@@ -7547,7 +7559,9 @@ var ACT={
   aprev:function(){X.as=Math.max(0,(X.as||0)-1);drawPage();$('page').scrollTop=0;},
   adim:function(){X.ad=(X.ad||1)+1;drawPage();},
   ucheck:function(){var x=gpeek(X.id),t=x.wd||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}X.chk=checkText(t);if(X.chkt!==t){X.chkt=t;X.chk.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});}drawPage();},
-  schk:function(){var d=day(),t=d.sch||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}SCHK={t:t,r:checkText(t)};if(SCHK.r.length)SCHK.r.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});render();},
+  schk:function(){var d=day(),t=d.sch||'';if(!t.trim()){toast('Önce birkaç cümle yaz');return;}SCHK={t:t,r:checkText(t)};if(SCHK.r.length)SCHK.r.forEach(function(c){errLog({cat:c.cat},{q:c.s,c:'',g:c.f});});
+    d.schErr=SCHK.r.slice(0,2).map(function(c){return {f:c.f,cat:c.cat,t:c.t,to:c.to?c.to[0]:''};});save();render();},
+  ydrev:function(b){var d=day();d.ydr=d.ydr||{};d.ydr[b.dataset.id]=1;save();render();if(X&&X.kind==='yaz')drawPage();},
   lgo:function(){X.i=0;prepItem(X);drawPage();$('page').scrollTop=0;},
   lpick:function(b){if(X.pick)return;X.pick=b.dataset.v;var it=X.items[X.i],ok=X.pick===it.c;recordAny(ok);if(!ok)noteWrong(it,X.pick);itemLog(it,ok,X.pick);drawPage();},
   lnext:function(){advance();},
