@@ -468,6 +468,7 @@ a.btn{display:flex;align-items:center;justify-content:center;text-decoration:non
 .fb.ok{background:color-mix(in srgb,var(--ok) 12%,var(--card));border:1px solid color-mix(in srgb,var(--ok) 40%,transparent)}
 .fb.no{background:color-mix(in srgb,var(--bad) 10%,var(--card));border:1px solid color-mix(in srgb,var(--bad) 35%,transparent)}
 .fb b{display:block;margin-bottom:2px}
+.rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
 .sz-tr{font-size:16px;color:var(--ink2);text-align:center;padding:6px 0}
 .sz-ans{min-height:100px;border:1.5px dashed var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;background:var(--card)}
 .sz-ans.ok{border-style:solid;border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card))}
@@ -7003,8 +7004,8 @@ var KHB=false;
 /* --- sayfa --- */
 function rvFb(cu,c){
   var r=cu.res,ok=r==='ok';
-  var head=ok?'Richtig!':r==='near'?'Neredeyse · doğru sayıldı':r==='art'?'Artikel yanlış':'Yanlış · birazdan yine sorulacak';
-  return '<div class="fb '+(ok||r==='near'?'ok':'no')+'"><b>'+head+'</b>'+(cu.m?'<span>'+rich(cu.m)+'</span>':'')+
+  var head=ok?'Richtig!':r==='hint'?'İpucuyla buldun · birazdan yine sorulacak':r==='near'?'Neredeyse · doğru sayıldı':r==='art'?'Artikel yanlış':'Yanlış · birazdan yine sorulacak';
+  return '<div class="fb '+(ok||r==='near'||r==='hint'?'ok':'no')+'"><b>'+head+'</b>'+(cu.m?'<span>'+rich(cu.m)+'</span>':'')+
     (cu.val&&!ok?'<span>Senin cevabın: <s lang="de">'+esc(cu.val)+'</s></span>':'')+'</div>';
 }
 function pReview(){
@@ -7067,7 +7068,8 @@ function pReview(){
     b+='<div class="card rv">'+src+ask+'</div>';
     if(!cu.res)b+='<input class="inp ty" lang="de" data-in="wt" value="'+esc(W.val||'')+'" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="'+(cz?'Eksik kelime':ty2==='plural'?'die …':ty2==='perf'?'hat/ist + Partizip (ör. ist gegangen)':ART(c.a)?'der / die / das + kelime':'Almancası')+'">'+
       '<div class="keys">'+['ä','ö','ü','ß'].map(function(k){return '<button class="key" data-act="tyk" data-v="'+k+'" lang="de">'+k+'</button>';}).join('')+'</div>'+
-      '<div class="dock"><button class="btn dark big wide" data-act="rvcheck">Kontrol et</button><button class="link center" data-act="rvidk">Bilmiyorum, göster</button></div>';
+      (cu.hint?'<div class="rvhint">💡 '+cu.hint+'</div>':'')+
+      '<div class="dock"><button class="btn dark big wide" data-act="rvcheck">Kontrol et</button><button class="link center" data-act="rvidk">'+(!cu.hint&&(cz||ty2==='write')?'Bilmiyorum · ipucu ver':'Bilmiyorum, göster')+'</button></div>';
   }
   if(cu.res||W.pick){
     if(!cu.res)cu.res=W.pick===cu.right?'ok':'no';
@@ -7079,6 +7081,12 @@ function pReview(){
   return {t:'Kelime tekrarı',b:b};
 }
 function perfOf(c){var m=String(c&&c.f||'').match(/(hat|ist) [^·]+$/);return m?m[0].trim():'';}
+/* "Bilmiyorum"un ilk dokunuşu: hikâyesi olan kelimede ses kelimesi, olmayanda ilk harf ve harf sayısı */
+function rvHint(c,type){
+  var h=hkyOf(c);if(h&&h.length>=4&&h[1])return 'Ses ipucu: <b>'+esc(h[1])+'</b>';
+  var t=type==='cloze'?clozeOf(c):c.w;
+  return 'İlk harf: <b lang="de" class="num">'+esc(t.split('').map(function(ch,i){return i===0?ch:/\s/.test(ch)?' ':'_';}).join(' '))+'</b> · '+t.replace(/\s/g,'').length+' harf';
+}
 function rvRight(c,t){return t==='cloze'?clozeOf(c):t==='plural'?'die '+plural(c):t==='perf'?perfOf(c):t==='listen'?c.tr:deText(c);}
 /* üretme etkisi: kelimeyi duymak ve yüksek sesle tekrar etmek hatırlamayı artırır; ses ve hız her seferinde biraz değişir (akustik çeşitlilik) */
 var SAYV=0;
@@ -7087,11 +7095,11 @@ function sayVar(t){if(!canSay())return;SAYQ++;try{speechSynthesis.cancel();}catc
 function rvSay(c){if(S.set.auto!==false&&c)sayVar(deText(c));}
 /* cevabı puanla ve basamağı güncelle */
 function rvGrade(id,res){
-  var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1;
+  var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok'||res==='hint',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1;
   grade(id,g);s=S.srs[id];s.st=res==='ok'?st+1:res==='no'?Math.max(0,st-1):st;
-  W.cur.ok=res!=='no';
+  W.cur.ok=res!=='no'&&res!=='hint';
   rvSay(c);
-  if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?clozeOf(c):W.cur.type==='listen'?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':'');
+  if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?clozeOf(c):W.cur.type==='listen'?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':res==='hint'?'İpucuyla':'');
   if(res==='no'&&(s.lp||0)>=3&&!hkOf(id))W.hk=id;
   if(res==='no')W.hs=id;
   save();
@@ -7280,8 +7288,9 @@ var ACT={
   rvpick:function(b){if(W.pick)return;W.pick=b.dataset.v;if(W.cur.type==='intro'){rvSay(card(W.q[0]));W.hs=W.q[0];}if(W.cur.type!=='intro'){W.cur.res=W.pick===W.cur.right?'ok':'no';if(W.cur.res==='no')W.cur.m='Doğrusu: *'+W.cur.right+'*';rvGrade(W.q[0],W.cur.res);}drawPage();},
   autosay:function(b){S.set.auto=b.dataset.v==='1';touch('set');save();drawPage();},
   rvplay:function(){var c=card(W.q[0]);if(c)sayVar(deText(c));},
-  rvcheck:function(){var cu=W.cur;if(!cu||cu.res)return;var el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:W.val||'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}var c=card(cu.id),j=rvJudge(c,cu.type,v);cu.val=v;cu.res=j.r;cu.m=j.m||(j.r==='no'?'Doğrusu: *'+rvRight(c,cu.type)+'*':'');rvGrade(cu.id,j.r);drawPage();},
-  rvidk:function(){var cu=W.cur;if(!cu||cu.res)return;var c=card(cu.id);cu.val='';cu.res='no';cu.m='Doğrusu: *'+rvRight(c,cu.type)+'*';rvGrade(cu.id,'no');drawPage();},
+  rvcheck:function(){var cu=W.cur;if(!cu||cu.res)return;var el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:W.val||'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}var c=card(cu.id),j=rvJudge(c,cu.type,v);if(cu.hint&&(j.r==='ok'||j.r==='near'))j.r='hint';cu.val=v;cu.res=j.r;cu.m=j.m||(j.r==='no'?'Doğrusu: *'+rvRight(c,cu.type)+'*':'');rvGrade(cu.id,j.r);drawPage();},
+  rvidk:function(){var cu=W.cur;if(!cu||cu.res)return;var c=card(cu.id);
+    if(!cu.hint&&(cu.type==='write'||cu.type==='cloze')){var el=document.querySelector('#page [data-in="wt"]');if(el)W.val=el.value;cu.hint=rvHint(c,cu.type);drawPage();var e2=document.querySelector('#page [data-in="wt"]');if(e2)e2.focus();return;}cu.val='';cu.res='no';cu.m='Doğrusu: *'+rvRight(c,cu.type)+'*';rvGrade(cu.id,'no');drawPage();},
   hkopen:function(){W.hk=W.cur&&W.cur.id;W.hkv=null;drawPage();setTimeout(function(){var t=document.querySelector('#page [data-in="hk"]');if(t)t.scrollIntoView({block:'center'});},40);},
   hkstory:function(){var id=W.cur&&W.cur.id;W.hs=id;hkyLoad(function(){if(X&&X.kind==='review')drawPage();});drawPage();},
   hkstsave:function(){var id=W.hs,c=card(id),h=hkyOf(c);if(!h)return;S.hk=S.hk||{};S.hk[id]={t:h.length>=4?h[0]+' → '+h[1]+' = '+h[2]+'\n'+h[3]:h[0]+' → '+h[1].replace(/\*/g,''),u:Date.now(),src:'hky'};save();drawPage();toast('Hikâye kancan oldu · kelime her geldiğinde görünecek');},
