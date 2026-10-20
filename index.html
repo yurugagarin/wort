@@ -6993,12 +6993,11 @@ function hkCopy(t){return /^[^\n]+ → [^\n]+ = [^\n]+\n/.test(t||'');}
 function hkOf(id){var x=S.hk&&S.hk[id];if(!x||!x.t)return '';
   if((x.src==='hky'||hkCopy(x.t))&&HKY){var hh=hkyOf(card(id));if(hh&&hh.length>=4)return hh[0]+' → '+hh[1]+' = '+hh[2]+'\n'+hh[3];}
   return x.t;}
-var GCOL={der:'mavi',die:'kırmızı',das:'yeşil'},GACT={der:'patlarken',die:'alev alırken',das:'cam gibi kırılırken'};
 function hkTips(c){
-  var t=[],a=ART(c.a),p=wordParts(c);
+  var t=[],a=ART(c.a),p=wordParts(c),r=a?rule(c):'';
   if(p)t.push('<b>Parçalarına ayır:</b> '+p);
-  if(a){var r=rule(c);t.push('<b>Artikel:</b> '+(r&&r.indexOf('Kural yok')<0?esc(r)+' ':'')+'Renkli bir sahne kur: <i>'+esc(c.tr)+'</i> nesnesini '+GCOL[a]+' renkte ve '+GACT[a]+' hâlde hayal et (der = mavi, patlar · die = kırmızı, alev alır · das = yeşil, cam gibi kırılır).');}
-  t.push('<b>Ses benzerliği:</b> <i lang="de">'+esc(c.w)+'</i> kelimesini yüksek sesle söyle. Hangi Türkçe kelimeye benziyor? O Türkçe kelimeyle <i>'+esc(c.tr)+'</i> anlamını tek bir komik sahnede birleştir.');
+  if(r&&!/^Kural yok/.test(r))t.push('<b>Artikel:</b> '+esc(r));
+  t.push('<b>Ses köprüsü:</b> <i lang="de">'+esc(c.w)+'</i> kelimesini yüksek sesle söyle; hangi Türkçe kelimeye benziyor? O kelimeyi <i>'+esc(c.tr)+'</i> anlamıyla kendi hayatından tek bir gündelik sahnede birleştir.');
   return '<ul class="hkt">'+t.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';
 }
 function hkPrompt(c){
@@ -7049,16 +7048,17 @@ function storyBox(id,c,mode){
 function hkBlock(id,c){
   if(c&&c.gs)return '';
   var h=hkOf(id),lp=(S.srs[id]&&S.srs[id].lp)||0;
-  if(W.hk===id)return '<div class="hkbox"><div class="eyebrow">Hafıza kancası · <span lang="de">'+esc(deText(c))+'</span></div>'+hkTips(c)+
-    
-    '<textarea class="inp" data-in="hk" rows="3" placeholder="Kendi kancan: kısa, komik, görsel. Ör: Termin → “ter-min”: terleyerek randevuya koşan bir adam.">'+esc(W.hkv!=null?W.hkv:h)+'</textarea>'+
-    '<div class="row"><button class="btn sm" data-act="hkx">Kapat</button><div class="sp"></div><button class="btn lime sm" data-act="hksave">Kaydet</button></div></div>';
+  if(W.hk===id){var hy=hkyOf(c),pre=hy&&hy.length>=4?c.w+' ≈ '+hy[1]+' → '+String(hy[2]).toLocaleLowerCase('tr')+'\n'+hkySlogan(c)+' ':'',own=S.hk&&S.hk[id]&&!(S.hk[id].src==='hky'||hkCopy(S.hk[id].t))?h:'';
+    return '<div class="hkbox"><div class="eyebrow">Kendi kancan · <span lang="de">'+esc(deText(c))+'</span></div>'+
+    (pre?'<p class="small muted">Hazır köprüye kendi hayatından küçük bir ayrıntı ekle (ör. <i>annemin mavi rendesi</i>, <i>bizim mahalledeki fırın</i>). Kısa tut.</p>':hkTips(c))+
+    '<textarea class="inp" data-in="hk" rows="3" placeholder="'+(pre?'… kendi ayrıntın':'Ör: Termin ≈ TERMİNAL → randevu · terminaldeki saat randevuma geç kaldığımı söylüyor.')+'">'+esc(W.hkv!=null?W.hkv:own||pre)+'</textarea>'+
+    '<div class="row"><button class="btn sm" data-act="hkx">Kapat</button><div class="sp"></div><button class="btn lime sm" data-act="hksave">Kaydet</button></div></div>';}
   /* kancan hazır hikâyenin kopyasıysa hikâye kutusu bir kez görünür; aynı hikâye iki kez yazılmaz */
   var hx=S.hk&&S.hk[id],cpy=hx&&(hx.src==='hky'||hkCopy(hx.t))&&!!hkyOf(c),show=W.hs===id||cpy,mode=W.cur&&W.cur.id===id&&W.cur.type==='intro'?'intro':'short',none=HKY&&!hkyOf(c);
   return (h&&!cpy?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(h)+'</p></div>':'')+
-    (lp>=3&&!h?'<p class="note leech">Bu kelime '+lp+' kez kaçtı. Bir kanca bul; zor kelimeler kancayla çok daha kolay kalır.</p>':'')+
+    (lp>=3&&!h?'<p class="note leech">Bu kelime '+lp+' kez kaçtı. '+(hkyOf(c)?'Hikâyesini bir kez canlandır; istersen aşağıdan kendi ayrıntını ekle.':'Bir kanca bul; zor kelimeler kancayla çok daha kolay kalır.')+'</p>':'')+
     (show?storyBox(id,c,mode):'')+
-    '<div class="row hkr">'+(show||none?'':'<button class="link hkl" data-act="hkstory">📖 Hikâye kancası</button>')+'<button class="link hkl" data-act="hkopen">🪝 '+(h?'Kancayı düzenle':'Hafıza kancası')+'</button></div>';
+    '<div class="row hkr">'+(show||none?'':'<button class="link hkl" data-act="hkstory">📖 Hikâye kancası</button>')+'<button class="link hkl" data-act="hkopen">🪝 '+(h&&!cpy?'Kancanı düzenle':hkyOf(c)?'Kendi kancanı yaz':'Hafıza kancası')+'</button></div>';
 }
 /* yapıştırılan metinden "kelime :: kanca" satırlarını bulur */
 function hkParse(txt,ids){
@@ -7219,7 +7219,6 @@ function rvGrade(id,res){
   rvSay(c);
   if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?czOf(c):W.cur.type==='listen'?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':res==='hint'?'İpucuyla':'');
   if(res==='no'&&c){var o=W.cur.type==='tr2de'?deFind(W.pick||''):/^(write|cloze)$/.test(W.cur.type)&&W.cur.val?deFind(W.cur.val):null;if(o&&o.id!==id&&o.w!==c.w){W.cur.oth=o.id;cfAdd(id,o.id);}}
-  if(res==='no'&&(s.lp||0)>=3&&!hkOf(id))W.hk=id;
   if(res==='no')W.hs=id;
   save();
 }
