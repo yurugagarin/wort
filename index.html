@@ -6078,7 +6078,7 @@ function tableCells(id){var t=EZBY[id],e=ezpeek(id),cs=ezCells(t),n=0;cs.forEach
 var SESS=null;
 var TLAB={wort:'Kelime',gram:'Konu',ez:'Ezber',sch:'Yazma'};
 /* geçilemeyen konu aşaması günün sonuna kalır: önce diğer görevler */
-function sessNext(){var T=taskDefs(day()),sk=SESS&&SESS.skip||{},i;for(i=0;i<T.length;i++)if(T[i].f<1&&!sk[T[i].id])return T[i];for(i=0;i<T.length;i++)if(T[i].f<1)return T[i];return null;}
+function sessNext(){var d0=day(),T=taskDefs(d0),sk=SESS&&SESS.skip||{},i;if(d0.short)T=T.filter(function(t){return t.id==='wort';});for(i=0;i<T.length;i++)if(T[i].f<1&&!sk[T[i].id])return T[i];for(i=0;i<T.length;i++)if(T[i].f<1)return T[i];return null;}
 function taskMin(t){var d=day();if(t.f>=1)return 0;if(t.id==='wort')return Math.max(1,Math.round(Math.max(0,(d.wt||0)-(d.w||0))/3));if(t.id==='gram')return 8;if(t.id==='ez')return 5;return 5;}
 function taskSub(t){
   if(t.f>=1){if(t.did&&t.did.length)return t.did[0];return t.s;}
@@ -6176,6 +6176,7 @@ function vBugun(){
     '<ul class="tasks2">'+T.map(function(x){var st=x.f>=1?'d':nx&&nx.id===x.id?'n':x.f>0?'h':'';
       return '<li><button class="t2r '+st+'" style="--c:'+x.c+'" data-act="task" data-id="'+x.id+'"><span class="ic">'+(x.f>=1?'✓':st==='n'?'▶':'')+'</span><span class="tx"><b>'+TLAB[x.id]+'</b><span>'+esc(taskSub(x))+'</span></span><span class="pt num">'+x.p+'<small>/'+x.max+'</small></span></button></li>';}).join('')+'</ul>'+
     (nx?'<button class="btn lime big wide" data-act="sgo">'+(done?'Devam et · '+TLAB[nx.id]+' →':'Başla →')+'</button>':'<button class="btn lime big wide" data-act="sdone">Bugün tamam ✓ · özeti gör</button>')+
+    (d.short?'<p class="small muted center" style="margin-top:6px">Kısa gün: yeni kelime yok, en çok 20 tekrar kartı · diğer görevler isteğe bağlı</p>':nx&&!wordDone(d)?'<button class="link center" style="display:block;margin:8px auto 0" data-act="short">Vaktim az · ~7 dk</button>':'')+
     '<details class="howto"><summary>ⓘ Puan nasıl hesaplanır?</summary><ul>'+T.map(function(x){return '<li><b>'+TLAB[x.id]+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+'<li>Seri: kelime görevini bitirdiğin her gün. Haftada 7 gün seri = 1 dondurma hakkı (en çok 2); çalışamadığın bir gün seriyi korur.</li><li>Haftalık hedef: 75+ puanlı gün sayısı.</li></ul></details></div>';
   var LGT=lgDay(t),wu=!LGT.length&&warmQ();
   /* sabah ısınması: gün başında boş "Bugün yaptıkların" yerine dün konu ya da ezberde yanıldığın tek soru (puansız) */
@@ -7973,6 +7974,8 @@ function ezMarkStep(id,k){S.ezst=S.ezst||{};var o=S.ezst[id]||(S.ezst[id]={});if
 ACT.memmine=function(b){var id=b.dataset.id,i=+b.dataset.i;S.mw=S.mw||{};if(i<0)delete S.mw[id];else{S.mw[id]=i;toast('Senin yolun · yanlış yapınca bu kanca hatırlatılır');}save();drawPage();};
 ACT.kdrev=function(b){var d=day();d.kdr=+b.dataset.i;save();render();if(X&&X.kind==='yaz')drawPage();};
 ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
+/* vaktim az: o gün yeni kelime yok, tekrar zamanı gelmiş en çok 20 kart; seri korunur, diğer görevler isteğe bağlı */
+ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSorted().length;d.rcap=Math.min(20,due+(d.wrv||0));d.wt=Math.max(d.w||0,d.rcap);save();W.q=null;toast('Kısa gün · ~7 dk');ACT.sgo();};
 ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
