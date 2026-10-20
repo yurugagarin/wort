@@ -7754,6 +7754,7 @@ setInterval(dayRoll,30000);
    senin o konudaki durumunu söyler, havuzdan işe yarayacak kelimeleri bulur.
    Tam çeviri ve düzeltme için notlar hazır bir mesajla Claude'a kopyalanır (ücretsiz sohbet). */
 var PATT_TR=[
+ [/[ae]bil(ir|ecek|eceğ)\w*\s*m[ıiuü](yız|yiz|sın|sin|sınız|siniz|yım|yim)?\b|[ae]bilir m[ıi]/i,'g8'],
  [/keşke/i,'g39'],[/m[ıiuü][şs] gibi/i,'g39'],
  [/(m[ıiuü]ş|ıl|il|ul|ül)?(sa|se)yd[ıi]/i,'g26'],[/(mal[ıi]yd[ıi]|meliyd[ıi])/i,'g26'],
  [/rağmen|yine de/i,'g21'],
@@ -7764,7 +7765,7 @@ var PATT_TR=[
  [/\w(arak|erek)\b|öyle ki/i,'g37'],
  [/\bhem\b.*\bhem\b|\bya\b.*\bya da\b|\bne\b.*\bne\b/i,'g29'],
  [/(t|d)[ıiuü]r(d[ıiuü]|[ıiu]yor|mak|mek|acağ|eceğ)/i,'g36'],
- [/\w(ıl|il|ul|ül|ın|in)d[ıiuü]\b/i,'g31'],[/\w(ıl|il|ul|ül)(ıyor|iyor|uyor|üyor|ır|ir|ur|ür)\b/i,'g15'],
+ [/[a-zçğıöşü](ıl|il|ul|ül|ın|in)d[ıiuü](?![a-zçğıöşü])|[a-zçğıöşü](len|lan)d[ıi](?![a-zçğıöşü])/i,'g31'],[/[a-zçğıöşü](ıl|il|ul|ül)(ıyor|iyor|uyor|üyor|ır|ir|ur|ür)(?![a-zçğıöşü])|[a-zçğıöşü](len|lan)(iyor|ıyor)(?![a-zçğıöşü])/i,'g15'],
  [/(sa|se)(m|n|k|niz|nız)?\b.*(ır|ir|ur|ür|ar|er)d[ıi]/i,'g14'],[/(malısın|melisin|malı|meli)\b/i,'g14'],
  [/(abilir|ebilir) mi(siniz|sin)/i,'g8'],
  [/\bdiye\b|\biçin\b/i,'g28'],
@@ -7832,16 +7833,19 @@ function lookDe(t){
 }
 function lookTr(t){
   var toks=(t.toLowerCase().replace(/[^a-zçğıöşüâîû ]/g,' ').split(/\s+/).filter(function(w){return w.length>=4;})),out=[],seen={};
-  toks.forEach(function(w){var st=w.slice(0,Math.min(5,Math.max(4,w.length-2)));
+  toks.forEach(function(w){var st=w.slice(0,Math.max(4,Math.min(w.length-2,6)));   /* toplantı → "toplan": toplamak ailesi gelmez */
     POOL.forEach(function(e){if(out.length>=10||seen[e.id])return;
       var parts=e.tr.toLowerCase().split(/[ ,;·()\/]+/);
-      for(var i=0;i<parts.length;i++)if(parts[i].length>=4&&parts[i].indexOf(st)===0){seen[e.id]=1;out.push(e);break;}});});
+      /* iki yönlü: Türkçe karşılık kelimenin kökünü taşımalı (yarına ↛ yarış, toplantı ↛ toplamak) */
+      for(var i=0;i<parts.length;i++)if(parts[i].length>=4&&parts[i].indexOf(st)===0&&w.indexOf(parts[i].replace(/(mak|mek)$/,''))===0){seen[e.id]=1;out.push(e);break;}});});
   out.sort(function(a,b){return a.l-b.l;});
-  return out.slice(0,8);
+  return out.slice(0,4);
 }
 function analyze(t){
   var de=isGerman(t),P=de?PATT_DE:PATT_TR,ids=[];
-  P.forEach(function(x){if(ids.length<3&&x[0].test(t)&&ids.indexOf(x[1])<0)ids.push(x[1]);});
+  /* "erteleyebilir miyiz", "gidebilir misin": -ebil (yapabilmek) edilgen eki sanılmasın */
+  var t2=de?t:t.replace(/([ae])bil(?=(ir|iyor|ecek|eceğ|di|miş|mek|mez|me))/gi,'$1b_l');
+  P.forEach(function(x,i){if(ids.length<3&&(de||i===0?x[0].test(t):x[0].test(t2))&&ids.indexOf(x[1])<0)ids.push(x[1]);});
   if(ids.length>1&&ids.indexOf('g1')>=0)ids.splice(ids.indexOf('g1'),1);
   if((ids.indexOf('g26')>=0||ids.indexOf('g39')>=0)&&ids.indexOf('g14')>=0)ids.splice(ids.indexOf('g14'),1);
   return {de:de,topics:ids,words:de?lookDe(t):{found:lookTr(t),unk:[]}};
@@ -9365,7 +9369,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
