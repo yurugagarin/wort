@@ -6607,7 +6607,10 @@ function tItems(id,k){
     var tw=pick(L.filter(tyOk),4),rest=pick(L.filter(function(o){return !tw.some(function(q){return q.k===o.k;});}),5-tw.length);
     tw.forEach(function(o){out.push(mcItem(id,o,'ty'));});rest.forEach(function(o){out.push(mcItem(id,o,'mc'));});
     pick(Z,1).forEach(function(o){out.push(szItem(id,o));});
-    var oth=shuffle(G.filter(function(g2){return g2[0]!==id&&stgDone(g2[0],'tani');})).slice(0,2);
+    /* karışık sorular önce aynı aileden (büyük fikir) Tanı'sı geçilmiş kardeş konulardan: Perfekt'e Plusquamperfekt, weil'e denn */
+    var sib={};for(var hid in HUB){var hm=hubMembers(hid);if(hm.indexOf('g:'+id)>=0)hm.forEach(function(x){if(x.indexOf('g:')===0)sib[x.slice(2)]=1;});}
+    var done2=G.filter(function(g2){return g2[0]!==id&&stgDone(g2[0],'tani');});
+    var oth=shuffle(done2.filter(function(g2){return sib[g2[0]];})).concat(shuffle(done2.filter(function(g2){return !sib[g2[0]];}))).slice(0,2);
     oth.forEach(function(g2){var l2=mcs(g2[0]),j=Math.floor(Math.random()*l2.length),o2={s:l2[j],k:'x'+j};out.push(mcItem(g2[0],o2,tyOk(o2)?'ty':'mc'));});
     if(oth.length<2){var more=pick(L,14).filter(function(o){return !tw.concat(rest).some(function(q){return q.k===o.k;});});more.slice(0,2-oth.length).forEach(function(o){out.push(mcItem(id,o,tyOk(o)?'ty':'mc'));});}
     return shuffle(out);
@@ -6686,7 +6689,8 @@ function pLesson(){
   if(X.i<0)return {t:esc(g[2]),b:lessonIntro()};
   if(X.i>=n)return {t:esc(g[2]),b:lessonEnd()};
   var it=X.items[X.i],b=progBar(X.i,n);
-  if(it.tid&&it.tid!==X.id)b+='<div class="center"><span class="tag mix">Karışık · '+esc(GBY[it.tid][2])+'</span></div>';
+  /* karışık soruda konunun adı cevaptan sonra görünür: önce "burada hangi kural?" diye kendin seç */
+  if(it.tid&&it.tid!==X.id)b+='<div class="center"><span class="tag mix">'+(X.pick||X.tyres?'Bu soru <b lang="de">'+esc(GBY[it.tid][2])+'</b> konusundandı':'Karışık soru')+'</span></div>';
   b+=it.t==='sz'?satzBody(X,it):it.t==='ty'?tyBody(X,it):mcBody(it);
   return {t:esc(g[2]),r:'<span class="small muted">'+(STT[X.stg]||'').split(' · ')[0]+'</span>',b:b};
 }
