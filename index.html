@@ -6096,7 +6096,7 @@ function sessLaunch(id){if(SESS){SESS.cur=id;SESS.last=null;}
   if(id==='ez'){var et=ezToday(),ee=ezpeek(et.id);if(!ee.last)openPage({kind:'ez',id:et.id,hide:false,rev:{}});
     /* 16 ve daha az hücreli tabloda tekrar günleri sırayla: boş tablo, test (ipucusuz yazmak en güçlü hatırlama) */
     else if(et.kind!=='kural'&&ezCells(et).length<=16&&ezFillCells(et).length>=4&&(!ee.fl||ee.fl<ee.last))openPage({kind:'ezfill',id:et.id,vals:{},res8:null});
-    else startEz([et.id]);return;}
+    else startEz([et.id],null,true);return;}
   openPage({kind:'yaz'});
 }
 /* bir sayfa kapanınca (çalışma sürüyorsa) geçiş ekranı ya da özet */
@@ -8143,12 +8143,17 @@ function ezPick(t,n){
   return ezPick0(t,n);
 }
 function ezPick0(t,n){var e=ezpeek(t.id),cs=shuffle(ezCells(t));cs.sort(function(a,b){return Math.min(e.c[a.k]||0,3)-Math.min(e.c[b.k]||0,3);});return cs.slice(0,n);}
-function startEz(tids,only){
+/* odak hatası (son 7 günde aynı türde 3+ hata) varsa günün ezber testindeki 2 soru kendi yanlış örneklerinden gelir */
+function errItems(n){var tp=errTop(1)[0];if(!tp||errRecent(tp[0],7)<3)return [];
+  return (S.err[tp[0]].ex||[]).filter(function(x){return x.q&&x.q.indexOf('…')>=0&&x.c&&x.g&&norm(x.c)!==norm(x.g)&&x.c.length<30;}).slice(0,n).map(function(x){
+    return {t:'mc',q:x.q.replace('…','___'),c:x.c,o:shuffle([x.c,x.g]),ex:x.w||'',lab:'Hata haritandan',hm:1};});}
+function startEz(tids,only,mixErr){
   var items=only;
   if(!items){
     items=[];var per=tids.length===1?12:Math.max(3,Math.ceil(12/tids.length));
     tids.forEach(function(tid){var t=EZBY[tid],its=ezPick(t,t.kind==='kural'?Math.min(per,6):per).map(function(c){return ezItem(t,c);});ezInSent(t,its);items=items.concat(its);});
     if(tids.length>1)shuffle(items);
+    if(mixErr){var ei=errItems(2);if(ei.length&&items.length>ei.length+3){items=items.slice(0,items.length-ei.length);ei.forEach(function(it){items.splice(Math.floor(Math.random()*(items.length+1)),0,it);});}}
   }
   if(X&&(X.kind==='ezq'||X.kind==='ezfill'))X=STACK.length?STACK.pop():null;
   var o={kind:'ezq',tids:tids,items:items,i:0,ok:0,res:[],retry:!!only};prepItem(o);openPage(o);
@@ -8158,7 +8163,7 @@ function ezMark(it,ok){var e=ezs(it.tz),t=today();e.v=8;e.cd=e.cd||{};
   if(!ok){e.c[it.k]=0;delete e.cd[it.k];}
   else if(e.cd[it.k]!==t){e.c[it.k]=(e.c[it.k]||0)+1;e.cd[it.k]=t;}
   e.last=t;}
-function ezRecord(ok){var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;ezMark(it,ok);var d=xday();d.ez=(d.ez||0)+1;save();}
+function ezRecord(ok){var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;if(it.tz)ezMark(it,ok);var d=xday();d.ez=(d.ez||0)+1;save();}
 function pEzq(){
   var n=X.items.length,ttl=X.tids.length>1?'Karışık ezber':esc(EZBY[X.tids[0]].t);
   if(X.i>=n)return {t:ttl,b:ezEnd()};
@@ -8179,7 +8184,7 @@ function ezEnd(){
   var n=X.items.length;
   if(!X.fin){
     X.fin=1;var per={};
-    X.items.forEach(function(it,i){var p=per[it.tz]||(per[it.tz]=[0,0]);p[1]++;if(X.res[i]==='ok')p[0]++;});
+    X.items.forEach(function(it,i){if(!it.tz)return;var p=per[it.tz]||(per[it.tz]=[0,0]);p[1]++;if(X.res[i]==='ok')p[0]++;});
     X.per=per;ezSchedule(per,X.retry);
     var tot=0;X.tids.forEach(function(id){tot+=ezCells(EZBY[id]).length;});
     if(!X.retry&&n>=Math.min(6,tot)){var d=xday();d.ezt=(d.ezt||0)+1;}
@@ -8192,7 +8197,7 @@ function ezEnd(){
   b+='<div class="card"><div class="eyebrow">Tablolar · sıradaki tekrar</div><ul class="tl" style="margin-top:6px">'+Object.keys(X.per).map(function(tid){return ezLi(EZBY[tid]);}).join('')+'</ul>'+
     Object.keys(X.per).map(function(tid){return ezNextLine(tid);}).join('')+'<p class="small muted" style="margin-top:6px">Bir hücre <b>iki ayrı günde</b> doğru bilinince "oturdu" sayılır; yüzde, oturan hücrelerin oranıdır.</p></div>';
   if(wrong.length)b+='<div class="card"><div class="eyebrow">Doğrusu</div>'+wrong.map(function(it){
-      return '<div class="gsent">'+(it.t==='sz'?'<b lang="de">'+esc(it.de)+'</b><span>'+esc(it.tr)+'</span>':'<span>'+it.qh.replace(/<span class="ezq-a">.*?<\/span>/,'').replace(/<[^>]+>/g,' ')+'</span><b lang="de">'+esc(it.c)+'</b>')+'</div>';}).join('')+'</div>'+
+      return '<div class="gsent">'+(it.t==='sz'?'<b lang="de">'+esc(it.de)+'</b><span>'+esc(it.tr)+'</span>':'<span>'+(it.qh?it.qh.replace(/<span class="ezq-a">.*?<\/span>/,'').replace(/<[^>]+>/g,' '):esc(it.q||''))+'</span><b lang="de">'+esc(it.c)+'</b>')+'</div>';}).join('')+'</div>'+
     '<button class="btn lime big wide" data-act="ezwrong">Yanlış yaptığım '+wrong.length+' soruyu tekrar et</button>';
   if(X.tids.length===1)b+='<button class="btn big wide" data-act="ezopen" data-id="'+X.tids[0]+'">Tabloya dön</button>';
   b+='<button class="btn'+(wrong.length?'':' lime')+' big wide" data-act="closeall">Bitti</button>';
