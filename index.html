@@ -9143,7 +9143,8 @@ function noteWrong(it,g){
   if(it.nt){var gw=it.t==='hc'&&it.wmap?it.wmap[g]:g,j=(it.wl||[]).indexOf(gw);if(j<0&&gw!=null){var ng=norm(gw);(it.wl||[]).forEach(function(w,i){if(j<0&&norm(w)===ng)j=i;});}if(j>=0&&it.nt[j])d.why=it.nt[j];}
   if(j>=0&&it.nt&&it.nt[j])d.nt=1;
   if(d.sure!==false&&ERRC[d.cat]&&!/^(genel|yazim|ezb)$/.test(d.cat))X.dgs=(X.dgs||[]).concat([d]);
-  if((X.kind==='lesson'||X.kind==='ezq')&&(d.sure!==false||d.nt))errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
+  /* Satzbau oyunundaki sıra hataları (fiil 2. yerde, yan cümlede sona, mengene) da haritaya girer */
+  if((X.kind==='lesson'||X.kind==='ezq'||(X.kind==='satz'&&/^(sira|sona)$/.test(d.cat)))&&(d.sure!==false||d.nt))errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
     c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g),w:oneLine(d.why||'').slice(0,200),r:it.tz?'ez:'+it.tz:it.tid?'g:'+it.tid:''});
 }
 /* --- bağlantılı ders: büyük fikirler ve konu anlatımı --- */

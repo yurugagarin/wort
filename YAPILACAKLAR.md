@@ -125,6 +125,6 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 63. Hata örnekleri kendi yanlışınla mini soru olsun
 - [x] 64. Hata kartı: gidişat ve tek önerilen bağlantı
 - [x] 65. Odak hatan günün Ezber adımına karışsın
-- [ ] 66. Satzbau'daki cümle sırası hataları da haritaya girsin
+- [x] 66. Satzbau'daki cümle sırası hataları da haritaya girsin
 - [ ] 67. Deneme sonunda bilemediklerini gör
 - [ ] 68. Rapor: öneriler uygulamadaki adlarla gelsin
