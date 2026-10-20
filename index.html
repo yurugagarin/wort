@@ -554,6 +554,8 @@ input.ty{font-size:20px;text-align:center;font-family:var(--f-disp);padding:13px
 .ezt tbody th{font-weight:600;color:var(--ink2);font-size:13px}
 .ezt td span{font-weight:700;font-family:var(--f-disp);font-size:16px}
 .ezt td span.m,.ezc span.m{color:var(--das)}
+.ezt td span.nw,.ezc span.nw{white-space:nowrap}
+.ezt td span.tw0,.ezc span.tw0{background:var(--der-t);border-radius:6px;padding:0 4px}.ezt td span.tw1,.ezc span.tw1{background:var(--wrn-t);border-radius:6px;padding:0 4px}.ezt td span.tw2,.ezc span.tw2{background:var(--die-t);border-radius:6px;padding:0 4px}
 .ezt .s{width:34px;text-align:right}
 .ezt.phr thead th:first-child{width:58px}.ezt em.pu{font-style:normal;text-decoration:underline;text-decoration-color:var(--die);text-decoration-thickness:2px;text-underline-offset:3px}.ezt em.pe{font-style:normal;color:var(--das)}.ezt.phr th{overflow-wrap:normal}.ezt th small.bh{display:block;font-size:10.5px;font-weight:600;color:var(--ink3);margin-top:2px;line-height:1.25}.ezt em.px{font-style:normal;color:var(--der);font-weight:800}.ezt em.pn{font-style:normal;color:var(--die);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}.ezt.phr td{overflow-wrap:normal}.ezt.phr td span{font-size:14.5px;line-height:1.25}
 .cv{min-width:44px;height:32px;border-radius:9px;border:1.5px dashed var(--ink4);background:var(--card2);color:var(--ink3);font-weight:800}
@@ -7542,7 +7544,7 @@ var ACT={
   tyk:function(b){var el=LASTIN&&document.body.contains(LASTIN)&&LASTIN.offsetParent!==null?LASTIN:visIn('#page [data-in="ty"],#page [data-in="wt"],#page [data-in="dk"],#page [data-in="ezf"]');if(!el)return;var v=el.value,st=el.selectionStart==null?v.length:el.selectionStart,en=el.selectionEnd==null?st:el.selectionEnd;
     el.value=v.slice(0,st)+b.dataset.v+v.slice(en);el.dispatchEvent(new Event('input',{bubbles:true}));el.focus();try{el.setSelectionRange(st+1,st+1);}catch(e){}},
   fk:function(b){ACT.tyk(b);},
-  ezpat:function(){X.pat=!patOn(EZBY[X.id]);drawPage();},
+  ezpat:function(){X.pat=!patOn(EZBY[X.id]);S.set.pat=X.pat;touch('set');save();drawPage();},
   ezchant:function(b){var t=EZBY[b.dataset.id];ezMarkStep(t.id,'l');sayLines(ezChunks(t),function(l){return Math.max(1600,l.split(/\s+/).length*550);},.8);toast('Dinle, her parçadan sonra yüksek sesle tekrar et');},
   ezfill:function(b){if(X&&X.kind==='ezfill')X=STACK.length?STACK.pop():null;openPage({kind:'ezfill',id:b.dataset.id,vals:{},res8:null});setTimeout(function(){var f=visIn('#page .fin');if(f&&isWide())f.focus();},60);},
   ezfcheck:function(){var t=EZBY[X.id],n=0;ezFillCells(t).forEach(function(c){if((X.vals[c.k]||'').trim())n++;});if(!n){toast('Önce birkaç hücreyi doldur');return;}ezFillCheck();drawPage();$('page').scrollTop=0;},
@@ -8033,12 +8035,21 @@ function sayable(v){return v&&v!=='—'&&v.charAt(0)!=='-';}
 function ezSayRow(t,r){var row=t.rows[r],out=[];t.drill.forEach(function(c){if(!colTR(t,c)&&sayable(row[c+1]))out.push(ezStrip(row[c+1]));});return (labDe(t)?row[0].replace(/\(.*?\)/g,'')+': ':'')+out.join(', ');}
 function ezChant(t){if(t.chant)return [t.chant];return t.rows?t.rows.map(function(r,i){return ezSayRow(t,i);}).filter(function(x){return /[a-zäöüß]/i.test(x);}):t.ex.map(function(e){return e[0];});}
 /* --- desen: değişen kısmı renklendir (satırda ortak kök varsa ekler, yoksa sütunda) --- */
+var PATEND={'':1,e:1,st:1,t:1,en:1,est:1,et:1,n:1,em:1,er:1,es:1,ern:1,te:1,ten:1,test:1,tet:1,test:1};
+/* ikizler: aynı sütunda birbirinin aynısı hücreler (ich = er, wir = sie) aynı açık renkte */
+function ezTwin(t,r,c){
+  if(ezRowAlt(t))return '';var v=ezStrip(t.rows[r][c+1]);if(!v||v==='—')return '';
+  var seen=[],grp=-1;t.rows.forEach(function(rr,i){var x=ezStrip(rr[c+1]);if(!x||x==='—')return;var n=t.rows.filter(function(q){return ezStrip(q[c+1])===x;}).length;if(n>=2&&seen.indexOf(x)<0)seen.push(x);});
+  grp=seen.indexOf(v);return grp>=0&&grp<3?' tw'+grp:'';
+}
 function lcp(arr){if(!arr.length)return '';var p=arr[0];arr.forEach(function(s){while(p&&s.indexOf(p)!==0)p=p.slice(0,-1);});return p;}
 function ezPat(t,r,c,v){
   var vals,s=ezStrip(v);
   if(ezRowAlt(t))vals=t.drill.map(function(cc){return ezStrip(t.rows[r][cc+1]);}).filter(function(x){return x&&x!=='—';});
   else vals=t.rows.map(function(rr){return ezStrip(rr[c+1]);}).filter(function(x){return x&&x!=='—';});
   var p=lcp(vals);if(p.length<2||p.length>=s.length)return esc(v);
+  /* yalnız gerçek kök + bilinen ek ise boya (mach|st); "ha|be" gibi emin olunmayan bölmede boyama yok */
+  if(!vals.every(function(x){return PATEND[x.slice(p.length)];}))return esc(v);
   return esc(s.slice(0,p.length))+'<em class="pat">'+esc(s.slice(p.length))+'</em>'+esc(String(v).slice(s.length));
 }
 /* tam ifade tablolarında desen: değişen artikelin altı çizili; sıfat eki -e yeşil, -en kırmızı (kurstaki altı çizili ekler gibi) */
@@ -8047,12 +8058,12 @@ function ezPhrPat(t,r,c,v){var w=String(v).split(' ');if(w.length<3)return esc(v
   var a=art!==nom?'<em class="pu">'+esc(art)+'</em>':esc(art);
   var ad=m?esc(adj.slice(0,adj.length-m[1].length))+'<em class="'+(m[1]==='e'?'pe':m[1]==='en'?'pn':'px')+'">'+m[1]+'</em>':esc(adj);
   return a+' '+ad+' '+esc(w.slice(2).join(' '));}
-function patOn(t){return X.pat!=null?!!X.pat:!!t.phr;}
+function patOn(t){return X.pat!=null?!!X.pat:S.set.pat!==false;}
 /* --- tablo sayfası --- */
 function ezCell(t,r,c,e){
   var v=t.rows[r][c+1],k=r+'-'+c,dr=t.drill.indexOf(c)>=0,st=e.c[k]||0;
   if(X.hide&&dr&&!X.rev[k]&&v&&v!=='—')return '<button class="cv" data-act="ezrev" data-k="'+k+'">?</button>';
-  return '<span class="'+(dr&&st>=2?'m':'')+'" lang="de">'+(patOn(t)&&t.phr?ezPhrPat(t,r,c,v):patOn(t)&&dr?ezPat(t,r,c,v):esc(v))+'</span>';
+  return '<span class="'+(dr&&st>=2?'m':'')+(patOn(t)&&dr&&!t.phr?ezTwin(t,r,c):'')+(String(v).length<=8?' nw':'')+'" lang="de">'+(patOn(t)&&t.phr?ezPhrPat(t,r,c,v):patOn(t)&&dr?ezPat(t,r,c,v):esc(v))+'</span>';
 }
 function ezTable(t,cellFn){
   var e=ezpeek(t.id),sp=canSay();cellFn=cellFn||ezCell;
