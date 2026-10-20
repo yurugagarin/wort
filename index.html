@@ -9111,14 +9111,19 @@ function pErr(){
   var b='<div><div class="eyebrow">Hata haritam</div><h1>Nerede zorlanıyorsun?</h1><p class="muted small" style="margin-top:4px">Her yanlış cevabın türünü kaydediyorum. Burada hangi kuralın sana en çok takıldığını ve neyi çalışman gerektiğini görürsün.</p></div>';
   if(!cats.length)return {t:'Hata haritam',b:b+'<div class="card"><p class="muted">Henüz kayıt yok. Ders ve ezber testlerinde yaptığın hatalar burada toplanacak.</p></div>'};
   b+=cats.map(function(c){var e=S.err[c[0]],m=ERRC[c[0]]||[c[0],'',[]];
-    return '<div class="card"><div class="row"><div style="min-width:0"><div style="font-weight:700;font-size:16px">'+esc(m[0])+'</div><div class="small muted">'+esc(m[1])+'</div></div><div class="sp"></div><div class="num" style="text-align:right"><b style="font-family:var(--f-disp);font-size:22px">'+c[1]+'</b><div class="small muted">son 14 gün · toplam '+c[2]+'</div></div></div>'+
+    /* gidişat: bu hafta ↔ geçen hafta; azalıyorsa yeşil, artıyorsa kırmızı ok */
+    var tw=errRecent(c[0],7),lw=c[1]-tw,ar=tw<lw?'<span style="color:var(--ok)">↓</span>':tw>lw?'<span style="color:var(--bad)">↑</span>':'';
+    var src=[];(e.ex||[]).forEach(function(x){if(x.r&&src.indexOf(x.r)<0)src.push(x.r);});
+    var lk=(src.length&&/^(ezb|genel)$/.test(c[0])?src:[]).concat(m[2]).filter(function(x,i,a){return x&&a.indexOf(x)===i&&linkName(x);});
+    return '<div class="card"><div class="row"><div style="min-width:0"><div style="font-weight:700;font-size:16px">'+esc(m[0])+'</div><div class="small muted">'+esc(m[1])+'</div>'+
+      (/^(ezb|genel)$/.test(c[0])&&src.length?'<div class="small" style="margin-top:2px">Nereden: '+src.slice(0,3).map(function(x){return esc(linkName(x)||x);}).join(', ')+'</div>':'')+'</div><div class="sp"></div><div class="num" style="text-align:right"><b style="font-family:var(--f-disp);font-size:20px">'+ar+' '+tw+'</b><div class="small muted">bu hafta · geçen hafta '+lw+'</div></div></div>'+
       /* örnekler kendi yanlışınla mini soru: senin cevabın mı, doğrusu mu? */
       (e.ex&&e.ex.length?'<div class="exl">'+e.ex.slice(0,3).map(function(x,j){var key=c[0]+'|'+j,pk=EXQ[key];
         if(x.c&&x.g&&norm(x.c)!==norm(x.g)&&x.c.length<40&&x.g.length<40){var o=hash(key+x.q)%2?[x.g,x.c]:[x.c,x.g];
           return '<div><span lang="de">'+esc(x.q||'')+'</span><span class="exq">'+o.map(function(v){var cl=pk?(v===x.c?'ok':v===pk?'no':''):'';return '<button class="btn sm '+cl+'" lang="de" data-act="exq" data-k="'+esc(key)+'" data-v="'+esc(v)+'">'+esc(v)+'</button>';}).join(' ')+'</span>'+
             (pk?'<span class="small">'+(pk===x.c?'✓ ':'Doğrusu '+esc(x.c)+' · ')+(x.w?rich(x.w):'')+'</span>':'')+'</div>';}
         return '<div><span lang="de">'+esc(x.q||'')+'</span>'+(x.c?'<span>sen: <s lang="de">'+esc(x.g||'—')+'</s> · doğru: <b lang="de">'+esc(x.c)+'</b></span>':'<span>sorunlu kısım: <b lang="de">'+esc(x.g||'')+'</b></span>')+'</div>';}).join('')+'</div>':'')+
-      chips(m[2])+'</div>';}).join('');
+      (lk.length?'<button class="btn sm" style="margin-top:8px" data-act="golink" data-to="'+esc(lk[0])+'">Şunu çalış: '+esc(linkName(lk[0]))+' ›</button>'+(lk.length>1?'<details class="rvall"><summary>diğer '+(lk.length-1)+' ›</summary>'+chips(lk.slice(1))+'</details>':''):'')+'</div>';}).join('');
   return {t:'Hata haritam',b:b};
 }
 var SCHK=null,EXQ={};
@@ -9134,7 +9139,7 @@ function noteWrong(it,g){
   if(j>=0&&it.nt&&it.nt[j])d.nt=1;
   if(d.sure!==false&&ERRC[d.cat]&&!/^(genel|yazim|ezb)$/.test(d.cat))X.dgs=(X.dgs||[]).concat([d]);
   if((X.kind==='lesson'||X.kind==='ezq')&&(d.sure!==false||d.nt))errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
-    c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g),w:oneLine(d.why||'').slice(0,200)});
+    c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g),w:oneLine(d.why||'').slice(0,200),r:it.tz?'ez:'+it.tz:it.tid?'g:'+it.tid:''});
 }
 /* --- bağlantılı ders: büyük fikirler ve konu anlatımı --- */
 function segHtml(str){return String(str).split('|').map(function(p){var c=p.indexOf('^^')===0?'v2':p.indexOf('^')===0?'v1':'';return '<span class="sg '+c+'">'+esc(p.replace(/^\^+/,''))+'</span>';}).join(' ');}
