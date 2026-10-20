@@ -86,7 +86,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 24. Karışık sorular kardeş konudan gelsin, adı sonra görünsün
 - [x] 25. Aşama sonunda tek dikkat noktası
 - [x] 26. Üret'te konu izi kendiliğinden görünsün
-- [ ] 27. Üret görevi sınav provası olsun
+- [x] 27. Üret görevi sınav provası olsun
 - [ ] 28. Ders sekmesi: önce bir dakikalık öz
 - [ ] 29. Cümle kurmaya tek bir "tuzak" parça
 - [ ] 30. Ritimle dinle gerçekten parça parça olsun
