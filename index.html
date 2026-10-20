@@ -491,6 +491,7 @@ details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>su
 .ydl p{margin:4px 0 0;font-size:14px;line-height:1.5}.ydl b.ok{color:var(--ok)}.ydl .chip{margin:2px 4px 2px 0}
 .nez{margin-top:8px;font-size:13.5px;color:var(--ink2);background:var(--card2);border-radius:10px;padding:6px 10px}
 .card.back{padding:10px 14px;font-size:14px;color:var(--ink2)}
+.exq{display:flex;gap:6px;margin-top:4px}.exq .btn.ok{background:var(--das-t);border-color:var(--ok);color:var(--ok)}.exq .btn.no{text-decoration:line-through;color:var(--bad)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -8022,6 +8023,7 @@ ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
 /* vaktim az: o gün yeni kelime yok, tekrar zamanı gelmiş en çok 20 kart; seri korunur, diğer görevler isteğe bağlı */
 ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSorted().length;d.rcap=Math.min(20,due+(d.wrv||0));d.wt=Math.max(d.w||0,d.rcap);save();W.q=null;toast('Kısa gün · ~7 dk');ACT.sgo();};
 ACT.plan=function(b){var v=+b.dataset.v;if(v)S.set.plan=v;else delete S.set.plan;touch('set');save();if(X)drawPage();else render();};
+ACT.exq=function(b){if(!EXQ[b.dataset.k])EXQ[b.dataset.k]=b.dataset.v;if(X)drawPage();};
 ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
@@ -9110,11 +9112,16 @@ function pErr(){
   if(!cats.length)return {t:'Hata haritam',b:b+'<div class="card"><p class="muted">Henüz kayıt yok. Ders ve ezber testlerinde yaptığın hatalar burada toplanacak.</p></div>'};
   b+=cats.map(function(c){var e=S.err[c[0]],m=ERRC[c[0]]||[c[0],'',[]];
     return '<div class="card"><div class="row"><div style="min-width:0"><div style="font-weight:700;font-size:16px">'+esc(m[0])+'</div><div class="small muted">'+esc(m[1])+'</div></div><div class="sp"></div><div class="num" style="text-align:right"><b style="font-family:var(--f-disp);font-size:22px">'+c[1]+'</b><div class="small muted">son 14 gün · toplam '+c[2]+'</div></div></div>'+
-      (e.ex&&e.ex.length?'<div class="exl">'+e.ex.slice(0,3).map(function(x){return '<div><span lang="de">'+esc(x.q||'')+'</span>'+(x.c?'<span>sen: <s lang="de">'+esc(x.g||'—')+'</s> · doğru: <b lang="de">'+esc(x.c)+'</b></span>':'<span>sorunlu kısım: <b lang="de">'+esc(x.g||'')+'</b></span>')+'</div>';}).join('')+'</div>':'')+
+      /* örnekler kendi yanlışınla mini soru: senin cevabın mı, doğrusu mu? */
+      (e.ex&&e.ex.length?'<div class="exl">'+e.ex.slice(0,3).map(function(x,j){var key=c[0]+'|'+j,pk=EXQ[key];
+        if(x.c&&x.g&&norm(x.c)!==norm(x.g)&&x.c.length<40&&x.g.length<40){var o=hash(key+x.q)%2?[x.g,x.c]:[x.c,x.g];
+          return '<div><span lang="de">'+esc(x.q||'')+'</span><span class="exq">'+o.map(function(v){var cl=pk?(v===x.c?'ok':v===pk?'no':''):'';return '<button class="btn sm '+cl+'" lang="de" data-act="exq" data-k="'+esc(key)+'" data-v="'+esc(v)+'">'+esc(v)+'</button>';}).join(' ')+'</span>'+
+            (pk?'<span class="small">'+(pk===x.c?'✓ ':'Doğrusu '+esc(x.c)+' · ')+(x.w?rich(x.w):'')+'</span>':'')+'</div>';}
+        return '<div><span lang="de">'+esc(x.q||'')+'</span>'+(x.c?'<span>sen: <s lang="de">'+esc(x.g||'—')+'</s> · doğru: <b lang="de">'+esc(x.c)+'</b></span>':'<span>sorunlu kısım: <b lang="de">'+esc(x.g||'')+'</b></span>')+'</div>';}).join('')+'</div>':'')+
       chips(m[2])+'</div>';}).join('');
   return {t:'Hata haritam',b:b};
 }
-var SCHK=null;
+var SCHK=null,EXQ={};
 function itemDiag(it,g){
   if(it.t==='sz'||(!it.t&&it.de)){var bt=szBest(X);return szDiag(bt.txt.split(/\s+/),X.placed.map(function(i){return X.toks[i];}));}
   if(it.tz)return ezDiag(it,g);
@@ -9127,7 +9134,7 @@ function noteWrong(it,g){
   if(j>=0&&it.nt&&it.nt[j])d.nt=1;
   if(d.sure!==false&&ERRC[d.cat]&&!/^(genel|yazim|ezb)$/.test(d.cat))X.dgs=(X.dgs||[]).concat([d]);
   if((X.kind==='lesson'||X.kind==='ezq')&&(d.sure!==false||d.nt))errLog(d,{q:it.q?it.q.replace('___','…'):it.de||it.qt||String(it.qh||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(),
-    c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g)});
+    c:it.t==='hc'?it.cw:(it.c||it.de),g:it.t==='sz'?X.placed.map(function(i){return X.sol[i];}).join(' '):(it.t==='hc'&&it.wmap?it.wmap[g]:g),w:oneLine(d.why||'').slice(0,200)});
 }
 /* --- bağlantılı ders: büyük fikirler ve konu anlatımı --- */
 function segHtml(str){return String(str).split('|').map(function(p){var c=p.indexOf('^^')===0?'v2':p.indexOf('^')===0?'v1':'';return '<span class="sg '+c+'">'+esc(p.replace(/^\^+/,''))+'</span>';}).join(' ');}
