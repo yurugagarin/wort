@@ -3335,7 +3335,10 @@ function rule(c){
   var lw=w.toLowerCase();
   for(i=0;i<NOUNS.length;i++){var n=NOUNS[i];
     if(n.w.length>=3&&n.w.length<=w.length-3&&lw.slice(-n.w.length)===n.w.toLowerCase()){
-      if(n.a===a)return 'Bileşik isim: artikel son kelimeden gelir → '+n.a+' '+n.w+'.';break;}}
+      var hd=lw.slice(0,lw.length-n.w.length),ix=pwIndex(),hs=hd.replace(/s$/,'');
+      /* ilk parça da tanınan bir kelime olmalı; Bahns+teig gibi belirsiz ayırmada not gösterilmez */
+      var hok=ix[hd]||ix[hd+'en']||ix[hd+'n']||ix[hd+'e']||(hs!==hd&&ix[hs]&&!(/^[tp]/.test(n.w.toLowerCase())&&!/(ung|heit|keit|schaft|ion|tät|ling|tum|arbeit|tag|geburt|leben|verkehr|sicht)$/.test(hs)));
+      if(n.a===a&&hok)return 'Bileşik isim: artikel son kelimeden gelir → '+n.a+' '+n.w+'.';break;}}
   for(i=0;i<RWEAK.length;i++){m=RWEAK[i];if(m[0].test(w)){
     if(m[1]===a)return m[2];
     if(m[2].charAt(0)==='-'&&m[2].indexOf('-e ')===0&&a==='der')return '-e ile bitse de der: erkek canlılar böyle (der Kollege, der Junge).';}}
@@ -6886,8 +6889,9 @@ var PFX={ab:'ayrılma, uzaklaşma, aşağı',an:'başlama, temas, yöneliş',auf
   be:'ayrılmaz ön ek, fiili geçişli yapar',ver:'ayrılmaz: değişim, yanlış ya da bitiş',er:'ayrılmaz: sonuca ulaşma',ent:'ayrılmaz: ayrılma, kaldırma',zer:'ayrılmaz: parçalama',ge:'ayrılmaz',miss:'ayrılmaz: yanlış'};
 var PWX=null;
 function pwIndex(){if(PWX)return PWX;PWX={};POOL.forEach(function(e){var k=e.w.toLowerCase();if(!PWX[k])PWX[k]=e;});return PWX;}
+var NOPARTS={programm:1,gefallen:1,selbstbewusstsein:1,sehnsucht:1,gehören:1,gerecht:1,vielleicht:1,gewinnen:1,begegnen:1,verlieren:1,bekommen:1,gestern:1};
 function wordParts(c){
-  if(!c||isPhrase(c)||c.w.length<6)return '';
+  if(!c||isPhrase(c)||c.w.length<6||NOPARTS[c.w.toLowerCase()])return '';
   var ix=pwIndex(),lw=c.w.toLowerCase(),i,a,b,h,e;
   if(c.p==='v'){var ks=Object.keys(PFX).sort(function(x,y){return y.length-x.length;});
     for(i=0;i<ks.length;i++){var p=ks[i];if(lw.indexOf(p)===0&&lw.length-p.length>=4){b=ix[lw.slice(p.length)];
@@ -6895,20 +6899,49 @@ function wordParts(c){
     return '';}
   for(i=lw.length-3;i>=3;i--){b=ix[lw.slice(i)];if(!b||b.w.length<3||b===c)continue;
     h=lw.slice(0,i);a=null;
-    [h,h.replace(/s$/,''),h.replace(/n$/,''),h.replace(/en$/,''),h.replace(/e$/,''),h+'en',h+'n',h+'e'].some(function(x){if(x.length>=3&&ix[x]){a=ix[x];return true;}return false;});
-    if(a&&a!==c){e=ART(b.a);return '<b lang="de">'+esc(a.w)+'</b> ('+esc(a.tr)+') + <b lang="de">'+esc((e?e+' ':'')+b.w)+'</b> ('+esc(b.tr)+')'+(e&&c.p==='n'?' → artikel son parçadan: <b>'+e+'</b>':'');}}
+    [h,h.replace(/s$/,''),h.replace(/n$/,''),h.replace(/en$/,''),h.replace(/e$/,''),h+'en',h+'n',h+'e'].some(function(x,k){var y=x.length>=3&&ix[x];
+      if(y&&k>=5&&(k<7?y.p!=='v':y.p!=='n'))y=null;   /* harf eklenerek bulunan ilk parça: -en/-n yalnız fiil (wohn → wohnen), -e yalnız isim (Schul → Schule); ger ↛ gern */
+      if(y){a=y;return true;}return false;});
+    if(a&&a!==c){e=ART(b.a);
+      if((c.p==='n')!==(b.p==='n'))continue;   /* son parça kelimenin türünü belirler: Gehalt ≠ geh+alt, kalorienarm ≠ … + der Arm */
+      if(a===ix[h.replace(/s$/,'')]&&!ix[h]&&/^[tp]/.test(lw.slice(i))&&!/(ung|heit|keit|schaft|ion|tät|ling|tum|arbeit|tag|geburt|leben|verkehr|sicht)s$/.test(h))continue;   /* Bahns+teig mi, Bahn+steig mi? bağlama -s'i tanınmıyorsa gösterme */
+      if(e&&c.p==='n'&&ART(c.a)&&e!==ART(c.a))continue;   /* bileşiğin artikeli son parçadan gelir; tutmuyorsa ayırma yanlış */
+      return '<b lang="de">'+esc(a.w)+'</b> ('+esc(a.tr)+') + <b lang="de">'+esc((e?e+' ':'')+b.w)+'</b> ('+esc(b.tr)+')'+(e&&c.p==='n'?' → artikel son parçadan: <b>'+e+'</b>':'');}}
   return '';
 }
-function wordRoot(c){var w=c.w.toLowerCase().replace(/^sich /,'');if(c.p==='v')w=w.replace(/e?n$/,'');else w=w.replace(/(ung|heit|keit|schaft|lich|ig|er|en|e|t|n)$/,'');return w.length>=4?w:'';}
+/* kelime ailesi: yalnız gerçek akrabalar. Kök kelimenin başında (önünde bir önek ya da tanınan bir kelime olabilir) ve ardından
+   yalnız bilinen bir ek ya da tanınan bir kelime gelmeli: Freund → freundlich, Freundschaft; Schule ↛ Schulter, Licht ↛ üblich */
+var FSUF=['','e','en','n','er','ern','es','s','st','t','et','te','ten','ung','ungen','heit','keit','schaft','lich','liche','ig','ige','isch','bar','los','chen','in','innen','ei','erin','ler','end'];
+function wordRoot(c){var w=c.w.toLowerCase().replace(/^sich /,'');if(c.p==='v')w=w.replace(/e?n$/,'');else w=w.replace(/(ung|heit|keit|schaft|lich|ig|isch|er|en|e)$/,'');return w.length>=4?w:'';}
+/* iki anlam ortak bir Türkçe kök taşıyor mu (başlangıç ~ başlamak) */
+function trNear(a,b){
+  var A=String(a).toLocaleLowerCase('tr').split(/[^a-zçğıöşüâî]+/),B=String(b).toLocaleLowerCase('tr').split(/[^a-zçğıöşüâî]+/);
+  return A.some(function(x){return x.length>=3&&B.some(function(y){if(y.length<3)return false;var n=0;while(n<x.length&&x[n]===y[n])n++;return n>=Math.min(4,x.length,y.length);});});
+}
+function famOk(w,r,ix,c,e){
+  var i=w.indexOf(r);if(i<0)return false;
+  var pre=w.slice(0,i),rem=w.slice(i+r.length);
+  if(pre&&!PFX[pre]&&!/^(be|ge|ver|er|ent|zer|un|miss)$/.test(pre)&&!(pre.length>=3&&(ix[pre]||ix[pre.replace(/s$/,'')])))return false;
+  /* yalnız çekim ekiyle türeyen başka tür (Wein → weinen) ya da be-/ge- önekli kısa kök (meinen → Gemeinschaft): anlam da benzemeli */
+  if((/^(be|ge|ver|er|ent|zer|miss)$/.test(pre)||(!pre&&/^(|e|en|n|er|ern|es|s|st|t|et|te|ten)$/.test(rem)&&c.p!==e.p))&&!trNear(c.tr,e.tr))return false;
+  if(FSUF.indexOf(rem)>=0)return true;
+  for(var k=0;k<FSUF.length;k++){var sx=FSUF[k];if(sx&&rem.indexOf(sx)===0&&rem.length-sx.length>=3&&ix[rem.slice(sx.length)])return true;}
+  return rem.length>=3&&!!ix[rem];
+}
 function wordFam(c){
-  if(!c||isPhrase(c))return [];var r=wordRoot(c);if(!r)return [];
-  return POOL.filter(function(e){return e!==c&&e.w!==c.w&&e.w.toLowerCase().indexOf(r)>=0;}).sort(function(x,y){return x.w.length-y.w.length;}).slice(0,6);
+  if(!c||isPhrase(c))return [];var r=wordRoot(c);if(!r)return [];var ix=pwIndex();
+  return POOL.filter(function(e){return e!==c&&e.w!==c.w&&!/\s/.test(e.w)&&famOk(e.w.toLowerCase(),r,ix,c,e);}).sort(function(x,y){return x.w.length-y.w.length;}).slice(0,6);
 }
 function wordColl(c){
   if(!c||c.kalip)return [];var w=c.w.replace(/^sich /,'');if(w.length<3||/\s/.test(w))return [];
-  var re=new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^A-Za-zÄÖÜäöüß]|$)','i'),out=[];
-  for(var g in GW)GW[g].forEach(function(x){if(out.length<3&&/\s/.test(x[0])&&re.test(x[0]))out.push([x[0],x[2]]);});
-  KL.forEach(function(k){if(out.length<3&&re.test(k[2]))out.push([k[2],k[3]]);});
+  /* büyük/küçük harf korunur: der Arm (kol) ≠ arm (fakir); küçük harfli kelime yalnız cümle başında büyük yazılabilir.
+     İyelik/zamir biçimiyle aynı yazılan fiiller (meinen = benim…) cümle aramasına girmez. */
+  if(c.p!=='n'&&/^(meinen|meine|seinen|seine|sein|ihren|ihre|einen|eine|deinen|unseren)$/.test(w))return [];
+  var q=w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),re=new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+q+'([^A-Za-zÄÖÜäöüß]|$)'),
+    re0=c.p==='n'?re:new RegExp('^'+q.charAt(0).toUpperCase()+q.slice(1)+'([^A-Za-zÄÖÜäöüß]|$)'),out=[];
+  function hit(t){return re.test(t)||re0.test(t);}
+  for(var g in GW)GW[g].forEach(function(x){if(out.length<3&&/\s/.test(x[0])&&hit(x[0]))out.push([x[0],x[2]]);});
+  KL.forEach(function(k){if(out.length<3&&hit(k[2]))out.push([k[2],k[3]]);});
   return out;
 }
 function wordLinks(c){
