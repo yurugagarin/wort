@@ -6301,7 +6301,10 @@ function taskBody(id){
   var d=day();
   if(id==='sch'){
     var tp=todayTopic(),pr=upr(tp[0]),kk=dayKalip(),used=kk&&kalipUsed(kk,d.sch);
-    return '<div class="prompt"><div class="de" lang="de">'+esc(pr[1]||tp[2])+'</div><div class="tr">'+esc(pr[0])+' Bugünkü konu: <b>'+esc(tp[2])+'</b>.</div></div>'+
+    /* konu aynı kalır, yazma biçimi her gün değişir (B1 yazma sınavının üç biçimi + serbest) */
+    var YF=[['Serbest','',''],['Arkadaşına mesaj','Liebe …, / Lieber …,','Viele Grüße'],['Forum yorumu','Ich finde, dass …','Meiner Meinung nach …'],['Resmî e-posta','Sehr geehrte Damen und Herren,','Mit freundlichen Grüßen']],yf=YF[hash(today()+'yf')%YF.length];
+    return '<div class="prompt"><div class="de" lang="de">'+esc(pr[1]||tp[2])+'</div><div class="tr">'+esc(pr[0])+' Bugünkü konu: <b>'+esc(tp[2])+'</b>.</div>'+
+      '<div class="small" style="margin-top:6px">Bugünün biçimi: <b>'+yf[0]+'</b>'+(yf[1]?' · başla: <i lang="de">'+esc(yf[1])+'</i>'+(yf[2]?' · bitir: <i lang="de">'+esc(yf[2])+'</i>':''):' · istediğin gibi yaz')+'</div></div>'+
       (kk?(function(){var ki=KL.indexOf(kk),seen=!!S.srs['k:'+ki],hid=seen&&!used&&d.kdr!==ki;
         /* daha önce gördüğün kalıp: önce Türkçesi, Almancasını hatırlamaya çalış, sonra aç */
         return '<div class="kday'+(used?' ok':'')+'"><span>Bugünün kalıbı · yazında kullan'+(used?' ✓':'')+'</span>'+(hid?'<i style="font-style:normal;font-weight:700">'+esc(kk[3])+' → Almancası?</i><button class="btn sm" style="align-self:flex-start;margin-top:6px" data-act="kdrev" data-i="'+ki+'">Hatırladım, göster</button>':'<b lang="de">'+esc(kk[2])+'</b><i>'+esc(kk[3])+'</i>')+'</div>';})():'')+
