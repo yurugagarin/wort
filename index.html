@@ -7947,7 +7947,28 @@ function ezItem(t,cell){
   if(canType&&(st>=1||pool.length<1))return {t:'ty',tz:t.id,k:cell.k,qh:q,qt:qt,c:ezStrip(a),acc:acc.slice(1),lab:t.t+' · yaz',ctx:ctx};
   return {t:'mc',tz:t.id,k:cell.k,qh:q,qt:qt,c:a,o:shuffle([a].concat(pool.slice(0,3))),lab:t.t,ctx:ctx,acc:acc};
 }
-function ezPick(t,n){var e=ezpeek(t.id),cs=shuffle(ezCells(t));cs.sort(function(a,b){return Math.min(e.c[a.k]||0,3)-Math.min(e.c[b.k]||0,3);});return cs.slice(0,n);}
+/* büyük tablolar (27+ hücre) parça parça: test, kapat-hatırla ve boş tablo o anki parçaya odaklanır; teste önceki parçalardan 3 hücre karışır.
+   O anki parça = hücrelerinden biri henüz doğru bilinmemiş ilk parça (yanlış yapılan eski parça yeniden öne gelir). */
+var EZPART={partizip:{by:'r',p:[[0,1,2,3,4,5,6,7,8],[9,10,11,12,13,14,15],[16,17,18,19,20,21,22],[23,24,25,26]],n:['sein alanlar','ünlüsü aynı kalanlar','ünlüsü değişenler','karışıklar']},
+  modal:{by:'c',p:[[0,1],[2,3],[4,5,6]]},praet:{by:'c',p:[[0,1],[2,3],[4,5,6]]},konj2:{by:'c',p:[[0,1],[2,3],[4]]},
+  unreg:{by:'r',p:[[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13]]},pron:{by:'r',p:[[0,1,2],[3,4,5],[6,7,8]]},possakk:{by:'r',p:[[0,1,2],[3,4,5],[6,7,8]]},
+  vprep:{by:'r',p:[[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19]]}};
+function ezPart(t){
+  var P=EZPART[t.id];if(!P||!t.rows)return null;var e=ezpeek(t.id),cs=ezCells(t);
+  var parts=P.p.map(function(ix){return cs.filter(function(x){return ix.indexOf(P.by==='r'?x.r:x.c)>=0;}).map(function(x){return x.k;});});
+  for(var i=0;i<parts.length;i++)if(parts[i].some(function(k){return !(e.c[k]>=1);}))
+    return {i:i,n:parts.length,keys:parts[i],prev:[].concat.apply([],parts.slice(0,i)),name:P.n?P.n[i]:''};
+  return null;
+}
+function ezInPart(t,k){var p=ezPart(t);return !p||p.keys.indexOf(k)>=0;}
+function ezPick(t,n){
+  var pt=ezPart(t);
+  if(pt&&n>=6){var e0=ezpeek(t.id),all=ezCells(t),mine=shuffle(all.filter(function(x){return pt.keys.indexOf(x.k)>=0;})).slice(0,Math.min(12,n)-Math.min(3,pt.prev.length));
+    var old=shuffle(all.filter(function(x){return pt.prev.indexOf(x.k)>=0;})).sort(function(a,b){return (e0.c[a.k]||0)-(e0.c[b.k]||0);}).slice(0,3);
+    return shuffle(mine.concat(old));}
+  return ezPick0(t,n);
+}
+function ezPick0(t,n){var e=ezpeek(t.id),cs=shuffle(ezCells(t));cs.sort(function(a,b){return Math.min(e.c[a.k]||0,3)-Math.min(e.c[b.k]||0,3);});return cs.slice(0,n);}
 function startEz(tids,only){
   var items=only;
   if(!items){
@@ -8062,7 +8083,7 @@ function patOn(t){return X.pat!=null?!!X.pat:S.set.pat!==false;}
 /* --- tablo sayfası --- */
 function ezCell(t,r,c,e){
   var v=t.rows[r][c+1],k=r+'-'+c,dr=t.drill.indexOf(c)>=0,st=e.c[k]||0;
-  if(X.hide&&dr&&!X.rev[k]&&v&&v!=='—')return '<button class="cv" data-act="ezrev" data-k="'+k+'">?</button>';
+  if(X.hide&&dr&&!X.rev[k]&&v&&v!=='—'&&ezInPart(t,k))return '<button class="cv" data-act="ezrev" data-k="'+k+'">?</button>';
   return '<span class="'+(dr&&st>=2?'m':'')+(patOn(t)&&dr&&!t.phr?ezTwin(t,r,c):'')+(String(v).length<=8?' nw':'')+'" lang="de">'+(patOn(t)&&t.phr?ezPhrPat(t,r,c,v):patOn(t)&&dr?ezPat(t,r,c,v):esc(v))+'</span>';
 }
 function ezTable(t,cellFn){
@@ -8110,7 +8131,7 @@ function pEz(){
   var t=EZBY[X.id],p=ezProg(t.id),kural=t.kind==='kural',nc=ezCells(t).length;
   var b='<div><div class="eyebrow">'+LV[t.lv]+' · '+esc(t.cat)+'</div><h1>'+esc(t.t)+'</h1><p class="muted small" lang="de" style="margin-top:4px">'+esc(t.s)+'</p></div>'+
     '<div class="card"><div class="row"><b class="big num" style="font-size:30px">%'+pct(p)+'</b><div class="sp"></div><div class="small muted" style="text-align:right">'+esc(ezStatus(t.id))+'<br>'+Math.round(p*nc)+' / '+nc+' '+(kural?'cümle':'hücre')+' oturdu</div></div><div style="margin-top:8px">'+bar(p,'var(--das)','thick')+'</div>'+
-    ezActs(t,kural,nc)+'</div>';
+    (ezPart(t)?'<p class="small" style="margin-top:8px"><b>Parça '+(ezPart(t).i+1)+' / '+ezPart(t).n+'</b>'+(ezPart(t).name?' · '+esc(ezPart(t).name):'')+'</p>':'')+ezActs(t,kural,nc)+'</div>';
   if(!kural){
     b+='<div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn'+(X.hide?' dark':'')+'" data-act="ezhide">'+(X.hide?'✓ Kapalı · dokunarak aç':'Kapat ve hatırla')+'</button>'+
       '<button class="btn'+(patOn(t)?' dark':'')+'" data-act="ezpat">'+(patOn(t)?'✓ Desenler renkli':'Desenleri göster')+'</button><div class="sp"></div>'+(X.hide?'<button class="link" data-act="ezhide">Hepsini aç</button>':'')+'</div>'+ezTable(t);
@@ -8126,10 +8147,10 @@ function isWide(){return !!(window.matchMedia&&matchMedia('(min-width:1000px)').
 var WIDE0=null;window.addEventListener('resize',function(){var w=isWide();if(WIDE0!==null&&w!==WIDE0&&X&&X.kind==='ezfill')drawPage();WIDE0=w;});
 function visIn(sel){return [].filter.call(document.querySelectorAll(sel),function(x){return x.offsetParent!==null;})[0]||null;}
 function ezFillOK(t,c,v){return t.drill.indexOf(c)>=0&&!!v&&v!=='—'&&!colTR(t,c)&&!/[→…]/.test(v);}
-function ezFillCells(t){return ezCells(t).filter(function(x){return x.s==null&&ezFillOK(t,x.c,t.rows[x.r][x.c+1]);});}
+function ezFillCells(t){return ezCells(t).filter(function(x){return x.s==null&&ezFillOK(t,x.c,t.rows[x.r][x.c+1])&&ezInPart(t,x.k);});}
 function ezFillCell(t,r,c,e){
   var k=r+'-'+c,v=t.rows[r][c+1];
-  if(!ezFillOK(t,c,v))return '<span class="fx" lang="de">'+esc(v)+'</span>';
+  if(!ezFillOK(t,c,v)||!ezInPart(t,k))return '<span class="fx" lang="de">'+esc(v)+'</span>';
   var val=X.vals[k]||'',res=X.res8&&X.res8[k];
   if(res)return '<span class="fres '+(res==='ok'?'ok':'no')+'" lang="de">'+(res==='ok'?esc(val):'<s>'+esc(val||'—')+'</s> <b>'+esc(ezStrip(v))+'</b>')+'</span>';
   return '<input class="fin" lang="de" data-in="ezf" data-k="'+k+'" value="'+esc(val)+'" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-label="'+esc(t.rows[r][0]+' '+t.cols[c])+'">';
