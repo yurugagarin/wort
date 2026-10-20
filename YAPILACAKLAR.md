@@ -101,7 +101,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 39. Yarı oturan hücreleri de göster
 - [x] 40. Günün kalıbı: önce hatırla, doğru tanınsın
 - [x] 41. Konu aynı kalsın, yazma biçimi her gün değişsin
-- [ ] 42. Yazma'da tek "Dünden" satırı
+- [x] 42. Yazma'da tek "Dünden" satırı
 - [ ] 43. Hata kutusu: önce sen düzelt, sonra doğrusunu gör
 - [ ] 44. Konuyu kullandın mı? Sayaçta görünsün
 - [ ] 45. Her kalıba bir "ne zaman söylersin" satırı
