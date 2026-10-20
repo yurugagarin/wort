@@ -56,3 +56,75 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 39. [YAPILDI] Bağlılık: çalışma sonu özeti, seri dondurma hakkı, haftalık hedef, kilometre taşları, sınav geri sayımı.
 40. [YAPILDI] Görsel dil: alan renkleri her yerde aynı, kart içinde kart yok, masaüstünde iki sütun.
 41. [YAPILDI] Kelime yükü: günlük süre ayarı (varsayılan 15 dk ≈ 45 kart), birikenler öncelik sırasıyla günlere yayılır, birikme varken yeni kelime yok, yanlış kart günde bir kez geri gelir, tekrar tarihleri ±%5 dağıtılır, isteğe bağlı +20 kart.
+
+## Tur 5 · Öğrenmeyi kolaylaştırma önerileri (20 Ekim)
+68 öneri: ONERILER.md (7 alan, 23 ajanlı inceleme + iki mercekli eleştiri). Kullanıcı: HEPSİNİ yap, her maddeden sonra canlıya al. Ayrıntı her madde için ONERILER.md'de (aynı numara).
+
+- [x] 1. Basamak sırası: önce boşluk, sonra yazma
+- [ ] 2. "Bilmiyorum" önce ipucu versin
+- [ ] 3. Yanlış kart biraz daha geç ve aynı türde dönsün
+- [ ] 4. Hata kutusu neyi karıştırdığını göstersin
+- [ ] 5. Doğruda kısa ekran, yanlışta tam ekran
+- [ ] 6. Kelime ailesi ve bağlantılar yalnız doğruysa çıksın
+- [ ] 7. Seçmeli şıklar birbirine benzesin
+- [ ] 8. "Zaten biliyorum" dersen bir kez yazarak göster
+- [ ] 9. Hızlı bildiğin kart daha seyrek gelsin
+- [ ] 10. Kendi yazdığın cümle boşluk sorusu olarak geri gelsin
+- [ ] 11. Artikel rengi her yerde aynı
+- [ ] 12. Ses köprüsü ve slogan öne, tekrarda yalnız bu iki satır
+- [ ] 13. Yeni kelime ekranı: kanca kartın altında, tek talimat
+- [ ] 14. Zor kelimede hazır hikâye, kendi kancan senin üslubunda
+- [ ] 15. Hikâye kutusunun rengi kelimenin artikel rengi olsun
+- [ ] 16. "Kancam bu olsun" doğru kelimeye kaydetsin
+- [ ] 17. Eski 18 absürt A1 hikâyesi kalksın
+- [ ] 18. Hata panelini sadeleştir, yanlış açıklamayı sustur
+- [ ] 19. Kuralın tek cümlesi: hep aynı yerde, aynı biçimde
+- [ ] 20. "Önce hatırla" gerçek hatırlama olsun
+- [ ] 21. Anla'nın başında tek tahmin sorusu
+- [ ] 22. Anla: büyük tablo kapalı, son adımı önce sen söyle
+- [ ] 23. Tekrar, öğrenmeden kolay olmasın
+- [ ] 24. Karışık sorular kardeş konudan gelsin, adı sonra görünsün
+- [ ] 25. Aşama sonunda tek dikkat noktası
+- [ ] 26. Üret'te konu izi kendiliğinden görünsün
+- [ ] 27. Üret görevi sınav provası olsun
+- [ ] 28. Ders sekmesi: önce bir dakikalık öz
+- [ ] 29. Cümle kurmaya tek bir "tuzak" parça
+- [ ] 30. Ritimle dinle gerçekten parça parça olsun
+- [ ] 31. Bir hafıza tekniği seç, o seninle gelsin
+- [ ] 32. Tablo sayfasında tek ana düğme: sıradaki adım
+- [ ] 33. Desenler doğru yeri boyasın, ikizler aynı renk olsun
+- [ ] 34. Büyük tabloları parça parça öğret
+- [ ] 35. Hücreyi gerçek bir cümlenin içinde sor
+- [ ] 36. Tekrar gününde önce boş tabloyu doldur
+- [ ] 37. Yanlışta tablonun karıştırdığın kısmını göster
+- [ ] 38. Kapat ve hatırla: sütun sütun ve sesli
+- [ ] 39. Yarı oturan hücreleri de göster
+- [ ] 40. Günün kalıbı: önce hatırla, doğru tanınsın
+- [ ] 41. Konu aynı kalsın, yazma biçimi her gün değişsin
+- [ ] 42. Yazma'da tek "Dünden" satırı
+- [ ] 43. Hata kutusu: önce sen düzelt, sonra doğrusunu gör
+- [ ] 44. Konuyu kullandın mı? Sayaçta görünsün
+- [ ] 45. Her kalıba bir "ne zaman söylersin" satırı
+- [ ] 46. Kalıp kartına ara basamak: önce anahtar kelimeyi yaz
+- [ ] 47. Defterdeki cümlen yazında geri gelsin
+- [ ] 48. Kafamı karıştıranlar: önce düşün, sonra aç
+- [ ] 49. Defter ön analizi doğru konuya göndersin
+- [ ] 50. Sabah ısınması: dünden 1 soru
+- [ ] 51. Ara ekranı olanı doğru söylesin, çift "bitti" ekranı kalksın
+- [ ] 52. Gün sonu özeti: kısa liste, kelimeleri kendin hatırla
+- [ ] 53. Yarın satırı: düz Türkçe ve süre
+- [ ] 54. "Vaktim az" bağlantısı: en etkili 7 dakika
+- [ ] 55. Geri dönüş günü: suçluluk yerine kolay başlangıç
+- [ ] 56. Yol: bu haftaki ilerleme görünsün
+- [ ] 57. Kilometre taşları: sıradakine ne kadar kaldı
+- [ ] 58. "Ne zaman çalışacağım" planı: tek satır
+- [ ] 59. Oyunlar önce zayıf kelimelerini sorsun
+- [ ] 60. Yanlış soru turun sonunda bir kez daha gelsin
+- [ ] 61. Lücke'de şıklar aynı kalıpta olsun
+- [ ] 62. Oyunda yanlıştan sonra doğru renk, ses ve slogan
+- [ ] 63. Hata örnekleri kendi yanlışınla mini soru olsun
+- [ ] 64. Hata kartı: gidişat ve tek önerilen bağlantı
+- [ ] 65. Odak hatan günün Ezber adımına karışsın
+- [ ] 66. Satzbau'daki cümle sırası hataları da haritaya girsin
+- [ ] 67. Deneme sonunda bilemediklerini gör
+- [ ] 68. Rapor: öneriler uygulamadaki adlarla gelsin
