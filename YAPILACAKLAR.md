@@ -76,7 +76,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 14. Zor kelimede hazır hikâye, kendi kancan senin üslubunda
 - [x] 15. Hikâye kutusunun rengi kelimenin artikel rengi olsun
 - [x] 16. "Kancam bu olsun" doğru kelimeye kaydetsin
-- [ ] 17. Eski 18 absürt A1 hikâyesi kalksın
+- [x] 17. Eski 18 absürt A1 hikâyesi kalksın
 - [ ] 18. Hata panelini sadeleştir, yanlış açıklamayı sustur
 - [ ] 19. Kuralın tek cümlesi: hep aynı yerde, aynı biçimde
 - [ ] 20. "Önce hatırla" gerçek hatırlama olsun
