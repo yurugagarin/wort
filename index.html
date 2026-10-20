@@ -6337,7 +6337,7 @@ function vKelimeler(){
     (function(){var d=day(),rem=Math.max(0,(d.wt||0)-(d.w||0));return '<div class="small" style="margin:0 0 8px"><b>Puan hedefi: '+(d.w||0)+' / '+(d.wt||0)+' kart</b>'+(rem?' · '+rem+' kart kaldı':' · tamam')+(n>rem&&rem>=0&&n?' · hedefin üstündekiler isteğe bağlı, yarına kalabilir':'')+
       (d.ncap!=null&&d.ncap<S.set.newPerDay?'<br>Biriken tekrar çok olduğu için bugün en çok '+d.ncap+' yeni kelime (normalde '+S.set.newPerDay+').':'')+
       (wBacklog()?'<br>Birikmiş '+wBacklog()+' kart günlük kotanın ('+(S.set.wmin||15)+' dk) dışında; her gün öncelik sırasıyla eriyor.':'')+'</div>';})()+
-    '<details class="ihelp"><summary>ⓘ Nasıl çalışır?</summary><div class="muted small">Yeni kelime: anlamını cümlede tahmin edersin, kartı ve (A2-B1 kelimelerinde) hikâye kancasını görürsün; ilk soru <b>yarın</b> gelir. Tekrarlar zamanla zorlaşır: seç → artikeliyle yaz → cümlede boşluk doldur. Bildiklerin seyrek, bilemediklerin sık gelir.</div></details>'+
+    '<details class="ihelp"><summary>ⓘ Nasıl çalışır?</summary><div class="muted small">Yeni kelime: anlamını cümlede tahmin edersin, kartı ve (A2-B1 kelimelerinde) hikâye kancasını görürsün; ilk soru <b>yarın</b> gelir. Tekrarlar zamanla zorlaşır: seç → cümlede boşluk doldur → artikeliyle yaz. Yanlışta bir basamak kolaya inersin. Bildiklerin seyrek, bilemediklerin sık gelir.</div></details>'+
     '<button class="btn lime big wide" data-act="review">'+(n?'Başla':'Havuzdan 5 yeni kelime')+'</button>'+
     '<div class="srs num"><button data-act="wlist" data-v="due"><b>'+c.due+'</b><span>tekrarı gelen ›</span></button><button data-act="wlist" data-v="lrn"><b>'+c.lrn+'</b><span>öğreniliyor ›</span></button><button data-act="wlist" data-v="sat"><b>'+c.sat+'</b><span>oturdu ›</span></button></div>'+
     '<details class="ihelp"><summary>ⓘ "Oturdu" ne demek?</summary><p class="small muted" style="margin-top:4px">Bir kelime, tekrar aralığı 21 günü geçince <b>oturdu</b> sayılır (genelde 4-5 başarılı tekrar: ertesi gün, birkaç gün, bir hafta, iki hafta…). Oturan kelimeler ayda bir gibi seyrek gelir. Sayılara dokun: listeyi gör.</p></details></div>';
@@ -6810,7 +6810,7 @@ function rvCard(c,big){
 }
 /* --- kelime tekrarı v10 ---
    Yeni kelime: önce örnek cümlede anlamını TAHMİN edersin, sonra kartı görürsün; ilk gerçek soru oturumun sonunda gelir.
-   Sonraki günlerde zorluk basamakları (s.st): 0 Türkçe→Almanca seç · 1 artikeliyle yaz · 2 cümlede boşluğu doldur · 3+ yaz/boşluk karışık.
+   Sonraki günlerde zorluk basamakları (s.st): 0 Türkçe→Almanca seç · 1 cümlede boşluğu doldur · 2 artikeliyle yaz · 3+ yaz/boşluk karışık.
    Doğru: bir basamak yukarı. Artikel ya da yazım hatası: aynı basamak. Yanlış: bir basamak aşağı.
    Her kartta: parçalar, birlikte kullanıldığı kalıplar, kelime ailesi ve hafıza kancası. */
 function rvSt(s){return !s?0:s.st!=null?s.st:s.n>=2?2:s.n>=1?1:0;}
@@ -6825,8 +6825,8 @@ function rvType(id){
   if(/[…\/+]/.test(c.w))return 'tr2de';
   if(isPhrase(c))return 'write';
   var cz=clozeOf(c);
-  if(st===1)return 'write';
-  if(st===2)return cz?'cloze':'write';
+  if(st===1)return cz?'cloze':'write';
+  if(st===2)return 'write';
   var pool=['write'];if(cz)pool.push('cloze');if(canSay())pool.push('listen');
   if(st>=4){if(c.p==='n'&&plural(c))pool.push('plural');if(c.p==='v'&&perfOf(c))pool.push('perf');}
   return pool[hash(id+today())%pool.length];
