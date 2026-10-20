@@ -6077,7 +6077,8 @@ function tableCells(id){var t=EZBY[id],e=ezpeek(id),cs=ezCells(t),n=0;cs.forEach
 /* ---------------- günün çalışması: tek düğmeyle sırayla dört görev ---------------- */
 var SESS=null;
 var TLAB={wort:'Kelime',gram:'Konu',ez:'Ezber',sch:'Yazma'};
-function sessNext(){var T=taskDefs(day());for(var i=0;i<T.length;i++)if(T[i].f<1)return T[i];return null;}
+/* geçilemeyen konu aşaması günün sonuna kalır: önce diğer görevler */
+function sessNext(){var T=taskDefs(day()),sk=SESS&&SESS.skip||{},i;for(i=0;i<T.length;i++)if(T[i].f<1&&!sk[T[i].id])return T[i];for(i=0;i<T.length;i++)if(T[i].f<1)return T[i];return null;}
 function taskMin(t){var d=day();if(t.f>=1)return 0;if(t.id==='wort')return Math.max(1,Math.round(Math.max(0,(d.wt||0)-(d.w||0))/3));if(t.id==='gram')return 8;if(t.id==='ez')return 5;return 5;}
 function taskSub(t){
   if(t.f>=1){if(t.did&&t.did.length)return t.did[0];return t.s;}
@@ -6085,7 +6086,7 @@ function taskSub(t){
   if(t.id==='gram'){var tp=todayTopic(),a=nextAct(tp[0]);if(a.k)return tp[2]+' · '+actLabel(a).replace(/^Aşama \d · /,'');var nt=newTopic(tp[0]);return nt?(tstat(nt[0])==='wip'?'Devam: ':'Yeni konu: ')+nt[2]:'10 soruluk alıştırma';}
   if(t.id==='ez')return ezToday().t+(t.f>0?' · '+t.s:'');
   return t.s+' · '+upr(todayTopic()[0])[0];}
-function sessLaunch(id){
+function sessLaunch(id){if(SESS){SESS.cur=id;SESS.last=null;}
   if(id==='wort'){ACT.review();return;}
   if(id==='gram'){var tp=todayTopic(),a=nextAct(tp[0]);if(a.k){startStage(tp[0],a.k);return;}var nt=newTopic(tp[0]);if(nt){startStage(nt[0],nextAct(nt[0]).k||'anla');return;}startStage(tp[0],'free');return;}
   if(id==='ez'){var et=ezToday(),ee=ezpeek(et.id);if(!ee.last)openPage({kind:'ez',id:et.id,hide:false,rev:{}});
@@ -6099,9 +6100,10 @@ function sessAfterClose(pk){if(!SESS)return;if(pk==='sbreak'||pk==='sdone'){SESS
 function dots4(T){return '<span class="dots4">'+T.map(function(t){return '<i class="'+(t.f>=1?'d':t.f>0?'h':'')+'" style="--c:'+t.c+'"></i>';}).join('')+'</span>';}
 function pSbreak(){
   var T=taskDefs(day()),nx=sessNext(),done=T.filter(function(t){return t.f>=1;}).length,last=T.filter(function(t){return t.f>=1;}).slice(-1)[0];
+  var L0=SESS&&SESS.last,fail=L0&&!L0.ok,cu=SESS&&SESS.cur&&T.filter(function(t){return t.id===SESS.cur;})[0];
   var b='<div class="sb-top">'+dots4(T)+'<div class="eyebrow">Günün çalışması · '+done+' / 4</div>'+
-    (last?'<h1>'+esc(TLAB[last.id])+' tamam ✓</h1>':'<h1>Kısa bir ara</h1>')+'<p class="muted">Bugünün puanı: <b>'+total(day())+'</b> / 100</p></div>';
-  b+='<div class="card sb-next" style="--c:'+nx.c+'"><div class="eyebrow">Sırada · ~'+taskMin(nx)+' dk</div><div class="sb-t">'+esc(TLAB[nx.id])+'</div><div class="muted">'+esc(taskSub(nx))+'</div></div>';
+    (fail?'<h1>'+esc(L0.txt)+' · bu sefer olmadı</h1><p class="muted small">Konu günün sonunda yeniden gelecek'+(L0.need>0?': '+L0.need+' soru daha = Konu tamam':'')+'.</p>':cu&&cu.f>=1?'<h1>'+esc(TLAB[cu.id])+' tamam ✓</h1>':cu?'<h1>Kısa bir ara</h1>':last?'<h1>'+esc(TLAB[last.id])+' tamam ✓</h1>':'<h1>Kısa bir ara</h1>')+'<p class="muted">Bugünün puanı: <b>'+total(day())+'</b> / 100</p></div>';
+  b+='<div class="card sb-next" style="--c:'+nx.c+'"><div class="eyebrow">Sırada · ~'+taskMin(nx)+' dk</div><div class="sb-t">'+esc(TLAB[nx.id])+'</div><div class="muted">'+esc(taskSub(nx))+(SESS&&SESS.skip&&SESS.skip[nx.id]&&L0&&L0.id===nx.id&&L0.need>0?' · '+L0.need+' soru daha = Konu tamam':'')+'</div></div>';
   b+='<div class="dock"><button class="btn lime big wide" data-act="snext">Devam: '+esc(TLAB[nx.id])+' →</button><button class="link center" data-act="spause">Ara ver · sonra Bugün\'den devam ederim</button></div>';
   return {t:'Günün çalışması',b:b};
 }
@@ -6779,6 +6781,7 @@ function lessonEnd(){
     /* bugün gerçekten çalışılan konu, günün konusu olur (Bugün'de başlık ile yapılan iş ayrışmasın) */
     if(X.pass&&k!=='free'&&k!=='retry'&&(!d.gtDone||d.gt===id)){d.gt=id;d.gtDone=1;}
     lgAdd({d:t,k:'g',ref:id,s:k,c:X.ok,n:n,ok:X.pass&&k!=='free'&&k!=='retry'?1:0,nx:k==='rv'?x.due:''});
+    if(SESS&&PASS[k]){SESS.last={id:'gram',ok:X.pass,txt:STT[k].replace(/^Aşama \d · /,'')+' · '+X.ok+'/'+n,need:Math.max(0,Math.ceil(PASS[k]*n-1e-9)-X.ok)};SESS.skip=SESS.skip||{};if(X.pass)delete SESS.skip.gram;else SESS.skip.gram=1;}
     /* tek dikkat noktası: bu turda en sık yapılan hata türü; bir sonraki aşamanın "Önce hatırla" kartında yine görünür */
     if(k!=='retry'){var cn={},top=null;(X.dgs||[]).forEach(function(q){cn[q.cat]=(cn[q.cat]||0)+1;if(!top||cn[q.cat]>cn[top.cat])top=q;});
       if(top)x.fx={t:ERRC[top.cat][0],n:cn[top.cat],q:oneLine(top.think||''),stg:k,d:t};else if(x.fx&&x.fx.stg!==k)delete x.fx;}
@@ -7268,6 +7271,8 @@ function pReview(){
   var q=W.q,b='';
   if(!q.length){
     var d=peek(today())||{};
+    /* günün çalışması sürerken kelime bitiş ekranı atlanır: doğrudan ara ekranına geçilir */
+    if(SESS&&!W.hard&&wordDone(d)){setTimeout(function(){if(X&&X.kind==='review'&&(!W.q||!W.q.length))closePage();},0);return {t:'Kelime tekrarı',b:'<p class="muted center">Kelime tamam ✓</p>'};}
     if(W.hard){W=W0||{q:null,day:'',step:'q',pick:null,n0:0,seen:{}};W0=null;return {t:'Zor kelimeler',b:'<div class="card rv"><div class="tr">Zor kelimeler bitti</div><p class="muted">Yanlış yaptıkların yine sık gelecek. Hikâyelerini bir kez daha oku.</p><button class="btn lime big wide" data-act="close">Kapat</button></div>'};}
     b='<div class="card rv"><div class="eyebrow">Kelime tekrarı</div><div class="tr">Bugünlük tamam!</div><p class="muted">'+(d.w||0)+' kart tamam'+(d.wt?' (hedef '+d.wt+')':'')+'. Yarın tekrar zamanı gelenler burada olacak.</p>'+
       (wBacklog()?'<p class="small muted">Birikmiş '+wBacklog()+' kart var; önceliğe göre sonraki günlere yayılıyor. Vaktin varsa:</p><button class="btn big wide" data-act="morerev">20 birikmiş kart daha</button>':'')+
