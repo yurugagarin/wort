@@ -118,7 +118,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 - [x] 56. Yol: bu haftaki ilerleme görünsün
 - [x] 57. Kilometre taşları: sıradakine ne kadar kaldı
 - [x] 58. "Ne zaman çalışacağım" planı: tek satır
-- [ ] 59. Oyunlar önce zayıf kelimelerini sorsun
+- [x] 59. Oyunlar önce zayıf kelimelerini sorsun
 - [ ] 60. Yanlış soru turun sonunda bir kez daha gelsin
 - [ ] 61. Lücke'de şıklar aynı kalıpta olsun
 - [ ] 62. Oyunda yanlıştan sonra doğru renk, ses ve slogan
