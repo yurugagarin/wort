@@ -490,8 +490,8 @@ details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>su
 .ydl{border-radius:12px;padding:8px 12px;background:var(--card2);border-left:3px solid var(--wrn)}.ydl.ok{border-left-color:var(--ok)}.ydl>span{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
 .ydl p{margin:4px 0 0;font-size:14px;line-height:1.5}.ydl b.ok{color:var(--ok)}.ydl .chip{margin:2px 4px 2px 0}
 .nez{margin-top:8px;font-size:13.5px;color:var(--ink2);background:var(--card2);border-radius:10px;padding:6px 10px}
-.card.back{padding:10px 14px;font-size:14px;color:var(--ink2)}
-.exq{display:flex;gap:6px;margin-top:4px}.exq .btn.ok{background:var(--das-t);border-color:var(--ok);color:var(--ok)}.exq .btn.no{text-decoration:line-through;color:var(--bad)}
+.card.wback{padding:10px 14px;font-size:14px;color:var(--ink2)}
+.exqz{display:flex;gap:6px;margin-top:4px}.exqz .btn.ok{background:var(--das-t);border-color:var(--ok);color:var(--ok)}.exqz .btn.no{text-decoration:line-through;color:var(--bad)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -6205,7 +6205,7 @@ function vBugun(){
     (d.short?'<p class="small muted center" style="margin-top:6px">Kısa gün: yeni kelime yok, en çok 20 tekrar kartı · diğer görevler isteğe bağlı</p>':nx&&!wordDone(d)?'<button class="link center" style="display:block;margin:8px auto 0" data-act="short">Vaktim az · ~7 dk</button>':'')+
     '<details class="howto"><summary>ⓘ Puan nasıl hesaplanır?</summary><ul>'+T.map(function(x){return '<li><b>'+TLAB[x.id]+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+'<li>Seri: kelime görevini bitirdiğin her gün. Haftada 7 gün seri = 1 dondurma hakkı (en çok 2); çalışamadığın bir gün seriyi korur.</li><li>Haftalık hedef: 75+ puanlı gün sayısı.</li></ul></details></div>';
   var LGT=lgDay(t),wu=!LGT.length&&warmQ();
-  if(d.back&&!done)h=h.replace('<div class="card sess">','<div class="card back"><b>Tekrar hoş geldin</b> · bugün önce unutmaya başlayan kartlar, yeni kelime yok.</div><div class="card sess">');
+  if(d.back&&!done)h=h.replace('<div class="card sess">','<div class="card wback"><b>Tekrar hoş geldin</b> · bugün önce unutmaya başlayan kartlar, yeni kelime yok.</div><div class="card sess">');
   /* sabah ısınması: gün başında boş "Bugün yaptıkların" yerine dün konu ya da ezberde yanıldığın tek soru (puansız) */
   if(wu)h+='<div class="card warm"><div class="eyebrow">Isınma · dünden 1 soru</div><p class="q" style="font-size:17px;margin-top:6px" lang="de">'+esc(wu.q)+'</p>'+
     (WREV?'<p style="margin-top:6px"><b class="ok" lang="de">'+esc(wu.c)+'</b>'+(wu.g?' <span class="small muted">· dün: <s lang="de">'+esc(wu.g)+'</s></span>':'')+'</p>':'<p class="small muted" style="margin-top:4px">Önce kendin söyle, sonra aç.</p><button class="btn sm" style="margin-top:6px" data-act="wrev">Söyledim, aç</button>')+'</div>';
@@ -9137,7 +9137,7 @@ function pErr(){
       /* örnekler kendi yanlışınla mini soru: senin cevabın mı, doğrusu mu? */
       (e.ex&&e.ex.length?'<div class="exl">'+e.ex.slice(0,3).map(function(x,j){var key=c[0]+'|'+j,pk=EXQ[key];
         if(x.c&&x.g&&norm(x.c)!==norm(x.g)&&x.c.length<40&&x.g.length<40){var o=hash(key+x.q)%2?[x.g,x.c]:[x.c,x.g];
-          return '<div><span lang="de">'+esc(x.q||'')+'</span><span class="exq">'+o.map(function(v){var cl=pk?(v===x.c?'ok':v===pk?'no':''):'';return '<button class="btn sm '+cl+'" lang="de" data-act="exq" data-k="'+esc(key)+'" data-v="'+esc(v)+'">'+esc(v)+'</button>';}).join(' ')+'</span>'+
+          return '<div><span lang="de">'+esc(x.q||'')+'</span><span class="exqz">'+o.map(function(v){var cl=pk?(v===x.c?'ok':v===pk?'no':''):'';return '<button class="btn sm '+cl+'" lang="de" data-act="exq" data-k="'+esc(key)+'" data-v="'+esc(v)+'">'+esc(v)+'</button>';}).join(' ')+'</span>'+
             (pk?'<span class="small">'+(pk===x.c?'✓ ':'Doğrusu '+esc(x.c)+' · ')+(x.w?rich(x.w):'')+'</span>':'')+'</div>';}
         return '<div><span lang="de">'+esc(x.q||'')+'</span>'+(x.c?'<span>sen: <s lang="de">'+esc(x.g||'—')+'</s> · doğru: <b lang="de">'+esc(x.c)+'</b></span>':'<span>sorunlu kısım: <b lang="de">'+esc(x.g||'')+'</b></span>')+'</div>';}).join('')+'</div>':'')+
       (lk.length?'<button class="btn sm" style="margin-top:8px" data-act="golink" data-to="'+esc(lk[0])+'">Şunu çalış: '+esc(linkName(lk[0]))+' ›</button>'+(lk.length>1?'<details class="rvall"><summary>diğer '+(lk.length-1)+' ›</summary>'+chips(lk.slice(1))+'</details>':''):'')+'</div>';}).join('');
