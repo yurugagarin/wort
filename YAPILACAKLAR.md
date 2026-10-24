@@ -133,6 +133,7 @@ Kullanıcının örneği: Perfekt tekrarı yapıldı → Bugün'de "Konu" görev
 ## Tur 6 · Hikâyelere karikatür (24 Ekim)
 Kullanıcı: emoji ve kod çizimi (SVG) yetersiz; gazete karikatürü tarzı istiyor. Anahtarsız Pollinations zayıf model veriyor (denendi, kötü).
 Karar: Google Gemini resim modeli, önce ÜCRETSİZ deneme.
+**Sonuç (24 Ekim):** Anahtar çalıştı ama ücretsiz kotada resim modelleri kapalı (gemini-2.5-flash-image, 3.1-flash-image, 3-pro-image, nano-banana-2.1: hepsi 429). Faturalama açılmadan otomatik yol yok; karar kullanıcıda (ücretli API / Gemini uygulamasında elle 20–50 zor kelime / görseli bırakmak). Kullanıcıya sohbete yapıştırdığı anahtarı silmesi önerildi.
 - [ ] Kullanıcı aistudio.google.com'dan anahtar alıp ortama `GEMINI_API_KEY` olarak ekleyecek; ağ izni: generativelanguage.googleapis.com (Full ise gerek yok).
 - [ ] Deneme: `python3 gorsel/gemini.py /tmp/fangen.png "Basketball arena. Left: a chubby happy sports fan in an orange jersey, blue scarf and face paint jumps and catches a basketball above his head with both hands, cheering. Right: a thin teenage boy in a green hoodie and backwards cap reaches too late, shocked, sweating."` → resmi kullanıcıya göster (fangen = FAN + GENÇ → yakalamak).
 - [ ] Beğenirse: her hikâyenin slogan sahnesini İngilizce tarife çevir, toplu üret (kotaya göre parça parça, kaldığı yerden), küçült (webp ~40 KB), `gorsel/` altına koy, hikâye kutusunda göster; tekrarda ipucu olarak kullan.
