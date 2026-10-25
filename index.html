@@ -493,7 +493,9 @@ details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>su
 .card.wback{padding:10px 14px;font-size:14px;color:var(--ink2)}
 .exqz{display:flex;gap:6px;margin-top:4px}.exqz .btn.ok{background:var(--das-t);border-color:var(--ok);color:var(--ok)}.exqz .btn.no{text-decoration:line-through;color:var(--bad)}
 .fam{margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--ink2);text-align:left}.fam>span{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-right:4px}.fam i{font-style:normal;color:var(--ink3)}
-.rmw{display:block;margin:14px auto 0;font-size:12.5px;color:var(--ink3)}
+.rmrow{display:flex;justify-content:flex-end;margin:2px 0 -4px}
+.rmbtn{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:999px;background:var(--card);border:1.5px solid color-mix(in srgb,var(--bad) 55%,var(--line));color:var(--bad);font-weight:700;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.06);cursor:pointer}
+.rmbtn:active{transform:scale(.97)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -6516,9 +6518,9 @@ function matchRound(){var sd={},st={},out=[];weakFirst(gameIds(),5).forEach(func
   return out;}
 function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};if(!HKY)hkyLoad(function(){if(X&&X.kind==='wcard')drawPage();});
   var x=S.srs[id]||{};
-  return {t:deText(c),b:'<div class="card rv">'+rvCard(c,true)+wordLinks(c)+storyBox(id,c,'full')+(hkOf(id)&&!(S.hk[id].src==='hky'||hkCopy(S.hk[id].t))?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(hkOf(id))+'</p></div>':'')+'</div>'+
+  return {t:deText(c),b:(isBan(id)?'':rmBtn(id))+'<div class="card rv">'+rvCard(c,true)+wordLinks(c)+storyBox(id,c,'full')+(hkOf(id)&&!(S.hk[id].src==='hky'||hkCopy(S.hk[id].t))?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(hkOf(id))+'</p></div>':'')+'</div>'+
     '<p class="small muted center">'+(x.lp?x.lp+' kez unuttun · ':'')+'sıradaki tekrar: '+(x.d?trShort(x.d):'—')+'</p>'+
-    (isBan(id)?'<p class="small center">Bu kelimeyi kaldırdın. <button class="link" data-act="unban" data-id="'+esc(id)+'">Geri al</button></p>':'<button class="link center rmw" data-act="banw" data-id="'+esc(id)+'">✕ Bu kelimeyi kaldır · bir daha sorulmasın</button>')};}
+    (isBan(id)?'<p class="small center">Bu kelimeyi kaldırdın. <button class="link" data-act="unban" data-id="'+esc(id)+'">Geri al</button></p>':'')};}
 /* oyun sonunda kısa "Karıştırdıkların" listesi */
 function gConf(t){if(!X)return;X.conf=X.conf||[];if(X.conf.indexOf(t)<0)X.conf.push(t);}
 function gConfHtml(){return X&&X.conf&&X.conf.length?'<div class="card"><div class="eyebrow">Karıştırdıkların</div>'+X.conf.slice(0,8).map(function(t){return '<p class="small" lang="de" style="margin-top:4px">'+esc(t)+'</p>';}).join('')+'</div>':'';}
@@ -7343,8 +7345,10 @@ function rvFb(cu,c){
     (mine&&!ok&&r!=='hint'?'<span>Senin '+(cu.val?'yazdığın':'seçtiğin')+': '+(c.kalip&&cu.val&&cu.type==='write'?'<span lang="de">'+wordDiff(rt,cu.val)+'</span>':'<s'+(cu.type==='listen'?'':' lang="de"')+'>'+(cu.type==='listen'?esc(mine):deC(mine))+'</s>')+(oth?' = '+(cu.type==='listen'?'<b lang="de">'+deC(deText(oth))+'</b>':esc(oth.tr)):'')+'</span>':'')+'</div>';
 }
 function pReview(){var r=pReview0(),id=W.q&&W.q[0];
-  if(id&&card(id)&&!(W.cur&&W.cur.id===id&&W.kn===id))r.b+='<button class="link center rmw" data-act="banw" data-id="'+esc(id)+'">✕ Bu kelimeyi kaldır · bir daha sorulmasın</button>';
+  /* kartın sağ üstünde (ilerleme çubuğunun hemen altında) açık bir düğme */
+  if(id&&card(id)&&!(W.cur&&W.cur.id===id&&W.kn===id)){var i=r.b.search(/<div class="(card|fb)/);var bt=rmBtn(id);r.b=i>=0?r.b.slice(0,i)+bt+r.b.slice(i):bt+r.b;}
   return r;}
+function rmBtn(id){return '<div class="rmrow"><button class="rmbtn" data-act="banw" data-id="'+esc(id)+'">✕ Kelimeyi kaldır</button></div>';}
 function pReview0(){
   var q=W.q,b='';
   if(!q.length){
