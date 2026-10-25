@@ -493,6 +493,7 @@ details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>su
 .card.wback{padding:10px 14px;font-size:14px;color:var(--ink2)}
 .exqz{display:flex;gap:6px;margin-top:4px}.exqz .btn.ok{background:var(--das-t);border-color:var(--ok);color:var(--ok)}.exqz .btn.no{text-decoration:line-through;color:var(--bad)}
 .fam{margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--ink2);text-align:left}.fam>span{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-right:4px}.fam i{font-style:normal;color:var(--ink3)}
+.rmw{display:block;margin:14px auto 0;font-size:12.5px;color:var(--ink3)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
 .rvhint{margin:8px 0 0;padding:9px 12px;border-radius:12px;background:var(--wrn-t);color:var(--ink);font-size:14px}.rvhint b{letter-spacing:.04em}
@@ -3417,6 +3418,15 @@ function ivl(n){if(n<=0)return 'bugün';if(n===1)return 'yarın';if(n<31)return 
 /* yeni kelime: tanıtıldığı gün sorulmaz; ilk soru yarın (kelime de konu gibi bir gece bekler) */
 function queueNew(id,now){if(S.srs[id])return false;S.gwq=S.gwq||[];if(S.gwq.indexOf(id)<0)S.gwq.push(id);
   if(now&&W.q&&W.day===today()&&W.q.indexOf(id)<0){W.q.push(id);W.n0=(W.n0||0)+1;var d=day();if(d.wt!=null)d.wt++;}return true;}
+function banWord(id){
+  var c=card(id),d=day(),t=today(),had=!!S.srs[id],done=!!(d.wd&&d.wd[id]);
+  S.ban=S.ban||{};S.ban[id]={on:1,u:Date.now(),d:t,w:c?deText(c):id,tr:c?c.tr:''};
+  delete S.srs[id];if(S.gwq){var gi=S.gwq.indexOf(id);if(gi>=0)S.gwq.splice(gi,1);}
+  if(W.q){var qi=W.q.indexOf(id);if(qi>=0){W.q.splice(qi,1);
+    if(!had){var skip={};W.q.forEach(function(x){skip[x]=1;});var nw=pickNew(1,skip);if(nw.length)W.q.splice(qi,0,nw[0]);else{W.n0=Math.max(0,(W.n0||0)-1);if(d.wt)d.wt=Math.max(d.w||0,d.wt-1);}}
+    else if(!done){W.n0=Math.max(0,(W.n0||0)-1);if(d.rcap)d.rcap--;if(d.wt)d.wt=Math.max(d.w||0,d.wt-1);}}}
+  if(W.cur&&W.cur.id===id)W.cur=null;W.pick=null;save();
+}
 function introDone(id){
   ensureTarget();if(S.gwq){var gi=S.gwq.indexOf(id);if(gi>=0)S.gwq.splice(gi,1);}
   if(S.srs[id])return;var t=today(),d=day();
@@ -3446,11 +3456,13 @@ function counts(){
   return {due:due,lrn:lrn,sat:sat};
 }
 function newLeft(){var d=peek(today())||{};return Math.max(0,(d.ncap!=null?d.ncap:S.set.newPerDay)+(d.npx||0)-(d.np||0));}
+/* kaldırılan kelimeler: bir daha sorulmaz, yeni kelime olarak da seçilmez (Ayarlar'dan geri alınabilir) */
+function isBan(id){var b=S.ban&&S.ban[id];return !!(b&&b.on);}
 function newCands(){
-  var mk={},st=(S.gwq||[]).filter(function(k){return !S.srs[k]&&card(k);}),r=[],i;
+  var mk={},st=(S.gwq||[]).filter(function(k){return !S.srs[k]&&!isBan(k)&&card(k);}),r=[],i;
   for(i=0;i<S.mine.length;i++)mk[(S.mine[i].a?S.mine[i].a+' ':'')+S.mine[i].w]=1;
   for(i=0;i<POOL.length;i++){var e=POOL[i];
-    if(S.srs[e.id]||mk[e.k])continue;
+    if(S.srs[e.id]||mk[e.k]||isBan(e.id))continue;
     if(S.set.lv[e.l])r.push(e.id);}
   return {st:st,r:r};
 }
@@ -5842,7 +5854,7 @@ function tstat(id){var x=gpeek(id);if(x.known||(stgAll(id)&&nRv(id)>=2&&!x.lapse
 function pct(p){return Math.round(p*100);}
 function tdue(id){var x=gpeek(id);return !!(stgAll(id)&&!x.known&&x.due&&x.due<=today());}
 /* konunun sıradaki adımı: {k: aşama ya da 'rv', wait: açılacağı gün} */
-function gsAdd(id){var g=GBY[id];if(!g)return;var t=today();g[4].slice(0,3).forEach(function(_,i){var k='gs:'+id+':'+i;if(!S.srs[k])S.srs[k]={i:0,e:2.5,n:0,d:addD(t,2),a:t,st:0,nw:1,u:Date.now()};});}
+function gsAdd(id){var g=GBY[id];if(!g)return;var t=today();g[4].slice(0,3).forEach(function(_,i){var k='gs:'+id+':'+i;if(!S.srs[k]&&!isBan(k))S.srs[k]={i:0,e:2.5,n:0,d:addD(t,2),a:t,st:0,nw:1,u:Date.now()};});}
 /* günün konusu bugünlük bittiyse önerilecek ikinci konu: önce yarım kalan (işi açık) konu, yoksa ve aynı anda 3'ten az konu yürüyorsa yeni konu */
 function newTopic(ex){
   var cont=G.filter(function(g){return g[0]!==ex&&tstat(g[0])==='wip'&&nextAct(g[0]).k;})[0];if(cont)return cont;
@@ -6505,7 +6517,8 @@ function matchRound(){var sd={},st={},out=[];weakFirst(gameIds(),5).forEach(func
 function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};if(!HKY)hkyLoad(function(){if(X&&X.kind==='wcard')drawPage();});
   var x=S.srs[id]||{};
   return {t:deText(c),b:'<div class="card rv">'+rvCard(c,true)+wordLinks(c)+storyBox(id,c,'full')+(hkOf(id)&&!(S.hk[id].src==='hky'||hkCopy(S.hk[id].t))?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(hkOf(id))+'</p></div>':'')+'</div>'+
-    '<p class="small muted center">'+(x.lp?x.lp+' kez unuttun · ':'')+'sıradaki tekrar: '+(x.d?trShort(x.d):'—')+'</p>'};}
+    '<p class="small muted center">'+(x.lp?x.lp+' kez unuttun · ':'')+'sıradaki tekrar: '+(x.d?trShort(x.d):'—')+'</p>'+
+    (isBan(id)?'<p class="small center">Bu kelimeyi kaldırdın. <button class="link" data-act="unban" data-id="'+esc(id)+'">Geri al</button></p>':'<button class="link center rmw" data-act="banw" data-id="'+esc(id)+'">✕ Bu kelimeyi kaldır · bir daha sorulmasın</button>')};}
 /* oyun sonunda kısa "Karıştırdıkların" listesi */
 function gConf(t){if(!X)return;X.conf=X.conf||[];if(X.conf.indexOf(t)<0)X.conf.push(t);}
 function gConfHtml(){return X&&X.conf&&X.conf.length?'<div class="card"><div class="eyebrow">Karıştırdıkların</div>'+X.conf.slice(0,8).map(function(t){return '<p class="small" lang="de" style="margin-top:4px">'+esc(t)+'</p>';}).join('')+'</div>':'';}
@@ -7329,7 +7342,10 @@ function rvFb(cu,c){
   return '<div class="fb '+(ok||r==='near'||r==='hint'?'ok':'no')+'"><b>'+head+'</b>'+(m?'<span>'+m+'</span>':'')+
     (mine&&!ok&&r!=='hint'?'<span>Senin '+(cu.val?'yazdığın':'seçtiğin')+': '+(c.kalip&&cu.val&&cu.type==='write'?'<span lang="de">'+wordDiff(rt,cu.val)+'</span>':'<s'+(cu.type==='listen'?'':' lang="de"')+'>'+(cu.type==='listen'?esc(mine):deC(mine))+'</s>')+(oth?' = '+(cu.type==='listen'?'<b lang="de">'+deC(deText(oth))+'</b>':esc(oth.tr)):'')+'</span>':'')+'</div>';
 }
-function pReview(){
+function pReview(){var r=pReview0(),id=W.q&&W.q[0];
+  if(id&&card(id)&&!(W.cur&&W.cur.id===id&&W.kn===id))r.b+='<button class="link center rmw" data-act="banw" data-id="'+esc(id)+'">✕ Bu kelimeyi kaldır · bir daha sorulmasın</button>';
+  return r;}
+function pReview0(){
   var q=W.q,b='';
   if(!q.length){
     var d=peek(today())||{};
@@ -7342,7 +7358,7 @@ function pReview(){
     return {t:'Kelime tekrarı',b:b};
   }
   var id=q[0],c=card(id);
-  if(!c){q.shift();return pReview();}
+  if(!c){q.shift();return pReview0();}
   if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now()};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
@@ -7616,7 +7632,7 @@ function pSet(){
     '<div class="card sec"><div class="lb">Seviye testi</div><button class="btn wide" data-act="ptest">'+(S.ptest?'Testi yeniden yap (son: '+trShort(S.ptest.date)+')':'Seviye testine başla')+'</button></div>'+
     '<div class="card sec"><div class="lb">Hangi alışkanlığından hemen sonra çalışacaksın?</div><div class="seg" style="flex-wrap:wrap">'+PLANS.map(function(x,i){return '<button class="'+(S.set.plan===i+1?'on':'')+'" data-act="plan" data-v="'+(i+1)+'">'+x+'</button>';}).join('')+'</div>'+
       '<p class="note" style="margin-top:6px">"X olunca çalışırım" diye sabit bir an seçmek, alışkanlığı kendiliğinden tetikler. Seçersen Bugün\'de Başla\'nın üstünde küçük bir satır olarak görünür.'+(S.set.plan?' <button class="link" data-act="plan" data-v="0">Kaldır</button>':'')+'</p></div>'+
-    '<div class="card sec"><div class="lb">Günlük kelime süresi</div><div class="seg">'+[10,15,20,30].map(function(n){return '<button class="'+((S.set.wmin||15)===n?'on':'')+'" data-act="wmin" data-v="'+n+'">'+n+' dk</button>';}).join('')+'</div><p class="note" style="margin-top:6px">Günde en çok ~'+wCap()+' tekrar kartı. Birikenler önceliğe göre sonraki günlere yayılır; birikme varken yeni kelime gelmez.</p></div>'+
+    banList()+'<div class="card sec"><div class="lb">Günlük kelime süresi</div><div class="seg">'+[10,15,20,30].map(function(n){return '<button class="'+((S.set.wmin||15)===n?'on':'')+'" data-act="wmin" data-v="'+n+'">'+n+' dk</button>';}).join('')+'</div><p class="note" style="margin-top:6px">Günde en çok ~'+wCap()+' tekrar kartı. Birikenler önceliğe göre sonraki günlere yayılır; birikme varken yeni kelime gelmez.</p></div>'+
     '<div class="card sec"><div class="lb">Günlük yeni kelime (havuzdan)</div><div class="seg">'+[5,10,15,20].map(function(n){return '<button class="'+(S.set.newPerDay===n?'on':'')+'" data-act="npd" data-v="'+n+'">'+n+'</button>';}).join('')+'</div>'+
       '<div class="lb" style="margin-top:6px">Kelimeyi otomatik seslendir (kart açılınca ve cevaptan sonra)</div><div class="seg">'+[['1','Açık'],['0','Kapalı']].map(function(x){return '<button class="'+((S.set.auto!==false)===(x[0]==='1')?'on':'')+'" data-act="autosay" data-v="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>'+
       '<div class="lb" style="margin-top:6px">Havuzdan gelen seviyeler</div><div class="row" style="gap:6px">'+[1,2,3].map(function(l){return '<button class="chip'+(S.set.lv[l]?' on':'')+'" data-act="lv" data-v="'+l+'">'+LV[l]+' · '+cnt[l]+'</button>';}).join('')+'</div></div>'+
@@ -8055,6 +8071,14 @@ ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSo
 ACT.plan=function(b){var v=+b.dataset.v;if(v)S.set.plan=v;else delete S.set.plan;touch('set');save();if(X)drawPage();else render();};
 ACT.exq=function(b){if(!EXQ[b.dataset.k])EXQ[b.dataset.k]=b.dataset.v;if(X)drawPage();};
 ACT.tmissq=function(){var n=0;X.ans.forEach(function(a){var it=X.items[a.i];if(!a.ok&&it.t==='v'&&!S.srs[it.e.id]&&(S.gwq||[]).indexOf(it.e.id)<0){queueNew(it.e.id,false);n++;}});save();toast(n+' kelime sıraya alındı');drawPage();};
+function banList(){var L=Object.keys(S.ban||{}).filter(isBan);if(!L.length)return '';
+  return '<div class="card sec"><details><summary class="lb" style="cursor:pointer">Kaldırdığın kelimeler ('+L.length+') ›</summary>'+
+    L.sort(function(a,b){return S.ban[b].u-S.ban[a].u;}).map(function(id){var b=S.ban[id];return '<div class="wl"><div class="w"><b lang="de">'+deC(b.w||id)+'</b><span>'+esc(b.tr||'')+' · '+trShort(b.d)+'</span></div><button class="btn sm" data-act="unban" data-id="'+esc(id)+'">Geri al</button></div>';}).join('')+
+    '<p class="note" style="margin-top:6px">Geri aldığın kelime yeni kelime gibi yeniden sıraya girer.</p></details></div>';}
+ACT.banw=function(b){var id=b.dataset.id,c=card(id);if(!c)return;
+  if(!confirm('"'+deText(c)+'" kaldırılsın mı? Bir daha sorulmaz, yerine başka kelime gelir. (Ayarlar\'dan geri alabilirsin)'))return;
+  banWord(id);toast('Kaldırıldı · '+deText(c));if(X&&X.kind==='review')drawPage();else if(X)closePage();else render();};
+ACT.unban=function(b){var id=b.dataset.id;if(S.ban&&S.ban[id]){S.ban[id].on=0;S.ban[id].u=Date.now();save();toast('Geri alındı · yeni kelime olarak sıraya girer');}if(X)drawPage();else render();};
 ACT.wrev=function(){WREV=1;render();};
 ACT.rcopen=function(){if(X){X.rc=1;drawPage();}};
 ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
@@ -9406,6 +9430,8 @@ function mergeS(L,R){
   var pm={};(L.pth||[]).concat(R.pth||[]).forEach(function(x){pm[x.d]=x;});M.pth=Object.keys(pm).sort().map(function(k){return pm[k];});
   M.ezst=cp(L.ezst||{});for(k in (R.ezst||{})){M.ezst[k]=M.ezst[k]||{};for(var ek in R.ezst[k])M.ezst[k][ek]=1;}
   M.mw=cp(rN?(R.mw||L.mw||{}):(L.mw||R.mw||{}));
+  M.ban=cp(L.ban||{});for(k in (R.ban||{})){if(!M.ban[k]||(R.ban[k].u||0)>(M.ban[k].u||0))M.ban[k]=cp(R.ban[k]);}
+  for(k in M.ban)if(M.ban[k].on&&M.srs[k]&&(M.srs[k].u||0)<=(M.ban[k].u||0))delete M.srs[k];
   M.cf=cp(L.cf||{});for(k in (R.cf||{})){var cfa=(M.cf[k]||[]).concat(R.cf[k]||[]);M.cf[k]=cfa.filter(function(x,i){return cfa.indexOf(x)===i;}).slice(0,3);}
   M.hk=cp(L.hk||{});for(k in (R.hk||{})){var h1=M.hk[k],h2=R.hk[k];if(!h1||(h2.u||0)>(h1.u||0))M.hk[k]=cp(h2);}
   M.notes=unionId(rN?R.notes:L.notes,rN?L.notes:R.notes,tomb);M.mine=unionId(rN?R.mine:L.mine,rN?L.mine:R.mine,tomb);
