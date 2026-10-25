@@ -137,3 +137,10 @@ Karar: Google Gemini resim modeli, önce ÜCRETSİZ deneme.
 - [ ] Kullanıcı aistudio.google.com'dan anahtar alıp ortama `GEMINI_API_KEY` olarak ekleyecek; ağ izni: generativelanguage.googleapis.com (Full ise gerek yok).
 - [ ] Deneme: `python3 gorsel/gemini.py /tmp/fangen.png "Basketball arena. Left: a chubby happy sports fan in an orange jersey, blue scarf and face paint jumps and catches a basketball above his head with both hands, cheering. Right: a thin teenage boy in a green hoodie and backwards cap reaches too late, shocked, sweating."` → resmi kullanıcıya göster (fangen = FAN + GENÇ → yakalamak).
 - [ ] Beğenirse: her hikâyenin slogan sahnesini İngilizce tarife çevir, toplu üret (kotaya göre parça parça, kaldığı yerden), küçült (webp ~40 KB), `gorsel/` altına koy, hikâye kutusunda göster; tekrarda ipucu olarak kullan.
+**Karar (25 Ekim):** Kullanıcı resim fikrini bıraktı.
+
+## Tur 7 · Cümle haritası ve Okuma (25 Ekim)
+- [x] Cümle kur: cevaptan sonra "Cümlenin yapısı": her parçanın görevi (özne, çekimli fiil 1/2/son, nesne, zaman, yer …), yan cümleler kutulu, 3–7 "neden?" notu (fiil mengenesi, devrik cümle, yan cümlede fiil sonda, hâl ve artikel). 482 cümlenin rolleri elle denetlendi (#smapd); masaüstünde açık, telefonda kapalı.
+- [x] Okuma: 46 konunun her birine o konunun dilbilgisiyle yazılmış metin (aynı karakterler: Deniz, Elif, Tom, Jana, Frau Schulz). Kelimeye dokun → anlamı + cümlenin Türkçesi + kelimelerime ekle; konunun kalıplarını göster; 4 doğru/yanlış sorusu; boşluk doldurma (konunun biçimleri); özet.
+- [x] Günlük 5. görev "Okuma" (puanlar: kelime 25, konu 20, ezber 20, yazma 15, okuma 20); eski günler dört görevli kuralla donduruldu. Kütüphane'de Okuma listesi, konu sayfasında metin kartı, kilometre taşları (5 / 20 / 46 metin), cihazlar arası eşitleme.
+- [ ] İleride: metin seslendirme hızı, metinden kelime oyunu, ikinci bir metin seti (iş hayatı / B1 sınav metinleri).
