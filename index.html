@@ -756,6 +756,23 @@ details.howto b{color:var(--ink)}
 .ezq-a{font-family:var(--f-body);font-size:14px;color:var(--ink2);font-weight:600;margin-top:4px}
 .ezacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .ezacts .btn{flex:1 1 160px}.ezacts>.btn.lime{flex-basis:100%}.ezacts>.row{flex:1 1 100%}.ezacts .row .btn.sm{flex:1 1 auto}
+.smap{margin:12px 0 4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;text-align:left}
+.smap>summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--ink2)}
+.smrow{display:flex;flex-wrap:wrap;gap:12px 8px;margin-top:14px;align-items:stretch}
+.smcl{display:flex;flex-wrap:wrap;gap:12px 6px;align-items:stretch;position:relative}
+.smcl.yan{border:1.5px dashed var(--line2,var(--line));border-radius:12px;padding:20px 6px 6px}
+.smk{position:absolute;top:3px;left:9px;font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.smc{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:7px 10px 5px;border-radius:10px;background:var(--card2);border:1px solid var(--line)}
+.smc b{font-size:15px;font-weight:700;color:var(--ink)}
+.smc small{font-size:10.5px;color:var(--ink3);margin-top:2px;white-space:nowrap}
+.smc i{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;font-weight:800;background:var(--ink);color:var(--card);border-radius:999px;padding:0 6px;line-height:16px}
+.smc.sv{background:var(--wrn-t);border-color:color-mix(in srgb,var(--wrn) 50%,var(--line))}.smc.sv small{color:var(--wrn)}
+.smc.ss{background:var(--sch-t);border-color:color-mix(in srgb,var(--sch) 45%,var(--line))}.smc.ss small{color:var(--sch)}
+.smc.so{background:var(--les-t);border-color:color-mix(in srgb,var(--les) 45%,var(--line))}.smc.so small{color:var(--les)}
+.smc.sp{background:var(--hor-t);border-color:color-mix(in srgb,var(--hor) 45%,var(--line))}.smc.sp small{color:var(--hor)}
+.smc.sc{background:var(--spr-t);border-color:color-mix(in srgb,var(--spr) 45%,var(--line))}.smc.sc small{color:var(--spr)}
+.smn{margin:12px 0 2px;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.smn li{font-size:13.5px;line-height:1.5;color:var(--ink2)}.smn li b{color:var(--ink)}
 .mems{display:grid;grid-template-columns:1fr;gap:8px}
 .mem{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--das);border-radius:12px;padding:10px 13px}
 .mem .mk{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--das);background:var(--das-t);border-radius:999px;padding:2px 8px}
@@ -3200,6 +3217,7 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 3|a||trainiert||antrenmanlı|Er ist gut *trainiert*.
 #POOL-END
 </script>
+<script type="application/json" id="smapd">{"Ich habe gestern drei Sätze Kniebeugen gemacht.":"S V T A3 F","Wir sind am Wochenende nach Hamburg gefahren.":"S V T2 L2 F","Hast du schon gefrühstückt?":"V S T F","Sie ist heute um sechs Uhr aufgestanden.":"S V T T3 F","Ich habe den Termin leider vergessen.":"S V A2 Z F","Der Zug ist pünktlich angekommen.":"S2 V M F","Ich musste gestern lange arbeiten.":"S V T T F","Als Kind wollte ich Fußballspieler werden.":"T2 V S P F","Wir konnten das Spiel nicht sehen.":"S V A2 N F","Früher durfte man hier rauchen.":"T V S L F","Er wollte nicht mitkommen.":"S V N F","Ich sollte den Bericht bis Montag schreiben.":"S V A2 T2 F","Ich gehe ins Bett, weil ich müde bin.":"S V L2 C S P V","Ich glaube, dass das Training morgen ausfällt.":"S V C S2 T V","Wenn es regnet, laufe ich auf dem Laufband.":"C S V V S L3","Sie sagt, dass sie heute keine Zeit hat.":"S V C S T A2 V","Wenn du Hunger hast, koche ich etwas.":"C S A V V S A","Ich lerne Deutsch, weil ich in Berlin arbeiten möchte.":"S V A C S L2 F V","Die Hanteln liegen unter dem Bett.":"S2 V L3","Ich lege die Hanteln unter das Bett.":"S V A2 L3","Das Glas steht auf dem Tisch.":"S2 V L3","Stell bitte die Milch in den Kühlschrank!":"V Z A2 L3","Wir treffen uns vor dem Fitnessstudio.":"S V R L3","Er hängt das Bild an die Wand.":"S V A2 L3","Kannst du mir bitte helfen?":"V S D Z F","Das Essen schmeckt mir sehr gut.":"S2 V D M2","Gehört dieses Handtuch dir?":"V S2 D","Der neue Trainingsplan gefällt mir.":"S3 V D","Ich danke Ihnen für die Einladung.":"S V D O3","Passt Ihnen der Termin am Montag?":"V D S2 T2","Ich dusche mich nach dem Training.":"S V R T3","Wir treffen uns um acht Uhr.":"S V R T3","Freust du dich auf den Urlaub?":"V S R O3","Er erholt sich am Wochenende.":"S V R T2","Ich muss mich beeilen.":"S V R F","Sie interessiert sich für Fotografie.":"S V R O2","Heute bin ich schneller gelaufen als gestern.":"T V S M F X2","Mein Bruder ist älter als ich.":"S2 V P X2","Am liebsten trinke ich Tee.":"Z2 V S A","Das ist die beste Pizza der Stadt.":"S V P3 G2","Kniebeugen sind schwerer als Liegestütze.":"S V P X2","Im Winter trainiere ich mehr als im Sommer.":"T2 V S Z X3","Könnten Sie mir bitte helfen?":"V S D Z F","Ich hätte gern einen Kaffee.":"S V Z A2","Würden Sie bitte das Fenster schließen?":"V S Z A2 F","Könntest du mich morgen anrufen?":"V S A T F","Wir hätten gern einen Tisch für zwei Personen.":"S V Z A2 M3","Dürfte ich kurz Ihr Telefon benutzen?":"V S T A2 F","Der neue Kollege kommt aus Spanien.":"S3 V L2","Ich nehme die kleine Hantel.":"S V A3","Das alte Fahrrad ist kaputt.":"S3 V P","Wir sprechen mit dem neuen Trainer.":"S V M4","Ich kaufe den roten Pullover.":"S V A3","Die frischen Brötchen schmecken gut.":"S3 V M","Ich lerne seit einem Jahr Deutsch.":"S V T3 A","Vor dem Frühstück gehe ich joggen.":"T3 V S F","Nach der Arbeit treffe ich meine Freunde.":"T3 V S A2","In zwei Wochen fahren wir in den Urlaub.":"T3 V S L3","Ab Montag habe ich mehr Zeit.":"T2 V S A2","Das Fitnessstudio ist bis zehn Uhr geöffnet.":"S2 V T3 P","Ich bin müde, aber ich gehe zum Training.":"S V P B S V L2","Ich kaufe heute nichts, denn ich habe kein Geld.":"S V T A B S V A2","Er trinkt keinen Kaffee, sondern Tee.":"S V A2 B A","Sie arbeitet heute nicht, denn sie ist krank.":"S V T N B S V P","Ich gehe nicht ins Büro, sondern arbeite zu Hause.":"S V N L2 B V L2","Die Jacke ist schön, aber zu teuer.":"S2 V P B P2","Welchen Pullover nimmst du?":"Q2 V S","Was für einen Job hat deine Schwester?":"Q4 V S2","Welche Größe brauchen Sie?":"Q2 V S","In welchem Stock wohnt ihr?":"L3 V S","Was für Musik hörst du gern?":"Q3 V S Z","Mit welchem Bus fährst du zur Arbeit?":"M3 V S L2","Heute ist der dritte Oktober.":"T V S3","Mein Geburtstag ist am siebten Juni.":"S2 V T3","Ich bin zum ersten Mal in Berlin.":"S V T3 L2","Wir wohnen im vierten Stock.":"S V L3","Der Kurs beginnt am zwanzigsten März.":"S2 V T3","Unsere Tochter geht in die erste Klasse.":"S2 V L4","Ich habe einen neuen Trainingsplan.":"S V A3","Das ist ein schönes Restaurant.":"S V P3","Er trinkt nur kaltes Wasser.":"S V Z A2","Wir suchen eine größere Wohnung.":"S V A3","Mit frischem Gemüse schmeckt die Suppe besser.":"M3 V S2 M","Ich habe keine gute Idee.":"S V A3","Ich warte auf den Bus.":"S V O3","Worauf freust du dich?":"Q V S R","Ich freue mich schon darauf.":"S V R T O","Denkst du an den Termin morgen?":"V S O3 T","Wofür interessierst du dich?":"Q V S R","Wir sprechen morgen darüber.":"S V T O","Weißt du, wann das Training beginnt?":"V S C S2 V","Ich weiß nicht, ob ich morgen Zeit habe.":"S V N C S T A V","Können Sie mir sagen, wo der Bahnhof ist?":"V S D F C S2 V","Er fragt, ob wir mitkommen.":"S V C S V","Ich möchte wissen, wie viel das kostet.":"S V F C2 S V","Weißt du, warum sie nicht gekommen ist?":"V S C S N F V","Du solltest mehr Wasser trinken.":"S V A2 F","An deiner Stelle würde ich zum Arzt gehen.":"L3 V S L2 F","Ich würde gern besser Deutsch sprechen.":"S V Z M A F","Wenn ich mehr Zeit hätte, würde ich jeden Tag trainieren.":"C S A2 V V S T2 F","Sie sollten nicht so viel arbeiten.":"S V N Z2 F","Ich wäre jetzt gern am Meer.":"S V T Z L2","Das Fitnessstudio wird um sechs Uhr geöffnet.":"S2 V T3 F","Hier wird Deutsch gesprochen.":"L V S F","Die Pakete werden morgen geliefert.":"S2 V T F","Der Salat wird mit Öl und Essig gemacht.":"S2 V M4 F","Die Besprechung wird verschoben.":"S2 V F","In Deutschland wird viel Brot gegessen.":"L2 V S2 F","Das ist der Trainer, der mir hilft.":"S V P2 C D V","Ich suche eine Wohnung, die nicht so teuer ist.":"S V A2 C N P2 V","Das Buch, das ich lese, ist sehr spannend.":"S2 C S V V Z P","Der Kollege, den ich gestern getroffen habe, ist nett.":"S2 C S T F V V P","Wo ist die Flasche, die ich gekauft habe?":"Q V S2 C S F V","Das ist ein Gericht, das man schnell kochen kann.":"S V P2 C S M F V","Ich habe keine Lust, heute zu kochen.":"S V A2 T F2","Es ist wichtig, jeden Tag zu üben.":"S V P T2 F2","Vergiss nicht, die Tür abzuschließen!":"V N A2 F","Ich versuche, früher aufzustehen.":"S V T F","Hast du Zeit, mir zu helfen?":"V S A D F2","Sie hat angefangen, Deutsch zu lernen.":"S V F A F2","Ich bin müde, deshalb gehe ich früh ins Bett.":"S V P Z V S T L2","Es regnet, deswegen bleiben wir zu Hause.":"S V Z V S L2","Er hatte Muskelkater, darum hat er nicht trainiert.":"S V A Z V S N F","Der Zug hatte Verspätung, deshalb kam ich zu spät.":"S2 V A Z V S T2","Ich möchte in Deutschland arbeiten, deshalb lerne ich Deutsch.":"S V L2 F Z V S A","Das Restaurant war voll, deswegen haben wir zu Hause gegessen.":"S2 V P Z V S L2 F","Gestern war ich sehr müde.":"T V S Z P","Als Kind hatte ich einen Hund.":"T2 V S A2","Er kam um acht Uhr nach Hause.":"S V T3 L2","Wir gingen nach dem Essen spazieren.":"S V T3 F","Die Besprechung dauerte zwei Stunden.":"S2 V T2","Sie sah sehr glücklich aus.":"S V M2 F","Ich gehe heute zum Arzt.":"S V T L2","Sie wohnt noch bei ihren Eltern.":"S V T L3","Er kommt gerade aus dem Supermarkt.":"S V T L3","Wir fahren am Freitag nach Berlin.":"S V T2 L2","Ich komme gerade vom Training.":"S V T L2","Heute Abend bleibe ich zu Hause.":"T2 V S L2","Ich schenke meiner Mutter Blumen.":"S V D2 A","Kannst du mir das Salz geben?":"V S D A2 F","Der Trainer zeigt uns die Übung.":"S2 V D A2","Ich leihe es meinem Bruder.":"S V A D2","Ich gebe es ihm morgen.":"S V A D T","Wir schicken den Kunden heute die Rechnung.":"S V D2 T A2","Hat jemand meinen Schlüssel gesehen?":"V S A2 F","Ich habe heute noch nichts gegessen.":"S V T A2 F","Hier darf man nicht rauchen.":"L V S N F","Von meinen Freunden spielt keiner Tennis.":"Z3 V S A","Niemand war heute im Büro.":"S V T L2","Möchtest du noch etwas trinken?":"V S A2 F","Im Winter wird es früh dunkel.":"T2 V S T P","Meine Schwester will Ärztin werden.":"S2 V P F","Beim Laufen werde ich schnell müde.":"T2 V S M P","Mein Sohn wird im Mai zehn.":"S2 V T2 P","Er ist letztes Jahr Vater geworden.":"S V T2 P F","Wirst du vor Prüfungen nervös?":"V S T2 P","Ich gehe heute ins Fitnessstudio, obwohl ich Muskelkater habe.":"S V T L2 C S A V","Ich habe Muskelkater, trotzdem gehe ich ins Fitnessstudio.":"S V A Z V S L2","Obwohl es regnet, laufen wir im Park.":"C S V V S L2","Er ist krank, trotzdem arbeitet er.":"S V P Z V S","Obwohl ich wenig Zeit hatte, habe ich gekocht.":"C S A2 V V S F","Das Wetter war schlecht, trotzdem war der Ausflug schön.":"S2 V P Z V S2 P","Als ich ein Kind war, habe ich viel Fußball gespielt.":"C S P2 V V S Z A F","Wenn ich nach Hause kam, war das Essen schon fertig.":"C S L2 V V S2 T P","Als wir in Berlin waren, hat es geregnet.":"C S L2 V V S F","Wenn ich Zeit habe, lese ich ein Buch.":"C S A V V S A2","Als ich ankam, war die Besprechung schon vorbei.":"C S V V S2 T P","Immer wenn es schneite, gingen wir Ski fahren.":"C2 S V V S F2","Nachdem ich trainiert hatte, habe ich geduscht.":"C S F V V S F","Als ich ankam, war der Zug schon abgefahren.":"C S V V S2 T F","Nachdem sie gegessen hatten, gingen sie spazieren.":"C S F V V S F","Ich hatte den Schlüssel vergessen.":"S V A2 F","Nachdem er die E-Mail gelesen hatte, rief er mich an.":"C S A2 F V V S A F","Wir hatten vorher noch nie Sushi gegessen.":"S V T N2 A F","Bevor ich zur Arbeit gehe, trinke ich Kaffee.":"C S L2 V V S A","Während ich koche, höre ich Podcasts.":"C S V V S A","Seit ich Sport mache, schlafe ich besser.":"C S A V V S M","Warte, bis ich fertig bin!":"V C S P V","Während er telefonierte, wartete ich draußen.":"C S V V S L","Bevor wir essen, waschen wir uns die Hände.":"C S V V S R A2","Das ist der Freund, mit dem ich trainiere.":"S V P2 C2 S V","Die Kollegin, der ich geholfen habe, hat sich bedankt.":"S2 C S F V V R F","Das ist das Thema, über das wir gesprochen haben.":"S V P2 C2 S F V","Die Leute, denen ich die Wohnung gezeigt habe, waren nett.":"S2 C S A2 F V V P","Das ist die Firma, bei der ich arbeite.":"S V P2 C2 S V","Der Termin, auf den ich warte, ist nächste Woche.":"S2 C2 S V V T2","Wenn ich mehr geschlafen hätte, wäre ich nicht so müde.":"C S Z F V V S N P2","Ich hätte gestern trainieren sollen.":"S V T F2","Wenn du angerufen hättest, wäre ich gekommen.":"C S F V V S F","Das hätte ich nicht gedacht.":"A V S N F","Wir wären fast zu spät gekommen.":"S V Z T2 F","Hättest du das gewusst?":"V S A F","Wegen des Regens bleiben wir zu Hause.":"K3 V S L2","Trotz des Muskelkaters bin ich gelaufen.":"K3 V S F","Während der Besprechung war mein Handy aus.":"T3 V S2 P","Das ist das Auto meines Bruders.":"S V P2 G2","Am Ende des Tages bin ich müde.":"T4 V S P","Die Farbe der Wände gefällt mir.":"S4 V D","Ich trainiere, um fit zu bleiben.":"S V C P F2","Ich lerne Deutsch, um in Deutschland zu arbeiten.":"S V A C L2 F2","Ich erkläre es noch einmal, damit du es verstehst.":"S V A T2 C S A V","Sie spart Geld, um ein Auto zu kaufen.":"S V A C A2 F2","Wir sprechen leise, damit das Baby schläft.":"S V M C S2 V","Er steht früh auf, um vor der Arbeit zu laufen.":"S V T F C T3 F2","Ich trinke sowohl Kaffee als auch Tee.":"S V Y A Y2 A","Er hat weder Zeit noch Lust.":"S V Y A Y A","Entweder trainieren wir heute oder morgen.":"Y V S T Y T","Sie spricht nicht nur Deutsch, sondern auch Englisch.":"S V Y2 A Y2 A","Das Essen war weder warm noch lecker.":"S2 V Y P Y P","Wir können entweder kochen oder bestellen.":"S V Y F Y F","Ich werde nächstes Jahr die B1-Prüfung machen.":"S V T2 A2 F","Morgen wird es regnen.":"T V S F","Er wird wohl noch im Büro sein.":"S V Z T L2 F","Wir werden das schon schaffen.":"S V A Z F","Ich werde ab jetzt jeden Tag üben.":"S V T2 T2 F","Wirst du am Wochenende Zeit haben?":"V S T2 A F","Das Haus wurde 1950 gebaut.":"S2 V T F","Die Besprechung ist abgesagt worden.":"S2 V F2","Der Antrag muss bis Freitag abgegeben werden.":"S2 V T2 F2","Das Paket wurde gestern geliefert.":"S2 V T F","Hier darf nicht geraucht werden.":"L V N F2","Die Ergebnisse sind schon veröffentlicht worden.":"S2 V T F2","Ich frage den Kollegen.":"S V A2","Kennst du den neuen Studenten?":"V S A3","Wir sprechen mit dem Präsidenten.":"S V M3","Ich habe morgen einen Termin beim Kunden.":"S V T A2 L2","Der Junge hilft dem Nachbarn.":"S2 V D2","Hast du den Namen vergessen?":"V S A2 F","Je mehr ich übe, desto besser spreche ich.":"C2 S V Z2 V S","Je früher wir anfangen, desto schneller sind wir fertig.":"C2 S V Z2 V S P","Je schwerer das Gewicht ist, desto weniger Wiederholungen schaffe ich.":"C2 S2 V A3 V S","Je länger ich in Deutschland lebe, desto mehr verstehe ich.":"C2 S L2 V A2 V S","Je älter er wird, desto ruhiger wird er.":"C2 S V P2 V S","Je öfter ich die Wörter wiederhole, desto leichter merke ich sie mir.":"C2 S A2 V M2 V S A R","Das schlafende Kind ist sehr süß.":"S3 V Z P","Ich esse gern gekochte Eier.":"S V Z A2","Wir haben ein gebrauchtes Auto gekauft.":"S V A3 F","Die steigenden Preise sind ein Problem.":"S3 V P2","Der reparierte Computer funktioniert wieder.":"S3 V T","Das ist ein gut bezahlter Job.":"S V P4","Er ist gegangen, ohne sich zu verabschieden.":"S V F C R F2","Statt zu trainieren, bin ich zu Hause geblieben.":"C F2 V S L2 F","Sie hat den Vertrag unterschrieben, ohne ihn zu lesen.":"S V A2 F C A F2","Statt Auto zu fahren, nehme ich das Fahrrad.":"C A F2 V S A2","Ich trainiere nie, ohne mich aufzuwärmen.":"S V N C R F","Statt zu kochen, haben wir Pizza bestellt.":"C F2 V S A F","Ich lasse mir die Haare schneiden.":"S V R A2 F","Wir lassen das Auto reparieren.":"S V A2 F","Lass mich bitte ausreden!":"V A Z F","Sie hat ihr Fahrrad reparieren lassen.":"S V A2 F2","Ich lasse meine Tasche im Auto.":"S V A2 L2","Lassen Sie uns morgen weitersprechen.":"V S A T F","Man lernt Wörter am besten, indem man sie jeden Tag wiederholt.":"S V A Z2 C S A T2 V","Ich bleibe fit, indem ich dreimal pro Woche trainiere.":"S V P C S T3 V","Es hat stark geregnet, sodass das Spiel ausgefallen ist.":"S V M F C S2 F V","Er hat verschlafen, sodass er den Zug verpasst hat.":"S V F C S A2 F V","Sie verbessert ihr Deutsch, indem sie Podcasts hört.":"S V A2 C S A V","Der Kurs war sehr gut, sodass ich viel gelernt habe.":"S2 V Z P C S Z F V","Das ist alles, was ich weiß.":"S V P C S V","Es gibt nichts, was er nicht isst.":"S V A C S N V","Das ist die Stadt, wo ich geboren bin.":"S V P2 C S F V","Das Beste, was du machen kannst, ist schlafen.":"S2 C S F V V P","Er hat endlich angerufen, worüber ich mich sehr freue.":"S V T F C S R Z V","Das Fitnessstudio, wo ich trainiere, ist sehr groß.":"S2 C S V V Z P","Wenn ich doch mehr Zeit hätte!":"C S Z A2 V","Er tut so, als ob er alles wüsste.":"S V Z C2 S A V","Wenn ich nur früher angefangen hätte!":"C S Z T F V","Du siehst aus, als ob du nicht geschlafen hättest.":"S V F C2 S N F V","Ich wünschte, ich könnte fließend Deutsch sprechen.":"S V S V M A F","Sie redet, als ob sie die Chefin wäre.":"S V C2 S P2 V","Ich muss eine Entscheidung treffen.":"S V A2 F","Darf ich eine Frage stellen?":"V S A2 F","Wir sollten auf die Nachbarn Rücksicht nehmen.":"S V O3 A F","Der Trainer hat mir einen guten Rat gegeben.":"S2 V D A3 F","Das kommt nicht in Frage.":"S V N Z2","Ich habe mit ihm Kontakt aufgenommen.":"S V M2 A F","Ich gehe heute ins Kino.":"S V T L2","Am Montag habe ich Training.":"T2 V S A","Morgen fahren wir nach Berlin.":"T V S L2","Jetzt koche ich das Abendessen.":"T V S A2","Am Wochenende besuche ich meine Oma.":"T2 V S A2","In Köln wohnt meine Schwester.":"L2 V S2","Was machst du heute Abend?":"Q V S T2","Ich wohne in Köln.":"S V L2","Arbeitest du heute?":"V S T","Er arbeitet bei einer Bank.":"S V L3","Was macht ihr am Sonntag?":"Q V S T2","Ich bin müde.":"S V P","Hast du Zeit?":"V S A","Wir sind heute zu Hause.":"S V T L2","Seid ihr am Samstag zu Hause?":"V S T2 L2","Er hat zwei Kinder.":"S V A2","Er fährt jeden Tag mit dem Rad.":"S V T2 M3","Was isst du gern?":"Q V S Z","Sprichst du Deutsch?":"V S A","Er weiß die Antwort nicht.":"S V A2 N","Ich kann heute nicht kommen.":"S V T N F","Du musst mehr trinken.":"S V Z F","Möchtest du einen Kaffee?":"V S A2","Wir wollen im Sommer nach Italien fahren.":"S V T2 L2 F","Ich sehe dich.":"S V A","Kannst du mir helfen?":"V S D F","Ich gebe ihm das Buch.":"S V D A2","Wir besuchen euch am Wochenende.":"S V A T2","Ich rufe Sie morgen an.":"S V A T F","Der Mann kauft den Tisch.":"S2 V A2","Ich helfe dem Mann.":"S V D2","Ich spreche mit der Frau.":"S V M3","Ich spiele mit den Kindern.":"S V M3","Ich habe einen Bruder.":"S V A2","Ich habe keine Zeit.":"S V A2","Er wohnt in einer Wohnung.":"S V L3","Ich esse heute kein Fleisch.":"S V T A2","Wir haben keine Kinder.":"S V A2","Das ist mein Bruder.":"S V P2","Wo ist deine Tasche?":"Q V S2","Sein Vater arbeitet in Berlin.":"S2 V L2","Anna und ihre Mutter wohnen in Köln.":"S4 V L2","Unsere Kinder spielen im Garten.":"S2 V L2","Ist das euer Auto?":"V S P2","Wie ist Ihr Name?":"Q V S2","Max wohnt in Wien.":"S V L2","Jana geht nach Hause.":"S V L2","Ihr kommt aus Syrien.":"S V L2","Ich komme von zu Hause.":"S V L3","Morgen fahren wir in die Türkei.":"T V S L3","Am Montag gehe ich zum Arzt.":"T2 V S L2","Wir sind heute Abend im Kino.":"S V T2 L2","Wann beginnt der Kurs?":"Q V S2","Wem gehört das?":"Q V S","Woher kommst du?":"Q V S","Wen besuchst du am Wochenende?":"Q V S T2","Warum lernst du Deutsch?":"Q V S A","Wie viel kostet das Brot?":"Q2 V S2","Ich stehe jeden Tag um sechs auf.":"S V T2 T2 F","Ich verstehe das nicht.":"S V A N","Ich rufe dich morgen an.":"S V A T F","Wir kaufen am Samstag ein.":"S V T2 F","Ich bekomme heute ein Paket.":"S V T A2","Ich habe dich gestern angerufen.":"S V A T F","Wann kommst du zurück?":"Q V S F","Ich lerne heute wegen der Prüfung intensiv zu Hause.":"S V T K3 M L2","Wir fahren morgen mit dem Zug nach Hamburg.":"S V T M3 L2","Er trainiert abends mit seinem Bruder im Fitnessstudio.":"S V T M3 L2","Ich bleibe heute wegen der Erkältung zu Hause.":"S V T K3 L2","Ich bin gestern wegen des Regens mit dem Bus zur Arbeit gefahren.":"S V T K3 M3 L2 F","Ich möchte nächstes Jahr mit meiner Familie in der Türkei Urlaub machen.":"S V T2 M3 L3 A F","Ich bin müde, aber ich trainiere.":"S V P B S V","Ich komme heute nicht, denn ich bin krank.":"S V T N B S V P","Ich trinke keinen Kaffee, sondern Tee.":"S V A2 B A","Ich bin müde, deshalb gehe ich ins Bett.":"S V P Z V S L2","Es regnet, trotzdem gehen wir spazieren.":"S V Z V S F","Ich weiß nicht, ob er heute kommt.":"S V N C S T V","Wenn ich Zeit habe, besuche ich dich.":"C S A V V S A","Obwohl ich müde bin, gehe ich zum Training.":"C S P V V S L2","Als ich ein Kind war, habe ich in Izmir gewohnt.":"C S P2 V V S L2 F","Ich suche meinen Schlüssel.":"S V A2","Kennst du ihren Bruder?":"V S A2","Wir besuchen am Sonntag unsere Oma.":"S V T2 A2","Habt ihr euer Auto verkauft?":"V S A2 F","Haben Sie Ihren Pass dabei?":"V S A2 Z","Das ist mein Auto.":"S V P2","Meine Kinder spielen im Garten.":"S2 V L2","Ich rufe heute meinen Vater an.":"S V T A2 F","Ich wohne bei meinem Bruder.":"S V L3","Ich helfe meiner Mutter.":"S V D2","Ich spiele oft mit meinen Kindern.":"S V T M3","Ich fahre mit dem Bus.":"S V M3","Ich wohne seit einem Jahr hier.":"S V T3 L","Morgen gehe ich zum Arzt.":"T V S L2","Ich komme aus der Türkei.":"S V L3","Nach dem Kurs fahre ich nach Hause.":"T3 V S L2","Heute bin ich bei meiner Freundin.":"T V S L3","Das Paket ist von meiner Mutter.":"S2 V Z3","Die Apotheke ist gegenüber dem Bahnhof.":"S2 V L3","Außer mir sind alle müde.":"Z2 V S P","Das Geschenk ist für dich.":"S2 V Z2","Wir gehen durch den Park.":"S V L3","Der Kurs beginnt um acht.":"S2 V T2","Ich kaufe ein Geschenk für meinen Bruder.":"S V A2 Z3","Ich trinke Kaffee ohne Zucker.":"S V A M2","Ich habe nichts gegen dich.":"S V A Z2","Wir kommen gegen acht Uhr.":"S V T3","Heute arbeite ich bis sechs Uhr.":"T V S T3","Das Buch liegt auf dem Tisch.":"S2 V L3","Ich lege das Buch auf den Tisch.":"S V A2 L3","Das Bild hängt an der Wand.":"S2 V L3","Ich hänge das Bild an die Wand.":"S V A2 L3","Wir sind jetzt im Kino.":"S V T L2","Heute gehen wir ins Kino.":"T V S L2","Die Lampe hängt über dem Tisch.":"S2 V L3","Ich stelle den Stuhl neben das Fenster.":"S V A2 L3","Hinter dem Haus ist ein Garten.":"L3 V S2","Die Bank ist zwischen der Post und dem Supermarkt.":"S2 V L6","Gestern war ich krank.":"T V S P","Ich hatte keine Zeit.":"S V A2","Wir mussten lange warten.":"S V T F","Ich konnte gestern nicht kommen.":"S V T N F","Früher durfte ich nicht allein ausgehen.":"T V S N M F","Ich sollte gestern den Bericht schreiben.":"S V T A2 F","Als Kind wollte ich Arzt werden.":"T2 V S P F","Hattet ihr gestern Unterricht?":"V S T A","Warst du schon einmal in Berlin?":"V S T2 L2","Ich bin gestern spät gekommen.":"S V T T F","Hast du schon gegessen?":"V S T F","Ich bin heute um sechs Uhr aufgestanden.":"S V T T3 F","Wir sind am Wochenende nach Berlin gefahren.":"S V T2 L2 F","Was ist passiert?":"Q V F","Ich habe deine Nachricht nicht verstanden.":"S V A2 N F","Ich freue mich.":"S V R","Ich putze mir die Zähne.":"S V R A2","Setz dich bitte!":"V R Z","Wir treffen uns morgen vor dem Kino.":"S V R T L3","Kaufst du dir ein neues Handy?":"V S R A3","Interessieren Sie sich für Musik?":"V S R O2","Der neue Kollege ist nett.":"S3 V P","Ich nehme die blaue Tasche.":"S V A3","Das kleine Kind spielt im Garten.":"S3 V L2","Ich helfe der alten Frau.":"S V D3","Kennst du die neuen Nachbarn?":"V S A3","Die exklusive Wohnung liegt in der vierten Etage.":"S3 V L4","Der moderne Aufzug fährt bis ganz oben.":"S3 V L3","Wir übernehmen die tolle Einbauküche.":"S V A3","Der Vermieter hat den neuen Herd bezahlt.":"S2 V A3 F","Die Wohnung liegt im ruhigen Teil der Stadt.":"S2 V L5","Ich finde das separate Gäste-WC sehr praktisch.":"S V A3 M2","Vor dem frisch renovierten Haus gibt es einen Parkplatz.":"L5 V S A2","Die netten Nachbarn helfen beim Umzug.":"S3 V Z2","Die Wohnung mit den drei attraktiven Zimmern kostet 900 Euro.":"S7 V A2","Wir suchen eine helle Wohnung mit Balkon.":"S V A5","Das Haus hat einen modernen Aufzug.":"S2 V A3","Die Wohnung hat ein separates Gäste-WC.":"S2 V A3","Ein ruhiges Zimmer ist mir sehr wichtig.":"S3 V D P2","Ich wohne in einer kleinen Wohnung im Zentrum.":"S V L4 L2","Mein neuer Nachbar ist sehr nett.":"S3 V P2","Er wohnt mit seinem alten Hund im Erdgeschoss.":"S V M4 L2","Leider haben wir keine netten Nachbarn.":"Z V S A3","Ich trinke lieber Tee.":"S V Z A","Am liebsten esse ich Pizza.":"Z2 V S A","Wer spricht am besten Deutsch?":"Q V Z2 A","Die Bäckerei ist näher als der Supermarkt.":"S2 V P X3","Hier ist alles viel teurer als in der Türkei.":"L V S P2 X4","Wie ist der Name des Hotels?":"Q V S2 G2","Trotz der Kälte gehen wir spazieren.":"K3 V S F","Während des Urlaubs habe ich viel gelesen.":"T3 V S Z F","Statt eines Autos kaufe ich ein Fahrrad.":"Z3 V S A2","Die Wohnung meiner Eltern ist sehr groß.":"S4 V P2","Das ist der Mann, dem ich helfe.":"S V P2 C S V","Die Leute, denen ich schreibe, sind nett.":"S2 C S V V P","Der Film, den wir gestern gesehen haben, war gut.":"S2 C S T F V V P","Ich habe eine Freundin, die in Berlin wohnt.":"S V A2 C L2 V","Das ist die Frau, deren Sohn in meiner Klasse ist.":"S V P2 C2 L3 V","Das Hotel, in dem wir wohnen, ist sehr schön.":"S2 C2 S V V P2","Gestern habe ich den Mann getroffen, der neben uns wohnt.":"T V S A2 F C L2 V","Das ist ein neues Auto.":"S V P3","Ich habe einen neuen Plan.":"S V A3","Mein alter Freund wohnt in Hamburg.":"S3 V L2","Sie trägt eine schöne Bluse.":"S V A3","Wir wohnen in einem kleinen Dorf.":"S V L4","Er spricht mit seinem neuen Chef.":"S V M4","Ich habe keine guten Nachrichten.":"S V A3","Ich trinke kaltes Wasser.":"S V A2","Mit frischem Gemüse schmeckt es besser.":"M3 V S M","Morgens trinke ich gern heißen Kaffee.":"T V S Z A2","Frischer Fisch ist gesund.":"S2 V P","Auf dem Markt gibt es frische Tomaten.":"L3 V S A2","Ich habe deinen Brief mit großer Freude gelesen.":"S V A2 M3 F","Am liebsten koche ich mit frischen Zutaten.":"Z2 V S M3","Wenn ich Zeit hätte, würde ich reisen.":"C S A V V S F","Könnten Sie mir helfen?":"V S D F","Ich hätte gern ein Glas Wasser.":"S V Z A3","An deiner Stelle würde ich mehr schlafen.":"L3 V S Z F","Es wäre schön, wenn du morgen kommen könntest.":"S V P C S T F V","Hier wird ein neues Krankenhaus gebaut.":"L V S3 F","Die Rechnung muss bis Freitag bezahlt werden.":"S2 V T2 F2","Das Spiel musste wegen des Regens abgesagt werden.":"S2 V K3 F2","Die neue Brücke wird nächstes Jahr eröffnet werden.":"S3 V T2 F2","Das Auto wurde von meinem Vater repariert.":"S2 V Z3 F","Er kam um acht nach Hause.":"S V T2 L2","Wir gingen spazieren.":"S V F","Ich habe Angst vor Hunden.":"S V A O2","Wir helfen dem Nachbarn.":"S V D2"}</script>
 
 <script>
 (function(){
@@ -6992,12 +7010,204 @@ function satzBody(o,it){
     if(o.okset.length>1)b+='<p class="note center">Bu cümlenin '+o.okset.length+' doğru sırası var; hangisini kurarsan kur kabul edilir.</p>';
   }else if(o.state==='ok'){
     var mt=o.okset[o.match]||o.okset[0];
+    b+=smapHtml(it.de,mt.seq);
     b+='<div class="sheet ok"><div class="fb ok"><b>Richtig!</b><span lang="de">'+esc(mt.txt)+'</span></div>'+(o.okset.length>1?'<details><summary>Bu sıralar da doğru</summary>'+szList(o,o.match)+'</details>':'')+'<button class="btn dark big wide" data-act="sznext">Devam</button></div>';
   }else{
+    b+=smapHtml(it.de);
     b+='<div class="sheet no"><div class="fb no"><b>'+(o.okset.length>1?'Doğru sıralar:':'Doğrusu:')+'</b>'+szList(o,-1)+'</div>'+coachLite(o.dg,it)+'<button class="btn dark big wide" data-act="sznext">Devam</button></div>';
   }
   if(it.hint)b+='<p class="note center">'+it.hint+'</p>';
   return b;
+}
+/* --- cümle haritası: cümle kurduktan sonra her parçanın görevi (özne, fiil, nesne …) ve "neden böyle?" notları.
+   Roller elle denetlenmiş veriden gelir (#smapd: cümle → "S V A2 T2 F"); notlar burada, kurulan sıraya göre üretilir. --- */
+var SMD=null;
+function smData(){if(!SMD){try{SMD=JSON.parse($('smapd').textContent);}catch(e){SMD={};}}return SMD;}
+var SMROLE={S:'özne',A:'nesne (-i)',D:'nesne (-e)',G:'Genitiv (-in)',P:'yüklem',T:'zaman',K:'sebep',M:'nasıl',L:'yer / yön',N:'olumsuz',Z:'ek bilgi',
+  B:'bağlaç · 0. yer',R:'dönüşlü',Q:'soru kelimesi',O:'edatlı nesne',X:'karşılaştırma',Y:'çift bağlaç'};
+var SMCLS={V:'sv',F:'sv',S:'ss',A:'so',D:'so',G:'so',O:'so',R:'so',P:'sp',C:'sc',B:'sc',Q:'sc',Y:'sc'};
+var SMSEP={ab:1,an:1,auf:1,aus:1,ein:1,mit:1,vor:1,zu:1,'zurück':1,weg:1,los:1,fest:1,her:1,hin:1,vorbei:1,teil:1,nach:1};
+var SMMOD=/^(kann|kannst|können|könnt|konnte|konnten|könnte|könntest|könnten|muss|musst|müssen|müsst|musste|mussten|müsste|darf|darfst|dürfen|durfte|durften|dürfte|soll|sollst|sollen|sollte|solltest|sollten|will|willst|wollen|wollte|wollten|möchte|möchtest|möchten|mag|magst|mögen)$/i;
+var SMWER=/^(werde|wirst|wird|werden|werdet|wurde|wurdest|wurden|würde|würdest|würden)$/i,SMAUX=/^(habe|hast|hat|haben|habt|hatte|hattest|hatten|hattet|hätte|hättest|hätten|bin|bist|ist|sind|seid|war|warst|waren|wart|wäre|wärst|wären)$/i;
+var SMCONJ={weil:'çünkü, -dığı için',dass:'-dığını / -dığı',wenn:'-ırsa / -dığında',ob:'-ıp -madığını',als:'-dığında (geçmişte bir kez)',obwohl:'-masına rağmen',damit:'-sın diye',
+  bevor:'-madan önce',nachdem:'-dıktan sonra','während':'-ırken',bis:'-ana kadar',seit:'-dığından beri',sodass:'öyle ki, bu yüzden',indem:'-arak','als ob':'-mış gibi','immer wenn':'her -dığında',
+  wann:'ne zaman','warum':'neden',wo:'nerede','wie viel':'ne kadar'};
+var SMPAIR={sowohl:'sowohl … als auch = hem … hem de',weder:'weder … noch = ne … ne',entweder:'entweder … oder = ya … ya da','nicht nur':'nicht nur … sondern auch = sadece … değil, … da'};
+var SMCONTR={im:['in','dem'],ins:['in','das'],am:['an','dem'],ans:['an','das'],zum:['zu','dem'],zur:['zu','der'],vom:['von','dem'],beim:['bei','dem']};
+var SMSUBQ={N:'kim? ne?',A:'kimi? neyi?',D:'kime?',G:'kimin?'};
+function smEm(t){return '<b lang="de">'+esc(t)+'</b>';}
+/* cümle → parçalar [{w:[kelimeler],r,cl}] (cl: virgüllerle ayrılan yan/ana cümle numarası) */
+function smParse(de){
+  de=String(de||'').replace(/\*/g,'').trim();
+  var code=smData()[de];if(!code)return null;
+  var toks=szToks(de),words=de.split(/\s+/),comma={},k=0;
+  words.forEach(function(w){var c=w.replace(/^[„“"(…–-]+|[.,!?;:„“")…–-]+$/g,'');if(!c)return;if(/,["“)]?$/.test(w))comma[k]=1;k++;});
+  var ch=[],i=0,cl=0,ok=true;
+  code.split(' ').forEach(function(x){var r=x.charAt(0),n=+x.slice(1)||1;if(i+n>toks.length){ok=false;return;}
+    ch.push({w:toks.slice(i,i+n),s:i,n:n,r:r,cl:cl});i+=n;if(comma[i-1])cl++;});
+  if(!ok||i!==toks.length)return null;
+  return {de:de,toks:toks,ch:ch,end:/\?\s*$/.test(de)?'?':/!\s*$/.test(de)?'!':'.'};
+}
+/* kurulan sıraya göre (alternatif sıra) parçaları diz; parçalar bölünürse asıl sıraya dön */
+function smOrder(p,seq){
+  if(!seq||seq.join()===p.toks.map(function(_,i){return i;}).join())return p.ch.slice();
+  var pos={};seq.forEach(function(t,i){pos[t]=i;});
+  for(var c=0;c<p.ch.length;c++){var x=p.ch[c];for(var j=1;j<x.n;j++)if(pos[x.s+j]!==pos[x.s]+1)return p.ch.slice();}
+  var cls={};p.ch.forEach(function(x){(cls[x.cl]=cls[x.cl]||[]).push(x);});
+  var groups=Object.keys(cls).map(function(k){var g=cls[k].slice().sort(function(a,b){return pos[a.s]-pos[b.s];});
+    var lo=pos[g[0].s],n=0;g.forEach(function(x){n+=x.n;});var hi=pos[g[g.length-1].s]+g[g.length-1].n-1;return {g:g,lo:lo,ok:hi-lo+1===n};});
+  if(groups.some(function(g){return !g.ok;}))return p.ch.slice();
+  groups.sort(function(a,b){return a.lo-b.lo;});
+  var out=[];groups.forEach(function(g,gi){g.g.forEach(function(x){out.push({w:x.w,s:x.s,n:x.n,r:x.r,cl:gi});});});
+  return out;
+}
+function smRel(c,pg){var w=smLow(c);if(/^(der|die|das|den|dem|denen|deren|dessen|was|worüber|mit dem|über das|bei der|auf den|in dem|deren sohn)$/.test(w))return true;
+  if(w!=='wo'||!pg)return false;var l=pg[pg.length-1];var lw=l?l.w[l.w.length-1]:'';return !!l&&/[SAPD]/.test(l.r)&&/^[A-ZÄÖÜ]/.test(lw)&&!/^(sie|es|er|ich|du|wir|ihr|das)$/i.test(lw);}
+function smTxt(x){return x.w.join(' ');}
+function smLow(x){return x.w.join(' ').toLowerCase();}
+function smKind(g){var f=g[0];if(!f)return '';if(f.r==='C'){var w=smLow(f);
+  if(/^(um|ohne|statt)$/.test(w))return 'inf';if(/^je /.test(w))return 'je';return 'yan';}
+  if(g.some(function(x){return x.r==='V';}))return 'ana';
+  if(g.some(function(x){return x.r==='F'&&/(^| )zu |^\w*zu\w+en$|^(ab|an|auf|aus|ein|mit|vor|zurück|weg|los|fest)zu/.test(smLow(x)+' ');}))return 'inf';
+  return '';}
+function smIsZu(x){var w=smLow(x);return / ?zu \S+$/.test(' '+w)||/^(ab|an|auf|aus|ein|mit|vor|zurück|weg|los|fest)zu\S+$/.test(w);}
+/* fiil sonu parçasının türü (çekimli fiile göre) */
+function smFType(f,v){
+  var w=smLow(f),last=f.w[f.w.length-1].toLowerCase(),vw=v?smLow(v):'';lex();
+  if(smIsZu(f))return 'zu';
+  if(f.w.length===1&&SMSEP[last])return 'sep';
+  if(f.w.length>1)return /^[A-ZÄÖÜ]/.test(f.w[0])?'inf':/^(werden|worden)$/.test(last)?'pas2':'inf2';
+  if(v&&SMMOD.test(vw))return 'inf';
+  if(v&&/^(lasse|lässt|lassen|lasst|ließ)$/.test(vw))return 'inf';
+  if(v&&SMWER.test(vw))return VINF[last]&&!PMAP[last]?'inf':'pas';
+  if(v&&SMAUX.test(vw))return 'part';
+  return PMAP[last]?'part':'inf';
+}
+var SMFL={zu:'zu + mastar',sep:'ön ek',inf:'mastar',part:'Partizip',pas:'Partizip',pas2:'fiil sonu',inf2:'fiil sonu'};
+/* isim cinsi: havuzdan; bulunmazsa çoğul ya da bileşik isim denemesi */
+function smGens(noun){lex();var n=String(noun||'').toLowerCase(),out=[];if(!n)return out;
+  function g(a){return ART(a)==='der'?'m':a==='die'?'f':'n';}
+  if(/^(nachrichten|leute|eltern|ferien|kosten)$/.test(n))return ['p'];
+  if(NMAP[n])return [g(NMAP[n])];
+  [['nen',''],['en',''],['n',''],['e',''],['er',''],['s',''],['es','']].forEach(function(r){if(n.length>r[0].length+2&&n.slice(-r[0].length)===r[0]){var st=n.slice(0,-r[0].length);
+    [st,st.replace(/ä/,'a').replace(/ö/,'o').replace(/ü/,'u')].forEach(function(x){if(NMAP[x]){if(out.indexOf('p')<0&&!/^(s|es)$/.test(r[0]))out.push('p');
+      if(/^(en|n|s|es)$/.test(r[0])&&out.indexOf(g(NMAP[x])+r[0])<0)out.push(g(NMAP[x])+r[0]);}});}});
+  if(!out.length)for(var j=1;j<n.length-3;j++){var s2=n.slice(j);if(NMAP[s2])return [g(NMAP[s2])];}
+  return out;}
+function smGen(noun){var a=smGens(noun);return a.length===1?a[0].charAt(0):'';}
+var SMDEF={m:'der',f:'die',n:'das',p:'die'};
+/* hâl notu: "den Bericht: der Bericht (eril) → kimi? neyi? → Akkusativ: den" */
+function smCase(x,all,vtxt){
+  var w=x.w.slice(),lw=w.map(function(t){return t.toLowerCase();}),r=x.r,prep='',art='',cc='',why='';
+  if(w.length===1&&FI[lw[0]]&&/^(mich|mir|dich|dir|ihn|ihm|uns|euch|ihnen|sich)$/.test(lw[0])){
+    if(r==='R'){var a=all.filter(function(y){return y.r==='A';})[0];
+      if(/^(mir|dir)$/.test(lw[0]))return smEm(w[0])+': dönüşlü zamir, Dativ. Cümlede başka bir Akkusativ nesne ('+(a?smEm(smTxt(a)):'')+') olduğu için '+smEm(lw[0])+' (kendine).';
+      if(/^(mich|dich)$/.test(lw[0]))return smEm(w[0])+': dönüşlü zamir (kendimi / kendini). Başka Akkusativ nesne yok → Akkusativ: '+smEm(lw[0])+'.';
+      return smEm(w[0])+': dönüşlü zamir; özne işi kendine yapıyor ('+(lw[0]==='sich'?'3. kişi ve Sie hep sich':lw[0]==='uns'?'wir → uns':'ihr → euch')+').';}
+    if(r==='D'||r==='A'){var base={mich:'ich',mir:'ich',dich:'du',dir:'du',ihn:'er',ihm:'er',uns:'wir',euch:'ihr',ihnen:w[0]==='Ihnen'?'Sie':'sie'}[lw[0]];
+      return smEm(w[0])+': '+SMSUBQ[r]+' → '+CASEN[r]+' ('+base+' → '+w[0]+')'+(r==='D'&&DATV.test(vtxt)?'. '+smEm(vtxt)+' Dativ ile kullanılır.':'.');}
+    return '';}
+  var i=0;
+  if(SMCONTR[lw[0]]){prep=SMCONTR[lw[0]][0];art=lw[0];i=1;}
+  else if(DATP[lw[0]]||AKKP[lw[0]]||GENP[lw[0]]||WECH[lw[0]]){prep=lw[0];i=1;art=lw[1]||'';}
+  else art=lw[0];
+  var noun='';for(var k=i+(SMCONTR[lw[0]]?0:FI[lw[i]]?1:0);k<w.length;k++)if(/^[A-ZÄÖÜ]/.test(w[k])){noun=w[k];break;}
+  if(!noun||lw.indexOf('und')>=0)return '';
+  var fa=SMCONTR[art]?FI[art]:FI[art];if(!fa)return '';
+  if(prep){if(DATP[prep])cc='D';else if(AKKP[prep])cc='A';else if(GENP[prep])cc='G';
+    else{var cs={},g0=smGens(noun).map(function(x){return x.charAt(0);});fa.forEach(function(c){if((c[0]==='A'||c[0]==='D')&&(!g0.length||g0.indexOf(c.slice(-1))>=0))cs[c[0]]=1;});
+      cs=Object.keys(cs);if(cs.length!==1)return '';cc=cs[0];}}
+  else cc={A:'A',D:'D',G:'G',S:'N',P:'N'}[r]||'';
+  if(!cc||cc==='N')return '';
+  var gl=smGens(noun).filter(function(x){return fa.indexOf(cc+x.charAt(0))>=0;});if(!gl.length)return '';
+  var gx=gl[0],g=gx.charAt(0),sfx=gx.slice(1),base=noun.slice(0,noun.length-sfx.length);
+  var gn=g==='p'?'çoğul':GENN[g],head=g==='p'?'çoğul':SMDEF[g]+' '+(sfx?base:noun)+' ('+gn+')';
+  if(sfx&&g==='m'&&/^e?n$/.test(sfx))head+=', n-Deklination: Nominativ dışında -'+sfx+' eki alır';
+  if(sfx&&/^e?s$/.test(sfx)&&cc==='G')head+=', Genitiv\'de isim -'+sfx+' alır';
+  var artTxt=SMCONTR[art]?smEm(art)+' (= '+SMCONTR[art].join(' ')+')':smEm(i?w[1]:w[0]);
+  if(!prep){
+    why=SMSUBQ[cc]+' → '+CASEN[cc];
+    if(cc==='D'&&DATV.test(vtxt))why+=' ('+smEm(vtxt)+' Dativ ister)';
+    if(cc==='G')why='kimin? → Genitiv';
+    return smEm(smTxt(x))+': '+head+' · '+why+' → '+artTxt;}
+  var pw=smEm(prep);
+  if(DATP[prep])why=pw+' her zaman Dativ ister';
+  else if(AKKP[prep])why=pw+' her zaman Akkusativ ister';
+  else if(GENP[prep])why=pw+' Genitiv ister';
+  else if(r==='T')why=pw+' zaman bildiriyor → Dativ';
+  else if(r==='O')why='fiil + '+pw+' kalıbı → '+CASEN[cc];
+  else why=pw+(cc==='A'?' + nereye? (yön, hareket) → Akkusativ':' + nerede? (durum) → Dativ');
+  if(r==='T'&&cc!=='D')return '';
+  return smEm(smTxt(x))+': '+why+' · '+head+' → '+artTxt;
+}
+function smNotes(ord,end){
+  var cls=[],n=[],cn=[];ord.forEach(function(x){(cls[x.cl]=cls[x.cl]||[]).push(x);});
+  var prev='';
+  cls.forEach(function(g,gi){
+    var kind=smKind(g),V=g.filter(function(x){return x.r==='V';})[0],F=g.filter(function(x){return x.r==='F';}),S=g.filter(function(x){return x.r==='S';})[0];
+    var y=g.filter(function(x){return x.r==='Y';})[0];
+    if(y){var yk=smLow(y);if(SMPAIR[yk]){var pp=SMPAIR[yk].split(' = ');n.push(smEm(pp[0])+' = '+esc(pp[1])+'. İki parça birlikte kullanılır.');}}
+    if(kind==='ana'&&V){
+      var vi=g.indexOf(V),first=g[0].r==='B'?g[1]:g[0],fi=g.indexOf(first),vt=smTxt(V);
+      if(g[0].r==='B')n.push(smEm(smTxt(g[0]))+' 0. yerde durur: iki cümleyi bağlar ama sırayı değiştirmez, arkasından yine normal cümle gelir.');
+      if(vi===fi&&(prev==='yan'||prev==='inf'||prev==='je'))n.push('Önceki yan cümle 1. yeri doldurdu → bu cümle hemen çekimli fiille başlıyor: '+smEm(vt+(S?' '+smTxt(S):''))+'.');
+      else if(vi===0&&gi===0)n.push(end==='?'?'Evet/hayır sorusu: çekimli fiil ('+smEm(vt)+') en başta'+(S?', özne ('+smEm(smTxt(S))+') hemen arkasında.':'.'):'Fiil ('+smEm(vt)+') en başta: rica ya da emir cümlesi.');
+      else if(vi===fi+1){
+        if(first.r==='Q')n.push('Soru kelimesi ('+smEm(smTxt(first))+') 1. yerde, çekimli fiil ('+smEm(vt)+') hemen arkasında: 2. yer.');
+        else if(first.r!=='S'&&first.r!=='Y'&&!/^desto /.test(smLow(first))&&S&&g.indexOf(S)>vi){var fw=smLow(first);
+          n.push('1. yerde '+smEm(smTxt(first))+' var → çekimli fiil yine 2. yerde ('+smEm(vt)+'), özne ('+smEm(smTxt(S))+') fiilin arkasına geçti.'+(/^(deshalb|deswegen|darum|trotzdem|dann|danach|außerdem|leider)$/.test(fw)?' '+smEm(smTxt(first))+' bağlaç değil zarftır, 1. yeri kaplar.':''));}
+        else if(first.r==='S'&&!F.length&&gi===0&&cls.length===1)n.push('Düz sıra: özne ('+smEm(smTxt(S))+') 1. yerde, çekimli fiil ('+smEm(vt)+') 2. yerde.');}
+      var f=F.filter(function(x){return g.indexOf(x)>vi;});f=f[f.length-1];
+      var vp=vi===(g[0].r==='B'?1:0)&&!(prev==='yan'||prev==='inf'||prev==='je')?'en başta':'2. yerde';
+      if(f){var ft=smFType(f,V),vf=smEm(vt+' … '+smTxt(f)),vw=smLow(V),mid=g.slice(vi+1,g.indexOf(f)).filter(function(x){return x.r!=='S';});
+        var t={inf:SMMOD.test(vw)?vf+': modal fiil '+vp+' çekimlenir, asıl fiil mastar hâlinde en sona gider.':/^w(ü|u)rde/.test(vw)&&/ü/.test(vw)?vf+': würde + mastar (-erdim / -ardım). würde '+vp+', mastar en sonda.':SMWER.test(vw)?vf+': gelecek zaman. werden '+vp+', mastar en sonda.':(/^(lass|läss|ließ)/.test(vw)?vf+': lassen + mastar: başkasına yaptırmak ya da izin vermek. lassen '+vp+', mastar en sonda.':vf+': ikinci fiil mastar hâlinde en sonda.'),
+          part:vf+': '+(/^(hatte|hattest|hatten|hattet|war|warst|waren|wart)$/.test(vw)?'Plusquamperfekt (geçmişin geçmişi)':/^(hätte|hättest|hätten|wäre|wärst|wären)$/.test(vw)?'gerçekleşmemiş geçmiş (Konjunktiv II)':'Perfekt')+'. '+(/^(bin|bist|ist|sind|seid|war|warst|waren|wart|wäre|wärst|wären)$/.test(vw)?'Hareket ya da değişim bildiren fiil → sein. ':'')+'Yardımcı fiil '+vp+', Partizip en sonda.',
+          pas:vf+': edilgen (yapılır / yapıldı). werden '+vp+', Partizip en sonda.',
+          pas2:vf+': '+(/worden$/.test(smLow(f))?'edilgen Perfekt: sein 2. yerde, Partizip + worden en sonda.':SMWER.test(vw)?'gelecek zamanda edilgen: werden 2. yerde, Partizip + werden en sonda.':'modal + edilgen: modal 2. yerde, Partizip + werden en sonda.'),
+          inf2:vf+': '+(/lassen$/.test(smLow(f))?'yaptırmak (lassen). Yardımcı fiil 2. yerde, iki fiil en sonda.':'yardımcı fiil 2. yerde, iki mastar en sonda.'),
+          sep:vf+': ayrılan fiil. Ön ek ('+smEm(smTxt(f))+') fiilden kopar ve cümlenin en sonuna gider.',
+          zu:vf+': zu + mastar en sonda.'}[ft];
+        n.push(t);
+        if(mid.length)n.push('Aradakiler ('+mid.map(function(x){return smEm(smTxt(x));}).join(' · ')+') fiilin iki parçasının arasına girer. Sabit olan iki şey: çekimli fiil '+vp+', öteki fiil parçası en sonda.');}
+      var tk=g.filter(function(x){return 'TKML'.indexOf(x.r)>=0&&g.indexOf(x)>vi;});
+      var kinds={};tk.forEach(function(x){kinds[x.r]=1;});
+      if(Object.keys(kinds).length>=2)n.push('Fiilden sonraki bilgiler genelde şu sırada dizilir: zaman → sebep → nasıl → yer (TeKaMoLo): '+tk.map(function(x){return smEm(smTxt(x));}).join(' → ')+'.');
+    }
+    if(kind==='yan'&&V){var c=g[0],cw=smLow(c),fv=g[g.length-1]===V;
+      var pv=cls[gi-1]?cls[gi-1].filter(function(x){return /[SAPD]/.test(x.r);}).pop():null;
+      var rel=smRel(c,cls[gi-1]);
+      var fx=F.filter(function(x){return g.indexOf(x)<g.indexOf(V);}).pop();
+      if(rel)n.push('İlgi cümlesi: '+smEm(smTxt(c))+(/^wo[rü]/.test(cw)?' önceki cümlenin tamamı hakkında bilgi verir':pv?' ile '+smEm(smTxt(pv))+' hakkında bilgi verilir':'')+'. Yan cümlede çekimli fiil ('+smEm(smTxt(V))+') en sonda.');
+      else n.push(smEm(smTxt(c))+(SMCONJ[cw]?' ('+esc(SMCONJ[cw])+')':'')+' bir yan cümle açar → çekimli fiil ('+smEm(smTxt(V))+') '+(fv?'en sona':'sona doğru')+' gider.');
+      if(fx)n.push('Yan cümlede fiilin iki parçası da sonda: önce '+smEm(smTxt(fx))+', en son çekimli fiil '+smEm(smTxt(V))+'.');}
+    if(kind==='je'&&V){var nx=cls[gi+1];n.push(smEm('Je … desto')+': ne kadar … o kadar. '+smEm(smTxt(g[0]))+' kısmında fiil ('+smEm(smTxt(V))+') sonda'+(nx&&nx[0]?'; '+smEm(smTxt(nx[0]))+' kısmında fiil hemen arkadan gelir.':'.'));}
+    if(kind==='inf'){var zf=F.filter(smIsZu)[0]||F[0],c0=g[0].r==='C'?smLow(g[0]):'';
+      if(zf)n.push((c0?smEm(smTxt(g[0])+' … '+smTxt(zf))+(c0==='um'?' (-mek için)':c0==='ohne'?' (-meden)':' (-mek yerine)'):smEm(smTxt(zf)))+': zu + mastar en sonda. Bu kısımda özne yok; kimin yaptığı ana cümleden anlaşılır.');}
+    var X=g.filter(function(x){return x.r==='X';})[0];
+    if(X&&F.length)n.push(smEm(smTxt(X))+': karşılaştırma (-den daha) genelde fiil sonundan sonra, en sona gelir.');
+    var vt2=V?smLow(V):'';g.forEach(function(x){if('ADGRTLMKOZ'.indexOf(x.r)<0)return;var s=smCase(x,g,vt2);if(s)cn.push(s);});
+    prev=kind;
+  });
+  return n.slice(0,4).concat(cn.slice(0,3));
+}
+function smapHtml(de,seq){
+  var p=smParse(de);if(!p)return '';
+  var ord=smOrder(p,seq),cls=[],last=-1;ord.forEach(function(x){(cls[x.cl]=cls[x.cl]||[]).push(x);});
+  var map=cls.map(function(g,gi){var kind=smKind(g),V=g.filter(function(x){return x.r==='V';})[0],vi=g.indexOf(V);
+    var F=g.filter(function(x){return x.r==='F';}),lf=F[F.length-1];
+    return '<div class="smcl'+(kind==='yan'||kind==='inf'||kind==='je'?' yan':'')+'">'+(kind==='yan'||kind==='je'?'<span class="smk">yan cümle</span>':kind==='inf'?'<span class="smk">mastar kısmı</span>':'')+
+      g.map(function(x,i){var lab;
+        if(x.r==='V')lab=kind==='ana'?'çekimli fiil':'çekimli fiil · sonda';
+        else if(x.r==='F')lab=SMFL[smFType(x,V)]+(x===lf?' · sonda':'');
+        else if(x.r==='C')lab=/^je /.test(smLow(x))?'je + karşılaştırma':smRel(x,cls[gi-1])?'ilgi zamiri':'bağlaç';
+        else lab=SMROLE[x.r]||'';
+        var pos='',b0=g[0].r==='B'?1:0;
+        if(kind==='ana'&&V){if(x===V)pos=vi===b0?(gi>0&&smKind(cls[gi-1])!=='ana'?'2':'1'):'2';else if(i===b0&&vi===b0+1)pos='1';else if(x===lf&&i>vi)pos='son';}
+        return '<span class="smc '+(SMCLS[x.r]||'sa')+'">'+(pos?'<i>'+pos+'</i>':'')+'<b lang="de">'+esc(smTxt(x))+'</b><small>'+esc(lab)+'</small></span>';}).join('')+'</div>';}).join('');
+  var notes=smNotes(ord,p.end);
+  var open=window.innerWidth>=900?' open':'';
+  return '<details class="smap"'+open+'><summary>Cümlenin yapısı</summary><div class="smrow">'+map+'</div>'+
+    (notes.length?'<ul class="smn">'+notes.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul>':'')+'</details>';
 }
 /* kullanıcının sırasına en yakın doğru sıra (teşhis için) */
 function szBest(o){
@@ -7378,7 +7588,7 @@ function pReview0(){
       '<div class="ex exq" lang="de" style="min-height:30px">'+(cu.res?'<b class="'+(cu.res==='ok'?'ok':'no')+'">'+esc(pl)+'</b>':esc(pl||'…'))+'</div></div>';
     if(!cu.res)b+='<div class="opts sz">'+cu.ord.filter(function(i){return cu.pl.indexOf(i)<0;}).map(function(i){return '<button lang="de" data-act="gsp" data-v="'+i+'">'+esc(cu.disp[i])+'</button>';}).join('')+'</div>'+
       (cu.pl.length?'<button class="link center" data-act="gsback">Geri al</button>':'');
-    else b+='<div class="fb '+(cu.res==='ok'?'ok':'no')+'"><b>'+(cu.res==='ok'?'Richtig!':'Doğrusu')+'</b><span lang="de">'+esc(c.w)+'</span></div><button class="btn dark big wide" data-act="rvnext">Devam</button>';
+    else b+='<div class="fb '+(cu.res==='ok'?'ok':'no')+'"><b>'+(cu.res==='ok'?'Richtig!':'Doğrusu')+'</b><span lang="de">'+esc(c.w)+'</span></div>'+smapHtml(c.w)+'<button class="btn dark big wide" data-act="rvnext">Devam</button>';
     return {t:'Kelime tekrarı',b:b};
   }
   if(cu.type==='intro'){
@@ -9522,7 +9732,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__smap=smapHtml;window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
