@@ -8067,7 +8067,7 @@ ACT.spause=function(){SESS=null;closeAll();};
 ACT.sdone=function(){openPage({kind:'sdone'});};
 ACT.prepick=function(b){if(!X||!X.pre)return;if(b.dataset.f==='1')X.pre.g2=b.dataset.v;else X.pre.g=b.dataset.v;drawPage();};
 function ezMarkStep(id,k){S.ezst=S.ezst||{};var o=S.ezst[id]||(S.ezst[id]={});if(!o[k]){o[k]=1;save();if(X&&X.kind==='ez')setTimeout(drawPage,0);}}
-ACT.memmine=function(b){var id=b.dataset.id,i=+b.dataset.i;S.mw=S.mw||{};if(i<0)delete S.mw[id];else{S.mw[id]=i;toast('Senin yolun · yanlış yapınca bu kanca hatırlatılır');}save();drawPage();};
+ACT.memmine=function(b){var id=b.dataset.id,i=+b.dataset.i,a=mwOf(id),k=a.indexOf(i);S.mw=S.mw||{};if(k>=0)a.splice(k,1);else{a.push(i);toast(a.length>1?a.length+' yolun seçili · yanlış yapınca hepsi hatırlatılır':'Senin yolun · yanlış yapınca bu kanca hatırlatılır');}if(a.length)S.mw[id]=a;else delete S.mw[id];save();drawPage();};
 ACT.kdrev=function(b){var d=day();d.kdr=+b.dataset.i;save();render();if(X&&X.kind==='yaz')drawPage();};
 ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
 /* vaktim az: o gün yeni kelime yok, tekrar zamanı gelmiş en çok 20 kart; seri korunur, diğer görevler isteğe bağlı */
@@ -8340,17 +8340,20 @@ function ezGrid(t,cellFn,e,sp){
     t.rows.map(function(row,r){return '<tr><th lang="de">'+esc(row[0])+(t.base&&t.base[r]?'<small class="bh">'+esc(t.base[r])+'</small>':'')+'</th>'+row.slice(1).map(function(v,c){return '<td>'+cellFn(t,r,c,e)+'</td>';}).join('')+
       (sp?'<td class="s"><button class="spk" data-act="say" data-t="'+esc(ezSayRow(t,r))+'" aria-label="dinle">🔊</button></td>':'')+'</tr>';}).join('')+'</tbody></table>';
 }
-/* hafıza teknikleri: tek satırlık başlıklar; "Bu benim yolum" ile seçilen açık kalır, yanlış cevaptan sonra "Senin yolun" olarak geri gelir */
+/* hafıza teknikleri: tek satırlık başlıklar; "Bu benim yolum" ile istediğin kadarını seç, seçilenler açık kalır ve yanlış cevaptan sonra "Senin yolun" olarak geri gelir */
+function mwOf(id){var t=EZBY[id],v=S.mw&&S.mw[id];if(v==null)return [];if(!(v instanceof Array))v=[v];
+  return v.filter(function(i,k){return t&&t.mem&&t.mem[i]&&v.indexOf(i)===k;});}
 function memHtml(t){
   if(!t.mem||!t.mem.length)return '';
-  var mw=S.mw&&S.mw[t.id],me=mw!=null&&t.mem[mw]?mw:-1;
+  var sel=mwOf(t.id);
   var li=function(m,i){return '<details class="mem"><summary><span class="mk">'+esc(MEMK[m.k]||m.k)+'</span><b class="mt">'+rich(m.t)+'</b></summary><p>'+rich(m.x)+'</p>'+
     '<button class="btn sm" style="margin-top:8px" data-act="memmine" data-id="'+t.id+'" data-i="'+i+'">Bu benim yolum</button></details>';};
-  if(me<0)return '<div class="sech"><b>Hafıza teknikleri</b><span>Birine dokun; sana uyanı "Bu benim yolum" ile seç</span></div><div class="mems">'+t.mem.map(li).join('')+'</div>';
-  var m=t.mem[me];
-  return '<div class="sech"><b>Senin yolun</b></div><div class="mem on"><span class="mk">'+esc(MEMK[m.k]||m.k)+'</span><b>'+rich(m.t)+'</b><p>'+rich(m.x)+'</p>'+
-    '<button class="link" style="margin-top:6px" data-act="memmine" data-id="'+t.id+'" data-i="-1">Seçimi kaldır</button></div>'+
-    '<details class="rvall"><summary>Başka yollar ('+(t.mem.length-1)+') ›</summary><div class="mems">'+t.mem.map(function(x,i){return i===me?'':li(x,i);}).join('')+'</div></details>';
+  if(!sel.length)return '<div class="sech"><b>Hafıza teknikleri</b><span>Birine dokun; sana uyanları "Bu benim yolum" ile seç (birden fazla olabilir)</span></div><div class="mems">'+t.mem.map(li).join('')+'</div>';
+  var on=sel.map(function(i){var m=t.mem[i];return '<div class="mem on"><span class="mk">'+esc(MEMK[m.k]||m.k)+'</span><b>'+rich(m.t)+'</b><p>'+rich(m.x)+'</p>'+
+    '<button class="link" style="margin-top:6px" data-act="memmine" data-id="'+t.id+'" data-i="'+i+'">Seçimi kaldır</button></div>';}).join('');
+  var rest=t.mem.map(function(x,i){return sel.indexOf(i)>=0?'':li(x,i);}).join(''),nr=t.mem.length-sel.length;
+  return '<div class="sech"><b>'+(sel.length>1?'Senin yolların':'Senin yolun')+'</b></div><div class="mems">'+on+'</div>'+
+    (nr?'<details class="rvall"><summary>Başka yollar ('+nr+') · birini daha ekleyebilirsin ›</summary><div class="mems">'+rest+'</div></details>':'');
 }
 /* tablo sayfasında tek ana düğme: yeni tabloda sırayla 1 · Dinle ve tekrar et → 2 · Kapat ve hatırla → 3 · Test et */
 function ezStep(t){var st=S.ezst&&S.ezst[t.id]||{};if(t.kind==='kural'||ezpeek(t.id).n>0)return 0;if(!st.l&&canSay())return 1;if(!st.h)return 2;return 3;}
@@ -8837,7 +8840,7 @@ function coachLite(d,it){
   if(it&&it.ex)L.push('<p><b>Neden:</b> '+rich(oneLine(it.ex))+'</p>');
   else if(sure&&d.why&&!d.nt)L.push('<p><b>Neden:</b> '+rich(oneLine(d.why))+'</p>');
   if(sure&&d.think&&d.cat!=='genel')L.push('<p><b>Nasıl düşün:</b> '+rich(oneLine(d.think))+'</p>');
-  var tz=it&&it.tz&&EZBY[it.tz],mw=tz&&S.mw&&S.mw[it.tz];if(tz&&mw!=null&&tz.mem&&tz.mem[mw])L.push('<p>🪝 <b>Senin yolun · '+rich(tz.mem[mw].t)+':</b> '+rich(oneLine(tz.mem[mw].x))+'</p>');
+  var tz=it&&it.tz&&EZBY[it.tz];if(tz)mwOf(it.tz).forEach(function(i){var m=tz.mem[i];L.push('<p>🪝 <b>Senin yolun · '+rich(m.t)+':</b> '+rich(oneLine(m.x))+'</p>');});
   return L.length?'<div class="coach lite">'+L.join('')+'</div>':'';
 }
 /* geri bildirim kartı */
