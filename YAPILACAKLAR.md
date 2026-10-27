@@ -150,3 +150,7 @@ Karar: Google Gemini resim modeli, önce ÜCRETSİZ deneme.
 - [x] Basamak 3'ten itibaren listede eksik olan tür önce sorulur; listesi eksik kelime 14 günden uzun beklemez. Kelime kartında liste görünür. Eski kartlar basamağına göre (yazım, cümle) kısmen sayıldı.
 - [x] Kelimeyi kaldır: tarayıcının onay penceresi yerine uygulama içi onay (telefonda pencere kapanınca sonraki dokunuş yutuluyordu).
 - [x] Okuma: "Anladın mı?" adımında metin de görünür (masaüstünde solda sabit, telefonda soruların üstünde açılır kutu); kelimeye dokunma orada da çalışır.
+
+## Tur 9 · Oyunlar (27 Ekim)
+- [x] Oyunlarda kendiliğinden ses kapatıldı (Lücke ve Eşleştir doğru cevaptan sonra okuyordu); 🔊 düğmeleri elle çalışır.
+- [x] Yeni oyunlar: Hafıza (kart çevir), Harf Salatası (karışık harflerden yaz), Çoğul Avı, haben mi sein mi? (60 sn), Doğru mu? (60 sn). Gizli kalan Artikel-Blitz Kütüphane'ye eklendi. Rekorlar cihazlar arası eşitlenir.
