@@ -495,6 +495,7 @@ details.dsec>summary span{font-size:12px;color:var(--ink3)}details.dsec[open]>su
 .fam{margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--ink2);text-align:left}.fam>span{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-right:4px}.fam i{font-style:normal;color:var(--ink3)}
 .rmrow{display:flex;justify-content:flex-end;margin:2px 0 -4px}
 .rmbtn{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:999px;background:var(--card);border:1.5px solid color-mix(in srgb,var(--bad) 55%,var(--line));color:var(--bad);font-weight:700;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.06);cursor:pointer}
+.rmrow.ask{align-items:center;gap:8px;flex-wrap:wrap}.rmrow.ask span{font-size:13px;color:var(--ink2);margin-right:auto}
 .rmbtn:active{transform:scale(.97)}
 .rcard{border-radius:14px;padding:12px 14px;background:var(--card);border:1.5px solid var(--ink);margin:4px 0 10px}
 .rcard .r1{font-weight:800;font-size:16px;line-height:1.45;margin:2px 0 0}.rcard .r2{font-size:14px;line-height:1.5;color:var(--ink2);margin:6px 0 0}
@@ -756,6 +757,8 @@ details.howto b{color:var(--ink)}
 .ezq-a{font-family:var(--f-body);font-size:14px;color:var(--ink2);font-weight:600;margin-top:4px}
 .ezacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .ezacts .btn{flex:1 1 160px}.ezacts>.btn.lime{flex-basis:100%}.ezacts>.row{flex:1 1 100%}.ezacts .row .btn.sm{flex:1 1 auto}
+.lsq2{display:block}.lsqt{margin-bottom:10px}.lsqt>summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--ink3);margin:0 4px 6px}.lstext.sm{font-size:15.5px;line-height:1.75;padding:14px 16px}
+@media (min-width:900px){.lsq2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:start}.lsq2t{position:sticky;top:8px;max-height:calc(100vh - 90px);overflow:auto}}
 .lsteps{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 12px}.lsteps span{font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--card2);color:var(--ink3);border:1px solid var(--line)}
 .lsteps span.on{background:var(--spr-t);color:var(--spr);border-color:color-mix(in srgb,var(--spr) 45%,var(--line))}.lsteps span.dn{color:var(--ok)}
 .lsbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}.lsbar .btn.on{background:var(--spr-t);border-color:var(--spr)}
@@ -772,6 +775,7 @@ mark.lsm{background:color-mix(in srgb,var(--wrn) 28%,transparent);color:inherit;
 .lsbank{margin-top:10px}
 .lsli{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:10px 2px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;cursor:pointer;color:inherit;font:inherit}.lsli:last-child{border-bottom:0}
 .lsli b{display:block;font-size:15px}.lsli small{display:block;color:var(--ink3);font-size:12px;margin-top:1px}.lsli .ok{color:var(--ok);font-weight:700}
+.ckl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.ckl span{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--ink3)}.ckl span.on{background:color-mix(in srgb,var(--ok) 14%,var(--card));border-color:color-mix(in srgb,var(--ok) 45%,var(--line));color:var(--ok)}
 .smap{margin:12px 0 4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;text-align:left}
 .smap>summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--ink2)}
 .smrow{display:flex;flex-wrap:wrap;gap:12px 8px;margin-top:14px;align-items:stretch}
@@ -3290,7 +3294,7 @@ function blank(){return {v:1,start:today(),srs:{},mine:[],days:{},gram:{},gdone:
   ext:{}};}
 function migrate(s){
   /* yeni kurulum: tek seferlik geçişlere gerek yok (yoksa ikinci açılışta geçmiş günler eski kurala göre donardı) */
-  if(!s||typeof s!=='object'){var n0=blank();n0.scv=8;n0.gs1=1;n0.rk1=1;n0.rk2=1;return n0;}
+  if(!s||typeof s!=='object'){var n0=blank();n0.scv=8;n0.ck1=1;n0.gs1=1;n0.rk1=1;n0.rk2=1;return n0;}
   var b=blank(),k;
   for(k in b)if(s[k]==null)s[k]=b[k];
   for(k in b.set)if(s.set[k]==null)s.set[k]=b.set[k];
@@ -3319,6 +3323,8 @@ function migrate(s){
       d9.sc0=Math.round(30*w9)+Math.round(25*g9)+Math.round(25*e9)+Math.round(20*c9);
       d9.mn0=(d9.wt===0||(d9.wt>0&&(d9.w||0)>=d9.wt))&&Math.round(25*g9)+Math.round(25*e9)+Math.round(20*c9)===0?1:0;}
     s.scv=9;}
+  /* kontrol listesi: basamak 2'ye çıkan kart boşluk/yazma sorusunu, 3'e çıkan yazma sorusunu en az bir kez geçmiştir */
+  if(!s.ck1){for(k in s.srs){var q9=s.srs[k];if(!q9||q9.st==null||q9.ck)continue;if(q9.st>=2){q9.ck={c:1};if(q9.st>=3)q9.ck.w=1;}}s.ck1=1;}
   /* tur 2: seviye testinin işaretleri sıfırlanır; bütün konular baştan */
   if(!s.gs1&&typeof GBY!=='undefined'){var td0=today();for(k in s.gx){var g0=s.gx[k];if(g0&&g0.stg&&g0.stg.kur&&g0.stg.kur!=='test'&&GBY[k])GBY[k][4].slice(0,3).forEach(function(_,i){var kk='gs:'+k+':'+i;if(!s.srs[kk])s.srs[kk]={i:0,e:2.5,n:0,d:td0,a:td0,st:0,nw:1,u:Date.now()};});}s.gs1=1;}
   /* seviye testinden kalan ilerleme (base, işaretler, kelime tahmini) tamamen silinir */
@@ -3491,12 +3497,13 @@ function grade(id,g){
   var done1=wasDue&&g>0&&!(d.wd&&d.wd[id]);if(done1){d.wd=d.wd||{};d.wd[id]=1;d.w=(d.w||0)+1;if(!fresh)d.wrv=(d.wrv||0)+1;}
   lgBump('w','',function(e){e.a=(e.a||0)+1;if(g>0)e.c++;if(done1)e.n++;});
   if(fresh&&id.indexOf('p:')===0)d.np=(d.np||0)+1;
-  if(was<21&&s.i>=21)d.sat=(d.sat||0)+1;   /* "oturdu" eşiği: 21 gün */
   save();
 }
+/* bir cevaptan sonra kelime "oturdu" eşiğini ilk kez geçtiyse günün sayacına eklenir */
+function satBump(id,before){if(!before&&isSat(id)){var d=day();d.sat=(d.sat||0)+1;}}
 function counts(){
   var t=today(),due=0,lrn=0,sat=0;
-  for(var id in S.srs){var s=S.srs[id];if(s.i>=21)sat++;else lrn++;if(s.d<=t&&card(id))due++;}
+  for(var id in S.srs){var s=S.srs[id];if(isSat(id))sat++;else lrn++;if(s.d<=t&&card(id))due++;}
   return {due:due,lrn:lrn,sat:sat};
 }
 function newLeft(){var d=peek(today())||{};return Math.max(0,(d.ncap!=null?d.ncap:S.set.newPerDay)+(d.npx||0)-(d.np||0));}
@@ -6558,9 +6565,9 @@ function vKelimeler(){
   return h;
 }
 function pWlist(){
-  var f=X.f,t=today(),ids=Object.keys(S.srs).filter(function(id){var x=S.srs[id];if(!card(id))return false;return f==='due'?x.d<=t:f==='sat'?(x.i||0)>=21:(x.i||0)<21;});
+  var f=X.f,t=today(),ids=Object.keys(S.srs).filter(function(id){var x=S.srs[id];if(!card(id))return false;return f==='due'?x.d<=t:f==='sat'?isSat(id):!isSat(id);});
   ids.sort(function(a,b){return (S.srs[a].d||'')<(S.srs[b].d||'')?-1:1;});
-  var T={due:'Bugün tekrarı gelenler',lrn:'Öğreniliyor (aralığı 21 günden kısa)',sat:'Oturan kelimeler'}[f];
+  var T={due:'Bugün tekrarı gelenler',lrn:'Öğreniliyor (aralığı 21 günden kısa ya da listesi eksik)',sat:'Oturan kelimeler'}[f];
   var b='<div><div class="eyebrow">Kelimeler</div><h1>'+T+' · '+ids.length+'</h1></div><div class="seg" style="margin:8px 0">'+[['due','Tekrarı gelen'],['lrn','Öğreniliyor'],['sat','Oturdu']].map(function(x){return '<button class="'+(f===x[0]?'on':'')+'" data-act="wlist" data-v="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>';
   if(!ids.length)return {t:T,b:b+'<div class="card"><p class="muted">'+(f==='due'?'Bugün tekrar edilecek kart kalmadı.':'Bu listede henüz kart yok.')+'</p></div>'};
   return {t:T,b:b+'<div class="card qres">'+ids.map(function(id){var c=card(id),x=S.srs[id],a=ART(c.a);
@@ -6573,6 +6580,7 @@ function matchRound(){var sd={},st={},out=[];weakFirst(gameIds(),5).forEach(func
 function pWcard(){var id=X.id,c=card(id);if(!c)return {t:'',b:''};if(!HKY)hkyLoad(function(){if(X&&X.kind==='wcard')drawPage();});
   var x=S.srs[id]||{};
   return {t:deText(c),b:(isBan(id)?'':rmBtn(id))+'<div class="card rv">'+rvCard(c,true)+wordLinks(c)+storyBox(id,c,'full')+(hkOf(id)&&!(S.hk[id].src==='hky'||hkCopy(S.hk[id].t))?'<div class="hook"><span>🪝 Kancan</span><p>'+esc(hkOf(id))+'</p></div>':'')+'</div>'+
+    (S.srs[id]&&ckReq(id).length?'<div class="card" style="padding:10px 14px"><div class="eyebrow">Oturması için · '+(isSat(id)?'oturdu ✓':ckMiss(id).length?ckMiss(id).length+' eksik':'21 gün aralık bekleniyor')+'</div>'+ckHtml(id)+'<p class="small muted" style="margin-top:6px">Kelime her biçimde bir kez doğru bilinince ve tekrar aralığı 21 güne çıkınca oturur. Eksik türler tekrarda önce sorulur.</p></div>':'')+
     '<p class="small muted center">'+(x.lp?x.lp+' kez unuttun · ':'')+'sıradaki tekrar: '+(x.d?trShort(x.d):'—')+'</p>'+
     (isBan(id)?'<p class="small center">Bu kelimeyi kaldırdın. <button class="link" data-act="unban" data-id="'+esc(id)+'">Geri al</button></p>':'')};}
 /* oyun sonunda kısa "Karıştırdıkların" listesi */
@@ -6613,7 +6621,7 @@ function searchHtml(q){
   if(!out.length)return '<div class="small muted" style="padding:8px 0">Bulunamadı.</div>';
   return out.map(function(c){var s=S.srs[c.id],a=ART(c.a);
     return '<div class="r"><span class="w" lang="de" style="color:var(--'+(a||'ink')+')">'+(a?a+' ':'')+esc(c.w)+'</span><span class="m">'+esc(c.tr)+'</span>'+
-      (s?'<span class="tag'+(s.i>=21?' ok':'')+'">'+(s.i>=21?'oturdu':'destede')+'</span>':'<button class="btn sm" data-act="addcard" data-id="'+esc(c.id)+'">+ ekle</button>')+'</div>';}).join('');
+      (s?'<span class="tag'+(isSat(c.id)?' ok':'')+'">'+(isSat(c.id)?'oturdu':'destede')+'</span>':'<button class="btn sm" data-act="addcard" data-id="'+esc(c.id)+'">+ ekle</button>')+'</div>';}).join('');
 }
 
 /* ================= İLERLEME ================= */
@@ -7313,6 +7321,17 @@ function ownFor(c){
   ownSents().forEach(function(x){fs.some(function(f){if(new RegExp('(^|[^A-Za-zÄÖÜäöüß])'+f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^A-Za-zÄÖÜäöüß]|$)').test(x[0])){r.push([x[0],'',x[1],f]);return true;}return false;});});
   return r;
 }
+/* "oturdu" için kontrol listesi: aralığın 21 güne çıkması yetmez, kelime her biçimde bir kez bilinmeli.
+   w artikeliyle yazdı · c cümlede (boşluk) · m Almancasından anlamını bildi (dinleyerek ya da okuyarak) · p çoğulu (isimse) · f Perfekt'i (fiilse).
+   Kalıplar, ifadeler ve konu cümleleri listesiz: onlarda yalnız aralık sayılır. "Zaten biliyorum" diyerek geçilen kelime (kn) listeden muaf. */
+var CKL={w:'Yazım',c:'Cümle',m:'Anlam',p:'Çoğul',f:'Perfekt'},CKT={write:'w',cloze:'c',listen:'m',de2tr:'m',plural:'p',perf:'f'};
+function ckReq(id){var c=card(id);if(!c||id.indexOf('gs:')===0||c.kalip||isPhrase(c)||/[…\/+]/.test(c.w))return [];
+  var r=['w'];if(clozeOf(c))r.push('c');r.push('m');if(c.p==='n'&&plural(c))r.push('p');if(c.p==='v'&&perfOf(c))r.push('f');return r;}
+function ckMiss(id){var s=S.srs[id];if(!s||s.kn)return [];var ck=s.ck||{};return ckReq(id).filter(function(k){return !ck[k];});}
+function isSat(id){var s=S.srs[id];return !!s&&(s.i||0)>=21&&!ckMiss(id).length;}
+function ckType(k){return k==='w'?'write':k==='c'?'cloze':k==='m'?(canSay()?'listen':'de2tr'):k==='p'?'plural':'perf';}
+function ckHtml(id){var req=ckReq(id),s=S.srs[id];if(!req.length||!s)return '';var ck=s.ck||{};
+  return '<div class="ckl">'+req.map(function(k){var on=s.kn||ck[k];return '<span class="'+(on?'on':'')+'">'+(on?'✓ ':'')+CKL[k]+'</span>';}).join('')+'</div>';}
 function rvType(id){
   if(id.indexOf('gs:')===0)return 'gs';
   var s=S.srs[id],c=card(id);
@@ -7326,7 +7345,9 @@ function rvType(id){
   var cz=clozeOf(c);
   if(st===1)return cz?'cloze':'write';
   if(st===2)return 'write';
-  var pool=['write'];if(cz)pool.push('cloze');if(canSay())pool.push('listen');
+  /* kontrol listesinde eksik olan tür önce sorulur (çoğul, Perfekt, anlam …); hepsi tamamsa türler karışık */
+  var miss=ckMiss(id);if(miss.length)return ckType(miss[0]);
+  var pool=['write'];if(cz)pool.push('cloze');pool.push(canSay()?'listen':'de2tr');
   if(st>=4){if(c.p==='n'&&plural(c))pool.push('plural');if(c.p==='v'&&perfOf(c))pool.push('perf');}
   return pool[hash(id+today())%pool.length];
 }
@@ -7583,19 +7604,22 @@ function cfAdd(id,oid){if(!oid||oid===id)return;S.cf=S.cf||{};var a=(S.cf[id]||[
 function rvFb(cu,c){
   var r=cu.res,ok=r==='ok',again=W.hard?'':W.lap&&W.lap[cu.id]?'yarın yine gelecek':'oturumda bir kez daha sorulacak';
   var head=ok?'Richtig!':r==='hint'?'İpucuyla buldun'+(again?' · '+again:''):r==='near'?'Neredeyse · doğru sayıldı':r==='art'?'Artikel yanlış':'Yanlış'+(again?' · '+again:'');
-  var mine=cu.val||(r==='no'&&(cu.type==='tr2de'||cu.type==='listen')?W.pick:''),oth=cu.oth&&card(cu.oth),rt=rvRight(c,cu.type),m=cu.m?(/^Doğrusu: \*[^*]+\*$/.test(cu.m)?'Doğrusu: <b lang="de">'+deC(rt)+'</b>':rich(cu.m)):'';
+  var mine=cu.val||(r==='no'&&(cu.type==='tr2de'||cu.type==='listen'||cu.type==='de2tr')?W.pick:''),oth=cu.oth&&card(cu.oth),rt=rvRight(c,cu.type),m=cu.m?(/^Doğrusu: \*[^*]+\*$/.test(cu.m)?'Doğrusu: <b lang="de">'+deC(rt)+'</b>':rich(cu.m)):'';
   if(c.kalip&&cu.val&&cu.type==='write'&&(r==='near'||r==='no'))m=(r==='near'?'Yazımına dikkat: ':'Doğrusu: ')+'<b lang="de">'+wordDiff(cu.val,rt)+'</b>';
   else if(cu.val&&(r==='near'||r==='no')&&/^(write|cloze|plural|perf)$/.test(cu.type)&&lev(norm(cu.val),norm(rt))<=3){
     if(/^Yazımına dikkat/.test(cu.m||''))m='Yazımına dikkat: <b lang="de">'+diffMark(cu.val,rt)+'</b>';
     else if(/^Doğrusu/.test(cu.m||''))m='Doğrusu: <b lang="de">'+diffMark(cu.val,rt)+'</b>';}
   return '<div class="fb '+(ok||r==='near'||r==='hint'?'ok':'no')+'"><b>'+head+'</b>'+(m?'<span>'+m+'</span>':'')+
-    (mine&&!ok&&r!=='hint'?'<span>Senin '+(cu.val?'yazdığın':'seçtiğin')+': '+(c.kalip&&cu.val&&cu.type==='write'?'<span lang="de">'+wordDiff(rt,cu.val)+'</span>':'<s'+(cu.type==='listen'?'':' lang="de"')+'>'+(cu.type==='listen'?esc(mine):deC(mine))+'</s>')+(oth?' = '+(cu.type==='listen'?'<b lang="de">'+deC(deText(oth))+'</b>':esc(oth.tr)):'')+'</span>':'')+'</div>';
+    (mine&&!ok&&r!=='hint'?'<span>Senin '+(cu.val?'yazdığın':'seçtiğin')+': '+(c.kalip&&cu.val&&cu.type==='write'?'<span lang="de">'+wordDiff(rt,cu.val)+'</span>':'<s'+(/^(listen|de2tr)$/.test(cu.type)?'':' lang="de"')+'>'+(/^(listen|de2tr)$/.test(cu.type)?esc(mine):deC(mine))+'</s>')+(oth?' = '+(/^(listen|de2tr)$/.test(cu.type)?'<b lang="de">'+deC(deText(oth))+'</b>':esc(oth.tr)):'')+'</span>':'')+'</div>';
 }
 function pReview(){var r=pReview0(),id=W.q&&W.q[0];
   /* kartın sağ üstünde (ilerleme çubuğunun hemen altında) açık bir düğme */
   if(id&&card(id)&&!(W.cur&&W.cur.id===id&&W.kn===id)){var i=r.b.search(/<div class="(card|fb)/);var bt=rmBtn(id);r.b=i>=0?r.b.slice(0,i)+bt+r.b.slice(i):bt+r.b;}
   return r;}
-function rmBtn(id){return '<div class="rmrow"><button class="rmbtn" data-act="banw" data-id="'+esc(id)+'">✕ Kelimeyi kaldır</button></div>';}
+/* kaldırma onayı uygulamanın içinde: tarayıcının onay penceresi (confirm) telefonda kapandıktan sonraki ilk dokunuşu yutabiliyor */
+var BANASK='';
+function rmBtn(id){if(BANASK===id)return '<div class="rmrow ask"><span>Bir daha sorulmasın mı? Yerine başka kelime gelir.</span><button class="btn sm" data-act="banno">Vazgeç</button><button class="rmbtn" data-act="banok" data-id="'+esc(id)+'">✕ Evet, kaldır</button></div>';
+  return '<div class="rmrow"><button class="rmbtn" data-act="banw" data-id="'+esc(id)+'">✕ Kelimeyi kaldır</button></div>';}
 function pReview0(){
   var q=W.q,b='';
   if(!q.length){
@@ -7612,7 +7636,7 @@ function pReview0(){
   if(!c){q.shift();return pReview0();}
   if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now()};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
-    if(ty==='intro'||ty==='tr2de'||ty==='listen'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
+    if(ty==='intro'||ty==='tr2de'||ty==='listen'||ty==='de2tr'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
     if(ty==='cloze'&&c.kalip){W.cur.cz=[c.w,''];W.cur.czf=kKey(c);}
     else if(ty==='cloze'){var ow=ownFor(c),cs=ow.length?ow:ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];if(W.cur.cz[3])W.cur.czf=W.cur.cz[3];}
     if(ty==='listen')setTimeout(function(){if(X&&X.kind==='review'&&W.cur&&W.cur.id===id&&!W.cur.res)sayVar(deText(c));},300);
@@ -7652,9 +7676,9 @@ function pReview0(){
       '<button class="btn lime big wide" data-act="rvok">Tamam, devam</button>';
     return {t:'Kelime tekrarı',b:b};
   }
-  if(cu.type==='tr2de'||cu.type==='listen'){
-    var li=cu.type==='listen';
-    b+='<div class="card rv">'+src+(li?'<div class="ask">Dinle: ne demek?</div><button class="btn dark big" style="align-self:center;margin-top:8px" data-act="rvplay">🔊 Tekrar dinle</button>'+(cu.res?'<div class="word" lang="de" style="margin-top:8px">'+deLabel(c)+'</div>':''):'<div class="ask">Almancası hangisi?</div><div class="tr">'+esc(c.tr)+'</div>')+'</div>';
+  if(cu.type==='tr2de'||cu.type==='listen'||cu.type==='de2tr'){
+    var li=cu.type==='listen'||cu.type==='de2tr';
+    b+='<div class="card rv">'+src+(cu.type==='de2tr'?'<div class="ask">Ne demek?</div><div class="word" lang="de">'+deLabel(c)+'</div>':li?'<div class="ask">Dinle: ne demek?</div><button class="btn dark big" style="align-self:center;margin-top:8px" data-act="rvplay">🔊 Tekrar dinle</button>'+(cu.res?'<div class="word" lang="de" style="margin-top:8px">'+deLabel(c)+'</div>':''):'<div class="ask">Almancası hangisi?</div><div class="tr">'+esc(c.tr)+'</div>')+'</div>';
     b+='<div class="opts">'+cu.o.map(function(o){var cl=W.pick?(o===cu.right?'ok':o===W.pick?'no':''):'';return '<button'+(li?'':' lang="de"')+' class="'+cl+'" data-act="rvpick" data-v="'+esc(o)+'">'+(li?esc(o):deC(o))+'</button>';}).join('')+'</div>';
   }else{
     var cz=cu.type==='cloze',ty2=cu.type,ask;
@@ -7692,7 +7716,7 @@ function rvHint(c,type){
   var t=type==='cloze'?czOf(c):c.w;
   return 'İlk harf: <b lang="de" class="num">'+esc(t.split('').map(function(ch,i){return i===0?ch:/\s/.test(ch)?' ':'_';}).join(' '))+'</b> · '+t.replace(/\s/g,'').length+' harf';
 }
-function rvRight(c,t){return t==='cloze'?czOf(c):t==='plural'?'die '+plural(c):t==='perf'?perfOf(c):t==='listen'?c.tr:deText(c);}
+function rvRight(c,t){return t==='cloze'?czOf(c):t==='plural'?'die '+plural(c):t==='perf'?perfOf(c):t==='listen'||t==='de2tr'?c.tr:deText(c);}
 /* üretme etkisi: kelimeyi duymak ve yüksek sesle tekrar etmek hatırlamayı artırır; ses ve hız her seferinde biraz değişir (akustik çeşitlilik) */
 var SAYV=0;
 function sayVar(t){if(!canSay())return;SAYQ++;try{speechSynthesis.cancel();}catch(e){}
@@ -7700,15 +7724,19 @@ function sayVar(t){if(!canSay())return;SAYQ++;try{speechSynthesis.cancel();}catc
 function rvSay(c){if(S.set.auto!==false&&c)sayVar(deText(c));}
 /* cevabı puanla ve basamağı güncelle */
 function rvGrade(id,res){
-  var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok'||res==='hint',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1;
+  var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok'||res==='hint',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1,sb=isSat(id);
   /* en az 2 kez bilinmiş kart ipucusuz ve çok hızlı bilinirse "kolay": daha uzun arayla gelir (ekranda bir şey değişmez) */
   if(res==='ok'&&s&&s.n>=2&&W.cur&&W.cur.t0&&!W.cur.hint){var el=Date.now()-W.cur.t0,typed=/^(write|cloze|plural|perf)$/.test(W.cur.type);
     if(el<=(typed?2500+250*String(rvRight(c,W.cur.type)).length:2500))g=3;}
   grade(id,g);s=S.srs[id];s.st=res==='ok'?st+1:res==='no'?Math.max(0,st-1):st;
+  if(res==='ok'&&CKT[W.cur.type]&&ckReq(id).indexOf(CKT[W.cur.type])>=0){s.ck=s.ck||{};s.ck[CKT[W.cur.type]]=1;}
+  /* listesi eksik kelime 14 günden uzun beklemez: eksik türler zamanında sorulsun */
+  if(res!=='no'&&ckMiss(id).length&&s.i>14){s.i=14;s.d=addD(today(),14);}
+  satBump(id,sb);save();
   W.cur.ok=res!=='no'&&res!=='hint';
   rvSay(c);
-  if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?czOf(c):W.cur.type==='listen'?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':res==='hint'?'İpucuyla':'');
-  if(res==='no'&&c){var o=W.cur.type==='tr2de'?deFind(W.pick||''):W.cur.type==='listen'?trFind(W.pick||''):/^(write|cloze)$/.test(W.cur.type)&&W.cur.val?deFind(W.cur.val):null;if(o&&o.id!==id&&o.w!==c.w){W.cur.oth=o.id;cfAdd(id,o.id);}}
+  if(c)logAns('w','w',ok,(W.cur.type==='cloze'?'Boşluk: '+(W.cur.cz?W.cur.cz[0]:plain(c.ex)):W.cur.type==='write'?c.tr+' → Almancasını yaz':W.cur.type==='listen'?'Dinle: '+deText(c)+' → anlamı?':W.cur.type==='de2tr'?deText(c)+' → anlamı?':W.cur.type==='plural'?deText(c)+' → çoğulu?':W.cur.type==='perf'?c.w+' → Perfekt?':c.tr+' → Almancası?'),W.cur.val||W.pick||'',W.cur.type==='cloze'?czOf(c):/^(listen|de2tr)$/.test(W.cur.type)?c.tr:W.cur.type==='plural'?'die '+plural(c):W.cur.type==='perf'?c.f:deText(c),res==='art'?'Artikel yanlış':res==='near'?'Yazım/artikel eksik':res==='hint'?'İpucuyla':'');
+  if(res==='no'&&c){var o=W.cur.type==='tr2de'?deFind(W.pick||''):/^(listen|de2tr)$/.test(W.cur.type)?trFind(W.pick||''):/^(write|cloze)$/.test(W.cur.type)&&W.cur.val?deFind(W.cur.val):null;if(o&&o.id!==id&&o.w!==c.w){W.cur.oth=o.id;cfAdd(id,o.id);}}
   if(res==='no')W.hs=id;
   save();
 }
@@ -7920,7 +7948,7 @@ var ACT={
     var j=rvJudge(c,'write',v);W.kn=null;
     if(j.r==='ok'||j.r==='near'){toast('Biliyorsun · 30 gün sorulmayacak');ACT.rvknown();return;}
     W.cur.val=v;W.pick='\u0001kn';W.hs=id;rvSay(c);drawPage();},
-  rvknown:function(){var id=W.q[0];grade(id,3);var s=S.srs[id],t=today();if(s&&s.i<30){s.i=30;s.d=addD(t,30);s.fs=Math.max(s.fs||0,30);save();}rvAdvance(false);},
+  rvknown:function(){var id=W.q[0],sb=isSat(id);grade(id,3);var s=S.srs[id],t=today();s.kn=1;if(s.i<30){s.i=30;s.d=addD(t,30);s.fs=Math.max(s.fs||0,30);}satBump(id,sb);save();rvAdvance(false);},
   rvpick:function(b){if(W.pick)return;W.pick=b.dataset.v;if(W.cur.type==='intro'){rvSay(card(W.q[0]));W.hs=W.q[0];}if(W.cur.type!=='intro'){W.cur.res=W.pick===W.cur.right?'ok':'no';if(W.cur.res==='no')W.cur.m='Doğrusu: *'+W.cur.right+'*';rvGrade(W.q[0],W.cur.res);}drawPage();},
   autosay:function(b){S.set.auto=b.dataset.v==='1';touch('set');save();drawPage();},
   rvplay:function(){var c=card(W.q[0]);if(c)sayVar(deText(c));},
@@ -7940,7 +7968,7 @@ var ACT={
   owsave:function(){var el=document.querySelector('#page [data-in="ows"]'),t=String(el?el.value:'').trim();if(!t){toast('Önce cümleni yaz');return;}var d=day();d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+t;W.ows='';lgBump('y','',function(e){e.n=sentN(d.sch);});save();toast('Yazma görevine eklendi');drawPage();},
   rvnext:function(){rvAdvance(!W.cur.ok);},
   rvshow:function(){W.step='a';drawPage();},
-  rvself:function(b){var g=b.dataset.v==='1'?2:0,c=card(W.q[0]);grade(W.q[0],g);if(c)logAns('w','w',g>0,c.tr+' → Almancası? (kendin hatırla)',g>0?deText(c):'(hatırlayamadım)',deText(c),'');rvAdvance(g===0);},
+  rvself:function(b){var g=b.dataset.v==='1'?2:0,c=card(W.q[0]),sb=isSat(W.q[0]);grade(W.q[0],g);satBump(W.q[0],sb);save();if(c)logAns('w','w',g>0,c.tr+' → Almancası? (kendin hatırla)',g>0?deText(c):'(hatırlayamadım)',deText(c),'');rvAdvance(g===0);},
   more:function(){var d=day();d.npx=(d.npx||0)+5;save();var skip={};(W.q||[]).forEach(function(i){skip[i]=1;});var n=pickNew(5,skip);if(!n.length){toast('Havuzda yeni kelime kalmadı');return;}W.q=(W.q||[]).concat(n);W.n0=(W.n0||0)+n.length;if(X&&X.kind==='review')drawPage();},
   addcard:function(b){var id=b.dataset.id;if(queueNew(id,true))save();
     b.outerHTML='<span class="tag">destede</span>';toast('Kelime tekrarına eklendi');},
@@ -8326,8 +8354,9 @@ function banList(){var L=Object.keys(S.ban||{}).filter(isBan);if(!L.length)retur
   return '<div class="card sec"><details><summary class="lb" style="cursor:pointer">Kaldırdığın kelimeler ('+L.length+') ›</summary>'+
     L.sort(function(a,b){return S.ban[b].u-S.ban[a].u;}).map(function(id){var b=S.ban[id];return '<div class="wl"><div class="w"><b lang="de">'+deC(b.w||id)+'</b><span>'+esc(b.tr||'')+' · '+trShort(b.d)+'</span></div><button class="btn sm" data-act="unban" data-id="'+esc(id)+'">Geri al</button></div>';}).join('')+
     '<p class="note" style="margin-top:6px">Geri aldığın kelime yeni kelime gibi yeniden sıraya girer.</p></details></div>';}
-ACT.banw=function(b){var id=b.dataset.id,c=card(id);if(!c)return;
-  if(!confirm('"'+deText(c)+'" kaldırılsın mı? Bir daha sorulmaz, yerine başka kelime gelir. (Ayarlar\'dan geri alabilirsin)'))return;
+ACT.banw=function(b){var id=b.dataset.id;if(!card(id))return;BANASK=id;if(X)drawPage();else render();};
+ACT.banno=function(){BANASK='';if(X)drawPage();else render();};
+ACT.banok=function(b){var id=b.dataset.id,c=card(id);BANASK='';if(!c)return;
   banWord(id);toast('Kaldırıldı · '+deText(c));if(X&&X.kind==='review')drawPage();else if(X)closePage();else render();};
 ACT.unban=function(b){var id=b.dataset.id;if(S.ban&&S.ban[id]){S.ban[id].on=0;S.ban[id].u=Date.now();save();toast('Geri alındı · yeni kelime olarak sıraya girer');}if(X)drawPage();else render();};
 ACT.wrev=function(){WREV=1;render();};
@@ -9245,6 +9274,13 @@ function lsGaps(id){
   return {list:take,map:map};}
 function lsSay(id){var D=lsData()[id],t=[];D.p.forEach(function(p){p.forEach(function(s){t.push(s[0].replace(/\*/g,''));});});sayVar(t.join(' '));}
 function lsSent(id,si){var a=String(si).split('.'),p=lsData()[id].p[+a[0]];return p&&p[+a[1]];}
+/* dokunulan kelimenin kutusu (okurken ve sorularda) */
+function lsPopHtml(id){if(!X.pop)return '';
+  var ps=lsSent(id,X.pop.s),gl=lsGloss(id,X.pop.w,ps&&ps[0]),inD=gl&&gl.e&&(S.srs[gl.e.id]||(S.gwq||[]).indexOf(gl.e.id)>=0);
+      return '<div class="lspop"><button class="x" data-act="lspopx" aria-label="kapat">✕</button>'+
+        '<div class="lph" lang="de">'+esc(gl?gl.h:X.pop.w)+'</div>'+(gl&&gl.tr?'<div class="lpt">'+esc(gl.tr)+'</div>':'<div class="lpt muted">Bu kelime sözlükte yok; cümlenin çevirisine bak.</div>')+
+        (gl&&gl.e?(inD?'<span class="tag" style="margin-top:6px">destede</span>':'<button class="btn sm" style="margin-top:8px" data-act="lsadd" data-id="'+esc(gl.e.id)+'">+ Kelimelerime ekle</button>'):'')+
+        (ps?'<div class="lps"><span lang="de">'+esc(ps[0].replace(/\*/g,''))+'</span><span>'+esc(ps[1])+'</span></div>':'')+'</div>';}
 function pLese(){
   var id=X.id,D=lsData()[id];if(!D)return {t:'Okuma',b:'<p class="muted">Metin bulunamadı.</p>'};
   var g=GBY[id],st=X.st||'read';
@@ -9257,22 +9293,21 @@ function pLese(){
     b+='<p class="small muted" style="margin:2px 0 8px">Bilmediğin kelimeye dokun: anlamı ve cümlenin Türkçesi çıkar.</p>';
     b+='<div class="card lstext" lang="de">'+D.p.map(function(p,pi){return '<p>'+p.map(function(s,sj){var si=pi+'.'+sj;
       return '<span class="lss'+(X.pop&&X.pop.s===si?' sel':'')+'">'+lsWords(id,s[0],si,X.hl?'hl':'')+'</span>'+(X.trAll?'<span class="lstr" lang="tr">'+esc(s[1])+'</span>':'');}).join(' ')+'</p>';}).join('')+'</div>';
-    if(X.pop){var ps=lsSent(id,X.pop.s),gl=lsGloss(id,X.pop.w,ps&&ps[0]),inD=gl&&gl.e&&(S.srs[gl.e.id]||(S.gwq||[]).indexOf(gl.e.id)>=0);
-      b+='<div class="lspop"><button class="x" data-act="lspopx" aria-label="kapat">✕</button>'+
-        '<div class="lph" lang="de">'+esc(gl?gl.h:X.pop.w)+'</div>'+(gl&&gl.tr?'<div class="lpt">'+esc(gl.tr)+'</div>':'<div class="lpt muted">Bu kelime sözlükte yok; cümlenin çevirisine bak.</div>')+
-        (gl&&gl.e?(inD?'<span class="tag" style="margin-top:6px">destede</span>':'<button class="btn sm" style="margin-top:8px" data-act="lsadd" data-id="'+esc(gl.e.id)+'">+ Kelimelerime ekle</button>'):'')+
-        (ps?'<div class="lps"><span lang="de">'+esc(ps[0].replace(/\*/g,''))+'</span><span>'+esc(ps[1])+'</span></div>':'')+'</div>';}
+    b+=lsPopHtml(id);
     b+='<button class="btn lime big wide" style="margin-top:12px" data-act="lsgo" data-v="q">Okudum · sorulara geç →</button>';
   }
   else if(st==='q'){
     X.qa=X.qa||{};var all=D.q.every(function(_,i){return X.qa[i]!=null;});
-    b+='<p class="muted" style="margin:4px 0 10px">Metne göre doğru mu, yanlış mı? Gerekirse metne geri dönebilirsin.</p>';
+    var wide=window.innerWidth>=900;
+    var txt='<div class="card lstext sm" lang="de">'+D.p.map(function(p,pi){return '<p>'+p.map(function(s,sj){var si=pi+'.'+sj;return '<span class="lss'+(X.pop&&X.pop.s===si?' sel':'')+'">'+lsWords(id,s[0],si,'')+'</span>';}).join(' ')+'</p>';}).join('')+'</div>';
+    b+='<div class="lsq2"><div class="lsq2t">'+(wide?'<div class="eyebrow" style="margin:0 4px 6px">Metin</div>'+txt:'<details class="lsqt" open><summary>Metin · gizle / göster</summary>'+txt+'</details>')+'</div><div class="lsq2q">';
+    b+='<p class="muted" style="margin:4px 0 10px">Metne göre doğru mu, yanlış mı? Metin '+(wide?'solda':'yukarıda')+'; bilmediğin kelimeye dokunabilirsin.</p>';
     b+=D.q.map(function(q,i){var a=X.qa[i],ok=a!=null&&a===q[1];
       return '<div class="card lsq'+(a!=null?(ok?' ok':' no'):'')+'"><p lang="de" style="font-weight:600">'+esc(q[0])+'</p>'+
         (a==null?'<div class="lsrf"><button class="btn sm" data-act="lsq" data-i="'+i+'" data-v="1">Richtig</button><button class="btn sm" data-act="lsq" data-i="'+i+'" data-v="0">Falsch</button></div>':
         '<p class="small" style="margin-top:6px"><b>'+(ok?'✓ Doğru':'✗ Yanlış')+'</b> · cevap: '+(q[1]?'Richtig':'Falsch')+'. '+rich(q[2])+'</p>')+'</div>';}).join('');
-    b+='<button class="link center" style="display:block;margin:6px auto" data-act="lsgo" data-v="read">← Metne dön</button>';
     if(all)b+='<button class="btn lime big wide" data-act="lsgo" data-v="gap">Boşluklara geç →</button>';
+    b+='</div></div>'+lsPopHtml(id);
   }
   else if(st==='gap'){
     if(!X.gp){X.gp=lsGaps(id);X.gfill={};X.gcur=0;X.gerr=0;X.gbank=shuffle(X.gp.list.map(function(_,k){return k;}));}
@@ -9301,7 +9336,7 @@ ACT.lsopen=function(b){lsOpen(b.dataset.id||lsPick());};
 ACT.lssay=function(){lsSay(X.id);};
 ACT.lshl=function(){X.hl=!X.hl;drawPage();};
 ACT.lstr=function(){X.trAll=!X.trAll;drawPage();};
-ACT.lsw=function(b){if(X.st!=='read')return;X.pop={w:b.dataset.w,s:b.dataset.s};X.taps=X.taps||[];if(!X.taps.some(function(t){return t.w===X.pop.w;}))X.taps.push(X.pop);drawPage();};
+ACT.lsw=function(b){if(X.st!=='read'&&X.st!=='q')return;X.pop={w:b.dataset.w,s:b.dataset.s};X.taps=X.taps||[];if(!X.taps.some(function(t){return t.w===X.pop.w;}))X.taps.push(X.pop);drawPage();};
 ACT.lspopx=function(){X.pop=null;drawPage();};
 ACT.lsadd=function(b){if(queueNew(b.dataset.id,true)){save();toast('Kelime eklendi · yeni kelime olarak sıraya alındı');}drawPage();};
 ACT.lsq=function(b){var i=+b.dataset.i;X.qa=X.qa||{};if(X.qa[i]!=null)return;X.qa[i]=+b.dataset.v;
@@ -9561,8 +9596,8 @@ function rpText(per){
   o.push('');
   o.push('## 5. Kelimeler');
   var ids=Object.keys(S.srs),due=0,lrn=0,hard=[];
-  ids.forEach(function(id){var s=S.srs[id];if(s.d<=t)due++;if((s.i||0)>=21)lrn++;if((s.lp||0)>=2){var c=card(id);if(c)hard.push([s.lp,deText(c)+' = '+c.tr]);}});
-  o.push('- Çalışılan kelime: '+ids.length+' · uzun süreli belleğe geçen (aralık ≥ 21 gün): '+lrn+' · bugün tekrarı gelen: '+due);
+  ids.forEach(function(id){var s=S.srs[id];if(s.d<=t)due++;if(isSat(id))lrn++;if((s.lp||0)>=2){var c=card(id);if(c)hard.push([s.lp,deText(c)+' = '+c.tr]);}});
+  o.push('- Çalışılan kelime: '+ids.length+' · uzun süreli belleğe geçen (aralık ≥ 21 gün ve yazım, cümle, anlam, çoğul/Perfekt bir kez doğru): '+lrn+' · bugün tekrarı gelen: '+due);
   hard.sort(function(a,b){return b[0]-a[0];});
   if(hard.length)o.push('- En çok unuttuğum kelimeler (unutma sayısı): '+hard.slice(0,25).map(function(h){return h[1]+' ('+h[0]+')';}).join('; '));
 
@@ -9998,7 +10033,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__wl=wordLinks;window.__smap=smapHtml;window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
