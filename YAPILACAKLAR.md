@@ -144,3 +144,9 @@ Karar: Google Gemini resim modeli, önce ÜCRETSİZ deneme.
 - [x] Okuma: 46 konunun her birine o konunun dilbilgisiyle yazılmış metin (aynı karakterler: Deniz, Elif, Tom, Jana, Frau Schulz). Kelimeye dokun → anlamı + cümlenin Türkçesi + kelimelerime ekle; konunun kalıplarını göster; 4 doğru/yanlış sorusu; boşluk doldurma (konunun biçimleri); özet.
 - [x] Günlük 5. görev "Okuma" (puanlar: kelime 25, konu 20, ezber 20, yazma 15, okuma 20); eski günler dört görevli kuralla donduruldu. Kütüphane'de Okuma listesi, konu sayfasında metin kartı, kilometre taşları (5 / 20 / 46 metin), cihazlar arası eşitleme.
 - [ ] İleride: metin seslendirme hızı, metinden kelime oyunu, ikinci bir metin seti (iş hayatı / B1 sınav metinleri).
+
+## Tur 8 · Kelimenin oturması (27 Ekim)
+- [x] "Oturdu" = tekrar aralığı ≥ 21 gün VE kontrol listesi tamam: artikeliyle yazım, cümlede boşluk, Almancasından anlamı (dinleyerek ya da yeni "Ne demek?" sorusuyla okuyarak), isimse çoğul, fiilse Perfekt. Kalıp ve ifadeler listesiz. "Zaten biliyorum" diyerek geçilen kelime muaf.
+- [x] Basamak 3'ten itibaren listede eksik olan tür önce sorulur; listesi eksik kelime 14 günden uzun beklemez. Kelime kartında liste görünür. Eski kartlar basamağına göre (yazım, cümle) kısmen sayıldı.
+- [x] Kelimeyi kaldır: tarayıcının onay penceresi yerine uygulama içi onay (telefonda pencere kapanınca sonraki dokunuş yutuluyordu).
+- [x] Okuma: "Anladın mı?" adımında metin de görünür (masaüstünde solda sabit, telefonda soruların üstünde açılır kutu); kelimeye dokunma orada da çalışır.
