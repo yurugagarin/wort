@@ -3479,7 +3479,7 @@ function banWord(id){
   var c=card(id),d=day(),t=today(),had=!!S.srs[id],done=!!(d.wd&&d.wd[id]);
   S.ban=S.ban||{};S.ban[id]={on:1,u:Date.now(),d:t,w:c?deText(c):id,tr:c?c.tr:''};
   delete S.srs[id];if(S.gwq){var gi=S.gwq.indexOf(id);if(gi>=0)S.gwq.splice(gi,1);}
-  if(W.q){var qi=W.q.indexOf(id);if(qi>=0){W.q.splice(qi,1);
+  if(W.q){var qi=W.q.indexOf(id);if(qi>=0){W.q=W.q.filter(function(x){return x!==id;});
     if(!had){var skip={};W.q.forEach(function(x){skip[x]=1;});var nw=pickNew(1,skip);if(nw.length)W.q.splice(qi,0,nw[0]);else{W.n0=Math.max(0,(W.n0||0)-1);if(d.wt)d.wt=Math.max(d.w||0,d.wt-1);}}
     else if(!done){W.n0=Math.max(0,(W.n0||0)-1);if(d.rcap)d.rcap--;if(d.wt)d.wt=Math.max(d.w||0,d.wt-1);}}}
   if(W.cur&&W.cur.id===id)W.cur=null;W.pick=null;save();
@@ -3488,6 +3488,7 @@ function introDone(id){
   ensureTarget();if(S.gwq){var gi=S.gwq.indexOf(id);if(gi>=0)S.gwq.splice(gi,1);}
   if(S.srs[id])return;var t=today(),d=day();
   S.srs[id]={i:0,e:2.5,n:0,d:addD(t,1),a:t,st:0,nw:1,u:Date.now()};
+  if(prSteps(id).length&&!W.hard){d.pr=d.pr||{};if(d.pr[id]==null)d.pr[id]=0;}
   d.wd=d.wd||{};if(!d.wd[id]){d.wd[id]=1;d.w=(d.w||0)+1;}if(id.indexOf('p:')===0)d.np=(d.np||0)+1;lgBump('w','',function(e){e.n++;e.nw=(e.nw||0)+1;});save();
 }
 function grade(id,g){
@@ -6550,19 +6551,32 @@ function buildQueue(){
   ensureTarget();
   var t=today(),d=day(),done=d.wrv!=null?d.wrv:(d.w||0),due=dueSorted().slice(0,Math.max(0,d.rcap+(d.rx||0)-done));
   var nw=pickNew(newLeft()),q=[];
-  /* önce bugünün yeni kelimeleri (tanışma), sonra tekrarlar */
+  /* önce bugünün yeni kelimeleri (tanışma), sonra aynı gün alıştırmaları, sonra tekrarlar */
   q=nw.concat(due);
   W={q:q,day:t,step:'q',pick:null,n0:q.length,seen:{},cur:null};
+  prRebuild();
 }
+/* Yeni kelimenin aynı gün alıştırması: önce tek biçimde tanışma (tahmin + kart), bütün yeni kelimeler bitince sırayla
+   Türkçesini sor (Almancasını görüp anlamını seç) → Almancasını sor (Türkçesinden seç) → cümle içinde (boşluk).
+   Alıştırma takvimi değiştirmez ve puana girmez: ilk gerçek tekrar yine yarın. İlerleme gün kaydında: d.pr[id] = sıradaki adım. */
+function prSteps(id){var c=card(id);if(!c||id.indexOf('gs:')===0)return [];if(c.kalip||isPhrase(c)||/[…\/+]/.test(c.w))return ['de2tr','tr2de'];return clozeOf(c)?['de2tr','tr2de','cloze']:['de2tr','tr2de'];}
+function prLeft(id){var pr=day().pr;if(!pr||pr[id]==null||W.hard)return 0;return Math.max(0,prSteps(id).length-pr[id]);}
+function isPr(id){return !!S.srs[id]&&prLeft(id)>0;}
+/* kuyruk: tanışılacak yeni kelimeler · alıştırma turları (her turda her kelime bir kez) · tekrarlar */
+function prRebuild(){if(!W.q||W.hard)return;var pr=day().pr||{},done=Math.max(0,(W.n0||0)-W.q.length);
+  var intro=W.q.filter(function(id){return !S.srs[id];}),rest=W.q.filter(function(id){return S.srs[id]&&!isPr(id);}),rounds=[];
+  Object.keys(pr).forEach(function(id){if(!S.srs[id]||isBan(id))return;var st=prSteps(id);for(var k=pr[id];k<st.length;k++)(rounds[k-pr[id]]=rounds[k-pr[id]]||[]).push(id);});
+  var prq=[];rounds.forEach(function(r){if(prq.length&&r[0]===prq[prq.length-1]&&r.length>1)r.push(r.shift());prq=prq.concat(r);});
+  W.q=intro.concat(prq,rest);W.n0=done+W.q.length;}
 function vKelimeler(){
   var n=wordsReady(),c=counts();
-  var nn=(W.q||[]).filter(function(id){return !S.srs[id];}).length,nr=n-nn;
+  var nn=(W.q||[]).filter(function(id){return !S.srs[id];}).length,np=(W.q||[]).filter(isPr).length,nr=n-nn-np;
   var h='<div class="card dark-card next"><div class="eyebrow">Kelime tekrarı · günlük · bugünün puanına girer (30 puan)</div><div class="t">'+(n?n+' kart seni bekliyor':'Bugünlük tamam')+'</div>'+
-    (n?'<div class="small" style="margin:4px 0 8px"><b>'+nr+'</b> tekrar (daha önce öğrendiğin, tekrar zamanı gelen) · <b>'+nn+'</b> yeni kelime</div>':'')+
+    (n?'<div class="small" style="margin:4px 0 8px"><b>'+nn+'</b> yeni kelime'+(np?' · <b>'+np+'</b> yeni kelime alıştırması':'')+' · <b>'+nr+'</b> tekrar (daha önce öğrendiğin, tekrar zamanı gelen)</div>':'')+
     (function(){var d=day(),rem=Math.max(0,(d.wt||0)-(d.w||0));return '<div class="small" style="margin:0 0 8px"><b>Puan hedefi: '+(d.w||0)+' / '+(d.wt||0)+' kart</b>'+(rem?' · '+rem+' kart kaldı':' · tamam')+(n>rem&&rem>=0&&n?' · hedefin üstündekiler isteğe bağlı, yarına kalabilir':'')+
       (d.ncap!=null&&d.ncap<S.set.newPerDay?'<br>Biriken tekrar çok olduğu için bugün en çok '+d.ncap+' yeni kelime (normalde '+S.set.newPerDay+').':'')+
       (wBacklog()?'<br>Birikmiş '+wBacklog()+' kart günlük kotanın ('+(S.set.wmin||15)+' dk) dışında; her gün öncelik sırasıyla eriyor.':'')+'</div>';})()+
-    '<details class="ihelp"><summary>ⓘ Nasıl çalışır?</summary><div class="muted small">Yeni kelime: anlamını cümlede tahmin edersin, kartı ve (A2-B1 kelimelerinde) hikâye kancasını görürsün; ilk soru <b>yarın</b> gelir. Önce bugünün yeni kelimeleri gelir, sonra tekrarlar. Tekrarlar zamanla zorlaşır: Almancasından anlamını seç → Türkçesinden Almancasını seç → cümlede boşluk doldur → artikeliyle yaz. Yanlışta bir basamak kolaya inersin. Bildiklerin seyrek, bilemediklerin sık gelir.</div></details>'+
+    '<details class="ihelp"><summary>ⓘ Nasıl çalışır?</summary><div class="muted small">Yeni kelime: anlamını cümlede tahmin edersin, kartı ve (A2-B1 kelimelerinde) hikâye kancasını görürsün. Bütün yeni kelimelerle tanışınca aynı oturumda alıştırması gelir: anlamını seç → Almancasını seç → cümlede boşluk. Bu alıştırma takvimi değiştirmez; ilk gerçek tekrar <b>yarın</b>. Önce bugünün yeni kelimeleri gelir, sonra tekrarlar. Tekrarlar zamanla zorlaşır: Almancasından anlamını seç → Türkçesinden Almancasını seç → cümlede boşluk doldur → artikeliyle yaz. Yanlışta bir basamak kolaya inersin. Bildiklerin seyrek, bilemediklerin sık gelir.</div></details>'+
     '<button class="btn lime big wide" data-act="review">'+(n?'Başla':'Havuzdan 5 yeni kelime')+'</button>'+
     '<div class="srs num"><button data-act="wlist" data-v="due"><b>'+c.due+'</b><span>tekrarı gelen ›</span></button><button data-act="wlist" data-v="lrn"><b>'+c.lrn+'</b><span>öğreniliyor ›</span></button><button data-act="wlist" data-v="sat"><b>'+c.sat+'</b><span>oturdu ›</span></button></div>'+
     '<details class="ihelp"><summary>ⓘ "Oturdu" ne demek?</summary><p class="small muted" style="margin-top:4px">Bir kelime, tekrar aralığı 21 günü geçince <b>oturdu</b> sayılır (genelde 4-5 başarılı tekrar: ertesi gün, birkaç gün, bir hafta, iki hafta…). Oturan kelimeler ayda bir gibi seyrek gelir. Sayılara dokun: listeyi gör.</p></details></div>';
@@ -7351,6 +7365,7 @@ function rvType(id){
   if(id.indexOf('gs:')===0)return 'gs';
   var s=S.srs[id],c=card(id);
   if(!s&&!W.seen[id])return 'intro';
+  if(isPr(id))return prSteps(id)[day().pr[id]];
   if(W.rt&&W.rt[id])return W.rt[id];   /* oturumda geri gelen kart yanıldığın türde sorulur */
   var st=rvSt(s);
   /* yeni kelime önce iki şıklı soruyla pekişir: Almancasını gör → anlamını seç, sonra Türkçesini gör → Almancasını seç; yazmak ondan sonra */
@@ -7635,8 +7650,8 @@ function pReview(){var r=pReview0(),id=W.q&&W.q[0];
   return r;}
 /* kartın türü: yeni (ilk kez görüyorsun) · yeni öğrendiğin (ilk birkaç tekrar, şıklı) · tekrar */
 function rvBadge(id){if(id.indexOf('gs:')===0)return '<span class="nbadge">Konu cümlesi</span>';var s=S.srs[id];
-  if(!s||(W.cur&&W.cur.id===id&&W.cur.type==='intro'))return '<span class="nbadge new">Yeni kelime</span>';
-  if(rvSt(s)<=1&&(s.n||0)<=2)return '<span class="nbadge young">Yeni öğrendiğin</span>';
+  if(!s||(W.cur&&W.cur.id===id&&W.cur.type==='intro'))return '<span class="nbadge new">Yeni kelime · tanış</span>';
+  if(isPr(id)){var n=prSteps(id).length,k=day().pr[id]+1;return '<span class="nbadge new">Yeni kelime · alıştırma '+k+'/'+n+'</span>';}
   return '<span class="nbadge">Tekrar</span>';}
 /* kaldırma onayı uygulamanın içinde: tarayıcının onay penceresi (confirm) telefonda kapandıktan sonraki ilk dokunuşu yutabiliyor */
 var BANASK='';
@@ -7655,8 +7670,8 @@ function pReview0(){
     return {t:'Kelime tekrarı',b:b};
   }
   var id=q[0],c=card(id);
-  if(!c){q.shift();return pReview0();}
-  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now()};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
+  if(!c||isBan(id)){q.shift();return pReview0();}
+  if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now(),pr:isPr(id)};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
     if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'||ty==='de2tr'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
     if(ty==='cloze'&&c.kalip){W.cur.cz=[c.w,''];W.cur.czf=kKey(c);}
@@ -7694,7 +7709,7 @@ function pReview0(){
     b+=(kn?'<div class="fb no"><b>Tanıdık geliyor ama henüz yazamıyorsun</b><span>Normal öğrenelim'+(cu.val?' · senin yazdığın: <s lang="de">'+esc(cu.val)+'</s>':'')+'</span></div>':
       '<div class="fb '+(gok?'ok':'no')+'"><b>'+(gok?'Doğru tahmin!':'Tahminin: '+esc(W.pick))+'</b>'+(gok?'':(function(){var o=trFind(W.pick);return o&&o.id!==c.id?'<span>'+esc(W.pick)+' = <b lang="de">'+deC(deText(o))+'</b> · bu kelimenin anlamı değil</span>':'';})()+'<span>Sorun değil, tahmin etmen yeterli.</span>')+'</div>')+
       '<div class="card rv">'+src+rvCard(c,true)+famLine(c)+hkBlock(id,c)+wordLinks(c,2)+'</div>'+
-      '<p class="note center">'+(hkyOf(c)&&hkyOf(c).length>=4?'Sahneyi 5 sn canlandır · sloganı ve kelimeyi sesli söyle · ilk soru yarın':'Kelimeyi ve örnek cümleyi sesli söyle · ilk soru yarın')+'</p>'+
+      '<p class="note center">'+(hkyOf(c)&&hkyOf(c).length>=4?'Sahneyi 5 sn canlandır · sloganı ve kelimeyi sesli söyle · bütün yeni kelimeler bitince alıştırması gelecek':'Kelimeyi ve örnek cümleyi sesli söyle · bütün yeni kelimeler bitince alıştırması gelecek')+'</p>'+
       '<button class="btn lime big wide" data-act="rvok">Tamam, devam</button>';
     return {t:'Kelime tekrarı',b:b};
   }
@@ -7746,6 +7761,9 @@ function sayVar(t){if(!canSay())return;SAYQ++;try{speechSynthesis.cancel();}catc
 function rvSay(c){if(S.set.auto!==false&&c)sayVar(deText(c));}
 /* cevabı puanla ve basamağı güncelle */
 function rvGrade(id,res){
+  if(W.cur&&W.cur.pr){var d0=day(),c0=card(id);W.cur.ok=res==='ok'||res==='near';if(W.cur.ok&&d0.pr&&d0.pr[id]!=null){d0.pr[id]++;save();}
+    if(res==='no'&&c0){var o0=W.cur.type==='tr2de'?deFind(W.pick||''):W.cur.type==='de2tr'?trFind(W.pick||''):W.cur.val?deFind(W.cur.val):null;if(o0&&o0.id!==id&&o0.w!==c0.w)W.cur.oth=o0.id;W.hs=id;}
+    return;}
   var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok'||res==='hint',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1,sb=isSat(id);
   /* en az 2 kez bilinmiş kart ipucusuz ve çok hızlı bilinirse "kolay": daha uzun arayla gelir (ekranda bir şey değişmez) */
   if(res==='ok'&&s&&s.n>=2&&W.cur&&W.cur.t0&&!W.cur.hint){var el=Date.now()-W.cur.t0,typed=/^(write|cloze|plural|perf)$/.test(W.cur.type);
@@ -7963,7 +7981,7 @@ var ACT={
   task:function(b){var id=b.dataset.id;if(id==='ez'&&ezDueList().length>1){ACT.ezmix();return;}sessLaunch(id);},
 
   review:function(){if(W.hard&&W0){W=W0;W0=null;}if(!W.q||W.day!==today())buildQueue();openPage({kind:'review'});},
-  rvok:function(){var id=W.q.shift();W.seen[id]=1;introDone(id);W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
+  rvok:function(){var id=W.q.shift();W.seen[id]=1;introDone(id);prRebuild();W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
   rvkn:function(){W.kn=W.q[0];drawPage();var e=document.querySelector('#page [data-in="wt"]');if(e)e.focus();},
   rvknx:function(){W.kn=null;drawPage();},
   rvkncheck:function(){var id=W.q[0],c=card(id),el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}
@@ -7988,7 +8006,11 @@ var ACT={
   hkbopen:function(){KHB=true;render();},
   hkbsave:function(){var el=document.querySelector('[data-in="hkb"]'),n=hkParse(el?el.value:'');if(!n){toast('“kelime :: kanca” satırı bulunamadı');return;}KHB=false;save();render();toast(n+' kanca kaydedildi');},
   owsave:function(){var el=document.querySelector('#page [data-in="ows"]'),t=String(el?el.value:'').trim();if(!t){toast('Önce cümleni yaz');return;}var d=day();d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+t;W.ows='';lgBump('y','',function(e){e.n=sentN(d.sch);});save();toast('Yazma görevine eklendi');drawPage();},
-  rvnext:function(){rvAdvance(!W.cur.ok);},
+  rvnext:function(){if(!W.cur){drawPage();return;}
+    if(W.cur.pr){var id=W.q.shift(),d=day();if(!W.cur.ok&&d.pr&&d.pr[id]!=null){W.prw=W.prw||{};var key=id+':'+d.pr[id];W.prw[key]=(W.prw[key]||0)+1;
+        if(W.prw[key]<=2)W.q.splice(Math.min(3,W.q.length),0,id);else{d.pr[id]++;save();}}
+      W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;return;}
+    rvAdvance(!W.cur.ok);},
   rvshow:function(){W.step='a';drawPage();},
   rvself:function(b){var g=b.dataset.v==='1'?2:0,c=card(W.q[0]),sb=isSat(W.q[0]);grade(W.q[0],g);satBump(W.q[0],sb);save();if(c)logAns('w','w',g>0,c.tr+' → Almancası? (kendin hatırla)',g>0?deText(c):'(hatırlayamadım)',deText(c),'');rvAdvance(g===0);},
   more:function(){var d=day();d.npx=(d.npx||0)+5;save();var skip={};(W.q||[]).forEach(function(i){skip[i]=1;});var n=pickNew(5,skip);if(!n.length){toast('Havuzda yeni kelime kalmadı');return;}W.q=(W.q||[]).concat(n);W.n0=(W.n0||0)+n.length;if(X&&X.kind==='review')drawPage();},
@@ -10147,6 +10169,10 @@ function syncCard(){
 document.addEventListener('keydown',function(e){
   if(e.metaKey||e.ctrlKey||e.altKey||!X)return;
   var tg=e.target,typing=tg&&/INPUT|TEXTAREA|SELECT/.test(tg.tagName);
+  /* kelime tekrarında yazılı soru açıkken kutu odağı kaybetmişse: Enter cevabı kontrol eder, harfler kutuya gider */
+  if(!typing&&X.kind==='review'&&W.cur&&!W.cur.res&&!X.qnOpen){var wi=visIn('#page [data-in="wt"]');
+    if(wi){if(e.key==='Enter'){e.preventDefault();W.val=wi.value;if(W.kn&&W.kn===W.q[0]&&!W.pick)ACT.rvkncheck();else ACT.rvcheck();return;}
+      if(e.key.length===1){try{wi.focus();var n0=wi.value.length;wi.setSelectionRange(n0,n0);}catch(er){}return;}}}
   if(e.key==='Escape'){if(typing){tg.blur();return;}e.preventDefault();closePage();return;}
   if(typing||(tg&&tg.tagName==='BUTTON'&&(e.key==='Enter'||e.key===' ')))return;
   var root=$('page');
