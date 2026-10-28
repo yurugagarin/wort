@@ -166,3 +166,10 @@ Araştırma: çok stratejili okuma öğretimi (okurken soru sorma, ön bilgiyi c
 - [x] 46 metnin hepsine ana fikir sorusu, iki okurken sorusu ve yazma görevi yazıldı. Yanlış şıklar doğrusu kadar uzun ve inandırıcı ("vor allem" gibi ipuçları doğru ve yanlış şıklara dengeli dağıtıldı).
 - [x] Günün metni konunun durumuna göre: tekrar zamanı gelen konu → şu an öğrendiğin konu → yeni bitirdiğin konu → sıradaki konu (ön okuma) → oturmuş ama uzun süredir okunmamış; aynı metin kısa sürede yeniden gelmez. Neden seçildiği hazırlıkta, görev kartında ve Kütüphane'de yazıyor.
 - [x] Puan: okuma 20 = 9 adımın her biri eşit pay; aynı gün kaldığın adımdan devam; adım numaralarından geri dönülebilir. Okuma cevapları rapora "Okuma" olarak, konunun biçimleri o konunun satırına yazılır.
+
+## Tur 12 · Konu temposu (28 Ekim)
+Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sabitti ve aynı anda 3 konu sınırına tekrar bekleyen konular da sayılıyordu; bir haftada 2 konu ancak başlıyordu (simülasyon: 7 günde 2, 28 günde 5 konu).
+- [x] Konu görevi = günde 2 konu adımı (Ayarlar'dan 3). Adım: Tanı, Kur, Üret ya da tekrarı geçmek; Anla, Tanı'nın ön okumasıdır (aynı oturumda). Açık adım kalmadıysa yapılan kadarı yeter; hiç yoksa 10 soru.
+- [x] Sıradaki adım: öncelikli konu → bugün Anla'sı okunanın Tanı'sı → tekrar zamanı gelen → öğrenmekte olduğun konunun sıradaki aşaması (bugün adım atılmamış konu önce) → yeni konu → aynı konunun bir sonraki aşaması. Aynı anda en çok 2 konu öğrenilir; tekrar bekleyen konular yeni konuyu engellemez.
+- [x] Aşama sonunda "Bugünün konu adımları · 1 / 2 · sıradaki adım" kutusu ve düğmesi; Bugün kartında "1/2 · sıradaki"; günün konusu sıradaki adımın konusu.
+- [x] Sonuç (simülasyon, günde 2 adım): 7 günde 4, 14 günde 6, 28 günde 10 konu başlar; 90 günde 26 konu oturur; tekrar birikmesi yok. Bu kuraldan önce bugün aşama geçildiyse bugün eski kuralla sayılır (puan düşmez).
