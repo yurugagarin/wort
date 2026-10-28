@@ -154,3 +154,8 @@ Karar: Google Gemini resim modeli, önce ÜCRETSİZ deneme.
 ## Tur 9 · Oyunlar (27 Ekim)
 - [x] Oyunlarda kendiliğinden ses kapatıldı (Lücke ve Eşleştir doğru cevaptan sonra okuyordu); 🔊 düğmeleri elle çalışır.
 - [x] Yeni oyunlar: Hafıza (kart çevir), Harf Salatası (karışık harflerden yaz), Çoğul Avı, haben mi sein mi? (60 sn), Doğru mu? (60 sn). Gizli kalan Artikel-Blitz Kütüphane'ye eklendi. Rekorlar cihazlar arası eşitlenir.
+
+## Tur 10 · Yeni kelime akışı (28 Ekim)
+- [x] Sıra: bugünün yeni kelimeleri "Yeni kelime · tanış" (tahmin + kart) → hepsi bitince aynı oturumda "Yeni kelime · alıştırma 1/3–3/3": anlamını seç, Almancasını seç, cümlede boşluk (turlar halinde) → "Tekrar" kartları. Alıştırma takvimi ve puanı değiştirmez; yanlış adım en çok iki kez yeniden sorulur. İlerleme gün kaydında (d.pr).
+- [x] Tekrar basamakları: anlamını seç → Almancasını seç → boşluk → yazma → kontrol listesi.
+- [x] Yazılı soruda kutu odağı kaybetse bile Enter cevabı kontrol eder, harfler kutuya gider; kaldırılan kelime kuyruktaki bütün kopyalarıyla çıkar.
