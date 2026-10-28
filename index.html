@@ -6712,6 +6712,7 @@ function drawPage(){
   if(k!=='rapor'){var qc=qCtx();if(X.qnOpen)r.b=qnPanel()+r.b;else if(qc.r)r.b+='<button class="link center qnlink" data-act="qn">? Kafam karıştı · not yaz (Defter\'e gider)</button>';}
   if(KBDK[k])r.b+='<p class="kbd note center">'+(k==='dikt'?'Klavye: Enter kontrol et · Enter devam · Esc kapat':'Klavye: 1–4 şık seç · Enter devam · Esc kapat')+'</p>';
   $('page').innerHTML='<div class="pbar"><button class="back" data-act="close">'+ICON.back+'Geri</button><div class="ttl">'+(r.t||'')+'</div><div class="rt">'+(r.r||'')+'</div>'+(k==='rapor'?'':'<button class="qbtn'+(X.qnOpen?' on':'')+'" data-act="qn" title="Kafamı karıştı · not yaz" aria-label="Kafamı karıştı, not yaz">?</button>')+'</div><div class="pin">'+r.b+'</div>';
+  autoFocusIn();
 }
 function progBar(i,n){return '<div class="row"><div class="prog"><i style="width:'+Math.round(i/n*100)+'%"></i></div><span class="small muted num">'+Math.min(i+1,n)+'/'+n+'</span></div>';}
 
@@ -8670,6 +8671,12 @@ function pEz(){
   return {t:'Ezber',b:b};
 }
 /* --- boş tabloyu doldur (ezberden yazma: en güçlü hatırlama alıştırması) --- */
+/* fareli bilgisayarda yazılı sorunun kutusu kendiliğinden seçili gelir (tıklamadan yaz, Enter ile kontrol et, Enter ile devam);
+   telefonda klavye kendiliğinden açılmasın diye yapılmaz */
+function hasMouse(){return !!(window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches);}
+function autoFocusIn(){if(!hasMouse()||!X||X.qnOpen)return;var a=document.activeElement;if(a&&a!==document.body&&/INPUT|TEXTAREA|SELECT/.test(a.tagName))return;
+  var el=visIn('#page [data-in="wt"],#page [data-in="ty"],#page [data-in="dk"]');if(!el)return;
+  try{el.focus({preventScroll:true});var n=el.value.length;el.setSelectionRange(n,n);}catch(e){}}
 function isWide(){return !!(window.matchMedia&&matchMedia('(min-width:1000px)').matches);}
 var WIDE0=null;window.addEventListener('resize',function(){var w=isWide();if(WIDE0!==null&&w!==WIDE0&&X&&X.kind==='ezfill')drawPage();WIDE0=w;});
 function visIn(sel){return [].filter.call(document.querySelectorAll(sel),function(x){return x.offsetParent!==null;})[0]||null;}
