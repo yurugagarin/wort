@@ -786,6 +786,8 @@ details.howto b{color:var(--ink)}
 .exsels{display:grid;grid-template-columns:1fr 1fr;gap:8px}.exsels label{display:flex;align-items:center;gap:8px}.exsels select{flex:1;padding:8px}
 textarea.exw{min-height:150px;width:100%;margin-top:10px}.exhist>div{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:4px 0;border-bottom:1px solid var(--line)}.exsteps{margin:8px 0 0 18px;display:flex;flex-direction:column;gap:4px}
 @media (max-width:480px){.exo.row3{grid-template-columns:1fr}.exsels{grid-template-columns:1fr}}
+.gw{padding:12px 14px}.gws{border-top:1px solid var(--line);padding:10px 0 4px;margin-top:8px}.gwh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14.5px}
+.gwm{margin:6px 0 2px;font-size:16px;line-height:1.45}.gwc{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}.gwc span{font-size:13.5px;padding:5px 9px;border:1px solid var(--line);border-radius:10px;background:var(--card2)}.gws .inp{margin-top:8px}
 mark.lsc{background:color-mix(in srgb,var(--spr) 24%,transparent);color:inherit;border-radius:4px;padding:0 2px}.lsfc{font-size:14px;margin:0 4px 8px;color:var(--ink2)}
 .lw.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);outline:1.5px solid var(--bad)}
 .lsr{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px}.lsr:last-child{border-bottom:0}.lsr.sk{color:var(--ink3)}.lsr.sk b{font-weight:600}
@@ -6545,7 +6547,7 @@ function taskBody(id){
       kk?(function(){var ki=KL.indexOf(kk),seen=!!S.srs['k:'+ki],hid=seen&&!used&&d.kdr!==ki;
         /* daha önce gördüğün kalıp: önce Türkçesi, Almancasını hatırlamaya çalış, sonra aç */
         return '<div class="kday'+(used?' ok':'')+'"><span>Bugünün kalıbı · yazında kullan'+(used?' ✓':'')+'</span>'+(hid?'<i style="font-style:normal;font-weight:700">'+esc(kk[3])+' → Almancası?</i><button class="btn sm" style="align-self:flex-start;margin-top:6px" data-act="kdrev" data-i="'+ki+'">Hatırladım, göster</button>':'<b lang="de">'+esc(kk[2])+'</b><i>'+esc(kk[3])+'</i>')+'</div>';})():'')+
-      ydLine(d)+'<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
+      gwHtml(tp[0],'sch')+ydLine(d)+'<textarea class="inp" lang="de" data-in="sch" spellcheck="false" autocapitalize="sentences" placeholder="Schreib hier … (3 Sätze)">'+esc(d.sch||'')+'</textarea>'+
       '<div class="small muted num" id="schN">'+schCount(d.sch)+'</div>'+
       '<button class="btn sm" style="align-self:flex-start" data-act="schk">Cümlelerimi kontrol et</button>'+(SCHK&&SCHK.t===(d.sch||'')?checkHtml(SCHK.r,d.sch,SCHK.prev):'');
   }
@@ -6883,7 +6885,8 @@ function tyOk(o){var f=String(o.s).split('|'),q=f[0]||'',c=String(f[1]||'').toLo
 function szItem(id,o){return {t:'sz',tid:id,k:o.k,de:o.s[0],tr:o.s[1],alts:o.s[2]||[]};}
 function tItems(id,k){
   var g=GBY[id],x=gxs(id);
-  function pick(a,n){return shuffle(a.slice()).sort(function(p,q){return (x.m[p.k]===1)-(x.m[q.k]===1);}).slice(0,n);}
+  /* önce bilmediklerin; son 3 günde gördüğün soru ve cümleler sona (aynı cümleyi ezberlemek olmasın) */
+  function pick(a,n){var t=today();function rk(o){var l=x.ls&&x.ls[o.k];return (l&&dd(l,t)<3?2:0)+(x.m[o.k]===1?1:0);}return shuffle(a.slice()).sort(function(p,q){return rk(p)-rk(q);}).slice(0,n);}
   var L=mcs(id).map(function(s,i){return {s:s,k:'x'+i};}),Z=g[4].map(function(s,i){return {s:s,k:'s'+i};}),out=[];
   if(k==='anla')return pick(L,3).map(function(o){return mcItem(id,o,'hc');});
   if(k==='tani')return pick(L,8).map(function(o){return mcItem(id,o,'mc');});
@@ -6918,7 +6921,7 @@ function startStage(id,k,only){
 function prepItem(o){var it=o.items[o.i];o.dg=null;o.pick=null;o.state=null;o.val='';o.tyres=null;o.hint=0;if(it&&(it.t==='sz'||o.kind==='satz'))prepSatz(o,it);}
 function lessonRecord(ok){
   var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;
-  gxs(it.tid||X.id).m[it.k]=ok?1:0;var d=xday();d.g=(d.g||0)+1;save();
+  var gx0=gxs(it.tid||X.id);gx0.m[it.k]=ok?1:0;gx0.ls=gx0.ls||{};gx0.ls[it.k]=today();var d=xday();d.g=(d.g||0)+1;save();
 }
 function recordAny(ok){if(X.kind==='ezq')ezRecord(ok);else lessonRecord(ok);}
 function lessonIntro(){
@@ -6976,8 +6979,8 @@ function pLesson(){
   if(X.i<0)return {t:esc(g[2]),b:lessonIntro()};
   if(X.i>=n)return {t:esc(g[2]),b:lessonEnd()};
   var it=X.items[X.i],b=progBar(X.i,n);
-  /* karışık soruda konunun adı cevaptan sonra görünür: önce "burada hangi kural?" diye kendin seç */
-  if(it.tid&&it.tid!==X.id)b+='<div class="center"><span class="tag mix">'+(X.pick||X.tyres?'Bu soru <b lang="de">'+esc(GBY[it.tid][2])+'</b> konusundandı':'Karışık soru')+'</span></div>';
+  /* tekrar ve karışık alıştırmada her sorunun konusu baştan yazar */
+  if(it.tid&&GBY[it.tid]&&(it.tid!==X.id||/^(rv|free|retry)$/.test(X.stg)))b+='<div class="center"><span class="tag mix">'+(it.tid!==X.id?'Karışık · ':'')+'Konu: <b lang="de">'+esc(GBY[it.tid][2])+'</b></span></div>';
   b+=it.t==='sz'?satzBody(X,it):it.t==='ty'?tyBody(X,it):mcBody(it);
   return {t:esc(g[2]),r:'<span class="small muted">'+(STT[X.stg]||'').split(' · ')[0]+'</span>',b:b};
 }
@@ -7068,7 +7071,7 @@ function pUret(){
   var b='<div><div class="eyebrow">Aşama 4 · Üret · '+esc(g[1])+'</div><h1 lang="de">'+esc(g[2])+'</h1></div>'+
     '<div class="card"><div class="eyebrow">Görev</div><p style="margin-top:6px;font-weight:600;font-size:16px">'+esc(pr[0])+'</p>'+(pr[1]?'<p class="small muted" style="margin-top:6px">Şöyle başlayabilirsin: <b lang="de" style="color:var(--ink)">'+esc(pr[1])+'</b></p>':'')+'</div>'+
     '<details class="card"><summary>Örnek cümlelere ve özete bak</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+exHtml(g)+sumHtml(id)+'</div></details>'+
-    '<textarea class="inp" lang="de" data-in="uret" data-id="'+id+'" spellcheck="false" autocapitalize="sentences" style="min-height:150px" placeholder="'+esc(pr[1]||'Schreib hier …')+'">'+esc(txt)+'</textarea>'+
+    gwHtml(id,'u'+id)+'<div class="eyebrow" style="margin:4px">Yazın · '+n+' / 3 cümle</div><textarea class="inp" lang="de" data-in="uret" data-id="'+id+'" spellcheck="false" autocapitalize="sentences" style="min-height:150px" placeholder="'+esc(pr[1]||'Schreib hier …')+'">'+esc(txt)+'</textarea>'+
     '<div class="small muted num" id="uN">'+n+' / 3 cümle · en az 3 kelimelik her cümle sayılır</div>'+
     '<div id="uTr">'+utrHtml(id,txt)+'</div>'+(pr[2]?'<p class="small muted">'+esc(pr[2])+' · bitince cümlelerini bir kez sesli oku.</p>':'')+
     '<button class="btn dark big wide" data-act="ucheck">Yazdıklarımı kontrol et</button>'+(X.chk?checkHtml(X.chk,x.wd,X.chkp):'')+
@@ -7387,6 +7390,16 @@ function rvCard(c,big){
    Sonraki günlerde zorluk basamakları (s.st): 0 Türkçe→Almanca seç · 1 cümlede boşluğu doldur · 2 artikeliyle yaz · 3+ yaz/boşluk karışık.
    Doğru: bir basamak yukarı. Artikel ya da yazım hatası: aynı basamak. Yanlış: bir basamak aşağı.
    Her kartta: parçalar, birlikte kullanıldığı kalıplar, kelime ailesi ve hafıza kancası. */
+/* yanlış bilinen kart oturumun sonunda başka bir soru türüyle döner: birkaç saniye önce gördüğün cevabı aynı biçimde
+   tekrarlamak ezber olur, bilgi değil. Bu ikinci deneme takvimi değiştirmez (kart her durumda yarın yine gelir). */
+function rvRetryType(t,c){var cz=!!clozeOf(c);
+  if(c.kalip)return t==='write'?(kKey(c)?'cloze':'de2tr'):t==='cloze'?'de2tr':'write';
+  if(isPhrase(c))return t==='write'?'de2tr':'write';
+  if(t==='write')return cz?'cloze':'de2tr';
+  if(t==='cloze')return 'write';
+  if(t==='tr2de')return 'de2tr';
+  if(t==='de2tr'||t==='listen')return 'tr2de';
+  return 'write';}
 function rvSt(s){return !s?0:s.st!=null?s.st:s.n>=2?2:s.n>=1?1:0;}
 function isPhrase(c){return !!(c.kalip||c.topic||(!ART(c.a)&&/\s/.test(c.w)&&!/^sich /.test(c.w)));}
 function clozeOf(c){var m=c.ex&&c.ex.match(/\*([^*]+)\*/);return m?m[1]:'';}
@@ -7426,7 +7439,7 @@ function rvType(id){
   var s=S.srs[id],c=card(id);
   if(!s&&!W.seen[id])return 'intro';
   if(isPr(id))return prSteps(id)[day().pr[id]];
-  if(W.rt&&W.rt[id])return W.rt[id];   /* oturumda geri gelen kart yanıldığın türde sorulur */
+  if(W.rt&&W.rt[id])return W.rt[id];   /* oturumda geri gelen kart başka türle sorulur (rvRetryType) */
   var st=rvSt(s);
   /* yeni kelime önce iki şıklı soruyla pekişir: Almancasını gör → anlamını seç, sonra Türkçesini gör → Almancasını seç; yazmak ondan sonra */
   if(!c||/[…\/+]/.test(c.w))return 'tr2de';
@@ -7454,6 +7467,11 @@ function ctxSents(c){
   POOL.forEach(function(e){if(e!==c&&out.length<12)add(e.ex,'');});
   return out;
 }
+/* konu cümlesi kartı bir cümleye değil konuya bağlıdır: her seferinde konunun en uzun süredir görmediğin cümlesi sorulur
+   (oturumda yanlış yapılan cümle aynı oturumda tekrar gelmez) */
+function gsPick(id){var q=id.split(':'),g=GBY[q[1]];if(!g)return ['','',[],0];S.gsl=S.gsl||{};var L=S.gsl[q[1]]||(S.gsl[q[1]]={}),bad=W.gsx&&W.gsx[id],best=-1;
+  shuffle(g[4].map(function(_,j){return j;})).forEach(function(j){if(j===bad&&g[4].length>1)return;if(best<0||(L[j]||0)<(L[best]||0))best=j;});
+  L[best]=Date.now();var e=g[4][best];return [String(e[0]).replace(/\*/g,''),e[1],e[2]||[],best];}
 function rvOpts(c,type){
   /* kalıpta yanlış şıklar önce aynı gruptan (Wie heißt das noch mal? / Was bedeutet das?) */
   if(c.kalip){var kf=type==='de2tr'?function(x){return x.tr;}:deText,kr=kf(c),ko=[kr];
@@ -7709,7 +7727,7 @@ function pReview(){var r=pReview0(),id=W.q&&W.q[0];
   if(id&&card(id)&&!(W.cur&&W.cur.id===id&&W.kn===id)){var i=r.b.search(/<div class="(card|fb)/);var bt=rmBtn(id).replace('<div class="rmrow">','<div class="rmrow">'+rvBadge(id));r.b=i>=0?r.b.slice(0,i)+bt+r.b.slice(i):bt+r.b;}
   return r;}
 /* kartın türü: yeni (ilk kez görüyorsun) · yeni öğrendiğin (ilk birkaç tekrar, şıklı) · tekrar */
-function rvBadge(id){if(id.indexOf('gs:')===0)return '<span class="nbadge">Konu cümlesi</span>';var s=S.srs[id];
+function rvBadge(id){if(W.lap&&W.lap[id]&&!W.hard)return '<span class="nbadge young">Az önce yanlış · başka soruyla</span>';if(id.indexOf('gs:')===0)return '<span class="nbadge">Konu cümlesi</span>';var s=S.srs[id];
   if(!s||(W.cur&&W.cur.id===id&&W.cur.type==='intro'))return '<span class="nbadge new">Yeni kelime · tanış</span>';
   if(isPr(id)){var n=prSteps(id).length,k=day().pr[id]+1;return '<span class="nbadge new">Yeni kelime · alıştırma '+k+'/'+n+'</span>';}
   return '<span class="nbadge">Tekrar</span>';}
@@ -7732,7 +7750,7 @@ function pReview0(){
   var id=q[0],c=card(id);
   if(!c||isBan(id)){q.shift();return pReview0();}
   if(!W.cur||W.cur.id!==id){var ty=rvType(id);W.cur={id:id,type:ty,t0:Date.now(),pr:isPr(id)};W.hk=null;W.hkv=null;W.val='';W.hs=null;if(!HKY)hkyLoad(function(){if(X&&X.kind==='review')drawPage();});
-    if(ty==='gs'){prepSatz(W.cur,{de:c.w,alts:c.alts});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
+    if(ty==='gs'){var gz=gsPick(id);W.cur.sz=gz;W.cur.gj=gz[3];prepSatz(W.cur,{de:gz[0],alts:gz[2]});W.cur.ord=shuffle(W.cur.toks.map(function(_,i){return i;}));W.cur.pl=[];}
     if(ty==='intro'||ty==='tr2de'||ty==='listen'||ty==='de2tr'){var r=rvOpts(c,ty==='tr2de'?'tr2de':'de2tr');W.cur.right=r.right;W.cur.o=r.o;}
     if(ty==='cloze'&&c.kalip){W.cur.cz=[c.w,''];W.cur.czf=kKey(c);}
     else if(ty==='cloze'){var ow=ownFor(c),cs=ow.length?ow:ctxSents(c);W.cur.cz=cs[hash(id+today()+'c')%cs.length]||[plain(c.ex),''];if(W.cur.cz[3])W.cur.czf=W.cur.cz[3];}
@@ -7742,11 +7760,11 @@ function pReview0(){
   b=progBar(done,Math.max(W.n0,done+1));
   if(cu.type==='gs'){
     var pl=cu.pl.map(function(i){return cu.disp[i];}).join(' ');
-    b+='<div class="card rv"><div class="src">Konu cümlesi · '+esc(c.topic)+'</div><div class="ask">Cümleyi kur</div><div class="tr" style="font-size:20px">'+esc(c.tr)+'</div>'+
+    b+='<div class="card rv"><div class="src">Konu cümlesi · '+esc(c.topic)+'</div><div class="ask">Cümleyi kur</div><div class="tr" style="font-size:20px">'+esc(cu.sz[1])+'</div>'+
       '<div class="ex exq" lang="de" style="min-height:30px">'+(cu.res?'<b class="'+(cu.res==='ok'?'ok':'no')+'">'+esc(pl)+'</b>':esc(pl||'…'))+'</div></div>';
     if(!cu.res)b+='<div class="opts sz">'+cu.ord.filter(function(i){return cu.pl.indexOf(i)<0;}).map(function(i){return '<button lang="de" data-act="gsp" data-v="'+i+'">'+esc(cu.disp[i])+'</button>';}).join('')+'</div>'+
       (cu.pl.length?'<button class="link center" data-act="gsback">Geri al</button>':'');
-    else b+='<div class="fb '+(cu.res==='ok'?'ok':'no')+'"><b>'+(cu.res==='ok'?'Richtig!':'Doğrusu')+'</b><span lang="de">'+esc(c.w)+'</span></div>'+smapHtml(c.w)+'<button class="btn dark big wide" data-act="rvnext">Devam</button>';
+    else b+='<div class="fb '+(cu.res==='ok'?'ok':'no')+'"><b>'+(cu.res==='ok'?'Richtig!':'Doğrusu')+'</b><span lang="de">'+esc(cu.sz[0])+'</span></div>'+smapHtml(cu.sz[0])+'<button class="btn dark big wide" data-act="rvnext">Devam</button>';
     return {t:'Kelime tekrarı',b:b};
   }
   if(cu.type==='intro'){
@@ -7824,6 +7842,10 @@ function rvGrade(id,res){
   if(W.cur&&W.cur.pr){var d0=day(),c0=card(id);W.cur.ok=res==='ok'||res==='near';if(W.cur.ok&&d0.pr&&d0.pr[id]!=null){d0.pr[id]++;save();}
     if(res==='no'&&c0){var o0=W.cur.type==='tr2de'?deFind(W.pick||''):W.cur.type==='de2tr'?trFind(W.pick||''):W.cur.val?deFind(W.cur.val):null;if(o0&&o0.id!==id&&o0.w!==c0.w)W.cur.oth=o0.id;W.hs=id;}
     return;}
+  if(W.lap&&W.lap[id]&&!W.hard){var c1=card(id);W.cur.ok=res!=='no'&&res!=='hint';
+    if(res==='no'&&c1){var o1=W.cur.type==='tr2de'?deFind(W.pick||''):/^(listen|de2tr)$/.test(W.cur.type)?trFind(W.pick||''):W.cur.val?deFind(W.cur.val):null;if(o1&&o1.id!==id&&o1.w!==c1.w)W.cur.oth=o1.id;W.hs=id;}
+    var s1=S.srs[id],d1=day();if(s1){s1.d=addD(today(),1);d1.wd=d1.wd||{};if(!d1.wd[id]){d1.wd[id]=1;d1.w=(d1.w||0)+1;d1.wrv=(d1.wrv||0)+1;}}
+    if(W.cur.type!=='gs')rvSay(c1);save();return;}
   var c=card(id),s=S.srs[id],st=rvSt(s),ok=res==='ok'||res==='hint',g=res==='no'?0:res==='ok'?(s&&s.n>=1?2:1):1,sb=isSat(id);
   /* en az 2 kez bilinmiş kart ipucusuz ve çok hızlı bilinirse "kolay": daha uzun arayla gelir (ekranda bir şey değişmez) */
   if(res==='ok'&&s&&s.n>=2&&W.cur&&W.cur.t0&&!W.cur.hint){var el=Date.now()-W.cur.t0,typed=/^(write|cloze|plural|perf)$/.test(W.cur.type);
@@ -7844,7 +7866,7 @@ function rvGrade(id,res){
 function rvAdvance(requeue){
   if(W.day&&W.day!==today()&&!W.hard){buildQueue();toast('Yeni gün başladı · bugünün kartları');drawPage();return;}
   var id=W.q.shift();
-  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard){W.lap[id]=1;W.rt=W.rt||{};if(W.cur&&W.cur.type&&W.cur.type!=='gs')W.rt[id]=W.cur.type;W.q.splice(Math.min(10,W.q.length),0,id);}
+  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard){W.lap[id]=1;W.rt=W.rt||{};if(W.cur&&W.cur.type&&W.cur.type!=='gs'&&card(id))W.rt[id]=rvRetryType(W.cur.type,card(id));if(W.cur&&W.cur.type==='gs'){W.gsx=W.gsx||{};W.gsx[id]=W.cur.gj;}W.q.push(id);}
     else{var s=S.srs[id],d=day();if(s){s.d=addD(today(),1);d.wd=d.wd||{};if(!d.wd[id]&&!W.hard){d.wd[id]=1;d.w=(d.w||0)+1;d.wrv=(d.wrv||0)+1;}save();}}}
   W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;setStreak();
   if((!W.q||!W.q.length)&&wordDone(peek(today())))toast('Kelime görevi tamam · +30 puan');
@@ -8470,7 +8492,13 @@ ACT.lib=function(b){openPage({kind:'lib',v:b.dataset.v});};
 ACT.klv=function(b){X.lv=+b.dataset.v;drawPage();};
 ACT.kadd=function(b){var n=0,redraw=X?drawPage:render;b.dataset.ids.split(',').forEach(function(i){if(queueNew('k:'+i,true))n++;});save();redraw();toast(n+' kalıp eklendi · bugün tanıtılır, ilk soru yarın');};
 
-function wrongCopy(){return X.items.filter(function(it,i){return X.res[i]==='no';}).map(function(it){var c={};for(var k in it)c[k]=it[k];if(c.o)c.o=shuffle(c.o.slice());return c;});}
+/* yanlışları tekrar: aynı soru değil, aynı konunun aynı türden başka bir sorusu ya da cümlesi (yoksa aynısı, şıklar karışık) */
+function wrongCopy(){var used={};X.items.forEach(function(it){used[(it.tid||X.id)+':'+it.k]=1;});
+  return X.items.filter(function(it,i){return X.res[i]==='no';}).map(function(it){var a=altItem(it,used);if(a){used[a.tid+':'+a.k]=1;return a;}var c={};for(var k in it)c[k]=it[k];if(c.o)c.o=shuffle(c.o.slice());return c;});}
+function altItem(it,used){var tid=it.tid||X.id,g=GBY[tid];if(!g||X.kind!=='lesson')return null;
+  if(it.t==='sz'){var Z=g[4].map(function(s,i){return {s:s,k:'s'+i};}).filter(function(o){return !used[tid+':'+o.k];});return Z.length?szItem(tid,Z[Math.floor(Math.random()*Z.length)]):null;}
+  var L=mcs(tid).map(function(s,i){return {s:s,k:'x'+i};}).filter(function(o){return !used[tid+':'+o.k]&&(it.t!=='ty'||tyOk(o));});
+  return L.length?mcItem(tid,L[Math.floor(Math.random()*L.length)],it.t==='hc'?'mc':it.t):null;}
 function focusTy(){var el=document.querySelector('#page [data-in="ty"]');if(el){try{el.focus();var n=el.value.length;el.setSelectionRange(n,n);}catch(e){}}}
 /* ================= EZBER KÖŞESİ =================
    Almancanın temeli: tablolar seviyeye göre (A1 → A2 → B1).
@@ -8609,6 +8637,7 @@ function pEzq(){
   if(X.i>=n)return {t:ttl,b:ezEnd()};
   var it=X.items[X.i],t=EZBY[it.tz],b=progBar(X.i,n);
   if(it.t==='sz')b+='<div class="eyebrow center" style="margin-top:8px">'+esc(t.t)+'</div>'+satzBody(X,it);
+  else if(X.tids.length>1)b+='<div class="center"><span class="tag mix">Tablo: <b>'+esc(t.t)+'</b></span></div>'+(it.t==='ty'?tyBody(X,it):mcBody(it));
   else b+=it.t==='ty'?tyBody(X,it):mcBody(it);
   return {t:ttl,b:b};
 }
@@ -9347,6 +9376,49 @@ ACT.memp=function(b){var i=+b.dataset.i,c=X.cards[i];if(X.got[c.p]||X.open.index
     if(a.p===d.p){X.got[a.p]=1;X.open=[];}
     else{gConf(deText(X.ws[a.de?a.p:d.p])+' = '+X.ws[a.de?a.p:d.p].tr);var me=X;setTimeout(function(){if(X===me){me.open=[];drawPage();}},950);}}
   drawPage();};
+
+/* ================= YAZI YARDIMCISI =================
+   "Ne yazacağımı bilmiyorum" için üç küçük görev; her biri tek cümle:
+   1 örnekteki gibi kendin hakkında (konunun okuma metninden, kalıbı işaretli cümle) · 2 Türkçesini Almanca yaz (konunun cümlesi;
+   kontrol edince örnek çeviri) · 3 verilen kelimelerle cümle (son günlerde öğrendiğin kelimeler, yoksa konunun kelimeleri).
+   Cümle "Yazıma ekle" ile asıl metne eklenir (Üret ya da günlük Yazma). Görevler gün içinde sabit, "Başka görev" ile değişir. */
+var GWS={};
+function gwState(tg){var k=tg+'|'+today();return GWS[k]||(GWS[k]={r:[0,0,0],v:['','',''],c:[null,null,null],d:['','','']});}
+function gwPlain(s){return String(s||'').replace(/\*/g,'');}
+function gwHints(tid,de){var out=[],seen={};szToks(de).forEach(function(w){if(out.length>=3||w.length<4||FUNCW[w.toLowerCase()])return;
+  var g=lsGloss(tid,w,de);if(g&&g.e&&!seen[g.e.id]){seen[g.e.id]=1;out.push([g.h,g.tr]);}});return out;}
+function gwWords(tid,h){var t=today(),ids=Object.keys(S.srs).filter(function(id){var x=S.srs[id],c=id.indexOf('p:')===0&&card(id);return c&&x.a&&dd(x.a,t)<=14&&/^[nva]$/.test(c.p)&&!isPhrase(c);});
+  var L=ids.map(function(id){var c=card(id);return [deText(c),c.tr];});
+  if(L.length<3)(GW[tid]||[]).forEach(function(w){L.push([(ART(w[3])?ART(w[3])+' ':'')+w[0],w[2]]);});
+  if(!L.length)return [];var o=[];for(var i=0;i<L.length&&o.length<3;i++){var e=L[(h+i*7)%L.length];if(o.indexOf(e)<0)o.push(e);}return o;}
+function gwSlot(tid,i,r,tg){var g=GBY[tid],h=Math.abs(hash(today()+tid+i+(tg||'')))+r*7919,D=lsData()[tid];
+  if(i===0){var L=[];if(D)D.p.forEach(function(p){p.forEach(function(x){if(x[0].indexOf('*')>=0)L.push(x);});});if(!L.length)L=g[4].map(function(e){return [e[0],e[1]];});
+    var m=L[h%L.length];return {k:'model',t:'Örnekteki gibi, kendin hakkında',de:m[0],tr:m[1]};}
+  if(i===1){var e=g[4][h%g[4].length],de=gwPlain(e[0]);return {k:'tr',t:'Türkçesini Almanca yaz',tr:e[1],ref:de,hint:gwHints(tid,de)};}
+  return {k:'words',t:'Bu kelimelerle bir cümle',w:gwWords(tid,h)};}
+function gwHtml(tid,tg){var G0=gwState(tg),b='<div class="card gw"><div class="eyebrow">Ne yazacağını bilmiyor musun? · 3 küçük görev</div><p class="small muted" style="margin:4px 0 2px">Her görev tek cümle. Yazdığını kontrol et, sonra "Yazıma ekle".</p>';
+  for(var i=0;i<3;i++){var sl=gwSlot(tid,i,G0.r[i],tg),c=G0.c[i];
+    b+='<div class="gws"><div class="gwh"><b>'+(i+1)+' · '+sl.t+'</b><button class="link" data-act="gwnew" data-tg="'+tg+'" data-i="'+i+'">Başka görev</button></div>';
+    if(sl.k==='model')b+='<p lang="de" class="gwm">'+rich(sl.de)+'</p><p class="small muted">'+esc(sl.tr)+'</p><p class="small">Aynı kalıpla kendi hayatından yaz: kişiyi (ich), fiili, yeri ya da zamanı değiştir.</p>';
+    else if(sl.k==='tr')b+='<p class="gwm"><b>'+esc(sl.tr)+'</b></p>'+(sl.hint.length?'<p class="small muted">Kelimeler: '+sl.hint.map(function(x){return '<span lang="de">'+esc(x[0])+'</span> ('+esc(x[1])+')';}).join(' · ')+'</p>':'');
+    else b+='<div class="gwc">'+sl.w.map(function(x){return '<span><b lang="de">'+esc(x[0])+'</b> '+esc(x[1])+'</span>';}).join('')+'</div><p class="small">En az ikisini kullan; konuyu da kullanmaya çalış: <b lang="de">'+esc(GBY[tid][2])+'</b>.</p>';
+    if(G0.d[i]){b+='<div class="fb ok"><b>✓ Yazına eklendi</b><span lang="de">'+esc(G0.d[i])+'</span></div></div>';continue;}
+    b+='<input class="inp" lang="de" data-in="gwv" data-tg="'+tg+'" data-i="'+i+'" autocomplete="off" spellcheck="false" autocapitalize="sentences" value="'+esc(G0.v[i])+'" placeholder="Cümleni yaz …">';
+    if(c)b+=(c.length?'<div class="fb no"><b>Bak: '+c.length+' olası hata</b>'+c.slice(0,2).map(function(x){return '<span><mark lang="de">'+esc(x.f)+'</mark> · '+rich(x.think||x.t)+'</span>';}).join('')+'<span class="small">Düzelt ve yeniden kontrol et.</span></div>':'<div class="fb ok"><b>Tipik hata bulmadım</b></div>')+
+      (sl.k==='tr'&&G0.c[i]?'<div class="fb ok" style="margin-top:6px"><b>Örnek çeviri</b><span lang="de">'+esc(sl.ref)+'</span><span class="small">Seninki farklı olabilir; anlam aynıysa doğrudur.</span></div>':'');
+    b+='<div class="row" style="margin-top:6px;gap:8px"><button class="btn sm" data-act="gwchk" data-tg="'+tg+'" data-i="'+i+'">Kontrol et</button><button class="btn sm dark" data-act="gwadd" data-tg="'+tg+'" data-i="'+i+'" data-id="'+tid+'">Yazıma ekle</button></div></div>';}
+  return b+'</div>';}
+function gwRedraw(){if(X){var sc=$('page').scrollTop;drawPage();$('page').scrollTop=sc;}else render();}
+function gwVal(b){var el=document.querySelector('input[data-in="gwv"][data-tg="'+b.dataset.tg+'"][data-i="'+b.dataset.i+'"]');return String(el?el.value:gwState(b.dataset.tg).v[+b.dataset.i]||'').trim();}
+ACT.gwnew=function(b){var G0=gwState(b.dataset.tg),i=+b.dataset.i;G0.r[i]++;G0.v[i]='';G0.c[i]=null;G0.d[i]='';gwRedraw();};
+ACT.gwchk=function(b){var G0=gwState(b.dataset.tg),i=+b.dataset.i,v=gwVal(b);G0.v[i]=v;if(v.split(/\s+/).length<3){toast('Önce en az 3 kelimelik bir cümle yaz');return;}
+  var t=/[.!?]$/.test(v)?v:v+'.';G0.c[i]=checkText(t);gwRedraw();};
+ACT.gwadd=function(b){var tg=b.dataset.tg,G0=gwState(tg),i=+b.dataset.i,v=gwVal(b);if(!sentN(v)){toast('En az 3 kelimelik Almanca bir cümle yaz');return;}
+  if(!/[.!?]$/.test(v))v+='.';
+  if(tg==='sch'){var d=day();d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+v;lgBump('y','',function(e){e.n=sentN(d.sch);});refreshScore();}
+  else{var x=gxs(b.dataset.id),w=String(x.wd||'').trim();x.wd=(w?w+(/[.!?]$/.test(w)?' ':'. '):'')+v;}
+  G0.d[i]=v;G0.v[i]='';save();toast('Yazına eklendi');gwRedraw();};
+document.addEventListener('input',function(e){var el=e.target;if(el.dataset&&el.dataset.in==='gwv')gwState(el.dataset.tg).v[+el.dataset.i]=el.value;});
 
 /* ================= SINAVLAR =================
    Seviye sonu sınavları (#examd): A2.1, A2.2 (A2 sonu), B1.1, B1.2 (B1 sonu). Bölümler: Lesen (Goethe A2/B1 biçimi),
