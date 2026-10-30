@@ -8064,20 +8064,20 @@ var ACT={
     if(v==='ilerleme')v='ben';TAB=v;OPEN=null;render();window.scrollTo(0,0);},
   task:function(b){var id=b.dataset.id;if(id==='ez'&&ezDueList().length>1){ACT.ezmix();return;}sessLaunch(id);},
 
-  review:function(){if(W.hard&&W0){W=W0;W0=null;}if(!W.q||W.day!==today())buildQueue();openPage({kind:'review'});},
-  rvok:function(){var id=W.q.shift();W.seen[id]=1;introDone(id);prRebuild();W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
+  review:function(){if(W.hard&&W0){W=W0;W0=null;}if(!W.q||W.stale||W.day!==today())buildQueue();openPage({kind:'review'});},
+  rvok:function(){if(!wGuard())return;var id=W.q.shift();W.seen[id]=1;introDone(id);prRebuild();W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
   rvkn:function(){W.kn=W.q[0];drawPage();var e=document.querySelector('#page [data-in="wt"]');if(e)e.focus();},
   rvknx:function(){W.kn=null;drawPage();},
   rvkncheck:function(){var id=W.q[0],c=card(id),el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}
     var j=rvJudge(c,'write',v);W.kn=null;
     if(j.r==='ok'||j.r==='near'){toast('Biliyorsun · 30 gün sorulmayacak');ACT.rvknown();return;}
     W.cur.val=v;W.pick='\u0001kn';W.hs=id;rvSay(c);drawPage();},
-  rvknown:function(){var id=W.q[0],sb=isSat(id);grade(id,3);var s=S.srs[id],t=today();s.kn=1;if(s.i<30){s.i=30;s.d=addD(t,30);s.fs=Math.max(s.fs||0,30);}satBump(id,sb);save();rvAdvance(false);},
-  rvpick:function(b){if(W.pick)return;W.pick=b.dataset.v;if(W.cur.type==='intro'){rvSay(card(W.q[0]));W.hs=W.q[0];}if(W.cur.type!=='intro'){W.cur.res=W.pick===W.cur.right?'ok':'no';if(W.cur.res==='no')W.cur.m='Doğrusu: *'+W.cur.right+'*';rvGrade(W.q[0],W.cur.res);}drawPage();},
+  rvknown:function(){if(!wGuard())return;var id=W.q[0],sb=isSat(id);grade(id,3);var s=S.srs[id],t=today();s.kn=1;if(s.i<30){s.i=30;s.d=addD(t,30);s.fs=Math.max(s.fs||0,30);}satBump(id,sb);save();rvAdvance(false);},
+  rvpick:function(b){if(!wGuard()||!W.cur)return;if(W.pick)return;W.pick=b.dataset.v;if(W.cur.type==='intro'){rvSay(card(W.q[0]));W.hs=W.q[0];}if(W.cur.type!=='intro'){W.cur.res=W.pick===W.cur.right?'ok':'no';if(W.cur.res==='no')W.cur.m='Doğrusu: *'+W.cur.right+'*';rvGrade(W.q[0],W.cur.res);}drawPage();},
   autosay:function(b){S.set.auto=b.dataset.v==='1';touch('set');save();drawPage();},
   rvplay:function(){var c=card(W.q[0]);if(c)sayVar(deText(c));},
-  rvcheck:function(){var cu=W.cur;if(!cu||cu.res)return;var el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:W.val||'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}var c=card(cu.id),j=rvJudge(c,cu.type,v);if(cu.hint&&(j.r==='ok'||j.r==='near'))j.r='hint';cu.val=v;cu.res=j.r;cu.m=j.m||(j.r==='no'?'Doğrusu: *'+rvRight(c,cu.type)+'*':'');rvGrade(cu.id,j.r);drawPage();},
-  rvidk:function(){var cu=W.cur;if(!cu||cu.res)return;var c=card(cu.id);
+  rvcheck:function(){if(!wGuard())return;var cu=W.cur;if(!cu||cu.res)return;var el=document.querySelector('#page [data-in="wt"]'),v=el?el.value:W.val||'';if(!String(v).trim()){toast('Önce cevabını yaz');return;}var c=card(cu.id),j=rvJudge(c,cu.type,v);if(cu.hint&&(j.r==='ok'||j.r==='near'))j.r='hint';cu.val=v;cu.res=j.r;cu.m=j.m||(j.r==='no'?'Doğrusu: *'+rvRight(c,cu.type)+'*':'');rvGrade(cu.id,j.r);drawPage();},
+  rvidk:function(){if(!wGuard())return;var cu=W.cur;if(!cu||cu.res)return;var c=card(cu.id);
     if(!cu.hint&&(cu.type==='write'||cu.type==='cloze')){var el=document.querySelector('#page [data-in="wt"]');if(el)W.val=el.value;cu.hint=rvHint(c,cu.type);drawPage();var e2=document.querySelector('#page [data-in="wt"]');if(e2)e2.focus();return;}cu.val='';cu.res='no';cu.m='Doğrusu: *'+rvRight(c,cu.type)+'*';rvGrade(cu.id,'no');drawPage();},
   hkopen:function(){W.hk=W.cur&&W.cur.id;W.hkv=null;drawPage();setTimeout(function(){var t=document.querySelector('#page [data-in="hk"]');if(t)t.scrollIntoView({block:'center'});},40);},
   hkstory:function(){var id=W.cur&&W.cur.id;W.hs=id;hkyLoad(function(){if(X&&X.kind==='review')drawPage();});drawPage();},
@@ -8090,7 +8090,7 @@ var ACT={
   hkbopen:function(){KHB=true;render();},
   hkbsave:function(){var el=document.querySelector('[data-in="hkb"]'),n=hkParse(el?el.value:'');if(!n){toast('“kelime :: kanca” satırı bulunamadı');return;}KHB=false;save();render();toast(n+' kanca kaydedildi');},
   owsave:function(){var el=document.querySelector('#page [data-in="ows"]'),t=String(el?el.value:'').trim();if(!t){toast('Önce cümleni yaz');return;}var d=day();d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+t;W.ows='';lgBump('y','',function(e){e.n=sentN(d.sch);});save();toast('Yazma görevine eklendi');drawPage();},
-  rvnext:function(){if(!W.cur){drawPage();return;}
+  rvnext:function(){if(!wGuard())return;if(!W.cur){drawPage();return;}
     if(W.cur.pr){var id=W.q.shift(),d=day();if(!W.cur.ok&&d.pr&&d.pr[id]!=null){W.prw=W.prw||{};var key=id+':'+d.pr[id];W.prw[key]=(W.prw[key]||0)+1;
         if(W.prw[key]<=2&&W.q.length>=2)W.q.splice(Math.min(3,W.q.length),0,id);else{d.pr[id]++;save();if(prLeft(id)>0)W.q.push(id);}}
       W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;return;}
@@ -8174,7 +8174,7 @@ var ACT={
     if(!ok){gConf(it.pre.trim()+' ___ '+it.post.trim()+' → '+it.ans);if(!it.again){var c2={};for(var k in it)c2[k]=it[k];c2.again=1;c2.opts=shuffle(it.opts.slice());X.items.push(c2);}}logAns('lk','lk',ok,it.pre+'…'+it.post+' (ipucu: '+it.e.tr+')',X.pick,it.ans,'');drawPage();},
   unext:function(){X.i++;X.pick=null;drawPage();},
   blitz:function(){openPage({kind:'blitz',run:false,end:false,ok:0,n:0,miss:[]});},
-  gsp:function(b){var cu=W.cur;cu.pl.push(+b.dataset.v);
+  gsp:function(b){if(!wGuard())return;var cu=W.cur;if(!cu||!cu.pl)return;cu.pl.push(+b.dataset.v);
     if(cu.pl.length===cu.toks.length){var key=cu.pl.map(function(i){return cu.toks[i].toLowerCase();}).join(' ');cu.res=cu.okset.some(function(o){return o.key===key;})?'ok':'no';rvGrade(cu.id,cu.res);}
     drawPage();},
   gsback:function(){W.cur.pl.pop();drawPage();},
@@ -8264,7 +8264,11 @@ document.addEventListener('keydown',function(e){
 });
 /* gün değişimi: uygulama açıkken gece yarısı geçerse ekran yeni güne geçer (açık ders/test başladığı güne yazar) */
 var RDAY=null;
-function dayRoll(){if(RDAY&&today()!==RDAY){W.q=null;if(!X)render();}}
+/* kelime kuyruğu tekrar ekranı açıkken silinmez: eşitleme ya da gün değişimi kuyruğu sıfırlarsa ekrandaki şık ve "Devam"
+   sessizce bozuluyordu (W.q boş). Ekran açıksa yalnız işaretlenir; ekran yeniden açılınca kuyruk yeniden kurulur. */
+function wReset(){if(X&&X.kind==='review'&&W.q){W.stale=1;return;}W.q=null;}
+function wGuard(){if(W.q)return true;var cur=W.cur,pk=W.pick;buildQueue();if(cur&&card(cur.id)){W.q=W.q.filter(function(x){return x!==cur.id;});W.q.unshift(cur.id);W.cur=cur;W.pick=pk;W.n0=Math.max(W.n0||0,W.q.length);}return true;}
+function dayRoll(){if(RDAY&&today()!==RDAY){wReset();if(!X)render();}}
 document.addEventListener('visibilitychange',function(){if(!document.hidden)dayRoll();});
 setInterval(dayRoll,30000);
 
@@ -10669,7 +10673,7 @@ function sync(silent){
       remoteTxt=txt||'';var R=null;try{R=txt?JSON.parse(txt):null;}catch(e){}
       var before=sig(S);
       if(R)S=mergeS(S,R);
-      if(sig(S)!==before){saveLocal();W.q=null;var ae=document.activeElement;if(!X&&!(ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName)))render();toastSync();}
+      if(sig(S)!==before){saveLocal();wReset();var ae=document.activeElement;if(!X&&!(ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName)))render();toastSync();}
       if(R&&sig(S)===sig(R))return null;
       var body={files:{}};body.files[GISTF]={content:JSON.stringify(S)};
       return gh('/gists/'+SY.gist,{method:'PATCH',body:body});})
@@ -10736,7 +10740,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__wreset=wReset;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
