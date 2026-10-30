@@ -7866,7 +7866,8 @@ function rvGrade(id,res){
 function rvAdvance(requeue){
   if(W.day&&W.day!==today()&&!W.hard){buildQueue();toast('Yeni gün başladı · bugünün kartları');drawPage();return;}
   var id=W.q.shift();
-  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard){W.lap[id]=1;W.rt=W.rt||{};if(W.cur&&W.cur.type&&W.cur.type!=='gs'&&card(id))W.rt[id]=rvRetryType(W.cur.type,card(id));if(W.cur&&W.cur.type==='gs'){W.gsx=W.gsx||{};W.gsx[id]=W.cur.gj;}W.q.push(id);}
+  /* araya en az 3 kart girmiyorsa yanlış kart oturumda geri gelmez (hemen geri gelen aynı kelime "Devam çalışmıyor" gibi görünüyordu); yarın yine sorulur */
+  if(requeue){W.lap=W.lap||{};if(!W.lap[id]&&!W.hard&&W.q.length>=3){W.lap[id]=1;W.rt=W.rt||{};if(W.cur&&W.cur.type&&W.cur.type!=='gs'&&card(id))W.rt[id]=rvRetryType(W.cur.type,card(id));if(W.cur&&W.cur.type==='gs'){W.gsx=W.gsx||{};W.gsx[id]=W.cur.gj;}W.q.push(id);}
     else{var s=S.srs[id],d=day();if(s){s.d=addD(today(),1);d.wd=d.wd||{};if(!d.wd[id]&&!W.hard){d.wd[id]=1;d.w=(d.w||0)+1;d.wrv=(d.wrv||0)+1;}save();}}}
   W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;setStreak();
   if((!W.q||!W.q.length)&&wordDone(peek(today())))toast('Kelime görevi tamam · +30 puan');
@@ -8091,7 +8092,7 @@ var ACT={
   owsave:function(){var el=document.querySelector('#page [data-in="ows"]'),t=String(el?el.value:'').trim();if(!t){toast('Önce cümleni yaz');return;}var d=day();d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+t;W.ows='';lgBump('y','',function(e){e.n=sentN(d.sch);});save();toast('Yazma görevine eklendi');drawPage();},
   rvnext:function(){if(!W.cur){drawPage();return;}
     if(W.cur.pr){var id=W.q.shift(),d=day();if(!W.cur.ok&&d.pr&&d.pr[id]!=null){W.prw=W.prw||{};var key=id+':'+d.pr[id];W.prw[key]=(W.prw[key]||0)+1;
-        if(W.prw[key]<=2)W.q.splice(Math.min(3,W.q.length),0,id);else{d.pr[id]++;save();}}
+        if(W.prw[key]<=2&&W.q.length>=2)W.q.splice(Math.min(3,W.q.length),0,id);else{d.pr[id]++;save();if(prLeft(id)>0)W.q.push(id);}}
       W.cur=null;W.pick=null;W.step='q';drawPage();$('page').scrollTop=0;return;}
     rvAdvance(!W.cur.ok);},
   rvshow:function(){W.step='a';drawPage();},
@@ -10735,7 +10736,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
