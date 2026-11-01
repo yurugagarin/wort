@@ -3605,7 +3605,9 @@ function frac(d){
   };
 }
 /* Konu görevi (d.gv=1 olan günler): günde d.gtg konu adımı (d.gsn). Açık adım kalmadıysa yapılan kadarı yeter (d.gcap); bugün hiç açık adım yoksa 10 soru. */
-function gFrac(d){var n=d.gsn||0,T=d.gtg||2;if(n>=T||(d.gcap!=null&&n>0&&n>=d.gcap))return 1;if(d.gcap===0&&!n)return Math.min(1,(d.g||0)/10);return Math.min(1,n/T);}
+function gFrac(d){var n=d.gsn||0,T=d.gtg||2;if(n>=T||(d.gcap!=null&&n>0&&n>=d.gcap))return 1;if(d.gcap===0&&!n)return Math.min(1,(d.g||0)/10);
+  /* geçilemeyen aşama da emek sayılır: cevaplanan her soru küçük bir pay (en çok yarım adım); tam puan aşamaları geçmekle */
+  return Math.min(1,(n+Math.min(.5,(d.g||0)/24))/T);}
 /* günün konu kaydı: hedef o günün ayarıyla sabitlenir; bu kuraldan önce bugün aşama geçildiyse gün eski kuralla kalır (puan düşmesin) */
 function gDayInit(d,k){if(d.gv!=null)return d;if(d.gs){d.gv=0;return d;}
   d.gv=1;d.gtg=S.set.tps||2;var seen={},n=0;lgDay(k||today()).forEach(function(e){if(e.k==='g'&&e.ok&&GSTEP[e.s]&&!seen[e.ref+e.s]){seen[e.ref+e.s]=1;n++;}});d.gsn=n;return d;}
@@ -6886,7 +6888,8 @@ function szItem(id,o){return {t:'sz',tid:id,k:o.k,de:o.s[0],tr:o.s[1],alts:o.s[2
 function tItems(id,k){
   var g=GBY[id],x=gxs(id);
   /* önce bilmediklerin; son 3 günde gördüğün soru ve cümleler sona (aynı cümleyi ezberlemek olmasın) */
-  function pick(a,n){var t=today();function rk(o){var l=x.ls&&x.ls[o.k];return (l&&dd(l,t)<3?2:0)+(x.m[o.k]===1?1:0);}return shuffle(a.slice()).sort(function(p,q){return rk(p)-rk(q);}).slice(0,n);}
+  /* en uzun süredir görmediğin sorular önce: aşamayı yeniden denediğinde aynı 8 soru gelmesin */
+  function pick(a,n){function rk(o){var l=x.ls&&x.ls[o.k];return !l?0:typeof l==='number'?l:(Date.parse(l)||0);}return shuffle(a.slice()).sort(function(p,q){return rk(p)-rk(q);}).slice(0,n);}
   var L=mcs(id).map(function(s,i){return {s:s,k:'x'+i};}),Z=g[4].map(function(s,i){return {s:s,k:'s'+i};}),out=[];
   if(k==='anla')return pick(L,3).map(function(o){return mcItem(id,o,'hc');});
   if(k==='tani')return pick(L,8).map(function(o){return mcItem(id,o,'mc');});
@@ -6921,7 +6924,7 @@ function startStage(id,k,only){
 function prepItem(o){var it=o.items[o.i];o.dg=null;o.pick=null;o.state=null;o.val='';o.tyres=null;o.hint=0;if(it&&(it.t==='sz'||o.kind==='satz'))prepSatz(o,it);}
 function lessonRecord(ok){
   var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;
-  var gx0=gxs(it.tid||X.id);gx0.m[it.k]=ok?1:0;gx0.ls=gx0.ls||{};gx0.ls[it.k]=today();var d=xday();d.g=(d.g||0)+1;save();
+  var gx0=gxs(it.tid||X.id);gx0.m[it.k]=ok?1:0;gx0.ls=gx0.ls||{};gx0.ls[it.k]=Date.now();var d=xday();d.g=(d.g||0)+1;save();
 }
 function recordAny(ok){if(X.kind==='ezq')ezRecord(ok);else lessonRecord(ok);}
 function lessonIntro(){
@@ -7008,7 +7011,7 @@ function lessonEnd(){
   if(k==='anla')msg=X.pass?'Kuralı gördün. Şimdi tanıma alıştırması: '+STT.tani+'.':'3 sorudan en az 2\'si gerekli. Anlatımı bir kez daha oku (özellikle "Mantığı" ve "Karıştırma"), sonra yeniden dene.';
   else if(k==='free'||k==='retry')msg=(acc>=.8?'Çok iyi.':'Yanlışlarına bir göz at; tekrar karşına çıkacaklar.')+(a.k&&a.k!=='uret'?' Dikkat: bu alıştırma aşamaya sayılmaz; '+actLabel(a)+' hâlâ seni bekliyor.':'');
   else if(k==='rv')msg=X.pass?'Tekrar başarılı. '+(tstat(id)==='ok'?'Bu konu artık oturdu; arada bir yine sorulacak.':'Bir sonraki tekrar daha ileri bir günde.'):'Bu sefer %80 olmadı; konu yarın tekrar karşına gelecek. Unutup yeniden hatırlamak öğrenmenin parçası.';
-  else msg=X.pass?'Geçtin! Aşama tamam.':'Geçmek için %'+pct(PASS[k])+' lazım. Aşağıdaki dikkat noktasına bak ve yeniden dene; acele yok.';
+  else msg=X.pass?'Geçtin! Aşama tamam.':'Aşama geçilmedi: '+n+' sorudan en az '+Math.ceil(PASS[k]*n-1e-9)+' doğru lazım. Cevapladığın sorular puana kısmen sayıldı. Aşağıdaki dikkat noktasına bak ve yeniden dene: bu sefer çoğunlukla başka sorular gelir.';
   if(k==='anla'&&!X.pass)msg='3 sorudan en az 2\'si gerekli. Kural kartına bir kez daha bak, sonra yeniden dene.';
   var b='<div class="center" style="padding:16px 0 4px"><div class="eyebrow">'+STT[k]+' bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
     '<p class="muted" style="margin-top:6px">'+esc(msg)+'</p></div>';
