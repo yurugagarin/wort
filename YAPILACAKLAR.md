@@ -188,3 +188,9 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Yazı yardımcısı (Üret ve günlük Yazma): 3 küçük görev, her biri tek cümle: örnekteki gibi kendin hakkında (okuma metninden kalıbı işaretli cümle), Türkçesini Almanca yaz (kelime ipuçları; kontrolde örnek çeviri), verilen kelimelerle cümle (son iki haftada öğrendiğin kelimeler). Kontrol et → olası hatalar; "Yazıma ekle" → asıl metne. "Başka görev" ile değişir.
 - [x] (30 Ekim, düzeltme) Yanlış kart, araya en az 3 kart girmiyorsa oturumda geri gelmez, yarın sorulur: son kartlarda yanlış kelime hemen geri geliyordu ve "Devam çalışmıyor" gibi görünüyordu. Yeni kelime alıştırmasında da aynı adım arka arkaya gelmez; kart kalmadıysa bir sonraki adıma geçer.
 - [x] (30 Ekim, asıl hata) Kelime tekrarında şık ve "Devam" bazen hiç tepki vermiyordu: arka plandaki eşitleme (gist) ya da gün değişimi, tekrar ekranı açıkken kelime kuyruğunu siliyordu (W.q=null); sonraki her tıklama sessizce hata veriyordu. Artık ekran açıkken kuyruk silinmez, yalnız işaretlenir; ekran yeniden açılınca yeniden kurulur. Kuyruk yine de boş kalırsa tıklama ekrandaki kartı koruyarak kuyruğu yeniden kurar ve devam eder.
+
+## Tur 15 · Konu puanı ve aynı sorular (1 Kasım)
+- [x] Aşama geçilemeyince Konu görevi 0 puanda kalıyordu (yeni kuralda yalnız geçilen aşama sayılıyordu). Artık cevaplanan her soru küçük bir pay getirir (en çok yarım adım); tam puan yine aşamaları geçmekle.
+- [x] Aşamayı yeniden açınca büyük ölçüde aynı sorular geliyordu (son 3 gün aynı kovada sayılıyordu). Artık en uzun süredir görmediğin sorular önce: 12 sorudan her yeni denemede en az 4'ü yeni.
+- [x] Geçilemeyen aşamanın sonunda açık mesaj: kaç doğru lazımdı, puana kısmen sayıldı, yeniden denemede başka sorular gelir.
+- [x] Denetim: günün bütün akışı (kelime, konu, ezber, yazma, okuma, ara ekranlar) gerçek tıklamalarla baştan sona; doğru cevaplarla ve %35 yanlışla, yeni ve dolu profilde 100/100, takılma ve hata yok.
