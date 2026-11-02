@@ -194,3 +194,9 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Aşamayı yeniden açınca büyük ölçüde aynı sorular geliyordu (son 3 gün aynı kovada sayılıyordu). Artık en uzun süredir görmediğin sorular önce: 12 sorudan her yeni denemede en az 4'ü yeni.
 - [x] Geçilemeyen aşamanın sonunda açık mesaj: kaç doğru lazımdı, puana kısmen sayıldı, yeniden denemede başka sorular gelir.
 - [x] Denetim: günün bütün akışı (kelime, konu, ezber, yazma, okuma, ara ekranlar) gerçek tıklamalarla baştan sona; doğru cevaplarla ve %35 yanlışla, yeni ve dolu profilde 100/100, takılma ve hata yok.
+
+## Tur 16 · Görev döngüleri (2 Kasım)
+- [x] Kelime: hedef 45, yapılan 44, sorulacak kart kalmamışken "Devam: Kelime" → "Bugünlük tamam" → yine "Kelime · 1 kart kaldı" döngüsü. Kuyruk bitince hedef tutmuyorsa kuyruk bir kez yeniden kurulur; sorulacak kart yine yoksa bugünün hedefi yapılan kadar olur.
+- [x] Eşitleme: iki cihazda aynı gün bilinen kartlar birleşir (önceden büyük sayı alınıyordu, öteki cihazdaki kartlar kayboluyor, hedef tutmuyordu).
+- [x] Günün çalışması: açılan görev hiç ilerlemeden kapanırsa oturum hemen aynı göreve dönmez, sıradakine geçer.
+- [x] Denetim: günün bütün akışı gerçek tıklamalarla; yeni ve dolu profil, %35 yanlış cevap, görevlerin ortasında rastgele çıkıp geri girme, kısa gün: hepsi 100/100 (kısa gün 25), takılma ve hata yok.

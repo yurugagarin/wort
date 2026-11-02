@@ -6221,7 +6221,7 @@ function taskSub(t){
   if(t.id==='ez')return ezToday().t+(t.f>0?' · '+t.s:'');
   if(t.id==='oku')return t.s;
   return t.s+' · '+upr(todayTopic()[0])[0];}
-function sessLaunch(id){if(SESS){SESS.cur=id;SESS.last=null;}
+function sessLaunch(id){if(SESS){SESS.cur=id;SESS.last=null;var t0=taskDefs(day()).filter(function(t){return t.id===id;})[0];SESS.f0=t0?t0.f:0;}
   if(id==='wort'){ACT.review();return;}
   if(id==='gram'){var nx=gNext();if(nx){startStage(nx.g[0],nx.k);return;}startStage(todayTopic()[0],'free');return;}
   if(id==='ez'){var et=ezToday(),ee=ezpeek(et.id);if(!ee.last)openPage({kind:'ez',id:et.id,hide:false,rev:{}});
@@ -6232,7 +6232,8 @@ function sessLaunch(id){if(SESS){SESS.cur=id;SESS.last=null;}
   openPage({kind:'yaz'});
 }
 /* bir sayfa kapanınca (çalışma sürüyorsa) geçiş ekranı ya da özet */
-function sessAfterClose(pk){if(!SESS)return;if(pk==='sbreak'||pk==='sdone'){SESS=null;return;}openPage({kind:sessNext()?'sbreak':'sdone',prev:pk});}
+function sessAfterClose(pk){if(!SESS)return;if(pk==='sbreak'||pk==='sdone'){SESS=null;return;}
+  if(SESS.cur){var t1=taskDefs(day()).filter(function(t){return t.id===SESS.cur;})[0];if(t1&&t1.f<1&&t1.f<=(SESS.f0||0)){SESS.skip=SESS.skip||{};SESS.skip[SESS.cur]=1;}}openPage({kind:sessNext()?'sbreak':'sdone',prev:pk});}
 function dots4(T){return '<span class="dots4">'+T.map(function(t){return '<i class="'+(t.f>=1?'d':t.f>0?'h':'')+'" style="--c:'+t.c+'"></i>';}).join('')+'</span>';}
 function pSbreak(){
   var T=taskDefs(day()),nx=sessNext(),done=T.filter(function(t){return t.f>=1;}).length,last=T.filter(function(t){return t.f>=1;}).slice(-1)[0];
@@ -7741,6 +7742,11 @@ function rmBtn(id){if(BANASK===id)return '<div class="rmrow ask"><span>Bir daha 
 function pReview0(){
   var q=W.q,b='';
   if(!q.length){
+    /* kuyruk bitti ama görev hedefi tutmuyorsa (başka cihazda çalışılan kartlar, kaldırılan kart, eşitleme): bir kez yeniden kur;
+       sorulacak kart yine yoksa bugünün hedefi yapılan kadardır. Yoksa "Kelime · 1 kart kaldı" ile "Bugünlük tamam" arasında döngü oluyordu. */
+    var d9=day();if(!W.hard&&!wordDone(d9)&&!W.rb){W.rb=1;buildQueue();W.rb=1;if(W.q.length)return pReview0();}
+    if(!W.hard&&!wordDone(d9)&&d9.wt>(d9.w||0)){d9.wt=d9.w||0;save();refreshScore();}
+    q=W.q;
     var d=peek(today())||{};
     /* günün çalışması sürerken kelime bitiş ekranı atlanır: doğrudan ara ekranına geçilir */
     if(SESS&&!W.hard&&wordDone(d)){setTimeout(function(){if(X&&X.kind==='review'&&(!W.q||!W.q.length))closePage();},0);return {t:'Kelime tekrarı',b:'<p class="muted center">Kelime tamam ✓</p>'};}
@@ -10593,6 +10599,8 @@ function mergeDay(a,b){
     else if(typeof y==='number'&&typeof x==='number')m[k]=Math.max(x,y);
     else if(typeof y==='boolean')m[k]=x||y;
     else if(typeof y==='string'&&typeof x==='string')m[k]=(k==='ezd'||k==='gt')?(x<y?x:y):k==='sch'?mergeText(x,y):(y.length>x.length?y:x);}
+  /* iki cihazda bugün bilinen kartlar birleşir; sayaç birleşimden az olmaz */
+  if(a.wd||b.wd){m.wd=cp(a.wd||{});for(k in (b.wd||{}))m.wd[k]=1;var nwd=Object.keys(m.wd).length;if((m.w||0)<nwd)m.w=nwd;}
   return m;
 }
 function mergeGx(a,b,bNewer){
