@@ -200,3 +200,8 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Eşitleme: iki cihazda aynı gün bilinen kartlar birleşir (önceden büyük sayı alınıyordu, öteki cihazdaki kartlar kayboluyor, hedef tutmuyordu).
 - [x] Günün çalışması: açılan görev hiç ilerlemeden kapanırsa oturum hemen aynı göreve dönmez, sıradakine geçer.
 - [x] Denetim: günün bütün akışı gerçek tıklamalarla; yeni ve dolu profil, %35 yanlış cevap, görevlerin ortasında rastgele çıkıp geri girme, kısa gün: hepsi 100/100 (kısa gün 25), takılma ve hata yok.
+
+## Tur 17 · Sade anlatım (2 Kasım)
+- [x] Konunun ikinci, sohbet gibi anlatımı (A2.1'in 13 konusu, deneme): Türkçe gibi düşün, kural tablosu, "aklında kalsın", anlam farkları, iki fiil / devrik cümle, sık hata (✗ → ✓), cevapları gizli hızlı test. weil/dass/wenn kullanıcının Claude'dan aldığı anlatımdır. Konu sayfasında "Sade anlatım · bir de böyle oku", Anla aşamasında "Takıldın mı? Sade anlatımı aç".
+- [x] İşaretleme aracı: alttaki çubuktan renk (sarı, yeşil, mavi, pembe) ya da silgi seç, kelimeye dokun; aynı renkle yeniden dokununca kalkar; "Hepsini temizle". İşaretler konu başına kayıtlı.
+- [ ] Beğenilirse A2.2, B1.1, B1.2 konuları.
