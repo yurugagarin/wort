@@ -205,3 +205,11 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Konunun ikinci, sohbet gibi anlatımı (A2.1'in 13 konusu, deneme): Türkçe gibi düşün, kural tablosu, "aklında kalsın", anlam farkları, iki fiil / devrik cümle, sık hata (✗ → ✓), cevapları gizli hızlı test. weil/dass/wenn kullanıcının Claude'dan aldığı anlatımdır. Konu sayfasında "Sade anlatım · bir de böyle oku", Anla aşamasında "Takıldın mı? Sade anlatımı aç".
 - [x] İşaretleme aracı: alttaki çubuktan renk (sarı, yeşil, mavi, pembe) ya da silgi seç, kelimeye dokun; aynı renkle yeniden dokununca kalkar; "Hepsini temizle". İşaretler konu başına kayıtlı.
 - [ ] Beğenilirse A2.2, B1.1, B1.2 konuları.
+
+## Tur 18 · Kelime dengesi (3 Kasım)
+- [x] Günlük tekrar kotası 15 dk için 45 → 30 kart (süre × 2). Yeni kelime (tanışma + 2-3 alıştırma ≈ 4 adım) ancak tekrarlardan kalan süreye sığdığı kadar; birikmiş tekrar varken yeni kelime gelmez.
+- [x] Denge sınırı: aynı anda en çok günlük yeni × 6 (10 → 60) aktif kelime (tekrar aralığı 2 haftadan kısa). Sınır doluyken yeni kelime ancak eskiler sağlamlaştıkça gelir: aralığı 2 haftayı geçen her kelime bir yeni kelimeye yer açar. Kelimeler sayfasında "Aktif öğrenilen kelime: x / 60" ve bugün neden kaç yeni kelime geldiği yazar.
+- [x] Bu kuraldan önce sabitlenmiş bugünün hedefi bir kez yeni kurala indirilir (ör. 60 → 30); yapılanlar sayılır.
+- [x] Oturum ortasında toplamın birden artması (60 → 78): yeni kelimelerin alıştırmaları tanışma bitince ekleniyordu. Artık toplam baştan alıştırmalarla birlikte gösterilir, oturum boyunca değişmez.
+- [x] Eşitleme: günün kelime hedefi iki cihaz arasında büyük olan alınarak şişmez; yeni kurala göre konulan, ikisi de öyleyse önce sabitlenen geçerli.
+- [x] Denetim: 40 günlük kullanım simülasyonu (%15 yanlış): günde ~43 adım (~15 dk), tekrar hiç 30'u geçmiyor, her gün 3-6 yeni kelime, aktif kelime ~45-50. %45 yanlışta yeni kelime kendiliğinden 0'a iner, yük yine 30'da kalır. Takılma ve hata yok.
