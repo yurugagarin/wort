@@ -222,3 +222,10 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Yazma: "3 küçük görev" olduğu gibi kaldı; altına "Çeviri · Türkçesini Almanca yaz" eklendi. Hiç görmediğin cümleler: Claude'un senin kelimelerinle yazdıkları, sonra konunun görmediğin cümleleri. Kontrol et (birebir doğruysa ✓, değilse olası hatalar ve örnek çeviri), Yazıma ekle; çevrilen cümle bir daha gelmez.
 - [x] Claude API anahtarı (Ayarlar): yalnız o cihazın tarayıcısında; senkrona, yedeğe ve raporlara girmez. Claude Opus 5.5, düşük düşünme; hikâye başına ~5-10 cent, 6 cümle ~2-4 cent.
 - [x] Denetim: API taklit edilerek anahtar kaydetme/kaldırma, hikâye yazdırma, 9 adımın hepsi, boşlukların hepsi doğru, eski ayarla 400'de yedeksiz yeniden deneme, 401 hata mesajı, çeviri cümleleri (yazdırma, kontrol, ekleme, bir daha gelmeme), konu işaretleri, eşitleme birleştirmesi, kelime testleri; hata yok. Gerçek API ile henüz denenmedi (anahtar yok).
+
+## Tur 20 · Yarım kalan güne dönüş (3 Kasım)
+- [x] Yarım bırakılan aşama hiçbir zaman geçilmiş sayılmaz; yeniden açılınca sorular baştan gelir (en uzun süredir görülmeyenler önce). Cevaplanan sorular yalnız günün puanına küçük pay olarak girer.
+- [x] Anla okunup Tanı aynı gün geçilmediyse ertesi gün Anla yeniden.
+- [x] Üret'ten önceki bir aşamada 3+ gün ara verildiyse konu baştan: Anla → Tanı → Kur (önceki aşamalar saklanır). Konu sayfasında "Baştan başlıyoruz" notu, Bugün'de "Baştan: …".
+- [x] Baştan başlanan konu Kur'u yeniden geçene kadar yeni konu açılmaz. Üret'i geçmiş konular tekrar takvimiyle, seviye testiyle işaretlenenler olduğu gibi kalır. Eşitlemede sıfırlanmış kayıt kazanır.
+- [x] Denetim: gün gün simülasyon (0-3. gün), yarıda bırakılan Tanı, test ve tekrar aşamasındaki konular, okuma, kelime testleri; hata yok.
