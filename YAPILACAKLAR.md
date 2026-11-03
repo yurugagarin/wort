@@ -214,3 +214,11 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Eşitleme: günün kelime hedefi iki cihaz arasında büyük olan alınarak şişmez; yeni kurala göre konulan, ikisi de öyleyse önce sabitlenen geçerli.
 - [x] Denetim: 40 günlük kullanım simülasyonu (%15 yanlış): günde ~43 adım (~15 dk), tekrar hiç 30'u geçmiyor, her gün 3-6 yeni kelime, aktif kelime ~45-50. %45 yanlışta yeni kelime kendiliğinden 0'a iner, yük yine 30'da kalır. Takılma ve hata yok.
 - [x] Hedef oturum ortasında 25 → 50: güncellemeden önce açık kalmış eski sürüm (başka sekme ya da telefondaki uygulama) eşitlemede her sayıyı büyük olanla birleştirip geri yazıyordu. Artık gün başında konan sınırlar (tekrar, yeni) ayrıca saklanır; hedef hiçbir eşitlemeyle bu sınırın (+ elle eklenen kelimeler) üstüne çıkamaz, şişmiş bugünkü kayıt da kendiliğinden düzelir.
+
+## Tur 19 · Kendi kelimelerinle (3 Kasım)
+- [x] Odak kelimeler: bugün tanıştığın yeni kelimeler, en çok yanlış yaptığın (henüz oturmamış) kelimeler, 2 oturmuş kelime (tazelemek için).
+- [x] Kişisel hikâye (Okuma sayfasının başında): Claude, bugünün metninin konusunun dilbilgisiyle bu kelimelerin geçtiği kısa bir hikâye yazar; hikâye 9 adımlı okumaya dönüşür. Senin kelimelerin metinde altı noktalı; boşluklar ve kelime adımı bu kelimelerden. Okuma puanına sayılır. Son 12 hikâye saklanır, cihazlar arası eşitlenir.
+- [x] Konu (Tanı, Kur, Pekiştir): hazır sorulardan senin kelimelerinin geçtiği cümleler öne alınır, kelime cümlede işaretlenir.
+- [x] Yazma: "3 küçük görev" olduğu gibi kaldı; altına "Çeviri · Türkçesini Almanca yaz" eklendi. Hiç görmediğin cümleler: Claude'un senin kelimelerinle yazdıkları, sonra konunun görmediğin cümleleri. Kontrol et (birebir doğruysa ✓, değilse olası hatalar ve örnek çeviri), Yazıma ekle; çevrilen cümle bir daha gelmez.
+- [x] Claude API anahtarı (Ayarlar): yalnız o cihazın tarayıcısında; senkrona, yedeğe ve raporlara girmez. Claude Opus 5.5, düşük düşünme; hikâye başına ~5-10 cent, 6 cümle ~2-4 cent.
+- [x] Denetim: API taklit edilerek anahtar kaydetme/kaldırma, hikâye yazdırma, 9 adımın hepsi, boşlukların hepsi doğru, eski ayarla 400'de yedeksiz yeniden deneme, 401 hata mesajı, çeviri cümleleri (yazdırma, kontrol, ekleme, bir daha gelmeme), konu işaretleri, eşitleme birleştirmesi, kelime testleri; hata yok. Gerçek API ile henüz denenmedi (anahtar yok).
