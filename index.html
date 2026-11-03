@@ -3513,7 +3513,7 @@ function fsIvl(S){return Math.min(365,Math.max(1,Math.round(S/FFAC*(Math.pow(FRE
 function ivl(n){if(n<=0)return 'bugün';if(n===1)return 'yarın';if(n<31)return n+' gün';if(n<365)return Math.round(n/30)+' ay';return Math.round(n/365)+' yıl';}
 /* yeni kelime: tanıtıldığı gün sorulmaz; ilk soru yarın (kelime de konu gibi bir gece bekler) */
 function queueNew(id,now){if(S.srs[id])return false;S.gwq=S.gwq||[];if(S.gwq.indexOf(id)<0)S.gwq.push(id);
-  if(now&&W.q&&W.day===today()&&W.q.indexOf(id)<0){W.q.push(id);W.n0=(W.n0||0)+1;var d=day();if(d.wt!=null)d.wt++;}return true;}
+  if(now&&W.q&&W.day===today()&&W.q.indexOf(id)<0){W.q.push(id);W.n0=(W.n0||0)+1;var d=day();if(d.wt!=null){d.wt++;d.wadd=(d.wadd||0)+1;}}return true;}
 function banWord(id){
   var c=card(id),d=day(),t=today(),had=!!S.srs[id],done=!!(d.wd&&d.wd[id]);
   S.ban=S.ban||{};S.ban[id]={on:1,u:Date.now(),d:t,w:c?deText(c):id,tr:c?c.tr:''};
@@ -3597,14 +3597,22 @@ function ensureTarget(){
     d.ncap=nk.n;d.nwhy=nk.n<S.set.newPerDay?(nk.room<=nk.tb?'lim':'due'):'';d.wb=1;d.wts=Date.now();
     /* 2+ gün aradan sonra dönüş günü: önce unutmaya başlayan kartlar, yeni kelime yok */
     var la='';for(var dk in S.days)if(dk<today()&&dk>la&&total(S.days[dk])>0)la=dk;if(la&&dd(la,today())>=3){d.back=1;d.ncap=0;d.nwhy='back';}
-    d.rcap=Math.min(cap,due);
+    d.rcap=Math.min(cap,due);d.nk=d.ncap;d.rk=d.rcap;
     d.wt=d.rcap+Math.min(newLeft(),nc.st.length+nc.r.length);save();}
   else if(d.rcap==null){d.rcap=Math.min(wCap(),Math.max(0,d.wt-(d.ncap||0)));save();}
   /* denge kuralından önce sabitlenmiş bugünün hedefi bir kez yeni kurala indirilir (yapılanlar sayılır, artık yeni kelime eklenmez) */
   if(!d.wb){d.wb=1;var nk2=wNewCap(dueSorted().length);d.rcap=Math.min(d.rcap,wCap());
     d.ncap=Math.min(d.ncap!=null?d.ncap:S.set.newPerDay,Math.max(d.np||0,nk2.n));d.nwhy=nk2.n<S.set.newPerDay?(nk2.room<=nk2.tb?'lim':'due'):'';
     d.wt=Math.min(d.wt,d.rcap+d.ncap+(d.npx||0));save();}
+  if(d.nk==null){d.nk=Math.min(d.ncap!=null?d.ncap:0,Math.max(d.np||0,wNewCap(dueSorted().length).n));d.rk=Math.min(d.rcap,wCap());save();}
+  if(wClamp(d))save();
 }
+/* hedef hiçbir yoldan (eski sürümle açık kalmış bir sekme ya da cihazın eşitlemesi dahil) gün başında konulan sınırın üstüne çıkamaz:
+   tekrar ≤ rk, yeni ≤ nk, hedef ≤ tekrar + yeni + elle eklenenler. Değişiklik olduysa true. */
+function wClamp(d){if(!d||d.nk==null||d.wt==null)return false;var a=d.wt,b=d.rcap,c=d.ncap;
+  if(d.rk!=null&&d.rcap!=null)d.rcap=Math.min(d.rcap,d.rk);if(d.ncap!=null)d.ncap=Math.min(d.ncap,d.nk);
+  d.wt=Math.min(d.wt,(d.rcap||0)+(d.ncap||0)+(d.npx||0)+(d.wadd||0));
+  return a!==d.wt||b!==d.rcap||c!==d.ncap;}
 
 /* ---------------- puan ---------------- */
 var SDE=/(^|[^a-zäöüß])(ich|du|er|sie|es|wir|ihr|und|oder|aber|nicht|der|die|das|den|dem|ein|eine|einen|einem|ist|bin|bist|sind|war|habe|hast|hat|haben|hatte|mit|von|zu|auf|für|in|im|am|an|nach|bei|mein|meine|meinen|dein|sein|gern|sehr|heute|morgen|gestern|auch|noch|schon|dann|wenn|weil|dass|man|kein|keine|wird|werde|kann|muss|will|möchte|mich|mir|dich|dir|uns|was|wie|wo)(?![a-zäöüß])/i;
@@ -8257,7 +8265,7 @@ var ACT={
   },
   settings:function(){if(X&&X.kind==='set')return;openPage({kind:'set'});},
   theme:function(b){themePref=b.dataset.v;try{localStorage.setItem(THEMEKEY,themePref);}catch(e){}applyTheme();drawPage();},
-  wmin:function(b){S.set.wmin=+b.dataset.v;touch('set');var d=day();if(d.rcap!=null){var due=dueSorted().length+(d.wrv||0);d.rcap=Math.min(wCap(),due);d.wt=d.rcap+(d.ncap||0);}save();W.q=null;drawPage();},
+  wmin:function(b){S.set.wmin=+b.dataset.v;touch('set');var d=day();if(d.rcap!=null){var due=dueSorted().length+(d.wrv||0);d.rcap=Math.min(wCap(),due);d.rk=d.rcap;d.wb=(d.wb||1)+1;d.wt=d.rcap+(d.ncap||0)+(d.npx||0)+(d.wadd||0);}save();W.q=null;drawPage();},
   morerev:function(){var d=day();d.rx=(d.rx||0)+20;save();W.q=null;buildQueue();if(X&&X.kind==='review')drawPage();else ACT.review();toast('20 birikmiş kart eklendi · puana ek, isteğe bağlı');},
   npd:function(b){S.set.newPerDay=+b.dataset.v;touch('set');save();W.q=null;drawPage();},
   tps:function(b){S.set.tps=+b.dataset.v;touch('set');var d=day();if(d.gv&&gFrac(d)<1)d.gtg=S.set.tps;save();drawPage();},
@@ -8520,7 +8528,7 @@ ACT.memmine=function(b){var id=b.dataset.id,i=+b.dataset.i,a=mwOf(id),k=a.indexO
 ACT.kdrev=function(b){var d=day();d.kdr=+b.dataset.i;save();render();if(X&&X.kind==='yaz')drawPage();};
 ACT.sdrev=function(b){SDREV[b.dataset.id]=1;if(X)drawPage();};
 /* vaktim az: o gün yeni kelime yok, tekrar zamanı gelmiş en çok 20 kart; seri korunur, diğer görevler isteğe bağlı */
-ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSorted().length;d.rcap=Math.min(20,due+(d.wrv||0));d.wt=Math.max(d.w||0,d.rcap);save();W.q=null;toast('Kısa gün · ~7 dk');ACT.sgo();};
+ACT.short=function(){var d=day();ensureTarget();d.short=1;d.ncap=0;var due=dueSorted().length;d.rcap=Math.min(20,due+(d.wrv||0));d.rk=d.rcap;d.nk=0;d.wb=(d.wb||1)+1;d.wt=Math.max(d.w||0,d.rcap);save();W.q=null;toast('Kısa gün · ~7 dk');ACT.sgo();};
 ACT.plan=function(b){var v=+b.dataset.v;if(v)S.set.plan=v;else delete S.set.plan;touch('set');save();if(X)drawPage();else render();};
 ACT.exq=function(b){if(!EXQ[b.dataset.k])EXQ[b.dataset.k]=b.dataset.v;if(X)drawPage();};
 ACT.tmissq=function(){var n=0;X.ans.forEach(function(a){var it=X.items[a.i];if(!a.ok&&it.t==='v'&&!S.srs[it.e.id]&&(S.gwq||[]).indexOf(it.e.id)<0){queueNew(it.e.id,false);n++;}});save();toast(n+' kelime sıraya alındı');drawPage();};
@@ -10675,7 +10683,11 @@ function mergeDay(a,b){
   /* iki cihazda bugün bilinen kartlar birleşir; sayaç birleşimden az olmaz */
   /* günün kelime hedefi toplanmaz: yeni kurala göre konulmuş olan, ikisi de öyleyse önce sabitlenen geçerli (aynı kayıtsa en büyüğü: bugün elle eklenenler) */
   var ab=a.wb||0,bb=b.wb||0,src=ab!==bb?(ab>bb?a:b):(a.wts&&b.wts&&a.wts!==b.wts?(a.wts<b.wts?a:b):null);
-  if(src)['wt','rcap','ncap','nwhy','wb','wts'].forEach(function(k){if(src[k]!=null)m[k]=cp(src[k]);});
+  if(src)['wt','rcap','ncap','nwhy','wb','wts','nk','rk'].forEach(function(k){if(src[k]!=null)m[k]=cp(src[k]);});
+  /* aynı kökenli kayıtta (eski sürüm her sayıyı büyük olanla birleştirir) sınırların küçüğü geçerli; hedef sınıra indirilir */
+  if(!src&&m.nk!=null){var nks=[a.nk,b.nk].filter(function(v){return v!=null;}),rks=[a.rk,b.rk].filter(function(v){return v!=null;});
+    m.nk=Math.min.apply(null,nks);if(rks.length)m.rk=Math.min.apply(null,rks);}
+  wClamp(m);
   if(a.wd||b.wd){m.wd=cp(a.wd||{});for(k in (b.wd||{}))m.wd[k]=1;var nwd=Object.keys(m.wd).length;if((m.w||0)<nwd)m.w=nwd;}
   return m;
 }
