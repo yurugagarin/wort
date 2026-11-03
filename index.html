@@ -5999,10 +5999,10 @@ function gNext(){
   var L=gLearning(),open=L.filter(function(g){return nextAct(g[0]).k;}),pri=open.filter(function(g){return gpeek(g[0]).pri&&!dn[g[0]];});
   if(pri.length)return {g:pri[0],k:nextAct(pri[0][0]).k};
   for(i=0;i<open.length;i++)if(!dn[open[i][0]])return {g:open[i],k:nextAct(open[i][0]).k};
-  if(L.length<GLIM){var nx=G.filter(function(g){return tstat(g[0])==='next';}),np=nx.filter(function(g){return gpeek(g[0]).pri;});if(np[0]||nx[0])return {g:np[0]||nx[0],k:'anla',nw:1};}
+  if(L.length<GLIM&&!L.some(function(g){return gpeek(g[0]).rst;})){var nx=G.filter(function(g){return tstat(g[0])==='next';}),np=nx.filter(function(g){return gpeek(g[0]).pri;});if(np[0]||nx[0])return {g:np[0]||nx[0],k:'anla',nw:1};}
   if(open.length)return {g:open[0],k:nextAct(open[0][0]).k};
   return null;}
-function gLbl(n){return n?(n.nw?'Yeni konu: ':'')+n.g[2]+' · '+(n.k==='anla'?'Anla + Tanı':n.k==='rv'?'Tekrar':STG.filter(function(s){return s[0]===n.k;})[0][1]):'';}
+function gLbl(n){return n?(n.nw?'Yeni konu: ':gpeek(n.g[0]).rst?'Baştan: ':'')+n.g[2]+' · '+(n.k==='anla'?'Anla + Tanı':n.k==='rv'?'Tekrar':STG.filter(function(s){return s[0]===n.k;})[0][1]):'';}
 /* bugünkü konu adımları: hedef, atılan, sıradaki; açık adım kalmadıysa gün yapılanla kapanır (d.gcap) */
 function gToday(){var d=gDayInit(day()),nx=gNext(),n=d.gsn||0;
   if(d.gv){if(!nx){if(d.gcap!==n)d.gcap=n;}else if(d.gcap!=null)delete d.gcap;}
@@ -6018,8 +6018,23 @@ function topicEz(id){var r=[],seen={};
   for(var hid in HUB){if(hubMembers(hid).indexOf('g:'+id)>=0)hubMembers(hid).forEach(function(x){if(x.indexOf('ez:')===0&&EZBY[x.slice(3)]&&!seen[x]){seen[x]=1;r.push(x.slice(3));}});}
   (JSON.stringify(GL[id]||'').match(/ez:[a-z0-9]+/g)||[]).forEach(function(x){if(EZBY[x.slice(3)]&&!seen[x]){seen[x]=1;r.unshift(x.slice(3));}});
   return r;}
+/* YARIM KALAN KONUYA DÖNÜŞ (günde bir kez, konuya bakılmadan önce):
+   · Anla okunup Tanı aynı gün geçilmediyse ertesi gün Anla yeniden (kural taze okunmadan Tanı'ya girilmez).
+   · Üret'ten önceki bir aşamada 3+ gün ara verildiyse konu baştan: Anla → Tanı → Kur. Önceki aşamalar x.prev'de saklanır.
+   · Baştan başlanan konu Kur'u yeniden geçene kadar yeni konu açılmaz. Yarım bırakılan aşama hiçbir zaman geçilmiş sayılmaz;
+     yeniden açıldığında sorular baştan gelir. Seviye testiyle işaretlenen aşamalara dokunulmaz. x.rs: eşitlemede sıfırlanmış kayıt kazanır. */
+var GRGAP=3;
+function gRstNote(x){if(x.rst&&x.prev)return '<div class="tipbox" style="margin-top:10px"><div class="eyebrow">Baştan başlıyoruz</div><p style="margin-top:4px">Bu konuya '+dd(x.prev.last,x.rst)+' gün ara verdin (son çalışma '+trShort(x.prev.last)+'). Unutmamak için aşamalar baştan: <b>Anla → Tanı → Kur</b>. Kur\'u yeniden geçene kadar yeni konu açılmaz. Önceki çalışmaların kayıtlı.</p></div>';
+  if(x.ar===today()&&!(x.stg&&x.stg.anla))return '<div class="tipbox" style="margin-top:10px"><p>Anla\'yı okumuştun ama Tanı\'ya geçmemiştin. Kuralı bir kez daha oku, sonra Tanı.</p></div>';return '';}
+function gRestart(){var t=today();if(S.grc===t)return;S.grc=t;var ch=0;
+  G.forEach(function(g){var id=g[0],x=S.gx[id];if(!x||x.known||!x.stg||x.stg.uret)return;
+    var ks=Object.keys(x.stg);if(!ks.length||ks.some(function(k){return !/^\d{4}-\d\d-\d\d$/.test(String(x.stg[k]));}))return;
+    var last=ks.reduce(function(m,k){return x.stg[k]>m?x.stg[k]:m;},'');if(x.last&&x.last>last)last=x.last;
+    if(dd(last,t)>=GRGAP){x.prev={d:t,last:last,stg:cp(x.stg)};x.stg={};x.rst=t;x.rs=Date.now();ch++;}
+    else if(x.stg.anla&&!x.stg.tani&&x.stg.anla<t){delete x.stg.anla;x.ar=t;x.rs=Date.now();ch++;}});
+  if(ch)save();}
 function nextAct(id){
-  var x=gpeek(id),t=today();if(x.known)return {k:null};
+  gRestart();var x=gpeek(id),t=today();if(x.known)return {k:null};
   if(!stgDone(id,'anla'))return {k:'anla'};
   if(!stgDone(id,'tani'))return {k:'tani'};
   if(!stgDone(id,'kur'))return {k:'kur'};
@@ -6878,7 +6893,7 @@ function pTopic(){
     '<div class="card"><div class="row"><b class="big num" style="font-size:36px">%'+pct(p)+'</b><div class="sp"></div><div class="small muted" style="text-align:right">'+
     esc(x.known?'Biliyorum olarak işaretli':nextReview(id))+'<br>'+(x.last?'son çalışma: '+trShort(x.last):'henüz çalışılmadı')+'</div></div>'+
     '<div style="margin-top:10px">'+bar(p,STC[st]==='var(--ink4)'?'var(--ink3)':STC[st],'thick')+'</div>'+
-    stagePath(id)+(x.known?'<p class="note" style="margin-top:6px">Bu konuyu „biliyorum“ diye işaretlemişsin. Yine de her aşamayı yeniden yapabilir ya da konuyu baştan alabilirsin.</p>':'');
+    stagePath(id)+gRstNote(x)+(x.known?'<p class="note" style="margin-top:6px">Bu konuyu „biliyorum“ diye işaretlemişsin. Yine de her aşamayı yeniden yapabilir ya da konuyu baştan alabilirsin.</p>':'');
   if(a.k)b+='<button class="btn lime big wide" style="margin-top:12px" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">'+ACTB[a.k]+'</button>';
   else if(st==='ok'||x.known)b+='<button class="btn big wide" style="margin-top:12px" data-act="lesson" data-id="'+id+'" data-s="free">Karışık alıştırma · 8 soru</button>';
   else b+='<div class="wait">'+esc(nextReview(id).replace(/^./,function(c){return c.toUpperCase();}))+'. Bugün başka bir konuyla devam et: aynı anda 2–3 konu yürütmek daha kalıcı.</div>'+
@@ -7037,7 +7052,7 @@ function lessonEnd(){
   if(!X.fin){
     X.fin=1;if(k!=='free'||Object.keys(x.stg).length)x.last=t;X.pass=acc>=(PASS[k]||0);var first=!x.stg[k];  /* başlanmamış konuda serbest alıştırma konuyu "çalışılıyor" yapmaz */
     if((k==='anla'||k==='tani'||k==='kur')&&X.pass&&!x.stg[k])x.stg[k]=t;
-    if(k==='kur'&&X.pass)gsAdd(id);
+    if(k==='kur'&&X.pass){gsAdd(id);delete x.rst;delete x.prev;}
     if(X.pass&&((first&&(k==='tani'||k==='kur'))||k==='rv')){var xd=gDayInit(xday(),X.day);xd.gs=1;xd.gsn=(xd.gsn||0)+1;}
     if(k==='rv'){if(X.pass){if(x.rv.indexOf(t)<0)x.rv.push(t);delete x.lapse;x.due=addD(t,RVI[Math.min(x.rv.length-1,RVI.length-1)]);}else{x.due=addD(t,1);x.lapse=t;}}
     if(tstat(id)==='ok'&&!S.gdone[id])S.gdone[id]=t;
@@ -11019,7 +11034,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__us={focus:wFocus,hits:fxHits,merge:mergeS,build:usBuild,mcs:mcs,itxt:fxItemText};window.__wb={et:ensureTarget,act:wActive,lim:wLim,nc:wNewCap,merge:mergeDay,bq:buildQueue,pend:wPend,day:day,cap:wCap,ready:wordsReady,due:dueSorted};window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__wreset=wReset;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__us={restart:gRestart,next:gNext,nextAct:nextAct,focus:wFocus,hits:fxHits,merge:mergeS,build:usBuild,mcs:mcs,itxt:fxItemText};window.__wb={et:ensureTarget,act:wActive,lim:wLim,nc:wNewCap,merge:mergeDay,bq:buildQueue,pend:wPend,day:day,cap:wCap,ready:wordsReady,due:dueSorted};window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__wreset=wReset;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>
