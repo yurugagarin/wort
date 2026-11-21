@@ -1,0 +1,52 @@
+# g15 · Passiv Präsens: werden + Partizip II
+Y|Das Auto ___ repariert. (werden)|wird||Passiv: *werden* çekimli + Partizip II sonda.
+Y|Die Briefe werden morgen ___. (schicken)|geschickt||Partizip II: *geschickt*.
+Y|Hier ___ Deutsch gesprochen. (werden)|wird||*Hier wird Deutsch gesprochen.* = Burada Almanca konuşulur.
+Y|Die Fenster werden jeden Freitag ___. (putzen)|geputzt||*geputzt*.
+Y|In Deutschland ___ viel Brot gegessen. (werden)|wird||Tekil özne *Brot* → *wird*.
+Y|Die Kinder ___ von der Lehrerin abgeholt. (werden)|werden||Çoğul özne → *werden*.
+Y|Das Essen wird gerade ___. (kochen)|gekocht||*gekocht*.
+Y|Der Müll wird ___ den Hausmeister weggebracht. (tarafından)|von||Yapan kişi: *von* + Dativ (*von dem* = *vom*).
+Y|Wann ___ die Post gebracht? (werden)|wird||*Wann wird die Post gebracht?*
+Y|Die Wohnung wird neu ___. (streichen)|gestrichen||Düzensiz: *streichen – gestrichen*.
+Y|Ich ___ vom Bahnhof abgeholt. (werden)|werde||*ich werde*.
+Y|Das Geschäft wird um 20 Uhr ___. (schließen)|geschlossen||*schließen – geschlossen*.
+Y|Hier darf nicht ___ werden. (rauchen)|geraucht||Modal + Passiv: *geraucht werden* (B1'de daha çok).
+Y|Wie ___ dieses Wort geschrieben? (werden)|wird||*Wie wird das geschrieben?* = Nasıl yazılır?
+S|Die Pizza ___ in den Ofen gestellt.|wird|ist|werden|Tekil → *wird*.
+S|Die Rechnungen werden am Monatsende ___.|bezahlt|bezahlen|bezahlte|Partizip II sonda.
+S|Hier ___ Häuser gebaut.|werden|wird|wurde|Çoğul *Häuser* → *werden*.
+S|Das Paket wird ___ einem Kurier gebracht.|von|vom|aus|Yapan kişi: *von*.
+S|Du ___ morgen um 8 Uhr abgeholt.|wirst|wird|werdet|*du wirst*.
+S|Wie wird das Wort ___?|ausgesprochen|aussprechen|ausgesprecht|*aussprechen – ausgesprochen*.
+S|Im Kurs ___ viel gesprochen.|wird|werden|wirst|Öznesiz Passiv → *wird*.
+S|Die Tür wird jeden Abend ___.|abgeschlossen|abschließt|abgeschließt|*abschließen – abgeschlossen*.
+H|Das Auto wird gewaschen.|=|Doğru.
+H|Die Briefe wird geschrieben.|Die Briefe werden geschrieben.||Çoğul özne → *werden*.
+H|Der Kuchen wird gebackt.|Der Kuchen wird gebacken.||*backen – gebacken*.
+H|Hier wird Türkisch gesprochen.|=|Doğru.
+H|Die Kinder werden von ihrer Mutter abgeholt.|=|Doğru: yapan kişi *von* + Dativ.
+H|Das Haus wird gebaut von einer Firma.|Das Haus wird von einer Firma gebaut.||Partizip II en sonda.
+H|Die Fenster werden geputzen.|Die Fenster werden geputzt.||*putzen – geputzt*.
+H|Wann wird das Essen gebracht?|=|Doğru.
+D|Passiv'e çevir (yapanı yazma).|Man repariert das Fahrrad.|Das Fahrrad wird repariert.||*man* düşer: *Das Fahrrad wird repariert.*
+D|Passiv'e çevir (yapanı yazma).|Man putzt die Küche.|Die Küche wird geputzt.||*wird geputzt*.
+D|Passiv'e çevir (yapanı yazma).|Man trinkt hier viel Tee.|Hier wird viel Tee getrunken.|Viel Tee wird hier getrunken.|*trinken – getrunken*.
+D|Passiv'e çevir (yapanı yazma).|Man öffnet die Türen um 9 Uhr.|Die Türen werden um 9 Uhr geöffnet.|Um 9 Uhr werden die Türen geöffnet.|Çoğul → *werden*.
+D|Passiv'e çevir (von ile).|Der Arzt untersucht den Patienten.|Der Patient wird vom Arzt untersucht.|Der Patient wird von dem Arzt untersucht.|Akkusativ *den Patienten* → özne *der Patient*; yapan *vom Arzt*.
+D|Passiv'e çevir (yapanı yazma).|Man spricht hier Englisch.|Hier wird Englisch gesprochen.|Englisch wird hier gesprochen.|*sprechen – gesprochen*.
+D|Aktif cümleye çevir: "Man …"|Das Paket wird heute gebracht.|Man bringt das Paket heute.|Heute bringt man das Paket.|Passiv → *man* + çekimli fiil.
+D|Passiv'e çevir (von ile).|Die Mutter weckt die Kinder.|Die Kinder werden von der Mutter geweckt.||Çoğul → *werden*; *von der Mutter*.
+C|Araba yıkanıyor.|Das Auto wird gewaschen.||*wird gewaschen*.
+C|Burada Almanca konuşulur.|Hier wird Deutsch gesprochen.||*Hier wird … gesprochen*.
+C|Mektuplar yarın gönderilecek.|Die Briefe werden morgen geschickt.|Die Briefe werden morgen verschickt./Morgen werden die Briefe geschickt.|Passiv Präsens gelecek için de kullanılır.
+C|Çocuklar öğretmen tarafından alınıyor.|Die Kinder werden von der Lehrerin abgeholt.|Die Kinder werden vom Lehrer abgeholt./Die Kinder werden von dem Lehrer abgeholt.|*von* + Dativ.
+C|Bu kelime nasıl yazılır?|Wie wird dieses Wort geschrieben?|Wie wird das Wort geschrieben?|*Wie wird … geschrieben?*
+C|Mağaza saat 20'de kapanır.|Das Geschäft wird um 20 Uhr geschlossen.|Der Laden wird um 20 Uhr geschlossen./Das Geschäft schließt um 20 Uhr.|Passiv: *wird geschlossen*.
+K|Die Wohnung wird jede Woche geputzt.|Daire her hafta temizlenir.|Jede Woche wird die Wohnung geputzt.
+K|In diesem Restaurant wird türkisch gekocht.|Bu restoranda Türk yemeği yapılır.|Türkisch wird in diesem Restaurant gekocht.
+K|Die Pakete werden morgen gebracht.|Paketler yarın getirilir.|Morgen werden die Pakete gebracht.
+K|Der Patient wird vom Arzt untersucht.|Hasta doktor tarafından muayene ediliyor.|Vom Arzt wird der Patient untersucht.
+O|So wird bei uns Çay gemacht: Zuerst wird Wasser im unteren Topf gekocht. Dann wird der Tee in den oberen Topf gegeben. Etwas heißes Wasser wird auf den Tee gegossen. Danach wird der Tee etwa 15 Minuten auf kleiner Flamme gelassen. Zum Schluss wird er in kleine Gläser gefüllt.|Bizde çay böyle yapılır: Önce alttaki demlikte su kaynatılır. Sonra çay üstteki demliğe konur. Çayın üzerine biraz sıcak su dökülür. Ardından çay yaklaşık 15 dakika kısık ateşte bırakılır. En sonunda küçük bardaklara doldurulur.|Was wird zuerst gemacht?~Wasser wird gekocht.~Der Tee wird in Gläser gefüllt.~Der Tee wird gekauft.|Wie lange bleibt der Tee auf kleiner Flamme?~Etwa 15 Minuten.~Etwa 5 Minuten.~Eine Stunde.
+O|Liebe Mieter, am Montag wird im ganzen Haus das Wasser abgestellt, weil neue Rohre eingebaut werden. Von 8 bis 14 Uhr gibt es kein Wasser. Am Dienstag werden die Treppen gestrichen. Bitte benutzen Sie dann den Aufzug. Vielen Dank! Ihre Hausverwaltung|Sevgili kiracılar, pazartesi günü bütün binada su kesilecek, çünkü yeni borular takılacak. Saat 8'den 14'e kadar su olmayacak. Salı günü merdivenler boyanacak. Lütfen o zaman asansörü kullanın. Teşekkürler! Bina yönetiminiz|Warum wird das Wasser abgestellt?~Neue Rohre werden eingebaut.~Die Treppen werden gestrichen.~Der Aufzug wird repariert.|Was wird am Dienstag gemacht?~Die Treppen werden gestrichen.~Das Wasser wird abgestellt.~Der Aufzug wird gebaut.
+O|In unserer Bäckerei wird schon um 3 Uhr morgens gearbeitet. Zuerst wird der Teig gemacht, dann werden die Brötchen gebacken. Um 6 Uhr wird der Laden geöffnet. Am Nachmittag werden Kuchen verkauft. Was am Abend übrig bleibt, wird an eine Tafel gegeben.|Fırınımızda sabah saat 3'te çalışılmaya başlanır. Önce hamur yapılır, sonra küçük ekmekler pişirilir. Saat 6'da dükkân açılır. Öğleden sonra pasta satılır. Akşam artan şeyler bir gıda bankasına verilir.|Wann wird der Laden geöffnet?~Um 6 Uhr.~Um 3 Uhr.~Am Nachmittag.|Was passiert mit dem Brot vom Abend?~Es wird an eine Tafel gegeben.~Es wird weggeworfen.~Es wird am nächsten Tag verkauft.

@@ -1,0 +1,52 @@
+# g44 · Dativ und Akkusativ im Satz: Ich gebe es ihm
+Y|Ich schenke ___ Mutter Blumen. (benim, Dativ)|meiner||Kime? → Dativ dişil: *meiner*.
+Y|Kannst du ___ das Salz geben? (bana)|mir||Kime? → *mir*.
+Y|Ich gebe dem Kellner ___ Geld. (nötr, Akkusativ)|das||Ne? → Akkusativ: *das Geld*.
+Y|Das Buch? Ich leihe ___ dir. (onu, nötr)|es||İki zamir: önce Akkusativ: *es dir*.
+Y|Die Fotos? Ich zeige sie ___ morgen. (ona, eril)|ihm||İki zamir: *sie ihm* (Akk + Dat).
+Y|Wir kaufen ___ Kindern ein Eis. (artikel, çoğul Dativ)|den||Çoğul Dativ: *den Kindern*.
+Y|Ich erkläre ___ die Regel. (sana)|dir||*dir* (Dativ) + *die Regel*.
+Y|Der Brief? Ich schicke ___ ihr heute. (onu, eril)|ihn||Eril Akkusativ zamir: *ihn ihr*.
+Y|Bringst du ___ einen Kaffee? (bize)|uns||*uns* (Dativ).
+Y|Ich empfehle ___ Freund dieses Buch. (benim, eril Dativ)|meinem||Eril Dativ: *meinem Freund*.
+Y|Die Schlüssel? Gib sie ___ bitte! (bana)|mir||*Gib sie mir!*
+Y|Ich zeige ___ meine Wohnung. (size, kibar)|Ihnen||Kibar Dativ: *Ihnen*.
+Y|Die Tasche? Ich kaufe ___ dir. (onu, dişil)|sie||Dişil Akkusativ: *sie dir*.
+Y|Er schenkt ___ eine Uhr. (ona, dişil)|ihr||Dişil Dativ: *ihr*.
+S|Ich gebe ___ das Buch.|dir|dich|du|Kime? → Dativ: *dir*.
+S|Das Buch? Ich gebe ___.|es dir|dir es|dich es|İki zamir: önce Akkusativ: *es dir*.
+S|Sie zeigt ___ die Stadt.|ihrem Gast|ihren Gast|ihr Gast|Eril Dativ: *ihrem Gast*.
+S|Kannst du ___ erklären?|es mir|mir es|mich es|*es mir*.
+S|Ich schicke ___ eine E-Mail.|meinem Chef|meinen Chef|mein Chef|Kime? → *meinem Chef*.
+S|Den Kuchen? Ich bringe ___ morgen.|ihn euch|euch ihn|euch es|*ihn euch* (Akk + Dat).
+S|Wir schenken ___ ein Fahrrad.|unserem Sohn|unseren Sohn|unser Sohn|Eril Dativ: *unserem*.
+S|Die Bilder? Er hat ___ gezeigt.|sie mir|mir sie|mich sie|*sie mir*.
+H|Ich gebe das Geld dem Kellner.|Ich gebe dem Kellner das Geld.||İki isim: önce Dativ.
+H|Ich schenke ihr die Blumen.|=|Doğru: zamir önce.
+H|Ich gebe ihm es.|Ich gebe es ihm.||İki zamir: önce Akkusativ.
+H|Kannst du mir das erklären?|=|Doğru.
+H|Ich zeige dich die Fotos.|Ich zeige dir die Fotos.||Kime? → Dativ *dir*.
+H|Wir kaufen den Kindern Eis.|=|Doğru.
+H|Er schickt seinen Eltern ein Paket.|=|Doğru: çoğul Dativ *seinen Eltern*.
+H|Gib mir sie!|Gib sie mir!||İki zamir: *sie mir*.
+D|İsmi zamirle değiştir (Akkusativ).|Ich gebe dir das Buch.|Ich gebe es dir.||İki zamir → *es dir*.
+D|İsmi zamirle değiştir (Dativ).|Ich schenke meiner Schwester Blumen.|Ich schenke ihr Blumen.||*meiner Schwester* → *ihr*.
+D|İki ismi de zamirle değiştir.|Ich zeige meinem Freund die Wohnung.|Ich zeige sie ihm.||Akk *sie* + Dat *ihm*.
+D|İsmi zamirle değiştir (Akkusativ).|Kannst du mir den Zucker geben?|Kannst du ihn mir geben?||*den Zucker* → *ihn*; *ihn mir*.
+D|İki ismi de zamirle değiştir.|Er schickt seiner Mutter einen Brief.|Er schickt ihn ihr.||*ihn ihr*.
+D|İsmi zamirle değiştir (Dativ).|Wir erklären den Gästen den Weg.|Wir erklären ihnen den Weg.||*den Gästen* → *ihnen*.
+D|İki ismi de zamirle değiştir.|Ich leihe dem Nachbarn das Auto.|Ich leihe es ihm.||*es ihm*.
+D|Sırayı düzelt.|Ich bringe das Wasser dir.|Ich bringe dir das Wasser.||Zamir öne: *dir das Wasser*.
+C|Anneme çiçek hediye ediyorum.|Ich schenke meiner Mutter Blumen.||Dativ önce.
+C|Bana tuzu verebilir misin?|Kannst du mir das Salz geben?|Kannst du mir bitte das Salz geben?|*mir das Salz*.
+C|Onu (kitabı) sana yarın veririm.|Ich gebe es dir morgen.|Ich gebe dir das Buch morgen./Morgen gebe ich es dir.|*es dir*.
+C|Fotoğrafları ona (erkek) gösterdim.|Ich habe ihm die Fotos gezeigt.|Ich habe sie ihm gezeigt.|*ihm die Fotos*.
+C|Bunu bana açıklayabilir misin?|Kannst du mir das erklären?|Kannst du es mir erklären?|*mir das* / *es mir*.
+C|Çocuklara dondurma alıyoruz.|Wir kaufen den Kindern ein Eis.|Wir kaufen den Kindern Eis.|Çoğul Dativ *den Kindern*.
+K|Ich schicke dir die Datei heute Abend.|Dosyayı sana bu akşam gönderiyorum.|Heute Abend schicke ich dir die Datei.
+K|Kannst du es mir noch einmal erklären?|Onu bana bir kez daha açıklayabilir misin?
+K|Er hat seiner Frau einen Ring geschenkt.|Karısına bir yüzük hediye etti.
+K|Die Fotos zeige ich dir morgen.|Fotoğrafları sana yarın gösteririm.|Ich zeige dir die Fotos morgen.|Morgen zeige ich dir die Fotos.
+O|Nächste Woche hat meine Mutter Geburtstag. Mein Bruder und ich schenken ihr eine Reise nach Wien. Mein Vater kauft ihr Blumen, und meine Oma backt ihr einen Kuchen. Die Tickets habe ich schon gekauft. Ich gebe sie ihr am Sonntag beim Frühstück.|Gelecek hafta annemin doğum günü. Ağabeyim ve ben ona bir Viyana seyahati hediye ediyoruz. Babam ona çiçek alıyor, büyükannem de ona pasta yapıyor. Biletleri çoktan aldım. Pazar günü kahvaltıda onları ona vereceğim.|Was schenken die Kinder der Mutter?~Eine Reise nach Wien.~Blumen.~Einen Kuchen.|Wann bekommt die Mutter die Tickets?~Am Sonntag beim Frühstück.~Heute Abend.~Am Geburtstag nach dem Essen.
+O|Hallo Jonas, kannst du mir dein Fahrrad leihen? Meins ist kaputt. Ich bringe es dir am Abend zurück. Und noch etwas: Du wolltest mir doch die Fotos vom Urlaub zeigen. Schick sie mir einfach per E-Mail! Danke, Emre|Merhaba Jonas, bana bisikletini ödünç verebilir misin? Benimki bozuk. Akşam onu sana geri getiririm. Bir şey daha: Bana tatil fotoğraflarını göstermek istiyordun ya. Onları bana e-postayla gönderiver! Teşekkürler, Emre|Warum braucht Emre das Fahrrad?~Sein Fahrrad ist kaputt.~Er hat kein Fahrrad.~Er will es kaufen.|Wie soll Jonas die Fotos schicken?~Per E-Mail.~Per Post.~Mit dem Handy am Abend.
+O|In unserem Haus helfen sich die Nachbarn. Frau Schulz gibt mir ihren Schlüssel, wenn sie verreist. Ich gieße ihr dann die Blumen. Herr Aydın repariert uns manchmal das Fahrrad, und wir kaufen ihm dafür Kuchen. Den Kindern im Erdgeschoss erkläre ich manchmal die Mathe-Hausaufgaben.|Bizim binada komşular birbirine yardım eder. Bayan Schulz seyahate çıkınca anahtarını bana verir. Ben de o zaman onun çiçeklerini sularım. Bay Aydın bazen bisikletimizi tamir eder, biz de karşılığında ona pasta alırız. Zemin kattaki çocuklara bazen matematik ödevlerini açıklarım.|Was macht die Person für Frau Schulz?~Sie gießt ihr die Blumen.~Sie repariert ihr das Fahrrad.~Sie kauft ihr Kuchen.|Wem erklärt die Person die Hausaufgaben?~Den Kindern im Erdgeschoss.~Herrn Aydın.~Frau Schulz.

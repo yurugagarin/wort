@@ -1,0 +1,52 @@
+# g14 · Konjunktiv II: Ratschläge und Wünsche
+Y|Du ___ mehr Wasser trinken. (sollen, tavsiye)|solltest||Tavsiye: *du solltest*.
+Y|An deiner Stelle ___ ich zum Arzt gehen. (werden)|würde||*An deiner Stelle würde ich …*
+Y|Ich ___ gern am Meer. (sein, dilek)|wäre||Dilek: *Ich wäre gern …*
+Y|Wenn ich mehr Geld ___, würde ich ein Auto kaufen. (haben)|hätte||Gerçek dışı koşul: *Wenn ich … hätte*.
+Y|Ihr ___ früher ins Bett gehen. (sollen, tavsiye)|solltet||*ihr solltet*.
+Y|Wenn ich Zeit hätte, ___ ich mehr Sport machen. (werden)|würde||*würde* + mastar.
+Y|Ich ___ gern besser Deutsch sprechen. (werden, dilek)|würde||Dilek: *Ich würde gern …* + mastar sonda.
+Y|Wenn das Wetter besser ___, würden wir grillen. (sein)|wäre||*Wenn … wäre*.
+Y|Sie ___ nicht so viel arbeiten. (sollen, tavsiye, o)|sollte||*sie sollte*.
+Y|Was ___ du an meiner Stelle machen? (werden)|würdest||*Was würdest du … machen?*
+Y|Ich ___ gern Ärztin. (sein, dilek)|wäre||*Ich wäre gern Ärztin.* = Doktor olmak isterdim.
+Y|Wenn ich du ___, würde ich das Angebot nehmen. (sein)|wäre||*Wenn ich du wäre* = Senin yerinde olsam.
+Y|Es ___ besser, wenn du heute zu Hause bleibst. (sein)|wäre||*Es wäre besser, …*
+Y|Wir ___ gern ein größeres Haus. (haben, dilek)|hätten||*Wir hätten gern …*
+S|Du ___ weniger Kaffee trinken. (tavsiye)|solltest|sollst|solltet|Tavsiye: *du solltest*.
+S|Wenn ich reich ___, würde ich viel reisen.|wäre|bin|war|Gerçek dışı: *wäre*.
+S|An Ihrer Stelle ___ ich den Vertrag nicht unterschreiben.|würde|werde|wurde|*würde*.
+S|Ich ___ gern ein Haus am See.|hätte|habe|hatte|Dilek: *hätte gern*.
+S|Wenn ich mehr Zeit hätte, ___ ich ein Instrument lernen.|würde|werde|wird|*würde* + mastar.
+S|Es wäre schön, wenn du ___ könntest.|kommen|kommst|gekommen|Modal sonda, mastar önünde: *kommen könntest*.
+S|Was würdest du ___?|machen|gemacht|machst|*würdest* + mastar.
+S|Ihr ___ mal Urlaub machen! (tavsiye)|solltet|sollt|solltest|*ihr solltet*.
+H|An deiner Stelle ich würde zum Arzt gehen.|An deiner Stelle würde ich zum Arzt gehen.||*An deiner Stelle* başta → fiil hemen ardından: *würde ich*.
+H|Wenn ich Zeit habe, würde ich mehr lesen.|Wenn ich Zeit hätte, würde ich mehr lesen.||Gerçek dışı koşul: *hätte*.
+H|An deiner Stelle würde ich das nicht machen.|=|Doğru.
+H|Ich wäre gern jetzt im Urlaub.|=|Doğru: dilek *wäre gern*.
+H|Wenn ich du wäre, ich würde das kaufen.|Wenn ich du wäre, würde ich das kaufen.||Yan cümle başta → ana cümle fiille başlar: *würde ich*.
+H|Es wäre besser, wenn er früher kommen würde.|=|Doğru.
+H|Ich hätte gern mehr Freizeit haben.|Ich hätte gern mehr Freizeit.|Ich würde gern mehr Freizeit haben.|*hätte gern* + isim (mastar yok).
+H|Wenn das Wetter gut wäre, würden wir spazieren gehen.|=|Doğru.
+D|Tavsiye ver (solltest).|Trink mehr Wasser!|Du solltest mehr Wasser trinken.||*Du solltest …*
+D|Tavsiye ver: "An deiner Stelle …"|Geh zum Arzt!|An deiner Stelle würde ich zum Arzt gehen.||*An deiner Stelle würde ich …*
+D|Gerçek dışı koşula çevir: "Wenn ich …"|Ich habe kein Auto. Ich fahre nicht ans Meer.|Wenn ich ein Auto hätte, würde ich ans Meer fahren.|Wenn ich ein Auto hätte, führe ich ans Meer.|*Wenn ich … hätte, würde ich …*
+D|Dilek cümlesi yap (wäre gern).|Ich bin nicht in Istanbul.|Ich wäre gern in Istanbul.||*Ich wäre gern …*
+D|Dilek cümlesi yap (hätte gern).|Ich habe keinen Garten.|Ich hätte gern einen Garten.||*Ich hätte gern …*
+D|Gerçek dışı koşula çevir: "Wenn es …"|Es regnet. Wir gehen nicht schwimmen.|Wenn es nicht regnen würde, würden wir schwimmen gehen.|Wenn es nicht regnete, würden wir schwimmen gehen./Wenn es nicht regnen würde, gingen wir schwimmen.|*Wenn es nicht regnen würde, würden wir …*
+D|Tavsiye ver (sollte, Sie).|Sie arbeiten zu viel.|Sie sollten weniger arbeiten.||*Sie sollten …*
+D|Dilek cümlesi yap (würde gern).|Ich lerne nicht Gitarre.|Ich würde gern Gitarre lernen.||*Ich würde gern …*
+C|Daha çok uyumalısın.|Du solltest mehr schlafen.||Tavsiye: *solltest*.
+C|Senin yerinde olsam bu işi alırdım.|An deiner Stelle würde ich diesen Job nehmen.|Wenn ich du wäre, würde ich diesen Job nehmen./An deiner Stelle würde ich den Job nehmen.|*An deiner Stelle würde ich …*
+C|Param olsa bir ev alırdım.|Wenn ich Geld hätte, würde ich ein Haus kaufen.||*Wenn ich … hätte, würde ich …*
+C|Şimdi tatilde olmak isterdim.|Ich wäre jetzt gern im Urlaub.|Ich wäre gern jetzt im Urlaub.|*Ich wäre gern …*
+C|Daha büyük bir dairemiz olsun isterdik.|Wir hätten gern eine größere Wohnung.|Wir würden gern eine größere Wohnung haben.|*hätten gern*.
+C|Bugün evde kalsan daha iyi olur.|Es wäre besser, wenn du heute zu Hause bleibst.|Es wäre besser, wenn du heute zu Hause bleiben würdest.|*Es wäre besser, wenn …*
+K|An deiner Stelle würde ich mehr Sport machen.|Senin yerinde olsam daha çok spor yapardım.
+K|Wenn ich mehr Zeit hätte, würde ich öfter kochen.|Daha çok vaktim olsa daha sık yemek yapardım.|Ich würde öfter kochen, wenn ich mehr Zeit hätte.
+K|Du solltest nicht so spät ins Bett gehen.|Bu kadar geç yatmamalısın.
+K|Ich wäre jetzt gern zu Hause.|Şimdi evde olmak isterdim.|Jetzt wäre ich gern zu Hause.
+O|Liebe Sevgi, du schreibst, dass du immer müde bist. An deiner Stelle würde ich früher ins Bett gehen und weniger Kaffee trinken. Du solltest auch mehr Sport machen, vielleicht dreimal pro Woche. Wenn ich du wäre, würde ich auch mal mit deinem Chef sprechen. Vielleicht kannst du weniger Überstunden machen. Deine Aylin|Sevgili Sevgi, hep yorgun olduğunu yazıyorsun. Senin yerinde olsam daha erken yatar ve daha az kahve içerdim. Ayrıca daha çok spor yapmalısın, belki haftada üç kez. Senin yerinde olsam bir de şefinle konuşurdum. Belki daha az fazla mesai yapabilirsin. Aylin'in|Was ist Sevgis Problem?~Sie ist immer müde.~Sie hat keine Arbeit.~Sie hat kein Geld.|Was soll Sevgi laut Aylin auch machen?~Mit ihrem Chef sprechen.~Eine neue Wohnung suchen.~Mehr Kaffee trinken.
+O|Was würden Sie mit einer Million Euro machen? Wir haben auf der Straße gefragt. Herr Kaya: „Ich würde ein Haus für meine Familie kaufen." Frau Neumann: „Ich würde eine Weltreise machen." Tim, 19: „Ich würde studieren und nicht mehr nebenbei arbeiten."|Bir milyon avroyla ne yapardınız? Sokakta sorduk. Bay Kaya: "Ailem için bir ev alırdım." Bayan Neumann: "Dünya turuna çıkardım." Tim, 19: "Okurdum ve artık yanında çalışmazdım."|Was würde Herr Kaya machen?~Ein Haus für seine Familie kaufen.~Eine Weltreise machen.~Studieren.|Was würde Tim nicht mehr machen?~Nebenbei arbeiten.~Reisen.~Studieren.
+O|Ich wäre gern Koch geworden, aber meine Eltern wollten, dass ich Ingenieur werde. Heute arbeite ich in einer großen Firma. Wenn ich mutiger wäre, würde ich ein kleines Restaurant eröffnen. Meine Frau sagt: „Du solltest es einfach versuchen!"|Aşçı olmak isterdim ama ailem mühendis olmamı istedi. Bugün büyük bir firmada çalışıyorum. Daha cesur olsam küçük bir restoran açardım. Karım diyor ki: "Bir denemelisin!"|Was würde der Mann machen, wenn er mutiger wäre?~Ein kleines Restaurant eröffnen.~Die Firma wechseln.~Ingenieur werden.|Was sagt seine Frau?~Er sollte es versuchen.~Er sollte in der Firma bleiben.~Er sollte Koch lernen.

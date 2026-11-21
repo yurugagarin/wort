@@ -1,0 +1,52 @@
+# g13 · Indirekte Fragen: ob, W-Fragen
+Y|Weißt du, wann der Zug ___? (kommen)|kommt||Dolaylı soru yan cümledir: fiil sonda.
+Y|Ich frage mich, ___ er morgen Zeit hat. (evet/hayır sorusu)|ob||Evet/hayır sorusu dolaylı olunca: *ob*.
+Y|Können Sie mir sagen, wo der Bahnhof ___? (sein)|ist||*wo der Bahnhof ist* (fiil sonda).
+Y|Ich weiß nicht, ___ ich das schaffe. (-ip -mediğimi)|ob||*ob* = -ip -madığı.
+Y|Weißt du, wie viel das Ticket ___? (kosten)|kostet||Fiil sonda: *kostet*.
+Y|Sie hat gefragt, warum du nicht ___ bist. (kommen, Perfekt)|gekommen||Perfekt: *gekommen bist* (yardımcı fiil en sonda).
+Y|Kannst du mir sagen, was das ___? (bedeuten)|bedeutet||*was das bedeutet*.
+Y|Ich möchte wissen, ___ der Kurs beginnt. (ne zaman)|wann||W-sorusu kelimesi kalır: *wann*.
+Y|Er fragt, ob wir heute Abend ___. (mitkommen)|mitkommen||Ayrılan fiil yan cümlede birleşir ve sona gider.
+Y|Weißt du, wer das Fenster kaputt ___? (machen, Perfekt)|gemacht hat||*wer … gemacht hat*.
+Y|Wissen Sie, ___ hier ein Supermarkt ist? (evet/hayır)|ob||*ob hier ein Supermarkt ist*.
+Y|Ich verstehe nicht, warum sie immer zu spät ___. (kommen)|kommt||*warum sie … kommt*.
+Y|Darf ich fragen, wie alt Sie ___? (sein)|sind||*wie alt Sie sind*.
+Y|Sag mir bitte, wann du nach Hause ___. (kommen)|kommst||*du* ile *kommst*, sonda.
+S|Weißt du, wo ___?|er wohnt|wohnt er|er wohnen|Dolaylı soruda fiil sonda: *wo er wohnt*.
+S|Ich frage, ___ du Lust hast.|ob|wenn|dass|Evet/hayır sorusu → *ob*.
+S|Können Sie mir sagen, wie spät ___?|es ist|ist es|es sein|*wie spät es ist*.
+S|Er will wissen, ___ du kommst. (ne zaman)|wann|wenn|als|Zaman sorusu: *wann*.
+S|Weißt du, ob der Laden heute ___?|geöffnet ist|ist geöffnet|geöffnet|Fiil sonda.
+S|Ich weiß nicht, was ich ___ soll.|machen|mache|gemacht|Modal fiil sonda, mastar önünde: *machen soll*.
+S|Kannst du mir sagen, ___ das kostet? (ne kadar)|was|wie|welche|Fiyat sorusu: *was das kostet*.
+S|Sie fragt, ___ wir morgen frei haben. (evet/hayır)|ob|wenn|dass|*ob wir … haben*.
+H|Weißt du, wo ist die Post?|Weißt du, wo die Post ist?||Dolaylı soruda fiil sona.
+H|Ich frage mich, ob er kommt.|=|Doğru.
+H|Können Sie mir sagen, wann fährt der Bus?|Können Sie mir sagen, wann der Bus fährt?||Fiil sona.
+H|Ich weiß nicht, wenn er Zeit hat.|Ich weiß nicht, ob er Zeit hat.||Evet/hayır → *ob* (*wenn* değil).
+H|Sie fragt, warum ich traurig bin.|=|Doğru.
+H|Weißt du, was bedeutet das Wort?|Weißt du, was das Wort bedeutet?||Fiil sona.
+H|Er möchte wissen, dass der Kurs morgen ist.|Er möchte wissen, ob der Kurs morgen ist.||Bilinmeyen evet/hayır → *ob*.
+H|Kannst du mir sagen, wie viel Uhr es ist?|=|Doğru.
+D|Dolaylı soru yap: "Weißt du, …"|Wo wohnt Ali?|Weißt du, wo Ali wohnt?||Fiil sona: *wohnt*.
+D|Dolaylı soru yap: "Ich frage mich, …"|Kommt er heute?|Ich frage mich, ob er heute kommt.||Evet/hayır → *ob*.
+D|Dolaylı soru yap: "Können Sie mir sagen, …"|Wann beginnt der Film?|Können Sie mir sagen, wann der Film beginnt?||Fiil sona.
+D|Dolaylı soru yap: "Ich weiß nicht, …"|Hat sie Zeit?|Ich weiß nicht, ob sie Zeit hat.||*ob*.
+D|Dolaylı soru yap: "Weißt du, …"|Was kostet die Wohnung?|Weißt du, was die Wohnung kostet?||Fiil sona.
+D|Dolaylı soru yap: "Sie fragt, …"|Warum bist du nicht gekommen?|Sie fragt, warum du nicht gekommen bist.||Perfekt: *gekommen bist*.
+D|Dolaylı soru yap: "Ich möchte wissen, …"|Kann ich hier parken?|Ich möchte wissen, ob ich hier parken kann.||Modal en sonda: *parken kann*.
+D|Dolaylı soru yap: "Weißt du, …"|Wann steht er auf?|Weißt du, wann er aufsteht?||Ayrılan fiil birleşir: *aufsteht*.
+C|Trenin ne zaman geldiğini biliyor musun?|Weißt du, wann der Zug kommt?||*wann der Zug kommt*.
+C|Yarın vaktinin olup olmadığını soruyorum.|Ich frage, ob du morgen Zeit hast.|Ich frage dich, ob du morgen Zeit hast.|*ob*.
+C|İstasyonun nerede olduğunu söyleyebilir misiniz?|Können Sie mir sagen, wo der Bahnhof ist?|Könnten Sie mir sagen, wo der Bahnhof ist?|Fiil sonda.
+C|Ne yapacağımı bilmiyorum.|Ich weiß nicht, was ich machen soll.|Ich weiß nicht, was ich tun soll.|*was ich machen soll*.
+C|Bunun ne kadar olduğunu biliyor musun?|Weißt du, wie viel das kostet?|Weißt du, was das kostet?|Fiil sonda.
+C|Neden ağladığını sordu.|Er hat gefragt, warum du weinst.|Sie hat gefragt, warum du weinst./Er fragte, warum du weinst./Sie fragte, warum du weinst./Er hat gefragt, warum du geweint hast./Sie hat gefragt, warum du geweint hast.|*warum du weinst*.
+K|Weißt du, wann der Supermarkt schließt?|Süpermarketin ne zaman kapandığını biliyor musun?
+K|Ich frage mich, ob ich die Prüfung bestanden habe.|Sınavı geçip geçmediğimi merak ediyorum.
+K|Können Sie mir sagen, wie ich zum Bahnhof komme?|İstasyona nasıl gideceğimi söyleyebilir misiniz?
+K|Er weiß nicht, wo er seinen Schlüssel hingelegt hat.|Anahtarını nereye koyduğunu bilmiyor.
+O|Neu in der Stadt? Hier ein paar Tipps: Wenn Sie nicht wissen, wo das Bürgeramt ist, fragen Sie im Infobüro am Bahnhof. Dort kann man Ihnen auch sagen, wann die Busse fahren. Wenn Sie wissen möchten, ob es einen Deutschkurs in Ihrer Nähe gibt, besuchen Sie unsere Webseite.|Şehirde yeni misiniz? İşte birkaç ipucu: Belediye hizmet bürosunun nerede olduğunu bilmiyorsanız istasyondaki danışma bürosuna sorun. Orada size otobüslerin ne zaman kalktığını da söyleyebilirler. Yakınınızda Almanca kursu olup olmadığını öğrenmek isterseniz web sitemizi ziyaret edin.|Wo kann man fragen, wo das Bürgeramt ist?~Im Infobüro am Bahnhof.~Im Bürgeramt.~Im Deutschkurs.|Wo findet man Informationen über Deutschkurse?~Auf der Webseite.~Am Bahnhof.~Im Bus.
+O|Meine Mutter ruft mich jeden Tag an. Sie will immer wissen, ob ich gut gegessen habe, wann ich ins Bett gehe und ob ich genug Geld habe. Manchmal fragt sie auch, warum ich noch keine Freundin habe. Ich weiß nicht, wie ich darauf antworten soll!|Annem beni her gün arıyor. Her zaman iyi yemek yiyip yemediğimi, ne zaman yattığımı ve yeterince param olup olmadığını bilmek istiyor. Bazen neden hâlâ kız arkadaşım olmadığını da soruyor. Buna nasıl cevap vereceğimi bilmiyorum!|Was will die Mutter immer wissen?~Ob ihr Sohn gut gegessen hat.~Wo ihr Sohn arbeitet.~Wann ihr Sohn Urlaub hat.|Was weiß der Sohn nicht?~Wie er auf eine Frage antworten soll.~Wann seine Mutter anruft.~Wo seine Freundin wohnt.
+O|Entschuldigung, können Sie mir sagen, wo hier eine Apotheke ist? – Ja, gleich um die Ecke, neben der Bank. – Und wissen Sie, ob sie heute bis 20 Uhr geöffnet hat? – Das weiß ich leider nicht. Aber ich glaube, dass sie samstags schon um 14 Uhr schließt.|Affedersiniz, burada nerede bir eczane olduğunu söyleyebilir misiniz? – Evet, hemen köşede, bankanın yanında. – Bugün saat 20'ye kadar açık olup olmadığını biliyor musunuz? – Maalesef onu bilmiyorum. Ama cumartesileri saat 14'te kapandığını sanıyorum.|Wo ist die Apotheke?~Neben der Bank.~Am Bahnhof.~Im Supermarkt.|Was glaubt der Mann?~Dass die Apotheke samstags um 14 Uhr schließt.~Dass die Apotheke bis 20 Uhr geöffnet hat.~Dass es keine Apotheke gibt.

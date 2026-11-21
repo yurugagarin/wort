@@ -1,0 +1,52 @@
+# g16 · Relativsätze im Nominativ und Akkusativ
+Y|Das ist der Mann, ___ neben mir wohnt. (eril, Nominativ)|der||Yan cümlede özne → Nominativ: *der*.
+Y|Das ist die Frau, ___ ich gestern gesehen habe. (dişil, Akkusativ)|die||Dişil Akkusativ = *die*.
+Y|Das ist der Film, ___ ich dir empfohlen habe. (eril, Akkusativ)|den||Eril Akkusativ: *den*.
+Y|Das Kind, ___ dort spielt, ist mein Sohn. (nötr, Nominativ)|das||Nötr: *das*.
+Y|Die Leute, ___ hier arbeiten, sind sehr nett. (çoğul, Nominativ)|die||Çoğul Nominativ: *die*.
+Y|Ich suche den Schlüssel, ___ ich verloren habe. (eril, Akkusativ)|den||*den Schlüssel verlieren* → *den*.
+Y|Das ist das Buch, das ich gerade ___. (lesen)|lese||Yan cümlede fiil sonda.
+Y|Kennst du den Arzt, der hier neu ___? (sein)|ist||Fiil sonda: *der hier neu ist*.
+Y|Die Stadt, ___ ich am meisten mag, ist Izmir. (dişil, Akkusativ)|die||*die Stadt mögen* → *die*.
+Y|Der Kollege, ___ ich jeden Tag sehe, kommt aus Syrien. (eril, Akkusativ)|den||*ich sehe den Kollegen* → *den*.
+Y|Wo ist die Jacke, die ich gestern gekauft ___? (haben)|habe||Perfekt: *gekauft habe* (yardımcı fiil en sonda).
+Y|Das sind die Schuhe, ___ ich mir wünsche. (çoğul, Akkusativ)|die||Çoğul Akkusativ: *die*.
+Y|Der Bus, ___ um 8 Uhr fährt, ist immer voll. (eril, Nominativ)|der||Özne → *der*.
+Y|Das ist ein Problem, ___ wir schnell lösen müssen. (nötr, Akkusativ)|das||Nötr Akkusativ = *das*.
+S|Das ist der Lehrer, ___ mir geholfen hat.|der|den|die|Özne → Nominativ *der*.
+S|Das ist der Lehrer, ___ ich sehr mag.|den|der|dem|*ich mag den Lehrer* → *den*.
+S|Die Wohnung, ___ wir gemietet haben, ist sehr hell.|die|der|den|Dişil Akkusativ → *die*.
+S|Ich habe ein Handy, ___ sehr alt ist.|das|der|den|Nötr → *das*.
+S|Das ist die Frau, die in Berlin ___.|wohnt|wohnen|wohnst|Fiil sonda, özneyle uyumlu: *wohnt*.
+S|Der Kuchen, ___ du gebacken hast, schmeckt toll.|den|der|das|*du hast den Kuchen gebacken* → *den*.
+S|Die Kinder, ___ im Park spielen, sind laut.|die|der|den|Çoğul Nominativ → *die*.
+S|Ist das der Zug, der nach München ___?|fährt|fahren|fährst|Özne *der (Zug)* → *fährt*.
+H|Das ist der Mann, der ich kenne.|Das ist der Mann, den ich kenne.||*ich kenne den Mann* → Akkusativ *den*.
+H|Die Frau, die dort steht, ist meine Chefin.|=|Doğru.
+H|Das ist das Auto, das ich kaufen will.|=|Doğru: nötr Akkusativ *das*.
+H|Ich habe einen Freund, der wohnt in Köln.|Ich habe einen Freund, der in Köln wohnt.||Yan cümlede fiil sona.
+H|Der Film, den wir gesehen haben, war langweilig.|=|Doğru.
+H|Das ist die Lehrerin, den ich mag.|Das ist die Lehrerin, die ich mag.||Dişil Akkusativ → *die*.
+H|Die Leute, der hier wohnen, sind nett.|Die Leute, die hier wohnen, sind nett.||Çoğul → *die*.
+H|Das Buch, was ich lese, ist spannend.|Das Buch, das ich lese, ist spannend.||İsimden sonra *das* (*was* değil).
+D|Tek cümle yap (der/die/das).|Das ist ein Mann. Er arbeitet bei Siemens.|Das ist ein Mann, der bei Siemens arbeitet.||*er* → *der*, fiil sona.
+D|Tek cümle yap (der/die/das).|Das ist die Frau. Ich liebe sie.|Das ist die Frau, die ich liebe.||*sie* (Akk) → *die*.
+D|Tek cümle yap (der/die/das).|Ich habe einen Hund. Er heißt Max.|Ich habe einen Hund, der Max heißt.||*er* → *der*.
+D|Tek cümle yap (der/die/das).|Das ist der Kuli. Ich habe ihn gesucht.|Das ist der Kuli, den ich gesucht habe.||*ihn* → *den*; Perfekt: *gesucht habe*.
+D|Tek cümle yap (der/die/das).|Wir haben ein Haus. Es hat einen Garten.|Wir haben ein Haus, das einen Garten hat.||*es* → *das*.
+D|Tek cümle yap (der/die/das).|Wo sind die Bücher? Ich habe sie gekauft.|Wo sind die Bücher, die ich gekauft habe?||Çoğul → *die*.
+D|Tek cümle yap (der/die/das).|Der Mann ist mein Onkel. Er steht dort.|Der Mann, der dort steht, ist mein Onkel.||Yan cümle araya girer.
+D|Tek cümle yap (der/die/das).|Die Suppe war lecker. Du hast sie gekocht.|Die Suppe, die du gekocht hast, war lecker.||Yan cümle araya girer.
+C|Bu, yanımda oturan adam.|Das ist der Mann, der neben mir wohnt.||Özne → *der*.
+C|Dün gördüğüm kadın benim komşum.|Die Frau, die ich gestern gesehen habe, ist meine Nachbarin.||Dişil Akkusativ → *die*.
+C|Sana önerdiğim filmi izledin mi?|Hast du den Film gesehen, den ich dir empfohlen habe?|Hast du den Film, den ich dir empfohlen habe, gesehen?|*den Film*.
+C|Orada oynayan çocuklar gürültülü.|Die Kinder, die dort spielen, sind laut.||Çoğul → *die*.
+C|Kaybettiğim anahtarı arıyorum.|Ich suche den Schlüssel, den ich verloren habe.||*den*.
+C|Bu benim sevdiğim bir şehir.|Das ist eine Stadt, die ich mag.|Das ist eine Stadt, die ich liebe.|Dişil → *die*.
+K|Das ist der Kollege, der mir immer hilft.|Bu bana hep yardım eden iş arkadaşı.
+K|Die Jacke, die ich gekauft habe, ist zu klein.|Aldığım ceket çok küçük.
+K|Kennst du die Frau, die dort steht?|Orada duran kadını tanıyor musun?
+K|Das ist das Problem, das wir lösen müssen.|Bu çözmemiz gereken sorun.
+O|Ich wohne in einem Haus, das sehr alt ist. Meine Nachbarin, die im zweiten Stock wohnt, ist 85 Jahre alt. Sie hat einen Sohn, der sie jeden Sonntag besucht. Den Kuchen, den sie am Samstag backt, bringt sie manchmal auch zu mir. Es ist der beste Kuchen, den ich kenne!|Çok eski bir evde oturuyorum. İkinci katta oturan komşum 85 yaşında. Onu her pazar ziyaret eden bir oğlu var. Cumartesi yaptığı pastayı bazen bana da getiriyor. Bildiğim en güzel pasta!|Wer besucht die Nachbarin jeden Sonntag?~Ihr Sohn.~Ihre Tochter.~Der Erzähler.|Wann backt die Nachbarin?~Am Samstag.~Am Sonntag.~Jeden Tag.
+O|Gesucht: Wir suchen eine Person, die gern mit Kindern arbeitet. Die Kinder, die Sie betreuen, sind zwischen 3 und 6 Jahre alt. Wir bieten eine Arbeit, die Spaß macht, und ein Team, das Sie unterstützt. Bewerbungen, die bis 30. Juni kommen, werden geprüft.|Aranıyor: Çocuklarla çalışmayı seven birini arıyoruz. Bakacağınız çocuklar 3 ile 6 yaş arasında. Keyif veren bir iş ve sizi destekleyen bir ekip sunuyoruz. 30 Haziran'a kadar gelen başvurular değerlendirilecek.|Wie alt sind die Kinder?~Zwischen 3 und 6 Jahre.~Zwischen 6 und 10 Jahre.~Unter 3 Jahre.|Welche Bewerbungen werden geprüft?~Die bis 30. Juni kommen.~Alle Bewerbungen.~Die im Juli kommen.
+O|Gestern habe ich den Mann getroffen, der früher mein Deutschlehrer war. Er hat mich sofort erkannt. Wir haben in dem Café gesessen, das neben der Schule ist. Er hat mir ein Buch geschenkt, das er selbst geschrieben hat. Es ist ein Buch, das ich unbedingt lesen will.|Dün eskiden Almanca öğretmenim olan adamla karşılaştım. Beni hemen tanıdı. Okulun yanındaki kafede oturduk. Bana kendi yazdığı bir kitap hediye etti. Mutlaka okumak istediğim bir kitap.|Wer war der Mann?~Der frühere Deutschlehrer.~Ein Kollege.~Der Café-Besitzer.|Was hat der Mann geschenkt?~Ein Buch, das er geschrieben hat.~Einen Kuchen.~Eine Karte für das Café.

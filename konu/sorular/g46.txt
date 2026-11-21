@@ -1,0 +1,52 @@
+# g46 · werden + Nomen/Adjektiv: Ich werde müde
+Y|Im Winter ___ es früh dunkel. (werden)|wird||*es wird* = oluyor/kararıyor.
+Y|Meine Schwester will Ärztin ___. (werden)|werden||Modal + mastar sonda: *werden*.
+Y|Du ___ ja ganz rot! (werden)|wirst||*du wirst* (kökte *e → i*, *d* düşer).
+Y|Ich ___ schnell nervös. (werden)|werde||*ich werde*.
+Y|Er ist letztes Jahr Vater ___. (werden, Perfekt)|geworden||Perfekt: *ist … geworden*.
+Y|Morgen ___ ich 30. (werden, yaş)|werde||Yaş: *Ich werde 30* = 30 yaşına giriyorum.
+Y|Das Wetter ___ besser. (werden)|wird||*Das Wetter wird besser.*
+Y|Ihr ___ immer größer! (werden)|werdet||*ihr werdet*.
+Y|Es ___ gestern sehr kalt. (werden, Präteritum)|wurde||Präteritum: *wurde*.
+Y|Was willst du später ___? (werden)|werden||*Was willst du werden?* = Ne olmak istiyorsun?
+Y|Die Kinder ___ schnell müde. (werden)|werden||Çoğul: *werden*.
+Y|Sie ist sehr krank ___. (werden, Perfekt)|geworden||*ist krank geworden* = hastalandı.
+Y|Wann ___ du endlich fertig? (werden)|wirst||*Wann wirst du fertig?*
+Y|Mein Deutsch ___ jeden Tag besser. (werden)|wird||Değişim: *wird besser*.
+S|Es ___ langsam warm.|wird|werde|werdet|Değişim: *wird*.
+S|Ich ___ Ingenieur werden.|möchte|werde zu|bin|Dilek + mastar: *möchte … werden*.
+S|Er ___ müde.|wird|werdet|wirst|*er wird*.
+S|Sie ist Lehrerin ___.|geworden|gewordet|werden|Perfekt: *ist … geworden*.
+S|Du ___ immer dünner!|wirst|wird|werdest|*du wirst*.
+S|Plötzlich ___ es still.|wurde|wird zu|würde|Geçmiş anlatı: *wurde*.
+S|Wir ___ dieses Jahr Eltern.|werden|wird|werdet|*wir werden*.
+S|Das Essen ist kalt ___.|geworden|gewesen werden|wird|*ist kalt geworden* = soğudu.
+H|Ich werde 25 Jahre alt.|=|Doğru.
+H|Du wirdst müde.|Du wirst müde.||*du wirst* (*d* düşer).
+H|Er hat Vater geworden.|Er ist Vater geworden.||*werden* Perfekt'te *sein* alır.
+H|Es wird kalt.|=|Doğru.
+H|Sie ist Ärztin gewerden.|Sie ist Ärztin geworden.||Partizip II: *geworden*.
+H|Das Wetter wird besser.|=|Doğru.
+H|Ihr werden immer größer.|Ihr werdet immer größer.||*ihr werdet*.
+H|Ich werde nervöse.|Ich werde nervös.||Sıfat ek almaz.
+D|Değişim cümlesine çevir (werden).|Ich bin müde.|Ich werde müde.||Durum (*bin*) → değişim (*werde*).
+D|Değişim cümlesine çevir (werden).|Es ist dunkel.|Es wird dunkel.||*wird dunkel* = kararıyor.
+D|Perfekt'e çevir.|Er wird Vater.|Er ist Vater geworden.||*ist … geworden*.
+D|Perfekt'e çevir.|Das Wetter wird schlecht.|Das Wetter ist schlecht geworden.||*ist … geworden*.
+D|Präteritum'a çevir.|Es wird kalt.|Es wurde kalt.||*wurde*.
+D|"du" ile yaz.|Ich werde schnell rot.|Du wirst schnell rot.||*du wirst*.
+D|"wollen" ile yaz.|Sie wird Pilotin.|Sie will Pilotin werden.||Modal + mastar sonda.
+D|Değişim cümlesine çevir (werden).|Die Kinder sind groß.|Die Kinder werden groß.||*werden groß* = büyüyorlar.
+C|Hava soğuyor.|Es wird kalt.|Das Wetter wird kalt.|*es wird kalt*.
+C|Yarın 40 yaşına giriyorum.|Ich werde morgen 40.|Morgen werde ich 40./Ich werde morgen 40 Jahre alt.|Yaş: *werden*.
+C|Doktor olmak istiyorum.|Ich will Arzt werden.|Ich möchte Arzt werden./Ich will Ärztin werden./Ich möchte Ärztin werden.|Meslekte tanımlık yok.
+C|Hastalandı.|Er ist krank geworden.|Sie ist krank geworden.|*ist krank geworden*.
+C|Almancam her gün daha iyi oluyor.|Mein Deutsch wird jeden Tag besser.|Jeden Tag wird mein Deutsch besser.|*wird besser*.
+C|Çabuk sinirleniyorsun.|Du wirst schnell nervös.|Du wirst schnell sauer.|*du wirst*.
+K|Im Herbst werden die Tage kürzer.|Sonbaharda günler kısalıyor.|Die Tage werden im Herbst kürzer.
+K|Meine Tochter will Lehrerin werden.|Kızım öğretmen olmak istiyor.
+K|Es ist plötzlich sehr kalt geworden.|Birden hava çok soğudu.|Plötzlich ist es sehr kalt geworden.
+K|Wann wirst du endlich fertig?|Nihayet ne zaman hazır olacaksın?
+O|Mein Sohn Deniz wird nächste Woche 18. Er will Polizist werden. Als Kind war er sehr schüchtern, aber jetzt ist er selbstbewusst geworden. Manchmal wird er noch rot, wenn er mit Mädchen spricht. Ich glaube, er wird ein guter Polizist.|Oğlum Deniz gelecek hafta 18 yaşına giriyor. Polis olmak istiyor. Çocukken çok utangaçtı ama şimdi kendine güvenen biri oldu. Kızlarla konuşurken hâlâ bazen kızarıyor. Bence iyi bir polis olacak.|Was will Deniz werden?~Polizist.~Lehrer.~Arzt.|Wann wird Deniz rot?~Wenn er mit Mädchen spricht.~Wenn er Sport macht.~Wenn es kalt ist.
+O|Im November wird es in Deutschland früh dunkel. Die Tage werden kurz, und das Wetter wird oft grau und nass. Viele Menschen werden dann müde oder schlecht gelaunt. Ein Tipp: Gehen Sie jeden Tag eine halbe Stunde nach draußen, auch wenn es kalt ist!|Kasımda Almanya'da hava erken kararır. Günler kısalır, hava da sık sık gri ve ıslak olur. O zaman birçok insan yorgun ya da huysuz olur. Bir ipucu: Hava soğuk olsa da her gün yarım saat dışarı çıkın!|Wie wird das Wetter im November oft?~Grau und nass.~Warm und sonnig.~Kalt und trocken.|Was ist der Tipp?~Jeden Tag eine halbe Stunde nach draußen gehen.~Früh ins Bett gehen.~Mehr Kaffee trinken.
+O|Vor zwei Jahren hat Leyla in einem Café gearbeitet. Dann hat sie eine Ausbildung gemacht und ist Krankenschwester geworden. Die Arbeit ist anstrengend, aber sie ist glücklicher geworden. Nächstes Jahr wird sie Stationsleiterin.|İki yıl önce Leyla bir kafede çalışıyordu. Sonra mesleki eğitim aldı ve hemşire oldu. İş yorucu ama daha mutlu oldu. Gelecek yıl servis sorumlusu olacak.|Was ist Leyla geworden?~Krankenschwester.~Ärztin.~Café-Besitzerin.|Wie fühlt sich Leyla jetzt?~Glücklicher.~Müder.~Trauriger.

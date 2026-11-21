@@ -1,0 +1,52 @@
+# g12 · Verben mit Präpositionen · worauf / darauf
+Y|Ich warte ___ den Bus. (warten …)|auf||*warten auf* + Akkusativ.
+Y|Wir freuen uns ___ den Urlaub. (gelecekteki bir şey)|auf||*sich freuen auf* = dört gözle beklemek.
+Y|Er denkt oft ___ seine Familie in der Türkei. (denken …)|an||*denken an* + Akkusativ.
+Y|Sie interessiert sich ___ Fotografie. (sich interessieren …)|für||*sich interessieren für*.
+Y|___ wartest du? – Auf den Bus. (şey için soru)|Worauf|worauf|Şey için: *wo(r)* + edat → *Worauf?*
+Y|___ wen wartest du? – Auf meine Schwester. (kişi için soru)|Auf|auf|Kişi için: edat + *wen*: *Auf wen?*
+Y|Freust du dich auf das Wochenende? – Ja, ich freue mich sehr ___. (cevap, şey)|darauf||Şey için cevap: *da(r)* + edat → *darauf*.
+Y|___ denkst du gerade? – An die Prüfung. (şey için soru)|Woran|woran|*denken an* → *Woran?*
+Y|Ich habe mich ___ den Lärm beschwert. (sich beschweren …)|über||*sich beschweren über* + Akkusativ.
+Y|Kannst du mir ___ dem Umzug helfen? (helfen …)|bei||*helfen bei* + Dativ: *bei dem Umzug* = *beim Umzug*.
+Y|Wir sprechen ___ das neue Projekt. (sprechen … konu hakkında)|über||*sprechen über* + Akkusativ.
+Y|Ich träume ___ einem eigenen Haus. (träumen …)|von||*träumen von* + Dativ.
+Y|Er ärgert sich ___ das schlechte Wetter. (sich ärgern …)|über||*sich ärgern über*.
+Y|___ interessierst du dich? – Für Fußball. (şey için soru)|Wofür|wofür|*sich interessieren für* → *Wofür?*
+S|Ich warte schon eine Stunde ___ dich.|auf|für|an|*warten auf*.
+S|___ freust du dich? – Auf meinen Geburtstag.|Worauf|Wofür|Woran|*sich freuen auf* → *Worauf?*
+S|Denkst du an den Termin? – Ja, ich denke ___.|daran|darauf|dafür|*denken an* → *daran*.
+S|Sie hat sich ___ das Geschenk gefreut.|über|auf|für|Geçmişte alınmış bir şeye sevinmek: *sich freuen über*.
+S|Mit ___ hast du gesprochen? – Mit dem Chef.|wem|was|wen|Kişi + *mit* (Dativ): *mit wem*.
+S|Ich interessiere mich nicht ___ Politik.|für|an|über|*sich interessieren für*.
+S|Hast du schon ___ die E-Mail geantwortet?|auf|an|für|*antworten auf* + Akkusativ.
+S|Worüber sprecht ihr? – ___ den Film von gestern.|Über|Von|Auf|*sprechen über* → cevap *über den Film*.
+H|Ich warte für den Zug.|Ich warte auf den Zug.||*warten auf*.
+H|Wir freuen uns auf die Ferien.|=|Doğru: gelecekteki tatil → *sich freuen auf*.
+H|Auf was wartest du?|Worauf wartest du?||Şey için standart dilde: *Worauf?*
+H|Ich denke an dich.|=|Doğru: kişi → *an dich*.
+H|Interessierst du dich für Musik? – Ja, ich interessiere mich für es.|Interessierst du dich für Musik? – Ja, ich interessiere mich dafür.||Şey için zamir: *dafür* (*für es* değil).
+H|Woran denkst du? – An meine Mutter.|=|Doğru.
+H|Er hat sich über das Essen beschwert.|=|Doğru: *sich beschweren über*.
+H|Mit was schreibst du? – Mit einem Bleistift.|Womit schreibst du? – Mit einem Bleistift.||Şey için: *Womit?*
+D|Altı çizili kısım için soru sor (şey): "auf den Bus"|Ich warte auf den Bus.|Worauf wartest du?||Şey → *Worauf?*
+D|Altı çizili kısım için soru sor (kişi): "auf meinen Bruder"|Ich warte auf meinen Bruder.|Auf wen wartest du?||Kişi → *Auf wen?*
+D|"da(r)-" ile cevap ver: "Ja, ich …"|Freust du dich auf die Reise?|Ja, ich freue mich darauf.|Ja, darauf freue ich mich.|*auf die Reise* → *darauf*.
+D|Soru sor (şey).|Sie interessiert sich für Kunst.|Wofür interessiert sie sich?||*Wofür?*
+D|"da(r)-" ile cevap ver: "Nein, ich …"|Denkst du an das Geschenk?|Nein, ich denke nicht daran.||*an das Geschenk* → *daran*.
+D|Soru sor (kişi).|Er spricht mit seiner Chefin.|Mit wem spricht er?||Kişi + Dativ → *Mit wem?*
+D|Soru sor (şey).|Wir sprechen über den Urlaub.|Worüber sprecht ihr?|Worüber sprechen Sie?|*Worüber?*
+D|Soru sor (şey).|Ich träume von einer Weltreise.|Wovon träumst du?||*Wovon?*
+C|Otobüsü bekliyorum.|Ich warte auf den Bus.||*warten auf*.
+C|Yazı dört gözle bekliyoruz.|Wir freuen uns auf den Sommer.||*sich freuen auf*.
+C|Neyi düşünüyorsun?|Woran denkst du?||*denken an* → *Woran?*
+C|Kimi bekliyorsun?|Auf wen wartest du?||Kişi → *Auf wen?*
+C|Futbola ilgi duymuyorum.|Ich interessiere mich nicht für Fußball.||*sich interessieren für*.
+C|Hediyeye çok sevindi.|Er hat sich sehr über das Geschenk gefreut.|Sie hat sich sehr über das Geschenk gefreut./Er freut sich sehr über das Geschenk.|*sich freuen über*.
+K|Ich warte seit zehn Minuten auf meine Freundin.|On dakikadır kız arkadaşımı bekliyorum.|Seit zehn Minuten warte ich auf meine Freundin.
+K|Worüber habt ihr gestern gesprochen?|Dün ne hakkında konuştunuz?
+K|Er denkt jeden Tag an seine Prüfung.|Her gün sınavını düşünüyor.|Jeden Tag denkt er an seine Prüfung.
+K|Ich freue mich schon darauf.|Şimdiden onu dört gözle bekliyorum.|Darauf freue ich mich schon.
+O|Ahmet wartet schon lange auf eine Antwort von der Firma. Er hat sich vor drei Wochen um eine Stelle beworben. Jeden Tag denkt er daran. Seine Frau sagt: „Ärgere dich nicht darüber! Die Firma ist sehr groß." Heute hat die Firma endlich angerufen: Ahmet hat am Montag ein Gespräch. Er freut sich sehr darauf.|Ahmet uzun zamandır firmadan bir cevap bekliyor. Üç hafta önce bir iş için başvurdu. Her gün bunu düşünüyor. Karısı diyor ki: "Buna sinirlenme! Firma çok büyük." Bugün firma nihayet aradı: Ahmet'in pazartesi bir görüşmesi var. Bunu dört gözle bekliyor.|Worauf wartet Ahmet?~Auf eine Antwort von der Firma.~Auf seine Frau.~Auf den Bus.|Wann hat Ahmet ein Gespräch?~Am Montag.~In drei Wochen.~Heute.
+O|In unserem Deutschkurs sprechen wir oft über unsere Hobbys. Maria interessiert sich für Musik, Kenan für Fußball. Ich interessiere mich vor allem für Kochen. Unsere Lehrerin freut sich immer, wenn wir viel sprechen. Nächste Woche sprechen wir über unsere Pläne für die Zukunft.|Almanca kursumuzda sık sık hobilerimiz hakkında konuşuyoruz. Maria müziğe, Kenan futbola ilgi duyuyor. Ben en çok yemek yapmaya ilgi duyuyorum. Öğretmenimiz çok konuştuğumuzda hep seviniyor. Gelecek hafta gelecek planlarımız hakkında konuşacağız.|Wofür interessiert sich Kenan?~Für Fußball.~Für Musik.~Für Kochen.|Worüber sprechen sie nächste Woche?~Über ihre Pläne für die Zukunft.~Über ihre Hobbys.~Über die Lehrerin.
+O|Lieber Herr Becker, ich möchte mich über die Heizung in meiner Wohnung beschweren. Sie funktioniert seit einer Woche nicht. Ich habe schon zweimal mit dem Hausmeister darüber gesprochen, aber nichts ist passiert. Bitte kümmern Sie sich schnell darum. Mit freundlichen Grüßen, Fatma Şahin|Sayın Bay Becker, dairemdeki kalorifer hakkında şikâyette bulunmak istiyorum. Bir haftadır çalışmıyor. Bu konuda kapıcıyla iki kez konuştum ama hiçbir şey olmadı. Lütfen bununla hızla ilgilenin. Saygılarımla, Fatma Şahin|Worüber beschwert sich Fatma?~Über die Heizung.~Über den Hausmeister.~Über die Miete.|Mit wem hat sie schon gesprochen?~Mit dem Hausmeister.~Mit Herrn Becker.~Mit ihrer Nachbarin.

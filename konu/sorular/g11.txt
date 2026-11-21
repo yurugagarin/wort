@@ -1,0 +1,52 @@
+# g11 · Adjektivdeklination mit ein/kein und ohne Artikel
+Y|Das ist ein ___ Plan. (gut)|guter||*ein* eril Nominativ'de cinsiyeti göstermez → sıfat gösterir: *-er*.
+Y|Wir haben ein ___ Auto gekauft. (neu)|neues||*ein* nötr: sıfat *-es* alır.
+Y|Sie trägt eine ___ Jacke. (schwarz)|schwarze||Dişil Nominativ/Akkusativ: *eine …-e*.
+Y|Ich suche einen ___ Job. (gut bezahlt)|gut bezahlten||Akkusativ eril: *einen …-en*.
+Y|Er wohnt in einer ___ Wohnung. (klein)|kleinen||Dativ → *-en*.
+Y|Ich trinke gern ___ Kaffee. (stark, artikelsiz)|starken||Artikelsiz Akkusativ eril: *starken* (*den* ekini taşır).
+Y|___ Wasser ist gesund. (kalt, artikelsiz)|Kaltes|kaltes|Artikelsiz nötr Nominativ: *-es* (*das* ekini taşır).
+Y|Mein ___ Bruder wohnt in Bremen. (älter)|älterer||*mein* eril Nominativ → sıfat *-er*.
+Y|Das ist kein ___ Problem. (groß)|großes||*kein* nötr → *-es*.
+Y|Mit ___ Grüßen (freundlich, çoğul, artikelsiz)|freundlichen||Çoğul Dativ artikelsiz: *-en*.
+Y|Ich habe keine ___ Zeit. (frei)|freie||*keine* dişil Akkusativ → *-e*.
+Y|Wir sprechen mit unserem ___ Nachbarn. (neu)|neuen||Dativ → *-en*.
+Y|Hast du ___ Brot gekauft? (frisch, artikelsiz)|frisches||Artikelsiz nötr Akkusativ: *-es*.
+Y|Sie hat zwei ___ Kinder. (klein)|kleine||Sayı + çoğul, artikelsiz Nominativ/Akkusativ: *-e*.
+S|Das ist ein ___ Film.|spannender|spannende|spannenden|*ein* eril Nominativ → *-er*.
+S|Ich habe ein ___ Fahrrad.|altes|alte|alten|*ein* nötr → *-es*.
+S|Wir suchen eine ___ Wohnung.|günstige|günstigen|günstiger|Dişil Akkusativ → *-e*.
+S|Er hat einen ___ Hund.|kleinen|kleiner|kleine|Eril Akkusativ → *-en*.
+S|___ Tee schmeckt mir am besten.|Grüner|Grüne|Grünen|Artikelsiz eril Nominativ → *-er*.
+S|Ich bin mit meiner ___ Freundin im Kino.|besten|beste|bester|Dativ → *-en*.
+S|Das ist keine ___ Idee.|schlechte|schlechten|schlechter|*keine* dişil → *-e*.
+S|Sie trinkt nur ___ Wasser.|stilles|stille|stillen|Artikelsiz nötr Akkusativ → *-es*.
+H|Das ist ein neue Computer.|Das ist ein neuer Computer.||*ein* eril Nominativ → *-er*.
+H|Ich habe ein großes Problem.|=|Doğru: *ein* nötr → *-es*.
+H|Wir wohnen in einem kleine Dorf.|Wir wohnen in einem kleinen Dorf.||Dativ → *-en*.
+H|Ich trinke gern kalte Milch.|=|Doğru: artikelsiz dişil → *-e*.
+H|Er kauft einen neuer Fernseher.|Er kauft einen neuen Fernseher.||Eril Akkusativ → *-en*.
+H|Frischer Brot ist lecker.|Frisches Brot ist lecker.||Artikelsiz nötr → *-es*.
+H|Mein kleines Bruder geht in die Schule.|Mein kleiner Bruder geht in die Schule.||*mein* eril → *-er*.
+H|Sie hat einen sehr netten Chef.|=|Doğru: eril Akkusativ → *-en*.
+D|"ein" ile yaz.|Der Tisch ist neu.|Das ist ein neuer Tisch.||*ein neuer Tisch*.
+D|"ein" ile yaz.|Das Haus ist groß.|Das ist ein großes Haus.||*ein großes Haus*.
+D|Akkusativ'e çevir: "Ich kaufe …"|Das ist eine warme Jacke.|Ich kaufe eine warme Jacke.||Dişil: *-e* kalır.
+D|Akkusativ'e çevir: "Ich habe …"|Das ist ein netter Kollege.|Ich habe einen netten Kollegen.||*einen netten Kollegen* (n-Deklination: *Kollegen*).
+D|Artikelsiz yaz: "Ich trinke gern …"|Der Tee ist heiß.|Ich trinke gern heißen Tee.||Artikelsiz eril Akkusativ → *-en*.
+D|Dativ'e çevir: "Ich wohne in …"|Das ist eine schöne Stadt.|Ich wohne in einer schönen Stadt.||Dativ → *-en*.
+D|"kein" ile olumsuz yap.|Das ist ein gutes Angebot.|Das ist kein gutes Angebot.||*kein gutes*.
+D|Çoğula çevir (artikelsiz).|Das ist ein neues Handy.|Das sind neue Handys.||Çoğul artikelsiz → *-e*.
+C|Yeni bir arabam var.|Ich habe ein neues Auto.||*ein neues Auto*.
+C|Soğuk su içmek istiyorum.|Ich möchte kaltes Wasser trinken.|Ich möchte gern kaltes Wasser trinken.|Artikelsiz nötr → *-es*.
+C|Bu iyi bir fikir.|Das ist eine gute Idee.||*eine gute Idee*.
+C|Büyük bir sorunumuz yok.|Wir haben kein großes Problem.|Wir haben keine großen Probleme.|*kein großes*.
+C|Ağabeyim Berlin'de oturuyor.|Mein älterer Bruder wohnt in Berlin.|Mein großer Bruder wohnt in Berlin.|*mein älterer/großer Bruder*.
+C|Küçük bir köyde yaşıyoruz.|Wir wohnen in einem kleinen Dorf.|Wir leben in einem kleinen Dorf.|Dativ → *-en*.
+K|Ich suche eine günstige Wohnung mit Balkon.|Balkonlu, uygun fiyatlı bir daire arıyorum.
+K|Das ist ein sehr spannendes Buch.|Bu çok heyecanlı bir kitap.
+K|Wir trinken am Morgen starken Kaffee.|Sabahları sert kahve içiyoruz.|Am Morgen trinken wir starken Kaffee.
+K|Mein neuer Kollege kommt aus Polen.|Yeni iş arkadaşım Polonyalı.
+O|Liebe Ayla, endlich habe ich eine neue Wohnung! Sie hat zwei helle Zimmer und einen kleinen Balkon. Die Küche ist nicht groß, aber sie hat einen neuen Herd. Ein netter Nachbar hat mir beim Umzug geholfen. Komm doch am Samstag zu einem kleinen Fest! Deine Merve|Sevgili Ayla, nihayet yeni bir dairem var! İki aydınlık odası ve küçük bir balkonu var. Mutfak büyük değil ama yeni bir ocağı var. Nazik bir komşu taşınmada bana yardım etti. Cumartesi küçük bir partiye gel! Merve'n|Wie viele Zimmer hat die Wohnung?~Zwei.~Drei.~Eins.|Wer hat Merve beim Umzug geholfen?~Ein netter Nachbar.~Ihre Schwester.~Ayla.
+O|Im Café „Sonne" gibt es frischen Kuchen, guten Kaffee und warmes Frühstück bis 14 Uhr. Am Wochenende gibt es ein großes Buffet mit türkischem Käse und frischem Brot. Kinder unter sechs Jahren essen kostenlos. Wir haben auch einen schönen Garten.|"Sonne" kafede taze pasta, güzel kahve ve saat 14'e kadar sıcak kahvaltı var. Hafta sonu Türk peyniri ve taze ekmekle büyük bir açık büfe var. Altı yaşından küçük çocuklar ücretsiz yiyor. Güzel bir bahçemiz de var.|Bis wann gibt es warmes Frühstück?~Bis 14 Uhr.~Bis 12 Uhr.~Den ganzen Tag.|Wer isst kostenlos?~Kinder unter sechs Jahren.~Alle Kinder.~Gäste am Wochenende.
+O|Ich suche einen neuen Job. Ich möchte eine interessante Arbeit mit netten Kollegen. Ein hohes Gehalt ist mir nicht so wichtig, aber ich brauche flexible Arbeitszeiten, denn ich habe zwei kleine Kinder. Gestern habe ich eine gute Anzeige gefunden.|Yeni bir iş arıyorum. Nazik iş arkadaşlarıyla ilginç bir iş istiyorum. Yüksek maaş benim için o kadar önemli değil ama esnek çalışma saatlerine ihtiyacım var çünkü iki küçük çocuğum var. Dün iyi bir ilan buldum.|Warum braucht die Person flexible Arbeitszeiten?~Sie hat zwei kleine Kinder.~Sie studiert noch.~Sie wohnt weit weg.|Was ist der Person nicht so wichtig?~Ein hohes Gehalt.~Nette Kollegen.~Eine interessante Arbeit.
