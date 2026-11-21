@@ -1,0 +1,52 @@
+# g28 · um … zu / damit
+Y|Ich lerne Deutsch, ___ in Deutschland zu arbeiten. (amaç, aynı özne)|um||Özne aynı (ich … ich) → *um … zu*.
+Y|Ich spreche langsam, ___ du mich verstehst. (amaç, farklı özne)|damit||Özne farklı (ich … du) → *damit*.
+Y|Er spart Geld, um ein Auto zu ___. (kaufen)|kaufen||*um … zu kaufen*.
+Y|Wir fahren früh los, um den Zug nicht zu ___. (verpassen)|verpassen||*um … nicht zu verpassen*.
+Y|Sie macht das Fenster auf, damit frische Luft ins Zimmer ___. (kommen)|kommt||*damit* → fiil sonda.
+Y|Ich stehe früh auf, um pünktlich ___. (sein)|zu sein||*um … zu sein*.
+Y|Um besser ___, gehe ich früh ins Bett. (schlafen)|zu schlafen||*Um … zu schlafen*.
+Y|Ich gebe dir meine Nummer, damit du mich anrufen ___. (können)|kannst||*damit du … kannst*.
+Y|Er geht ins Fitnessstudio, um ___. (abnehmen)|abzunehmen||Ayrılan fiil: *ab-zu-nehmen*.
+Y|Die Eltern arbeiten viel, ___ die Kinder studieren können. (amaç, farklı özne)|damit||Farklı özne → *damit*.
+Y|Ich schreibe mir alles auf, um nichts zu ___. (vergessen)|vergessen||*um nichts zu vergessen*.
+Y|Wir brauchen das Geld, um die Miete zu ___. (bezahlen)|bezahlen||*um … zu bezahlen*.
+Y|Mach das Licht an, damit wir etwas ___. (sehen)|sehen||*damit wir … sehen*.
+Y|Ich rufe an, um einen Termin ___. (vereinbaren)|zu vereinbaren||*um … zu vereinbaren*.
+S|Ich lerne viel, ___ die Prüfung zu bestehen.|um|damit|dass|Aynı özne + *zu* → *um*.
+S|Ich erkläre es noch einmal, ___ alle es verstehen.|damit|um|zu|Farklı özne → *damit*.
+S|Er joggt jeden Tag, um fit zu ___.|bleiben|bleibt|geblieben|*um … zu bleiben*.
+S|Sie spart, ___ sie im Sommer reisen kann.|damit|um|um zu|Çekimli fiilli yan cümle (*sie … reisen kann*) → *damit*; *um* ile *zu* + mastar gerekir.
+S|Wir gehen in den Park, ___ zu spielen.|um|damit|für|*um … zu*.
+S|Ich nehme ein Taxi, um nicht zu spät ___.|zu kommen|kommen zu|komme|*um nicht zu spät zu kommen*.
+S|Er bringt die Kinder ins Bett, damit seine Frau ___ kann.|arbeiten|zu arbeiten|arbeitet|Modal sonda, mastar önünde: *arbeiten kann*.
+S|Wozu brauchst du das Messer? – ___ das Brot zu schneiden.|Um|Damit|Für|*Um … zu*.
+H|Ich lerne Deutsch, damit ich in Deutschland arbeite.|=|Doğru (aynı özne ile *damit* de olur; *um … zu* daha yaygın).
+H|Ich lerne Deutsch, um in Deutschland arbeiten.|Ich lerne Deutsch, um in Deutschland zu arbeiten.||*um … zu* + mastar.
+H|Ich spreche laut, um du mich hörst.|Ich spreche laut, damit du mich hörst.||Farklı özne → *damit*.
+H|Er geht zum Arzt, um gesund zu werden.|=|Doğru.
+H|Sie kauft Gemüse, um zu kochen eine Suppe.|Sie kauft Gemüse, um eine Suppe zu kochen.||*zu* + mastar en sonda.
+H|Wir fahren früh los, damit wir pünktlich sind.|=|Doğru.
+H|Ich stehe früh auf, um zu aufräumen.|Ich stehe früh auf, um aufzuräumen.||Ayrılan fiil: *aufzuräumen*.
+H|Damit ich fit bleibe, ich gehe schwimmen.|Damit ich fit bleibe, gehe ich schwimmen.||Yan cümle başta → *gehe ich*.
+D|"um … zu" ile birleştir.|Ich lerne Deutsch. Ich will studieren.|Ich lerne Deutsch, um zu studieren.||Aynı özne → *um … zu*.
+D|"damit" ile birleştir.|Ich spreche langsam. Du verstehst mich.|Ich spreche langsam, damit du mich verstehst.||Farklı özne → *damit*.
+D|"um … zu" ile birleştir.|Er spart Geld. Er will ein Haus kaufen.|Er spart Geld, um ein Haus zu kaufen.||*um … zu kaufen*.
+D|"damit" ile birleştir.|Die Mutter kocht. Die Kinder haben etwas zu essen.|Die Mutter kocht, damit die Kinder etwas zu essen haben.||*damit … haben*.
+D|"um … zu" ile birleştir.|Wir stehen früh auf. Wir wollen den Sonnenaufgang sehen.|Wir stehen früh auf, um den Sonnenaufgang zu sehen.||*um … zu sehen*.
+D|"damit" ile birleştir.|Ich gebe dir den Schlüssel. Du kannst rein.|Ich gebe dir den Schlüssel, damit du reinkannst.|Ich gebe dir den Schlüssel, damit du rein kannst./Ich gebe dir den Schlüssel, damit du reinkommen kannst.|*damit du … kannst*.
+D|"um … zu" ile birleştir.|Sie geht in die Stadt. Sie will einkaufen.|Sie geht in die Stadt, um einzukaufen.||*einzukaufen*.
+D|"um … zu" ile başlat: "Um …"|Ich trinke Kaffee. Ich will wach bleiben.|Um wach zu bleiben, trinke ich Kaffee.||*Um … zu …*, sonra fiil.
+C|Almanya'da çalışmak için Almanca öğreniyorum.|Ich lerne Deutsch, um in Deutschland zu arbeiten.||*um … zu*.
+C|Beni anlaman için yavaş konuşuyorum.|Ich spreche langsam, damit du mich verstehst.||*damit*.
+C|Kilo vermek için spor salonuna gidiyor.|Er geht ins Fitnessstudio, um abzunehmen.|Sie geht ins Fitnessstudio, um abzunehmen.|*abzunehmen*.
+C|Çocuklar okuyabilsin diye çok çalışıyorlar.|Sie arbeiten viel, damit die Kinder studieren können.|Sie arbeiten viel, damit ihre Kinder studieren können.|*damit*.
+C|Treni kaçırmamak için erken çıkıyoruz.|Wir fahren früh los, um den Zug nicht zu verpassen.|Wir gehen früh los, um den Zug nicht zu verpassen.|*um … nicht zu*.
+C|Bir şey görebilelim diye ışığı aç.|Mach das Licht an, damit wir etwas sehen.|Mach das Licht an, damit wir etwas sehen können.|*damit*.
+K|Ich lerne jeden Tag, um die B1-Prüfung zu bestehen.|B1 sınavını geçmek için her gün çalışıyorum.|Um die B1-Prüfung zu bestehen, lerne ich jeden Tag.
+K|Sie macht das Fenster zu, damit es nicht so laut ist.|Çok gürültülü olmasın diye pencereyi kapatıyor.
+K|Wir fahren mit dem Zug, um Geld zu sparen.|Para biriktirmek için trenle gidiyoruz.|Um Geld zu sparen, fahren wir mit dem Zug.
+K|Ich schreibe dir die Adresse auf, damit du sie nicht vergisst.|Unutmayasın diye adresi sana yazıyorum.
+O|Viele Menschen kommen nach Deutschland, um hier zu arbeiten. Ali ist vor drei Jahren gekommen, damit seine Kinder eine gute Ausbildung bekommen. Er arbeitet abends in einem Restaurant, um am Tag einen Deutschkurs zu besuchen. Er lernt fleißig, damit er bald als Elektriker arbeiten kann.|Birçok insan burada çalışmak için Almanya'ya geliyor. Ali, çocukları iyi bir eğitim alsın diye üç yıl önce geldi. Gündüzleri Almanca kursuna gitmek için akşamları bir restoranda çalışıyor. Yakında elektrikçi olarak çalışabilmek için çok çalışıyor.|Warum ist Ali nach Deutschland gekommen?~Damit seine Kinder eine gute Ausbildung bekommen.~Um in einem Restaurant zu arbeiten.~Um Elektriker zu lernen.|Warum arbeitet er abends?~Um am Tag einen Deutschkurs zu besuchen.~Um mehr Geld zu verdienen.~Damit seine Frau arbeiten kann.
+O|Tipps zum Energiesparen: Machen Sie das Licht aus, wenn Sie das Zimmer verlassen, um Strom zu sparen. Lüften Sie kurz und kräftig, damit die Wohnung nicht kalt wird. Waschen Sie bei 30 Grad, um Energie zu sparen. Ziehen Sie den Stecker, damit die Geräte keinen Strom verbrauchen.|Enerji tasarrufu ipuçları: Elektrik tasarrufu için odadan çıkarken ışığı kapatın. Daire soğumasın diye kısa ve güçlü havalandırın. Enerji tasarrufu için 30 derecede yıkayın. Cihazlar elektrik tüketmesin diye fişi çekin.|Warum soll man kurz lüften?~Damit die Wohnung nicht kalt wird.~Um Strom zu sparen.~Damit die Luft frisch bleibt.|Bei wie viel Grad soll man waschen?~Bei 30 Grad.~Bei 60 Grad.~Bei 40 Grad.
+O|Meine Tochter will Ärztin werden. Um Medizin zu studieren, braucht sie sehr gute Noten. Deshalb lernt sie jeden Abend. Ich koche für sie, damit sie mehr Zeit hat. Am Wochenende geht sie joggen, um den Kopf frei zu bekommen.|Kızım doktor olmak istiyor. Tıp okumak için çok iyi notlara ihtiyacı var. Bu yüzden her akşam ders çalışıyor. Daha çok vakti olsun diye ben onun için yemek yapıyorum. Hafta sonu kafasını boşaltmak için koşuya çıkıyor.|Was braucht die Tochter für das Medizinstudium?~Sehr gute Noten.~Viel Geld.~Einen Job.|Warum kocht die Mutter für sie?~Damit sie mehr Zeit hat.~Weil sie nicht kochen kann.~Um Geld zu sparen.

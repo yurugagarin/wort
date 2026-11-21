@@ -1,0 +1,52 @@
+# g25 · Relativsätze im Dativ und mit Präposition
+Y|Das ist der Freund, ___ ich oft helfe. (eril, Dativ)|dem||*helfen* + Dativ → eril *dem*.
+Y|Die Frau, ___ ich das Buch gegeben habe, ist meine Lehrerin. (dişil, Dativ)|der||Dişil Dativ: *der*.
+Y|Das Kind, ___ ich ein Eis gekauft habe, ist mein Neffe. (nötr, Dativ)|dem||Nötr Dativ: *dem*.
+Y|Die Leute, ___ ich geholfen habe, waren sehr dankbar. (çoğul, Dativ)|denen||Çoğul Dativ: *denen*.
+Y|Das ist der Kollege, mit ___ ich trainiere. (eril)|dem||*mit* + Dativ → *mit dem*.
+Y|Die Stadt, in ___ ich wohne, ist sehr schön. (dişil, Dativ)|der||*in der* (yer: Dativ).
+Y|Das ist das Thema, über ___ wir gesprochen haben. (nötr, Akkusativ)|das||*sprechen über* + Akkusativ → *über das*.
+Y|Der Mann, ___ das Auto gehört, ist nicht da. (eril, Dativ)|dem||*gehören* + Dativ → *dem*.
+Y|Die Freundin, auf ___ ich warte, kommt immer zu spät. (dişil, Akkusativ)|die||*warten auf* + Akkusativ → *auf die*.
+Y|Das sind die Kollegen, mit ___ ich zusammenarbeite. (çoğul)|denen||*mit denen*.
+Y|Der Film, von ___ alle sprechen, läuft jetzt im Kino. (eril, Dativ)|dem||*sprechen von* + Dativ → *von dem*.
+Y|Die Firma, bei ___ er arbeitet, ist sehr groß. (dişil)|der||*bei der*.
+Y|Das ist der Arzt, zu ___ ich immer gehe. (eril)|dem||*zu dem*.
+Y|Die Wohnung, für ___ wir uns interessieren, ist zu teuer. (dişil, Akkusativ)|die||*sich interessieren für* + Akkusativ → *für die*.
+S|Das ist die Nachbarin, ___ ich die Blumen gieße.|der|die|denen|*ihr gieße ich die Blumen* → Dativ dişil *der*.
+S|Die Kinder, ___ ich Deutsch beibringe, sind sehr nett.|denen|die|den|Çoğul Dativ: *denen*.
+S|Der Freund, mit ___ ich in Urlaub fahre, heißt Ali.|dem|den|der|*mit* + Dativ → *dem*.
+S|Das Haus, in ___ wir wohnen, ist alt.|dem|das|den|*in dem* (yer).
+S|Die Prüfung, auf ___ ich mich vorbereite, ist im Mai.|die|der|den|*sich vorbereiten auf* + Akkusativ → *die*.
+S|Das ist der Mann, ___ ich vertraue.|dem|den|der|*vertrauen* + Dativ → *dem*.
+S|Die Kollegen, ___ ich jeden Tag sehe, sind nett.|die|denen|den|*sehen* + Akkusativ → çoğul *die*.
+S|Der Stuhl, auf ___ du sitzt, ist kaputt.|dem|den|der|*sitzen auf* (yer) → Dativ *dem*.
+H|Das ist der Freund, den ich helfe.|Das ist der Freund, dem ich helfe.||*helfen* + Dativ → *dem*.
+H|Die Frau, mit der ich spreche, ist Ärztin.|=|Doğru.
+H|Die Leute, dem ich geschrieben habe, haben nicht geantwortet.|Die Leute, denen ich geschrieben habe, haben nicht geantwortet.||Çoğul Dativ → *denen*.
+H|Das ist die Stadt, der ich wohne in.|Das ist die Stadt, in der ich wohne.||Edat zamirin önüne: *in der*.
+H|Der Kollege, mit dem ich arbeite, kommt aus Polen.|=|Doğru.
+H|Das ist das Problem, über dem wir sprechen.|Das ist das Problem, über das wir sprechen.||*sprechen über* + Akkusativ → *über das*.
+H|Die Freunde, mit denen ich Fußball spiele, sind alle Türken.|=|Doğru.
+H|Das ist der Mann, wem das Auto gehört.|Das ist der Mann, dem das Auto gehört.||İlgi zamiri: *dem* (*wem* soru kelimesi).
+D|Tek cümle yap (Dativ).|Das ist mein Bruder. Ich helfe ihm oft.|Das ist mein Bruder, dem ich oft helfe.||*ihm* → *dem*.
+D|Tek cümle yap (Dativ).|Das ist die Lehrerin. Ich habe ihr eine Karte geschrieben.|Das ist die Lehrerin, der ich eine Karte geschrieben habe.||*ihr* → *der*.
+D|Tek cümle yap (edatla).|Das ist mein Freund. Ich gehe mit ihm ins Kino.|Das ist mein Freund, mit dem ich ins Kino gehe.||*mit ihm* → *mit dem*.
+D|Tek cümle yap (edatla).|Das ist die Firma. Ich arbeite bei der Firma.|Das ist die Firma, bei der ich arbeite.||*bei der*.
+D|Tek cümle yap (Dativ, çoğul).|Das sind die Nachbarn. Ich gebe ihnen den Schlüssel.|Das sind die Nachbarn, denen ich den Schlüssel gebe.||*ihnen* → *denen*.
+D|Tek cümle yap (edatla).|Das ist das Café. Wir treffen uns in dem Café.|Das ist das Café, in dem wir uns treffen.|Das ist das Café, wo wir uns treffen.|*in dem*.
+D|Tek cümle yap (edatla).|Das ist der Urlaub. Ich freue mich auf den Urlaub.|Das ist der Urlaub, auf den ich mich freue.||*sich freuen auf* + Akk → *auf den*.
+D|Tek cümle yap (edatla).|Das sind die Kollegen. Ich spreche oft über sie.|Das sind die Kollegen, über die ich oft spreche.||*über die* (çoğul Akk).
+C|Bu, sık sık yardım ettiğim arkadaş.|Das ist der Freund, dem ich oft helfe.|Das ist die Freundin, der ich oft helfe.|*helfen* + Dativ.
+C|Birlikte çalıştığım meslektaşlar çok iyi.|Die Kollegen, mit denen ich arbeite, sind sehr nett.|Die Kollegen, mit denen ich zusammenarbeite, sind sehr nett.|*mit denen*.
+C|Oturduğum şehir çok güzel.|Die Stadt, in der ich wohne, ist sehr schön.|Die Stadt, in der ich lebe, ist sehr schön.|*in der*.
+C|Arabanın sahibi olan adam burada değil.|Der Mann, dem das Auto gehört, ist nicht hier.|Der Mann, dem das Auto gehört, ist nicht da.|*gehören* + Dativ.
+C|Herkesin konuştuğu film şimdi sinemada.|Der Film, von dem alle sprechen, läuft jetzt im Kino.|Der Film, über den alle sprechen, läuft jetzt im Kino.|*von dem*.
+C|Beklediğim arkadaşım hep geç kalır.|Die Freundin, auf die ich warte, kommt immer zu spät.|Der Freund, auf den ich warte, kommt immer zu spät.|*warten auf* + Akk.
+K|Das ist die Frau, der ich mein Fahrrad geliehen habe.|Bu, bisikletimi ödünç verdiğim kadın.
+K|Der Kurs, an dem ich teilnehme, ist sehr gut.|Katıldığım kurs çok iyi.
+K|Die Kinder, denen ich helfe, lernen schnell.|Yardım ettiğim çocuklar hızlı öğreniyor.
+K|Das ist das Thema, über das wir morgen sprechen.|Bu, yarın konuşacağımız konu.
+O|Liebe Hanna, ich habe endlich eine Wohnung gefunden! Das Haus, in dem sie liegt, ist ruhig. Der Vermieter, mit dem ich gesprochen habe, ist sehr freundlich. Die Nachbarn, denen ich mich schon vorgestellt habe, haben zwei kleine Kinder. Das Einzige, worüber ich mich ärgere: Es gibt keinen Aufzug. Deine Esra|Sevgili Hanna, nihayet bir daire buldum! Dairenin bulunduğu bina sakin. Konuştuğum ev sahibi çok cana yakın. Kendimi daha şimdiden tanıttığım komşuların iki küçük çocuğu var. Sinirlendiğim tek şey: Asansör yok. Esra'n|Wie ist der Vermieter?~Sehr freundlich.~Sehr streng.~Sehr alt.|Worüber ärgert sich Esra?~Es gibt keinen Aufzug.~Die Nachbarn sind laut.~Die Wohnung ist teuer.
+O|Mein bester Freund heißt Kerem. Er ist der Mensch, dem ich alles erzählen kann. Wir kennen uns aus der Schule, in die wir zusammen gegangen sind. Heute wohnt er in Wien, aber die Freundschaft, auf die wir beide stolz sind, ist geblieben. Wir telefonieren jede Woche.|En iyi arkadaşımın adı Kerem. O, her şeyi anlatabildiğim insan. Birlikte gittiğimiz okuldan tanışıyoruz. Bugün Viyana'da oturuyor ama ikimizin de gurur duyduğu arkadaşlık sürdü. Her hafta telefonlaşıyoruz.|Woher kennen sich die Freunde?~Aus der Schule.~Aus der Arbeit.~Aus Wien.|Wie oft telefonieren sie?~Jede Woche.~Jeden Tag.~Einmal im Monat.
+O|Der Deutschkurs, an dem ich teilnehme, findet dienstags und donnerstags statt. Die Lehrerin, der wir alle viel verdanken, kommt aus Leipzig. Die anderen Teilnehmer, mit denen ich oft in der Pause spreche, kommen aus zehn verschiedenen Ländern. Das Buch, mit dem wir arbeiten, ist leider ziemlich langweilig.|Katıldığım Almanca kursu salı ve perşembe günleri yapılıyor. Hepimizin çok şey borçlu olduğu öğretmen Leipzigli. Teneffüste sık sık konuştuğum diğer katılımcılar on farklı ülkeden geliyor. Çalıştığımız kitap maalesef oldukça sıkıcı.|Wann ist der Kurs?~Dienstags und donnerstags.~Montags und mittwochs.~Jeden Tag.|Wie findet die Person das Buch?~Ziemlich langweilig.~Sehr spannend.~Zu schwer.

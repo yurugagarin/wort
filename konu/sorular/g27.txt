@@ -1,0 +1,52 @@
+# g27 · Genitiv · wegen, trotz, während
+Y|Das ist das Auto ___ Mannes. (eril, Genitiv)|des||Eril Genitiv: *des* + isim *-(e)s*.
+Y|Die Farbe ___ Tasche gefällt mir. (dişil, Genitiv)|der||Dişil Genitiv: *der*.
+Y|Der Name des ___ ist Leon. (Kind)|Kindes|Kinds|Nötr tek heceli: *des Kindes*.
+Y|___ des Regens bleiben wir zu Hause. (yüzünden)|Wegen|wegen|*wegen* + Genitiv.
+Y|Trotz ___ Kälte gehen wir spazieren. (dişil)|der||*trotz der Kälte*.
+Y|Während ___ Films hat er geschlafen. (eril)|des||*während des Films*.
+Y|Das ist das Haus meiner ___. (Eltern)|Eltern||Çoğul Genitiv: *meiner Eltern* (isim değişmez).
+Y|Wegen des schlechten ___ fällt das Spiel aus. (Wetter)|Wetters||*des Wetters*.
+Y|Das Ende ___ Geschichte ist traurig. (dişil)|der||*der Geschichte*.
+Y|___ der Pause trinke ich Kaffee. (sırasında)|Während|während|*während der Pause*.
+Y|Die Wohnung meines ___ ist sehr groß. (Bruder)|Bruders||*meines Bruders*.
+Y|___ des Staus kam ich pünktlich. (-e rağmen)|Trotz|trotz|*trotz* + Genitiv.
+Y|Das ist der Hund ___ Nachbarn. (unser, eril, n-Deklination)|unseres|unsres|*unseres Nachbarn* (n-sınıfı: *-n*).
+Y|Wegen ___ Krankheit konnte sie nicht kommen. (ihr, dişil)|ihrer||*wegen ihrer Krankheit*.
+S|Das ist das Fahrrad ___ Lehrers.|des|dem|der|Eril Genitiv: *des Lehrers*.
+S|Wegen ___ Streiks fahren keine Züge.|des|dem|den|*wegen des Streiks*.
+S|Trotz ___ Regens sind wir gelaufen.|des|der|dem|Eril: *des Regens*.
+S|Während ___ Reise habe ich viel gelesen.|der|des|die|Dişil: *der Reise*.
+S|Das ist die Tasche ___ Frau.|der|des|die|Dişil Genitiv: *der*.
+S|Die Spielsachen ___ Kinder liegen überall.|der|des|den|Çoğul Genitiv: *der Kinder*.
+S|Der Titel des ___ ist lang.|Buches|Buch|Buchs des|*des Buches*.
+S|___ des Unfalls war die Straße gesperrt.|Wegen|Trotz|Ohne|Sebep: *Wegen*.
+H|Das ist das Auto von meinem Vater.|=|Doğru (konuşma dilinde *von* + Dativ).
+H|Das ist das Auto des Vater.|Das ist das Auto des Vaters.||Eril Genitiv isim *-s* alır.
+H|Wegen dem Regen bleiben wir zu Hause.|Wegen des Regens bleiben wir zu Hause.||Yazı dilinde *wegen* + Genitiv.
+H|Trotz des Wetters sind wir gekommen.|=|Doğru.
+H|Während der Arbeit telefoniere ich nicht.|=|Doğru.
+H|Die Farbe des Tasche ist schön.|Die Farbe der Tasche ist schön.||Dişil → *der*.
+H|Das ist die Wohnung der Eltern.|=|Doğru: çoğul Genitiv *der*.
+H|Trotz der Müdigkeit er hat weitergearbeitet.|Trotz der Müdigkeit hat er weitergearbeitet.||Edat grubu 1. konum → fiil 2. konumda.
+D|Genitiv'e çevir.|das Auto von meinem Vater|das Auto meines Vaters||*meines Vaters*.
+D|Genitiv'e çevir.|die Tasche von der Lehrerin|die Tasche der Lehrerin||*der Lehrerin*.
+D|"wegen" ile yaz.|Es regnet. Wir bleiben zu Hause.|Wegen des Regens bleiben wir zu Hause.|Wir bleiben wegen des Regens zu Hause.|*wegen des Regens*.
+D|"trotz" ile yaz.|Es ist kalt. Wir gehen schwimmen.|Trotz der Kälte gehen wir schwimmen.|Wir gehen trotz der Kälte schwimmen.|*trotz der Kälte*.
+D|"während" ile yaz (Genitiv).|Ich esse. Ich sehe nicht fern.|Während des Essens sehe ich nicht fern.|Ich sehe während des Essens nicht fern.|*während des Essens*.
+D|Genitiv'e çevir.|das Zimmer von dem Kind|das Zimmer des Kindes|das Zimmer des Kinds|*des Kindes*.
+D|"wegen" ile yaz.|Er ist krank. Er kommt nicht.|Wegen seiner Krankheit kommt er nicht.|Er kommt wegen seiner Krankheit nicht.|*wegen seiner Krankheit*.
+D|Genitiv'e çevir.|die Kinder von meiner Schwester|die Kinder meiner Schwester||*meiner Schwester*.
+C|Yağmur yüzünden evde kalıyoruz.|Wegen des Regens bleiben wir zu Hause.|Wir bleiben wegen des Regens zu Hause.|*wegen* + Gen.
+C|Soğuğa rağmen yürüyüşe çıkıyoruz.|Trotz der Kälte gehen wir spazieren.|Wir gehen trotz der Kälte spazieren.|*trotz* + Gen.
+C|Film sırasında uyudu.|Während des Films hat er geschlafen.|Er hat während des Films geschlafen./Während des Films schlief er./Sie hat während des Films geschlafen.|*während* + Gen.
+C|Bu, ağabeyimin arabası.|Das ist das Auto meines Bruders.||*meines Bruders*.
+C|Kadının çantası çok güzel.|Die Tasche der Frau ist sehr schön.||*der Frau*.
+C|Kaza yüzünden yol kapalıydı.|Wegen des Unfalls war die Straße gesperrt.|Die Straße war wegen des Unfalls gesperrt.|*wegen des Unfalls*.
+K|Wegen des Streiks fahren heute keine Busse.|Grev yüzünden bugün otobüs çalışmıyor.|Heute fahren wegen des Streiks keine Busse.
+K|Trotz des Lärms konnte ich gut schlafen.|Gürültüye rağmen iyi uyuyabildim.|Ich konnte trotz des Lärms gut schlafen.
+K|Das ist die Wohnung meiner Großeltern.|Bu, büyükannemle büyükbabamın dairesi.
+K|Während des Urlaubs habe ich viel gelesen.|Tatil sırasında çok kitap okudum.|Ich habe während des Urlaubs viel gelesen.
+O|Wichtige Information: Wegen des Streiks der Lokführer fahren am Montag nur wenige Züge. Trotz des Streiks fahren die S-Bahnen alle 20 Minuten. Während des Streiks können Sie Ihr Ticket kostenlos zurückgeben. Wir bitten um Ihr Verständnis.|Önemli bilgi: Makinistlerin grevi yüzünden pazartesi sadece az sayıda tren çalışacak. Greve rağmen banliyö trenleri her 20 dakikada bir çalışıyor. Grev süresince biletinizi ücretsiz iade edebilirsiniz. Anlayışınız için teşekkür ederiz.|Warum fahren am Montag wenige Züge?~Wegen eines Streiks.~Wegen des Wetters.~Wegen eines Unfalls.|Was kann man während des Streiks machen?~Das Ticket kostenlos zurückgeben.~Kostenlos fahren.~Mit dem Bus fahren.
+O|Das ist das Haus meiner Großeltern in Trabzon. Während der Sommerferien waren wir als Kinder immer dort. Trotz der langen Fahrt haben wir uns jedes Jahr gefreut. Heute wohnt die Familie meines Onkels in dem Haus. Wegen der Arbeit fahre ich leider nur noch selten hin.|Bu, büyükannemle büyükbabamın Trabzon'daki evi. Çocukken yaz tatillerinde hep oradaydık. Uzun yolculuğa rağmen her yıl sevinirdik. Bugün evde amcamın ailesi oturuyor. İş yüzünden maalesef artık nadiren gidiyorum.|Wer wohnt heute im Haus?~Die Familie des Onkels.~Die Großeltern.~Niemand.|Warum fährt die Person selten hin?~Wegen der Arbeit.~Wegen der langen Fahrt.~Wegen des Wetters.
+O|Liebe Kunden, wegen der Renovierung bleibt unser Geschäft vom 3. bis 10. März geschlossen. Während der Renovierung können Sie online bestellen. Trotz der Schließung liefern wir Ihre Bestellungen pünktlich. Vielen Dank für Ihre Geduld!|Sevgili müşteriler, tadilat yüzünden mağazamız 3–10 Mart arasında kapalı kalacak. Tadilat süresince online sipariş verebilirsiniz. Kapalı olmamıza rağmen siparişlerinizi zamanında teslim ediyoruz. Sabrınız için teşekkürler!|Warum ist das Geschäft geschlossen?~Wegen der Renovierung.~Wegen der Ferien.~Wegen einer Krankheit.|Wie kann man während der Renovierung einkaufen?~Online.~Im Geschäft.~Per Telefon.
