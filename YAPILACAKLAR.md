@@ -229,3 +229,15 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Üret'ten önceki bir aşamada 3+ gün ara verildiyse konu baştan: Anla → Tanı → Kur (önceki aşamalar saklanır). Konu sayfasında "Baştan başlıyoruz" notu, Bugün'de "Baştan: …".
 - [x] Baştan başlanan konu Kur'u yeniden geçene kadar yeni konu açılmaz. Üret'i geçmiş konular tekrar takvimiyle, seviye testiyle işaretlenenler olduğu gibi kalır. Eşitlemede sıfırlanmış kayıt kazanır.
 - [x] Denetim: gün gün simülasyon (0-3. gün), yarıda bırakılan Tanı, test ve tekrar aşamasındaki konular, okuma, kelime testleri; hata yok.
+
+## Tur 21 · Konu odaklı gün (21 Kasım) · Aşama 1
+- [x] Günün hedefi tek: konu planı, üç blok. Tablo (bir ezber tablosu) 25 · Konu (günde 2 öğrenme adımı: Öğren = Anla+Tanı, Uygula = Kur, Üret) 50 · Tekrar (zamanı gelen konu tekrarları, yer kalırsa pekiştir listesi; en çok 2) 25. Seri, planın tamamlandığı günlere bağlı.
+- [x] Kelime, okuma, yazma "Serbest çalışma": Bugün'ün sağ sütununda, istenen gün; puana ve seriye girmez. Kütüphane bağlantısı.
+- [x] Tempo: haftada 3 yeni konu (Ayarlar ve Zaman çizelgesi'nden 2/3/4). Haftanın yeni konusu = Anla'sı o hafta ilk kez geçilen konu. Açık adım kalmazsa (Üret yarın, haftalık sınır dolu) konu bloğu yapılan kadarla tamam.
+- [x] Zaman çizelgesi: Bugün'ün en üstünde şerit (dört seviye, ilerleme, seviye bitiş tahminleri, plana göre önde/geride, bu haftanın yeni konuları, sınav). Ayrı sayfa: öğrenilen konu, son 4 hafta temposu, son konu tahmini, sınav, seviyeler ve ara sınavlar, haftalık grafik, önümüzdeki haftaların konu planı, tempo ve sınav tarihi ayarı.
+- [x] Pekiştir listesi: konu sayfasındaki düğmeyle eklenir; Tekrar bloğunda hiç görmediğin sorularla (%80) gelir; iki ayrı günde geçince listeden çıkar.
+- [x] Konu sayfası: "Notlarım" sekmesi; "Claude'a özet yazdır" (konunun kuralı, örnekleri, son hataların ve notlarınla istek kopyalar) ve Claude özetini kaydetme kutusu. Notlar ve özet tekrar testlerinden önce açık gelir.
+- [x] Test cümlelerindeki her kelimeye dokununca anlamı çıkar, tek dokunuşla kelime destene girer.
+- [x] Geniş ekran (web) önce: Bugün iki sütun (plan + yaptıkların | serbest çalışma, pekiştir, sırada), zaman çizelgesi tam genişlikte.
+- [x] Hata düzeltildi: "scv!==8" koşulu her açılışta geçmiş günlerin puanını eski formülle donduruyordu (takvim ve haftalık hedef yanlış görünüyordu). Yanlış dondurulan günler kendi kurallarıyla yeniden hesaplanır.
+- [x] Denetim: boş profille tam gün (Tablo → Öğren → Uygula, 100 puan, seri), 14 günlük simülasyon (%20 yanlış, 3 gün ara: haftada 3 yeni konu, Üret ertesi gün, tekrarlar bloğa geliyor, seri doğru sayılıyor, aradan sonra konu baştan), zaman çizelgesi, pekiştir testi, notlar, kelimeye dokunma, telefon görünümü; hata yok.
