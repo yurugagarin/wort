@@ -267,3 +267,11 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Konu sayfasında yeni "Tablolar" sekmesi: konunun ön koşul tabloları ve kendi tablosu tam hâliyle (yeşil oturan, sarı yarı yolda hücre, durum, "Ezberle ›"), altında konunun kelimeleri (ör. Verben mit Dativ: helfen, danken, gefallen…) ve "Kelimelerime ekle". "Önce bunları bil" kartında "Tabloları aç".
 - [x] Öğren'in ilk adımı ("Bildiğin yerden başla"): mevcut ezber bağlantıları aynen duruyor; altına konunun kelimeleri (açık) ve tablolar (dokununca açılır) eklendi. Test girişlerinde kapalı "Bu konunun tabloları ve kelimeleri".
 - [x] Dersten ya da konu sayfasından bir tabloya gidince: tablo sayfasının, test sonunun ve boş tablonun en üstünde "‹ Kaldığın yere dön · konu · aşama · adım"; "Bitti" ve "Geri" seni aynı adıma ve aynı kaydırma yerine götürür. Bugün'den açılan Tablo bloğu eskisi gibi oturumla devam eder.
+
+## Tur 26 · Gezinme: nereden gittiysen oraya dön (21 Kasım)
+- [x] Hata: sol menüde (ya da telefonda alttaki çubukta) bir sekmeye geçince açık bütün sayfalar ve yarım ders siliniyordu; Bugün'e dönünce konuya hiç başlanmamış gibi görünüyordu.
+- [x] Her sekmenin kendi açık sayfaları var: Bugün'de ders açıkken Yol'a, Kütüphane'ye, Ben'e geçip dönünce ders aynı soruda/adımda, sayfalar aynı kaydırma yerinde. Sekme köklerinin kaydırması da korunur. Açık sekmeye yeniden dokunmak o sekmenin köküne götürür.
+- [x] Tarayıcının ve farenin geri/ileri tuşları uygulamanın içinde çalışır (sekmeler, konu, ders, tablo sayfaları); geri gelince sayfa aynı yerde açılır.
+- [x] Bugün açılıp bitmeyen dersler kaybolmaz: aynı aşamayı yeniden açınca (Bugün'deki Devam, konu sayfası) kaldığın sorudan devam eder; Bugün'ün üstünde "Yarım kalan · konu · aşama · soru 4/12 · Kaldığın yerden devam" (istersen "bırak").
+- [x] Sayfa yenilense ya da tarayıcı kapanıp açılsa da (aynı gün) sekme, açık sayfalar, yarım dersler ve günün oturumu geri gelir.
+- [x] Denetim: Bugün oturumu → Öğren 4. adım → Yol → Kütüphane → Bugün (aynı adım); test 4. soruda tarayıcı geri/ileri; aynı sekmeye dokunma ve yarım kalandan devam; yenileme; oturumda Geri → ara → Devam (aynı soru); Yol'da konu ve ders; kaydırma yerleri; telefon görünümü; tam gün, 7 günlük simülasyon; hata yok.
