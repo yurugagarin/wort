@@ -1,0 +1,52 @@
+# g21 · obwohl / trotzdem
+Y|Obwohl es regnet, ___ wir spazieren. (gehen)|gehen||*Obwohl*-cümlesi başta → ana cümle fiille başlar: *gehen wir*.
+Y|Ich gehe zur Arbeit, obwohl ich krank ___. (sein)|bin||*obwohl* → fiil sonda.
+Y|Es regnet. Trotzdem ___ wir spazieren. (gehen)|gehen||*Trotzdem* 1. konumda → fiil hemen ardından: *trotzdem gehen wir*.
+Y|___ er wenig Geld hat, ist er glücklich. (-e rağmen, yan cümle)|Obwohl|obwohl|Yan cümle: *obwohl* + fiil sonda.
+Y|Sie ist müde. ___ arbeitet sie weiter. (yine de)|Trotzdem|trotzdem|*Trotzdem* + fiil.
+Y|Obwohl ich viel gelernt ___, habe ich die Prüfung nicht bestanden. (haben)|habe||Perfekt: *gelernt habe* (yardımcı fiil sonda).
+Y|Er hat keine Zeit, trotzdem ___ er uns. (helfen)|hilft||*trotzdem hilft er*.
+Y|Wir fahren ans Meer, obwohl das Wetter schlecht ___. (sein)|ist||Fiil sonda.
+Y|Das Essen war teuer. Trotzdem ___ es nicht gut. (schmecken, Prät.)|schmeckte||*Trotzdem schmeckte es …*
+Y|Obwohl er gut Deutsch ___, spricht er nicht viel. (können)|kann||*obwohl* → fiil sonda: *gut Deutsch kann*.
+Y|Ich habe den Film schon gesehen. Trotzdem ___ ich ihn noch einmal sehen. (wollen)|will||*trotzdem will ich … sehen*.
+Y|Sie kommt zur Party, ___ sie morgen früh arbeiten muss. (-e rağmen)|obwohl||*obwohl* + fiil sonda: *arbeiten muss*.
+Y|Der Bus war voll. ___ bin ich eingestiegen. (yine de)|Trotzdem|trotzdem|*Trotzdem bin ich …*
+Y|Obwohl es spät war, ___ die Kinder noch nicht müde. (sein, Prät.)|waren||Ana cümle: *waren die Kinder*.
+S|Ich gehe joggen, ___ es kalt ist.|obwohl|trotzdem|deshalb|Yan cümle (fiil sonda) → *obwohl*.
+S|Es ist kalt. ___ gehe ich joggen.|Trotzdem|Obwohl|Weil|Fiil hemen ardından → *Trotzdem*.
+S|Obwohl er müde war, ___ weiter.|arbeitete er|er arbeitete|arbeitete|Yan cümle başta → *arbeitete er*.
+S|Sie hat Fieber. Trotzdem ___ zur Schule.|geht sie|sie geht|gehen sie|*Trotzdem geht sie*.
+S|Obwohl ich ihn ___, hat er mich nicht gesehen.|gegrüßt habe|habe gegrüßt|grüßen habe|Fiil sonda: *gegrüßt habe*.
+S|Er isst viel Schokolade, ___ er abnehmen will.|obwohl|trotzdem|denn|Zıtlık, yan cümle → *obwohl*.
+S|Das Hotel war teuer, ___ war das Zimmer klein.|trotzdem|obwohl|weil|Ana cümle + fiil → *trotzdem*.
+S|Ich bin nicht müde, obwohl ich nur vier Stunden ___.|geschlafen habe|habe geschlafen|schlafe habe|Perfekt yan cümlede: *geschlafen habe*.
+H|Obwohl es regnet, wir gehen spazieren.|Obwohl es regnet, gehen wir spazieren.||Yan cümle başta → fiil önce.
+H|Es regnet. Trotzdem wir gehen spazieren.|Es regnet. Trotzdem gehen wir spazieren.||*Trotzdem* → fiil hemen ardından.
+H|Ich arbeite, obwohl ich bin krank.|Ich arbeite, obwohl ich krank bin.||*obwohl* → fiil sonda.
+H|Obwohl er viel isst, ist er sehr dünn.|=|Doğru.
+H|Sie war krank. Trotzdem ist sie gekommen.|=|Doğru.
+H|Ich trinke Kaffee, trotzdem ich müde bin.|Ich trinke Kaffee, obwohl ich müde bin.||Fiil sonda → *obwohl* (*trotzdem* yan cümle kurmaz).
+H|Er hat keine Zeit, trotzdem kommt er.|=|Doğru.
+H|Obwohl das Wetter schön war, wir sind zu Hause geblieben.|Obwohl das Wetter schön war, sind wir zu Hause geblieben.||Ana cümle fiille başlar: *sind wir*.
+D|"obwohl" ile birleştir.|Es regnet. Wir gehen spazieren.|Wir gehen spazieren, obwohl es regnet.|Obwohl es regnet, gehen wir spazieren.|*obwohl* → fiil sonda.
+D|"trotzdem" ile birleştir.|Ich bin müde. Ich gehe ins Kino.|Ich bin müde, trotzdem gehe ich ins Kino.|Ich bin müde. Trotzdem gehe ich ins Kino.|*trotzdem gehe ich*.
+D|"obwohl" ile başlat: "Obwohl …"|Er ist krank. Er arbeitet.|Obwohl er krank ist, arbeitet er.||Yan cümle başta → *arbeitet er*.
+D|"trotzdem" ile yaz.|Sie arbeitet, obwohl sie Kopfschmerzen hat.|Sie hat Kopfschmerzen, trotzdem arbeitet sie.|Sie hat Kopfschmerzen. Trotzdem arbeitet sie.|Zıtlık ana cümlede: *trotzdem arbeitet sie*.
+D|"obwohl" ile yaz.|Das Auto ist alt. Trotzdem fährt es gut.|Das Auto fährt gut, obwohl es alt ist.|Obwohl das Auto alt ist, fährt es gut.|*obwohl es alt ist*.
+D|"obwohl" ile birleştir.|Ich habe viel gegessen. Ich habe Hunger.|Ich habe Hunger, obwohl ich viel gegessen habe.|Obwohl ich viel gegessen habe, habe ich Hunger.|Perfekt: *gegessen habe*.
+D|"trotzdem" ile birleştir.|Der Kurs ist schwer. Er macht Spaß.|Der Kurs ist schwer, trotzdem macht er Spaß.|Der Kurs ist schwer. Trotzdem macht er Spaß.|*trotzdem macht er*.
+D|"obwohl" ile başlat: "Obwohl …"|Sie hat wenig Zeit. Sie hilft mir.|Obwohl sie wenig Zeit hat, hilft sie mir.||*hilft sie mir*.
+C|Yağmur yağmasına rağmen yürüyüşe çıkıyoruz.|Obwohl es regnet, gehen wir spazieren.|Wir gehen spazieren, obwohl es regnet.|*obwohl* → fiil sonda.
+C|Hastayım, yine de işe gidiyorum.|Ich bin krank, trotzdem gehe ich zur Arbeit.|Ich bin krank. Trotzdem gehe ich zur Arbeit./Ich bin krank, trotzdem gehe ich arbeiten.|*trotzdem gehe ich*.
+C|Çok çalışmama rağmen sınavı geçemedim.|Obwohl ich viel gelernt habe, habe ich die Prüfung nicht bestanden.|Ich habe die Prüfung nicht bestanden, obwohl ich viel gelernt habe.|*gelernt habe*.
+C|Vakti yok, yine de bize yardım ediyor.|Er hat keine Zeit, trotzdem hilft er uns.|Sie hat keine Zeit, trotzdem hilft sie uns./Er hat keine Zeit. Trotzdem hilft er uns.|*trotzdem hilft er*.
+C|Yorgun olmasına rağmen çalışmaya devam etti.|Obwohl sie müde war, hat sie weitergearbeitet.|Obwohl er müde war, hat er weitergearbeitet./Obwohl sie müde war, arbeitete sie weiter./Obwohl er müde war, arbeitete er weiter.|*obwohl … war*.
+C|Otel pahalıydı, yine de oda küçüktü.|Das Hotel war teuer, trotzdem war das Zimmer klein.|Das Hotel war teuer. Trotzdem war das Zimmer klein.|*trotzdem war …*
+K|Obwohl ich wenig Zeit habe, lerne ich jeden Tag.|Az vaktim olmasına rağmen her gün ders çalışıyorum.|Ich lerne jeden Tag, obwohl ich wenig Zeit habe.
+K|Es war kalt, trotzdem sind wir schwimmen gegangen.|Hava soğuktu, yine de yüzmeye gittik.
+K|Er kam zur Arbeit, obwohl er Fieber hatte.|Ateşi olmasına rağmen işe geldi.|Obwohl er Fieber hatte, kam er zur Arbeit.
+K|Die Wohnung ist klein, trotzdem fühlen wir uns wohl.|Daire küçük, yine de kendimizi rahat hissediyoruz.
+O|Obwohl Serkan schon zehn Jahre in Deutschland lebt, hat er immer noch Heimweh. Er hat hier gute Freunde und eine sichere Arbeit. Trotzdem fliegt er jedes Jahr zweimal in die Türkei. Seine Kinder sprechen besser Deutsch als Türkisch, obwohl sie zu Hause nur Türkisch sprechen.|Serkan on yıldır Almanya'da yaşamasına rağmen hâlâ memleket özlemi çekiyor. Burada iyi arkadaşları ve güvenli bir işi var. Yine de her yıl iki kez Türkiye'ye uçuyor. Çocukları evde sadece Türkçe konuşmalarına rağmen Almancayı Türkçeden daha iyi konuşuyor.|Wie oft fliegt Serkan in die Türkei?~Zweimal im Jahr.~Einmal im Jahr.~Jeden Monat.|Welche Sprache sprechen die Kinder besser?~Deutsch.~Türkisch.~Beide gleich gut.
+O|Gestern war das Wetter furchtbar: Es hat den ganzen Tag geregnet und es war kalt. Trotzdem sind 3000 Menschen zum Stadtlauf gekommen. Obwohl die Straßen nass waren, ist niemand gestürzt. Der Gewinner brauchte nur 32 Minuten, obwohl er erst 17 Jahre alt ist.|Dün hava berbattı: Bütün gün yağmur yağdı ve soğuktu. Yine de şehir koşusuna 3000 kişi geldi. Yollar ıslak olmasına rağmen kimse düşmedi. Kazanan, henüz 17 yaşında olmasına rağmen sadece 32 dakikaya ihtiyaç duydu.|Wie war das Wetter beim Stadtlauf?~Regnerisch und kalt.~Sonnig und warm.~Windig, aber trocken.|Was ist besonders am Gewinner?~Er ist erst 17 Jahre alt.~Er ist gestürzt.~Er brauchte drei Stunden.
+O|Liebe Frau Weber, obwohl ich mich sehr auf den Kurs gefreut habe, kann ich leider nicht mehr kommen. Mein Arbeitgeber hat meine Arbeitszeiten geändert. Ich habe versucht, das zu ändern. Trotzdem muss ich jetzt abends arbeiten. Gibt es vielleicht einen Kurs am Vormittag? Viele Grüße, Hülya Demir|Sayın Bayan Weber, kursu dört gözle beklememe rağmen maalesef artık gelemeyeceğim. İşverenim çalışma saatlerimi değiştirdi. Bunu değiştirmeye çalıştım. Yine de artık akşamları çalışmam gerekiyor. Belki öğleden önce bir kurs var mı? Selamlar, Hülya Demir|Warum kann Hülya nicht mehr zum Kurs kommen?~Sie muss jetzt abends arbeiten.~Sie ist krank.~Der Kurs ist zu teuer.|Was fragt Hülya?~Ob es einen Kurs am Vormittag gibt.~Ob sie ihr Geld zurückbekommt.~Ob der Kurs später beginnt.

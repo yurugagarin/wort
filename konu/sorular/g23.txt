@@ -1,0 +1,52 @@
+# g23 · Plusquamperfekt und nachdem
+Y|Nachdem ich gegessen ___, ging ich spazieren. (haben)|hatte||Plusquamperfekt: *hatte* + Partizip II.
+Y|Als wir ankamen, ___ der Film schon begonnen. (haben)|hatte||Daha önce olan: *hatte … begonnen*.
+Y|Nachdem sie nach Hause gekommen ___, rief sie mich an. (sein)|war||Hareket fiili: *war … gekommen*.
+Y|Ich hatte meinen Schlüssel ___, deshalb konnte ich nicht rein. (vergessen)|vergessen||*vergessen – vergessen*.
+Y|Nachdem er die Prüfung bestanden hatte, ___ er eine Party. (machen, Prät.)|machte||Ana cümle Präteritum: *machte er*.
+Y|Der Zug ___ schon abgefahren, als ich zum Bahnhof kam. (sein)|war||*abfahren* → *war … abgefahren*.
+Y|Nachdem wir den Film ___ hatten, gingen wir essen. (sehen)|gesehen||*gesehen hatten*.
+Y|Sie war müde, weil sie schlecht ___ hatte. (schlafen)|geschlafen||*geschlafen hatte*.
+Y|Nachdem ich nach Deutschland ___ war, fand ich schnell Arbeit. (ziehen)|gezogen||*ziehen* (yer değiştirme) → *war … gezogen*.
+Y|Bevor ich ihn traf, ___ ich viel von ihm gehört. (haben)|hatte||Daha önce: *hatte … gehört*.
+Y|Nachdem es aufgehört hatte zu regnen, ___ wir los. (gehen, Prät.)|gingen||*gingen wir los*.
+Y|Er hatte das Buch schon ___, als der Film ins Kino kam. (lesen)|gelesen||*gelesen*.
+Y|Nachdem die Kinder eingeschlafen ___, sahen wir fern. (sein)|waren||*einschlafen* → *waren eingeschlafen*.
+Y|Als die Polizei kam, ___ der Dieb schon weggelaufen. (sein)|war||*weglaufen* → *war … weggelaufen*.
+S|Nachdem ich gefrühstückt ___, fuhr ich zur Arbeit.|hatte|habe|war|Plusquamperfekt: *hatte*.
+S|Als ich ankam, ___ alle schon gegangen.|waren|hatten|sind|*gehen* → *waren gegangen*.
+S|Nachdem er angerufen hatte, ___ ich ruhiger.|war|bin|hatte|Ana cümle Präteritum: *war ich*.
+S|Sie ___ das Essen schon gekocht, als wir kamen.|hatte|war|hat|*hatte gekocht*.
+S|Nachdem wir ___ waren, gingen wir schlafen.|angekommen|ankommen|angekommt|*ankommen – angekommen*.
+S|___ ich die Arbeit beendet hatte, ging ich nach Hause.|Nachdem|Nach|Danach|Bağlaç: *Nachdem* (+ fiil sonda).
+S|Zuerst aß ich. ___ ging ich spazieren.|Danach|Nachdem|Nach|Zarf: *Danach* + fiil.
+S|Nachdem sie das Fenster ___ hatte, wurde es kalt.|geöffnet|öffnet|geöffnen|*öffnen – geöffnet*.
+H|Nachdem ich gegessen habe, ging ich spazieren.|Nachdem ich gegessen hatte, ging ich spazieren.||Ana cümle Präteritum → yan cümle Plusquamperfekt: *hatte*.
+H|Als ich kam, war er schon gegangen.|=|Doğru.
+H|Nachdem sie angekommen hatte, rief sie an.|Nachdem sie angekommen war, rief sie an.||*ankommen* → *war*.
+H|Wir hatten den Film schon gesehen.|=|Doğru.
+H|Nachdem er hatte gegessen, schlief er.|Nachdem er gegessen hatte, schlief er.||Yan cümle: çekimli fiil en sonda.
+H|Der Zug war schon abgefahren.|=|Doğru.
+H|Nach ich die E-Mail geschrieben hatte, machte ich eine Pause.|Nachdem ich die E-Mail geschrieben hatte, machte ich eine Pause.||Bağlaç: *Nachdem*.
+H|Nachdem wir eingekauft hatten, wir kochten.|Nachdem wir eingekauft hatten, kochten wir.||Yan cümle başta → fiil önce.
+D|Plusquamperfekt'e çevir.|Ich esse.|Ich hatte gegessen.||*hatte gegessen*.
+D|Plusquamperfekt'e çevir.|Sie kommt an.|Sie war angekommen.||*war angekommen*.
+D|"nachdem" ile birleştir.|Ich duschte. Dann frühstückte ich.|Nachdem ich geduscht hatte, frühstückte ich.||İlk olay Plusquamperfekt.
+D|"nachdem" ile birleştir.|Er kam nach Hause. Dann kochte er.|Nachdem er nach Hause gekommen war, kochte er.||*war gekommen*.
+D|"nachdem" ile birleştir.|Wir sahen den Film. Dann gingen wir ins Bett.|Nachdem wir den Film gesehen hatten, gingen wir ins Bett.||*gesehen hatten*.
+D|Plusquamperfekt'e çevir.|Wir haben schon bezahlt.|Wir hatten schon bezahlt.||*habe → hatte*.
+D|Plusquamperfekt'e çevir.|Er ist schon gegangen.|Er war schon gegangen.||*ist → war*.
+D|"nachdem" ile birleştir.|Sie schlief ein. Dann rief ich an.|Nachdem sie eingeschlafen war, rief ich an.||*war eingeschlafen*.
+C|Yemek yedikten sonra yürüyüşe çıktım.|Nachdem ich gegessen hatte, ging ich spazieren.|Nachdem ich gegessen hatte, bin ich spazieren gegangen.|*Nachdem … hatte*.
+C|Vardığımızda film çoktan başlamıştı.|Als wir ankamen, hatte der Film schon begonnen.|Als wir ankamen, hatte der Film schon angefangen.|*hatte … begonnen*.
+C|Tren çoktan kalkmıştı.|Der Zug war schon abgefahren.||*war abgefahren*.
+C|Eve geldikten sonra beni aradı.|Nachdem sie nach Hause gekommen war, rief sie mich an.|Nachdem er nach Hause gekommen war, rief er mich an./Nachdem sie nach Hause gekommen war, hat sie mich angerufen.|*war gekommen*.
+C|Anahtarımı unutmuştum.|Ich hatte meinen Schlüssel vergessen.|Ich hatte den Schlüssel vergessen.|*hatte vergessen*.
+C|Sınavı geçtikten sonra bir parti verdi.|Nachdem er die Prüfung bestanden hatte, machte er eine Party.|Nachdem sie die Prüfung bestanden hatte, machte sie eine Party./Nachdem er die Prüfung bestanden hatte, gab er eine Party.|*bestanden hatte*.
+K|Nachdem ich die Wohnung geputzt hatte, kamen die Gäste.|Daireyi temizledikten sonra misafirler geldi.|Die Gäste kamen, nachdem ich die Wohnung geputzt hatte.
+K|Als ich aufwachte, war die Sonne schon aufgegangen.|Uyandığımda güneş çoktan doğmuştu.|Die Sonne war schon aufgegangen, als ich aufwachte.
+K|Er hatte vorher nie Sushi gegessen.|Daha önce hiç suşi yememişti.|Vorher hatte er nie Sushi gegessen.
+K|Nachdem wir lange gewartet hatten, kam endlich der Bus.|Uzun süre bekledikten sonra nihayet otobüs geldi.|Endlich kam der Bus, nachdem wir lange gewartet hatten.
+O|Gestern hatte ich Pech. Als ich zum Bahnhof kam, war mein Zug schon abgefahren. Ich hatte den Wecker nicht gehört. Nachdem ich eine Stunde gewartet hatte, kam endlich der nächste Zug. Als ich im Büro ankam, hatte die Besprechung schon angefangen.|Dün şanssızdım. İstasyona vardığımda trenim çoktan kalkmıştı. Çalar saati duymamıştım. Bir saat bekledikten sonra nihayet sonraki tren geldi. Ofise vardığımda toplantı çoktan başlamıştı.|Warum war die Person zu spät?~Sie hatte den Wecker nicht gehört.~Der Zug hatte Verspätung.~Sie war krank.|Was war passiert, als sie im Büro ankam?~Die Besprechung hatte schon angefangen.~Alle waren nach Hause gegangen.~Der Chef hatte angerufen.
+O|Nachdem Aylin ihr Studium in Izmir beendet hatte, zog sie nach München. Sie hatte vorher schon zwei Jahre Deutsch gelernt. Trotzdem war der Anfang schwer. Nachdem sie ein halbes Jahr gesucht hatte, fand sie endlich eine Stelle als Ingenieurin.|Aylin İzmir'deki üniversitesini bitirdikten sonra Münih'e taşındı. Daha önce iki yıl Almanca öğrenmişti. Yine de başlangıç zordu. Yarım yıl aradıktan sonra nihayet mühendis olarak bir iş buldu.|Was hatte Aylin vor dem Umzug gemacht?~Zwei Jahre Deutsch gelernt.~In München gearbeitet.~Eine Wohnung gekauft.|Wie lange hat sie eine Stelle gesucht?~Ein halbes Jahr.~Zwei Jahre.~Einen Monat.
+O|Die Polizei berichtet: Am Samstagabend kam Familie Schmidt aus dem Urlaub zurück. Jemand hatte die Tür aufgebrochen. Die Diebe hatten Schmuck und einen Laptop gestohlen. Nachdem die Nachbarn die Polizei gerufen hatten, kam sie nach zehn Minuten.|Polis bildiriyor: Cumartesi akşamı Schmidt ailesi tatilden döndü. Biri kapıyı kırmıştı. Hırsızlar mücevher ve bir dizüstü bilgisayar çalmıştı. Komşular polisi çağırdıktan sonra polis on dakikada geldi.|Was hatten die Diebe gestohlen?~Schmuck und einen Laptop.~Ein Auto.~Geld und Handys.|Wer hat die Polizei gerufen?~Die Nachbarn.~Familie Schmidt.~Die Diebe.
