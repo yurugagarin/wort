@@ -251,3 +251,8 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Her soruda "Bu soruda hata mı var? Bildir"; Ayarlar'da bildirilen sorular listesi ve kopyala.
 - [x] Zaman çizelgesi temposu: iki haftalık veri birikene kadar plan temposu; sonra son 4 haftanın gerçek temposu (kısa geçmişte geçen hafta sayısına bölünür).
 - [x] Denetim: bankadaki 704 sorunun hepsi doğru cevapla tek tek çözüldü (hepsi kabul), 23 başka-sıra ve 123 başka-cevap tutarlı; Perfekt'te Öğren/Uygula/Tekrar %0 ve %40 yanlışla; ikinci denemede 12 sorunun 12'si yeni; 7 günlük simülasyon; hata yok.
+
+## Tur 23 · Tablolar ve konular (21 Kasım) · Aşama 3
+- [x] 46 konunun her birine ön koşul tabloları ("önce bunları bil") ve konuyla öğrenilen tablo elle bağlandı (35 tablonun hepsi bir yerde: temel A1 tabloları ön koşul, diğerleri bir konunun tablosu).
+- [x] Bugün'ün Tablo bloğu: sıradaki konu adımının henüz oturmamış ön koşul tablosu önce ("… için ön koşul"), sonra tekrar zamanı gelen tablo, sonra öğrenilen konuların tabloları.
+- [x] Konu sayfasında "Önce bunları bil" kartı (durumlarıyla), tablo sayfasında "Bu tabloyu kullanan konular", Yol'da "Tablolar ve konular" haritası (konuya göre / tabloya göre).

@@ -883,6 +883,27 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 }
 
 
+
+/* ---- konu ↔ tablo haritası ---- */
+.kzl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.kzr{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;border:1px solid var(--line);background:var(--card2);border-radius:10px;padding:6px 10px;min-width:0}
+.kzr:hover{border-color:var(--ink3)}
+.kzr span{font-weight:700;font-size:13.5px}
+.kzr i{font-style:normal;font-size:11.5px;font-weight:700}
+.kzr.own{border:2px solid var(--das)}
+.kz-ok{color:var(--ok)}.kz-w{color:var(--wrn)}.kz-r{color:var(--bad)}.kz-n{color:var(--ink3)}
+.kzm{display:flex;flex-direction:column;padding:4px 14px}
+.kzmr{display:grid;grid-template-columns:minmax(0,220px) 22px minmax(0,1fr);gap:10px;align-items:start;border-top:1px solid var(--line);padding:10px 0}
+.kzmr:first-child{border-top:0}
+.kzmr .kzl{margin-top:0}
+.kzt{text-align:left;display:flex;flex-direction:column}
+.kzt b{font-family:var(--f-disp);font-weight:600;font-size:15px}
+.kzt span{font-size:11.5px;font-weight:700}
+.kzar{color:var(--ink3);padding-top:6px;text-align:center}
+.kzlink{display:flex;align-items:center;gap:12px;text-align:left;width:100%;color:inherit}
+.kzlink>div{flex:1;display:flex;flex-direction:column;gap:2px}
+.kzlink b{font-family:var(--f-disp);font-size:18px;font-weight:600}
+@media (max-width:620px){.kzmr{grid-template-columns:1fr}.kzar{display:none}}
 /* ---- soru bankası soruları (21 Kasım) ---- */
 .q.qs{font-size:22px;line-height:1.45;text-align:center;margin:6px 0 10px}
 .qins{text-align:center;font-weight:700;color:var(--ink2);font-size:15px}
@@ -6513,6 +6534,7 @@ function vYol(){
   var okA2=G.filter(function(g){return g[1].indexOf('A2')===0&&tstat(g[0])==='ok';}).length,nA2=G.filter(function(g){return g[1].indexOf('A2')===0;}).length;
   var okB1=G.filter(function(g){return g[1].indexOf('B1')===0&&tstat(g[0])==='ok';}).length,nB1=G.filter(function(g){return g[1].indexOf('B1')===0;}).length;
   h+='<div class="card yolsum"><div><b class="num">'+okA2+'<small>/'+nA2+'</small></b><span>A2 konusu oturdu</span></div><div><b class="num">'+okB1+'<small>/'+nB1+'</small></b><span>B1 konusu oturdu</span></div><div><b class="num">'+counts().sat+'</b><span>kelime oturdu</span></div>'+weekLine()+'</div>';
+  h+='<button class="card kzlink" data-act="kmap"><div><div class="eyebrow">Harita</div><b>Tablolar ve konular</b><span class="small muted">Her konudan önce ezberlemen gereken tablolar ve durumları</span></div><span class="chev">›</span></button>';
   h+='<div class="stleg">'+['yeni','ogren','tekrar','oturdu'].map(stBadge).join('')+'</div>';
   var base=EZ.filter(function(t){return t.lv===1;});
   h+='<div class="yol"><div class="yb"><b>Temel · A1 tabloları</b><span>'+base.filter(function(t){return stTable(t.id)==='oturdu';}).length+' / '+base.length+' oturdu</span></div>'+
@@ -6574,6 +6596,62 @@ function vBen(){
 
 /* ================= BUGÜN ================= */
 function wordsReady(){if(!W.q||W.day!==today())buildQueue();return W.q.length+wPend();}
+/* ================= KONU ↔ TABLO HARİTASI (21 Kasım) =================
+   Her konunun ön koşul tabloları (n: "önce bunları bil") ve konuyla birlikte öğrenilen tablosu (o). Elle bağlandı.
+   Bugün'ün Tablo bloğu: bugünkü konu adımının bilinmeyen ön koşul tablosu → tekrar zamanı gelen tablo → öğrenilen konuların
+   tablosu → seviyeye göre sıradaki tablo. Konu sayfasında "Önce bunları bil", tablo sayfasında "Bu tabloyu kullanan konular",
+   Yol'da harita. */
+var KZ={
+  g1:{n:['seinhaben','prefix'],o:['partizip']}, g2:{n:['modal'],o:['praet']}, g3:{n:['satz'],o:['konn']},
+  g4:{n:['art','ein','wo'],o:['pwechsel']}, g5:{n:['pron','art','ein'],o:['possend']}, g6:{n:['pron'],o:['reflex']},
+  g7:{n:[],o:['kompar']}, g8:{n:['modal','seinhaben'],o:['konj2']}, g9:{n:['art'],o:['adjbest','adjbestv']},
+  g10:{n:['art','ein'],o:['pakk']}, g41:{n:['satz','konn'],o:[]}, g42:{n:['art','ein','wfrage'],o:[]}, g43:{n:['adjbest'],o:[]},
+  g11:{n:['ein','possnom','adjbest'],o:['adjeinv','adjein']}, g12:{n:['pdat','pakk'],o:['vprep']}, g13:{n:['wfrage','konn'],o:[]},
+  g14:{n:['konj2','modal'],o:[]}, g15:{n:['partizip'],o:['passiv']}, g16:{n:['art','konn'],o:['relativ']},
+  g17:{n:['prefix','modal'],o:[]}, g18:{n:['satz','konn'],o:['tekamolo']}, g19:{n:['praet','partizip'],o:['praetunreg']},
+  g20:{n:['art','wo'],o:['pdat']}, g44:{n:['pron','art','ein'],o:['possakk']}, g45:{n:['ein','pron'],o:[]}, g46:{n:['praes','unreg'],o:[]},
+  g21:{n:['konn','satz','tekamolo'],o:[]}, g22:{n:['konn','praet'],o:[]}, g23:{n:['praet','partizip','praetunreg'],o:[]},
+  g24:{n:['konn'],o:[]}, g25:{n:['relativ','pdat','vprep'],o:[]}, g26:{n:['konj2','partizip'],o:[]}, g27:{n:['art'],o:['gen']},
+  g28:{n:['konn'],o:[]}, g29:{n:['satz','konn'],o:[]}, g30:{n:['praes','satz'],o:[]},
+  g31:{n:['passiv','praetunreg','partizip'],o:[]}, g32:{n:['art'],o:['ndekl']}, g33:{n:['kompar','konn'],o:[]},
+  g34:{n:['adjbest','adjein','partizip'],o:['adjnull']}, g35:{n:['konn'],o:[]}, g36:{n:['modal'],o:[]}, g37:{n:['konn'],o:[]},
+  g38:{n:['relativ','vprep'],o:[]}, g39:{n:['konj2','praet'],o:[]}, g40:{n:['vprep','pakk','pdat'],o:[]}
+};
+function kzNeed(id){return ((KZ[id]||{}).n||[]).filter(function(t){return EZBY[t];});}
+function kzOwn(id){return ((KZ[id]||{}).o||[]).filter(function(t){return EZBY[t];});}
+function kzUsers(tid){var o=[];G.forEach(function(g){var z=KZ[g[0]];if(!z)return;if((z.o||[]).indexOf(tid)>=0)o.push([g,'o']);else if((z.n||[]).indexOf(tid)>=0)o.push([g,'n']);});return o;}
+var KZST={oturdu:['oturdu','ok'],tekrar:['tekrar zamanı','w'],ogren:['öğreniliyor','w'],yeni:['henüz çalışmadın','r']};
+function kzChip(tid){var s=stTable(tid),L=KZST[s]||KZST.yeni;return '<button class="kzr" data-act="ezopen" data-id="'+tid+'"><span>'+esc(EZBY[tid].t)+'</span><i class="kz-'+L[1]+'">'+L[0]+'</i></button>';}
+/* bugünün tablosu: konu planındaki sıradaki adımın bilinmeyen ön koşulu önce */
+function kzPickToday(d){
+  var nl=kpNextLearn(),ids=[],why='';
+  if(nl){kzNeed(nl.g[0]).forEach(function(t){if(ezProg(t)<.8&&!ezDue(t)&&ids.indexOf(t)<0)ids.push(t);});if(ids.length){d.ezw=nl.g[0];return EZBY[ids[0]];}}
+  var due=ezDueList();if(due.length)return due[0];
+  gLearning().forEach(function(g){kzOwn(g[0]).concat(kzNeed(g[0])).forEach(function(t){if(ezProg(t)<.8&&ids.indexOf(t)<0)ids.push(t);});});
+  if(ids.length)return EZBY[ids[0]];
+  return null;}
+function kzCard(id){var N=kzNeed(id),O=kzOwn(id);if(!N.length&&!O.length)return '';
+  var miss=N.filter(function(t){return stTable(t)!=='oturdu';}).length;
+  return '<div class="card kzc"><div class="row"><div class="eyebrow">Önce bunları bil</div><div class="sp"></div><button class="link" data-act="kmap">Harita</button></div>'+
+    (N.length?'<div class="kzl">'+N.map(kzChip).join('')+'</div>':'<p class="small muted" style="margin-top:6px">Bu konu için ön koşul tablo yok.</p>')+
+    (miss?'<p class="small" style="margin-top:8px">'+miss+' tablo henüz oturmadı. Konu planı bu konunun adımından önce Tablo bloğunda bunları getirir.</p>':'')+
+    (O.length?'<div class="eyebrow" style="margin-top:12px">Bu konuyla öğrenilen tablo</div><div class="kzl">'+O.map(kzChip).join('')+'</div>':'')+'</div>';}
+function kzUsersCard(tid){var U=kzUsers(tid);if(!U.length)return '';
+  return '<div class="card kzc"><div class="row"><div class="eyebrow">Bu tabloyu kullanan konular</div><div class="sp"></div><button class="link" data-act="kmap">Harita</button></div><div class="kzl">'+
+    U.map(function(u){var g=u[0],st=tstat(g[0]);return '<button class="kzr" data-act="topic" data-id="'+g[0]+'"><span lang="de">'+esc(g[2])+'</span><i class="kz-'+(st==='ok'?'ok':st==='wip'?'w':'n')+'">'+g[1]+(u[1]==='o'?' · bu konunun tablosu':' · ön koşul')+'</i></button>';}).join('')+'</div></div>';}
+var KZACT={kmap:function(){openPage({kind:'kmap',v:'konu'});},kmapv:function(b){X.v=b.dataset.v;drawPage();}};
+function pKmap(){
+  var v=X.v||'konu',b='<div><div class="eyebrow">Harita</div><h1>Tablolar ve konular</h1><p class="muted" style="margin-top:4px">Bir konuyu rahat öğrenmek için önce ezberlemen gereken tablolar. Renk: yeşil oturdu · sarı öğreniliyor ya da tekrar zamanı · kırmızı henüz çalışmadın. Bir tabloya ya da konuya dokun.</p></div>';
+  b+='<div class="seg">'+[['konu','Konuya göre'],['tablo','Tabloya göre']].map(function(o){return '<button class="'+(v===o[0]?'on':'')+'" data-act="kmapv" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
+  if(v==='konu'){BANDS.forEach(function(bd){
+      b+='<div class="eyebrow" style="margin:14px 4px 6px">'+bd+'</div><div class="card kzm">'+G.filter(function(g){return g[1]===bd;}).map(function(g){var N=kzNeed(g[0]),O=kzOwn(g[0]),st=tstat(g[0]);
+        return '<div class="kzmr"><button class="kzt" data-act="topic" data-id="'+g[0]+'"><b lang="de">'+esc(g[2])+'</b><span class="kz-'+(st==='ok'?'ok':st==='wip'?'w':'n')+'">'+STL[st]+'</span></button><span class="kzar" aria-hidden="true">←</span><div class="kzl">'+
+          (N.length?N.map(kzChip).join(''):'<span class="small muted">ön koşul yok</span>')+(O.length?O.map(function(t){return kzChip(t).replace('class="kzr"','class="kzr own"');}).join(''):'')+'</div></div>';}).join('')+'</div>';});
+    b+='<p class="note">Çerçeveli tablo, konuyla birlikte öğrenilen tablodur; diğerleri ön koşuldur.</p>';}
+  else{[1,2,3].forEach(function(lv){b+='<div class="eyebrow" style="margin:14px 4px 6px">'+LV[lv]+' tabloları</div><div class="card kzm">'+EZ.filter(function(t){return t.lv===lv;}).map(function(t){var U=kzUsers(t.id);
+        return '<div class="kzmr">'+kzChip(t.id).replace('class="kzr"','class="kzr kzt2"')+'<span class="kzar" aria-hidden="true">→</span><div class="kzl">'+(U.length?U.map(function(u){var g=u[0];return '<button class="kzr" data-act="topic" data-id="'+g[0]+'"><span lang="de">'+esc(g[2])+'</span></button>';}).join(''):'<span class="small muted">genel temel</span>')+'</div></div>';}).join('')+'</div>';});}
+  return {t:'Harita',b:b};}
+
 /* ================= KONU PLANI (konu odaklı gün, 21 Kasım) =================
    Gün = konu planı, üç blok: Tablo (bir ezber tablosu) · Konu (öğrenme adımları: Anla+Tanı, Kur, Üret) · Tekrar (tekrar zamanı gelen
    konular + kullanıcının "pekiştir" listesi). Puan 100 = Tablo 25 + Konu 50 + Tekrar 25; seri bu plana bağlı.
@@ -6627,7 +6705,7 @@ function kpTasks(d){
   var LG=lgDay(today()),gl=LG.filter(function(e){return e.k==='g';});
   function did(fl){return gl.filter(fl).map(function(e){return (GBY[e.ref]?GBY[e.ref][2]:e.ref)+' · '+(LGS[e.s]||e.s).replace(/^Aşama \d · /,'')+(e.n?' '+e.c+'/'+e.n:'')+(e.ok?' ✓':PASS[e.s]?' ✗':'');});}
   var tasks=[
-    {id:'ez',c:'var(--das)',t:'Tablo',sub:et.t,
+    {id:'ez',c:'var(--das)',t:'Tablo',sub:et.t+(d.ezw&&GBY[d.ezw]?' · '+GBY[d.ezw][2]+' için ön koşul':''),
       s:f.tab>=1?'Tamam · '+et.t:et.t+(d.ez?' · '+Math.min(d.ez,12)+' / 12 cevap':''),
       need:f.tab<1?'Bir tablo testi ya da boş tabloyu doldurma':'',
       how:'Bir ezber tablosu: tekrar zamanı gelen, yoksa öğrendiğin konunun tablosu. Tablo testi ya da boş tabloyu doldurma = 25.'},
@@ -7142,7 +7220,7 @@ function closePage(){
 function closeAll(){stopSay();if(X&&X.timer)clearInterval(X.timer);var pk=X&&X.kind;STACK=[];X=null;$('page').hidden=true;document.body.style.overflow='';render();sessAfterClose(pk);}
 function drawPage(){
   if(!X)return;
-  var k=X.kind,r=k==='topic'?pTopic():k==='lesson'?pLesson():k==='uret'?pUret():k==='ez'?pEz():k==='ezq'?pEzq():k==='hub'?pHub():k==='hubs'?pHubs():k==='ezfill'?pEzFill():k==='dikt'?pDikt():k==='err'?pErr():k==='review'?pReview():k==='satz'?pSatz():k==='luck'?pLuck():k==='blitz'?pBlitz():k==='add'?pAdd():k==='set'?pSet():k==='ptest'?pTest():k==='mine'?pMine():k==='note'?pNote():k==='kalip'?pKalip():k==='rapor'?pRapor():k==='wlist'?pWlist():k==='match'?pMatch():k==='wcard'?pWcard():k==='day'?pDay():k==='sbreak'?pSbreak():k==='sdone'?pSdone():k==='yaz'?pYaz():k==='lib'?pLib():k==='lese'?pLese():k==='salat'?pSalat():k==='plq'?pPlq():k==='hsb'||k==='rfb'?pTg():k==='mem'?pMem():k==='exam'?pExam():k==='ek'?pEk():k==='exams'?pExams():k==='tline'?pTline():{t:'',b:''};
+  var k=X.kind,r=k==='topic'?pTopic():k==='lesson'?pLesson():k==='uret'?pUret():k==='ez'?pEz():k==='ezq'?pEzq():k==='hub'?pHub():k==='hubs'?pHubs():k==='ezfill'?pEzFill():k==='dikt'?pDikt():k==='err'?pErr():k==='review'?pReview():k==='satz'?pSatz():k==='luck'?pLuck():k==='blitz'?pBlitz():k==='add'?pAdd():k==='set'?pSet():k==='ptest'?pTest():k==='mine'?pMine():k==='note'?pNote():k==='kalip'?pKalip():k==='rapor'?pRapor():k==='wlist'?pWlist():k==='match'?pMatch():k==='wcard'?pWcard():k==='day'?pDay():k==='sbreak'?pSbreak():k==='sdone'?pSdone():k==='yaz'?pYaz():k==='lib'?pLib():k==='lese'?pLese():k==='salat'?pSalat():k==='plq'?pPlq():k==='hsb'||k==='rfb'?pTg():k==='mem'?pMem():k==='exam'?pExam():k==='ek'?pEk():k==='exams'?pExams():k==='tline'?pTline():k==='kmap'?pKmap():{t:'',b:''};
   X.qnT=String(r.t||'').replace(/<[^>]+>/g,'').replace(/&[a-z#0-9]+;/g,' ').trim();
   if(k!=='rapor'){var qc=qCtx();if(X.qnOpen)r.b=qnPanel()+r.b;else if(qc.r)r.b+='<button class="link center qnlink" data-act="qn">? Kafam karıştı · not yaz (Defter\'e gider)</button>';}
   if(KBDK[k])r.b+='<p class="kbd note center">'+(k==='dikt'?'Klavye: Enter kontrol et · Enter devam · Esc kapat':'Klavye: 1–4 şık seç · Enter devam · Esc kapat')+'</p>';
@@ -7201,6 +7279,7 @@ function pTopic(){
   b+='<div class="row" style="margin-top:8px"><button class="btn wide" data-act="gfocus" data-id="'+id+'">'+(foc?'✓ Öncelikli konum':'Öncelikli konum yap')+'</button><button class="btn wide" data-act="gknown" data-id="'+id+'">'+(x.known?'✓ Biliyorum':'Zaten biliyorum')+'</button></div>'+
     (tprog(id)>0||x.last||x.known?'<button class="link center" style="margin-top:12px;display:block;margin-left:auto;margin-right:auto" data-act="greset" data-id="'+id+'">Bu konuyu baştan al</button>':'')+
     (x.known||st==='ok'?'':'<details class="ihelp"><summary>ⓘ Bir konu nasıl ilerler?</summary><p class="note" style="margin-top:6px">Bir konu yaklaşık 1 hafta sürer: ilk gün Anla, Tanı, Kur; ertesi gün Üret; Üret\'ten 1 gün sonra 1. tekrar, ondan 3 gün sonra 2. tekrar. İki tekrar da %80 ise konu oturur; sonra 7, 14, 30, 60 günde bir kısa kontrol gelir. Biraz unutup yeniden hatırlamak, bilgiyi kalıcı yapan şeydir.</p></details>')+'</div>';
+  b+=kzCard(id);
   b+=topicHistHtml(id);
   if(lsData()[id]){var lr=S.rd&&S.rd[id];b+='<div class="card" style="padding:6px"><div class="tiles"><button class="tile" data-act="lsopen" data-id="'+id+'" style="--c:var(--spr)"><i>¶</i><span style="flex:1"><b>Okuma: <span lang="de">'+esc(lsData()[id].t)+'</span></b><span>'+(lr&&lr.q?'okundu '+lsAgoTxt(lr.d)+' · '+lr.q[0]+' / '+lr.q[1]+' doğru':'bu konuyla yazılmış metin · 9 adım, ~20 dk')+'</span></span><span class="chev">›</span></button></div></div>';}
   b+='<div class="seg">'+[['ders','Ders'],['not','Notlarım'],['kel','Kelimeler'],['orn','Örnekler']].map(function(o){return '<button class="'+(tab===o[0]?'on':'')+'" data-act="ttab" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
@@ -9028,6 +9107,7 @@ function ezDefLv(){return ezLvProg(1)<.8?1:ezLvProg(2)<.8?2:3;}
 function ezToday(){
   var d=day();
   if(d.ezd&&EZBY[d.ezd])return EZBY[d.ezd];
+  if(d.kp){var kt=kzPickToday(d);if(kt){d.ezd=kt.id;save();return kt;}}
   var due=ezDueList(),t=due[0];
   if(!t){var tz=topicEz(todayTopic()[0]).filter(function(x){return ezProg(x)<.8;})[0];if(tz)t=EZBY[tz];}
   if(!t){var lv=ezDefLv();t=EZ.filter(function(x){return x.lv<=lv&&ezProg(x.id)<.8;})[0]||EZ.filter(function(x){return ezProg(x.id)<.8;})[0]||EZ[0];}
@@ -9292,6 +9372,7 @@ function pEz(){
   b+='<div class="tipbox"><div class="eyebrow">Ezber notu</div><p>'+rich(t.tip)+'</p></div>';
   b+='<div class="eyebrow" style="margin:4px">Örnek cümleler</div><div class="card" style="padding:2px 14px">'+t.ex.map(function(e){return '<div class="gsent"><b lang="de">'+esc(e[0])+(canSay()?' <button class="spk" data-act="say" data-t="'+esc(e[0])+'" aria-label="dinle">🔊</button>':'')+'</b><span>'+esc(e[1])+'</span></div>';}).join('')+'</div>';
   if(kural)b+='<p class="note">Kural tablodan değil cümleden oturur: örnekleri sesli oku, sonra karışık kelimelerden cümleyi kendin kur. Doğru olan bütün sıralar kabul edilir.</p>';+'</p>';
+  b+=kzUsersCard(t.id);
   return {t:'Ezber',b:b};
 }
 /* --- boş tabloyu doldur (ezberden yazma: en güçlü hatırlama alıştırması) --- */
@@ -11458,7 +11539,7 @@ document.addEventListener('keydown',function(e){
 var KBDK={lesson:1,ezq:1,review:1,luck:1,ptest:1,satz:1,dikt:1};
 /* ---------------- başlat ---------------- */
 applyTheme();
-for(var kpa in KPACT)ACT[kpa]=KPACT[kpa];for(kpa in QBACT)ACT[kpa]=QBACT[kpa];
+for(var kpa in KPACT)ACT[kpa]=KPACT[kpa];for(kpa in QBACT)ACT[kpa]=QBACT[kpa];for(kpa in KZACT)ACT[kpa]=KZACT[kpa];
 load();
 parsePool();
 syLoad();
