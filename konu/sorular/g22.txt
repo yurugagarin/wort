@@ -1,0 +1,52 @@
+# g22 · als / wenn
+Y|___ ich ein Kind war, wohnte ich in Ankara. (geçmişte bir kez/dönem)|Als|als|Geçmişte bir kez olan ya da bir dönem: *als*.
+Y|___ ich Zeit habe, lese ich gern. (her seferinde/şimdi)|Wenn|wenn|Şimdi ya da tekrarlanan: *wenn*.
+Y|___ wir in Berlin ankamen, regnete es. (geçmişte bir kez)|Als|als|Tek bir olay: *als*.
+Y|Immer ___ er nach Hause kam, war er müde. (geçmişte tekrar)|wenn||*immer wenn* = her ne zaman (tekrar).
+Y|___ du morgen kommst, koche ich etwas. (gelecek)|Wenn|wenn|Gelecek: *wenn*.
+Y|Als ich ihn das erste Mal ___, war ich 20. (sehen, Prät.)|sah||Yan cümlede fiil sonda: *als ich ihn … sah*.
+Y|Wenn es regnet, ___ ich den Bus. (nehmen)|nehme||Yan cümle başta → *nehme ich*.
+Y|___ meine Oma starb, war ich in der Türkei. (bir kez)|Als|als|Tek olay: *als*.
+Y|Jedes Mal, ___ ich sie besuchte, backte sie Kuchen. (tekrar)|wenn||*jedes Mal, wenn* = tekrar.
+Y|Als er die Nachricht hörte, ___ er sehr froh. (sein, Prät.)|war||*war er*.
+Y|___ ich 18 wurde, habe ich den Führerschein gemacht. (bir kez)|Als|als|Bir kez olan: *als*.
+Y|Ruf mich an, ___ du in Hamburg bist. (gelecek)|wenn||Gelecek: *wenn*.
+Y|Früher habe ich immer gelesen, ___ ich nicht schlafen konnte. (tekrar)|wenn||Geçmişte tekrar: *wenn*.
+Y|Als wir jung ___, hatten wir wenig Geld. (sein, Prät.)|waren||Dönem: *als wir jung waren*.
+S|___ ich nach Deutschland kam, konnte ich kein Deutsch.|Als|Wenn|Wann|Geçmişte bir kez: *Als*.
+S|___ ich müde bin, trinke ich Kaffee.|Wenn|Als|Wann|Tekrar/şimdi: *Wenn*.
+S|Weißt du, ___ der Film beginnt?|wann|wenn|als|Soru (ne zaman?): *wann*.
+S|Immer ___ ich ihn anrief, war er nicht da.|wenn|als|wann|Tekrar: *wenn*.
+S|___ das Telefon klingelte, stand ich unter der Dusche.|Als|Wenn|Wann|Tek olay: *Als*.
+S|___ du Hilfe brauchst, sag Bescheid.|Wenn|Als|Wann|Gelecek: *Wenn*.
+S|Als ich klein war, ___ ich Angst vor Hunden.|hatte|ich hatte|habe|*hatte ich*.
+S|___ wir im Urlaub waren, haben wir jeden Tag gebadet.|Als|Wenn|Wann|Tek bir tatil dönemi: *Als*.
+H|Wenn ich ein Kind war, spielte ich viel Fußball.|Als ich ein Kind war, spielte ich viel Fußball.||Geçmişte bir dönem → *als*.
+H|Wenn ich Zeit habe, gehe ich schwimmen.|=|Doğru.
+H|Als ich gestern nach Hause kam, war niemand da.|=|Doğru.
+H|Als ich morgen frei habe, besuche ich dich.|Wenn ich morgen frei habe, besuche ich dich.||Gelecek → *wenn*.
+H|Wann ich in Istanbul war, habe ich viel gesehen.|Als ich in Istanbul war, habe ich viel gesehen.||Bağlaç olarak *als* (*wann* soru kelimesi).
+H|Immer wenn es schneit, freuen sich die Kinder.|=|Doğru.
+H|Als ich 2015 nach Köln gezogen bin, kannte ich niemanden.|=|Doğru.
+H|Als er kam, ich habe gegessen.|Als er kam, habe ich gegessen.||Yan cümle başta → fiil önce.
+D|"als" ile birleştir.|Ich war 10. Wir sind umgezogen.|Als ich 10 war, sind wir umgezogen.||Tek olay → *als*.
+D|"wenn" ile birleştir.|Es ist warm. Wir grillen.|Wenn es warm ist, grillen wir.||Tekrar → *wenn*.
+D|"als" ile birleştir.|Ich kam an. Der Zug war schon weg.|Als ich ankam, war der Zug schon weg.||Ayrılan fiil birleşir: *ankam*.
+D|"immer wenn" ile birleştir.|Er war traurig. Er hörte Musik.|Immer wenn er traurig war, hörte er Musik.||Geçmişte tekrar → *wenn*.
+D|"wenn" ile birleştir.|Du bist fertig. Ruf mich an!|Wenn du fertig bist, ruf mich an!||Gelecek → *wenn*.
+D|"als" ile birleştir.|Ich habe sie kennengelernt. Ich war 25.|Als ich sie kennengelernt habe, war ich 25.|Als ich sie kennenlernte, war ich 25.|Tek olay → *als*.
+D|Geçmişe çevir (tek olay).|Wenn ich nach Hause komme, koche ich.|Als ich nach Hause kam, kochte ich.|Als ich nach Hause gekommen bin, habe ich gekocht.|Tek olay geçmişte → *als*.
+D|Geçmişte tekrara çevir: "Immer wenn …"|Wenn ich Zeit habe, lese ich.|Immer wenn ich Zeit hatte, las ich.|Immer wenn ich Zeit hatte, habe ich gelesen.|Tekrar → *wenn*.
+C|Çocukken Ankara'da oturuyordum.|Als ich ein Kind war, wohnte ich in Ankara.|Als ich Kind war, wohnte ich in Ankara./Als ich ein Kind war, habe ich in Ankara gewohnt.|*als*.
+C|Vaktim olduğunda kitap okurum.|Wenn ich Zeit habe, lese ich.|Wenn ich Zeit habe, lese ich ein Buch./Ich lese, wenn ich Zeit habe.|*wenn*.
+C|Eve geldiğimde kimse yoktu.|Als ich nach Hause kam, war niemand da.|Als ich nach Hause gekommen bin, war niemand da.|Tek olay: *als*.
+C|Her aradığımda meşguldü.|Immer wenn ich anrief, war er beschäftigt.|Immer wenn ich angerufen habe, war er beschäftigt./Immer wenn ich anrief, war sie beschäftigt.|Tekrar: *wenn*.
+C|Hamburg'a vardığında beni ara.|Ruf mich an, wenn du in Hamburg ankommst.|Wenn du in Hamburg ankommst, ruf mich an./Ruf mich an, wenn du in Hamburg bist.|Gelecek: *wenn*.
+C|18 yaşıma girdiğimde ehliyet aldım.|Als ich 18 wurde, habe ich den Führerschein gemacht.|Als ich 18 geworden bin, habe ich den Führerschein gemacht.|*als*.
+K|Als ich nach Deutschland kam, war ich 30 Jahre alt.|Almanya'ya geldiğimde 30 yaşındaydım.|Ich war 30 Jahre alt, als ich nach Deutschland kam.
+K|Wenn ich traurig bin, rufe ich meine Schwester an.|Üzgün olduğumda kız kardeşimi ararım.|Ich rufe meine Schwester an, wenn ich traurig bin.
+K|Immer wenn wir Oma besuchten, gab es Baklava.|Büyükanneyi her ziyaret ettiğimizde baklava olurdu.
+K|Als das Baby geboren wurde, waren alle glücklich.|Bebek doğduğunda herkes mutluydu.|Alle waren glücklich, als das Baby geboren wurde.
+O|Als ich 2012 nach Deutschland kam, konnte ich kein Wort Deutsch. Wenn ich einkaufen ging, zeigte ich einfach auf die Sachen. Immer wenn jemand mich etwas fragte, wurde ich rot. Als ich nach einem Jahr meine erste Prüfung bestanden habe, war ich sehr stolz.|2012'de Almanya'ya geldiğimde tek kelime Almanca bilmiyordum. Alışverişe gittiğimde eşyaları parmağımla gösteriyordum. Biri bana bir şey sorduğunda her seferinde kızarıyordum. Bir yıl sonra ilk sınavımı geçtiğimde çok gururluydum.|Was machte die Person, wenn sie einkaufen ging?~Sie zeigte auf die Sachen.~Sie sprach Englisch.~Sie nahm einen Freund mit.|Wann war die Person stolz?~Als sie die erste Prüfung bestanden hat.~Als sie nach Deutschland kam.~Wenn jemand sie etwas fragte.
+O|Mein Opa erzählt gern von früher: „Als ich jung war, gab es im Dorf kein Fernsehen. Wenn wir am Abend Zeit hatten, saßen wir alle zusammen und erzählten Geschichten. Als das erste Fernsehgerät ins Dorf kam, kamen alle Nachbarn zu uns."|Dedem eskileri anlatmayı sever: "Ben gençken köyde televizyon yoktu. Akşamları vaktimiz olduğunda hep birlikte oturur ve hikâyeler anlatırdık. Köye ilk televizyon geldiğinde bütün komşular bize geldi."|Was machten die Leute, wenn sie am Abend Zeit hatten?~Sie erzählten Geschichten.~Sie sahen fern.~Sie gingen ins Kino.|Was passierte, als das erste Fernsehgerät kam?~Alle Nachbarn kamen zu ihnen.~Niemand wollte fernsehen.~Opa kaufte ein zweites.
+O|Wenn du nach Berlin kommst, musst du unbedingt das Museum besuchen. Als ich letztes Jahr dort war, habe ich drei Stunden darin verbracht. Wenn du willst, kann ich dir die Adresse schicken. Und wenn du Hunger hast, gibt es direkt daneben ein tolles Café.|Berlin'e geldiğinde mutlaka müzeyi ziyaret etmelisin. Geçen yıl orada olduğumda içinde üç saat geçirdim. İstersen sana adresi gönderebilirim. Acıkırsan hemen yanında harika bir kafe var.|Wie lange war die Person im Museum?~Drei Stunden.~Eine Stunde.~Den ganzen Tag.|Was gibt es neben dem Museum?~Ein Café.~Einen Park.~Ein Hotel.
