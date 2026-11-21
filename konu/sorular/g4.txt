@@ -1,0 +1,54 @@
+# g4 · Wechselpräpositionen
+Y|Die Tasse steht auf ___ Tisch. (der Tisch)|dem||*Wo?* (durum, *stehen*) → Dativ: *auf dem Tisch*.
+Y|Ich stelle die Tasse auf ___ Tisch. (der Tisch)|den||*Wohin?* (hareket, *stellen*) → Akkusativ: *auf den Tisch*.
+Y|Das Handy liegt unter ___ Zeitung. (die Zeitung)|der||*Wo?* → Dativ; dişil *die* → *der*.
+Y|Leg das Handy bitte nicht unter ___ Zeitung! (die Zeitung)|die||*Wohin?* → Akkusativ; dişil *die* aynı kalır.
+Y|Die Kinder spielen hinter ___ Haus. (das Haus)|dem||*Wo?* → Dativ; nötr *das* → *dem*.
+Y|Der Hund läuft hinter ___ Haus. (das Haus)|das||Yön (evin arkasına koşuyor) → Akkusativ: *das*.
+Y|Ich ___ das Bild an die Wand. (hängen: asmak)|hänge||*hängen* (asmak, hareket) + Akkusativ: *an die Wand*.
+Y|Das Bild ___ schon an der Wand. (hängen: asılı durmak)|hängt||Asılı durmak (durum) + Dativ: *an der Wand*.
+Y|Wir sitzen gern in ___ Garten. (der Garten)|dem|im|*Wo?* → Dativ: *in dem* = *im Garten*.
+Y|Am Wochenende gehen wir in ___ Park. (der Park)|den||*Wohin?* → Akkusativ: *in den Park*.
+Y|Die Lampe hängt über ___ Sofa. (das Sofa)|dem||*Wo?* → Dativ: *über dem Sofa*.
+Y|Zwischen ___ Fenstern steht ein Regal. (die Fenster, çoğul)|den||Çoğul Dativ: *den Fenstern* (isme *-n*).
+Y|Ich ___ mich auf das Sofa. (setzen)|setze||*sich setzen* + Akkusativ (hareket): *auf das Sofa*.
+Y|Er ___ auf dem Sofa und liest. (sitzen)|sitzt||*sitzen* (durum) + Dativ: *auf dem Sofa*.
+Y|Stell die Schuhe bitte vor ___ Tür! (die Tür)|die||*Wohin?* → Akkusativ: *vor die Tür*.
+Y|Die Schuhe stehen vor ___ Tür. (die Tür)|der||*Wo?* → Dativ: *vor der Tür*.
+S|Das Auto steht neben ___ Haus.|dem|das|den|*Wo?* → Dativ, nötr: *dem*.
+S|Ich fahre das Auto in ___ Garage.|die|der|dem|*Wohin?* → Akkusativ, dişil: *die*.
+S|Die Milch steht im Kühlschrank. – Bitte ___ sie wieder in den Kühlschrank!|stell|steh|lieg|*stellen* (koymak, hareket) + Akkusativ.
+S|Wo ist mein Schlüssel? – Er liegt auf ___ Kommode.|der|die|den|*Wo?* → Dativ, dişil: *der*.
+S|Wir treffen uns vor ___ Kino.|dem|das|den|*Wo?* (buluşma yeri) → Dativ: *vor dem Kino*.
+S|Er legt das Buch ___ Regal.|ins|im|in der|*Wohin?* → *in das* = *ins Regal*.
+S|Das Buch steht ___ Regal.|im|ins|in den|*Wo?* → *in dem* = *im Regal*.
+S|Die Katze springt auf ___ Bett.|das|dem|der|Hareket (yatağın üstüne zıplıyor) → Akkusativ: *das Bett*.
+H|Ich lege das Handy auf dem Tisch.|Ich lege das Handy auf den Tisch.||*legen* hareket → Akkusativ: *auf den Tisch*.
+H|Das Handy liegt auf den Tisch.|Das Handy liegt auf dem Tisch.||*liegen* durum → Dativ: *auf dem Tisch*.
+H|Wir gehen heute Abend ins Kino.|=|Doğru: *Wohin?* → *in das* = *ins Kino*.
+H|Die Kinder sind in den Garten.|Die Kinder sind im Garten.||*sein* durum → Dativ: *im Garten*.
+H|Ich hänge die Jacke an der Garderobe.|Ich hänge die Jacke an die Garderobe.||*hängen* (asmak) hareket → Akkusativ.
+H|Die Jacke hängt an der Garderobe.|=|Doğru: asılı durmak → Dativ: *an der Garderobe*.
+H|Er stellt die Flaschen neben dem Kühlschrank.|Er stellt die Flaschen neben den Kühlschrank.||*stellen* → Akkusativ: *neben den Kühlschrank*.
+H|Setz dich bitte auf dem Stuhl!|Setz dich bitte auf den Stuhl!||*sich setzen* hareket → Akkusativ.
+D|"Wo?" cümlesini "Wohin?" cümlesine çevir: "Ich lege …"|Das Buch liegt auf dem Tisch.|Ich lege das Buch auf den Tisch.||*liegen + Dat.* → *legen + Akk.*
+D|"Wohin?" cümlesini "Wo?" cümlesine çevir: "Die Flasche …"|Ich stelle die Flasche in den Kühlschrank.|Die Flasche steht im Kühlschrank.|Die Flasche steht in dem Kühlschrank.|*stellen + Akk.* → *stehen + Dat.*
+D|"Wo?" cümlesini "Wohin?" cümlesine çevir: "Ich hänge …"|Die Uhr hängt an der Wand.|Ich hänge die Uhr an die Wand.||*hängen + Dat.* (durum) → *hängen + Akk.* (asmak).
+D|"Wohin?" cümlesini "Wo?" cümlesine çevir: "Er …"|Er setzt sich auf das Sofa.|Er sitzt auf dem Sofa.||*sich setzen + Akk.* → *sitzen + Dat.*
+D|Parantezdeki kelimeyle tamamla: Wir gehen …|(der Supermarkt)|Wir gehen in den Supermarkt.||*gehen* hareket → *in den Supermarkt*.
+D|Parantezdeki kelimeyle tamamla: Wir kaufen … ein.|(der Supermarkt)|Wir kaufen im Supermarkt ein.|Wir kaufen in dem Supermarkt ein.|Alışveriş yeri (durum) → *im Supermarkt*.
+D|"Wo?" cümlesini "Wohin?" cümlesine çevir: "Die Kinder laufen …"|Die Kinder sind auf der Straße.|Die Kinder laufen auf die Straße.||Yön → Akkusativ: *auf die Straße*.
+D|"Wohin?" cümlesini "Wo?" cümlesine çevir: "Das Auto …"|Ich fahre das Auto in die Garage.|Das Auto steht in der Garage.||*in die Garage* → *in der Garage*.
+C|Anahtar masanın üstünde.|Der Schlüssel liegt auf dem Tisch.|Der Schlüssel ist auf dem Tisch.|*Wo?* → Dativ.
+C|Anahtarı masanın üstüne koy.|Leg den Schlüssel auf den Tisch.|Lege den Schlüssel auf den Tisch.|*Wohin?* → Akkusativ.
+C|Sinemanın önünde buluşuyoruz.|Wir treffen uns vor dem Kino.||Buluşma yeri → Dativ.
+C|Sütü buzdolabına koydum.|Ich habe die Milch in den Kühlschrank gestellt.|Ich stelle die Milch in den Kühlschrank.|*stellen* → Akkusativ.
+C|Çocuklar bahçede oynuyor.|Die Kinder spielen im Garten.|Die Kinder spielen in dem Garten.|*Wo?* → *im Garten*.
+C|Resmi duvara asıyorum.|Ich hänge das Bild an die Wand.||*hängen* (asmak) → Akkusativ.
+K|Die Hanteln liegen unter dem Bett.|Dambıllar yatağın altında duruyor.|Unter dem Bett liegen die Hanteln.
+K|Ich lege die Hanteln unter das Bett.|Dambılları yatağın altına koyuyorum.
+K|Wir treffen uns morgen vor dem Bahnhof.|Yarın garın önünde buluşuyoruz.|Morgen treffen wir uns vor dem Bahnhof.
+K|Stell die Flasche bitte auf den Tisch!|Şişeyi lütfen masaya koy!
+O|In unserer neuen Wohnung ist noch viel Chaos. Das Sofa steht schon im Wohnzimmer, aber die Bücher liegen noch auf dem Boden. Morgen hänge ich die Bilder an die Wand. Mein Mann stellt das Regal neben das Fenster. Die Katze schläft den ganzen Tag unter dem Bett.|Yeni dairemizde hâlâ çok karışıklık var. Kanepe çoktan oturma odasında duruyor ama kitaplar hâlâ yerde. Yarın resimleri duvara asacağım. Kocam rafı pencerenin yanına koyuyor. Kedi bütün gün yatağın altında uyuyor.|Wo liegen die Bücher?~Auf dem Boden.~Im Regal.~Auf dem Sofa.|Wohin stellt der Mann das Regal?~Neben das Fenster.~Ins Schlafzimmer.~An die Tür.
+O|Emre sucht seine Sporttasche. Sie ist nicht im Flur und nicht unter dem Bett. Seine Mutter sagt: „Ich habe sie gestern in den Keller gestellt." Emre geht in den Keller. Dort steht die Tasche zwischen zwei Kartons.|Emre spor çantasını arıyor. Ne koridorda ne de yatağın altında. Annesi diyor ki: "Dün onu bodruma koydum." Emre bodruma iniyor. Çanta orada iki kolinin arasında duruyor.|Wohin hat die Mutter die Tasche gestellt?~In den Keller.~In den Flur.~Unter das Bett.|Wo steht die Tasche?~Zwischen zwei Kartons.~Neben der Tür.~Auf dem Regal.
+O|Im Büro von Frau Kaya ist alles ordentlich. Der Computer steht auf dem Schreibtisch, und die Lampe hängt über dem Schreibtisch. Am Morgen legt sie ihr Handy in die Schublade, damit sie ruhig arbeiten kann. Ihre Kaffeetasse stellt sie immer neben den Computer.|Bayan Kaya'nın ofisinde her şey düzenli. Bilgisayar çalışma masasının üstünde duruyor, lamba masanın üstünde asılı. Sabahları sakin çalışabilmek için telefonunu çekmeceye koyuyor. Kahve fincanını hep bilgisayarın yanına koyuyor.|Wohin legt Frau Kaya ihr Handy?~In die Schublade.~Auf den Schreibtisch.~Neben den Computer.|Wo hängt die Lampe?~Über dem Schreibtisch.~An der Tür.~Neben dem Fenster.

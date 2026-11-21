@@ -1,0 +1,52 @@
+# g43 · Ordinalzahlen und Datum
+Y|Heute ist der ___ März. (1.)|erste||Düzensiz: *der erste*; Nominativ → *-e*.
+Y|Mein Geburtstag ist am ___ April. (3.)|dritten||Düzensiz: *dritt-*; *am* (Dativ) → *-en*.
+Y|Wir wohnen im ___ Stock. (4.)|vierten||1–19: sayı + *-t*: *viert-*; *im* → *-en*.
+Y|Das ist mein ___ Besuch in Berlin. (2.)|zweiter||*mein* sonrası Nominativ eril → *-er*: *mein zweiter*.
+Y|Der Kurs beginnt am ___ Oktober. (20.)|zwanzigsten||20 ve üstü: *-st*: *zwanzigst-*; *am* → *-en*.
+Y|Heute ist der ___ Juli. (7.)|siebte||Düzensiz: *siebt-* (*siebent-* değil).
+Y|Am ___ Januar ist Neujahr. (1.)|ersten||*am ersten Januar*.
+Y|Weihnachten ist am ___ Dezember. (25.)|fünfundzwanzigsten||*fünfundzwanzigst-*; *am* → *-en*.
+Y|Ich bin zum ___ Mal in Deutschland. (3.)|dritten||*zum dritten Mal* = üçüncü kez.
+Y|Welcher Tag ist heute? – Heute ist der ___. (12.)|zwölfte||*der zwölfte*.
+Y|Der ___ Platz geht an Anna. (2.)|zweite||*der zweite Platz*.
+Y|Vom ___ bis zum 15. Mai habe ich Urlaub. (8.)|achten||*vom* (Dativ) → *-en*: *vom achten*.
+Y|Mein Sohn ist in der ___ Klasse. (6.)|sechsten||*in der* (Dativ) → *-en*.
+Y|Die Miete muss bis zum ___ bezahlt sein. (3.)|dritten||*bis zum dritten* (Dativ) → *-en*.
+S|Heute ist der ___ Juni.|zehnte|zehnten|zehnter|*der …-e*: *der zehnte*.
+S|Ich habe am ___ Mai Geburtstag.|einunddreißigsten|einunddreißigste|einunddreißigten|20 üstü *-st-* + *am* → *-en*.
+S|Wann kommst du? – ___ 5. August.|Am|Im|Um|Tarih: *am fünften August*.
+S|Das ist mein ___ Auto.|erstes|erste|ersten|*mein* sonrası nötr Nominativ → *-es*: *mein erstes Auto*.
+S|Der Laden ist im ___ Stock.|dritten|dritte|drei|*im dritten Stock*.
+S|Welcher Monat ist der dritte? – ___|Der März.|Der Februar.|Der April.|Üçüncü ay: *März*.
+S|Ich bin am 2. Mai 1990 ___.|geboren|gebären|geboren bin|*Ich bin am … geboren.*
+S|Heute ist der ___ (17.)|siebzehnte|siebte|siebzigste|*siebzehn-t-e*.
+H|Heute ist der dreite Mai.|Heute ist der dritte Mai.||Düzensiz: *der dritte*.
+H|Mein Geburtstag ist am zweite März.|Mein Geburtstag ist am zweiten März.||*am* → *-en*: *am zweiten*.
+H|Wir wohnen im ersten Stock.|=|Doğru.
+H|Heute ist der siebente Juni.|Heute ist der siebte Juni.||Kısa ve yaygın biçim: *siebte*.
+H|Der Kurs beginnt am zwanzigten Oktober.|Der Kurs beginnt am zwanzigsten Oktober.||20 ve üstü *-st-*: *zwanzigsten*.
+H|Ich bin zum ersten Mal in Hamburg.|=|Doğru: *zum ersten Mal*.
+H|Heute ist der einste April.|Heute ist der erste April.||Düzensiz: *der erste*.
+H|Mein Termin ist am 14. März.|=|Doğru: okunuşu *am vierzehnten März*.
+D|Tarihi yazıyla yaz: "Heute ist …"|Heute ist der 3.5.|Heute ist der dritte Mai.||*3.5.* = *der dritte Mai*.
+D|"am" ile yaz: "Mein Geburtstag ist …"|Mein Geburtstag: 21. Juli.|Mein Geburtstag ist am einundzwanzigsten Juli.||*am einundzwanzigsten*.
+D|Soru sor (Datum).|Heute ist der 10. November.|Der Wievielte ist heute?|Welches Datum ist heute?/Den Wievielten haben wir heute?|*Der Wievielte ist heute?*
+D|Soru sor (wann).|Der Kurs beginnt am 2. September.|Wann beginnt der Kurs?||*Wann …?*
+D|Sıra sayısıyla yaz.|Ich bin 3 Mal in Wien gewesen. Dieses Mal ist Nummer 4.|Ich bin zum vierten Mal in Wien.||*zum vierten Mal*.
+D|"vom … bis zum" ile yaz.|Urlaub: 1.–14. August|Ich habe vom ersten bis zum vierzehnten August Urlaub.|Vom ersten bis zum vierzehnten August habe ich Urlaub.|*vom … bis zum …*
+D|Yazıyla yaz.|Wir wohnen im 5. Stock.|Wir wohnen im fünften Stock.||*im fünften Stock*.
+D|Yazıyla yaz: "Heute ist …"|Heute ist der 30.|Heute ist der dreißigste.||*dreißigst-e*.
+C|Bugün ayın yirmi biri.|Heute ist der einundzwanzigste.|Heute ist der 21.|*der einundzwanzigste*.
+C|Doğum günüm 7 Mart'ta.|Mein Geburtstag ist am siebten März.|Ich habe am siebten März Geburtstag./Mein Geburtstag ist am 7. März.|*am siebten März*.
+C|Üçüncü katta oturuyoruz.|Wir wohnen im dritten Stock.|Wir wohnen im 3. Stock.|*im dritten Stock*.
+C|İlk kez Almanya'dayım.|Ich bin zum ersten Mal in Deutschland.||*zum ersten Mal*.
+C|Kira ayın üçüne kadar ödenmeli.|Die Miete muss bis zum dritten bezahlt werden.|Die Miete muss bis zum dritten bezahlt sein./Die Miete muss bis zum 3. bezahlt werden.|*bis zum dritten*.
+C|Bugün ayın kaçı?|Der Wievielte ist heute?|Welches Datum ist heute?/Den Wievielten haben wir heute?|*Der Wievielte …?*
+K|Heute ist der erste Dezember.|Bugün bir Aralık.
+K|Mein Sohn ist am zweiten Juni geboren.|Oğlum iki Haziran'da doğdu.|Am zweiten Juni ist mein Sohn geboren.
+K|Wir wohnen im vierten Stock.|Dördüncü katta oturuyoruz.
+K|Ich bin zum zweiten Mal beim Arzt.|İkinci kez doktordayım.
+O|Liebe Familie Aydın, hiermit laden wir Sie zum Sommerfest ein. Das Fest ist am Samstag, dem 14. Juni, ab 15 Uhr im Hof. Bitte sagen Sie uns bis zum 7. Juni Bescheid, ob Sie kommen. Die Kinder aus dem dritten Stock machen Musik. Ihre Hausverwaltung|Sevgili Aydın ailesi, sizi yaz şenliğine davet ediyoruz. Şenlik 14 Haziran cumartesi, saat 15'ten itibaren avluda. Lütfen gelip gelmeyeceğinizi 7 Haziran'a kadar bize bildirin. Üçüncü kattaki çocuklar müzik yapacak. Bina yönetiminiz|Wann ist das Sommerfest?~Am 14. Juni.~Am 7. Juni.~Am 3. Juni.|Bis wann soll Familie Aydın Bescheid sagen?~Bis zum 7. Juni.~Bis zum 14. Juni.~Bis Samstag um 15 Uhr.
+O|Ich heiße Gül und bin am 9. Februar 1992 in Izmir geboren. Seit dem ersten März 2023 wohne ich in Dortmund. Meine Wohnung ist im zweiten Stock. Am fünfzehnten jeden Monats bekomme ich mein Gehalt. Am ersten Wochenende im Monat besuche ich meine Tante in Essen.|Adım Gül, 9 Şubat 1992'de İzmir'de doğdum. 1 Mart 2023'ten beri Dortmund'da oturuyorum. Dairem ikinci katta. Her ayın on beşinde maaşımı alıyorum. Ayın ilk hafta sonunda Essen'deki teyzemi ziyaret ediyorum.|Seit wann wohnt Gül in Dortmund?~Seit dem 1. März 2023.~Seit dem 9. Februar 1992.~Seit dem 15. März.|Wann besucht Gül ihre Tante?~Am ersten Wochenende im Monat.~Am fünfzehnten.~Jeden Sonntag.
+O|Die Sprachschule informiert: Der Kurs A2.2 beginnt am Montag, dem 3. November. Der letzte Kurstag ist der 19. Dezember. Die Prüfung ist am 9. Januar. Vom 22. Dezember bis zum 2. Januar ist die Schule geschlossen. Die Anmeldung ist bis zum 27. Oktober möglich.|Dil okulu bildiriyor: A2.2 kursu 3 Kasım pazartesi başlıyor. Son kurs günü 19 Aralık. Sınav 9 Ocak'ta. 22 Aralık'tan 2 Ocak'a kadar okul kapalı. Kayıt 27 Ekim'e kadar mümkün.|Wann ist die Prüfung?~Am 9. Januar.~Am 19. Dezember.~Am 3. November.|Bis wann kann man sich anmelden?~Bis zum 27. Oktober.~Bis zum 3. November.~Bis zum 2. Januar.

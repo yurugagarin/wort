@@ -1,0 +1,52 @@
+# g8 · Konjunktiv II: höfliche Bitten
+Y|___ Sie mir bitte den Weg zum Bahnhof zeigen? (können)|Könnten|könnten|Kibar rica: *können* → *könnten*.
+Y|Ich ___ gern ein Glas Wasser. (haben)|hätte||*Ich hätte gern …* = … rica ederim / isterim.
+Y|___ du mir bitte das Salz geben? (werden)|Würdest|würdest|*du* ile *würdest*.
+Y|___ ich kurz Ihr Handy benutzen? (dürfen)|Dürfte|dürfte|Kibar izin isteme: *dürfte ich …?*
+Y|Wir ___ gern einen Tisch für vier Personen. (haben)|hätten||*wir* ile *hätten*.
+Y|___ es möglich, den Termin zu verschieben? (sein)|Wäre|wäre|*Wäre es möglich …?* = Mümkün müydü?
+Y|Könntest du mich morgen früh ___? (wecken)|wecken||Modal yapıdan sonra mastar sonda: *wecken*.
+Y|___ ihr bitte etwas leiser sein? (können)|Könntet|könntet|*ihr* ile *könntet*.
+Y|Ich ___ gern einen Termin beim Arzt. (haben)|hätte||*Ich hätte gern einen Termin.*
+Y|Würden Sie bitte das Fenster ___? (schließen)|schließen||*würden* + mastar sonda.
+Y|An deiner Stelle ___ ich mehr schlafen. (werden)|würde||Tavsiye: *An deiner Stelle würde ich …*
+Y|___ Sie so nett und helfen mir? (sein)|Wären|wären|*Wären Sie so nett …?* = Bu kadar nazik olur muydunuz?
+Y|Was ___ Sie gern trinken? (möchten)|möchten||*möchten* zaten kibar biçim.
+Y|Ich ___ gern mit Frau Weber sprechen. (möchten)|möchte||*Ich möchte gern …*
+S|___ Sie mir bitte helfen?|Könnten|Können|Konnten|En kibar biçim: *Könnten Sie …?* (*Konnten* geçmiş zamandır.)
+S|Ich ___ gern einen Kaffee mit Milch.|hätte|hätten|hatte|Siparişte kibar: *hätte gern*.
+S|___ du bitte die Tür aufmachen?|Würdest|Wirst|Würde|*du* ile *würdest*.
+S|___ ich bitte kurz vorbei?|Dürfte|Durfte|Darfte|Kibar izin: *Dürfte ich …?*
+S|Es ___ schön, wenn du morgen kommst.|wäre|war|würde|Dilek: *Es wäre schön, wenn …*
+S|Könnten Sie das bitte ___?|wiederholen|wiederholt|wiederhole|Mastar sonda: *wiederholen*.
+S|Wir ___ gern zwei Karten für das Konzert.|hätten|hatten|haben|*wir hätten gern*.
+S|An Ihrer Stelle ___ ich zum Arzt gehen.|würde|wurde|werde|Tavsiye: *würde*.
+H|Können Sie mir bitte helfen?|=|Doğru, ama daha kibarı: *Könnten Sie mir bitte helfen?*
+H|Ich hatte gern ein Stück Kuchen.|Ich hätte gern ein Stück Kuchen.||Rica: *hätte* (Umlaut). *hatte* geçmiş zamandır.
+H|Würden Sie mir bitte den Zucker geben?|=|Doğru: *würden* + mastar sonda.
+H|Könnten Sie das Fenster öffnen bitte?|Könnten Sie bitte das Fenster öffnen?||Mastar en sonda: *… öffnen?*
+H|Wurdest du mich bitte anrufen?|Würdest du mich bitte anrufen?||Rica: *würdest* (Umlaut). *wurdest* geçmiş zamandır.
+H|Wäre es möglich, früher zu kommen?|=|Doğru.
+H|Dürfte ich das Fenster aufmachen?|=|Doğru: kibar izin.
+H|Ich würde gern einen Termin haben morgen.|Ich hätte gern morgen einen Termin.|Ich würde morgen gern einen Termin haben./Ich hätte morgen gern einen Termin.|En doğal: *Ich hätte gern …*; mastar sonda.
+D|Daha kibar sor (Konjunktiv II).|Können Sie mir helfen?|Könnten Sie mir helfen?|Würden Sie mir helfen?|*können* → *könnten*.
+D|Daha kibar söyle.|Ich will einen Kaffee.|Ich hätte gern einen Kaffee.|Ich möchte einen Kaffee./Ich möchte gern einen Kaffee.|*will* kaba kaçar: *hätte gern* / *möchte*.
+D|Kibar rica yap (würden).|Mach das Fenster zu!|Würdest du das Fenster zumachen?|Würdest du bitte das Fenster zumachen?/Könntest du das Fenster zumachen?|Emir → *Würdest du …?*
+D|Kibar rica yap (Sie, könnten).|Geben Sie mir das Formular!|Könnten Sie mir das Formular geben?|Könnten Sie mir bitte das Formular geben?|*Könnten Sie …?*
+D|Kibar izin iste (dürfte).|Darf ich hier sitzen?|Dürfte ich hier sitzen?||*darf* → *dürfte*.
+D|Kibar sor (wäre).|Ist es möglich, heute zu bezahlen?|Wäre es möglich, heute zu bezahlen?||*ist* → *wäre*.
+D|Tavsiye ver: "An deiner Stelle …"|Du sollst weniger arbeiten.|An deiner Stelle würde ich weniger arbeiten.||*An deiner Stelle würde ich …*
+D|Kibar rica yap (ihr, könntet).|Seid leise!|Könntet ihr leise sein?|Könntet ihr bitte leise sein?|*ihr* → *könntet*.
+C|Bana yardım edebilir misiniz?|Könnten Sie mir helfen?|Könnten Sie mir bitte helfen?/Würden Sie mir helfen?|Kibar: *Könnten Sie …?*
+C|Bir çay rica ediyorum.|Ich hätte gern einen Tee.|Ich möchte einen Tee./Ich hätte gerne einen Tee.|*Ich hätte gern …*
+C|Pencereyi kapatır mısın lütfen?|Würdest du bitte das Fenster schließen?|Könntest du bitte das Fenster schließen?/Würdest du das Fenster zumachen?|*Würdest du …?*
+C|Randevuyu ertelemek mümkün mü?|Wäre es möglich, den Termin zu verschieben?|Könnte man den Termin verschieben?|*Wäre es möglich …?*
+C|Senin yerinde olsam doktora giderdim.|An deiner Stelle würde ich zum Arzt gehen.||*An deiner Stelle würde ich …*
+C|Burada oturabilir miyim?|Dürfte ich hier sitzen?|Darf ich hier sitzen?/Kann ich hier sitzen?|Kibar: *Dürfte ich …?*
+K|Könnten Sie mir bitte die Rechnung bringen?|Bana hesabı getirebilir misiniz lütfen?
+K|Ich hätte gern einen Termin am Montag.|Pazartesi için bir randevu rica ediyorum.|Am Montag hätte ich gern einen Termin.
+K|Würdest du mich morgen zum Bahnhof fahren?|Yarın beni istasyona götürür müsün?
+K|Wäre es möglich, das Paket heute zu schicken?|Paketi bugün göndermek mümkün olur mu?
+O|Im Restaurant sagt Herr Öztürk zum Kellner: „Guten Abend, wir hätten gern einen Tisch für zwei Personen." Der Kellner antwortet: „Gern, könnten Sie bitte zehn Minuten warten?" Später fragt Herr Öztürk: „Könnten Sie uns die Speisekarte bringen? Und ich hätte gern ein Wasser ohne Kohlensäure."|Restoranda Bay Öztürk garsona diyor ki: "İyi akşamlar, iki kişilik bir masa rica ediyoruz." Garson cevap veriyor: "Memnuniyetle, lütfen on dakika bekleyebilir misiniz?" Sonra Bay Öztürk soruyor: "Bize menüyü getirebilir misiniz? Bir de gazsız su rica ediyorum."|Was soll Herr Öztürk zuerst machen?~Zehn Minuten warten.~Die Rechnung bezahlen.~Einen anderen Tisch nehmen.|Was möchte Herr Öztürk trinken?~Ein Wasser ohne Kohlensäure.~Einen Kaffee.~Ein Glas Wein.
+O|Liebe Frau Kraus, leider bin ich am Donnerstag krank. Wäre es möglich, meinen Termin auf nächste Woche zu verschieben? Am liebsten hätte ich einen Termin am Dienstagvormittag. Könnten Sie mir bitte kurz antworten? Vielen Dank! Mit freundlichen Grüßen, Esra Koç|Sayın Bayan Kraus, maalesef perşembe günü hastayım. Randevumu gelecek haftaya ertelemek mümkün olur mu? En çok salı öğleden önce bir randevu isterim. Bana kısaca cevap verebilir misiniz lütfen? Çok teşekkürler! Saygılarımla, Esra Koç|Warum schreibt Esra?~Sie möchte ihren Termin verschieben.~Sie möchte einen Kurs buchen.~Sie hat eine Frage zur Rechnung.|Wann hätte Esra am liebsten einen Termin?~Am Dienstagvormittag.~Am Donnerstag.~Am Montagabend.
+O|In der Bibliothek ist es sehr laut. Eine Frau sagt zu zwei Jugendlichen: „Entschuldigung, könntet ihr bitte etwas leiser sein? Ich muss für eine Prüfung lernen." Die Jugendlichen sagen: „Oh, Entschuldigung! Wir würden gern draußen weiterreden." Danach ist es endlich ruhig.|Kütüphanede çok gürültü var. Bir kadın iki gence diyor ki: "Affedersiniz, biraz daha sessiz olabilir misiniz lütfen? Bir sınava çalışmam gerekiyor." Gençler diyor ki: "Ah, özür dileriz! Dışarıda konuşmaya devam etmek isteriz." Sonrasında nihayet sessizlik oluyor.|Was möchte die Frau?~Dass die Jugendlichen leiser sind.~Dass die Jugendlichen ihr helfen.~Ein Buch ausleihen.|Was machen die Jugendlichen?~Sie reden draußen weiter.~Sie gehen nach Hause.~Sie lernen mit der Frau.

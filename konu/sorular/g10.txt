@@ -1,0 +1,52 @@
+# g10 · Temporale Präpositionen
+Y|Ich wohne ___ drei Jahren in Frankfurt. (üç yıldır)|seit||Geçmişte başlayıp süren: *seit* + Dativ.
+Y|___ einer Woche war ich beim Arzt. (bir hafta önce)|Vor||Geçmiş an: *vor* + Dativ.
+Y|___ zehn Minuten fährt der Bus. (on dakika sonra)|In||Gelecekte bir süre sonra: *in* + Dativ.
+Y|Das Geschäft ist ___ 20 Uhr geöffnet. (saat 20'ye kadar)|bis||*bis* = -e kadar.
+Y|___ Montag habe ich einen neuen Job. (pazartesiden itibaren)|Ab||*ab* = -den itibaren.
+Y|Wir fahren ___ zwei Wochen nach Spanien. (iki haftalığına)|für||Planlanan süre: *für*.
+Y|Der Film beginnt ___ 19:30 Uhr. (saat)|um||Saat: *um*.
+Y|Ich habe ___ Dienstag einen Termin. (gün)|am||Gün: *am* (= an dem).
+Y|___ Sommer fahren wir ans Meer. (mevsim)|Im||Mevsim ve ay: *im* (= in dem).
+Y|___ dem Essen putze ich mir die Zähne. (yemekten sonra)|Nach||*nach* + Dativ = -den sonra.
+Y|___ der Arbeit gehe ich einkaufen. (işten önce)|Vor||*vor* + Dativ = -den önce.
+Y|___ der Pause trinke ich einen Kaffee. (molada / mola sırasında)|In|Während|Zaman aralığı içinde: *in der Pause*.
+Y|Wir arbeiten ___ Montag bis Freitag. (pazartesiden)|von||*von … bis …*: pazartesiden cumaya.
+Y|Ich lerne ___ einem halben Jahr Deutsch. (yarım yıldır)|seit||*seit einem halben Jahr*.
+S|___ zwei Tagen habe ich Kopfschmerzen.|Seit|Vor|In|Hâlâ süren: *seit*.
+S|Wir sind ___ einem Monat umgezogen.|vor|seit|in|Bir kez olmuş, geçmişte: *vor*.
+S|Der Zug kommt ___ fünf Minuten.|in|vor|seit|Gelecek: *in*.
+S|Morgen bin ich ___ 9 Uhr im Büro.|ab|seit|vor|Gelecekte başlangıç: *ab 9 Uhr* = 9'dan itibaren. *seit* gelecek için kullanılmaz.
+S|___ Januar ist es sehr kalt.|Im|Am|Um|Ay: *im Januar*.
+S|Wir treffen uns ___ Wochenende.|am|im|um|*am Wochenende*.
+S|Ich bleibe ___ Freitag in Berlin.|bis|seit|um|*bis Freitag* = cumaya kadar.
+S|___ dem Training dusche ich.|Nach|Vor|Seit|Antrenmandan sonra: *nach*.
+H|Ich lerne vor einem Jahr Deutsch.|Ich lerne seit einem Jahr Deutsch.||Süren durum: *seit*.
+H|Wir haben uns vor zwei Jahren kennengelernt.|=|Doğru: geçmişte bir an → *vor*.
+H|In zwei Wochen fahre ich nach Hause.|=|Doğru: gelecek → *in*.
+H|Der Kurs beginnt am 18 Uhr.|Der Kurs beginnt um 18 Uhr.||Saat: *um*.
+H|Ich habe im Montag frei.|Ich habe am Montag frei.||Gün: *am*.
+H|Seit drei Tagen bin ich krank.|=|Doğru: hâlâ hasta → *seit*.
+H|Ich warte hier seit 10 Uhr bis 12 Uhr.|Ich warte hier von 10 Uhr bis 12 Uhr.||Aralık: *von … bis …*.
+H|Nach der Arbeit gehe ich ins Fitnessstudio.|=|Doğru: *nach* + Dativ.
+D|"seit" ile yeniden yaz.|Ich wohne hier. Ich bin vor fünf Jahren eingezogen.|Ich wohne seit fünf Jahren hier.|Seit fünf Jahren wohne ich hier.|Hâlâ süren: *seit*.
+D|"vor" ile tek cümle yap.|Ich habe ihn am Montag getroffen. Heute ist Donnerstag.|Ich habe ihn vor drei Tagen getroffen.|Vor drei Tagen habe ich ihn getroffen.|Pazartesi → perşembe: üç gün önce, *vor drei Tagen*.
+D|"in" ile yeniden yaz (gelecek).|Der Bus kommt. Noch zehn Minuten.|Der Bus kommt in zehn Minuten.|In zehn Minuten kommt der Bus.|*in zehn Minuten*.
+D|"nach" ile birleştir.|Ich esse. Dann gehe ich spazieren.|Nach dem Essen gehe ich spazieren.||*nach dem Essen*.
+D|"vor" ile birleştir.|Ich arbeite. Vorher trinke ich Kaffee.|Vor der Arbeit trinke ich Kaffee.||*vor der Arbeit*.
+D|"von … bis" ile yaz: "Die Praxis ist … geöffnet."|Öffnung 8 Uhr. Schluss 12 Uhr.|Die Praxis ist von 8 bis 12 Uhr geöffnet.|Die Praxis ist von 8 Uhr bis 12 Uhr geöffnet.|*von … bis …*.
+D|"ab" ile yaz: "… habe ich Urlaub."|Mein Urlaub beginnt am Montag.|Ab Montag habe ich Urlaub.||*ab Montag*.
+D|"für" ile yaz: "Ich fahre … nach Izmir."|Ich bleibe drei Wochen in Izmir.|Ich fahre für drei Wochen nach Izmir.||Planlanan süre: *für*.
+C|İki yıldır Almanya'da yaşıyorum.|Ich lebe seit zwei Jahren in Deutschland.|Ich wohne seit zwei Jahren in Deutschland./Seit zwei Jahren lebe ich in Deutschland.|*seit* + Dativ.
+C|Bir saat sonra geliyorum.|Ich komme in einer Stunde.|In einer Stunde komme ich.|*in einer Stunde*.
+C|Üç gün önce doktordaydım.|Ich war vor drei Tagen beim Arzt.|Vor drei Tagen war ich beim Arzt.|*vor drei Tagen*.
+C|Mağaza saat 20'ye kadar açık.|Das Geschäft ist bis 20 Uhr geöffnet.|Der Laden ist bis 20 Uhr offen./Das Geschäft hat bis 20 Uhr geöffnet.|*bis*.
+C|İşten sonra spora gidiyorum.|Nach der Arbeit gehe ich zum Sport.|Nach der Arbeit gehe ich ins Fitnessstudio./Ich gehe nach der Arbeit zum Sport.|*nach der Arbeit*.
+C|Pazartesiden itibaren yeni bir işim var.|Ab Montag habe ich einen neuen Job.|Ab Montag habe ich eine neue Arbeit./Ab Montag habe ich eine neue Stelle.|*ab Montag*.
+K|Ich warte seit einer halben Stunde auf den Bus.|Yarım saattir otobüsü bekliyorum.|Seit einer halben Stunde warte ich auf den Bus.
+K|Vor zwei Jahren bin ich nach Deutschland gekommen.|İki yıl önce Almanya'ya geldim.|Ich bin vor zwei Jahren nach Deutschland gekommen.
+K|In einer Woche beginnt mein Deutschkurs.|Bir hafta sonra Almanca kursum başlıyor.|Mein Deutschkurs beginnt in einer Woche.
+K|Am Wochenende schlafe ich bis zehn Uhr.|Hafta sonu saat ona kadar uyuyorum.|Ich schlafe am Wochenende bis zehn Uhr.
+O|Hakan lebt seit vier Jahren in Stuttgart. Vor zwei Jahren hat er eine Stelle bei einer Autofirma gefunden. Er arbeitet von Montag bis Freitag, meistens von 7 bis 16 Uhr. Nach der Arbeit geht er oft ins Fitnessstudio. In drei Wochen fliegt er für zehn Tage in die Türkei.|Hakan dört yıldır Stuttgart'ta yaşıyor. İki yıl önce bir otomobil firmasında iş buldu. Pazartesiden cumaya, çoğunlukla 7'den 16'ya kadar çalışıyor. İşten sonra sık sık spor salonuna gidiyor. Üç hafta sonra on günlüğüne Türkiye'ye uçuyor.|Seit wann lebt Hakan in Stuttgart?~Seit vier Jahren.~Seit zwei Jahren.~Seit zehn Tagen.|Wann fliegt Hakan in die Türkei?~In drei Wochen.~Vor drei Wochen.~Am Freitag.
+O|Liebe Kursteilnehmer, ab nächster Woche beginnt der Kurs nicht mehr um 18 Uhr, sondern um 18:30 Uhr. Der Kurs dauert wie immer bis 20 Uhr. In der Pause können Sie im Café Getränke kaufen. Vom 23. Dezember bis zum 6. Januar ist die Schule geschlossen.|Sevgili kursiyerler, gelecek haftadan itibaren kurs artık saat 18'de değil, 18:30'da başlıyor. Kurs her zamanki gibi saat 20'ye kadar sürüyor. Molada kafeden içecek alabilirsiniz. 23 Aralık'tan 6 Ocak'a kadar okul kapalı.|Wann beginnt der Kurs ab nächster Woche?~Um 18:30 Uhr.~Um 18 Uhr.~Um 20 Uhr.|Wann ist die Schule geschlossen?~Vom 23. Dezember bis zum 6. Januar.~Ab nächster Woche.~In der Pause.
+O|Seit Montag habe ich Rückenschmerzen. Vor zwei Tagen war ich beim Arzt. Er hat gesagt, ich soll eine Woche lang keinen Sport machen. Nach einer Woche darf ich langsam wieder trainieren. Bis dahin gehe ich jeden Abend eine halbe Stunde spazieren.|Pazartesiden beri sırtım ağrıyor. İki gün önce doktordaydım. Bir hafta boyunca spor yapmamamı söyledi. Bir hafta sonra yavaş yavaş tekrar antrenman yapabilirim. O zamana kadar her akşam yarım saat yürüyüşe çıkıyorum.|Seit wann hat die Person Rückenschmerzen?~Seit Montag.~Seit einer Woche.~Seit zwei Tagen.|Was macht die Person bis dahin jeden Abend?~Sie geht eine halbe Stunde spazieren.~Sie trainiert im Fitnessstudio.~Sie geht zum Arzt.

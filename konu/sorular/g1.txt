@@ -1,0 +1,58 @@
+# g1 · Perfekt
+Y|Wir ___ am Samstag lange geschlafen. (haben / sein)|haben||*schlafen* hareket ya da durum değişimi değil → *haben*; *wir* ile *haben*.
+Y|Mein Bruder ___ letzte Woche nach Istanbul geflogen. (haben / sein)|ist||*fliegen* yer değiştirme → *sein*; *er* ile *ist*.
+Y|Hast du heute schon ___? (frühstücken)|gefrühstückt||Düzenli fiil: *ge- + kök + -t* → *gefrühstückt*.
+Y|Ich habe dir gestern eine Nachricht ___. (schicken)|geschickt||Düzenli fiil: *ge-schick-t*.
+Y|Der Zug ist pünktlich ___. (ankommen)|angekommen||Ayrılan ön ek: *an-ge-kommen*; *kommen* düzensiz → *-en*.
+Y|Habt ihr den Film schon ___? (sehen)|gesehen||*sehen* düzensiz: *gesehen*.
+Y|Sie hat das Problem sofort ___. (verstehen)|verstanden||*ver-* ile başlayan fiilde *ge-* yok: *verstanden*.
+Y|Ich habe gestern zwei Stunden ___. (telefonieren)|telefoniert||*-ieren* ile biten fiilde *ge-* yok: *telefoniert*.
+Y|Wann ___ du heute aufgestanden? (haben / sein)|bist||*aufstehen* durum değişimi → *sein*; *du* ile *bist*.
+Y|Wir haben im Restaurant mit Karte ___. (bezahlen)|bezahlt||*be-* ile başlayan fiilde *ge-* yok: *bezahlt*.
+Y|Der Kurs hat um neun Uhr ___. (anfangen)|angefangen||*an-ge-fangen*: ayrılan ön ek, düzensiz kök.
+Y|Meine Eltern ___ zwei Wochen in Antalya geblieben. (haben / sein)|sind||*bleiben* hareket değil ama Perfekt'te *sein* alır (ezber). *sie* (onlar) ile *sind*.
+Y|Was ist passiert? – Ich ___ vom Fahrrad gefallen. (haben / sein)|bin||*fallen* yer değiştirme → *sein*; *ich* ile *bin*.
+Y|Sie hat ihre Schlüssel im Büro ___. (vergessen)|vergessen||*vergessen* → Partizip yine *vergessen* (*ver-* var, *ge-* yok).
+Y|Ich habe den Text zweimal ___. (lesen)|gelesen||*lesen* düzensiz: *gelesen*.
+Y|Er hat mir beim Umzug ___. (helfen)|geholfen||*helfen* düzensiz: *geholfen*.
+S|Gestern ___ ich bis 22 Uhr gearbeitet.|habe|bin|hat|*arbeiten* → *haben*; *ich* ile *habe*.
+S|Der Bus ___ schon abgefahren.|ist|hat|sind|*abfahren* yer değiştirme → *sein*; *der Bus* tekil → *ist*.
+S|Wir haben die Wohnung ___.|aufgeräumt|geaufräumt|aufräumt|Ayrılan ön ekte *ge-* ortaya girer: *auf-ge-räumt*.
+S|Ich bin heute mit dem Auto zur Arbeit ___.|gefahren|gefährt|fahren|*fahren* düzensiz: *gefahren*.
+S|Hast du den Termin ___?|vergessen|gevergessen|vergesst|*ver-* ile başlayan fiilde *ge-* gelmez.
+S|Sie ___ letztes Jahr nach Berlin umgezogen.|ist|hat|sind|*umziehen* (taşınmak) yer değiştirme → *sein*.
+S|Was hast du am Wochenende ___?|gemacht|gemachen|machte|*machen* düzenli: *gemacht*. *machte* Präteritum'dur.
+S|Das Baby ___ endlich eingeschlafen.|ist|hat|wird|*einschlafen* durum değişimi (uyanık → uyuyor) → *sein*.
+H|Ich habe gestern nach Hause gegangen.|Ich bin gestern nach Hause gegangen.||*gehen* yer değiştirme → *sein*: *ich bin … gegangen*.
+H|Wir sind den ganzen Abend Karten gespielt.|Wir haben den ganzen Abend Karten gespielt.||*spielen* hareket bildirmez → *haben*.
+H|Er hat das Fenster geöffnet.|=|Doğru: *öffnen* → *haben* + *geöffnet*.
+H|Ich habe um sieben Uhr aufgestanden.|Ich bin um sieben Uhr aufgestanden.||*aufstehen* durum değişimi → *sein*.
+H|Sie hat den Brief gestern geschrieben.|=|Doğru: *schreiben* → *geschrieben*, Partizip sonda.
+H|Hast du die E-Mail gelest?|Hast du die E-Mail gelesen?||*lesen* düzensiz: *gelesen*.
+H|Ich habe den Arzt angerufen gestern.|Ich habe gestern den Arzt angerufen.|Gestern habe ich den Arzt angerufen.|Partizip cümlenin en sonuna gider; zaman bilgisi önce.
+H|Ich habe das Wort nicht geverstanden.|Ich habe das Wort nicht verstanden.||*ver-* ile başlayan fiilde *ge-* yok: *verstanden*.
+H|Er hat sein Handy im Zug gelasst.|Er hat sein Handy im Zug gelassen.||*lassen* düzensiz: *gelassen*.
+H|Wir sind gestern ins Kino gegangen.|=|Doğru: *gehen* → *sein*, *wir sind … gegangen*.
+D|Perfekt'e çevir.|Ich kaufe Brot.|Ich habe Brot gekauft.||*kaufen* → *haben* + *gekauft*.
+D|Perfekt'e çevir.|Wir fahren nach Hamburg.|Wir sind nach Hamburg gefahren.||*fahren* yer değiştirme → *sein*.
+D|Perfekt'e çevir.|Er steht um sechs Uhr auf.|Er ist um sechs Uhr aufgestanden.||*aufstehen* → *sein* + *aufgestanden*.
+D|Perfekt'e çevir.|Sie ruft ihre Mutter an.|Sie hat ihre Mutter angerufen.||*anrufen* → *haben* + *angerufen*.
+D|Perfekt'e çevir.|Ich bleibe zu Hause.|Ich bin zu Hause geblieben.||*bleiben* → *sein* (ezber).
+D|Perfekt'e çevir.|Was machst du am Sonntag?|Was hast du am Sonntag gemacht?||Soruda da yardımcı fiil 2. yerde, Partizip sonda.
+D|"Gestern" ile başlat ve Perfekt'e çevir.|Ich treffe meine Freunde.|Gestern habe ich meine Freunde getroffen.||*Gestern* başa gelince fiil yine 2. yerde: *habe ich*.
+D|Perfekt'e çevir.|Der Film beginnt um acht.|Der Film hat um acht begonnen.||*beginnen* → *begonnen* (*be-* var, *ge-* yok).
+D|Perfekt'e çevir.|Ich verstehe die Frage nicht.|Ich habe die Frage nicht verstanden.||*nicht* Partizip'ten önce durur.
+C|Dün akşam bir pizza yedim.|Ich habe gestern Abend eine Pizza gegessen.|Gestern Abend habe ich eine Pizza gegessen.|*essen* → *gegessen*.
+C|Hafta sonu Köln'e gittik.|Wir sind am Wochenende nach Köln gefahren.|Am Wochenende sind wir nach Köln gefahren.|Araçla gitmek: *fahren* → *sein*.
+C|Bugün çok çalıştım.|Ich habe heute viel gearbeitet.|Heute habe ich viel gearbeitet./Ich habe heute sehr viel gearbeitet./Heute habe ich sehr viel gearbeitet.|*arbeiten* → *gearbeitet*.
+C|Saat kaçta kalktın?|Wann bist du aufgestanden?|Um wie viel Uhr bist du aufgestanden?|*aufstehen* → *sein*.
+C|Anahtarlarımı unuttum.|Ich habe meine Schlüssel vergessen.||*vergessen* → *haben* + *vergessen*.
+C|Tren geç geldi.|Der Zug ist spät angekommen.|Der Zug ist zu spät angekommen./Der Zug ist zu spät gekommen./Der Zug ist spät gekommen.|*ankommen* → *sein*.
+C|Annemi aradın mı?|Hast du meine Mutter angerufen?|Hast du Mama angerufen?|*anrufen* → *angerufen*.
+K|Gestern sind wir ins Kino gegangen.|Dün sinemaya gittik.|Wir sind gestern ins Kino gegangen.
+K|Ich habe heute keinen Kaffee getrunken.|Bugün hiç kahve içmedim.|Heute habe ich keinen Kaffee getrunken.
+K|Hast du die Hausaufgaben schon gemacht?|Ödevleri yaptın mı?
+K|Sie ist mit dem Bus zur Arbeit gefahren.|İşe otobüsle gitti.|Mit dem Bus ist sie zur Arbeit gefahren.
+O|Am Montag ist Ayşe früh aufgestanden. Sie hat schnell gefrühstückt und ist mit der U-Bahn zur Arbeit gefahren. Im Büro hat sie viele E-Mails geschrieben. Am Abend hat sie ihre Freundin Lena getroffen. Sie sind zusammen ins Kino gegangen.|Pazartesi Ayşe erken kalktı. Hızlıca kahvaltı yaptı ve metroyla işe gitti. Ofiste çok e-posta yazdı. Akşam arkadaşı Lena ile buluştu. Birlikte sinemaya gittiler.|Wie ist Ayşe zur Arbeit gefahren?~Mit der U-Bahn.~Mit dem Auto.~Mit dem Fahrrad.|Was hat Ayşe am Abend gemacht?~Sie ist mit Lena ins Kino gegangen.~Sie hat im Büro E-Mails geschrieben.~Sie ist früh ins Bett gegangen.
+O|Letztes Wochenende hat Murat seine Eltern in Köln besucht. Am Samstag hat er mit seinem Vater Fußball im Fernsehen gesehen. Seine Mutter hat Börek gemacht. Am Sonntag ist Murat spät aufgestanden, deshalb hat er den Zug um zehn verpasst. Er ist erst am Abend nach Hause gekommen.|Geçen hafta sonu Murat Köln'de ailesini ziyaret etti. Cumartesi babasıyla televizyonda futbol izledi. Annesi börek yaptı. Pazar günü Murat geç kalktı, bu yüzden saat ondaki treni kaçırdı. Eve ancak akşam geldi.|Wen hat Murat besucht?~Seine Eltern.~Seinen Bruder.~Seine Freundin.|Warum ist Murat erst am Abend nach Hause gekommen?~Er hat den Zug verpasst.~Er hat lange gearbeitet.~Der Zug ist ausgefallen.
+O|Gestern hatte ich einen schlechten Tag. Zuerst habe ich meinen Wecker nicht gehört. Dann habe ich meine Fahrkarte vergessen und bin zu spät zur Arbeit gekommen. Mein Chef hat nichts gesagt, aber ich habe mich geärgert. Am Abend habe ich Sport gemacht, und danach ist es mir besser gegangen.|Dün kötü bir gün geçirdim. Önce çalar saatimi duymadım. Sonra biletimi unuttum ve işe geç kaldım. Şefim bir şey demedi ama ben sinirlendim. Akşam spor yaptım ve sonrasında daha iyi hissettim.|Warum ist die Person zu spät zur Arbeit gekommen?~Sie hat den Wecker nicht gehört und die Fahrkarte vergessen.~Der Bus ist nicht gekommen.~Der Chef hat sie angerufen.|Wie ist es der Person am Abend gegangen?~Besser.~Noch schlechter.~Sie war krank.
