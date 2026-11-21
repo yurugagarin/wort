@@ -256,3 +256,9 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] 46 konunun her birine ön koşul tabloları ("önce bunları bil") ve konuyla öğrenilen tablo elle bağlandı (35 tablonun hepsi bir yerde: temel A1 tabloları ön koşul, diğerleri bir konunun tablosu).
 - [x] Bugün'ün Tablo bloğu: sıradaki konu adımının henüz oturmamış ön koşul tablosu önce ("… için ön koşul"), sonra tekrar zamanı gelen tablo, sonra öğrenilen konuların tabloları.
 - [x] Konu sayfasında "Önce bunları bil" kartı (durumlarıyla), tablo sayfasında "Bu tabloyu kullanan konular", Yol'da "Tablolar ve konular" haritası (konuya göre / tabloya göre).
+
+## Tur 24 · Bütün soru bankaları ve tablo bloğu (21 Kasım) · Aşama 4
+- [x] A2.2 (13 konu), B1.1 (10 konu), B1.2 (10 konu) soru bankaları yazıldı: konu başına ~51 yeni soru + 3 okuma parçası. Artık 46 konunun hepsinde gerçek test var (toplam ~2350 soru satırı).
+- [x] Tablo bloğu her gün tablonun kendisiyle açılır: üstte "Bugünün Tablo bloğu" adımları (bak ve sesli oku, kapat ve hatırla, test ya da küçük tablolarda boş tabloyu doldur). Eskiden ilk günden sonra doğrudan teste geçiyordu.
+- [x] Ezber testi bitince tablonun tamamı görünür; o testte yanlış bilinen hücreler kırmızı. Altında "Bir adım daha: boş tabloyu doldur".
+- [x] Denetim: 33 yeni konunun 1683 sorusu doğru cevapla tek tek çözüldü (hepsi kabul), başka-cevap ve başka-sıra kontrolleri tutarlı, her konuda Öğren/Uygula/Tekrar/Pekiştir karışımı doğru; tablo bloğu küçük, büyük ve kural tablolarıyla; 10 günlük simülasyon; hata yok.

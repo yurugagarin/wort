@@ -1,0 +1,52 @@
+# g37 · indem / sodass
+Y|Man lernt eine Sprache am besten, ___ man viel spricht. (-erek, yöntem)|indem||*indem* = -erek; fiil sonda.
+Y|Es regnete stark, ___ wir zu Hause blieben. (öyle ki, sonuç)|sodass|so dass|*sodass* = öyle ki / bu yüzden.
+Y|Er hat abgenommen, indem er weniger Zucker ___. (essen)|isst||*indem* → fiil sonda: *isst*.
+Y|Der Zug hatte Verspätung, sodass ich den Anschluss ___. (verpassen, Prät.)|verpasste||*sodass* → fiil sonda.
+Y|Wie kann ich Geld sparen? – ___ du weniger online kaufst. (-erek)|Indem|indem|*Wie?* sorusuna cevap: *Indem …*
+Y|Sie war so müde, ___ sie sofort einschlief. (öyle … ki)|dass||*so … dass* (ikiye bölünmüş).
+Y|Ich halte mich fit, indem ich jeden Tag Rad ___. (fahren)|fahre||*indem ich … fahre*.
+Y|Es war sehr laut, sodass ich nicht schlafen ___. (können, Prät.)|konnte||*sodass ich … konnte*.
+Y|Man kann Energie sparen, indem man das Licht ___. (ausmachen)|ausmacht||Ayrılan fiil yan cümlede birleşir: *ausmacht*.
+Y|Er sprach so leise, dass niemand ihn ___. (verstehen, Prät.)|verstand||*so … dass niemand … verstand*.
+Y|Sie hat die Prüfung bestanden, indem sie jeden Tag ___ hat. (lernen)|gelernt||*indem sie … gelernt hat*.
+Y|Mein Handy war leer, ___ ich dich nicht anrufen konnte. (bu yüzden, yan cümle)|sodass|so dass|*sodass* + fiil sonda.
+Y|Er hat mir geholfen, indem er mir sein Auto ___. (leihen, Prät.)|lieh||*leihen – lieh*.
+Y|Das Essen war so scharf, dass ich viel Wasser trinken ___. (müssen, Prät.)|musste||*so … dass … musste*.
+S|Ich verbessere mein Deutsch, ___ ich Filme auf Deutsch sehe.|indem|sodass|damit|Yöntem (-erek) → *indem*.
+S|Es schneite stark, ___ die Schule geschlossen wurde.|sodass|indem|obwohl|Sonuç → *sodass*.
+S|Er war ___ krank, dass er nicht arbeiten konnte.|so|sodass|indem|*so … dass*.
+S|Wie hast du das geschafft? – ___ ich früh aufgestanden bin.|Indem|Sodass|Damit|Yöntem → *Indem*.
+S|Der Film war langweilig, sodass ich ___.|einschlief|schlief ein|einschlafen|*sodass* → fiil sonda, birleşik: *einschlief*.
+S|Man kann Kosten senken, indem man weniger Papier ___.|benutzt|benutzen|zu benutzen|*indem man … benutzt*.
+S|Die Straße war gesperrt, ___ wir einen Umweg fahren mussten.|sodass|indem|weil|Sonuç → *sodass*.
+S|Sie lernt Vokabeln, ___ sie Karteikarten schreibt.|indem|sodass|um|Yöntem → *indem*.
+H|Ich lerne Deutsch, indem ich Podcasts höre.|=|Doğru.
+H|Es regnete, sodass wir sind zu Hause geblieben.|Es regnete, sodass wir zu Hause geblieben sind.||*sodass* → yardımcı fiil sonda.
+H|Er spart Geld, indem kocht er selbst.|Er spart Geld, indem er selbst kocht.||*indem* → fiil sonda.
+H|Sie war so müde, dass sie sofort eingeschlafen ist.|=|Doğru.
+H|Der Bus kam nicht, indem ich zu spät kam.|Der Bus kam nicht, sodass ich zu spät kam.||Sonuç → *sodass* (*indem* yöntemdir).
+H|Man bleibt gesund, indem man viel Obst isst.|=|Doğru.
+H|Ich habe so viel gegessen, sodass ich müde bin.|Ich habe so viel gegessen, dass ich müde bin.||*so … dass* (ayrık); *sodass* tek parça başka yapı.
+H|Indem er mehr trainiert hat, ist er schneller geworden.|=|Doğru.
+D|"indem" ile birleştir.|Ich lerne Wörter. Ich schreibe sie auf.|Ich lerne Wörter, indem ich sie aufschreibe.||Yöntem: *indem … aufschreibe*.
+D|"sodass" ile birleştir.|Es war sehr kalt. Der See war gefroren.|Es war sehr kalt, sodass der See gefroren war.|Es war sehr kalt, so dass der See gefroren war.|Sonuç: *sodass*.
+D|"indem" ile birleştir.|Er spart Geld. Er fährt mit dem Rad.|Er spart Geld, indem er mit dem Rad fährt.|Er spart Geld, indem er Rad fährt.|*indem er … fährt*.
+D|"so … dass" ile birleştir.|Ich war müde. Ich bin sofort eingeschlafen.|Ich war so müde, dass ich sofort eingeschlafen bin.||*so müde, dass*.
+D|"sodass" ile birleştir.|Der Zug hatte Verspätung. Ich kam zu spät.|Der Zug hatte Verspätung, sodass ich zu spät kam.|Der Zug hatte Verspätung, so dass ich zu spät kam./Der Zug hatte Verspätung, sodass ich zu spät gekommen bin.|*sodass*.
+D|"indem" ile cevap ver: "Indem …"|Wie bleibst du fit? (Ich gehe jeden Tag spazieren.)|Indem ich jeden Tag spazieren gehe.||*Indem … gehe*.
+D|"so … dass" ile birleştir.|Das Essen war scharf. Ich musste viel trinken.|Das Essen war so scharf, dass ich viel trinken musste.||*so scharf, dass*.
+D|"indem" ile birleştir.|Man schützt die Umwelt. Man trennt den Müll.|Man schützt die Umwelt, indem man den Müll trennt.||*indem man … trennt*.
+C|Bir dili en iyi çok konuşarak öğrenirsin.|Man lernt eine Sprache am besten, indem man viel spricht.|Du lernst eine Sprache am besten, indem du viel sprichst.|*indem*.
+C|Çok yağmur yağdı, öyle ki evde kaldık.|Es regnete stark, sodass wir zu Hause blieben.|Es hat stark geregnet, sodass wir zu Hause geblieben sind./Es regnete stark, so dass wir zu Hause blieben.|*sodass*.
+C|Daha az şeker yiyerek kilo verdi.|Er hat abgenommen, indem er weniger Zucker gegessen hat.|Sie hat abgenommen, indem sie weniger Zucker gegessen hat./Er hat abgenommen, indem er weniger Zucker aß.|*indem*.
+C|O kadar yorgundum ki hemen uyudum.|Ich war so müde, dass ich sofort eingeschlafen bin.|Ich war so müde, dass ich sofort einschlief.|*so … dass*.
+C|Telefonumun şarjı bitti, bu yüzden seni arayamadım.|Mein Handy war leer, sodass ich dich nicht anrufen konnte.|Mein Akku war leer, sodass ich dich nicht anrufen konnte./Mein Handy war leer, so dass ich dich nicht anrufen konnte.|*sodass*.
+C|Her gün bisiklete binerek formda kalıyorum.|Ich halte mich fit, indem ich jeden Tag Rad fahre.|Ich bleibe fit, indem ich jeden Tag Rad fahre./Ich halte mich fit, indem ich jeden Tag Fahrrad fahre.|*indem*.
+K|Ich verbessere meine Aussprache, indem ich laut lese.|Sesli okuyarak telaffuzumu geliştiriyorum.
+K|Es gab einen Stau, sodass wir eine Stunde zu spät kamen.|Trafik sıkışıklığı vardı, öyle ki bir saat geç kaldık.
+K|Der Koffer war so schwer, dass ich ihn nicht tragen konnte.|Bavul o kadar ağırdı ki taşıyamadım.
+K|Man kann Wasser sparen, indem man kürzer duscht.|Daha kısa duş alarak su tasarrufu yapılabilir.
+O|Wie kann man im Alltag Geld sparen? Viele sparen, indem sie selbst kochen. Andere fahren mit dem Rad, sodass sie kein Benzin brauchen. Man kann auch Strom sparen, indem man Geräte ganz ausschaltet. Kleine Dinge machen einen großen Unterschied.|Günlük hayatta nasıl para biriktirilir? Birçok kişi kendi yemeğini yaparak tasarruf ediyor. Diğerleri bisiklete biniyor, böylece benzine ihtiyaçları olmuyor. Cihazları tamamen kapatarak elektrik de tasarruf edilebilir. Küçük şeyler büyük fark yaratır.|Wie sparen viele Menschen?~Indem sie selbst kochen.~Indem sie weniger arbeiten.~Indem sie Auto fahren.|Warum brauchen Radfahrer kein Benzin?~Sie fahren nicht mit dem Auto.~Benzin ist zu teuer.~Sie arbeiten zu Hause.
+O|Letzten Winter hat es so viel geschneit, dass die Züge nicht fahren konnten. Ich bin zur Arbeit gekommen, indem ich zwei Stunden zu Fuß gegangen bin. Mein Chef war so beeindruckt, dass er mir einen Tag frei gegeben hat.|Geçen kış o kadar çok kar yağdı ki trenler çalışamadı. İki saat yürüyerek işe geldim. Şefim o kadar etkilendi ki bana bir gün izin verdi.|Wie ist die Person zur Arbeit gekommen?~Indem sie zwei Stunden zu Fuß gegangen ist.~Mit dem Zug.~Mit dem Taxi.|Was hat der Chef gemacht?~Er hat ihr einen Tag frei gegeben.~Er hat sie nach Hause geschickt.~Er hat sie abgeholt.
+O|Tipps für die B1-Prüfung: Verbessern Sie Ihr Hörverstehen, indem Sie jeden Tag deutsche Nachrichten hören. Lernen Sie neue Wörter, indem Sie sie in Sätzen benutzen. Und schlafen Sie vor der Prüfung genug, sodass Sie konzentriert sind.|B1 sınavı için ipuçları: Her gün Almanca haber dinleyerek dinlediğinizi anlama becerinizi geliştirin. Yeni kelimeleri cümlelerde kullanarak öğrenin. Ve sınavdan önce yeterince uyuyun ki konsantre olun.|Wie verbessert man das Hörverstehen?~Indem man jeden Tag Nachrichten hört.~Indem man Wörter schreibt.~Indem man viel schläft.|Warum soll man vor der Prüfung genug schlafen?~Damit man konzentriert ist.~Weil die Prüfung früh beginnt.~Damit man Wörter lernt.

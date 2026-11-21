@@ -1,0 +1,52 @@
+# g35 · ohne … zu / statt … zu
+Y|Er ging, ___ ein Wort zu sagen. (-meden)|ohne||*ohne … zu* = -meden.
+Y|___ zu lernen, sieht er fern. (-mek yerine)|Statt|statt/Anstatt/anstatt|*statt … zu* = -mek yerine.
+Y|Sie ist gegangen, ohne sich zu ___. (verabschieden)|verabschieden||*ohne sich zu verabschieden*.
+Y|Statt den Bus zu ___, gehe ich zu Fuß. (nehmen)|nehmen||*statt … zu nehmen*.
+Y|Er hat das Auto gekauft, ohne es ___. (ausprobieren)|auszuprobieren||Ayrılan fiil: *auszuprobieren*.
+Y|Er kam herein, ohne ___ ich es gemerkt habe. (özne farklı)|dass||Özne farklı (*er* … *ich*) → *ohne dass* + fiil sonda.
+Y|Er hat mir geholfen, ohne dass ich ihn gefragt ___. (haben)|habe||*ohne dass* → fiil sonda.
+Y|Statt zu arbeiten, ___ er im Café. (sitzen)|sitzt||Ana cümle: *sitzt er*.
+Y|Ohne zu frühstücken, ___ ich zur Arbeit gegangen. (sein)|bin||*bin ich … gegangen*.
+Y|Sie kauft Fertiggerichte, statt selbst zu ___. (kochen)|kochen||*statt selbst zu kochen*.
+Y|Die Kinder spielen draußen, ohne dass die Eltern es ___. (wissen)|wissen||*ohne dass* + çoğul: *wissen*.
+Y|Statt dass du ___, könntest du mir helfen. (meckern)|meckerst||*statt dass du …* → fiil sonda.
+Y|Er übersetzt den Text, ohne ein Wörterbuch zu ___. (benutzen)|benutzen||*ohne … zu benutzen*.
+Y|Statt mich ___, hat er mir eine Nachricht geschrieben. (anrufen)|anzurufen||*statt mich anzurufen*.
+S|Sie verließ das Zimmer, ___ die Tür zu schließen.|ohne|statt|um|*-meden* → *ohne … zu*.
+S|___ zu schlafen, hat er die ganze Nacht gespielt.|Statt|Ohne|Um|*-mek yerine* → *Statt*.
+S|Er hat die Prüfung bestanden, ohne viel ___.|zu lernen|lernen|gelernt zu|*ohne … zu lernen*.
+S|Der Dieb kam herein, ___ jemand ihn sah.|ohne dass|ohne|ohne zu|Farklı özne → *ohne dass*.
+S|Statt ins Kino zu gehen, ___ wir zu Hause.|blieben|wir blieben|bleiben wir zu|Ana cümle: fiil önce.
+S|Ich habe unterschrieben, ohne den Vertrag ___.|zu lesen|lesen|gelesen|*ohne … zu lesen*.
+S|Er hilft immer, ___ man ihn bitten muss.|ohne dass|ohne zu|statt zu|Farklı özne + çekimli fiil → *ohne dass*.
+S|Statt ___, solltest du lieber lernen.|fernzusehen|zu fernsehen|fernsehen zu|Ayrılan fiil: *fernzusehen*.
+H|Er ging ohne zu sagen ein Wort.|Er ging, ohne ein Wort zu sagen.||*zu* + mastar en sonda.
+H|Statt zu arbeiten, er schläft.|Statt zu arbeiten, schläft er.||Ana cümle: fiil önce.
+H|Sie hat gekocht, ohne ein Rezept zu benutzen.|=|Doğru.
+H|Ich bin gegangen, ohne dass ich mich verabschiede.|Ich bin gegangen, ohne mich zu verabschieden.||Aynı özne → *ohne … zu*.
+H|Statt den Bus zu nehmen, fahre ich Rad.|=|Doğru.
+H|Er kam herein, ohne zu klopfen.|=|Doğru.
+H|Statt anzurufen, hat sie eine E-Mail geschrieben.|=|Doğru.
+H|Ohne zu ich frühstücken, gehe ich los.|Ohne zu frühstücken, gehe ich los.||*ohne zu* + mastar; özne ana cümlede.
+D|"ohne … zu" ile birleştir.|Er ging. Er sagte nichts.|Er ging, ohne etwas zu sagen.||Olumsuzluk *ohne* içinde: *etwas*.
+D|"statt … zu" ile birleştir.|Ich nehme nicht das Auto. Ich fahre Rad.|Statt das Auto zu nehmen, fahre ich Rad.|Ich fahre Rad, statt das Auto zu nehmen./Anstatt das Auto zu nehmen, fahre ich Rad.|*statt … zu*.
+D|"ohne … zu" ile birleştir.|Sie hat unterschrieben. Sie hat den Text nicht gelesen.|Sie hat unterschrieben, ohne den Text zu lesen.||*ohne … zu lesen*.
+D|"ohne dass" ile birleştir.|Er hat das Geld genommen. Niemand hat es gesehen.|Er hat das Geld genommen, ohne dass es jemand gesehen hat.|Er hat das Geld genommen, ohne dass jemand es gesehen hat.|Farklı özne → *ohne dass*; *niemand* → *jemand*.
+D|"statt … zu" ile birleştir.|Er lernt nicht. Er spielt Computer.|Statt zu lernen, spielt er Computer.|Er spielt Computer, statt zu lernen./Anstatt zu lernen, spielt er Computer.|*statt zu lernen*.
+D|"ohne … zu" ile birleştir.|Ich bin eingeschlafen. Ich habe das Licht nicht ausgemacht.|Ich bin eingeschlafen, ohne das Licht auszumachen.||*auszumachen*.
+D|"statt dass" ile birleştir.|Du beschwerst dich. Du könntest helfen.|Statt dass du dich beschwerst, könntest du helfen.|Statt dich zu beschweren, könntest du helfen.|Aynı özne olduğu için *statt … zu* da olur.
+D|"ohne … zu" ile birleştir.|Sie ist gegangen. Sie hat nicht bezahlt.|Sie ist gegangen, ohne zu bezahlen.||*ohne zu bezahlen*.
+C|Tek kelime söylemeden gitti.|Er ging, ohne ein Wort zu sagen.|Sie ging, ohne ein Wort zu sagen./Er ist gegangen, ohne ein Wort zu sagen.|*ohne … zu*.
+C|Ders çalışmak yerine televizyon izliyor.|Statt zu lernen, sieht er fern.|Statt zu lernen, schaut er fern./Er sieht fern, statt zu lernen./Anstatt zu lernen, sieht er fern.|*statt … zu*.
+C|Kahvaltı etmeden işe gittim.|Ich bin zur Arbeit gegangen, ohne zu frühstücken.|Ohne zu frühstücken, bin ich zur Arbeit gegangen./Ich ging zur Arbeit, ohne zu frühstücken.|*ohne zu frühstücken*.
+C|Otobüse binmek yerine yürüyorum.|Statt den Bus zu nehmen, gehe ich zu Fuß.|Ich gehe zu Fuß, statt den Bus zu nehmen./Anstatt den Bus zu nehmen, gehe ich zu Fuß.|*statt … zu nehmen*.
+C|Kimse fark etmeden içeri girdi.|Er kam herein, ohne dass es jemand merkte.|Er ist hereingekommen, ohne dass es jemand gemerkt hat./Sie kam herein, ohne dass es jemand merkte.|Farklı özne → *ohne dass*.
+C|Kapıyı çalmadan girdi.|Er kam herein, ohne zu klopfen.|Er ist reingekommen, ohne zu klopfen./Sie kam herein, ohne zu klopfen.|*ohne zu klopfen*.
+K|Er hat den Vertrag unterschrieben, ohne ihn zu lesen.|Sözleşmeyi okumadan imzaladı.
+K|Statt zu kochen, bestellen wir heute Pizza.|Yemek yapmak yerine bugün pizza ısmarlıyoruz.|Wir bestellen heute Pizza, statt zu kochen.
+K|Sie ist gegangen, ohne sich zu verabschieden.|Vedalaşmadan gitti.
+K|Ohne dass ich etwas gesagt habe, hat er mir geholfen.|Ben bir şey söylemeden bana yardım etti.|Er hat mir geholfen, ohne dass ich etwas gesagt habe.
+O|Mein Mitbewohner ist schwierig. Er nimmt mein Essen aus dem Kühlschrank, ohne zu fragen. Statt das Geschirr zu spülen, lässt er alles in der Küche stehen. Gestern hat er Freunde eingeladen, ohne dass ich etwas wusste. Ich glaube, ich suche mir eine neue Wohnung.|Ev arkadaşım zor biri. Sormadan buzdolabından yemeğimi alıyor. Bulaşığı yıkamak yerine her şeyi mutfakta bırakıyor. Dün benim haberim olmadan arkadaşlarını davet etti. Sanırım kendime yeni bir daire arayacağım.|Was macht der Mitbewohner, statt das Geschirr zu spülen?~Er lässt alles in der Küche stehen.~Er kauft neues Geschirr.~Er bestellt Essen.|Was plant der Erzähler?~Eine neue Wohnung zu suchen.~Mit dem Vermieter zu sprechen.~Freunde einzuladen.
+O|Viele Menschen kaufen online, ohne die Produkte vorher zu sehen. Statt in die Stadt zu fahren, bestellen sie alles im Internet. Das ist bequem. Aber oft schicken sie die Sachen zurück, ohne dass sie bezahlen müssen. Das kostet die Firmen viel Geld.|Birçok insan ürünleri önceden görmeden internetten alışveriş yapıyor. Şehre gitmek yerine her şeyi internetten sipariş ediyorlar. Bu rahat. Ama çoğu zaman ödemek zorunda kalmadan eşyaları geri gönderiyorlar. Bu, firmalara çok paraya mal oluyor.|Was machen viele Menschen statt in die Stadt zu fahren?~Sie bestellen im Internet.~Sie bleiben zu Hause und kaufen nichts.~Sie fahren mit dem Bus.|Was kostet die Firmen viel Geld?~Die Rücksendungen.~Die Werbung.~Die Läden in der Stadt.
+O|Liebe Ayşe, gestern ist etwas Lustiges passiert: Ich bin aus dem Haus gegangen, ohne meinen Schlüssel mitzunehmen. Statt den Schlüsseldienst anzurufen, habe ich bei meiner Nachbarin geklingelt. Sie hat einen Ersatzschlüssel. So bin ich in die Wohnung gekommen, ohne einen Cent zu bezahlen! Deine Zeynep|Sevgili Ayşe, dün komik bir şey oldu: Anahtarımı almadan evden çıktım. Çilingiri aramak yerine komşumun kapısını çaldım. Onda yedek anahtar var. Böylece bir kuruş ödemeden daireye girdim! Zeynep'in|Was hat Zeynep vergessen?~Ihren Schlüssel.~Ihr Handy.~Ihre Tasche.|Was hat sie gemacht, statt den Schlüsseldienst anzurufen?~Bei der Nachbarin geklingelt.~Gewartet.~Die Tür aufgebrochen.

@@ -1,0 +1,52 @@
+# g32 · n-Deklination
+Y|Ich kenne den ___ nicht. (Kollege)|Kollegen||n-sınıfı: Akkusativ'de *-n*: *den Kollegen*.
+Y|Ich spreche mit dem ___. (Student)|Studenten||*-ent* → *dem Studenten*.
+Y|Der ___ wohnt neben mir. (Junge, Nominativ)|Junge||Nominativ'de ek yok: *der Junge*.
+Y|Hast du den ___ gesehen? (Polizist)|Polizisten||*-ist* → *den Polizisten*.
+Y|Das ist das Auto des ___. (Nachbar)|Nachbarn||Genitiv: *des Nachbarn*.
+Y|Ich habe meinem ___ geholfen. (Kunde)|Kunden||Dativ: *dem Kunden*.
+Y|Wir fragen den ___. (Präsident)|Präsidenten||*-ent* → *den Präsidenten*.
+Y|Der Lehrer lobt den ___. (Praktikant)|Praktikanten||*-ant* → *den Praktikanten*.
+Y|Ich habe einen ___ getroffen. (Franzose)|Franzosen||*-e* ile biten canlı: *einen Franzosen*.
+Y|Sie wartet auf ihren ___. (Neffe)|Neffen||*auf ihren Neffen*.
+Y|Der Arzt untersucht den ___. (Patient)|Patienten||*den Patienten*.
+Y|Ich schenke dem ___ ein Buch. (Junge)|Jungen||Dativ: *dem Jungen*.
+Y|Kennst du diesen ___? (Mensch)|Menschen||*der Mensch → den Menschen*.
+Y|Der Name des ___ ist Nico. (Junge, Genitiv)|Jungen||Genitiv: *des Jungen*.
+S|Ich frage meinen ___.|Kollegen|Kollege|Kolleges|Akkusativ: *-n*.
+S|Der ___ hat mir geholfen.|Polizist|Polizisten|Polizistes|Nominativ: ek yok.
+S|Wir sprechen mit dem ___.|Studenten|Student|Studentes|Dativ: *-en*.
+S|Das ist das Büro des ___.|Präsidenten|Präsidents|Präsident|Genitiv: *-en* (*-s* yok).
+S|Ich sehe einen ___ im Garten.|Hasen|Hase|Hases|*der Hase → einen Hasen*.
+S|Die Kinder spielen mit dem ___.|Bären|Bär|Bärs|*der Bär → dem Bären*.
+S|Der ___ kauft Brot.|Kunde|Kunden|Kundes|Nominativ: *der Kunde*.
+S|Ich habe dem ___ den Weg gezeigt.|Touristen|Tourist|Touristes|Dativ: *dem Touristen*.
+H|Ich kenne den Student.|Ich kenne den Studenten.||n-sınıfı Akkusativ: *-en*.
+H|Der Kollege ist sehr nett.|=|Doğru: Nominativ.
+H|Ich helfe dem Nachbar.|Ich helfe dem Nachbarn.||Dativ: *-n*.
+H|Das ist das Haus des Nachbars.|Das ist das Haus des Nachbarn.||n-sınıfı Genitiv *-n* (*-s* değil).
+H|Wir haben den Polizisten gefragt.|=|Doğru.
+H|Der Arzt spricht mit dem Patient.|Der Arzt spricht mit dem Patienten.||Dativ: *-en*.
+H|Kennst du den Herrn dort?|=|Doğru: *der Herr → den Herrn*.
+H|Ich habe einen Kollege angerufen.|Ich habe einen Kollegen angerufen.||Akkusativ: *-n*.
+D|Akkusativ'e çevir: "Ich kenne …"|Das ist der Kollege.|Ich kenne den Kollegen.||*den Kollegen*.
+D|Dativ'e çevir: "Ich helfe …"|Das ist der Nachbar.|Ich helfe dem Nachbarn.||*dem Nachbarn*.
+D|Akkusativ'e çevir: "Ich frage …"|Das ist der Student.|Ich frage den Studenten.||*den Studenten*.
+D|Genitiv'e çevir.|das Auto von dem Kunden|das Auto des Kunden||*des Kunden*.
+D|Dativ'e çevir: "Ich spreche mit …"|Das ist der Präsident.|Ich spreche mit dem Präsidenten.||*dem Präsidenten*.
+D|Akkusativ'e çevir: "Wir suchen …"|Das ist ein Praktikant.|Wir suchen einen Praktikanten.||*einen Praktikanten*.
+D|Dativ'e çevir: "Sie gibt … das Eis."|Das ist der Junge.|Sie gibt dem Jungen das Eis.||*dem Jungen*.
+D|Nominativ'e çevir: "Das ist …"|Ich sehe den Elefanten.|Das ist der Elefant.|Das ist ein Elefant.|Nominativ'de ek yok.
+C|Yeni iş arkadaşını tanıyor musun?|Kennst du den neuen Kollegen?|Kennst du die neue Kollegin?|*den Kollegen*.
+C|Öğrenciyle konuşuyorum.|Ich spreche mit dem Studenten.|Ich spreche mit der Studentin.|*dem Studenten*.
+C|Polise sordum.|Ich habe den Polizisten gefragt.|Ich habe die Polizei gefragt./Ich habe die Polizistin gefragt.|*den Polizisten*.
+C|Komşumuza yardım ediyoruz.|Wir helfen unserem Nachbarn.|Wir helfen unserer Nachbarin.|*dem Nachbarn*.
+C|Doktor hastayı muayene ediyor.|Der Arzt untersucht den Patienten.|Die Ärztin untersucht den Patienten./Der Arzt untersucht die Patientin.|*den Patienten*.
+C|Bu çocuğun adı ne?|Wie heißt der Junge?|Wie ist der Name des Jungen?|*der Junge*.
+K|Ich habe gestern den neuen Kollegen kennengelernt.|Dün yeni iş arkadaşıyla tanıştım.|Gestern habe ich den neuen Kollegen kennengelernt.
+K|Der Arzt hat dem Patienten eine Tablette gegeben.|Doktor hastaya bir hap verdi.
+K|Kennst du den Namen des Präsidenten?|Başkanın adını biliyor musun?
+K|Wir haben einen Touristen aus Japan getroffen.|Japonyalı bir turistle karşılaştık.|Einen Touristen aus Japan haben wir getroffen.
+O|In unserer Firma arbeitet seit Montag ein neuer Praktikant. Er heißt Jonas und ist Student. Mein Chef hat mich gebeten, dem Praktikanten alles zu zeigen. Ich habe den Studenten auch den anderen Kollegen vorgestellt. Am Freitag gehen wir mit dem neuen Kollegen essen.|Firmamızda pazartesiden beri yeni bir stajyer çalışıyor. Adı Jonas ve üniversite öğrencisi. Şefim stajyere her şeyi göstermemi rica etti. Öğrenciyi diğer iş arkadaşlarına da tanıttım. Cuma günü yeni iş arkadaşıyla yemeğe gidiyoruz.|Wer ist Jonas?~Ein neuer Praktikant.~Der neue Chef.~Ein Kunde.|Was machen sie am Freitag?~Sie gehen mit dem neuen Kollegen essen.~Sie stellen Jonas vor.~Sie haben ein Meeting.
+O|Gestern hat ein Junge auf der Straße einen kleinen Hund gefunden. Er hat den Hund zur Polizei gebracht. Ein Polizist hat dem Jungen gedankt. Später hat der Besitzer des Hundes angerufen: Es war unser Nachbar! Der Nachbar hat dem Jungen 20 Euro geschenkt.|Dün bir çocuk sokakta küçük bir köpek buldu. Köpeği polise götürdü. Bir polis çocuğa teşekkür etti. Daha sonra köpeğin sahibi aradı: Komşumuzmuş! Komşu çocuğa 20 avro hediye etti.|Wohin hat der Junge den Hund gebracht?~Zur Polizei.~Nach Hause.~Zum Tierarzt.|Wer war der Besitzer des Hundes?~Der Nachbar.~Der Polizist.~Der Junge.
+O|Liebe Kunden, unser Kundenservice ist für Sie da. Jeder Kunde bekommt eine persönliche Beratung. Wenn Sie einen Kollegen sprechen möchten, rufen Sie bitte vor 18 Uhr an. Für Studenten gibt es 10 Prozent Rabatt.|Sevgili müşteriler, müşteri hizmetlerimiz sizin için burada. Her müşteri kişisel danışmanlık alır. Bir çalışanımızla görüşmek isterseniz lütfen saat 18'den önce arayın. Öğrencilere yüzde 10 indirim var.|Wer bekommt 10 Prozent Rabatt?~Studenten.~Alle Kunden.~Kollegen.|Bis wann soll man anrufen?~Bis 18 Uhr.~Bis 20 Uhr.~Bis 16 Uhr.
