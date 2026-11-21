@@ -896,6 +896,7 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 .kzpk{display:flex;flex-direction:column;gap:10px}
 .livec{border:2px solid var(--lime,#d6e54a)}
 .livr{gap:10px;align-items:center;margin-top:8px}
+.nkc{border:2px solid var(--lime,#d6e54a)}
 .btn.backto{justify-content:flex-start;text-align:left;font-size:13.5px;background:var(--card2)}
 details.kzt-d{padding:12px 14px}
 details.kzt-d>summary{display:flex;align-items:center;gap:10px}
@@ -7279,7 +7280,7 @@ function navView(){return {t:TAB,X:X,S:STACK.slice()};}
 function navEq(a,b){if(!a||!b||a.t!==b.t||a.X!==b.X||a.S.length!==b.S.length)return false;for(var i=0;i<a.S.length;i++)if(a.S[i]!==b.S[i])return false;return true;}
 function navStop(){stopSay();if(X&&X.timer){clearInterval(X.timer);X.timer=null;if(X.run){X.run=false;X.end=true;}}}
 function navStash(){if(X)X._sy=$('page').scrollTop;else ROOTY[TAB]=window.scrollY||0;NAV[TAB]={X:X,S:STACK.slice(),wy:ROOTY[TAB]||0};}
-function navApply(v,wy){TAB=v.t;X=v.X||null;STACK=(v.S||[]).slice();OPEN=null;var p=$('page');if(wy!=null)ROOTY[TAB]=wy;render();
+function navApply(v,wy){TAB=v.t;X=v.X||null;STACK=(v.S||[]).slice();OPEN=null;var p=$('page');if(wy!=null)ROOTY[TAB]=wy;liveWake(X);render();
   if(X){p.hidden=false;document.body.style.overflow='hidden';drawPage();p.scrollTop=X._sy||0;}
   else{p.hidden=true;document.body.style.overflow='';}
   window.scrollTo(0,ROOTY[TAB]||0);}
@@ -7310,13 +7311,16 @@ function liveOpen(o){return o&&o.kind==='lesson'&&!o.fin&&o.day===today()&&o.ite
 function liveStarted(o){return liveOpen(o)&&(o.i>0||(o.stg==='anla'&&((o.as||0)>0||o.i>=0)));}
 function navForget(o){for(var t in NAV){var n=NAV[t];if(!n)continue;n.S=(n.S||[]).filter(function(x){return x!==o;});if(n.X===o)n.X=n.S.length?n.S.pop():null;}STACK=STACK.filter(function(x){return x!==o;});}
 function liveWhere(o){var w=STT[o.stg]||'';if(o.i>=0&&o.i<o.items.length)w+=' · soru '+(o.i+1)+' / '+o.items.length;else if(o.stg==='anla'&&GL[o.id])w+=' · adım '+((o.as||0)+1)+' / '+ANLA.length;return w;}
-function liveCard(){var L=[];for(var k in LIVE){var o=LIVE[k];if(liveStarted(o)&&o!==X&&STACK.indexOf(o)<0)L.push([k,o]);}if(!L.length)return '';
-  return '<div class="card livec"><div class="eyebrow">Yarım kalan</div>'+L.slice(0,3).map(function(x){var o=x[1],g=GBY[o.id];
+function liveCard(){var L=[];for(var k in LIVE){var o=LIVE[k];if(liveStarted(o)&&o!==X&&STACK.indexOf(o)<0)L.push([k,o]);}
+  var P=halfPrev().filter(function(h){return !L.some(function(x){return x[0]===liveKey(h.id,h.k);});});
+  if(!L.length&&!P.length)return '';
+  return '<div class="card livec"><div class="eyebrow">'+(L.length?'Yarım kalan':'Nerede kalmıştık?')+'</div>'+P.slice(0,2).map(function(h){var g=GBY[h.id];
+      return '<div class="row livr"><div style="flex:1;min-width:0"><b lang="de">'+esc(g[2])+'</b><div class="small muted">'+halfTxt(h)+' Bugün bu adım baştan, yeni sorularla; önce kısa hatırlatma.</div></div><button class="btn sm lime" data-act="liveres" data-k="'+liveKey(h.id,h.k)+'">Hatırla ve başla</button></div>';}).join('')+L.slice(0,3).map(function(x){var o=x[1],g=GBY[o.id];
     return '<div class="row livr"><div style="flex:1;min-width:0"><b lang="de">'+esc(g?g[2]:o.id)+'</b><div class="small muted">'+esc(liveWhere(o))+'</div></div><button class="link" data-act="livedrop" data-k="'+x[0]+'" title="Bu yarım dersi listeden çıkar; bir dahaki sefere baştan başlar">bırak</button><button class="btn sm lime" data-act="liveres" data-k="'+x[0]+'">Kaldığın yerden devam</button></div>';}).join('')+'</div>';}
 var NAVACT={liveres:function(b){var p=String(b.dataset.k).split('|');startStage(p[0],p[1]);},livedrop:function(b){delete LIVE[b.dataset.k];navSaveSoon();render();}};
 /* sayfa yenilense de kaldığın yer: aynı gün içinde sekme, açık sayfalar, yarım dersler, oturum */
 var NAVKEEP={topic:1,lesson:1,uret:1,ez:1,ezq:1,ezfill:1,hub:1,hubs:1,lib:1,kmap:1,tline:1,err:1,kalip:1,wlist:1,exams:1,ek:1,note:1,mine:1,day:1,sbreak:1,sdone:1};
-function navSaveSoon(){clearTimeout(navSaveSoon.t);navSaveSoon.t=setTimeout(navSave,300);}
+function navSaveSoon(){clearTimeout(navSaveSoon.t);navSaveSoon.t=setTimeout(navSave,300);if(X&&X.kind==='lesson'&&X.stg==='anla'&&LIVE[liveKey(X.id,X.stg)]===X)halfPut(X);}
 function navSave(){if(!HON)return;try{navStash();var objs=[],ix=function(o){if(!o||!NAVKEEP[o.kind])return -1;var i=objs.indexOf(o);if(i<0){objs.push(o);i=objs.length-1;}return i;},tabs={},live={},t,k;
   for(t in NAV){var n=NAV[t];if(n)tabs[t]={X:ix(n.X),S:(n.S||[]).map(ix).filter(function(i){return i>=0;}),wy:n.wy||0};}
   for(k in LIVE)if(liveOpen(LIVE[k]))live[k]=ix(LIVE[k]);
@@ -7326,9 +7330,48 @@ function navRestore(){try{var j=JSON.parse(localStorage.getItem('wort:nav')||'nu
   for(k in j.live||{}){var L=g(j.live[k]);if(L)LIVE[k]=L;}
   if(j.sess&&typeof j.sess==='object')SESS=j.sess;
   var n0=NAV[j.tab]||{};TAB=j.tab||'bugun';X=n0.X||null;STACK=(n0.S||[]).slice();}catch(e){NAV={};LIVE={};}}
-function navReset(){NAV={};LIVE={};try{localStorage.removeItem('wort:nav');}catch(e){}}
+function navReset(){NAV={};LIVE={};try{localStorage.removeItem('wort:nav');localStorage.removeItem('wort:half');}catch(e){}}
+/* ---- yarıda bırakılan ders: aynı gün kaldığın yerden, ertesi gün o adım baştan (konu değil, yalnız o adım) ----
+   Aynı gün 20 dakikadan uzun ara verip dönünce önce "Nerede kalmıştık?" ekranı (konu, adım, kaçıncı soru, kural özeti).
+   Ertesi gün: Bugün'de "Dün yarım kaldı" kartı; adım yeni sorularla baştan, girişte kısa hatırlatma açık gelir.
+   Dünkü yarım deneme cihazda saklanır (wort:half); adım geçilince silinir. */
+var HALFK={anla:1,tani:1,kur:1,rv:1,pek:1},WAKEMS=20*60000;
+function halfAll(){try{return JSON.parse(localStorage.getItem('wort:half')||'{}')||{};}catch(e){return {};}}
+function halfPut(o){if(!o||o.kind!=='lesson'||!HALFK[o.stg]||!liveStarted(o))return;var H=halfAll();
+  H[liveKey(o.id,o.stg)]={id:o.id,k:o.stg,d:o.day||today(),i:Math.max(0,o.i),n:o.items.length,ok:o.ok||0,as:o.as||0};try{localStorage.setItem('wort:half',JSON.stringify(H));}catch(e){}}
+function halfDrop(key){var H=halfAll();if(H[key]){delete H[key];try{localStorage.setItem('wort:half',JSON.stringify(H));}catch(e){}}}
+/* önceki günlerden kalan, adımı hâlâ geçilmemiş yarım denemeler */
+function halfPrev(){var H=halfAll(),t=today(),o=[],k;for(k in H){var h=H[k];if(!h||!GBY[h.id]||h.d>=t||dd(h.d,t)>7||stgDone(h.id,h.k))continue;var L=LIVE[k];if(liveStarted(L))continue;o.push(h);}return o;}
+function halfTxt(h){var w=h.k==='anla'?(GL[h.id]?'kuralın '+(h.as+1)+'. adımına':'kuralın ortasına'):h.n+' sorudan '+h.i+' tanesini cevaplamıştın ('+h.ok+' doğru)';
+  return (dd(h.d,today())===1?'Dün':trShort(h.d)+' günü')+' <b>'+esc(STT[h.k]||'')+'</b> adımında '+w+(h.k==='anla'?' gelmiştin':'')+'.';}
+function nkCard(id,k){var h=halfPrev().filter(function(x){return x.id===id&&x.k===k;})[0];if(!h)return '';
+  return '<div class="card nkc"><div class="eyebrow">Nerede kalmıştık?</div><p style="margin-top:6px">'+halfTxt(h)+' Bugün bu adımı <b>baştan</b> yapıyoruz'+(h.k==='anla'?'':', yeni sorularla (dün gördüğün sorular sona kaldı)')+'. Önce aşağıdaki kısa hatırlatmaya bir göz at.</p><p class="small muted" style="margin-top:6px">Geçtiğin adımlar geçilmiş sayılır; konunun başına dönmüyorsun.</p></div>';}
+/* uzun aradan dönüş: ders ekranı yerine önce "Nerede kalmıştık?" */
+function liveWake(o){if(!o||o.kind!=='lesson'||o.fin||o.i>=o.items.length)return;
+  if(o.day&&o.day!==today()&&liveStarted({kind:'lesson',fin:0,day:today(),items:o.items,i:o.i,stg:o.stg,as:o.as})){o.stale=1;return;}
+  if(o.i>0&&o.ts&&Date.now()-o.ts>WAKEMS)o.resume=1;}
+function lessonWakeHtml(){var g=GBY[X.id],n=X.items.length,k=X.stg,b;
+  if(X.stale){
+    b='<div><div class="eyebrow">Nerede kalmıştık?</div><h1 lang="de">'+esc(g[2])+'</h1></div><div class="card"><p>Bu ders <b>'+(dd(X.day,today())===1?'dün':trShort(X.day))+'</b> <b>'+esc(STT[k]||'')+'</b> adımında yarım kaldı ('+n+' sorudan '+Math.max(0,X.i)+' tanesi). Yeni günde bu adımı <b>baştan</b>, yeni sorularla yapıyoruz; geçtiğin adımlar geçilmiş sayılır.</p></div>'+
+      '<div class="card"><div class="eyebrow">Kısa hatırlatma</div><div class="sum" style="margin-top:6px"><p>'+rich(g[3])+'</p></div></div>'+
+      '<button class="btn lime big wide" data-act="lrestart">Adımı baştan başlat</button>';
+    return b;}
+  b='<div><div class="eyebrow">Nerede kalmıştık?</div><h1 lang="de">'+esc(g[2])+'</h1></div>'+
+    '<div class="card"><div class="row"><b>'+esc(STT[k]||'')+'</b><div class="sp"></div><span class="small muted num">'+X.i+' / '+n+' soru · '+X.ok+' doğru</span></div><div style="margin-top:8px">'+bar(X.i/n,'var(--gram)','thick')+'</div>'+
+    '<p class="small" style="margin-top:8px">Sıradaki: <b>soru '+(X.i+1)+'</b>. '+(PASS[k]?'Adımı geçmek için sonunda en az %'+Math.round(PASS[k]*100)+' doğru gerekiyor.':'')+'</p></div>'+
+    '<div class="card"><div class="eyebrow">Kural · bir cümlede</div><div class="sum" style="margin-top:6px"><p>'+rich(g[3])+'</p></div>'+
+    '<details style="margin-top:8px"><summary class="small" style="cursor:pointer;font-weight:700">Kuralın özeti</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">'+sumHtml(X.id)+'</div></details></div>'+
+    notesBox(X.id,false)+
+    '<button class="btn lime big wide" data-act="lresume">Kaldığın yerden devam · soru '+(X.i+1)+'</button>'+
+    '<button class="link center" data-act="lrestart">Bu adımı baştan al</button>';
+  return b;}
+var HALFACT={
+  lresume:function(){X.resume=0;X.ts=Date.now();drawPage();$('page').scrollTop=0;},
+  lrestart:function(){if(!X||X.kind!=='lesson')return;var id=X.id,k=X.stg;delete LIVE[liveKey(id,k)];X.fin=1;startStage(id,k);}
+};
+
 window.addEventListener('pagehide',function(){navSave();});
-document.addEventListener('visibilitychange',function(){if(document.hidden)navSave();});
+document.addEventListener('visibilitychange',function(){if(document.hidden){navSave();return;}if(X&&X.kind==='lesson'){var r0=X.resume,s0=X.stale;liveWake(X);if((X.resume&&!r0)||(X.stale&&!s0))drawPage();}});
 
 function drawPage(){
   if(!X)return;
@@ -7584,7 +7627,7 @@ function startStage(id,k,only){
   if(k==='uret'){openPage({kind:'uret',id:id,ck:[0,0,0]});return;}
   /* bugün açılıp bitmemiş aynı aşama varsa baştan değil kaldığın yerden (GEZİNME) */
   var L=!only&&k!=='free'?LIVE[liveKey(id,k)]:null;
-  if(liveOpen(L)){if(X===L)return;navForget(L);openPage(L);$('page').scrollTop=L._sy||0;if(liveStarted(L))toast('Kaldığın yerden devam: '+liveWhere(L));return;}
+  if(liveOpen(L)){if(X===L)return;navForget(L);liveWake(L);openPage(L);$('page').scrollTop=L._sy||0;if(liveStarted(L))toast('Kaldığın yerden devam: '+liveWhere(L));return;}
   var items=only||tItems(id,k),direct=!!only||k==='free';
   var o={kind:'lesson',id:id,stg:k,items:items,i:direct?0:-1,ok:0,res:[],p0:tprog(id),as:0,ad:1,rv:{},day:today()};
   if(direct)prepItem(o);
@@ -7600,21 +7643,23 @@ function qbAltSet(o,it){if(!it||!it.altS||!it.altS.length||!o.okset)return;var s
 function lessonRecord(ok){
   var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;
   var gx0=gxs(it.tid||X.id);gx0.m[it.k]=ok?1:0;gx0.ls=gx0.ls||{};gx0.ls[it.k]=Date.now();var d=xday();d.g=(d.g||0)+1;save();
+  X.ts=Date.now();if(LIVE[liveKey(X.id,X.stg)]===X){var i0=X.i;X.i=i0+1;halfPut(X);X.i=i0;}
 }
 function recordAny(ok){if(X.kind==='ezq')ezRecord(ok);else lessonRecord(ok);}
 function lessonIntro(){
   var g=GBY[X.id],k=X.stg,n=X.items.length,b='<div><div class="eyebrow">'+STT[k]+' · '+esc(g[1])+'</div><h1 lang="de">'+esc(g[2])+'</h1></div>';
   if(k==='anla'&&GL[X.id])return anlaHtml();
   if(k==='anla'){
-    b+='<p class="muted">Acele etme: önce kuralı oku, örneklere bak. Sonra 3 kısa soru (en az 2\'si doğru olmalı).</p>'+sumHtml(X.id)+kzPack(X.id,'anla')+
+    b+=nkCard(X.id,'anla')+'<p class="muted">Acele etme: önce kuralı oku, örneklere bak. Sonra 3 kısa soru (en az 2\'si doğru olmalı).</p>'+sumHtml(X.id)+kzPack(X.id,'anla')+
       '<div class="eyebrow" style="margin:4px">Örnek cümleler · sesli oku</div>'+exHtml(g)+
       '<div class="tipbox"><div class="eyebrow">Kendine anlat</div><p>Özete bakmadan, kuralı Türkçe tek bir cümleyle yüksek sesle söyle: <b>ne zaman</b> kullanılır, <b>nasıl</b> kurulur? Kendine açıklamak, okuyup geçmekten çok daha kalıcıdır.</p></div>'+
       '<button class="btn lime big wide" data-act="lgo">Anladım · 3 kontrol sorusu</button>';
     return b;
   }
   var what={tani:'12 soru: şıklı ve yazarak boşluk, hata bulma, cümle kurma. Sorular her seferinde başka. Geçmek için %75.',kur:'15 soru: yazarak boşluk, hata bul ve düzelt, dönüştür, Türkçeden çevir, cümle kur ve kısa bir okuma parçası. Geçmek için %70. ä ö ü ß için tuşlar var; ae, oe, ue, ss yazman da kabul.',rv:'13 soru: hiç görmediğin ya da en uzun süredir görmediğin sorular; geçen sefer yanlış yaptıkların öne alınır; 2\'si önceki konulardan. Geçmek için %80.',pek:'13 soru: tekrar gibi, hiç görmediğin sorularla. Geçmek için %80; iki ayrı günde geçince konu pekiştir listesinden çıkar.',free:'12 karışık soru; aşamaya sayılmaz.'}[k]||'';
-  b+=notesBox(X.id,k==='rv'||k==='pek')+recallCard(X.id)+kzPack(X.id,'pre')+
-    '<details class="card"><summary>Uzun özet</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(X.id)+'</div></details>'+
+  var nk=nkCard(X.id,k);
+  b+=nk+notesBox(X.id,k==='rv'||k==='pek'||!!nk)+recallCard(X.id)+kzPack(X.id,'pre')+
+    '<details class="card"'+(nk?' open':'')+'><summary>Uzun özet</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(X.id)+'</div></details>'+
     '<p class="muted">'+what+'</p><button class="btn lime big wide" data-act="lgo">Başla</button>';
   return b;
 }
@@ -7654,6 +7699,8 @@ function tyBody(o,it){
 }
 function pLesson(){
   var g=GBY[X.id],n=X.items.length;
+  if((X.resume||X.stale)&&!X.fin&&X.i<n)return {t:esc(g[2]),b:lessonWakeHtml()};
+  X.ts=Date.now();
   if(X.i<0)return {t:esc(g[2]),b:lessonIntro()};
   if(X.i>=n)return {t:esc(g[2]),b:lessonEnd()};
   var it=X.items[X.i],b=progBar(X.i,n);
@@ -7664,6 +7711,7 @@ function pLesson(){
 }
 function lessonEnd(){
   var id=X.id,n=X.items.length,acc=n?X.ok/n:0,k=X.stg,t=X.day||today(),x=gxs(id);
+  if(!X.fin)halfDrop(liveKey(id,k));
   if(!X.fin){
     X.fin=1;if(k!=='free'||Object.keys(x.stg).length)x.last=t;X.pass=acc>=(PASS[k]||0);var first=!x.stg[k];  /* başlanmamış konuda serbest alıştırma konuyu "çalışılıyor" yapmaz */
     if((k==='anla'||k==='tani'||k==='kur')&&X.pass&&!x.stg[k])x.stg[k]=t;
@@ -8751,7 +8799,7 @@ function importJSON(txt){
 /* ================= OLAYLAR ================= */
 var ACT={
   /* sekmeler: her sekme kendi açık sayfalarını saklar (GEZİNME); açık sekmeye yeniden dokunmak köke götürür, yarım ders kaybolmaz */
-  tab:function(b){var v=b.dataset.v;if(v==='ilerleme')v='ben';
+  tab:function(b){var v=b.dataset.v;if(v==='ilerleme')v='ben';try{b.blur();}catch(e){}  /* odak sekmede kalırsa Enter yeniden sekmeye basar */
     if(LIBT[v]){if(TAB!=='kutup')goTab('kutup');openPage({kind:'lib',v:v});return;}
     if(v===TAB){navStop();if(X){X._sy=$('page').scrollTop;HPUSH=1;}STACK=[];X=null;$('page').hidden=true;document.body.style.overflow='';OPEN=null;render();window.scrollTo(0,0);return;}
     HPUSH=1;goTab(v);},
@@ -8963,7 +9011,7 @@ var RDAY=null;
    sessizce bozuluyordu (W.q boş). Ekran açıksa yalnız işaretlenir; ekran yeniden açılınca kuyruk yeniden kurulur. */
 function wReset(){if(X&&X.kind==='review'&&W.q){W.stale=1;return;}W.q=null;}
 function wGuard(){if(W.q)return true;var cur=W.cur,pk=W.pick;buildQueue();if(cur&&card(cur.id)){W.q=W.q.filter(function(x){return x!==cur.id;});W.q.unshift(cur.id);W.cur=cur;W.pick=pk;W.n0=Math.max(W.n0||0,W.q.length);}return true;}
-function dayRoll(){if(RDAY&&today()!==RDAY){wReset();if(!X)render();}}
+function dayRoll(){if(RDAY&&today()!==RDAY){wReset();if(!X)render();else if(X.kind==='lesson'){liveWake(X);if(X.stale)drawPage();}}}
 document.addEventListener('visibilitychange',function(){if(!document.hidden)dayRoll();});
 setInterval(dayRoll,30000);
 
@@ -11454,7 +11502,7 @@ var ANLA=[['kopru','Bildiğin yerden başla'],['hub','Büyük resim'],['mantik',
 function anlaHtml(){
   var id=X.id,g=GBY[id],gl=GL[id],k=X.as||0,sc=ANLA[k],n=ANLA.length,b='';
   b+='<div class="dots">'+ANLA.map(function(a,i){return '<i class="'+(i<k?'d':i===k?'c':'')+'"></i>';}).join('')+'</div>';
-  b+='<div><div class="eyebrow">Öğren · kural · '+(k+1)+'/'+n+'</div><h1>'+esc(sc[1])+'</h1></div>';
+  b+='<div><div class="eyebrow">Öğren · kural · '+(k+1)+'/'+n+'</div><h1>'+esc(sc[1])+'</h1></div>'+(k===0?nkCard(id,'anla'):'');
   if(ekData()[id])b+='<button class="link" style="align-self:flex-start" data-act="ekopen" data-id="'+id+'">Takıldın mı? Sade anlatımı aç</button>';
   var nextBtn='<button class="btn lime big wide" data-act="anext">Devam</button>';
   if(sc[0]==='kopru')b+=preQ(false)+'<p class="muted">Yeni bir şeyi ancak bildiğin bir şeye bağlarsan aklında kalır. <b lang="de">'+esc(g[2])+'</b> şunlara dayanıyor:</p>'+glKopru(gl)+kzPack(id,'anla');
@@ -11672,12 +11720,12 @@ document.addEventListener('keydown',function(e){
   var root=$('page');
   if(/^[1-6]$/.test(e.key)){var o=root.querySelectorAll('[data-act="lpick"],[data-act="rvpick"],[data-act="upick"],[data-act="tpick"],[data-act="bpick"],[data-act="lspred"],[data-act="lswq"]:not([disabled]),[data-act="lsgi"]:not([disabled]),[data-act="lsq"],[data-act="lsord"],[data-act="lsvw"]:not([disabled])');var b=o[+e.key-1];if(b){e.preventDefault();b.click();}return;}
   if(e.key==='Enter'&&X.kind==='lese'){var ln=root.querySelector('[data-act="lsvn"],[data-act="lsnext"]');if(ln){e.preventDefault();ln.click();}return;}
-  if(e.key==='Enter'||e.key===' '){var nx=root.querySelector('[data-act="lnext"],[data-act="sznext"],[data-act="rvnext"],[data-act="unext"],[data-act="dknext"],[data-act="anext"],[data-act="adim"],[data-act="rvok"],[data-act="rvshow"],[data-act="lgo"],[data-act="tgo"]');if(nx){e.preventDefault();nx.click();}}
+  if(e.key==='Enter'||e.key===' '){var nx=root.querySelector('[data-act="lresume"],[data-act="lnext"],[data-act="sznext"],[data-act="rvnext"],[data-act="unext"],[data-act="dknext"],[data-act="anext"],[data-act="adim"],[data-act="rvok"],[data-act="rvshow"],[data-act="lgo"],[data-act="tgo"]');if(nx){e.preventDefault();nx.click();}}
 });
 var KBDK={lesson:1,ezq:1,review:1,luck:1,ptest:1,satz:1,dikt:1};
 /* ---------------- başlat ---------------- */
 applyTheme();
-for(var kpa in KPACT)ACT[kpa]=KPACT[kpa];for(kpa in QBACT)ACT[kpa]=QBACT[kpa];for(kpa in KZACT)ACT[kpa]=KZACT[kpa];for(kpa in NAVACT)ACT[kpa]=NAVACT[kpa];
+for(var kpa in KPACT)ACT[kpa]=KPACT[kpa];for(kpa in QBACT)ACT[kpa]=QBACT[kpa];for(kpa in KZACT)ACT[kpa]=KZACT[kpa];for(kpa in NAVACT)ACT[kpa]=NAVACT[kpa];for(kpa in HALFACT)ACT[kpa]=HALFACT[kpa];
 load();
 parsePool();
 syLoad();

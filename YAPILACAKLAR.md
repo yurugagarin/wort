@@ -275,3 +275,10 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Bugün açılıp bitmeyen dersler kaybolmaz: aynı aşamayı yeniden açınca (Bugün'deki Devam, konu sayfası) kaldığın sorudan devam eder; Bugün'ün üstünde "Yarım kalan · konu · aşama · soru 4/12 · Kaldığın yerden devam" (istersen "bırak").
 - [x] Sayfa yenilense ya da tarayıcı kapanıp açılsa da (aynı gün) sekme, açık sayfalar, yarım dersler ve günün oturumu geri gelir.
 - [x] Denetim: Bugün oturumu → Öğren 4. adım → Yol → Kütüphane → Bugün (aynı adım); test 4. soruda tarayıcı geri/ileri; aynı sekmeye dokunma ve yarım kalandan devam; yenileme; oturumda Geri → ara → Devam (aynı soru); Yol'da konu ve ders; kaydırma yerleri; telefon görünümü; tam gün, 7 günlük simülasyon; hata yok.
+
+## Tur 27 · Yarıda bırakılan ders: aynı gün devam, ertesi gün adım baştan (21 Kasım)
+- [x] Aynı gün: ders kaldığın sorudan sürer. 20 dakikadan uzun ara verip dönersen (sekme, başka sayfa, tarayıcı sekmesi, yenileme) önce "Nerede kalmıştık?": konu, adım, kaçıncı sorudasın, kaç doğru, geçme sınırı, kural bir cümlede, kuralın özeti, notların; "Kaldığın yerden devam" (Enter) ya da "Bu adımı baştan al".
+- [x] Ertesi gün: konunun başından değil, yarım kalan adımın başından, yeni sorularla (dün görülen sorular sona kalır); geçilen adımlar geçilmiş sayılır. Bugün'de "Nerede kalmıştık? · Dün Öğren · test adımında 12 sorudan 5'ini cevaplamıştın (5 doğru) · Hatırla ve başla"; adımın girişinde aynı not ve uzun özet açık gelir.
+- [x] Uygulama gece açık kalırsa dünkü yarım ders ekranı "Yeni günde bu adım baştan" diye açılır.
+- [x] Değişmeyen kural: Üret'ten önce 3+ gün ara verilirse konu Öğren'den baştan (önceki kayıt saklanır).
+- [x] Sekmeye fareyle tıkladıktan sonra Enter'a basınca sekme yeniden açılıyordu; düğmeden odak kaldırıldı.
