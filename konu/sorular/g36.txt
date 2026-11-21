@@ -1,0 +1,52 @@
+# g36 · lassen
+Y|Ich ___ mein Auto reparieren. (lassen)|lasse||Yaptırmak: *lassen* + mastar sonda.
+Y|Er lässt sich die Haare ___. (schneiden)|schneiden||*sich die Haare schneiden lassen* = saçını kestirmek.
+Y|___ mich bitte in Ruhe! (lassen, emir, du)|Lass|lass|İzin/bırakmak: *Lass mich …*
+Y|Du ___ deinen Schlüssel immer im Auto liegen. (lassen)|lässt||*du lässt* (*a → ä*).
+Y|Wir haben das Dach reparieren ___. (lassen, Perfekt)|lassen||Perfekt'te iki mastar: *reparieren lassen*.
+Y|Meine Eltern ___ mich nie allein reisen. (lassen)|lassen||İzin vermek: *lassen*.
+Y|Ich habe meinen Pass verlängern ___. (lassen, Perfekt)|lassen||*verlängern lassen*.
+Y|Sie lässt ihr Kleid ___. (reinigen)|reinigen||*reinigen lassen* = temizletmek.
+Y|___ uns gehen! (lassen, emir, biz)|Lass|lass/Lasst/lasst|*Lass uns …* = Hadi …
+Y|Er ___ seine Kinder viel fernsehen. (lassen)|lässt||*er lässt*.
+Y|Ich habe meine Tasche im Zug liegen ___. (lassen, Perfekt)|lassen||*liegen lassen* = unutmak/bırakmak.
+Y|Wo lässt du deine Wäsche ___? (waschen)|waschen||*waschen lassen*.
+Y|Der Chef ___ uns früher nach Hause gehen. (lassen, Prät.)|ließ||Präteritum: *ließ*.
+Y|Hast du dich schon impfen ___? (lassen, Perfekt)|lassen||*sich impfen lassen* → Perfekt *impfen lassen*.
+S|Ich ___ meine Wohnung streichen.|lasse|lässt|lassen|*ich lasse*.
+S|Sie hat sich die Haare färben ___.|lassen|gelassen|lässt|Perfekt'te mastar: *lassen*.
+S|___ mich das machen!|Lass|Lässt|Lasse|Emir: *Lass*.
+S|Er lässt sein Fahrrad ___.|reparieren|repariert|zu reparieren|*lassen* + mastar (*zu* yok).
+S|Wir ___ die Kinder im Garten spielen.|lassen|lässt|lasst|*wir lassen*.
+S|Ich habe meinen Regenschirm im Café ___ lassen.|liegen|gelegen|zu liegen|*liegen lassen*.
+S|Lässt du dir die Pizza ___?|liefern|geliefert|zu liefern|*liefern lassen*.
+S|Er ___ den Arzt kommen.|ließ|lies|lasste|Präteritum: *ließ*.
+H|Ich lasse mein Auto reparieren.|=|Doğru.
+H|Ich habe mein Auto reparieren gelassen.|Ich habe mein Auto reparieren lassen.||Perfekt'te iki mastar: *reparieren lassen*.
+H|Er lässt zu reparieren das Fahrrad.|Er lässt das Fahrrad reparieren.||*lassen* + mastar (*zu* yok), mastar sonda.
+H|Lass mich bitte schlafen!|=|Doğru.
+H|Du lasst immer alles liegen.|Du lässt immer alles liegen.||*du lässt*.
+H|Wir haben die Heizung prüfen lassen.|=|Doğru.
+H|Ich lasse mir die Haare schneiden.|=|Doğru.
+H|Sie hat ihre Tasche im Bus liegen gelassen.|=|Doğru: *liegen lassen*'de *gelassen* de kullanılır.
+D|"lassen" ile yaptırma cümlesi yap.|Ein Mechaniker repariert mein Auto.|Ich lasse mein Auto reparieren.||Yaptırmak: *ich lasse … reparieren*.
+D|Perfekt'e çevir.|Ich lasse das Fenster reparieren.|Ich habe das Fenster reparieren lassen.||İki mastar: *reparieren lassen*.
+D|"lassen" ile yaptırma cümlesi yap.|Der Friseur schneidet mir die Haare.|Ich lasse mir die Haare schneiden.||*sich die Haare schneiden lassen*.
+D|"lassen" ile izin cümlesi yap.|Meine Mutter erlaubt mir, auszugehen.|Meine Mutter lässt mich ausgehen.||İzin: *lässt mich ausgehen*.
+D|Perfekt'e çevir.|Wir lassen die Wohnung streichen.|Wir haben die Wohnung streichen lassen.||*streichen lassen*.
+D|"Lass uns …" ile öneri yap.|Wir gehen ins Kino.|Lass uns ins Kino gehen!|Lasst uns ins Kino gehen!|*Lass uns …*
+D|"lassen" ile yaptırma cümlesi yap.|Die Reinigung reinigt meinen Anzug.|Ich lasse meinen Anzug reinigen.||*reinigen lassen*.
+D|Perfekt'e çevir.|Er lässt seinen Pass verlängern.|Er hat seinen Pass verlängern lassen.||*verlängern lassen*.
+C|Arabamı tamir ettiriyorum.|Ich lasse mein Auto reparieren.||*reparieren lassen*.
+C|Saçımı kestirdim.|Ich habe mir die Haare schneiden lassen.|Ich ließ mir die Haare schneiden.|Perfekt: *schneiden lassen*.
+C|Beni rahat bırak!|Lass mich in Ruhe!||*Lass mich …*
+C|Hadi bir kahve içelim!|Lass uns einen Kaffee trinken!|Lasst uns einen Kaffee trinken!|*Lass uns …*
+C|Şemsiyemi trende unuttum.|Ich habe meinen Regenschirm im Zug liegen lassen.|Ich habe meinen Schirm im Zug liegen lassen./Ich habe meinen Regenschirm im Zug vergessen.|*liegen lassen*.
+C|Ailem beni yalnız seyahat ettirmiyor.|Meine Eltern lassen mich nicht allein reisen.||İzin: *lassen*.
+K|Ich muss meinen Pass verlängern lassen.|Pasaportumu uzattırmam gerekiyor.
+K|Wir haben uns die Möbel liefern lassen.|Mobilyaları bize teslim ettirdik.|Die Möbel haben wir uns liefern lassen.
+K|Lass uns heute Abend zusammen kochen!|Hadi bu akşam birlikte yemek yapalım!
+K|Der Lehrer lässt die Schüler früher gehen.|Öğretmen öğrencileri erken bırakıyor.
+O|Diese Woche habe ich viel erledigt: Am Montag habe ich mein Auto reparieren lassen. Am Dienstag habe ich mir beim Friseur die Haare schneiden lassen. Am Mittwoch habe ich meinen Pass verlängern lassen. Nur die Wohnung habe ich noch nicht streichen lassen – das ist zu teuer. Das mache ich selbst!|Bu hafta çok iş hallettim: Pazartesi arabamı tamir ettirdim. Salı günü kuaförde saçımı kestirdim. Çarşamba pasaportumu uzattırdım. Sadece daireyi henüz boyatmadım, çok pahalı. Onu kendim yapacağım!|Was hat die Person am Mittwoch gemacht?~Den Pass verlängern lassen.~Das Auto reparieren lassen.~Die Haare schneiden lassen.|Warum lässt sie die Wohnung nicht streichen?~Es ist zu teuer.~Sie hat keine Zeit.~Die Wohnung ist neu.
+O|Mein Sohn ist 16. Er möchte, dass wir ihn am Wochenende länger ausgehen lassen. Mein Mann sagt: „Lass ihn doch! Wir waren auch mal jung." Ich lasse ihn gehen, aber er muss um Mitternacht zu Hause sein. Und er muss sein Handy angeschaltet lassen.|Oğlum 16 yaşında. Hafta sonu daha uzun dışarıda kalmasına izin vermemizi istiyor. Kocam diyor ki: "Bırak gitsin! Biz de bir zamanlar gençtik." Gitmesine izin veriyorum ama gece yarısı evde olmalı. Ve telefonunu açık bırakmalı.|Was möchte der Sohn?~Am Wochenende länger ausgehen.~Ein neues Handy.~Allein reisen.|Wann muss er zu Hause sein?~Um Mitternacht.~Um 22 Uhr.~Am Morgen.
+O|Service im Hotel „Seeblick": Sie können Ihre Wäsche bei uns waschen lassen. Lassen Sie sich das Frühstück aufs Zimmer bringen – kostenlos! Ihr Auto können Sie in unserer Garage parken lassen. Und wenn Sie möchten, lassen wir ein Taxi für Sie kommen.|"Seeblick" otelinde hizmet: Çamaşırlarınızı bizde yıkatabilirsiniz. Kahvaltınızı odanıza getirtin, ücretsiz! Arabanızı garajımızda park ettirebilirsiniz. İsterseniz sizin için bir taksi çağırırız.|Was ist kostenlos?~Das Frühstück aufs Zimmer.~Die Wäsche.~Das Taxi.|Wo kann man das Auto parken lassen?~In der Garage des Hotels.~Auf der Straße.~Am Bahnhof.

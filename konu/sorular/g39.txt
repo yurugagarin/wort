@@ -1,0 +1,52 @@
+# g39 · Konjunktiv II: irreale Wünsche, als ob
+Y|Wenn ich doch mehr Zeit ___! (haben)|hätte||Gerçekleşmemiş dilek: *Wenn ich doch … hätte!*
+Y|Er tut so, als ob er krank ___. (sein)|wäre||*als ob* + Konj. II, fiil sonda.
+Y|Wenn das Wetter nur besser ___! (sein)|wäre||*Wenn … nur … wäre!*
+Y|Sie spricht, als ___ sie Chefin wäre. (gibi)|ob|wenn|*als ob* = -mış gibi.
+Y|Hätte ich doch nur mehr ___! (lernen, Partizip II)|gelernt||Geçmiş dilek: *Hätte ich doch … gelernt!*
+Y|Er sieht aus, als ob er nicht geschlafen ___. (haben)|hätte||*als ob … geschlafen hätte*.
+Y|Wenn ich doch nur fliegen ___! (können)|könnte||*könnte*.
+Y|Du tust so, als ob du nichts ___. (wissen)|wüsstest||*wissen → wüsste*; *du wüsstest*.
+Y|Wäre ich doch zu Hause ___! (bleiben)|geblieben||*Wäre ich doch … geblieben!*
+Y|Es sieht aus, als ___ es gleich regnet. (gibi, gündelik)|ob|wenn|*als ob* + bazen Präsens (konuşma dili).
+Y|Wenn er mich doch ___ würde! (anrufen)|anrufen||*würde* + mastar: *anrufen würde*.
+Y|Sie tut so, als ___ sie mich nicht sähe. (gibi)|ob|wenn|*als ob* (ya da *als wenn*) = -mış gibi; fiil sonda. Kısa biçim: *als sähe sie mich nicht*.
+Y|Ich wünschte, ich ___ reich. (sein)|wäre||*Ich wünschte, ich wäre …*
+Y|Er benimmt sich, als ob ihm das Haus ___. (gehören)|gehörte||*gehören → gehörte* (Konj. II = Prät.).
+S|Wenn ich doch nur Urlaub ___!|hätte|habe|hatte|Gerçekleşmemiş dilek: *hätte*.
+S|Er tut so, als ob er alles ___.|wüsste|weiß|wusste|*als ob* + Konj. II: *wüsste*.
+S|Hätte ich ihm doch die Wahrheit ___!|gesagt|sagen|gesagen|Geçmiş dilek: *hätte … gesagt*.
+S|Sie lacht, als ob sie glücklich ___.|wäre|ist gewesen|würde|*als ob … wäre*.
+S|Ich wünschte, du ___ hier.|wärst|bist|warst|*Ich wünschte, du wärst …*
+S|Wäre ich doch früher ___!|gekommen|kommen|gekommt|*Wäre ich doch … gekommen!*
+S|Es sieht so aus, ___ er Hilfe bräuchte.|als ob|wenn ob|dass ob|*als ob*.
+S|Wenn ich doch nur besser Deutsch ___!|könnte|kann|konnte|*könnte*.
+H|Wenn ich doch mehr Geld habe!|Wenn ich doch mehr Geld hätte!||Gerçek dışı dilek → Konj. II: *hätte*.
+H|Er tut so, als ob er müde wäre.|=|Doğru.
+H|Hätte ich doch mehr Zeit gehabt!|=|Doğru.
+H|Sie tut so, als ob sie ist krank.|Sie tut so, als ob sie krank wäre.||*als ob* → fiil sonda, Konj. II.
+H|Ich wünschte, ich wäre in Istanbul.|=|Doğru.
+H|Wäre ich doch zu Hause geblieben!|=|Doğru.
+H|Wenn ich doch fliegen kann!|Wenn ich doch fliegen könnte!||*könnte*.
+H|Du siehst aus, als ob du nicht geschlafen hast.|Du siehst aus, als ob du nicht geschlafen hättest.||*als ob* + Konj. II: *hättest*.
+D|Gerçek dışı dilek yap: "Wenn ich doch …"|Ich habe kein Auto.|Wenn ich doch ein Auto hätte!|Wenn ich doch nur ein Auto hätte!/Hätte ich doch ein Auto!|*Wenn ich doch … hätte!*
+D|Geçmiş dilek yap: "Hätte ich doch …"|Ich habe nicht gelernt.|Hätte ich doch gelernt!|Hätte ich doch nur gelernt!/Wenn ich doch gelernt hätte!|*Hätte ich doch … gelernt!*
+D|"als ob" ile yaz: "Er tut so, …"|Er ist nicht krank, aber er tut so.|Er tut so, als ob er krank wäre.|Er tut so, als wäre er krank.|*als ob … wäre*.
+D|"Ich wünschte, …" ile yaz.|Du bist nicht hier.|Ich wünschte, du wärst hier.|Ich wünschte, du wärest hier.|*Ich wünschte, … wärst*.
+D|Gerçek dışı dilek yap: "Wenn …"|Das Wetter ist schlecht.|Wenn das Wetter doch besser wäre!|Wenn das Wetter nur besser wäre!/Wenn das Wetter doch schön wäre!|*Wenn … wäre!*
+D|Geçmiş dilek yap: "Wäre ich doch …"|Ich bin nicht mitgefahren.|Wäre ich doch mitgefahren!|Wäre ich doch nur mitgefahren!/Wenn ich doch mitgefahren wäre!|*Wäre ich doch … mitgefahren!*
+D|"als ob" ile yaz: "Sie tut so, …"|Sie weiß es, aber sie tut so, als wüsste sie nichts.|Sie tut so, als ob sie nichts wüsste.||*als ob … wüsste*.
+D|"als ob" ile yaz: "Er sieht aus, …"|Er sieht müde aus. Vielleicht hat er nicht geschlafen.|Er sieht aus, als ob er nicht geschlafen hätte.|Er sieht aus, als hätte er nicht geschlafen.|*als ob … geschlafen hätte*.
+C|Keşke daha çok vaktim olsa!|Wenn ich doch mehr Zeit hätte!|Wenn ich nur mehr Zeit hätte!/Hätte ich doch mehr Zeit!/Ich wünschte, ich hätte mehr Zeit.|*Wenn ich doch … hätte!*
+C|Hastaymış gibi yapıyor.|Er tut so, als ob er krank wäre.|Sie tut so, als ob sie krank wäre./Er tut so, als wäre er krank.|*als ob … wäre*.
+C|Keşke evde kalsaydım!|Wäre ich doch zu Hause geblieben!|Wenn ich doch zu Hause geblieben wäre!/Wäre ich nur zu Hause geblieben!|*Wäre ich doch … geblieben!*
+C|Keşke burada olsan.|Ich wünschte, du wärst hier.|Wenn du doch hier wärst!|*Ich wünschte, du wärst …*
+C|Hiçbir şey bilmiyormuş gibi davranıyorsun.|Du tust so, als ob du nichts wüsstest.|Du tust so, als wüsstest du nichts.|*als ob … wüsstest*.
+C|Keşke daha çok çalışsaydım!|Hätte ich doch mehr gelernt!|Wenn ich doch mehr gelernt hätte!/Hätte ich nur mehr gelernt!|*Hätte ich doch … gelernt!*
+K|Wenn ich doch nur besser schlafen könnte!|Keşke daha iyi uyuyabilsem!
+K|Er redet, als ob er der Chef wäre.|Patronmuş gibi konuşuyor.
+K|Hätte ich doch früher angefangen!|Keşke daha erken başlasaydım!
+K|Es sieht aus, als ob es gleich regnen würde.|Birazdan yağmur yağacakmış gibi görünüyor.
+O|Manchmal denke ich: Wenn ich doch nur jünger wäre! Hätte ich mit 20 Deutsch gelernt, wäre heute alles leichter. Aber meine Lehrerin sagt: „Tu nicht so, als ob du zu alt wärst! Man kann immer lernen." Sie hat recht. Ich lerne jeden Tag ein bisschen.|Bazen düşünüyorum: Keşke daha genç olsaydım! 20 yaşında Almanca öğrenseydim bugün her şey daha kolay olurdu. Ama öğretmenim diyor ki: "Çok yaşlıymışsın gibi davranma! İnsan her zaman öğrenebilir." Haklı. Her gün biraz öğreniyorum.|Was wünscht sich die Person?~Jünger zu sein.~Mehr Geld zu haben.~Eine andere Lehrerin.|Was sagt die Lehrerin?~Man kann immer lernen.~Die Person ist zu alt.~Die Person soll aufhören.
+O|Mein Kollege Max ist seltsam. Er tut immer so, als ob er sehr viel Arbeit hätte. Aber er sitzt den ganzen Tag am Handy. Wenn er uns doch nur ein bisschen helfen würde! Letzte Woche hat er so getan, als ob er krank wäre – und dann habe ich ihn im Fitnessstudio gesehen.|İş arkadaşım Max tuhaf biri. Hep çok işi varmış gibi yapıyor. Ama bütün gün telefonla oturuyor. Keşke bize biraz yardım etse! Geçen hafta hastaymış gibi yaptı, sonra onu spor salonunda gördüm.|Was macht Max den ganzen Tag?~Er sitzt am Handy.~Er arbeitet sehr viel.~Er hilft den Kollegen.|Wo hat der Erzähler Max gesehen?~Im Fitnessstudio.~Beim Arzt.~Im Büro.
+O|Ich wünschte, ich hätte mehr Zeit für meine Familie. Wäre ich damals doch nicht so weit weg gezogen! Meine Eltern sind alt geworden. Wenn ich sie anrufe, tun sie so, als ob alles gut wäre. Aber ich weiß, dass sie mich vermissen.|Keşke ailem için daha çok vaktim olsa. Keşke o zaman bu kadar uzağa taşınmasaydım! Ailem yaşlandı. Onları aradığımda her şey yolundaymış gibi yapıyorlar. Ama beni özlediklerini biliyorum.|Was bereut die Person?~So weit weg gezogen zu sein.~Ihre Eltern angerufen zu haben.~Zu viel gearbeitet zu haben.|Wie verhalten sich die Eltern am Telefon?~Sie tun so, als ob alles gut wäre.~Sie weinen.~Sie sind böse.

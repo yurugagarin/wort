@@ -1,0 +1,52 @@
+# g34 · Partizip I und II als Adjektiv
+Y|Das ___ Kind liegt im Bett. (schlafen, Partizip I)|schlafende||Partizip I: mastar + *d* + sıfat eki: *das schlafende Kind*.
+Y|Ich esse gern ___ Eier. (kochen, Partizip II, artikelsiz çoğul)|gekochte||Partizip II = edilgen/bitmiş: *gekochte Eier*.
+Y|Vorsicht, ___ Hunde! (beißen, Partizip I, artikelsiz çoğul)|beißende|bissige|Partizip I: *beißende Hunde* (günlük kalıp: *bissige Hunde*).
+Y|Das ist ein gut ___ Buch. (schreiben, Partizip II)|geschriebenes||*ein gut geschriebenes Buch*.
+Y|Der ___ Zug fährt nach Berlin. (ankommen, Partizip I)|ankommende||*der ankommende Zug* = gelmekte olan tren.
+Y|Die ___ Wohnung ist sehr schön. (renovieren, Partizip II)|renovierte||*die renovierte Wohnung*.
+Y|Wir suchen eine ___ Lösung. (passen, Partizip I)|passende||*eine passende Lösung*.
+Y|Das ___ Auto steht vor der Tür. (reparieren, Partizip II)|reparierte||*das reparierte Auto*.
+Y|Er sprach mit ___ Stimme. (zittern, Partizip I, dişil Dativ)|zitternder||Artikelsiz dişil Dativ: *-er*.
+Y|Ich habe den ___ Schlüssel gefunden. (verlieren, Partizip II)|verlorenen||*den verlorenen Schlüssel*.
+Y|In der ___ Woche habe ich frei. (kommen, Partizip I)|kommenden||*in der kommenden Woche* = gelecek hafta.
+Y|Das ist ein ___ Film. (spannen, Partizip I)|spannender||*spannend* aslında Partizip I'dir: *ein spannender Film*.
+Y|Die ___ Briefe liegen auf dem Tisch. (schreiben, Partizip II)|geschriebenen||*die geschriebenen Briefe*.
+Y|Wir haben ___ Wasser. (fließen, Partizip I, artikelsiz nötr)|fließendes||*fließendes Wasser* = akan su.
+S|Das ___ Baby ist süß.|lachende|gelachte|lachend|Etken, şimdi: Partizip I + ek: *lachende*.
+S|Die ___ Kartoffeln sind lecker.|gekochten|kochenden|gekocht|Edilgen, bitmiş: Partizip II: *gekochten*.
+S|Ich suche ein ___ Zimmer.|möbliertes|möblierendes|möbliert|*ein möbliertes Zimmer* = eşyalı oda.
+S|Der ___ Hund bellt laut.|wartende|gewartete|wartend|Etken: *der wartende Hund*.
+S|Wir haben das ___ Fenster geschlossen.|geöffnete|öffnende|geöffnet|Edilgen: *das geöffnete Fenster*.
+S|Sie spricht ___ Englisch.|fließend|fließende|geflossen|Zarf olarak: ek yok: *fließend*.
+S|Das ist ein ___ Problem.|wachsendes|gewachsenes|wachsende|*ein wachsendes Problem* = büyüyen sorun.
+S|Ich habe die ___ Hausaufgaben abgegeben.|gemachten|machenden|gemacht|*die gemachten Hausaufgaben*.
+H|Das schlafend Kind ist ruhig.|Das schlafende Kind ist ruhig.||Sıfat olarak çekimlenir: *schlafende*.
+H|Ich kaufe frisch gebackenes Brot.|=|Doğru.
+H|Der gekommende Zug ist voll.|Der ankommende Zug ist voll.|Der kommende Zug ist voll.|Etken → Partizip I: *ankommende*.
+H|Die reparierte Uhr funktioniert wieder.|=|Doğru.
+H|Vorsicht vor dem bellende Hund!|Vorsicht vor dem bellenden Hund!||Dativ → *-en*.
+H|Das ist ein gut bezahlter Job.|=|Doğru.
+H|Ich habe die gestohlenen Sachen gefunden.|=|Doğru.
+H|Das lachen Kind ist süß.|Das lachende Kind ist süß.||Partizip I: mastar + *d* + ek: *lachende*.
+D|Partizip I ile kısalt.|das Kind, das schläft|das schlafende Kind||Etken, eşzamanlı → Partizip I.
+D|Partizip II ile kısalt.|das Ei, das gekocht wurde|das gekochte Ei||Edilgen → Partizip II.
+D|Partizip I ile kısalt.|der Mann, der wartet|der wartende Mann||*wartende*.
+D|Partizip II ile kısalt.|die Wohnung, die renoviert wurde|die renovierte Wohnung||*renovierte*.
+D|Partizip I ile kısalt.|die Preise, die steigen|die steigenden Preise||Çoğul: *-en*.
+D|Partizip II ile kısalt.|der Schlüssel, der verloren wurde|der verlorene Schlüssel||*verloren*e.
+D|Partizip I ile kısalt.|ein Problem, das wächst|ein wachsendes Problem||*ein wachsendes*.
+D|Partizip II ile kısalt.|das Auto, das gestohlen wurde|das gestohlene Auto||*gestohlene*.
+C|Uyuyan çocuğu uyandırma!|Weck das schlafende Kind nicht!|Weck das schlafende Kind nicht auf!|*das schlafende Kind*.
+C|Haşlanmış yumurtayı severim.|Ich mag gekochte Eier.|Ich esse gern gekochte Eier./Ich mag das gekochte Ei.|*gekochte Eier*.
+C|Yenilenmiş daire çok güzel.|Die renovierte Wohnung ist sehr schön.||*renovierte*.
+C|Gelecek hafta tatildeyim.|In der kommenden Woche habe ich Urlaub.|Nächste Woche habe ich Urlaub./In der kommenden Woche bin ich im Urlaub.|*kommende*.
+C|Akıcı Almanca konuşuyor.|Er spricht fließend Deutsch.|Sie spricht fließend Deutsch.|Zarf: *fließend*.
+C|Çalınan araba bulundu.|Das gestohlene Auto wurde gefunden.|Das gestohlene Auto ist gefunden worden.|*gestohlene*.
+K|Die steigenden Mieten sind ein großes Problem.|Artan kiralar büyük bir sorun.
+K|Wir suchen eine möblierte Wohnung im Zentrum.|Merkezde eşyalı bir daire arıyoruz.|Im Zentrum suchen wir eine möblierte Wohnung.
+K|Das weinende Kind sucht seine Mutter.|Ağlayan çocuk annesini arıyor.
+K|Frisch gepresster Orangensaft schmeckt am besten.|Taze sıkılmış portakal suyu en güzelidir.
+O|Wohnungsanzeige: Schöne, frisch renovierte 3-Zimmer-Wohnung mit großem Balkon. Die Wohnung ist teilweise möbliert: Eine eingebaute Küche ist vorhanden. Ruhige Lage, nur wenige Minuten von Bus und S-Bahn. Die angegebene Miete enthält die Nebenkosten.|Daire ilanı: Büyük balkonlu, yeni yenilenmiş güzel 3 odalı daire. Daire kısmen eşyalı: Ankastre mutfak mevcut. Sakin konum, otobüs ve banliyö treninden sadece birkaç dakika uzaklıkta. Belirtilen kira yan giderleri içeriyor.|Was ist in der Wohnung vorhanden?~Eine eingebaute Küche.~Alle Möbel.~Ein Garten.|Wie ist die Lage?~Ruhig.~Laut.~Weit vom Bus.
+O|Gestern Abend saß ich im wartenden Zug, als plötzlich ein weinendes Mädchen einstieg. Sie hatte ihre Mutter verloren. Ein freundlicher Herr hat die Polizei angerufen. Nach zehn Minuten kam die suchende Mutter. Das lachende Gesicht des Mädchens werde ich nie vergessen.|Dün akşam bekleyen trende oturuyordum ki birden ağlayan bir kız bindi. Annesini kaybetmişti. Nazik bir bey polisi aradı. On dakika sonra kızını arayan anne geldi. Kızın gülen yüzünü asla unutmayacağım.|Warum weinte das Mädchen?~Sie hatte ihre Mutter verloren.~Sie hatte Angst vor dem Zug.~Sie war krank.|Wer hat die Polizei angerufen?~Ein freundlicher Herr.~Der Erzähler.~Die Mutter.
+O|Rezept: Nehmen Sie zwei gekochte Kartoffeln und eine geschnittene Zwiebel. Geben Sie alles in das kochende Wasser. Nach zehn Minuten fügen Sie geriebenen Käse hinzu. Servieren Sie die Suppe mit frisch gebackenem Brot.|Tarif: İki haşlanmış patates ve doğranmış bir soğan alın. Her şeyi kaynayan suya koyun. On dakika sonra rendelenmiş peynir ekleyin. Çorbayı taze pişmiş ekmekle servis edin.|Wohin gibt man die Kartoffeln und die Zwiebel?~In das kochende Wasser.~In den Ofen.~In eine Pfanne.|Womit serviert man die Suppe?~Mit frisch gebackenem Brot.~Mit geriebenem Käse.~Mit gekochten Eiern.

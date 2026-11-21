@@ -1,0 +1,52 @@
+# g38 · Relativpronomen was, wo, wo(r)+Präposition
+Y|Das ist alles, ___ ich weiß. (alles'ten sonra)|was||*alles, was*.
+Y|Das ist die Stadt, ___ ich geboren bin. (yer)|wo|in der|Yer: *wo* (ya da *in der*).
+Y|Es gibt nichts, ___ ich lieber esse. (nichts'ten sonra)|was||*nichts, was*.
+Y|Er hat die Prüfung bestanden, ___ mich sehr freut. (bütün cümleye)|was||Bütün cümleye gönderme: *was*.
+Y|Das Beste, ___ ich je gegessen habe, war Omas Baklava. (en üstünlükten sonra)|was||En üstünlük + *was*.
+Y|Sie hat mir geholfen, ___ ich ihr sehr dankbar bin. (dankbar für → bütün cümle)|wofür||*dankbar sein für* → *wofür*.
+Y|Das ist etwas, ___ ich nicht verstehe. (etwas'ten sonra)|was||*etwas, was*.
+Y|Er kommt immer zu spät, ___ ich mich ärgere. (sich ärgern über)|worüber||*sich ärgern über* → *worüber*.
+Y|Das Café, ___ wir uns kennengelernt haben, gibt es nicht mehr. (yer)|wo|in dem|*wo* = *in dem*.
+Y|Ich habe den Job bekommen, ___ ich lange gewartet habe. (warten auf → bütün cümle)|worauf||*warten auf* → *worauf*.
+Y|Vieles, ___ er sagt, stimmt nicht. (vieles'ten sonra)|was||*vieles, was*.
+Y|Das Land, ___ sie herkommt, ist sehr schön. (-den, yer)|woher||Yer (nereden): *woher*.
+Y|Sie lacht viel, ___ ich an ihr mag. (bütün cümle)|was||*was* = bu durum.
+Y|Wir fahren nach Izmir, ___ meine Eltern wohnen. (yer)|wo||Şehir adından sonra: *wo*.
+S|Das ist alles, ___ ich habe.|was|das|wo|*alles, was*.
+S|Das ist das Dorf, ___ ich aufgewachsen bin.|wo|was|das|Yer → *wo*.
+S|Er hat angerufen, ___ mich überrascht hat.|was|das|der|Bütün cümle → *was*.
+S|Das ist das Schönste, ___ ich je gesehen habe.|was|das|wo|En üstünlük → *was*.
+S|Sie hat gewonnen, ___ sie sich sehr freut.|worüber|was|über das|*sich freuen über* + bütün cümle → *worüber*.
+S|Es gibt nichts, ___ mich mehr nervt.|was|das|wo|*nichts, was*.
+S|Das ist das Haus, ___ ich gekauft habe.|das|was|wo|İsim (*das Haus*) + Akk → *das* (*was* değil).
+S|Ich habe Zeit, ___ ich sehr froh bin.|worüber|was|darüber|*froh sein über* → *worüber*.
+H|Das ist alles, das ich weiß.|Das ist alles, was ich weiß.||*alles, was*.
+H|Das ist die Stadt, wo ich wohne.|=|Doğru.
+H|Er ist gekommen, das mich freut.|Er ist gekommen, was mich freut.||Bütün cümleye: *was*.
+H|Das Buch, was ich lese, ist spannend.|Das Buch, das ich lese, ist spannend.||İsimden sonra: *das*.
+H|Sie hat mir geholfen, wofür ich dankbar bin.|=|Doğru.
+H|Es gibt nichts, was ich nicht esse.|=|Doğru.
+H|Er hat gelogen, über was ich mich ärgere.|Er hat gelogen, worüber ich mich ärgere.||Standart dil: *wo(r)* + edat: *worüber*.
+H|Das Beste, das ich gehört habe, war dieses Lied.|Das Beste, was ich gehört habe, war dieses Lied.||En üstünlükten sonra *was*.
+D|"was" ile birleştir.|Das ist alles. Ich weiß es.|Das ist alles, was ich weiß.||*alles, was*.
+D|"wo" ile birleştir.|Das ist das Restaurant. Wir haben dort gegessen.|Das ist das Restaurant, wo wir gegessen haben.|Das ist das Restaurant, in dem wir gegessen haben.|Yer: *wo*.
+D|"was" ile birleştir.|Er hat die Prüfung bestanden. Das freut mich.|Er hat die Prüfung bestanden, was mich freut.||Bütün cümle: *was*.
+D|"wo(r)+edat" ile birleştir.|Sie hat mich eingeladen. Ich freue mich darüber.|Sie hat mich eingeladen, worüber ich mich freue.||*darüber* → *worüber*.
+D|"was" ile birleştir.|Es gibt nichts. Ich bereue nichts.|Es gibt nichts, was ich bereue.||*nichts, was*.
+D|"wo(r)+edat" ile birleştir.|Er hat mir geholfen. Ich danke ihm dafür.|Er hat mir geholfen, wofür ich ihm danke.||*dafür* → *wofür*.
+D|"wo" ile birleştir.|Ich fahre nach Berlin. Mein Bruder lebt dort.|Ich fahre nach Berlin, wo mein Bruder lebt.||Şehir + *wo*.
+D|"wo(r)+edat" ile birleştir.|Ich habe eine Stelle gefunden. Ich habe lange darauf gewartet.|Ich habe eine Stelle gefunden, worauf ich lange gewartet habe.|Ich habe eine Stelle gefunden, auf die ich lange gewartet habe.|*darauf* → *worauf*.
+C|Bildiğim her şey bu.|Das ist alles, was ich weiß.||*alles, was*.
+C|Bu, doğduğum şehir.|Das ist die Stadt, wo ich geboren bin.|Das ist die Stadt, in der ich geboren bin.|*wo*.
+C|Sınavı geçti, buna çok seviniyorum.|Er hat die Prüfung bestanden, worüber ich mich sehr freue.|Sie hat die Prüfung bestanden, worüber ich mich sehr freue./Er hat die Prüfung bestanden, was mich sehr freut.|*worüber*.
+C|Daha çok sevdiğim bir şey yok.|Es gibt nichts, was ich lieber mag.|Es gibt nichts, was mir besser gefällt.|*nichts, was*.
+C|Bu, hayatımda gördüğüm en güzel şey.|Das ist das Schönste, was ich je gesehen habe.|Das ist das Schönste, was ich in meinem Leben gesehen habe.|*das Schönste, was*.
+C|Hep geç kalıyor, buna sinirleniyorum.|Er kommt immer zu spät, worüber ich mich ärgere.|Sie kommt immer zu spät, worüber ich mich ärgere./Er kommt immer zu spät, was mich ärgert.|*worüber*.
+K|Das ist das Beste, was mir passieren konnte.|Bu, başıma gelebilecek en iyi şey.
+K|Wir besuchen das Dorf, wo meine Großeltern wohnen.|Büyükannemle büyükbabamın oturduğu köyü ziyaret ediyoruz.
+K|Er hat mir Blumen geschenkt, worüber ich mich sehr gefreut habe.|Bana çiçek hediye etti, buna çok sevindim.
+K|Alles, was du sagst, ist richtig.|Söylediğin her şey doğru.
+O|Ich wohne in Hamburg, wo ich auch studiert habe. Das Beste, was mir hier passiert ist: Ich habe meine Frau kennengelernt. Wir haben uns in einem Café getroffen, wo wir heute noch oft frühstücken. Alles, was ich brauche, habe ich hier.|Hamburg'da oturuyorum, orada üniversite de okudum. Burada başıma gelen en iyi şey: Karımla tanıştım. Bugün hâlâ sık sık kahvaltı ettiğimiz bir kafede tanıştık. İhtiyacım olan her şey burada.|Was ist das Beste, was der Person in Hamburg passiert ist?~Sie hat ihre Frau kennengelernt.~Sie hat studiert.~Sie hat ein Café eröffnet.|Wo haben sich die beiden getroffen?~In einem Café.~An der Uni.~Im Park.
+O|Liebe Kollegen, unser Chef hat beschlossen, dass wir freitags von zu Hause arbeiten dürfen, worüber sich alle sehr freuen. Es gibt nur eine Sache, die noch fehlt: neue Laptops. Herr Klein kümmert sich darum, wofür wir ihm sehr dankbar sind.|Sevgili meslektaşlar, şefimiz cuma günleri evden çalışabileceğimize karar verdi, buna herkes çok seviniyor. Eksik olan tek bir şey var: yeni dizüstü bilgisayarlar. Bay Klein bununla ilgileniyor, bunun için ona çok minnettarız.|Was hat der Chef beschlossen?~Freitags darf man von zu Hause arbeiten.~Es gibt neue Laptops.~Freitags ist frei.|Wer kümmert sich um die Laptops?~Herr Klein.~Der Chef.~Alle Kollegen.
+O|Mein Heimatdorf liegt in Anatolien, wo es im Sommer sehr heiß ist. Das Einzige, was ich in Deutschland vermisse, ist das Essen meiner Mutter. Jedes Jahr fahre ich dorthin, worauf ich mich schon Monate vorher freue.|Memleketim olan köy, yazın çok sıcak olan Anadolu'da. Almanya'da özlediğim tek şey annemin yemekleri. Her yıl oraya gidiyorum, bunu aylar öncesinden dört gözle bekliyorum.|Was vermisst die Person in Deutschland?~Das Essen der Mutter.~Das heiße Wetter.~Ihre Freunde.|Wie oft fährt die Person ins Dorf?~Jedes Jahr.~Alle zwei Jahre.~Jeden Monat.

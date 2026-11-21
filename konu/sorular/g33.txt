@@ -1,0 +1,52 @@
+# g33 · je … desto
+Y|Je mehr ich lerne, ___ mehr verstehe ich. (o kadar)|desto|umso|*je … desto/umso*.
+Y|___ früher wir losfahren, desto besser. (ne kadar)|Je|je|*Je* + karşılaştırma.
+Y|Je älter er wird, desto ruhiger ___ er. (werden)|wird||*desto ruhiger wird er* (fiil hemen sonra).
+Y|Je mehr du übst, desto ___ sprichst du. (gut, karşılaştırma)|besser||*gut → besser*.
+Y|Je länger ich hier wohne, desto ___ gefällt es mir. (gut, karşılaştırma)|besser||*besser*.
+Y|Je teurer das Hotel ___, desto besser ist der Service. (sein)|ist||*je* → fiil sonda.
+Y|Je mehr Leute kommen, desto ___ wird es. (lustig, karşılaştırma)|lustiger||*lustiger*.
+Y|Je später es wird, desto müder ___ ich. (werden)|werde||*desto müder werde ich*.
+Y|Je ___ das Wetter ist, desto mehr Leute gehen schwimmen. (warm, karşılaştırma)|wärmer||*warm → wärmer*.
+Y|Je weniger du schläfst, desto ___ bist du. (müde, karşılaştırma)|müder||*müder*.
+Y|Je öfter ich Deutsch spreche, desto sicherer ___ ich mich. (fühlen)|fühle||*fühle ich mich*.
+Y|Je schneller du fährst, ___ gefährlicher ist es. (o kadar)|desto|umso|*desto/umso*.
+Y|Je mehr er verdient, desto mehr Geld ___ er aus. (geben)|gibt||*ausgeben*: *gibt er … aus*.
+Y|Je ___ die Wohnung ist, desto höher ist die Miete. (groß, karşılaştırma)|größer||*groß → größer*.
+S|Je mehr ich esse, desto ___ werde ich.|dicker|dick|am dicksten|Karşılaştırma: *dicker*.
+S|Je früher du kommst, desto mehr Zeit ___.|haben wir|wir haben|wir haben werden|*desto* → fiil hemen sonra.
+S|Je länger ich warte, desto nervöser ___.|werde ich|ich werde|werden ich|*werde ich*.
+S|Je mehr du liest, ___ lernst du.|desto mehr|desto mehrer|mehr desto|*desto mehr*.
+S|___ besser das Wetter ist, desto mehr Leute sind im Park.|Je|Desto|Wenn je|*Je*.
+S|Je ___ du sprichst, desto besser verstehe ich dich.|langsamer|langsam|am langsamsten|*langsamer*.
+S|Je mehr Sport ich mache, desto ___ geht es mir.|besser|gut|guter|*gut → besser*.
+S|Je älter ich werde, desto weniger ___ ich.|schlafe|schlafen|ich schlafe|*schlafe ich*.
+H|Je mehr ich lerne, desto ich verstehe mehr.|Je mehr ich lerne, desto mehr verstehe ich.||*desto* + karşılaştırma + fiil + özne.
+H|Je früher, desto besser.|=|Doğru (kısa kalıp).
+H|Je älter er wird, desto ruhiger wird er.|=|Doğru.
+H|Je mehr du übst, desto gut sprichst du.|Je mehr du übst, desto besser sprichst du.||Karşılaştırma: *besser*.
+H|Je länger ich warte, je nervöser werde ich.|Je länger ich warte, desto nervöser werde ich.||İkinci kısım: *desto* (ya da *umso*).
+H|Je wärmer es ist, desto mehr Eis essen wir.|=|Doğru.
+H|Je mehr er arbeitet, desto er ist müder.|Je mehr er arbeitet, desto müder ist er.||*desto müder ist er*.
+H|Je schneller du läufst, umso eher bist du da.|=|Doğru: *umso* = *desto*.
+D|"je … desto" ile birleştir.|Ich lerne viel. Ich verstehe viel.|Je mehr ich lerne, desto mehr verstehe ich.|Je mehr ich lerne, umso mehr verstehe ich.|*je mehr … desto mehr*.
+D|"je … desto" ile birleştir.|Es ist warm. Die Leute sind glücklich.|Je wärmer es ist, desto glücklicher sind die Leute.|Je wärmer es ist, umso glücklicher sind die Leute.|Karşılaştırma: *wärmer*, *glücklicher*.
+D|"je … desto" ile birleştir.|Du fährst schnell. Es ist gefährlich.|Je schneller du fährst, desto gefährlicher ist es.|Je schneller du fährst, umso gefährlicher ist es.|*desto gefährlicher ist es*.
+D|"je … desto" ile birleştir.|Ich werde alt. Ich werde ruhig.|Je älter ich werde, desto ruhiger werde ich.|Je älter ich werde, umso ruhiger werde ich.|*älter*, *ruhiger*.
+D|"je … desto" ile birleştir.|Ich schlafe wenig. Ich bin müde.|Je weniger ich schlafe, desto müder bin ich.|Je weniger ich schlafe, umso müder bin ich.|*weniger*, *müder*.
+D|"je … desto" ile birleştir.|Die Wohnung ist groß. Die Miete ist hoch.|Je größer die Wohnung ist, desto höher ist die Miete.|Je größer die Wohnung ist, umso höher ist die Miete.|*hoch → höher*.
+D|"je … desto" ile birleştir.|Ich spreche oft Deutsch. Ich spreche gut.|Je öfter ich Deutsch spreche, desto besser spreche ich.|Je öfter ich Deutsch spreche, umso besser spreche ich.|*oft → öfter*, *gut → besser*.
+D|"je … desto" ile birleştir.|Es wird spät. Die Kinder werden müde.|Je später es wird, desto müder werden die Kinder.|Je später es wird, umso müder werden die Kinder.|*später*, *müder*.
+C|Ne kadar çok öğrenirsem o kadar çok anlıyorum.|Je mehr ich lerne, desto mehr verstehe ich.|Je mehr ich lerne, umso mehr verstehe ich.|*je … desto*.
+C|Ne kadar erken olursa o kadar iyi.|Je früher, desto besser.|Je früher, umso besser.|Kısa kalıp.
+C|Yaşlandıkça daha sakin oluyor.|Je älter er wird, desto ruhiger wird er.|Je älter sie wird, desto ruhiger wird sie./Je älter er wird, umso ruhiger wird er.|*desto ruhiger wird er*.
+C|Daha hızlı sürdükçe daha tehlikeli olur.|Je schneller man fährt, desto gefährlicher ist es.|Je schneller du fährst, desto gefährlicher ist es./Je schneller man fährt, umso gefährlicher ist es.|*desto gefährlicher*.
+C|Ne kadar az uyursan o kadar yorgun olursun.|Je weniger du schläfst, desto müder bist du.|Je weniger du schläfst, umso müder bist du.|*weniger*, *müder*.
+C|Burada ne kadar uzun yaşarsam o kadar çok hoşuma gidiyor.|Je länger ich hier wohne, desto besser gefällt es mir.|Je länger ich hier lebe, desto besser gefällt es mir./Je länger ich hier wohne, umso besser gefällt es mir.|*desto besser gefällt es mir*.
+K|Je mehr ich übe, desto sicherer werde ich.|Pratik yaptıkça daha emin oluyorum.
+K|Je später der Abend, desto schöner die Gäste.|Akşam ilerledikçe misafirler güzelleşir.
+K|Je teurer das Essen ist, desto kleiner sind die Portionen.|Yemek ne kadar pahalıysa porsiyonlar o kadar küçük.
+K|Je früher wir anfangen, desto früher sind wir fertig.|Ne kadar erken başlarsak o kadar erken biteririz.
+O|Sprachen lernen ist wie Sport: Je öfter man trainiert, desto besser wird man. Je mehr Wörter man kennt, desto leichter versteht man Texte. Aber man muss auch sprechen: Je mehr man mit Menschen redet, desto weniger Angst hat man vor Fehlern.|Dil öğrenmek spor gibidir: Ne kadar sık antrenman yaparsan o kadar iyi olursun. Ne kadar çok kelime bilirsen metinleri o kadar kolay anlarsın. Ama konuşmak da gerekir: İnsanlarla ne kadar çok konuşursan hata yapmaktan o kadar az korkarsın.|Womit wird Sprachenlernen verglichen?~Mit Sport.~Mit Kochen.~Mit Musik.|Was passiert, wenn man mehr mit Menschen redet?~Man hat weniger Angst vor Fehlern.~Man lernt mehr Wörter.~Man wird müder.
+O|Mein Großvater ist 85. Je älter er wird, desto mehr erzählt er von früher. Je länger er erzählt, desto schöner werden die Geschichten. Meine Mutter sagt: „Je öfter er die Geschichte erzählt, desto größer wird der Fisch!"|Dedem 85 yaşında. Yaşlandıkça eskilerden daha çok anlatıyor. Anlattıkça hikâyeler daha güzel oluyor. Annem diyor ki: "Hikâyeyi ne kadar sık anlatırsa balık o kadar büyüyor!"|Wie alt ist der Großvater?~85 Jahre.~75 Jahre.~95 Jahre.|Was meint die Mutter?~Die Geschichten werden immer übertriebener.~Der Großvater fängt große Fische.~Der Großvater erzählt zu wenig.
+O|Bei uns im Laden gilt: Je mehr Sie kaufen, desto mehr sparen Sie. Ab 50 Euro bekommen Sie 5 Prozent Rabatt, ab 100 Euro sogar 10 Prozent. Und je früher Sie kommen, desto größer ist die Auswahl!|Mağazamızda kural şu: Ne kadar çok alırsanız o kadar çok tasarruf edersiniz. 50 avrodan itibaren yüzde 5, 100 avrodan itibaren yüzde 10 indirim alırsınız. Ve ne kadar erken gelirseniz seçenek o kadar fazla!|Wie viel Rabatt bekommt man ab 100 Euro?~10 Prozent.~5 Prozent.~20 Prozent.|Warum soll man früh kommen?~Die Auswahl ist größer.~Es gibt mehr Rabatt.~Der Laden ist leerer.

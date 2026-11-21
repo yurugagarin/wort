@@ -1,0 +1,52 @@
+# g40 · Nomen-Verb-Verbindungen
+Y|Wir müssen bald eine Entscheidung ___. (karar vermek)|treffen||*eine Entscheidung treffen*.
+Y|Darf ich Ihnen eine Frage ___? (soru sormak)|stellen||*eine Frage stellen*.
+Y|Bitte ___ Sie Rücksicht auf die Nachbarn. (saygı göstermek)|nehmen||*Rücksicht nehmen auf*.
+Y|Diese Wohnung kommt für uns nicht in ___. (söz konusu olmak)|Frage|frage|*in Frage kommen* = söz konusu olmak.
+Y|Ich muss noch einen Antrag ___. (başvuru yapmak)|stellen||*einen Antrag stellen*.
+Y|Kannst du mir einen Gefallen ___? (iyilik yapmak)|tun||*einen Gefallen tun*.
+Y|Er hat sich große Mühe ___. (çaba göstermek)|gegeben||*sich Mühe geben*.
+Y|Wir sollten jetzt eine Pause ___. (mola vermek)|machen||*eine Pause machen*.
+Y|Der Arzt hat ihm einen Rat ___. (tavsiye vermek)|gegeben||*einen Rat geben*.
+Y|Ich möchte einen Termin ___. (randevu almak)|vereinbaren|machen|*einen Termin vereinbaren/machen*.
+Y|Das Gesetz tritt im Januar in ___. (yürürlüğe girmek)|Kraft|kraft|*in Kraft treten*.
+Y|Sie hat mit ihm Kontakt ___. (irtibata geçmek)|aufgenommen||*Kontakt aufnehmen*.
+Y|Du musst Verantwortung für deine Fehler ___. (sorumluluk almak)|übernehmen||*Verantwortung übernehmen*.
+Y|Das Projekt ist endlich zu ___ gekommen. (sona ermek)|Ende|ende|*zu Ende kommen/gehen*.
+S|Wann triffst du endlich eine ___?|Entscheidung|Frage|Rücksicht|*eine Entscheidung treffen*.
+S|Kann ich eine Frage ___?|stellen|machen|geben|*eine Frage stellen*.
+S|Er nimmt keine ___ auf andere.|Rücksicht|Mühe|Hilfe|*Rücksicht nehmen*.
+S|Sie gibt sich viel ___.|Mühe|Rücksicht|Entscheidung|*sich Mühe geben*.
+S|Das kommt nicht in ___.|Frage|Kraft|Ende|*nicht in Frage kommen*.
+S|Ich muss einen Antrag auf Elterngeld ___.|stellen|machen|treffen|*einen Antrag stellen*.
+S|Wir haben eine lange Diskussion ___.|geführt|getroffen|gestellt|*eine Diskussion führen*.
+S|Bitte nehmen Sie ___!|Platz|Sitz|Stuhl|*Platz nehmen* = oturmak (kibar).
+H|Ich muss eine Entscheidung machen.|Ich muss eine Entscheidung treffen.||*eine Entscheidung treffen*.
+H|Darf ich eine Frage stellen?|=|Doğru.
+H|Er gibt sich keine Mühe.|=|Doğru.
+H|Kannst du mir einen Gefallen machen?|Kannst du mir einen Gefallen tun?||*einen Gefallen tun*.
+H|Wir müssen Rücksicht auf die Kinder nehmen.|=|Doğru.
+H|Ich habe einen Antrag gemacht.|Ich habe einen Antrag gestellt.||*einen Antrag stellen*.
+H|Bitte nehmen Sie Platz.|=|Doğru.
+H|Das kommt nicht in Frage.|=|Doğru.
+D|İsim-fiil kalıbıyla yaz (Entscheidung treffen).|Ich entscheide mich morgen.|Ich treffe morgen eine Entscheidung.|Morgen treffe ich eine Entscheidung.|*entscheiden* → *eine Entscheidung treffen*.
+D|İsim-fiil kalıbıyla yaz (Frage stellen).|Darf ich Sie etwas fragen?|Darf ich Ihnen eine Frage stellen?||*fragen* → *eine Frage stellen*.
+D|İsim-fiil kalıbıyla yaz (Mühe geben).|Er bemüht sich sehr.|Er gibt sich große Mühe.|Er gibt sich viel Mühe.|*sich bemühen* → *sich Mühe geben*.
+D|İsim-fiil kalıbıyla yaz (Antrag stellen).|Ich beantrage einen neuen Pass.|Ich stelle einen Antrag auf einen neuen Pass.||*beantragen* → *einen Antrag stellen*.
+D|İsim-fiil kalıbıyla yaz (Rat geben).|Er rät mir, zu warten.|Er gibt mir den Rat, zu warten.|Er gibt mir den Rat zu warten.|*raten* → *einen Rat geben*.
+D|İsim-fiil kalıbıyla yaz (Pause machen).|Wir pausieren kurz.|Wir machen eine kurze Pause.||*pausieren* → *eine Pause machen*.
+D|İsim-fiil kalıbıyla yaz (Kontakt aufnehmen).|Sie kontaktiert die Firma.|Sie nimmt Kontakt mit der Firma auf.|Sie nimmt mit der Firma Kontakt auf.|*Kontakt aufnehmen mit*.
+D|İsim-fiil kalıbıyla yaz (Diskussion führen).|Wir diskutieren lange.|Wir führen eine lange Diskussion.||*diskutieren* → *eine Diskussion führen*.
+C|Yarın bir karar vermeliyiz.|Wir müssen morgen eine Entscheidung treffen.|Morgen müssen wir eine Entscheidung treffen.|*eine Entscheidung treffen*.
+C|Size bir soru sorabilir miyim?|Darf ich Ihnen eine Frage stellen?|Kann ich Ihnen eine Frage stellen?|*eine Frage stellen*.
+C|Bu söz konusu bile değil!|Das kommt nicht in Frage!|Das kommt überhaupt nicht in Frage!|*nicht in Frage kommen*.
+C|Bana bir iyilik yapabilir misin?|Kannst du mir einen Gefallen tun?||*einen Gefallen tun*.
+C|Çok çaba gösterdi.|Er hat sich viel Mühe gegeben.|Sie hat sich viel Mühe gegeben./Er hat sich große Mühe gegeben.|*sich Mühe geben*.
+C|Lütfen oturun.|Bitte nehmen Sie Platz.|Nehmen Sie bitte Platz.|*Platz nehmen*.
+K|Wir müssen Rücksicht auf ältere Menschen nehmen.|Yaşlı insanlara saygı göstermeliyiz.
+K|Ich habe gestern einen Antrag auf Wohngeld gestellt.|Dün konut yardımı için başvuru yaptım.|Gestern habe ich einen Antrag auf Wohngeld gestellt.
+K|Er hat endlich eine Entscheidung getroffen.|Nihayet bir karar verdi.|Endlich hat er eine Entscheidung getroffen.
+K|Das neue Gesetz tritt nächsten Monat in Kraft.|Yeni yasa gelecek ay yürürlüğe giriyor.|Nächsten Monat tritt das neue Gesetz in Kraft.
+O|Liebe Frau Arslan, vielen Dank für Ihren Antrag. Leider kommt eine Wohnung im Zentrum für Sie nicht in Frage, weil die Mieten zu hoch sind. Wir haben aber Kontakt mit einem Vermieter in Ehrenfeld aufgenommen. Bitte treffen Sie bis Freitag eine Entscheidung. Wenn Sie Fragen stellen möchten, rufen Sie uns an.|Sayın Bayan Arslan, başvurunuz için çok teşekkürler. Maalesef merkezde bir daire sizin için söz konusu değil, çünkü kiralar çok yüksek. Ama Ehrenfeld'deki bir ev sahibiyle irtibata geçtik. Lütfen cumaya kadar bir karar verin. Soru sormak isterseniz bizi arayın.|Warum kommt eine Wohnung im Zentrum nicht in Frage?~Die Mieten sind zu hoch.~Es gibt keine Wohnungen.~Frau Arslan will nicht im Zentrum wohnen.|Bis wann soll Frau Arslan eine Entscheidung treffen?~Bis Freitag.~Bis Montag.~Bis Ende des Monats.
+O|In unserer Firma gibt es neue Regeln. Ab Januar treten sie in Kraft. Wer eine Pause machen möchte, muss nicht mehr fragen. Wir sollen aber Rücksicht auf die Kollegen nehmen. Der Chef hat gesagt: „Jeder soll Verantwortung für seine Arbeit übernehmen."|Firmamızda yeni kurallar var. Ocaktan itibaren yürürlüğe giriyorlar. Mola vermek isteyen artık sormak zorunda değil. Ama meslektaşlara saygı göstermeliyiz. Şef dedi ki: "Herkes kendi işinin sorumluluğunu üstlenmeli."|Wann treten die neuen Regeln in Kraft?~Ab Januar.~Ab sofort.~Im Sommer.|Was muss man nicht mehr machen, wenn man eine Pause will?~Fragen.~Rücksicht nehmen.~Verantwortung übernehmen.
+O|Mein Sohn hat sich in der Schule viel Mühe gegeben. Trotzdem hat er die Prüfung nicht bestanden. Ich habe mit seiner Lehrerin Kontakt aufgenommen. Sie hat mir einen guten Rat gegeben: Er soll jeden Tag eine kurze Pause machen und nicht die ganze Nacht lernen.|Oğlum okulda çok çaba gösterdi. Yine de sınavı geçemedi. Öğretmeniyle irtibata geçtim. Bana iyi bir tavsiye verdi: Her gün kısa bir mola vermeli ve bütün gece ders çalışmamalı.|Mit wem hat die Person Kontakt aufgenommen?~Mit der Lehrerin.~Mit dem Direktor.~Mit einem Arzt.|Was ist der Rat der Lehrerin?~Jeden Tag eine kurze Pause machen.~Mehr in der Nacht lernen.~Eine Nachhilfe nehmen.

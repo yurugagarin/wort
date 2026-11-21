@@ -1,0 +1,52 @@
+# g31 · Passiv: Präteritum, Perfekt, mit Modalverb
+Y|Das Haus ___ 1950 gebaut. (werden, Prät.)|wurde||Passiv Präteritum: *wurde* + Partizip II.
+Y|Das Auto ist repariert ___. (Perfekt Passiv)|worden||Passiv Perfekt: *ist … worden* (*geworden* değil).
+Y|Die Rechnung muss bis Freitag bezahlt ___. (modal + Passiv)|werden||Modal + Partizip II + *werden*.
+Y|Die Briefe ___ gestern verschickt. (werden, Prät., çoğul)|wurden||Çoğul: *wurden*.
+Y|Der Dieb ist von der Polizei gefasst ___. (Perfekt)|worden||*ist … gefasst worden*.
+Y|Hier darf nicht geparkt ___. (modal + Passiv)|werden||*darf … geparkt werden*.
+Y|Amerika wurde 1492 von Kolumbus ___. (entdecken)|entdeckt||*wurde … entdeckt*.
+Y|Die Fenster ___ schon geputzt worden. (sein)|sind||Çoğul Perfekt Passiv: *sind … worden*.
+Y|Das Paket kann morgen abgeholt ___. (modal + Passiv)|werden||*kann … abgeholt werden*.
+Y|Ich ___ zum Vorstellungsgespräch eingeladen. (werden, Prät.)|wurde||*ich wurde*.
+Y|Der Termin ist leider abgesagt ___. (Perfekt)|worden||*ist … abgesagt worden*.
+Y|Die Hausaufgaben müssen heute noch ___ werden. (machen)|gemacht||*müssen … gemacht werden*.
+Y|Wann ___ das Rathaus gebaut? (werden, Prät.)|wurde||*Wann wurde … gebaut?*
+Y|Mein Fahrrad ist gestohlen ___! (Perfekt)|worden||*ist gestohlen worden*.
+S|Das Museum ___ 1890 eröffnet.|wurde|wird|worden|Geçmiş (1890) → *wurde*.
+S|Der Brief ist gestern geschrieben ___.|worden|geworden|werden|Passiv Perfekt: *worden*.
+S|Das Formular muss unterschrieben ___.|werden|worden|wurde|Modal + *werden*.
+S|Die Gäste ___ herzlich begrüßt.|wurden|wurde|worden|Çoğul Präteritum: *wurden*.
+S|Der Patient ist sofort operiert ___.|worden|geworden|wurde|*ist … worden*.
+S|Die Tür kann nicht geöffnet ___.|werden|worden|wird|*kann … werden*.
+S|Er ist Vater ___.|geworden|worden|werden|Passiv değil, değişim: *ist Vater geworden*.
+S|Das Essen wurde von meiner Oma ___.|gekocht|kochen|kocht|*wurde … gekocht*.
+H|Das Haus wird 1980 gebaut.|Das Haus wurde 1980 gebaut.||Geçmiş → *wurde*.
+H|Das Auto ist repariert geworden.|Das Auto ist repariert worden.||Passiv Perfekt: *worden*.
+H|Die Rechnung muss bezahlt werden.|=|Doğru.
+H|Die Kinder wurden von der Schule abgeholt.|=|Doğru.
+H|Das Paket ist gestern gebracht worden.|=|Doğru.
+H|Hier darf nicht geraucht worden.|Hier darf nicht geraucht werden.||Modal + *werden* (mastar).
+H|Die Briefe wurde gestern geschickt.|Die Briefe wurden gestern geschickt.||Çoğul → *wurden*.
+H|Der Termin hat abgesagt worden.|Der Termin ist abgesagt worden.||Passiv Perfekt *sein* ile.
+D|Passiv Präteritum'a çevir.|Man baute die Brücke 1900.|Die Brücke wurde 1900 gebaut.||*man* düşer: *wurde gebaut*.
+D|Passiv Perfekt'e çevir.|Man hat das Auto repariert.|Das Auto ist repariert worden.||*ist … worden*.
+D|Modal + Passiv yap.|Man muss die Miete bezahlen.|Die Miete muss bezahlt werden.||*muss … bezahlt werden*.
+D|Passiv Präteritum'a çevir.|Man lud mich zur Party ein.|Ich wurde zur Party eingeladen.||*wurde eingeladen*.
+D|Passiv Perfekt'e çevir.|Jemand hat mein Handy gestohlen.|Mein Handy ist gestohlen worden.||*ist gestohlen worden*.
+D|Modal + Passiv yap.|Man darf hier nicht rauchen.|Hier darf nicht geraucht werden.||Öznesiz Passiv: *darf nicht geraucht werden*.
+D|Passiv Präteritum'a çevir (von ile).|Die Polizei fasste den Dieb.|Der Dieb wurde von der Polizei gefasst.||*von der Polizei*.
+D|Modal + Passiv yap.|Man kann das Problem lösen.|Das Problem kann gelöst werden.||*kann … gelöst werden*.
+C|Bu ev 1950'de inşa edildi.|Dieses Haus wurde 1950 gebaut.|Das Haus wurde 1950 gebaut./Dieses Haus ist 1950 gebaut worden.|*wurde gebaut*.
+C|Bisikletim çalındı!|Mein Fahrrad ist gestohlen worden!|Mein Fahrrad wurde gestohlen!|*ist gestohlen worden*.
+C|Fatura cumaya kadar ödenmeli.|Die Rechnung muss bis Freitag bezahlt werden.||*muss bezahlt werden*.
+C|İş görüşmesine davet edildim.|Ich wurde zum Vorstellungsgespräch eingeladen.|Ich bin zum Vorstellungsgespräch eingeladen worden.|*wurde eingeladen*.
+C|Burada park edilemez.|Hier darf nicht geparkt werden.|Hier kann nicht geparkt werden.|*darf nicht geparkt werden*.
+C|Randevu iptal edildi.|Der Termin ist abgesagt worden.|Der Termin wurde abgesagt.|*ist abgesagt worden*.
+K|Das Rathaus wurde im 16. Jahrhundert gebaut.|Belediye binası 16. yüzyılda inşa edildi.|Im 16. Jahrhundert wurde das Rathaus gebaut.
+K|Die Wohnung muss vor dem Auszug gestrichen werden.|Daire taşınmadan önce boyanmalı.|Vor dem Auszug muss die Wohnung gestrichen werden.
+K|Gestern ist bei uns eingebrochen worden.|Dün bize hırsız girdi.|Bei uns ist gestern eingebrochen worden.
+K|Der Fehler kann leicht korrigiert werden.|Hata kolayca düzeltilebilir.
+O|Die Stadtbibliothek wurde 1902 gegründet. Das alte Gebäude wurde im Krieg zerstört. 1955 wurde ein neues Haus gebaut. Letztes Jahr ist die Bibliothek renoviert worden. Jetzt können Bücher auch online ausgeliehen werden.|Şehir kütüphanesi 1902'de kuruldu. Eski bina savaşta yıkıldı. 1955'te yeni bir bina inşa edildi. Geçen yıl kütüphane yenilendi. Artık kitaplar internetten de ödünç alınabiliyor.|Was passierte mit dem alten Gebäude?~Es wurde im Krieg zerstört.~Es wurde renoviert.~Es wurde verkauft.|Was kann man jetzt online machen?~Bücher ausleihen.~Bücher kaufen.~Das Gebäude besichtigen.
+O|Polizeibericht: Am Dienstagabend ist in der Goethestraße in ein Geschäft eingebrochen worden. Es wurden Handys und Laptops gestohlen. Die Täter wurden von einer Kamera gefilmt. Zeugen werden gebeten, sich bei der Polizei zu melden.|Polis raporu: Salı akşamı Goethe Caddesi'nde bir dükkâna hırsız girdi. Cep telefonları ve dizüstü bilgisayarlar çalındı. Failler bir kamera tarafından görüntülendi. Tanıkların polise başvurması rica ediliyor.|Was wurde gestohlen?~Handys und Laptops.~Geld.~Ein Auto.|Wie wurden die Täter gefilmt?~Von einer Kamera.~Von einem Zeugen.~Von der Polizei.
+O|Liebe Mieter, im Juni muss das Dach repariert werden. Die Arbeiten werden von der Firma Krause gemacht. Bitte beachten Sie: Während der Arbeiten darf im Hof nicht geparkt werden. Die Fahrräder müssen in den Keller gebracht werden. Vielen Dank!|Sevgili kiracılar, haziranda çatının tamir edilmesi gerekiyor. Çalışmalar Krause firması tarafından yapılacak. Lütfen dikkat edin: Çalışmalar sırasında avluya park edilemez. Bisikletlerin bodruma götürülmesi gerekiyor. Teşekkürler!|Was muss im Juni gemacht werden?~Das Dach muss repariert werden.~Der Hof muss gereinigt werden.~Der Keller muss gestrichen werden.|Wohin müssen die Fahrräder gebracht werden?~In den Keller.~In den Hof.~Auf die Straße.
