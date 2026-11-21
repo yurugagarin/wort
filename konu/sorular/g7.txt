@@ -1,0 +1,52 @@
+# g7 · Komparativ und Superlativ
+Y|Der Zug ist ___ als der Bus. (schnell)|schneller||Komparativ: *-er* → *schneller*; karşılaştırmada *als*.
+Y|Mein Vater ist ___ als meine Mutter. (alt)|älter||Tek heceli: Umlaut + *-er*: *älter*.
+Y|Im Sommer sind die Tage ___ als im Winter. (lang)|länger||*lang* → *länger*.
+Y|Ich esse ___ Fisch als Fleisch. (gern)|lieber||Düzensiz: *gern – lieber – am liebsten*.
+Y|Das Wetter ist heute ___ als gestern. (gut)|besser||Düzensiz: *gut – besser – am besten*.
+Y|Im Dezember arbeite ich ___ als im August. (viel)|mehr||Düzensiz: *viel – mehr – am meisten*.
+Y|Von allen Jahreszeiten mag ich den Herbst am ___. (gern)|liebsten||*am liebsten*.
+Y|Dieser Berg ist am ___. (hoch)|höchsten||*hoch – höher – am höchsten*.
+Y|Mein Handy ist ___ als dein Handy. (teuer)|teurer||*teuer* → *teurer* (e düşer).
+Y|Das ist der ___ Tag des Jahres. (kurz)|kürzeste||Superlativ isimden önce: *der kürzeste Tag*.
+Y|Meine Schwester ist so groß ___ ich. (als / wie)|wie||Eşitlik: *so … wie*.
+Y|Berlin ist größer ___ München. (als / wie)|als||Farklılık: Komparativ + *als*.
+Y|Hier ist die Miete am ___. (billig)|billigsten||*am billigsten*.
+Y|Ich wohne jetzt ___ an der Arbeit als früher. (nah)|näher||*nah – näher – am nächsten*.
+S|Kaffee trinke ich gern, aber Tee trinke ich ___.|lieber|gerner|mehr gern|*gern* düzensiz: *lieber*.
+S|Das ist das ___ Restaurant der Stadt.|beste|besten|gute|*das beste Restaurant* (Superlativ + sıfat eki).
+S|Heute ist es kälter ___ gestern.|als|wie|dann|Komparativ + *als*.
+S|Wer läuft am ___?|schnellsten|schnellste|schneller|Fiille *am …-sten*: *am schnellsten*.
+S|Mein Bruder ist zwei Jahre ___ als ich.|jünger|junger|jungster|*jung* → *jünger*.
+S|Das Hotel war nicht so teuer ___ wir dachten.|wie|als|dass|*nicht so … wie*.
+S|Wer hat am ___ Geld?|meisten|mehrsten|viel|*viel* → *am meisten*.
+S|Der Rhein ist ___ als die Elbe.|länger|langer|lang|*lang* → *länger* (Umlaut).
+H|Mein Auto ist schneller wie dein Auto.|Mein Auto ist schneller als dein Auto.||Komparativ'ten sonra *als*.
+H|Ich trinke gerner Tee.|Ich trinke lieber Tee.||*gern* → *lieber*.
+H|Das ist der höchste Turm der Stadt.|=|Doğru: *hoch → der höchste*.
+H|Sie ist so alt als ich.|Sie ist so alt wie ich.||Eşitlik: *so … wie*.
+H|Heute ist das Wetter guter als gestern.|Heute ist das Wetter besser als gestern.||*gut* → *besser*.
+H|Am Wochenende schlafe ich am längsten.|=|Doğru: *am längsten*.
+H|Das ist das teuerste Handy im Laden.|=|Doğru: *teuer → das teuerste*.
+H|Mein Zimmer ist großer als dein Zimmer.|Mein Zimmer ist größer als dein Zimmer.||*groß* → *größer* (Umlaut).
+D|Karşılaştır (Komparativ): Der Bus … der Zug.|Der Bus ist langsam. Der Zug ist schnell.|Der Bus ist langsamer als der Zug.|Der Zug ist schneller als der Bus.|*langsamer als* / *schneller als*.
+D|Superlativ'e çevir: "Tom …"|Tom läuft schnell.|Tom läuft am schnellsten.||*am schnellsten*.
+D|Eşitlik cümlesi yap (so … wie).|Ich bin 1,80 m. Mein Bruder ist auch 1,80 m.|Ich bin so groß wie mein Bruder.|Mein Bruder ist so groß wie ich.|*so groß wie*.
+D|Karşılaştır (Komparativ): "Heute ist es … als gestern."|Gestern: 15 Grad. Heute: 20 Grad. (warm)|Heute ist es wärmer als gestern.||*warm* → *wärmer*.
+D|Superlativ'e çevir.|Das ist ein guter Film.|Das ist der beste Film.||*gut* → *der beste*.
+D|Komparativ'e çevir: "Ich esse …"|Ich esse gern Obst. (Gemüse daha az)|Ich esse lieber Obst als Gemüse.||*gern* → *lieber … als*.
+D|Superlativ'e çevir.|Im Januar ist es kalt.|Im Januar ist es am kältesten.||*kalt* → *am kältesten*.
+D|Komparativ'e çevir: "Die Wohnung in Köln …"|Die Wohnung in Köln ist teuer. Die Wohnung in Bonn ist billig.|Die Wohnung in Köln ist teurer als die Wohnung in Bonn.|Die Wohnung in Bonn ist billiger als die Wohnung in Köln./Die Wohnung in Köln ist teurer als die in Bonn.|*teurer als*.
+C|Kahveden çok çayı severim.|Ich trinke lieber Tee als Kaffee.||*lieber … als*.
+C|Bugün dünden daha soğuk.|Heute ist es kälter als gestern.||*kälter als*.
+C|Kardeşim benden daha uzun.|Mein Bruder ist größer als ich.|Meine Schwester ist größer als ich.|*größer als*.
+C|Bu en iyi çözüm.|Das ist die beste Lösung.||*die beste Lösung*.
+C|O benim kadar hızlı koşuyor.|Er läuft so schnell wie ich.|Sie läuft so schnell wie ich.|*so … wie*.
+C|En çok pizzayı seviyorum.|Am liebsten esse ich Pizza.|Ich esse am liebsten Pizza.|*am liebsten*.
+K|Im Winter sind die Nächte länger als im Sommer.|Kışın geceler yazdan daha uzun.|Die Nächte sind im Winter länger als im Sommer.
+K|Mein Bruder kocht besser als ich.|Kardeşim benden daha iyi yemek yapıyor.
+K|Am liebsten trinke ich grünen Tee.|En çok yeşil çay içmeyi severim.|Ich trinke am liebsten grünen Tee.
+K|Das ist der teuerste Laden in der Stadt.|Bu şehirdeki en pahalı dükkân.
+O|Familie Demir sucht eine neue Wohnung. Die Wohnung in der Stadtmitte ist größer und heller, aber sie ist auch teurer. Die Wohnung am Stadtrand ist billiger und ruhiger, aber der Weg zur Arbeit ist länger. Am wichtigsten ist für die Familie eine gute Schule für die Kinder. Deshalb nehmen sie die Wohnung am Stadtrand, denn dort ist die beste Schule.|Demir ailesi yeni bir daire arıyor. Şehir merkezindeki daire daha büyük ve daha aydınlık ama aynı zamanda daha pahalı. Şehrin kenarındaki daire daha ucuz ve daha sakin ama işe giden yol daha uzun. Aile için en önemlisi çocuklar için iyi bir okul. Bu yüzden şehrin kenarındaki daireyi alıyorlar çünkü en iyi okul orada.|Welche Wohnung ist teurer?~Die Wohnung in der Stadtmitte.~Die Wohnung am Stadtrand.~Beide kosten gleich viel.|Warum nimmt die Familie die Wohnung am Stadtrand?~Dort ist die beste Schule.~Sie ist größer.~Der Weg zur Arbeit ist kürzer.
+O|In unserer Laufgruppe sind fünf Personen. Sara läuft am schnellsten, aber Jonas läuft am längsten: Er schafft 20 Kilometer. Ich laufe langsamer als Sara, aber schneller als mein Freund Kemal. Kemal sagt, dass er lieber schwimmt als läuft.|Koşu grubumuzda beş kişi var. Sara en hızlı koşuyor ama Jonas en uzun koşuyor: 20 kilometre koşabiliyor. Ben Sara'dan daha yavaş ama arkadaşım Kemal'den daha hızlı koşuyorum. Kemal koşmaktansa yüzmeyi tercih ettiğini söylüyor.|Wer läuft am schnellsten?~Sara.~Jonas.~Kemal.|Was macht Kemal lieber?~Schwimmen.~Laufen.~Radfahren.
+O|Im Supermarkt am Bahnhof ist das Obst frischer, aber auch teurer als im Discounter. Der Discounter hat die billigsten Preise, aber die längsten Schlangen an der Kasse. Ich kaufe am liebsten auf dem Markt am Samstag ein. Dort ist das Gemüse am frischsten, und die Verkäufer sind am freundlichsten.|İstasyondaki süpermarkette meyve daha taze ama ucuz marketten daha pahalı. Ucuz markette fiyatlar en düşük ama kasadaki kuyruklar en uzun. Ben en çok cumartesi pazarından alışveriş yapmayı severim. Orada sebze en taze ve satıcılar en güler yüzlü.|Wo sind die Preise am billigsten?~Im Discounter.~Im Supermarkt am Bahnhof.~Auf dem Markt.|Wo kauft die Person am liebsten ein?~Auf dem Markt.~Im Discounter.~Im Supermarkt am Bahnhof.

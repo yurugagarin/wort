@@ -1,0 +1,52 @@
+# g2 · Modalverben im Präteritum
+Y|Letzte Woche ___ ich jeden Tag Überstunden machen. (müssen)|musste||*müssen* → *musste*: Umlaut düşer, *-te* eklenir; *ich* ile ek yok.
+Y|Als Kind ___ meine Schwester sehr gut tanzen. (können)|konnte||*können* → *konnte*; *sie* (o) ile *ich* aynı biçim.
+Y|___ du gestern nicht zur Party kommen? (wollen)|Wolltest|wolltest|*du* ile *-test*: *wolltest*.
+Y|Wir ___ den Bus nicht nehmen, weil er voll war. (können)|konnten||*wir* ile *-ten*: *konnten*.
+Y|Im Krankenhaus ___ man nicht telefonieren. (dürfen)|durfte||*dürfen* → *durfte*: Umlaut düşer.
+Y|Ihr ___ doch um acht Uhr hier sein! (sollen)|solltet||*ihr* ile *-tet*: *solltet*.
+Y|Früher ___ ich keinen Kaffee, heute trinke ich drei Tassen am Tag. (mögen)|mochte||*mögen* → *mochte* (g → ch).
+Y|Meine Kollegen ___ am Freitag länger bleiben. (müssen)|mussten||*sie* (onlar) ile *-ten*: *mussten*.
+Y|Ich wollte dich gestern ___, aber ich hatte keine Zeit. (anrufen)|anrufen||Modal fiille mastar en sonda ve değişmeden kalır: *anrufen*.
+Y|Konntest du die Aufgabe ___? (verstehen)|verstehen||Mastar sonda: *verstehen* (Partizip değil).
+Y|Mein Sohn ___ gestern nicht in die Schule gehen, er war krank. (können)|konnte||*er* ile *konnte*.
+Y|Warum ___ ihr nicht mitkommen? (wollen)|wolltet||*ihr* ile *wolltet*.
+Y|Der Arzt sagte, ich ___ mehr Wasser trinken. (sollen)|sollte||*ich* ile *sollte*.
+Y|Wir ___ bei der Prüfung kein Handy benutzen. (dürfen)|durften||*wir* ile *durften*.
+S|Gestern ___ ich leider nicht zum Training kommen.|konnte|kann|könnte|Geçmiş zaman: *konnte*. *könnte* Konjunktiv II'dir (yapabilirdim).
+S|Du ___ mich doch gestern anrufen!|solltest|sollst|sollte|*du* ile Präteritum: *solltest*.
+S|Als Kinder ___ wir abends nicht fernsehen.|durften|dürfen|darften|*dürfen* → *durften* (Umlaut düşer).
+S|Er ___ eigentlich Arzt werden, aber dann hat er Jura studiert.|wollte|will|wolltet|*er* ile *wollte*.
+S|Ich musste gestern früh ___.|aufstehen|aufgestanden|stehe auf|Modal fiilden sonra mastar: *aufstehen*.
+S|Früher ___ sie Pizza nicht, jetzt isst sie jeden Freitag eine.|mochte|möchte|mag|*mochte* = severdi (geçmiş); *möchte* = isterdi/istiyor.
+S|___ ihr gestern lange warten?|Musstet|Müsst|Musste|*ihr* ile *musstet*.
+S|Der Chef ___, dass wir den Bericht schreiben.|wollte|wolltest|willte|*er* ile *wollte*.
+H|Ich muss gestern lange arbeiten.|Ich musste gestern lange arbeiten.||*gestern* geçmiş: *musste*.
+H|Wir konnten das Spiel nicht sehen.|=|Doğru: *wir konnten*, mastar sonda.
+H|Du wolltet mir doch helfen!|Du wolltest mir doch helfen!||*du* ile *wolltest*; *wolltet* *ihr* içindir.
+H|Als Kind durfte ich nicht allein in die Stadt gehen.|=|Doğru: *ich durfte*, mastar *gehen* sonda.
+H|Er konnte nicht kommen gestern.|Er konnte gestern nicht kommen.|Gestern konnte er nicht kommen.|Mastar cümlenin en sonuna gider.
+H|Sie müsste gestern zum Arzt gehen.|Sie musste gestern zum Arzt gehen.||Geçmişte zorunluluk: *musste* (Umlaut yok). *müsste* Konjunktiv II'dir.
+H|Ich wollte gestern ins Kino gegangen.|Ich wollte gestern ins Kino gehen.||Modal fiilden sonra Partizip değil mastar: *gehen*.
+H|Meine Eltern durfte nicht kommen.|Meine Eltern durften nicht kommen.||*meine Eltern* = *sie* (çoğul) → *durften*.
+D|Präteritum'a çevir.|Ich muss heute arbeiten.|Ich musste heute arbeiten.||*muss* → *musste*.
+D|Präteritum'a çevir.|Wir können nicht kommen.|Wir konnten nicht kommen.||*können* → *konnten*.
+D|Präteritum'a çevir.|Willst du Tee trinken?|Wolltest du Tee trinken?||*du willst* → *du wolltest*.
+D|Präteritum'a çevir.|Man darf hier nicht parken.|Man durfte hier nicht parken.||*darf* → *durfte*.
+D|Präteritum'a çevir.|Ihr sollt pünktlich sein.|Ihr solltet pünktlich sein.||*ihr sollt* → *ihr solltet*.
+D|Präteritum'a çevir.|Sie mag keine Tomaten.|Sie mochte keine Tomaten.||*mag* → *mochte*.
+D|"Gestern" ile başlat ve Präteritum'a çevir.|Ich muss zum Arzt gehen.|Gestern musste ich zum Arzt gehen.||*Gestern* başta → fiil 2. yerde: *musste ich*.
+D|Präteritum'a çevir.|Die Kinder wollen draußen spielen.|Die Kinder wollten draußen spielen.||*wollen* → *wollten*.
+C|Dün erken kalkmak zorundaydım.|Ich musste gestern früh aufstehen.|Gestern musste ich früh aufstehen.|*müssen* → *musste*; mastar sonda.
+C|Çocukken yüzemiyordum.|Als Kind konnte ich nicht schwimmen.|Ich konnte als Kind nicht schwimmen.|*können* → *konnte*.
+C|Sana yardım etmek istedim.|Ich wollte dir helfen.||*wollen* → *wollte*.
+C|Burada sigara içmek yasaktı.|Hier durfte man nicht rauchen.|Man durfte hier nicht rauchen.|Yasak = *nicht dürfen* → *durfte*.
+C|Raporu cumaya kadar yazmam gerekiyordu.|Ich sollte den Bericht bis Freitag schreiben.|Ich musste den Bericht bis Freitag schreiben.|Başkasının isteği: *sollte*; zorunluluk: *musste*.
+C|Neden gelmedin? – Gelemedim.|Warum bist du nicht gekommen? – Ich konnte nicht kommen.|Warum bist du nicht gekommen? Ich konnte nicht kommen.|*können* → *konnte*.
+K|Als Kind wollte ich Pilot werden.|Çocukken pilot olmak istiyordum.|Ich wollte als Kind Pilot werden.
+K|Wir mussten lange auf den Zug warten.|Tren için uzun süre beklemek zorunda kaldık.
+K|Gestern konnte ich nicht einschlafen.|Dün uyuyamadım.|Ich konnte gestern nicht einschlafen.
+K|Durftest du als Kind lange fernsehen?|Çocukken uzun süre televizyon izleyebiliyor muydun?
+O|Als Kind wohnte Selin in einem kleinen Dorf. Sie wollte immer in einer großen Stadt leben. Sie durfte nicht allein in die Stadt fahren, weil der Weg sehr lang war. Mit 18 konnte sie endlich nach Hamburg ziehen. Dort musste sie am Anfang viel arbeiten, aber sie war glücklich.|Selin çocukken küçük bir köyde yaşıyordu. Hep büyük bir şehirde yaşamak istiyordu. Yol çok uzun olduğu için şehre tek başına gidemiyordu. 18 yaşında nihayet Hamburg'a taşınabildi. Orada başta çok çalışmak zorundaydı ama mutluydu.|Warum durfte Selin nicht allein in die Stadt fahren?~Der Weg war sehr lang.~Sie hatte keine Zeit.~Sie wollte nicht.|Was musste Selin in Hamburg am Anfang machen?~Viel arbeiten.~Eine Wohnung suchen.~Deutsch lernen.
+O|Gestern wollte Tarık mit seinen Freunden Fußball spielen. Aber es regnete stark, deshalb konnten sie nicht auf den Platz gehen. Sie mussten in der Halle spielen. Dort durften sie nur eine Stunde bleiben. Danach wollten alle zusammen Pizza essen.|Dün Tarık arkadaşlarıyla futbol oynamak istedi. Ama çok yağmur yağıyordu, bu yüzden sahaya çıkamadılar. Salonda oynamak zorunda kaldılar. Orada sadece bir saat kalabildiler. Sonra hepsi birlikte pizza yemek istedi.|Warum konnten sie nicht auf den Platz gehen?~Es regnete stark.~Der Platz war geschlossen.~Sie hatten keinen Ball.|Wie lange durften sie in der Halle bleiben?~Eine Stunde.~Zwei Stunden.~Den ganzen Tag.
+O|Frau Becker hatte am Montag einen wichtigen Termin beim Arzt. Sie sollte um acht Uhr in der Praxis sein. Aber ihr Auto sprang nicht an, und sie musste ein Taxi rufen. Das Taxi kam spät, und sie konnte erst um halb neun da sein. Zum Glück wollte der Arzt trotzdem mit ihr sprechen.|Bayan Becker'in pazartesi doktorda önemli bir randevusu vardı. Saat sekizde muayenehanede olması gerekiyordu. Ama arabası çalışmadı ve taksi çağırmak zorunda kaldı. Taksi geç geldi ve ancak sekiz buçukta orada olabildi. Neyse ki doktor yine de onunla konuşmak istedi.|Wann sollte Frau Becker in der Praxis sein?~Um acht Uhr.~Um halb neun.~Um neun Uhr.|Warum musste sie ein Taxi rufen?~Ihr Auto sprang nicht an.~Der Bus kam nicht.~Sie hatte keinen Führerschein.

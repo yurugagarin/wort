@@ -1,0 +1,52 @@
+# g42 · welcher? / was für ein?
+Y|___ Zug fährt nach München? (der Zug)|Welcher||Belli trenler arasından seçim; eril Nominativ: *welcher*.
+Y|___ Jacke gefällt dir besser, die rote oder die blaue? (die Jacke)|Welche||Dişil: *welche*.
+Y|___ Buch liest du gerade? (das Buch)|Welches||Nötr Nominativ/Akkusativ: *welches*.
+Y|In ___ Stock wohnst du? (der Stock, Dativ)|welchem||*in* + Dativ, eril: *welchem*.
+Y|Mit ___ Bus fährst du zur Arbeit? (der Bus, Dativ)|welchem||*mit* + Dativ: *welchem*.
+Y|___ Film möchtest du sehen? (der Film, Akkusativ)|Welchen||Akkusativ eril: *welchen*.
+Y|Was für ___ Auto möchtest du kaufen? – Ein Elektroauto. (das Auto)|ein||*was für ein* + nötr Akkusativ: *ein*.
+Y|Was für ___ Wohnung sucht ihr? – Eine große. (die Wohnung)|eine||Dişil Akkusativ: *eine*.
+Y|Was für ___ Mann ist dein Chef? – Ein sehr ruhiger. (der Mann, Nominativ)|ein||Eril Nominativ: *ein*.
+S|Was für ___ machst du? – Ich spiele Basketball.|Sport|einen Sport|ein Sport|Genel olarak spor (sayılamaz): *Was für Sport …?* (*ein* yok).
+Y|Welche Schuhe nimmst du? – ___ schwarzen. (die)|Die||Cevapta belirli artikel: *die schwarzen*.
+S|Was für Schuhe brauchst du? – ___|Sportschuhe.|Die Sportschuhe.|Einen Sportschuh.|Çoğulda *was für* cevabı artikelsiz: *Sportschuhe*.
+Y|An ___ Tag hast du Zeit? (der Tag, Dativ)|welchem||*an* + Dativ: *welchem Tag*.
+Y|___ Kollegen hast du eingeladen? (die Kollegen, çoğul Akkusativ)|Welche||Çoğul: *welche*.
+S|___ Bus fährt zum Hauptbahnhof?|Welcher|Welchen|Was für|Nominativ eril: *Welcher*.
+S|Was für ___ Handy hast du?|ein|einen|eine|Nötr: *ein Handy*.
+S|___ Tasche gehört dir, die braune?|Welche|Welcher|Was für eine|Belli seçenekler: *Welche*.
+S|Was für ___ Kaffee trinkst du gern? – Einen starken.|einen|ein|eine|Akkusativ eril: *einen*.
+S|In ___ Straße wohnst du?|welcher|welche|welchen|*in* + Dativ dişil: *welcher*.
+S|Welches Kleid nimmst du? – ___ grüne.|Das|Ein|Den|Belli olan: *das grüne*.
+S|Was für ein Auto hast du? – ___ kleines.|Ein|Das|Einen|*was für*: belirsiz cevap *ein kleines*.
+S|___ Zimmer ist frei, 12 oder 14?|Welches|Was für ein|Welcher|Belli seçenek, nötr: *Welches*.
+H|Welchen Bus fährt nach Köln?|Welcher Bus fährt nach Köln?||Özne → Nominativ: *welcher*.
+H|Was für ein Film ist das? – Ein Krimi.|=|Doğru: tür soruluyor.
+H|Welche Farbe magst du? – Ein Blau.|Welche Farbe magst du? – Blau.|Welche Farbe magst du? – Ich mag Blau.|Renk adı artikelsiz: *Blau*.
+H|In welchem Stadt wohnst du?|In welcher Stadt wohnst du?||*die Stadt* → Dativ: *welcher*.
+H|Was für einen Job suchst du? – Einen Teilzeitjob.|=|Doğru: Akkusativ eril *einen*.
+H|Was für eine Mantel kaufst du?|Was für einen Mantel kaufst du?||*der Mantel* → Akkusativ: *einen*.
+H|Welches Buch empfiehlst du mir?|=|Doğru.
+H|Mit welche Freundin gehst du ins Kino?|Mit welcher Freundin gehst du ins Kino?||*mit* + Dativ dişil: *welcher*.
+D|Soruyu "welcher/welche/welches" ile sor.|Ich nehme den roten Pullover.|Welchen Pullover nimmst du?|Welchen Pullover nehmen Sie?|Akkusativ eril → *welchen*.
+D|Soruyu "was für ein" ile sor.|Ich habe ein altes Fahrrad.|Was für ein Fahrrad hast du?|Was für ein Fahrrad haben Sie?|Tür/özellik → *was für ein*.
+D|Soruyu "welcher" ile sor.|Wir wohnen in der Goethestraße.|In welcher Straße wohnt ihr?|In welcher Straße wohnen Sie?|*in* + Dativ → *welcher*.
+D|Soruyu "was für" ile sor.|Ich suche eine neue Wohnung mit Balkon.|Was für eine Wohnung suchst du?|Was für eine Wohnung suchen Sie?|*was für eine Wohnung*.
+D|Soruyu "welcher" ile sor.|Der Zug um 8 Uhr fährt nach Bremen.|Welcher Zug fährt nach Bremen?||Nominativ → *welcher*.
+D|Cevabı belirli artikelle ver: "Welches Hemd …? – … (weiß)"|Welches Hemd ziehst du an?|Das weiße.|Ich ziehe das weiße an./Ich ziehe das weiße Hemd an.|*welches* → *das weiße*.
+D|Cevabı belirsiz artikelle ver: "Was für ein Hund …? – … (klein)"|Was für einen Hund habt ihr?|Einen kleinen.|Wir haben einen kleinen Hund./Einen kleinen Hund.|*was für einen* → *einen kleinen*.
+D|Soruyu "welcher" ile sor.|Ich arbeite mit dem neuen Kollegen.|Mit welchem Kollegen arbeitest du?|Mit welchem Kollegen arbeiten Sie?|*mit* + Dativ → *welchem*.
+C|Hangi otobüs istasyona gidiyor?|Welcher Bus fährt zum Bahnhof?||Nominativ eril: *welcher*.
+C|Nasıl bir araba istiyorsun?|Was für ein Auto möchtest du?|Was für ein Auto willst du?|*was für ein*.
+C|Hangi kitabı okuyorsun?|Welches Buch liest du?||Nötr: *welches*.
+C|Hangi gün vaktin var?|An welchem Tag hast du Zeit?|Welcher Tag passt dir?|*an welchem Tag*.
+C|Ne tür müzik dinliyorsun?|Was für Musik hörst du?||Sayılamayan: *was für Musik* (ein yok).
+C|Hangi ceketi alıyorsun, siyahı mı?|Welche Jacke nimmst du, die schwarze?|Welche Jacke kaufst du, die schwarze?|*welche … die schwarze*.
+K|Welchen Film habt ihr gestern gesehen?|Dün hangi filmi izlediniz?
+K|Was für eine Wohnung sucht deine Schwester?|Kız kardeşin nasıl bir daire arıyor?
+K|In welchem Stock ist die Praxis?|Muayenehane kaçıncı katta?
+K|Was für ein Mensch ist dein neuer Chef?|Yeni şefin nasıl biri?
+O|Im Elektromarkt fragt der Verkäufer: „Was für ein Handy suchen Sie?" Kerem antwortet: „Ein günstiges mit einer guten Kamera." Der Verkäufer zeigt zwei Modelle. „Welches ist leichter?", fragt Kerem. „Das schwarze", sagt der Verkäufer. Am Ende nimmt Kerem das schwarze Handy.|Elektronik mağazasında satıcı soruyor: "Nasıl bir telefon arıyorsunuz?" Kerem cevap veriyor: "Kamerası iyi, uygun fiyatlı bir telefon." Satıcı iki model gösteriyor. "Hangisi daha hafif?" diye soruyor Kerem. "Siyah olan" diyor satıcı. Sonunda Kerem siyah telefonu alıyor.|Was für ein Handy sucht Kerem?~Ein günstiges mit einer guten Kamera.~Ein teures mit großem Bildschirm.~Ein altes Modell.|Welches Handy nimmt Kerem?~Das schwarze.~Das weiße.~Keins.
+O|Hallo Nina, welcher Tag passt dir für unser Treffen? Ich habe am Mittwoch und am Freitag Zeit. Was für ein Restaurant möchtest du? Ich kenne ein kleines türkisches Restaurant in der Bahnhofstraße. In welcher Straße wohnst du jetzt? Liebe Grüße, Zeynep|Merhaba Nina, buluşmamız için hangi gün sana uyar? Çarşamba ve cuma vaktim var. Nasıl bir restoran istersin? Bahnhofstraße'de küçük bir Türk restoranı biliyorum. Şimdi hangi sokakta oturuyorsun? Sevgiler, Zeynep|An welchen Tagen hat Zeynep Zeit?~Am Mittwoch und am Freitag.~Am Montag und am Dienstag.~Nur am Wochenende.|Was für ein Restaurant kennt Zeynep?~Ein kleines türkisches Restaurant.~Ein großes italienisches Restaurant.~Ein Café am Bahnhof.
+O|Beim Bäcker: „Guten Morgen, ich hätte gern ein Brot." – „Was für ein Brot möchten Sie? Wir haben Roggenbrot und Weißbrot." – „Ein Roggenbrot, bitte. Und welche Brötchen sind heute frisch?" – „Die Körnerbrötchen sind ganz frisch." – „Dann nehme ich vier Körnerbrötchen."|Fırında: "Günaydın, bir ekmek rica ediyorum." – "Nasıl bir ekmek istersiniz? Çavdar ekmeğimiz ve beyaz ekmeğimiz var." – "Bir çavdar ekmeği lütfen. Bir de bugün hangi küçük ekmekler taze?" – "Tahıllı küçük ekmekler çok taze." – "O zaman dört tane tahıllı alıyorum."|Was für ein Brot kauft die Person?~Ein Roggenbrot.~Ein Weißbrot.~Kein Brot.|Wie viele Brötchen nimmt die Person?~Vier.~Zwei.~Sechs.

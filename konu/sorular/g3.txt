@@ -1,0 +1,52 @@
+# g3 · Nebensätze: weil, dass, wenn
+Y|Ich komme heute nicht, weil ich Fieber ___. (haben)|habe||Yan cümlede çekimli fiil en sonda: *weil ich Fieber habe*.
+Y|Sie sagt, dass sie morgen nach Berlin ___. (fahren)|fährt||*dass* yan cümlesi: fiil sonda; *sie* ile *fährt*.
+Y|Wenn das Wetter gut ist, ___ wir an den See. (fahren)|fahren||Yan cümle başta → ana cümle fiille başlar: *fahren wir*.
+Y|Ich hoffe, ___ du bald gesund wirst. (dass / weil / wenn)|dass||Umut ya da düşünce aktarılıyor: *dass*.
+Y|Er ist müde, weil er gestern spät ins Bett ___. (gehen, Perfekt)|gegangen ist||Perfekt yan cümlede: Partizip + yardımcı fiil en sonda: *gegangen ist*.
+Y|___ ich Zeit habe, rufe ich dich an. (dass / weil / wenn)|Wenn||Koşul ya da zaman: *wenn* (eğer / -dığında).
+Y|Ich glaube, dass der Supermarkt am Sonntag geschlossen ___. (sein)|ist||Fiil en sonda: *geschlossen ist*.
+Y|Wir bleiben zu Hause, weil es draußen sehr kalt ___. (sein)|ist||*weil* → fiil sonda.
+Y|Ich freue mich, dass ihr heute ___. (kommen)|kommt||*ihr* ile *kommt*, sonda.
+Y|Wenn du Hilfe brauchst, ___ mich einfach an. (anrufen, du-Imperativ)|ruf|rufe|Ana cümle başta yan cümleden sonra: *ruf mich … an*.
+Y|Sie lernt jeden Tag, weil sie die Prüfung bestehen ___. (wollen)|will||Modal fiil yan cümlede en sonda: *bestehen will*.
+Y|Mein Chef hat gesagt, dass ich morgen früher ___. (anfangen)|anfange||Ayrılan fiil yan cümlede birleşir: *anfange*.
+Y|Weil der Bus nicht kam, ___ ich zu Fuß gegangen. (sein)|bin||Yan cümle başta → ana cümle çekimli fiille başlar: *bin ich*.
+Y|Es ist schön, dass du wieder gesund ___. (sein)|bist||*du* ile *bist*, sonda.
+S|Ich kann nicht kommen, ___ ich arbeiten muss.|weil|dass|wenn|Sebep: *weil* (çünkü).
+S|Ich finde, ___ das Essen hier sehr gut ist.|dass|weil|wenn|Görüş bildirme: *dass*.
+S|___ es morgen regnet, bleiben wir zu Hause.|Wenn|Weil|Dass|Koşul: *wenn* (eğer).
+S|Weil ich müde bin, ___ ich heute früh ins Bett.|gehe|ich gehe|gehen|Yan cümle başta → *gehe ich*.
+S|Sie sagt, dass sie keine Zeit ___.|hat|haben|hast|*sie* (o) ile *hat*, sonda.
+S|Ich weiß, dass du gestern früh ___.|aufgestanden bist|bist aufgestanden|aufstehst|Perfekt yan cümlede: Partizip + *bist* sonda.
+S|Wenn du willst, ___ wir zusammen kochen.|können|wir können|könnt|Yan cümle başta → *können wir*.
+S|Er ist sauer, ___ er den Zug verpasst hat.|weil|dass|wenn|Sebep: *weil*.
+H|Ich bleibe zu Hause, weil ich bin krank.|Ich bleibe zu Hause, weil ich krank bin.||*weil* yan cümlesinde fiil sona gider.
+H|Wenn ich Zeit habe, ich lese ein Buch.|Wenn ich Zeit habe, lese ich ein Buch.||Yan cümle başta → ana cümle fiille başlar: *lese ich*.
+H|Ich glaube, dass er heute nicht kommt.|=|Doğru: *dass* yan cümlesinde *kommt* sonda.
+H|Sie sagt, dass sie hat keine Zeit.|Sie sagt, dass sie keine Zeit hat.||*dass* → fiil sonda.
+H|Weil es regnet, nehmen wir den Bus.|=|Doğru: yan cümle başta, ana cümle *nehmen wir* ile başlıyor.
+H|Ich weiß, dass du stehst früh auf.|Ich weiß, dass du früh aufstehst.||Ayrılan fiil yan cümlede birleşir ve sona gider: *aufstehst*.
+H|Wenn du Hunger hast, ich koche etwas.|Wenn du Hunger hast, koche ich etwas.||Yan cümle başta → *koche ich*.
+H|Er lernt Deutsch, weil er möchte in Wien arbeiten.|Er lernt Deutsch, weil er in Wien arbeiten möchte.||Modal fiil yan cümlede en sona: *arbeiten möchte*.
+D|"weil" ile birleştir.|Ich trinke Kaffee. Ich bin müde.|Ich trinke Kaffee, weil ich müde bin.||*weil* yan cümlesinde fiil sona: *müde bin*.
+D|"dass" ile başlayan yan cümle yap: "Ich glaube, …"|Er kommt heute nicht.|Ich glaube, dass er heute nicht kommt.||*dass* → *kommt* sona.
+D|"wenn" ile birleştir, yan cümle başta olsun.|Es regnet. Ich nehme den Bus.|Wenn es regnet, nehme ich den Bus.||Yan cümle başta → ana cümle fiille başlar.
+D|"weil" ile birleştir, yan cümle başta olsun.|Ich habe keine Zeit. Ich komme nicht.|Weil ich keine Zeit habe, komme ich nicht.||*Weil …, komme ich nicht.*
+D|"dass" ile yan cümle yap: "Sie sagt, …"|Sie muss morgen arbeiten.|Sie sagt, dass sie morgen arbeiten muss.||Modal fiil en sonda: *arbeiten muss*.
+D|"weil" ile birleştir.|Wir bleiben zu Hause. Das Wetter ist schlecht.|Wir bleiben zu Hause, weil das Wetter schlecht ist.||*weil das Wetter schlecht ist*.
+D|"wenn" ile birleştir.|Du hast Fragen. Du kannst mich anrufen.|Wenn du Fragen hast, kannst du mich anrufen.|Du kannst mich anrufen, wenn du Fragen hast.|Yan cümle başta → *kannst du*.
+D|"dass" ile yan cümle yap: "Ich hoffe, …"|Du rufst mich bald an.|Ich hoffe, dass du mich bald anrufst.||Ayrılan fiil birleşir: *anrufst*.
+C|Hasta olduğum için bugün çalışmıyorum.|Ich arbeite heute nicht, weil ich krank bin.|Weil ich krank bin, arbeite ich heute nicht.|*weil* → *krank bin*.
+C|Yarın yağmur yağacağını düşünüyorum.|Ich glaube, dass es morgen regnet.|Ich denke, dass es morgen regnet.|*dass* → fiil sonda.
+C|Vaktin olursa bizi ara.|Wenn du Zeit hast, ruf uns an.|Ruf uns an, wenn du Zeit hast./Wenn du Zeit hast, rufe uns an.|*wenn* = eğer.
+C|Gelmene sevindim.|Ich freue mich, dass du kommst.|Ich freue mich, dass du gekommen bist.|*sich freuen, dass …*
+C|Yorgun olduğum için erken yattım.|Ich bin früh ins Bett gegangen, weil ich müde war.|Weil ich müde war, bin ich früh ins Bett gegangen.|*weil ich müde war*.
+C|Şefim yarın toplantı olduğunu söyledi.|Mein Chef hat gesagt, dass morgen eine Besprechung ist.|Mein Chef hat gesagt, dass wir morgen eine Besprechung haben./Mein Chef sagte, dass morgen eine Besprechung ist.|*dass … ist* sonda.
+K|Ich lerne Deutsch, weil ich in Deutschland lebe.|Almanya'da yaşadığım için Almanca öğreniyorum.|Weil ich in Deutschland lebe, lerne ich Deutsch.
+K|Wenn ich Zeit habe, gehe ich schwimmen.|Vaktim olursa yüzmeye giderim.|Ich gehe schwimmen, wenn ich Zeit habe.
+K|Sie hofft, dass der Zug pünktlich kommt.|Trenin zamanında gelmesini umuyor.
+K|Weil der Laden geschlossen war, bin ich nach Hause gegangen.|Dükkân kapalı olduğu için eve gittim.|Ich bin nach Hause gegangen, weil der Laden geschlossen war.
+O|Leyla lernt seit einem Jahr Deutsch. Sie lernt jeden Abend, weil sie im Sommer eine Prüfung machen will. Ihre Lehrerin sagt, dass Leyla schon sehr gut spricht. Wenn Leyla die Prüfung besteht, möchte sie als Krankenschwester arbeiten. Sie hofft, dass sie bald eine Stelle findet.|Leyla bir yıldır Almanca öğreniyor. Yazın sınava girmek istediği için her akşam çalışıyor. Öğretmeni Leyla'nın şimdiden çok iyi konuştuğunu söylüyor. Leyla sınavı geçerse hemşire olarak çalışmak istiyor. Yakında bir iş bulmayı umuyor.|Warum lernt Leyla jeden Abend?~Sie will im Sommer eine Prüfung machen.~Sie hat keine Arbeit.~Ihre Lehrerin will das.|Was möchte Leyla machen, wenn sie die Prüfung besteht?~Als Krankenschwester arbeiten.~Eine Reise machen.~Weiter Deutsch lernen.
+O|Herr Yılmaz fährt heute nicht mit dem Auto zur Arbeit, weil die Straße gesperrt ist. Er nimmt den Bus, aber der Bus ist voll. Er ruft seine Kollegin an und sagt, dass er später kommt. Die Kollegin antwortet: „Wenn du um zehn da bist, ist das kein Problem."|Bay Yılmaz bugün yol kapalı olduğu için işe arabayla gitmiyor. Otobüse biniyor ama otobüs dolu. İş arkadaşını arıyor ve daha geç geleceğini söylüyor. İş arkadaşı cevap veriyor: "Saat onda burada olursan sorun değil."|Warum fährt Herr Yılmaz nicht mit dem Auto?~Die Straße ist gesperrt.~Das Auto ist kaputt.~Er hat kein Benzin.|Was sagt die Kollegin?~Es ist kein Problem, wenn er um zehn da ist.~Er soll heute zu Hause bleiben.~Der Chef ist sauer.
+O|Ich gehe gern ins Fitnessstudio, weil ich mich danach gut fühle. Wenn ich morgens trainiere, bin ich den ganzen Tag wach. Mein Trainer sagt, dass ich mehr Wasser trinken soll. Ich glaube, dass er recht hat, denn ich habe oft Kopfschmerzen.|Spor salonuna gitmeyi seviyorum çünkü sonrasında kendimi iyi hissediyorum. Sabahları antrenman yaparsam bütün gün uyanık oluyorum. Antrenörüm daha çok su içmem gerektiğini söylüyor. Haklı olduğunu düşünüyorum çünkü sık sık başım ağrıyor.|Warum geht die Person gern ins Fitnessstudio?~Sie fühlt sich danach gut.~Sie trifft dort Freunde.~Es ist billig.|Was soll die Person laut Trainer machen?~Mehr Wasser trinken.~Weniger trainieren.~Früher schlafen gehen.

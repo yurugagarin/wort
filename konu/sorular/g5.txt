@@ -1,0 +1,52 @@
+# g5 · Verben mit Dativ
+Y|Kannst du ___ beim Umzug helfen? (ich)|mir||*helfen* Dativ alır: *ich* → *mir*.
+Y|Die neue Jacke gefällt ___ sehr. (er)|ihm||*gefallen* + Dativ: *er* → *ihm*.
+Y|Gehört dieser Rucksack ___? (Sie, resmî)|Ihnen||*gehören* + Dativ: *Sie* → *Ihnen*.
+Y|Das Essen hat ___ sehr gut geschmeckt. (wir)|uns||*schmecken* + Dativ: *wir* → *uns*.
+Y|Ich danke ___ für die Einladung. (ihr, siz)|euch||*danken* + Dativ: *ihr* → *euch*.
+Y|Passt ___ der Termin am Montag? (du)|dir||*passen* + Dativ: *du* → *dir*.
+Y|Wir gratulieren ___ zur Hochzeit. (sie, o-kadın)|ihr||*gratulieren* + Dativ: *sie* (o) → *ihr*.
+Y|Der Arzt hat ___ geraten, mehr zu schlafen. (ich)|mir||*raten* + Dativ: *mir*.
+Y|Ich helfe ___ Nachbarin beim Einkaufen. (die Nachbarin)|der||Dativ, dişil: *die* → *der*.
+Y|Das Fahrrad gehört ___ Bruder. (mein Bruder)|meinem||Dativ, eril: *mein* → *meinem*.
+Y|Hast du ___ Kindern schon geantwortet? (die Kinder)|den||Çoğul Dativ: *den Kindern*.
+Y|Der Film hat ___ Freundin nicht gefallen. (meine Freundin)|meiner||Dativ, dişil: *meine* → *meiner*.
+Y|Ich glaube ___ nicht. (er)|ihm||*glauben* (birine inanmak) + Dativ: *ihm*.
+Y|Hör ___ bitte zu! (wir)|uns||*zuhören* + Dativ: *uns*.
+S|Das Kleid steht ___ sehr gut.|dir|dich|du|*stehen* (yakışmak) + Dativ: *dir*.
+S|Ich habe ___ Chef eine E-Mail geschrieben.|dem|den|der|Kime? → Dativ, eril: *dem Chef*.
+S|Kannst du ___ bitte das Salz geben?|mir|mich|ich|*geben* kime → Dativ: *mir*.
+S|Wie geht es ___?|Ihnen|Sie|Ihr|*Wie geht es + Dativ*: *Ihnen*.
+S|Die Schuhe passen ___ leider nicht.|mir|mich|mein|*passen* + Dativ: *mir*.
+S|Wir danken ___ Kollegen für ihre Hilfe.|den|die|der|Çoğul Dativ: *den Kollegen*.
+S|Das Auto gehört ___ Eltern.|meinen|meine|meiner|Çoğul Dativ: *meinen Eltern*.
+S|Ich habe ___ zum Geburtstag gratuliert.|ihm|ihn|er|*gratulieren* + Dativ: *ihm*.
+H|Kannst du mich helfen?|Kannst du mir helfen?||*helfen* Akkusativ değil Dativ alır: *mir*.
+H|Die Pizza schmeckt mir sehr gut.|=|Doğru: *schmecken* + Dativ: *mir*.
+H|Das Handy gehört meinen Bruder.|Das Handy gehört meinem Bruder.||Dativ, eril tekil: *meinem Bruder*.
+H|Ich danke dich für alles.|Ich danke dir für alles.||*danken* + Dativ: *dir*.
+H|Der Termin passt ihn nicht.|Der Termin passt ihm nicht.||*passen* + Dativ: *ihm*.
+H|Wir haben den Kindern geholfen.|=|Doğru: çoğul Dativ *den Kindern*.
+H|Gefällt dich die Wohnung?|Gefällt dir die Wohnung?||*gefallen* + Dativ: *dir*.
+H|Ich helfe die alte Frau.|Ich helfe der alten Frau.||*helfen* + Dativ, dişil: *der alten Frau*.
+D|Zamiri değiştir: "die Lehrerin" yerine zamir kullan.|Ich danke der Lehrerin.|Ich danke ihr.||*der Lehrerin* → *ihr*.
+D|Zamiri değiştir: "mein Vater" yerine zamir kullan.|Das Auto gehört meinem Vater.|Das Auto gehört ihm.||*meinem Vater* → *ihm*.
+D|Öznenin "ich" olduğu cümle yap: "Die Suppe …"|Ich mag die Suppe.|Die Suppe schmeckt mir.||*mögen* (Akk.) → *schmecken* + Dativ.
+D|Öznenin "ich" olduğu cümle yap: "Das Bild …"|Ich finde das Bild schön.|Das Bild gefällt mir.||*gefallen*: beğenilen şey özne, beğenen Dativ.
+D|Soru yap (du).|Er hilft dir.|Hilft er dir?||Evet/hayır sorusunda fiil başa.
+D|Çoğula çevir: "das Kind" → "die Kinder"|Ich helfe dem Kind.|Ich helfe den Kindern.||Çoğul Dativ: *den Kindern* (-n).
+D|Zamiri değiştir: "die Gäste" yerine zamir kullan.|Wir danken den Gästen.|Wir danken ihnen.||Çoğul Dativ zamiri: *ihnen*.
+D|Resmî hitapla sor (Sie).|Kann ich dir helfen?|Kann ich Ihnen helfen?||*Sie* → Dativ *Ihnen*.
+C|Bana yardım edebilir misin?|Kannst du mir helfen?|Könntest du mir helfen?|*helfen* + Dativ.
+C|Bu ceket sana çok yakışıyor.|Die Jacke steht dir sehr gut.|Diese Jacke steht dir sehr gut.|*stehen* + Dativ.
+C|Yemek bize çok lezzetli geldi.|Das Essen hat uns sehr gut geschmeckt.|Das Essen schmeckt uns sehr gut.|*schmecken* + Dativ.
+C|Bu çanta kimin? – Annemin.|Wem gehört die Tasche? – Meiner Mutter.|Wem gehört diese Tasche? – Meiner Mutter./Wem gehört die Tasche? Meiner Mutter.|*Wem?* = kime (Dativ).
+C|Pazartesi sana uyar mı?|Passt dir Montag?|Passt dir der Montag?/Passt es dir am Montag?|*passen* + Dativ.
+C|Yardımın için teşekkür ederim.|Ich danke dir für deine Hilfe.|Danke für deine Hilfe.|*danken* + Dativ.
+K|Das neue Handy gefällt mir sehr.|Yeni telefonu çok beğeniyorum.|Mir gefällt das neue Handy sehr.
+K|Kannst du meiner Schwester helfen?|Kız kardeşime yardım edebilir misin?
+K|Der Schlüssel gehört dem Hausmeister.|Anahtar kapıcıya ait.
+K|Wir gratulieren dir zum Geburtstag.|Doğum gününü kutluyoruz.|Zum Geburtstag gratulieren wir dir.
+O|Am Samstag hat Ali seinem Freund Can beim Umzug geholfen. Die neue Wohnung gefällt Can sehr, aber sie ist im vierten Stock. Am Abend hat Can ihm für die Hilfe gedankt und eine Pizza bestellt. Die Pizza hat beiden sehr gut geschmeckt.|Cumartesi Ali arkadaşı Can'a taşınmada yardım etti. Yeni daire Can'ın çok hoşuna gidiyor ama dördüncü katta. Akşam Can yardımı için ona teşekkür etti ve pizza sipariş etti. Pizza ikisine de çok lezzetli geldi.|Wem hat Ali geholfen?~Seinem Freund Can.~Seiner Schwester.~Seinem Vater.|Was hat Can am Abend gemacht?~Er hat ihm gedankt und eine Pizza bestellt.~Er hat gekocht.~Er ist ins Kino gegangen.
+O|Frau Schmidt sucht ein Geschenk für ihre Tochter. Die Verkäuferin zeigt ihr einen Pullover. „Der Pullover gefällt mir, aber passt er meiner Tochter?", fragt Frau Schmidt. Die Verkäuferin antwortet: „Wenn er ihr nicht passt, können Sie ihn umtauschen."|Bayan Schmidt kızı için bir hediye arıyor. Satıcı ona bir kazak gösteriyor. "Kazağı beğendim ama kızıma olur mu?" diye soruyor Bayan Schmidt. Satıcı cevap veriyor: "Olmazsa değiştirebilirsiniz."|Für wen sucht Frau Schmidt ein Geschenk?~Für ihre Tochter.~Für ihren Mann.~Für die Verkäuferin.|Was kann Frau Schmidt machen, wenn der Pullover nicht passt?~Ihn umtauschen.~Einen neuen kaufen.~Ihn behalten.
+O|Mein Nachbar ist schon 80 Jahre alt. Ich helfe ihm jede Woche beim Einkaufen. Er dankt mir immer und erzählt mir Geschichten von früher. Seine Geschichten gefallen mir sehr. Letzte Woche hat er mir sogar einen Kuchen gebacken.|Komşum 80 yaşında. Ona her hafta alışverişte yardım ediyorum. Bana hep teşekkür ediyor ve eski zamanlardan hikâyeler anlatıyor. Hikâyelerini çok seviyorum. Geçen hafta bana kek bile yaptı.|Wobei hilft die Person ihrem Nachbarn?~Beim Einkaufen.~Beim Kochen.~Beim Putzen.|Was hat der Nachbar letzte Woche gemacht?~Er hat einen Kuchen gebacken.~Er hat Geschichten aufgeschrieben.~Er ist umgezogen.

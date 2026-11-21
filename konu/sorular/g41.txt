@@ -1,0 +1,52 @@
+# g41 · Konnektoren: denn, sondern, aber
+Y|Ich gehe heute nicht schwimmen, ___ ich bin erkältet. (çünkü)|denn||Sebep, ana cümle sırası: *denn ich bin …* (fiil 2. yerde).
+Y|Das ist kein Tee, ___ Kaffee. (… değil, …)|sondern||Olumsuzdan sonra düzeltme: *sondern*.
+Y|Die Wohnung ist klein, ___ sie ist sehr hell. (ama)|aber||Karşıtlık: *aber*.
+Y|Er kommt nicht heute, ___ morgen. (… değil, …)|sondern||*nicht heute, sondern morgen*.
+Y|Ich trinke keinen Alkohol, ___ ich muss noch fahren. (çünkü)|denn||*denn* + ana cümle sırası.
+Y|Das Essen war teuer, ___ es war sehr lecker. (ama)|aber||*aber*: beklenenin tersi.
+Y|Wir fahren nicht mit dem Auto, ___ mit dem Zug. (… değil, …)|sondern||Olumsuzdan sonra doğru bilgi: *sondern*.
+Y|Ich bin müde, denn ich ___ schlecht geschlafen. (haben, Perfekt)|habe||*denn* sonrası ana cümle: *ich habe … geschlafen*.
+Y|Sie lernt Deutsch, ___ sie will in Deutschland studieren. (çünkü)|denn||*denn* = çünkü (fiil 2. yerde).
+Y|Mein Bruder wohnt nicht in Berlin, ___ in Hamburg. (… değil, …)|sondern||*nicht …, sondern …*
+Y|Ich wollte anrufen, ___ ich hatte keine Zeit. (ama)|aber||*aber*.
+Y|Er ist nicht Lehrer, ___ Arzt. (… değil, …)|sondern||*nicht Lehrer, sondern Arzt*.
+Y|Ich nehme den Bus, ___ es regnet. (çünkü)|denn||*denn es regnet* (fiil 2. yerde).
+Y|Ich mag Fußball, ___ ich spiele nicht gern. (ama)|aber||*aber*.
+S|Ich bleibe zu Hause, ___ ich bin krank.|denn|sondern|aber|Sebep: *denn*.
+S|Das ist nicht mein Schlüssel, ___ deiner.|sondern|aber|denn|Olumsuzdan sonra düzeltme: *sondern*.
+S|Der Film war lang, ___ interessant.|aber|sondern|denn|Karşıtlık: *aber*.
+S|Ich komme nicht mit, denn ___.|ich habe keine Zeit|ich keine Zeit habe|habe ich keine Zeit|*denn* sonrası normal sıra: özne + fiil.
+S|Sie trinkt keinen Kaffee, ___ Tee.|sondern|aber|denn|*kein …, sondern …*
+S|Wir wollten grillen, ___ dann hat es geregnet.|aber|sondern|denn|*aber*.
+S|Ich gehe früh ins Bett, ___ ich muss um fünf Uhr aufstehen.|denn|weil|sondern|*denn* + ana cümle sırası (*muss* 2. yerde). *weil* olsaydı fiil sona giderdi.
+S|Er ist nicht alt, ___ jung.|sondern|aber|denn|*nicht alt, sondern jung*.
+H|Ich komme nicht, denn ich krank bin.|Ich komme nicht, denn ich bin krank.||*denn* sonrası fiil 2. yerde: *ich bin krank*.
+H|Das ist nicht Tee, aber Kaffee.|Das ist nicht Tee, sondern Kaffee.|Das ist kein Tee, sondern Kaffee.|Olumsuzdan sonra düzeltme: *sondern*.
+H|Die Jacke ist schön, aber zu teuer.|=|Doğru: karşıtlık *aber*.
+H|Ich lerne viel, denn ich will die Prüfung bestehen.|=|Doğru: *denn* + ana cümle sırası.
+H|Wir gehen nicht ins Kino, sondern wir bleiben zu Hause.|=|Doğru: *sondern* ile tam cümle de olur.
+H|Er arbeitet heute nicht, denn hat er Urlaub.|Er arbeitet heute nicht, denn er hat Urlaub.||*denn* sayılmaz (0. pozisyon): *denn er hat …*
+H|Ich möchte kommen, sondern ich habe keine Zeit.|Ich möchte kommen, aber ich habe keine Zeit.||İlk cümle olumsuz değil → *aber*.
+H|Sie kommt nicht heute, aber morgen.|Sie kommt nicht heute, sondern morgen.||*nicht heute, sondern morgen*.
+D|"denn" ile birleştir.|Ich trinke Wasser. Ich habe Durst.|Ich trinke Wasser, denn ich habe Durst.||*denn ich habe Durst*.
+D|"sondern" ile birleştir.|Ich fahre nicht nach Paris. Ich fahre nach Rom.|Ich fahre nicht nach Paris, sondern nach Rom.|Ich fahre nicht nach Paris, sondern ich fahre nach Rom.|*nicht …, sondern …*
+D|"aber" ile birleştir.|Das Auto ist alt. Es fährt noch gut.|Das Auto ist alt, aber es fährt noch gut.||*aber*.
+D|"weil" cümlesini "denn" ile yaz.|Ich bleibe zu Hause, weil ich müde bin.|Ich bleibe zu Hause, denn ich bin müde.||*weil* → fiil sonda; *denn* → fiil 2. yerde.
+D|"denn" cümlesini "weil" ile yaz.|Er lernt viel, denn er hat morgen eine Prüfung.|Er lernt viel, weil er morgen eine Prüfung hat.||*weil* → fiil sona: *hat*.
+D|"sondern" ile birleştir.|Das ist kein Hund. Das ist eine Katze.|Das ist kein Hund, sondern eine Katze.||*kein …, sondern …*
+D|"aber" ile birleştir.|Ich möchte das Handy kaufen. Ich habe nicht genug Geld.|Ich möchte das Handy kaufen, aber ich habe nicht genug Geld.||*aber*.
+D|"denn" ile birleştir.|Wir nehmen ein Taxi. Es ist schon spät.|Wir nehmen ein Taxi, denn es ist schon spät.||*denn es ist …*
+C|Bugün gelemiyorum çünkü çalışmam gerekiyor.|Ich kann heute nicht kommen, denn ich muss arbeiten.|Ich kann heute nicht kommen, weil ich arbeiten muss.|*denn ich muss arbeiten*.
+C|Bu benim çantam değil, kız kardeşimin.|Das ist nicht meine Tasche, sondern die Tasche meiner Schwester.|Das ist nicht meine Tasche, sondern die von meiner Schwester./Das ist nicht meine Tasche, sondern die meiner Schwester.|*nicht …, sondern …*
+C|Daire küçük ama ucuz.|Die Wohnung ist klein, aber billig.|Die Wohnung ist klein, aber sie ist billig./Die Wohnung ist klein, aber günstig.|*aber*.
+C|Otobüsle değil, bisikletle gidiyorum.|Ich fahre nicht mit dem Bus, sondern mit dem Fahrrad.||*nicht …, sondern …*
+C|Şemsiye alıyorum çünkü yağmur yağıyor.|Ich nehme einen Regenschirm, denn es regnet.|Ich nehme einen Regenschirm mit, denn es regnet./Ich nehme einen Schirm, denn es regnet.|*denn es regnet*.
+C|Gelmek istedim ama vaktim yoktu.|Ich wollte kommen, aber ich hatte keine Zeit.||*aber*.
+K|Ich gehe heute nicht laufen, denn mein Knie tut weh.|Bugün koşmaya gitmiyorum çünkü dizim ağrıyor.
+K|Wir treffen uns nicht im Café, sondern im Park.|Kafede değil, parkta buluşuyoruz.
+K|Das Hotel war schön, aber das Essen war schlecht.|Otel güzeldi ama yemek kötüydü.
+K|Er spricht nicht nur Deutsch, sondern auch Englisch.|Sadece Almanca değil, İngilizce de konuşuyor.
+O|Am Freitag wollte Burak mit Freunden grillen, aber es hat den ganzen Tag geregnet. Sie sind deshalb nicht in den Park gegangen, sondern zu Burak nach Hause. Dort haben sie Pizza gemacht, denn der Grill war nur für draußen. Der Abend war nicht langweilig, sondern sehr lustig.|Cuma günü Burak arkadaşlarıyla mangal yapmak istedi ama bütün gün yağmur yağdı. Bu yüzden parka değil, Burak'ın evine gittiler. Orada pizza yaptılar çünkü mangal sadece dışarı içindi. Akşam sıkıcı değil, çok eğlenceliydi.|Wohin sind die Freunde gegangen?~Zu Burak nach Hause.~In den Park.~In ein Restaurant.|Wie war der Abend?~Sehr lustig.~Langweilig.~Zu kurz.
+O|Frau Weber arbeitet nicht mehr in Bonn, sondern in Köln. Sie fährt jeden Tag mit dem Zug, denn sie hat kein Auto. Die Fahrt dauert lang, aber sie kann im Zug lesen. Ihre neue Arbeit gefällt ihr, denn die Kollegen sind sehr nett.|Bayan Weber artık Bonn'da değil, Köln'de çalışıyor. Her gün trenle gidiyor çünkü arabası yok. Yolculuk uzun sürüyor ama trende kitap okuyabiliyor. Yeni işini seviyor çünkü iş arkadaşları çok nazik.|Warum fährt Frau Weber mit dem Zug?~Sie hat kein Auto.~Der Zug ist billiger.~Sie liest gern.|Wo arbeitet Frau Weber jetzt?~In Köln.~In Bonn.~Zu Hause.
+O|Ich lerne nicht nur Deutsch im Kurs, sondern auch mit einer App. Die App ist gut, aber manchmal ist sie langweilig. Am liebsten spreche ich mit meinen Kollegen, denn so lerne ich viele neue Wörter. Mein Ziel ist nicht A2, sondern B1.|Almancayı sadece kursta değil, bir uygulamayla da öğreniyorum. Uygulama iyi ama bazen sıkıcı. En çok iş arkadaşlarımla konuşmayı seviyorum çünkü böylece birçok yeni kelime öğreniyorum. Hedefim A2 değil, B1.|Warum spricht die Person am liebsten mit Kollegen?~So lernt sie viele neue Wörter.~Die App ist kaputt.~Der Kurs ist zu teuer.|Was ist das Ziel der Person?~B1.~A2.~A1.

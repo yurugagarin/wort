@@ -1,0 +1,52 @@
+# g6 · Reflexive Verben
+Y|Ich freue ___ auf den Urlaub. (sich freuen)|mich||*ich* → *mich*.
+Y|Wir treffen ___ um acht vor dem Kino. (sich treffen)|uns||*wir* → *uns*.
+Y|Hast du ___ schon angemeldet? (sich anmelden)|dich||*du* → *dich*.
+Y|Er rasiert ___ jeden Morgen. (sich rasieren)|sich||*er* → *sich*.
+Y|Habt ihr ___ im Urlaub gut erholt? (sich erholen)|euch||*ihr* → *euch*.
+Y|Die Kinder ziehen ___ schnell an. (sich anziehen)|sich||*sie* (çoğul) → *sich*.
+Y|Ich interessiere ___ für Fußball. (sich interessieren)|mich||*sich interessieren für*: *mich*.
+Y|Beeil ___, der Zug fährt gleich! (du)|dich||Emir kipinde de zamir kalır: *Beeil dich!*
+Y|Ich wasche ___ die Hände. (sich waschen + Akkusativ nesne)|mir||Ayrıca Akkusativ nesne varsa (*die Hände*) zamir Dativ olur: *mir*.
+Y|Kannst du ___ das merken? (sich merken)|dir||*sich etwas merken*: nesne var → Dativ: *dir*.
+Y|Wir haben ___ gestern lange unterhalten. (sich unterhalten)|uns||Perfekt'te de zamir yardımcı fiilden sonra: *haben uns … unterhalten*.
+Y|Sie ärgert ___ über den Lärm. (sich ärgern)|sich||*sie* (o) → *sich*.
+Y|Ich habe ___ gestern erkältet. (sich erkälten)|mich||*sich erkälten*: *mich*.
+Y|Setzen Sie ___ bitte! (Sie, resmî)|sich||Resmî *Sie* → *sich*.
+S|Ich fühle ___ heute nicht gut.|mich|mir|sich|*ich* → *mich*.
+S|Wir müssen ___ beeilen.|uns|euch|sich|*wir* → *uns*.
+S|Du hast ___ die Haare geschnitten.|dir|dich|sich|Nesne (*die Haare*) var → Dativ: *dir*.
+S|Freust du ___ auf das Wochenende?|dich|dir|sich|*du* → *dich*.
+S|Meine Eltern haben ___ in Antalya kennengelernt.|sich|ihnen|uns|*sie* (çoğul) → *sich*.
+S|Ich kann ___ den Namen nicht merken.|mir|mich|sich|*sich etwas merken* → Dativ: *mir*.
+S|Habt ihr ___ schon entschieden?|euch|uns|sich|*ihr* → *euch*.
+S|Er duscht ___ nach dem Training.|sich|ihn|ihm|*er* → *sich*.
+H|Ich freue sich auf das Wochenende.|Ich freue mich auf das Wochenende.||*ich* → *mich*.
+H|Wir treffen uns morgen um zehn.|=|Doğru: *wir* → *uns*.
+H|Du musst dich beeilen.|=|Doğru: *du* → *dich*.
+H|Ich putze mich die Zähne.|Ich putze mir die Zähne.||Nesne (*die Zähne*) var → Dativ: *mir*.
+H|Er hat sich gestern erkältet.|=|Doğru.
+H|Ihr müsst sich anmelden.|Ihr müsst euch anmelden.||*ihr* → *euch*.
+H|Sie interessiert sich nicht Politik.|Sie interessiert sich nicht für Politik.||*sich interessieren für* + Akkusativ.
+H|Wir haben sich im Kurs kennengelernt.|Wir haben uns im Kurs kennengelernt.||*wir* → *uns*.
+D|Özneyi "wir" yap.|Ich freue mich auf den Sommer.|Wir freuen uns auf den Sommer.||*wir freuen uns*.
+D|Özneyi "du" yap.|Er ärgert sich über das Wetter.|Du ärgerst dich über das Wetter.||*du ärgerst dich*.
+D|Perfekt'e çevir.|Ich erhole mich im Urlaub.|Ich habe mich im Urlaub erholt.||Dönüşlü fiiller Perfekt'te *haben* alır; zamir *habe*'den sonra.
+D|Perfekt'e çevir.|Wir treffen uns im Park.|Wir haben uns im Park getroffen.||*treffen* → *getroffen*.
+D|Emir cümlesi yap (du).|Du beeilst dich.|Beeil dich!|Beeile dich!|Emirde zamir kalır.
+D|Özneyi "ihr" yap.|Die Kinder ziehen sich an.|Ihr zieht euch an.||*ihr zieht euch an*.
+D|"Ich" ile yeniden yaz: "Ich wasche …"|Er wäscht sich die Hände.|Ich wasche mir die Hände.||Nesne var → Dativ: *mir*.
+D|Özneyi "Sie" (resmî) yap ve soru yap.|Du setzt dich.|Setzen Sie sich?||*Sie setzen sich* → soru: *Setzen Sie sich?*
+C|Hafta sonunu dört gözle bekliyorum.|Ich freue mich auf das Wochenende.|Ich freue mich aufs Wochenende.|*sich freuen auf* + Akk.
+C|Acele et, otobüs geliyor!|Beeil dich, der Bus kommt!|Beeile dich, der Bus kommt!|*sich beeilen*.
+C|Bugün kendimi iyi hissetmiyorum.|Ich fühle mich heute nicht gut.|Heute fühle ich mich nicht gut./Ich fühle mich heute nicht wohl.|*sich fühlen*.
+C|Dün akşam arkadaşlarla buluştuk.|Wir haben uns gestern Abend mit Freunden getroffen.|Gestern Abend haben wir uns mit Freunden getroffen.|*sich treffen mit*.
+C|Spora ilgi duyuyor musun?|Interessierst du dich für Sport?||*sich interessieren für*.
+C|Dişlerimi fırçalıyorum.|Ich putze mir die Zähne.||Nesne var → *mir*.
+K|Ich ziehe mich schnell an.|Hızlıca giyiniyorum.
+K|Wir haben uns im Deutschkurs kennengelernt.|Almanca kursunda tanıştık.|Im Deutschkurs haben wir uns kennengelernt.
+K|Freust du dich auf die Reise?|Yolculuğu dört gözle bekliyor musun?
+K|Er hat sich über den Chef geärgert.|Şefe kızdı.
+O|Am Morgen hat Deniz keine Zeit. Er steht um sechs Uhr auf, duscht sich schnell und zieht sich an. Dann putzt er sich die Zähne und beeilt sich, weil der Bus um halb sieben kommt. Am Abend ist er müde, aber er freut sich auf das Wochenende. Dann kann er sich endlich erholen.|Deniz'in sabah hiç vakti yok. Saat altıda kalkıyor, hızlıca duş alıyor ve giyiniyor. Sonra dişlerini fırçalıyor ve acele ediyor çünkü otobüs altı buçukta geliyor. Akşam yorgun ama hafta sonunu dört gözle bekliyor. O zaman nihayet dinlenebilir.|Warum beeilt sich Deniz?~Der Bus kommt um halb sieben.~Er hat einen Termin beim Arzt.~Er ist zu spät aufgestanden.|Worauf freut sich Deniz?~Auf das Wochenende.~Auf den Urlaub.~Auf das Abendessen.
+O|Lisa und Ömer haben sich vor zwei Jahren im Sportverein kennengelernt. Sie interessieren sich beide für Tennis. Jeden Dienstag treffen sie sich auf dem Platz. Letzte Woche hat sich Ömer erkältet, deshalb konnte er nicht spielen. Lisa hat sich ein bisschen geärgert, weil sie allein trainieren musste.|Lisa ve Ömer iki yıl önce spor kulübünde tanıştı. İkisi de tenise ilgi duyuyor. Her salı kortta buluşuyorlar. Geçen hafta Ömer üşüttü, bu yüzden oynayamadı. Lisa biraz sinirlendi çünkü tek başına antrenman yapmak zorunda kaldı.|Wo haben sich Lisa und Ömer kennengelernt?~Im Sportverein.~Im Deutschkurs.~Bei der Arbeit.|Warum hat sich Lisa geärgert?~Sie musste allein trainieren.~Ömer kam zu spät.~Es hat geregnet.
+O|Liebe Frau Arslan, wir freuen uns, dass Sie sich für unseren Kurs angemeldet haben. Der Kurs beginnt am 3. März um 18 Uhr. Bitte melden Sie sich zehn Minuten vorher im Büro. Wenn Sie sich nicht wohl fühlen oder krank sind, rufen Sie uns bitte an. Viele Grüße, Ihre Sprachschule|Sayın Bayan Arslan, kursumuza kaydolduğunuz için seviniyoruz. Kurs 3 Mart'ta saat 18'de başlıyor. Lütfen on dakika önce büroya başvurun. Kendinizi iyi hissetmezseniz ya da hastaysanız lütfen bizi arayın. Selamlar, Dil okulunuz|Was soll Frau Arslan zehn Minuten vor dem Kurs machen?~Sich im Büro melden.~Den Lehrer anrufen.~Ein Buch kaufen.|Was soll sie machen, wenn sie krank ist?~Die Schule anrufen.~Eine E-Mail schreiben.~Trotzdem kommen.

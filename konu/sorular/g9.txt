@@ -1,0 +1,52 @@
+# g9 · Adjektivdeklination nach bestimmtem Artikel
+Y|Der ___ Nachbar ist sehr freundlich. (neu)|neue||Nominativ tekil, *der* → *-e*: *der neue*.
+Y|Die ___ Wohnung ist leider zu teuer. (schön)|schöne||Nominativ tekil, *die* → *-e*.
+Y|Das ___ Auto gehört meinem Vater. (schwarz)|schwarze||Nominativ tekil, *das* → *-e*.
+Y|Ich kaufe den ___ Mantel. (warm)|warmen||Akkusativ eril: *den …-en*.
+Y|Sie nimmt die ___ Tasche. (groß)|große||Akkusativ dişil *die* → *-e*.
+Y|Wir besichtigen das ___ Rathaus. (alt)|alte||Akkusativ nötr *das* → *-e*.
+Y|Ich spreche mit dem ___ Chef. (neu)|neuen||Dativ → hep *-en*.
+Y|Er wohnt in der ___ Straße. (klein)|kleinen||Dativ dişil → *-en*.
+Y|Die ___ Schuhe sind sehr bequem. (braun)|braunen||Çoğul → hep *-en*.
+Y|Wir fahren mit dem ___ Zug nach Wien. (schnell)|schnellen||Dativ → *-en*.
+Y|Hast du die ___ Nachrichten gelesen? (neu, çoğul)|neuen||Çoğul Akkusativ → *-en*.
+Y|Ich helfe dem ___ Mann. (alt)|alten||Dativ → *-en*.
+Y|Das Kind spielt mit dem ___ Ball. (rot)|roten||Dativ eril → *-en*.
+Y|Der Preis des ___ Fahrrads ist hoch. (neu)|neuen||Genitiv → *-en*.
+S|Der ___ Kaffee schmeckt gut.|heiße|heißen|heißer|Nominativ eril, *der* → *-e*.
+S|Ich trinke den ___ Kaffee.|heißen|heiße|heißes|Akkusativ eril → *-en*.
+S|Wir wohnen in dem ___ Haus.|großen|große|großes|Dativ → *-en*.
+S|Die ___ Kinder spielen draußen.|kleinen|kleine|kleiner|Çoğul → *-en*.
+S|Ich suche die ___ Brille.|alte|alten|alter|Akkusativ dişil → *-e*.
+S|Das ___ Brot ist sehr lecker.|frische|frischen|frisches|Nominativ nötr, *das* → *-e*.
+S|Er gibt dem ___ Kollegen die Akte.|neuen|neue|neuer|Dativ → *-en*.
+S|Hast du das ___ Hemd gewaschen?|weiße|weißen|weißes|Akkusativ nötr, *das* → *-e*.
+H|Der neuen Kollege kommt aus Ankara.|Der neue Kollege kommt aus Ankara.||Nominativ eril tekil → *-e*.
+H|Ich kaufe den blaue Pullover.|Ich kaufe den blauen Pullover.||Akkusativ eril → *-en*.
+H|Wir sitzen in dem kleinen Café.|=|Doğru: Dativ → *-en*.
+H|Die alten Fotos sind schön.|=|Doğru: çoğul → *-en*.
+H|Ich wohne in der große Stadt.|Ich wohne in der großen Stadt.||Dativ → *-en*.
+H|Das neues Handy ist kaputt.|Das neue Handy ist kaputt.||*das* sonrası Nominativ → *-e* (*-es* değil).
+H|Sie trägt die rote Jacke.|=|Doğru: Akkusativ dişil → *-e*.
+H|Er spricht mit den neue Kollegen.|Er spricht mit den neuen Kollegen.||Çoğul Dativ → *-en*.
+D|Akkusativ'e çevir: "Ich kaufe …"|Der grüne Tisch ist schön.|Ich kaufe den grünen Tisch.||Akkusativ eril → *den grünen*.
+D|Dativ'e çevir: "Ich fahre mit …"|Das neue Auto ist schnell.|Ich fahre mit dem neuen Auto.||Dativ → *dem neuen*.
+D|Çoğula çevir.|Das kleine Kind spielt.|Die kleinen Kinder spielen.||Çoğul → *-en*.
+D|Dativ'e çevir: "Wir wohnen in …"|Die alte Wohnung ist groß.|Wir wohnen in der alten Wohnung.||Dativ dişil → *der alten*.
+D|Akkusativ'e çevir: "Ich suche …"|Die schwarze Katze ist weg.|Ich suche die schwarze Katze.||Akkusativ dişil *die* → *-e* kalır.
+D|Dativ'e çevir: "Ich helfe …"|Der junge Mann wartet.|Ich helfe dem jungen Mann.||Dativ → *-en*.
+D|Akkusativ'e çevir: "Ich nehme …"|Das teure Handy ist gut.|Ich nehme das teure Handy.||Akkusativ nötr *das* → *-e*.
+D|Çoğula çevir.|Der neue Kollege ist nett.|Die neuen Kollegen sind nett.||Çoğul → *-en*.
+C|Yeni komşu çok nazik.|Der neue Nachbar ist sehr nett.|Die neue Nachbarin ist sehr nett./Der neue Nachbar ist sehr freundlich.|*der neue*.
+C|Kırmızı ceketi alıyorum.|Ich nehme die rote Jacke.|Ich kaufe die rote Jacke.|Akkusativ dişil → *-e*.
+C|Küçük çocuklara yardım ediyoruz.|Wir helfen den kleinen Kindern.||Çoğul Dativ → *-en*.
+C|Eski evde yaşıyorum.|Ich wohne in dem alten Haus.|Ich wohne im alten Haus.|Dativ → *-en*.
+C|Yeni telefon çok pahalı.|Das neue Handy ist sehr teuer.|Das neue Telefon ist sehr teuer.|Nominativ → *-e*.
+C|Mavi pantolonu deniyorum.|Ich probiere die blaue Hose an.||Akkusativ dişil → *-e*.
+K|Der neue Trainer ist sehr streng.|Yeni antrenör çok sıkı.
+K|Ich trage heute den warmen Pullover.|Bugün kalın kazağı giyiyorum.|Heute trage ich den warmen Pullover.
+K|Wir treffen uns in dem kleinen Park.|Küçük parkta buluşuyoruz.|In dem kleinen Park treffen wir uns.
+K|Die grünen Äpfel schmecken mir besser.|Yeşil elmalar bana daha lezzetli geliyor.
+O|Im Kaufhaus sucht Elif eine Jacke für den Winter. Die blaue Jacke ist schön, aber zu dünn. Die schwarze Jacke ist warm, aber sehr teuer. Am Ende kauft Elif die graue Jacke, denn der graue Stoff ist warm und der Preis ist gut. Zu der neuen Jacke kauft sie auch die passenden Handschuhe.|Mağazada Elif kış için bir ceket arıyor. Mavi ceket güzel ama çok ince. Siyah ceket sıcak tutuyor ama çok pahalı. Sonunda Elif gri ceketi alıyor çünkü gri kumaş sıcak tutuyor ve fiyatı iyi. Yeni ceketin yanına uygun eldivenleri de alıyor.|Warum kauft Elif die blaue Jacke nicht?~Sie ist zu dünn.~Sie ist zu teuer.~Sie ist zu groß.|Welche Jacke kauft Elif?~Die graue Jacke.~Die schwarze Jacke.~Die blaue Jacke.
+O|Unser neues Büro ist im dritten Stock. Der große Raum ist hell und modern. Leider funktioniert die alte Kaffeemaschine nicht mehr. Der neue Chef hat gesagt, dass er nächste Woche die neue Maschine bestellt. Bis dahin trinken wir den schlechten Kaffee aus dem Automaten.|Yeni ofisimiz üçüncü katta. Büyük oda aydınlık ve modern. Ne yazık ki eski kahve makinesi artık çalışmıyor. Yeni şef gelecek hafta yeni makineyi sipariş edeceğini söyledi. O zamana kadar otomattaki kötü kahveyi içiyoruz.|Was funktioniert nicht mehr?~Die alte Kaffeemaschine.~Der Computer.~Der Aufzug.|Was trinken die Kollegen bis zur nächsten Woche?~Den schlechten Kaffee aus dem Automaten.~Tee.~Wasser.
+O|Am Samstag war ich mit meiner kleinen Tochter im Zoo. Der große Elefant hat ihr am besten gefallen. Die kleinen Affen waren sehr lustig. Mittags haben wir in dem neuen Restaurant am Eingang gegessen. Das leckere Eis zum Nachtisch war der schönste Moment für meine Tochter.|Cumartesi küçük kızımla hayvanat bahçesindeydim. En çok büyük fil hoşuna gitti. Küçük maymunlar çok komikti. Öğlen girişteki yeni restoranda yemek yedik. Tatlı olarak yediğimiz lezzetli dondurma kızım için en güzel andı.|Welches Tier hat der Tochter am besten gefallen?~Der große Elefant.~Die kleinen Affen.~Der Löwe.|Wo haben sie mittags gegessen?~In dem neuen Restaurant am Eingang.~Zu Hause.~Im Park.

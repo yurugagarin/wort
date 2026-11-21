@@ -241,3 +241,13 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Geniş ekran (web) önce: Bugün iki sütun (plan + yaptıkların | serbest çalışma, pekiştir, sırada), zaman çizelgesi tam genişlikte.
 - [x] Hata düzeltildi: "scv!==8" koşulu her açılışta geçmiş günlerin puanını eski formülle donduruyordu (takvim ve haftalık hedef yanlış görünüyordu). Yanlış dondurulan günler kendi kurallarıyla yeniden hesaplanır.
 - [x] Denetim: boş profille tam gün (Tablo → Öğren → Uygula, 100 puan, seri), 14 günlük simülasyon (%20 yanlış, 3 gün ara: haftada 3 yeni konu, Üret ertesi gün, tekrarlar bloğa geliyor, seri doğru sayılıyor, aradan sonra konu baştan), zaman çizelgesi, pekiştir testi, notlar, kelimeye dokunma, telefon görünümü; hata yok.
+
+## Tur 22 · Gerçek testler (21 Kasım) · Aşama 2
+- [x] Soru bankası: konu/sorular/gN.txt (düz metin, konu/build.py ile #qbank'e derlenir). Türler: boşluğa yaz, şıklı boşluk, hata bul ve düzelt (bazı cümleler doğru: "Hata yok"), dönüştür, Türkçeden çevir, cümle kur (başka doğru sıralar kabul), okuma parçası (2 soru).
+- [x] A2.1'in 13 konusu: konu başına ~51 yeni soru + 3 okuma parçası (toplam 671 satır); eski 12 boşluk ve 6 cümle de havuzda.
+- [x] Aşamalar: Öğren (kural + 12 soruluk test, %75), Uygula (15 soru: yazma, hata bul, dönüştür, çevir, cümle kur, okuma; %70), Üret, Tekrar (13 soru, 2'si önceki konulardan; %80), Pekiştir (13 soru).
+- [x] Seçim: önce hiç görülmeyen, sonra en uzun süredir görülmeyen; son 30 günde görülen başka soru varken gelmez; tekrar ve pekiştirmede son seferde yanlış yapılanlar (1 gün sonra) önce. Soru anahtarı içerikten türetilir.
+- [x] Cevap kontrolü: büyük/küçük harf, noktalama, ä=ae…; uzun cümlede tek harflik yazım farkı "doğru · küçük yazım farkı"; çeviride "Benim çevirim de doğru" ile kendin doğru sayabilirsin. Yanlışta doğrusu, senin cümlende fazla olan kelimeler üstü çizili, eksikler vurgulu.
+- [x] Her soruda "Bu soruda hata mı var? Bildir"; Ayarlar'da bildirilen sorular listesi ve kopyala.
+- [x] Zaman çizelgesi temposu: iki haftalık veri birikene kadar plan temposu; sonra son 4 haftanın gerçek temposu (kısa geçmişte geçen hafta sayısına bölünür).
+- [x] Denetim: bankadaki 704 sorunun hepsi doğru cevapla tek tek çözüldü (hepsi kabul), 23 başka-sıra ve 123 başka-cevap tutarlı; Perfekt'te Öğren/Uygula/Tekrar %0 ve %40 yanlışla; ikinci denemede 12 sorunun 12'si yeni; 7 günlük simülasyon; hata yok.
