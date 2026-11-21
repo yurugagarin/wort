@@ -1,0 +1,52 @@
+# g18 · deshalb, deswegen, darum
+Y|Es regnet, deshalb ___ ich zu Hause. (bleiben)|bleibe||*deshalb* 1. konumda → fiil hemen ardından: *deshalb bleibe ich*.
+Y|Ich bin müde, ___ gehe ich ins Bett. (bu yüzden)|deshalb|deswegen/darum|*deshalb/deswegen/darum* = bu yüzden.
+Y|Er hat keine Zeit, deswegen ___ er nicht. (kommen)|kommt||Fiil 2. konumda: *deswegen kommt er*.
+Y|Der Bus kam nicht, darum ___ ich zu spät gekommen. (sein)|bin||Perfekt: *darum bin ich … gekommen*.
+Y|Sie lernt viel, deshalb ___ sie gute Noten. (haben)|hat||*deshalb hat sie*.
+Y|Ich habe Hunger, deshalb ___ ich ein Brot. (essen)|esse||*deshalb esse ich*.
+Y|Wir haben wenig Geld, deswegen ___ wir nicht in Urlaub. (fahren)|fahren||*deswegen fahren wir*.
+Y|Das Wetter ist schön, ___ gehen wir spazieren. (bu yüzden)|darum|deshalb/deswegen|*darum gehen wir*.
+Y|Mein Auto ist kaputt, deshalb ___ ich mit dem Fahrrad. (fahren)|fahre||*deshalb fahre ich*.
+Y|Er ist krank, deshalb muss er zu Hause ___. (bleiben)|bleiben||Modal: *muss er … bleiben* (mastar sonda).
+Y|Ich möchte in Deutschland arbeiten, deshalb ___ ich Deutsch. (lernen)|lerne||*deshalb lerne ich*.
+Y|Es ist kalt, deshalb ___ du eine Jacke anziehen. (sollen, tavsiye)|solltest||*deshalb solltest du … anziehen*.
+Y|Ich habe verschlafen, deswegen habe ich den Zug ___. (verpassen)|verpasst||Perfekt: *habe ich … verpasst*.
+Y|Sie ist neu in der Stadt, darum ___ sie noch niemanden. (kennen)|kennt||*darum kennt sie*.
+S|Ich war krank, deshalb ___ nicht zur Arbeit gegangen.|bin ich|ich bin|habe ich|*deshalb* → fiil önce: *bin ich*; *gehen* → *sein*.
+S|Es ist spät, ___ wir nach Hause.|deshalb gehen|deshalb wir gehen|weil gehen|*deshalb gehen wir*.
+S|Ich habe kein Auto, deswegen ___ mit dem Bus.|fahre ich|ich fahre|fahren ich|Fiil 2. konumda.
+S|Er spricht gut Deutsch, ___ er lange in Berlin gewohnt hat.|weil|deshalb|darum|Neden bildiren yan cümle: *weil* (fiil sonda).
+S|Er hat lange in Berlin gewohnt, ___ spricht er gut Deutsch.|deshalb|weil|denn|Sonuç: *deshalb* + fiil.
+S|Der Laden war geschlossen, darum ___ nichts gekauft.|habe ich|ich habe|hatte|*darum habe ich*.
+S|Ich habe morgen eine Prüfung, deshalb muss ich heute ___.|lernen|lerne|gelernt|Modal → mastar sonda.
+S|Es gibt Stau, ___ komme ich später.|deswegen|weil|denn|*deswegen* + fiil.
+H|Ich bin müde, deshalb ich gehe ins Bett.|Ich bin müde, deshalb gehe ich ins Bett.||*deshalb* → fiil hemen ardından.
+H|Es regnet, darum nehme ich einen Schirm.|=|Doğru.
+H|Er hat Fieber, deswegen er bleibt im Bett.|Er hat Fieber, deswegen bleibt er im Bett.||Fiil 2. konuma.
+H|Ich habe viel gearbeitet, deshalb bin ich müde.|=|Doğru.
+H|Sie hat keine Zeit, deshalb sie kommt nicht.|Sie hat keine Zeit, deshalb kommt sie nicht.||*deshalb kommt sie*.
+H|Wir haben Hunger, deshalb kochen wir jetzt.|=|Doğru.
+H|Ich bin müde, weil ich habe schlecht geschlafen.|Ich bin müde, weil ich schlecht geschlafen habe.||*weil* → fiil sona. (Ya da: *…, deshalb …*)
+H|Er hat den Bus verpasst, deshalb er ist zu spät gekommen.|Er hat den Bus verpasst, deshalb ist er zu spät gekommen.||*deshalb ist er*.
+D|"deshalb" ile birleştir.|Es regnet. Ich bleibe zu Hause.|Es regnet, deshalb bleibe ich zu Hause.|Es regnet. Deshalb bleibe ich zu Hause.|*deshalb* + fiil + özne.
+D|"deswegen" ile birleştir.|Ich habe kein Geld. Ich kaufe nichts.|Ich habe kein Geld, deswegen kaufe ich nichts.|Ich habe kein Geld. Deswegen kaufe ich nichts.|*deswegen kaufe ich*.
+D|"darum" ile birleştir.|Er ist krank. Er geht zum Arzt.|Er ist krank, darum geht er zum Arzt.|Er ist krank. Darum geht er zum Arzt.|*darum geht er*.
+D|"weil" cümlesini "deshalb" ile yaz.|Ich lerne Deutsch, weil ich in Deutschland lebe.|Ich lebe in Deutschland, deshalb lerne ich Deutsch.|Ich lebe in Deutschland. Deshalb lerne ich Deutsch.|Neden önce, sonuç *deshalb* ile.
+D|"deshalb" ile birleştir.|Der Zug hatte Verspätung. Ich bin zu spät gekommen.|Der Zug hatte Verspätung, deshalb bin ich zu spät gekommen.|Der Zug hatte Verspätung. Deshalb bin ich zu spät gekommen.|*deshalb bin ich*.
+D|"deshalb" ile birleştir.|Sie hat morgen frei. Sie kann lange schlafen.|Sie hat morgen frei, deshalb kann sie lange schlafen.|Sie hat morgen frei. Deshalb kann sie lange schlafen.|*deshalb kann sie … schlafen*.
+D|"deswegen" ile birleştir.|Es ist heiß. Wir gehen schwimmen.|Es ist heiß, deswegen gehen wir schwimmen.|Es ist heiß. Deswegen gehen wir schwimmen.|*deswegen gehen wir*.
+D|"darum" ile birleştir.|Ich habe Kopfschmerzen. Ich nehme eine Tablette.|Ich habe Kopfschmerzen, darum nehme ich eine Tablette.|Ich habe Kopfschmerzen. Darum nehme ich eine Tablette.|*darum nehme ich*.
+C|Yağmur yağıyor, bu yüzden evde kalıyorum.|Es regnet, deshalb bleibe ich zu Hause.|Es regnet, deswegen bleibe ich zu Hause./Es regnet, darum bleibe ich zu Hause.|*deshalb bleibe ich*.
+C|Yorgunum, bu yüzden yatıyorum.|Ich bin müde, deshalb gehe ich ins Bett.|Ich bin müde, deswegen gehe ich ins Bett./Ich bin müde, darum gehe ich ins Bett./Ich bin müde, deshalb gehe ich schlafen.|*deshalb gehe ich*.
+C|Arabam yok, bu yüzden otobüsle gidiyorum.|Ich habe kein Auto, deshalb fahre ich mit dem Bus.|Ich habe kein Auto, deswegen fahre ich mit dem Bus./Ich habe kein Auto, darum fahre ich mit dem Bus.|*deshalb fahre ich*.
+C|Hastaydı, bu yüzden gelmedi.|Er war krank, deshalb ist er nicht gekommen.|Er war krank, deswegen ist er nicht gekommen./Sie war krank, deshalb ist sie nicht gekommen./Er war krank, deshalb kam er nicht.|*deshalb ist er … gekommen*.
+C|Yarın sınavım var, bu yüzden çalışmam lazım.|Ich habe morgen eine Prüfung, deshalb muss ich lernen.|Ich habe morgen eine Prüfung, deswegen muss ich lernen./Morgen habe ich eine Prüfung, deshalb muss ich lernen.|*deshalb muss ich lernen*.
+C|Hava güzel, bu yüzden parka gidiyoruz.|Das Wetter ist schön, deshalb gehen wir in den Park.|Das Wetter ist schön, deswegen gehen wir in den Park./Das Wetter ist schön, darum gehen wir in den Park.|*deshalb gehen wir*.
+K|Ich habe keinen Hunger, deshalb esse ich nichts.|Aç değilim, bu yüzden bir şey yemiyorum.
+K|Der Zug war voll, deswegen musste ich stehen.|Tren doluydu, bu yüzden ayakta durmak zorunda kaldım.
+K|Sie wohnt weit weg, darum sehen wir uns selten.|Uzakta oturuyor, bu yüzden nadiren görüşüyoruz.
+K|Es war sehr laut, deshalb konnte ich nicht schlafen.|Çok gürültülüydü, bu yüzden uyuyamadım.
+O|Letzte Woche war ich krank. Ich hatte hohes Fieber, deshalb bin ich zum Arzt gegangen. Der Arzt hat gesagt, dass ich eine Grippe habe. Deswegen musste ich fünf Tage zu Hause bleiben. Mein Chef war nicht böse, denn ich hatte eine Krankmeldung. Jetzt geht es mir besser, darum gehe ich morgen wieder arbeiten.|Geçen hafta hastaydım. Yüksek ateşim vardı, bu yüzden doktora gittim. Doktor grip olduğumu söyledi. Bu yüzden beş gün evde kalmak zorunda kaldım. Şefim kızmadı, çünkü hasta raporum vardı. Şimdi daha iyiyim, bu yüzden yarın tekrar işe gidiyorum.|Warum ist die Person zum Arzt gegangen?~Sie hatte hohes Fieber.~Ihr Chef wollte es.~Sie brauchte Urlaub.|Warum war der Chef nicht böse?~Es gab eine Krankmeldung.~Die Person hat zu Hause gearbeitet.~Der Chef war auch krank.
+O|Unsere Wohnung ist zu klein geworden, denn wir haben jetzt zwei Kinder. Deshalb suchen wir eine neue Wohnung. In der Stadt sind die Mieten sehr hoch, darum suchen wir auch in den Dörfern in der Nähe. Mein Mann arbeitet in der Stadt, deswegen brauchen wir eine gute Busverbindung.|Dairemiz küçük gelmeye başladı, çünkü artık iki çocuğumuz var. Bu yüzden yeni bir daire arıyoruz. Şehirde kiralar çok yüksek, bu yüzden yakındaki köylerde de arıyoruz. Kocam şehirde çalışıyor, bu yüzden iyi bir otobüs bağlantısına ihtiyacımız var.|Warum sucht die Familie eine neue Wohnung?~Die Wohnung ist zu klein.~Die Miete ist zu hoch.~Der Mann hat eine neue Arbeit.|Warum brauchen sie eine gute Busverbindung?~Der Mann arbeitet in der Stadt.~Die Kinder gehen in die Stadt zur Schule.~Sie haben kein Geld.
+O|Ich habe gestern meinen Schlüssel im Büro vergessen, deshalb konnte ich nicht in meine Wohnung. Mein Handy war leer, darum konnte ich auch niemanden anrufen. Zum Glück hat meine Nachbarin einen Zweitschlüssel. Deswegen habe ich bei ihr geklingelt.|Dün anahtarımı ofiste unuttum, bu yüzden daireme giremedim. Telefonumun şarjı bitmişti, bu yüzden kimseyi de arayamadım. Neyse ki komşumda yedek anahtar var. Bu yüzden onun kapısını çaldım.|Warum konnte die Person nicht in die Wohnung?~Der Schlüssel war im Büro.~Die Tür war kaputt.~Die Nachbarin war nicht da.|Warum konnte sie niemanden anrufen?~Das Handy war leer.~Sie hatte kein Handy.~Niemand war zu Hause.

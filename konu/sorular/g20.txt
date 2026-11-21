@@ -1,0 +1,52 @@
+# g20 · Präpositionen zu, nach, bei, aus, von
+Y|Ich gehe jetzt ___ Hause. (eve)|nach||*nach Hause* = eve (yön).
+Y|Ich bin heute ___ Hause. (evde)|zu||*zu Hause* = evde (yer).
+Y|Morgen fliegen wir ___ Istanbul. (şehre)|nach||Şehir ve ülke adları: *nach*.
+Y|Ich gehe ___ Arzt. (doktora)|zum||Kişiye/kuruma: *zu* + Dativ: *zu dem* = *zum*.
+Y|Er wohnt noch ___ seinen Eltern. (yanında)|bei||*bei* = birinin yanında/evinde.
+Y|Sie kommt ___ der Türkei. (-den, köken)|aus||Köken: *aus* (Dativ).
+Y|Ich komme gerade ___ der Arbeit. (işten, dönüş)|von||Bir kişiden/olaydan/yerden dönüş: *von*.
+Y|Wir fahren am Wochenende ___ meiner Tante. (teyzeme)|zu||Kişiye gitmek: *zu*.
+Y|Er arbeitet ___ Siemens. (firmada)|bei||Firma: *bei*.
+Y|Ich gehe ___ Supermarkt. (süpermarkete)|zum||*zum Supermarkt* (Dativ, eril).
+Y|Das Geschenk ist ___ meiner Mutter. (annemden)|von||*von* = -den (kimden).
+Y|Ich war gestern ___ Friseur. (kuaförde)|beim||*bei dem* = *beim*.
+Y|Fährst du im Sommer ___ Spanien? (ülke)|nach||*nach Spanien*.
+Y|Wir fahren ___ Schweiz. (artikelli ülke)|in die||Artikelli ülke: *in die Schweiz* (*nach* değil).
+S|Ich gehe heute früh ___ Hause.|nach|zu|bei|Yön: *nach Hause*.
+S|Bleibst du heute ___ Hause?|zu|nach|bei|Yer: *zu Hause*.
+S|Sie fährt morgen ___ Berlin.|nach|zu|bei|Şehir: *nach*.
+S|Ich gehe ___ Bäckerei.|zur|zum|nach|Dişil: *zu der* = *zur*.
+S|Er kommt ___ Syrien.|aus|von|nach|Köken: *aus*.
+S|Wir wohnen ___ unseren Freunden.|bei|zu|nach|Yanında kalmak: *bei*.
+S|Die Blumen sind ___ meinem Opa.|von|aus|nach|Kimden: *von*.
+S|Kommst du mit ___ mir?|zu|nach|bei|Birinin evine: *zu mir*.
+H|Ich gehe zu Hause.|Ich gehe nach Hause.||Yön → *nach Hause*.
+H|Ich bin nach Hause.|Ich bin zu Hause.||Yer → *zu Hause*.
+H|Wir fahren nach Köln.|=|Doğru.
+H|Ich gehe nach dem Arzt.|Ich gehe zum Arzt.||Kişiye: *zum Arzt*.
+H|Er wohnt bei seiner Oma.|=|Doğru.
+H|Sie kommt von Italien.|Sie kommt aus Italien.||Köken: *aus*.
+H|Ich fahre zur Arbeit.|=|Doğru.
+H|Wir fliegen nach die Türkei.|Wir fliegen in die Türkei.||Artikelli ülke: *in die Türkei*.
+D|Yön cümlesine çevir: "Ich gehe …"|Ich bin beim Arzt.|Ich gehe zum Arzt.||*beim* (yer) → *zum* (yön).
+D|Yer cümlesine çevir: "Ich bin …"|Ich gehe nach Hause.|Ich bin zu Hause.||*nach Hause* → *zu Hause*.
+D|Yön cümlesine çevir: "Ich gehe …"|Ich bin bei meiner Freundin.|Ich gehe zu meiner Freundin.||*bei* → *zu*.
+D|Dönüşe çevir: "Ich komme …"|Ich gehe zum Arzt.|Ich komme vom Arzt.|Ich komme von dem Arzt.|Dönüş: *von* + Dativ.
+D|Yer cümlesine çevir: "Ich bin …"|Ich gehe zum Friseur.|Ich bin beim Friseur.|Ich bin bei dem Friseur.|*zum* → *beim*.
+D|Dönüşe çevir: "Ich komme …"|Ich gehe zur Bank.|Ich komme von der Bank.||Dönüş: *von der Bank*.
+D|Yön cümlesine çevir: "Ich fahre …"|Ich bin in Wien.|Ich fahre nach Wien.||Şehir → *nach*.
+D|Yön cümlesine çevir: "Wir gehen …"|Wir sind in der Schule.|Wir gehen zur Schule.|Wir gehen in die Schule.|*zur Schule* (ya da *in die Schule*).
+C|Eve gidiyorum.|Ich gehe nach Hause.||*nach Hause*.
+C|Bugün evdeyim.|Ich bin heute zu Hause.|Heute bin ich zu Hause.|*zu Hause*.
+C|Doktora gidiyorum.|Ich gehe zum Arzt.|Ich gehe zur Ärztin.|*zum Arzt*.
+C|Ailemin yanında kalıyorum.|Ich wohne bei meinen Eltern.|Ich bleibe bei meinen Eltern./Ich wohne bei meiner Familie.|*bei*.
+C|Türkiye'denim.|Ich komme aus der Türkei.||*aus der Türkei*.
+C|Yarın Berlin'e uçuyoruz.|Morgen fliegen wir nach Berlin.|Wir fliegen morgen nach Berlin.|*nach Berlin*.
+K|Nach der Arbeit gehe ich direkt nach Hause.|İşten sonra doğrudan eve gidiyorum.|Ich gehe nach der Arbeit direkt nach Hause.
+K|Ich komme gerade vom Zahnarzt.|Şimdi diş doktorundan geliyorum.|Gerade komme ich vom Zahnarzt.
+K|Am Wochenende fahren wir zu meinen Eltern.|Hafta sonu aileme gidiyoruz.|Wir fahren am Wochenende zu meinen Eltern.
+K|Sie arbeitet seit zwei Jahren bei einer Bank.|İki yıldır bir bankada çalışıyor.|Seit zwei Jahren arbeitet sie bei einer Bank.
+O|Mein Tag: Um 7 Uhr gehe ich aus dem Haus und fahre zur Arbeit. Ich arbeite bei einer Versicherung. In der Mittagspause gehe ich oft zum Bäcker. Nach der Arbeit hole ich meine Tochter vom Kindergarten ab. Dann gehen wir nach Hause. Am Freitag fahren wir immer zu meiner Mutter.|Günüm: Saat 7'de evden çıkıp işe gidiyorum. Bir sigorta şirketinde çalışıyorum. Öğle arasında sık sık fırına gidiyorum. İşten sonra kızımı anaokulundan alıyorum. Sonra eve gidiyoruz. Cuma günleri hep anneme gidiyoruz.|Wo arbeitet die Person?~Bei einer Versicherung.~Beim Bäcker.~Im Kindergarten.|Wohin fahren sie am Freitag?~Zur Mutter.~Zum Bäcker.~Nach Berlin.
+O|Hallo Can, ich bin gerade bei meinem Bruder in Hamburg. Morgen fahre ich weiter nach Kiel, zu einer Freundin. Am Sonntag komme ich zurück nach Hause. Kannst du bitte meine Post vom Briefkasten holen? Der Schlüssel ist bei Frau Meier im Erdgeschoss. Danke! Selin|Merhaba Can, şu an Hamburg'da ağabeyimin yanındayım. Yarın bir arkadaşa, Kiel'e devam ediyorum. Pazar günü eve dönüyorum. Lütfen postamı posta kutusundan alır mısın? Anahtar zemin kattaki Bayan Meier'de. Teşekkürler! Selin|Wo ist Selin gerade?~Bei ihrem Bruder in Hamburg.~Bei einer Freundin in Kiel.~Zu Hause.|Wo ist der Schlüssel?~Bei Frau Meier.~Im Briefkasten.~Bei Can.
+O|Ahmet kommt aus Izmir, aber er wohnt seit fünf Jahren in Stuttgart. Jeden Sommer fliegt er in die Türkei. Zuerst fährt er zu seinen Eltern, dann ans Meer. Dieses Jahr bleibt er aber zu Hause, denn er hat eine neue Stelle bei Bosch.|Ahmet İzmirli ama beş yıldır Stuttgart'ta oturuyor. Her yaz Türkiye'ye uçuyor. Önce ailesine gidiyor, sonra denize. Ama bu yıl evde kalıyor, çünkü Bosch'ta yeni bir işi var.|Woher kommt Ahmet?~Aus Izmir.~Aus Stuttgart.~Aus Berlin.|Warum bleibt er dieses Jahr zu Hause?~Er hat eine neue Stelle.~Seine Eltern kommen zu ihm.~Er hat kein Geld.

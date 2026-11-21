@@ -1,0 +1,52 @@
+# g17 · Infinitiv mit zu
+Y|Ich habe keine Lust, heute ___. (kochen)|zu kochen||*Lust haben, … zu + mastar*.
+Y|Es ist schwer, früh ___. (aufstehen)|aufzustehen||Ayrılan fiil: *zu* ortaya girer: *aufzustehen*.
+Y|Vergiss nicht, die Tür ___. (abschließen)|abzuschließen||*ab-zu-schließen*.
+Y|Hast du Zeit, mir ___? (helfen)|zu helfen||*Zeit haben, … zu helfen*.
+Y|Ich versuche, jeden Tag Deutsch ___. (lernen)|zu lernen||*versuchen, … zu lernen*.
+Y|Er hat vergessen, seine Mutter ___. (anrufen)|anzurufen||*an-zu-rufen*.
+Y|Es macht Spaß, mit Freunden ___. (spielen)|zu spielen||*Es macht Spaß, … zu …*
+Y|Wir haben vor, im Sommer nach Spanien ___. (fahren)|zu fahren||*vorhaben, … zu fahren*.
+Y|Ich will heute nicht ___. (kochen, modal)|kochen||Modal fiilden sonra *zu* yok: *will … kochen*.
+Y|Sie hat angefangen, Gitarre ___. (lernen)|zu lernen||*anfangen, … zu spielen*.
+Y|Es ist wichtig, genug Wasser ___. (trinken)|zu trinken||*Es ist wichtig, … zu trinken*.
+Y|Ich freue mich, dich ___. (kennenlernen)|kennenzulernen||*kennen-zu-lernen*.
+Y|Hör auf, so laut ___! (sprechen)|zu sprechen||*aufhören, … zu sprechen*.
+Y|Er hofft, bald eine Wohnung ___. (finden)|zu finden||*hoffen, … zu finden*.
+S|Ich habe keine Zeit, ins Kino ___.|zu gehen|gehen|zu geht|*Zeit haben, … zu gehen*.
+S|Es ist verboten, hier ___.|zu rauchen|rauchen|geraucht|*Es ist verboten, … zu …*
+S|Vergiss nicht, ___!|einzukaufen|zu einkaufen|einkaufen zu|Ayrılan fiil: *ein-zu-kaufen*.
+S|Ich möchte heute ins Kino ___.|gehen|zu gehen|zu geht|*möchten* modal → *zu* yok.
+S|Er hat versucht, den Fehler ___.|zu finden|finden|gefunden|*versuchen, … zu finden*.
+S|Es ist nicht leicht, eine Wohnung ___.|zu finden|finden zu|findet|*zu* + mastar sonda.
+S|Ich habe vor, den Job ___.|zu wechseln|wechseln|gewechselt|*vorhaben, … zu …*
+S|Wir müssen morgen früh ___.|aufstehen|aufzustehen|zu aufstehen|*müssen* modal → *zu* yok.
+H|Ich habe keine Lust zu arbeiten.|=|Doğru.
+H|Es ist schwer, zu aufstehen.|Es ist schwer, aufzustehen.||Ayrılan fiil: *aufzustehen*.
+H|Ich muss heute zu arbeiten.|Ich muss heute arbeiten.||Modal fiilden sonra *zu* yok.
+H|Vergiss nicht, mich anzurufen.|=|Doğru: *an-zu-rufen*.
+H|Er versucht, zu Deutsch lernen.|Er versucht, Deutsch zu lernen.||*zu* hemen mastardan önce.
+H|Es macht Spaß, Fußball zu spielen.|=|Doğru.
+H|Ich habe vergessen, die Fenster zumachen zu.|Ich habe vergessen, die Fenster zuzumachen.||*zu-zu-machen*.
+H|Wir hoffen, euch bald zu sehen.|=|Doğru.
+D|"zu" ile birleştir: "Ich habe keine Zeit, …"|Ich lese ein Buch.|Ich habe keine Zeit, ein Buch zu lesen.||*zu lesen* sonda.
+D|"zu" ile birleştir: "Es ist schwer, …"|Man findet eine Wohnung.|Es ist schwer, eine Wohnung zu finden.||*man* düşer.
+D|"zu" ile birleştir: "Vergiss nicht, …"|Du kaufst Milch ein.|Vergiss nicht, Milch einzukaufen.||*ein-zu-kaufen*.
+D|"zu" ile birleştir: "Ich versuche, …"|Ich stehe früher auf.|Ich versuche, früher aufzustehen.||*auf-zu-stehen*.
+D|"zu" ile birleştir: "Es macht Spaß, …"|Wir kochen zusammen.|Es macht Spaß, zusammen zu kochen.||*zusammen zu kochen*.
+D|"zu" ile birleştir: "Er hat vergessen, …"|Er ruft seine Oma an.|Er hat vergessen, seine Oma anzurufen.||*an-zu-rufen*.
+D|"zu" ile birleştir: "Ich habe vor, …"|Ich mache einen Kurs.|Ich habe vor, einen Kurs zu machen.||*vorhaben, … zu machen*.
+D|"zu" ile birleştir: "Es ist wichtig, …"|Man schläft genug.|Es ist wichtig, genug zu schlafen.||*genug zu schlafen*.
+C|Bugün yemek yapmaya hiç hevesim yok.|Ich habe heute keine Lust zu kochen.|Ich habe heute keine Lust, zu kochen./Heute habe ich keine Lust zu kochen.|*Lust haben … zu*.
+C|Erken kalkmak zor.|Es ist schwer, früh aufzustehen.|Früh aufzustehen ist schwer.|*aufzustehen*.
+C|Annemi aramayı unuttum.|Ich habe vergessen, meine Mutter anzurufen.||*anzurufen*.
+C|Her gün Almanca öğrenmeye çalışıyorum.|Ich versuche, jeden Tag Deutsch zu lernen.||*versuchen … zu*.
+C|Seninle tanıştığıma sevindim.|Ich freue mich, dich kennenzulernen.|Schön, dich kennenzulernen.|*kennenzulernen*.
+C|Burada sigara içmek yasak.|Es ist verboten, hier zu rauchen.|Hier ist es verboten zu rauchen.|*Es ist verboten, … zu*.
+K|Ich habe keine Zeit, heute einzukaufen.|Bugün alışveriş yapmaya vaktim yok.|Heute habe ich keine Zeit einzukaufen.
+K|Es ist wichtig, jeden Tag zu üben.|Her gün pratik yapmak önemli.
+K|Vergiss nicht, das Licht auszumachen!|Işığı kapatmayı unutma!
+K|Er hat angefangen, Türkisch zu lernen.|Türkçe öğrenmeye başladı.
+O|Liebe Elif, ich habe beschlossen, im Herbst einen Deutschkurs zu machen. Es ist nicht leicht, nach der Arbeit noch zu lernen, aber ich habe Lust, endlich besser zu sprechen. Hast du Zeit, am Samstag mit mir die Schule anzuschauen? Vergiss nicht, mir zu antworten! Dein Murat|Sevgili Elif, sonbaharda bir Almanca kursuna gitmeye karar verdim. İşten sonra bir de ders çalışmak kolay değil ama nihayet daha iyi konuşmaya hevesim var. Cumartesi benimle okula bakmaya vaktin var mı? Bana cevap vermeyi unutma! Murat'ın|Was hat Murat beschlossen?~Einen Deutschkurs zu machen.~Die Arbeit zu wechseln.~Nach Deutschland zu ziehen.|Was soll Elif am Samstag machen?~Mit Murat die Schule anschauen.~Einen Kurs machen.~Murat anrufen.
+O|Tipps für die Prüfung: Es ist wichtig, am Abend vorher früh ins Bett zu gehen. Versuchen Sie, ruhig zu bleiben. Vergessen Sie nicht, Ihren Ausweis mitzunehmen. Es ist verboten, in der Prüfung das Handy zu benutzen.|Sınav için ipuçları: Bir gece önce erken yatmak önemli. Sakin kalmaya çalışın. Kimliğinizi yanınıza almayı unutmayın. Sınavda cep telefonu kullanmak yasaktır.|Was soll man nicht vergessen?~Den Ausweis mitzunehmen.~Das Handy mitzunehmen.~Früh aufzustehen.|Was ist in der Prüfung verboten?~Das Handy zu benutzen.~Wasser zu trinken.~Ruhig zu bleiben.
+O|Mein Sohn hat aufgehört, Fußball zu spielen. Jetzt hat er angefangen, Klavier zu lernen. Es macht ihm großen Spaß, jeden Tag zu üben. Die Nachbarn finden es nicht so schön, aber wir versuchen, die Fenster zuzumachen.|Oğlum futbol oynamayı bıraktı. Şimdi piyano öğrenmeye başladı. Her gün pratik yapmak ona çok keyif veriyor. Komşular bunu pek hoş bulmuyor ama pencereleri kapatmaya çalışıyoruz.|Was macht der Sohn jetzt?~Er lernt Klavier.~Er spielt Fußball.~Er lernt Gitarre.|Was versucht die Familie?~Die Fenster zuzumachen.~Mit den Nachbarn zu sprechen.~Leiser zu spielen.

@@ -1,0 +1,52 @@
+# g19 · Präteritum: regelmäßige und unregelmäßige Verben
+Y|Gestern ___ ich lange. (arbeiten, Prät.)|arbeitete||Düzenli: kök + *-te*; *arbeit-* → *-ete*.
+Y|Als Kind ___ ich in Ankara. (wohnen, Prät.)|wohnte||*wohnen – wohnte*.
+Y|Er ___ um 7 Uhr nach Hause. (kommen, Prät.)|kam||Düzensiz: *kommen – kam*.
+Y|Wir ___ den ganzen Tag am Strand. (sein, Prät.)|waren||*sein – war*; *wir waren*.
+Y|Sie ___ keine Zeit. (haben, Prät.)|hatte||*haben – hatte*.
+Y|Ich ___ einen Brief. (schreiben, Prät.)|schrieb||*schreiben – schrieb*.
+Y|Plötzlich ___ das Telefon. (klingeln, Prät.)|klingelte||*klingeln – klingelte*.
+Y|Der Zug ___ pünktlich ab. (abfahren, Prät.)|fuhr||*abfahren – fuhr … ab*.
+Y|Damals ___ wir kein Auto. (haben, Prät.)|hatten||*wir hatten*.
+Y|Er ___ mir ein Geschenk. (geben, Prät.)|gab||*geben – gab*.
+Y|Ich ___ meinen Freund im Café. (treffen, Prät.)|traf||*treffen – traf*.
+Y|Sie ___ im Park spazieren. (gehen, Prät.)|ging||*gehen – ging*.
+Y|Du ___ sehr müde. (sein, Prät.)|warst||*du warst*.
+Y|Wir ___ gestern einen Film. (sehen, Prät.)|sahen||*sehen – sah*; *wir sahen*.
+S|Letztes Jahr ___ ich in Spanien.|war|bin|wäre|Geçmiş: *war*.
+S|Gestern ___ er den ganzen Abend Musik.|hörte|hört|hörten|*er hörte*.
+S|Früher ___ die Kinder im Garten.|spielten|spielte|spielen|Çoğul: *spielten*.
+S|Ich ___ ihn sofort. (geçmiş)|erkannte|erkennt|erkannt|Karışık: *erkennen – erkannte*.
+S|Sie ___ ein Taxi.|nahm|nehmte|nahmt|*nehmen – nahm*.
+S|Wir ___ zu spät zum Bahnhof.|kamen|kommten|kam|*kommen – kam*; *wir kamen*.
+S|Gestern ___ es den ganzen Tag.|regnete|regnet|regnte|*regnen – regnete*.
+S|Ich ___ nicht, was ich sagen sollte.|wusste|wisste|weißte|*wissen – wusste*.
+H|Gestern ich war im Kino.|Gestern war ich im Kino.||*Gestern* başta → fiil 2. konumda.
+H|Er gehte nach Hause.|Er ging nach Hause.||Düzensiz: *gehen – ging*.
+H|Wir hatten keine Zeit.|=|Doğru.
+H|Sie schrieb einen langen Brief.|=|Doğru.
+H|Ich sehte ihn gestern.|Ich sah ihn gestern.||*sehen – sah*.
+H|Die Kinder war müde.|Die Kinder waren müde.||Çoğul → *waren*.
+H|Er kam um 8 Uhr nach Hause.|=|Doğru.
+H|Wir fahrten nach Hamburg.|Wir fuhren nach Hamburg.||*fahren – fuhr*; *wir fuhren*.
+D|Präteritum'a çevir.|Ich wohne in Köln.|Ich wohnte in Köln.||*wohnte*.
+D|Präteritum'a çevir.|Er geht ins Kino.|Er ging ins Kino.||*ging*.
+D|Präteritum'a çevir.|Wir sind müde.|Wir waren müde.||*waren*.
+D|Präteritum'a çevir.|Sie hat Hunger.|Sie hatte Hunger.||*hatte*.
+D|Präteritum'a çevir.|Ich sehe einen Hund.|Ich sah einen Hund.||*sah*.
+D|Perfekt'i Präteritum'a çevir.|Er hat lange gearbeitet.|Er arbeitete lange.||*arbeitete*.
+D|Perfekt'i Präteritum'a çevir.|Wir sind nach Berlin gefahren.|Wir fuhren nach Berlin.||*fuhren*.
+D|Perfekt'i Präteritum'a çevir.|Sie hat einen Brief geschrieben.|Sie schrieb einen Brief.||*schrieb*.
+C|Dün çok yorgundum.|Gestern war ich sehr müde.|Ich war gestern sehr müde.|*war*.
+C|Çocukken bir köpeğimiz vardı.|Als Kind hatten wir einen Hund.|Als ich ein Kind war, hatten wir einen Hund./Als Kinder hatten wir einen Hund.|*hatten*.
+C|Saat 8'de eve geldi.|Er kam um 8 Uhr nach Hause.|Sie kam um 8 Uhr nach Hause./Um 8 Uhr kam er nach Hause.|*kam*.
+C|Bütün gün yağmur yağdı.|Es regnete den ganzen Tag.|Den ganzen Tag regnete es.|*regnete*.
+C|Ona bir hediye verdim.|Ich gab ihm ein Geschenk.|Ich gab ihr ein Geschenk.|*gab*.
+C|Ne diyeceğimi bilmiyordum.|Ich wusste nicht, was ich sagen sollte.|Ich wusste nicht, was ich sagen soll.|*wusste*.
+K|Als Kind wohnte ich in einem kleinen Dorf.|Çocukken küçük bir köyde oturuyordum.|Ich wohnte als Kind in einem kleinen Dorf.
+K|Gestern ging ich früh ins Bett.|Dün erken yattım.|Ich ging gestern früh ins Bett.
+K|Der Film war sehr spannend.|Film çok heyecanlıydı.
+K|Plötzlich klingelte das Telefon.|Birden telefon çaldı.|Das Telefon klingelte plötzlich.
+O|Es war einmal ein armer Mann. Er wohnte allein in einem kleinen Haus im Wald. Jeden Tag ging er in die Stadt und verkaufte Holz. Eines Tages fand er auf dem Weg eine goldene Kiste. Er nahm sie mit nach Hause und öffnete sie. Darin war ein kleiner Vogel, der sprechen konnte.|Bir zamanlar fakir bir adam varmış. Ormandaki küçük bir evde yalnız yaşarmış. Her gün şehre gider ve odun satarmış. Bir gün yolda altın bir sandık bulmuş. Onu eve götürmüş ve açmış. İçinde konuşabilen küçük bir kuş varmış.|Was verkaufte der Mann?~Holz.~Vögel.~Gold.|Was war in der Kiste?~Ein sprechender Vogel.~Viel Gold.~Holz.
+O|Meine Großmutter kam 1970 nach Deutschland. Sie arbeitete in einer Fabrik in Köln. Die Arbeit war hart, und sie sprach am Anfang kein Wort Deutsch. Abends lernte sie mit einem Wörterbuch. Nach zwei Jahren holte sie ihre Kinder nach.|Büyükannem 1970'te Almanya'ya geldi. Köln'de bir fabrikada çalıştı. İş ağırdı ve başta tek kelime Almanca konuşamıyordu. Akşamları bir sözlükle öğreniyordu. İki yıl sonra çocuklarını yanına aldırdı.|Wo arbeitete die Großmutter?~In einer Fabrik in Köln.~In einem Restaurant.~In einer Schule.|Wie lernte sie Deutsch?~Abends mit einem Wörterbuch.~In einem Kurs.~Mit ihren Kindern.
+O|Gestern war ein schlechter Tag. Ich stand zu spät auf und verpasste den Bus. Im Büro wartete mein Chef schon auf mich. Dann regnete es, und ich hatte keinen Schirm. Am Abend kam ich nass und müde nach Hause. Aber meine Frau hatte gekocht, und das Essen schmeckte wunderbar.|Dün kötü bir gündü. Çok geç kalktım ve otobüsü kaçırdım. Ofiste şefim beni çoktan bekliyordu. Sonra yağmur yağdı ve şemsiyem yoktu. Akşam ıslak ve yorgun eve geldim. Ama karım yemek yapmıştı ve yemek harikaydı.|Warum verpasste die Person den Bus?~Sie stand zu spät auf.~Der Bus kam zu früh.~Es regnete.|Was war am Abend gut?~Das Essen.~Das Wetter.~Der Chef.

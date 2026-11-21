@@ -1,0 +1,52 @@
+# g45 · Indefinitpronomen: jemand, niemand, etwas, nichts, einer, keiner, man
+Y|Hat ___ meinen Schlüssel gesehen? (biri)|jemand||*jemand* = biri.
+Y|Ich kenne hier ___. (kimse)|niemanden|niemand|*niemand* zaten olumsuz; Akkusativ: *niemanden* (*niemand* da kullanılır).
+Y|Möchtest du ___ trinken? (bir şey)|etwas|was|*etwas* = bir şey (konuşmada *was*).
+Y|Ich habe heute ___ gegessen. (hiçbir şey)|nichts||*nichts* olumsuzdur, *nicht* eklenmez.
+Y|In Deutschland trinkt ___ viel Kaffee. (insan, genel özne)|man||*man* + fiil *er* gibi: *trinkt*.
+Y|Brauchst du einen Stift? – Ja, hast du ___? (bir tane, eril)|einen||Eril Akkusativ zamir: *einen*.
+Y|Hast du ein Handy? – Nein, ich habe ___. (hiç, nötr)|keins|keines|Nötr: *keins* (*keines*).
+Y|Ist ___ zu Hause? (biri)|jemand||*jemand*.
+Y|___ hat angerufen. (kimse)|Niemand|niemand|*Niemand hat angerufen.* = Kimse aramadı.
+Y|Wie sagt ___ das auf Deutsch? (insan)|man||*Wie sagt man …?* = … nasıl denir?
+Y|Gibt es hier eine Apotheke? – Ja, dort ist ___. (bir tane, dişil)|eine||Dişil: *eine*.
+Y|Ich habe ___ Neues gehört. (bir şey)|etwas|was|*etwas Neues* (sıfat büyük harf, *-es*).
+Y|Brauchst du Tassen? – Nein, ich brauche ___. (hiç, çoğul)|keine||Çoğul: *keine*.
+Y|Hier darf ___ nicht rauchen. (insan)|man||*man darf nicht* = içilmez.
+S|Hat ___ eine Frage?|jemand|jemanden|etwas|Soru: *jemand* (biri).
+S|Es gibt ___ zu essen. (hiçbir şey)|nichts|nicht|niemand|Hiçbir şey: *nichts*.
+S|Ich sehe ___.|niemanden|nicht niemand|keiner nicht|*niemanden* (zaten olumsuz).
+S|Wo kann ___ hier parken?|man|mann|men|Genel özne: *man*.
+S|Hast du einen Regenschirm? – Ja, ich habe ___.|einen|eins|eine|Eril: *einen*.
+S|Ist noch Kaffee da? – Nein, es gibt ___ mehr.|keinen|keiner|keins|*Kaffee* eril Akkusativ: *keinen*.
+S|___ von meinen Freunden spricht Türkisch.|Einer|Ein|Eins|Eril Nominativ zamir: *einer*.
+S|Ich möchte dir ___ sagen.|etwas|jemand|man|*etwas* = bir şey.
+H|Ich habe nicht nichts gemacht.|Ich habe nichts gemacht.||*nichts* zaten olumsuz.
+H|Hat jemand meine Brille gesehen?|=|Doğru.
+H|Niemand ist nicht gekommen.|Niemand ist gekommen.||*niemand* + *nicht* olmaz.
+H|Man spricht hier Englisch.|=|Doğru.
+H|Hast du ein Auto? – Nein, ich habe kein.|Hast du ein Auto? – Nein, ich habe keins.||Zamir olarak: *keins*.
+H|Man muss hier leise sein.|=|Doğru.
+H|Ich brauche ein Messer. Hast du ein?|Ich brauche ein Messer. Hast du eins?||Zamir olarak nötr: *eins*.
+H|Man sprechen hier Deutsch.|Man spricht hier Deutsch.||*man* + *er* çekimi: *spricht*.
+D|Olumsuz yap (niemand).|Jemand wartet auf dich.|Niemand wartet auf dich.||*jemand* → *niemand*.
+D|Olumsuz yap (nichts).|Ich habe etwas gekauft.|Ich habe nichts gekauft.||*etwas* → *nichts*.
+D|"man" ile yaz.|Die Leute essen hier viel Fisch.|Man isst hier viel Fisch.|Hier isst man viel Fisch.|*man* + *er* çekimi: *isst*.
+D|Zamirle cevap ver: "Ja, ich habe …"|Hast du einen Kuli?|Ja, ich habe einen.||Eril: *einen*.
+D|Zamirle cevap ver: "Nein, ich habe …"|Hast du eine Tasche?|Nein, ich habe keine.||Dişil: *keine*.
+D|Olumsuz yap (niemand).|Ich habe jemanden gesehen.|Ich habe niemanden gesehen.|Ich habe niemand gesehen.|*jemanden* → *niemanden*.
+D|Zamirle cevap ver: "Ja, dort ist …"|Gibt es hier ein Café?|Ja, dort ist eins.|Ja, dort ist eines.|Nötr: *eins*.
+D|"man" ile yaz.|Wir sagen das so.|Man sagt das so.|So sagt man das.|*man sagt*.
+C|Biri kapıyı çaldı.|Jemand hat geklingelt.|Jemand klingelt./Jemand hat an der Tür geklingelt.|*jemand*.
+C|Hiçbir şey anlamadım.|Ich habe nichts verstanden.||*nichts*.
+C|Bunu Almancada nasıl söylersin? (genel)|Wie sagt man das auf Deutsch?||*man*.
+C|Burada kimseyi tanımıyorum.|Ich kenne hier niemanden.|Ich kenne hier niemand./Hier kenne ich niemanden.|*niemanden*.
+C|Bir şey içmek ister misin?|Möchtest du etwas trinken?|Willst du etwas trinken?|*etwas*.
+C|Kalemin var mı? – Hayır, yok. (hiç yok)|Hast du einen Stift? – Nein, ich habe keinen.|Hast du einen Kuli? – Nein, ich habe keinen.|*keinen*.
+K|Hat jemand Zeit, mir zu helfen?|Bana yardım etmeye vakti olan var mı?
+K|Hier kann man gut essen.|Burada iyi yemek yenir.|Man kann hier gut essen.
+K|Ich habe niemanden im Park gesehen.|Parkta kimseyi görmedim.|Im Park habe ich niemanden gesehen.
+K|Es gibt nichts Neues.|Yeni bir şey yok.
+O|Gestern Abend hat jemand an meiner Tür geklingelt. Ich habe aufgemacht, aber niemand war da. Nur ein Paket lag vor der Tür. Auf dem Paket stand kein Name. Ich habe die Nachbarn gefragt, aber keiner wusste etwas. Was macht man in so einer Situation?|Dün akşam biri kapımı çaldı. Açtım ama kimse yoktu. Kapının önünde sadece bir paket duruyordu. Paketin üzerinde isim yoktu. Komşulara sordum ama kimse bir şey bilmiyordu. İnsan böyle bir durumda ne yapar?|Was lag vor der Tür?~Ein Paket.~Ein Brief.~Nichts.|Was wussten die Nachbarn?~Nichts.~Den Namen.~Wer geklingelt hat.
+O|Bei uns in der Firma macht man um 12 Uhr Mittagspause. Man kann in der Kantine essen oder etwas mitbringen. Niemand muss am Schreibtisch essen. Wenn jemand Geburtstag hat, bringt er einen Kuchen mit. Es gibt immer einen, der das letzte Stück isst!|Bizim firmada saat 12'de öğle arası yapılır. Kantinde yemek yenebilir ya da yanında bir şey getirilebilir. Kimse masasında yemek zorunda değil. Biri doğum günü olduğunda bir pasta getirir. Son dilimi yiyen biri hep vardır!|Wann macht man Mittagspause?~Um 12 Uhr.~Um 13 Uhr.~Wenn man Hunger hat.|Was macht jemand, wenn er Geburtstag hat?~Er bringt einen Kuchen mit.~Er geht in die Kantine.~Er macht frei.
+O|Entschuldigung, kann man hier irgendwo Fahrkarten kaufen? – Hier im Bahnhof gibt es leider keinen Schalter mehr. Aber dort drüben ist ein Automat. – Und wenn der Automat kaputt ist? – Dann kann man die Karte im Zug kaufen. Fragen Sie einfach jemanden vom Personal.|Affedersiniz, burada bir yerde bilet alınabilir mi? – Maalesef bu istasyonda artık gişe yok. Ama şurada bir otomat var. – Peki otomat bozuksa? – O zaman bileti trende alabilirsiniz. Personelden birine sormanız yeterli.|Gibt es im Bahnhof einen Schalter?~Nein, keinen mehr.~Ja, einen.~Ja, zwei.|Wo kann man die Karte kaufen, wenn der Automat kaputt ist?~Im Zug.~Am Schalter.~Im Internet.
