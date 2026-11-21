@@ -1,0 +1,52 @@
+# g26 · Konjunktiv II der Vergangenheit
+Y|Wenn ich Zeit gehabt ___, wäre ich gekommen. (haben)|hätte||Geçmişte gerçek dışı: *hätte* + Partizip II.
+Y|Ich ___ gern mitgekommen, aber ich war krank. (sein)|wäre||Hareket fiili: *wäre … mitgekommen*.
+Y|Du hättest mich anrufen ___. (sollen)|sollen||Pişmanlık/eleştiri: *hättest … anrufen sollen* (iki mastar).
+Y|Wenn wir früher losgefahren ___, hätten wir den Zug erreicht. (sein)|wären||*losfahren* → *wären losgefahren*.
+Y|Ich hätte das nicht ___ sollen. (sagen)|sagen||*hätte … sagen sollen*.
+Y|Wenn ich das gewusst hätte, ___ ich dir geholfen. (haben)|hätte||*hätte geholfen*.
+Y|Sie wäre fast ___. (hinfallen)|hingefallen||*wäre fast hingefallen* = az kalsın düşüyordu.
+Y|Wir ___ lieber zu Hause bleiben sollen. (haben)|hätten||*hätten … bleiben sollen*.
+Y|Wenn du mir geholfen ___, wäre ich schneller fertig gewesen. (haben)|hättest||*du hättest*.
+Y|Ohne dich ___ ich die Prüfung nicht bestanden. (haben)|hätte||*hätte … nicht bestanden*.
+Y|Er hätte mehr ___ sollen. (lernen)|lernen||*hätte mehr lernen sollen*.
+Y|Wenn es nicht geregnet hätte, ___ wir gegrillt. (haben)|hätten||*hätten gegrillt*.
+Y|Ich wäre gern Ärztin ___. (werden)|geworden||*wäre … geworden*.
+Y|Wenn ich du gewesen ___, hätte ich das anders gemacht. (sein)|wäre||*Wenn ich du gewesen wäre* = Senin yerinde olsaydım.
+S|Wenn ich das gewusst ___, wäre ich nicht gekommen.|hätte|wäre|habe|*wissen* → *hätte gewusst*.
+S|Ich ___ gern länger geblieben.|wäre|hätte|würde|*bleiben* → *wäre geblieben*.
+S|Du ___ früher ins Bett gehen sollen.|hättest|wärst|würdest|*hättest … sollen*.
+S|Wenn er pünktlich gewesen wäre, ___ wir den Bus nicht verpasst.|hätten|wären|würden|*verpassen* → *hätten verpasst*.
+S|Das hätte ich nie ___.|gedacht|denken|gedenkt|*hätte … gedacht*.
+S|Wir hätten das Auto nicht kaufen ___.|sollen|gesollt|sollten|Modal + mastar → *sollen* (Partizip değil).
+S|Wenn ich mehr Geld gehabt hätte, ___ ich nach Japan geflogen.|wäre|hätte|würde|*fliegen* → *wäre geflogen*.
+S|Fast ___ ich den Termin vergessen.|hätte|wäre|würde|*hätte vergessen*.
+H|Wenn ich Zeit hätte gehabt, wäre ich gekommen.|Wenn ich Zeit gehabt hätte, wäre ich gekommen.||Yan cümlede çekimli fiil en sonda.
+H|Ich hätte gern mitgekommen.|Ich wäre gern mitgekommen.||*mitkommen* → *sein*: *wäre*.
+H|Du hättest mich fragen sollen.|=|Doğru.
+H|Wenn wir das gewusst hätten, hätten wir geholfen.|=|Doğru.
+H|Ich hätte das nicht machen gesollt.|Ich hätte das nicht machen sollen.||Modal mastar biçiminde: *sollen*.
+H|Wenn du gekommen wärst, wäre es schön gewesen.|=|Doğru.
+H|Wenn ich früher aufgestanden hätte, hätte ich den Bus erreicht.|Wenn ich früher aufgestanden wäre, hätte ich den Bus erreicht.||*aufstehen* → *wäre*.
+H|Er wäre fast den Zug verpasst.|Er hätte fast den Zug verpasst.||*verpassen* → *haben*: *hätte*.
+D|Geçmişte gerçek dışı yap: "Wenn …"|Ich hatte keine Zeit. Ich bin nicht gekommen.|Wenn ich Zeit gehabt hätte, wäre ich gekommen.||*hätte gehabt*, *wäre gekommen*.
+D|Pişmanlık cümlesi yap (hätte … sollen).|Ich habe nicht gelernt.|Ich hätte lernen sollen.|Ich hätte mehr lernen sollen.|*hätte … sollen*.
+D|Eleştiri yap: "Du hättest …"|Du hast nicht angerufen.|Du hättest anrufen sollen.||*hättest … anrufen sollen*.
+D|Geçmişte gerçek dışı yap: "Wenn …"|Es hat geregnet. Wir sind nicht schwimmen gegangen.|Wenn es nicht geregnet hätte, wären wir schwimmen gegangen.||*wären … gegangen*.
+D|Dilek cümlesi yap (wäre gern).|Ich bin nicht mitgefahren.|Ich wäre gern mitgefahren.||*wäre gern*.
+D|Geçmişte gerçek dışı yap: "Wenn …"|Er war nicht pünktlich. Er hat den Zug verpasst.|Wenn er pünktlich gewesen wäre, hätte er den Zug nicht verpasst.||*gewesen wäre*, *hätte verpasst*.
+D|Konjunktiv II Vergangenheit'a çevir.|Ich würde dir helfen.|Ich hätte dir geholfen.||*würde helfen* → *hätte geholfen*.
+D|Pişmanlık cümlesi yap (hätte … sollen).|Wir haben das Auto gekauft.|Wir hätten das Auto nicht kaufen sollen.||Olumsuz pişmanlık: *nicht … sollen*.
+C|Bilseydim gelmezdim.|Wenn ich das gewusst hätte, wäre ich nicht gekommen.|Hätte ich das gewusst, wäre ich nicht gekommen.|*hätte gewusst*.
+C|Beni aramalıydın.|Du hättest mich anrufen sollen.||*hättest … sollen*.
+C|Gelmek isterdim ama hastaydım.|Ich wäre gern gekommen, aber ich war krank.|Ich wäre gern mitgekommen, aber ich war krank.|*wäre gern*.
+C|Senin yerinde olsaydım bunu yapmazdım.|Wenn ich du gewesen wäre, hätte ich das nicht gemacht.|An deiner Stelle hätte ich das nicht gemacht./An deiner Stelle hätte ich das nicht getan.|*hätte nicht gemacht*.
+C|Az kalsın unutuyordum.|Fast hätte ich es vergessen.|Ich hätte es fast vergessen./Fast hätte ich das vergessen.|*fast hätte ich*.
+C|Daha çok çalışmalıydım.|Ich hätte mehr lernen sollen.|Ich hätte mehr arbeiten sollen.|*hätte … sollen*.
+K|Wenn ich früher losgefahren wäre, hätte ich den Zug erreicht.|Daha erken yola çıksaydım treni yakalardım.|Ich hätte den Zug erreicht, wenn ich früher losgefahren wäre.
+K|Du hättest mir das früher sagen sollen.|Bunu bana daha önce söylemeliydin.
+K|Ohne deine Hilfe hätte ich das nicht geschafft.|Senin yardımın olmasaydı bunu başaramazdım.|Ich hätte das ohne deine Hilfe nicht geschafft.
+K|Wir wären gern länger geblieben.|Daha uzun kalmak isterdik.
+O|Letzten Sommer wollten wir nach Italien fahren. Aber das Auto war kaputt. Wenn wir es früher in die Werkstatt gebracht hätten, hätten wir fahren können. So sind wir zu Hause geblieben. Meine Frau sagt: „Wir hätten mit dem Zug fahren sollen." Sie hat recht.|Geçen yaz İtalya'ya gitmek istiyorduk. Ama araba bozuktu. Onu daha önce tamirciye götürseydik gidebilirdik. Böylece evde kaldık. Karım diyor ki: "Trenle gitmeliydik." Haklı.|Warum sind sie nicht nach Italien gefahren?~Das Auto war kaputt.~Sie hatten kein Geld.~Die Frau war krank.|Was sagt die Frau?~Sie hätten mit dem Zug fahren sollen.~Sie hätten in Italien bleiben sollen.~Sie hätten ein neues Auto kaufen sollen.
+O|Wenn ich jünger gewesen wäre, als ich nach Deutschland kam, hätte ich schneller Deutsch gelernt. Ich war damals schon 45. Ich hätte gern studiert, aber ich musste sofort arbeiten. Trotzdem bin ich zufrieden. Meine Kinder haben alle studiert.|Almanya'ya geldiğimde daha genç olsaydım Almancayı daha hızlı öğrenirdim. O zaman 45 yaşındaydım. Üniversite okumak isterdim ama hemen çalışmak zorundaydım. Yine de memnunum. Çocuklarımın hepsi üniversite okudu.|Wie alt war die Person, als sie nach Deutschland kam?~45.~25.~35.|Was hätte die Person gern gemacht?~Studiert.~Mehr gearbeitet.~Eine Weltreise gemacht.
+O|Gestern hätte ich fast meinen Flug verpasst. Ich hatte den Wecker falsch gestellt. Wenn mein Nachbar nicht geklingelt hätte, hätte ich weitergeschlafen. Ich bin mit dem Taxi zum Flughafen gefahren und war genau rechtzeitig da. Das hätte teuer werden können!|Dün az kalsın uçağımı kaçırıyordum. Çalar saati yanlış kurmuştum. Komşum kapıyı çalmasaydı uyumaya devam ederdim. Taksiyle havaalanına gittim ve tam zamanında oradaydım. Bu pahalıya patlayabilirdi!|Was war das Problem?~Der Wecker war falsch gestellt.~Das Taxi kam zu spät.~Der Flug war gestrichen.|Wer hat die Person geweckt?~Der Nachbar.~Die Frau.~Der Taxifahrer.

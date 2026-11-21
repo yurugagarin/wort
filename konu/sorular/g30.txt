@@ -1,0 +1,52 @@
+# g30 · Futur I
+Y|Morgen ___ es regnen. (werden)|wird||Futur I: *werden* çekimli + mastar sonda.
+Y|Ich werde dich morgen ___. (anrufen)|anrufen||Mastar sonda, ayrılmaz: *anrufen*.
+Y|Wir ___ nächstes Jahr heiraten. (werden)|werden||*wir werden*.
+Y|Du ___ das schon schaffen! (werden)|wirst||Cesaret/tahmin: *du wirst*.
+Y|Er ___ wohl krank sein. (werden, tahmin)|wird||Tahmin: *wird wohl … sein* (muhtemelen hastadır).
+Y|Ihr ___ sehen, das wird toll! (werden)|werdet||*ihr werdet*.
+Y|Ich verspreche dir: Ich ___ nie wieder rauchen. (werden)|werde||Söz: *ich werde*.
+Y|Die Preise werden weiter ___. (steigen)|steigen||*werden … steigen*.
+Y|Wann wirst du endlich dein Zimmer ___? (aufräumen)|aufräumen||Mastar sonda: *aufräumen*.
+Y|Sie ___ in zwei Jahren mit dem Studium fertig sein. (werden)|wird||*sie wird*.
+Y|Ich glaube, dass er morgen ___ wird. (kommen)|kommen||Yan cümlede: *kommen wird* (çekimli fiil en sonda).
+Y|Das Wetter wird morgen besser ___. (werden)|werden||*wird … besser werden*.
+Y|In Zukunft ___ wir mehr mit dem Fahrrad fahren. (werden)|werden||*wir werden … fahren*.
+Y|Keine Sorge, ich ___ dir helfen. (werden)|werde||Söz: *ich werde*.
+S|Morgen ___ ich meine Eltern besuchen.|werde|wird|würde|*ich werde*.
+S|Es wird bald ___.|regnen|regnet|geregnet|*wird* + mastar.
+S|Du ___ bestimmt eine gute Stelle finden.|wirst|wird|werdest|*du wirst*.
+S|Ich weiß, dass du die Prüfung bestehen ___.|wirst|wird|werden|Yan cümle: *bestehen wirst*.
+S|Nächsten Sommer werden wir nach Kanada ___.|fliegen|geflogen|fliegt|Mastar sonda.
+S|Er wird wohl noch im Büro ___.|sein|ist|gewesen|Tahmin: *wird … sein*.
+S|Werdet ihr morgen ___?|kommen|kommt|gekommen|*Werdet ihr … kommen?*
+S|Die Kinder ___ morgen einen Ausflug machen.|werden|wird|werdet|Çoğul: *werden*.
+H|Ich werde morgen arbeiten.|=|Doğru.
+H|Er wird kommt morgen.|Er wird morgen kommen.||*wird* + mastar sonda.
+H|Wir werden nächste Woche umziehen.|=|Doğru.
+H|Du wirst das schaffen.|=|Doğru.
+H|Sie werdet bald heiraten.|Sie werden bald heiraten.|Sie wird bald heiraten.|*sie werden* (çoğul) ya da *sie wird*.
+H|Ich glaube, dass er wird kommen.|Ich glaube, dass er kommen wird.||Yan cümle: *kommen wird*.
+H|Morgen ich werde dich anrufen.|Morgen werde ich dich anrufen.||*Morgen* başta → fiil 2. konumda.
+H|Es wird morgen schneien.|=|Doğru.
+D|Futur I'e çevir.|Ich besuche dich.|Ich werde dich besuchen.||*werde … besuchen*.
+D|Futur I'e çevir.|Es regnet morgen.|Es wird morgen regnen.|Morgen wird es regnen.|*wird … regnen*.
+D|Futur I'e çevir.|Wir ziehen nach Hamburg.|Wir werden nach Hamburg ziehen.||*werden … ziehen*.
+D|Futur I'e çevir.|Er ruft dich an.|Er wird dich anrufen.||Ayrılan fiil mastarda birleşir: *anrufen*.
+D|Tahmin cümlesi yap (wohl).|Sie ist wahrscheinlich zu Hause.|Sie wird wohl zu Hause sein.||Tahmin: *wird wohl … sein*.
+D|Futur I'e çevir.|Du findest eine Lösung.|Du wirst eine Lösung finden.||*wirst … finden*.
+D|Yan cümleye çevir: "Ich glaube, dass …"|Er wird pünktlich kommen.|Ich glaube, dass er pünktlich kommen wird.||Yan cümle: *kommen wird*.
+D|Söz cümlesi yap: "Ich verspreche dir, …"|Ich helfe dir.|Ich verspreche dir, ich werde dir helfen.|Ich verspreche dir, dass ich dir helfen werde.|Söz: *werde … helfen*.
+C|Yarın yağmur yağacak.|Morgen wird es regnen.|Es wird morgen regnen.|*wird regnen*.
+C|Seni yarın arayacağım.|Ich werde dich morgen anrufen.|Morgen werde ich dich anrufen.|*werde anrufen*.
+C|Bunu başaracaksın!|Du wirst das schaffen!|Das wirst du schaffen!|*wirst schaffen*.
+C|Muhtemelen hastadır.|Er wird wohl krank sein.|Sie wird wohl krank sein.|Tahmin: *wird wohl … sein*.
+C|Gelecek yıl evleneceğiz.|Wir werden nächstes Jahr heiraten.|Nächstes Jahr werden wir heiraten.|*werden heiraten*.
+C|Sana söz veriyorum, bir daha geç kalmayacağım.|Ich verspreche dir, ich werde nie wieder zu spät kommen.|Ich verspreche dir, dass ich nie wieder zu spät kommen werde./Ich verspreche dir, ich werde nicht mehr zu spät kommen.|Söz: *werde … kommen*.
+K|Nächstes Jahr werde ich die B1-Prüfung machen.|Gelecek yıl B1 sınavına gireceğim.|Ich werde nächstes Jahr die B1-Prüfung machen.
+K|Es wird bestimmt ein schöner Tag werden.|Kesinlikle güzel bir gün olacak.
+K|Wann wirst du mit der Arbeit fertig sein?|İşini ne zaman bitirmiş olacaksın?
+K|Die Mieten werden weiter steigen.|Kiralar artmaya devam edecek.
+O|Wie wird die Welt im Jahr 2050 aussehen? Viele Experten glauben, dass die meisten Autos elektrisch fahren werden. Wir werden mehr zu Hause arbeiten. Roboter werden viele Arbeiten machen. Aber eines wird sich nicht ändern: Die Menschen werden immer Freunde brauchen.|2050 yılında dünya nasıl görünecek? Birçok uzman, çoğu arabanın elektrikli olacağına inanıyor. Daha çok evden çalışacağız. Robotlar birçok işi yapacak. Ama bir şey değişmeyecek: İnsanların her zaman arkadaşlara ihtiyacı olacak.|Was glauben viele Experten über Autos?~Die meisten werden elektrisch fahren.~Es wird keine Autos mehr geben.~Autos werden teurer.|Was wird sich nicht ändern?~Menschen werden immer Freunde brauchen.~Wir werden im Büro arbeiten.~Roboter werden nichts machen.
+O|Liebe Oma, nächsten Monat werde ich endlich meine Ausbildung beenden. Dann werde ich als Krankenpfleger arbeiten. Im August werde ich dich in Antalya besuchen. Ich werde zwei Wochen bleiben. Ich freue mich schon sehr! Dein Emre|Sevgili büyükanne, gelecek ay nihayet mesleki eğitimimi bitireceğim. Sonra hasta bakıcı olarak çalışacağım. Ağustosta seni Antalya'da ziyaret edeceğim. İki hafta kalacağım. Şimdiden çok seviniyorum! Emre'n|Was wird Emre nach der Ausbildung machen?~Als Krankenpfleger arbeiten.~Studieren.~In Antalya wohnen.|Wie lange wird er in Antalya bleiben?~Zwei Wochen.~Einen Monat.~Eine Woche.
+O|Wetterbericht: Morgen wird es im Norden regnen, im Süden wird die Sonne scheinen. Die Temperaturen werden auf 25 Grad steigen. Am Wochenende wird es kühler werden, und es wird viel Wind geben.|Hava raporu: Yarın kuzeyde yağmur yağacak, güneyde güneş parlayacak. Sıcaklıklar 25 dereceye çıkacak. Hafta sonu hava serinleyecek ve çok rüzgâr olacak.|Wie wird das Wetter morgen im Süden?~Sonnig.~Regnerisch.~Windig.|Wie wird es am Wochenende?~Kühler und windig.~Wärmer.~Sonnig und warm.

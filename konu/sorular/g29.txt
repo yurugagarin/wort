@@ -1,0 +1,52 @@
+# g29 · Zweiteilige Konnektoren
+Y|Ich spreche sowohl Türkisch ___ auch Deutsch. (hem … hem)|als||*sowohl … als auch*.
+Y|Er trinkt ___ Kaffee noch Tee. (ne … ne)|weder||*weder … noch*.
+Y|Wir fahren ___ nach Spanien oder nach Italien. (ya … ya)|entweder||*entweder … oder*.
+Y|Sie ist nicht nur klug, ___ auch sehr nett. (… de)|sondern||*nicht nur … sondern auch*.
+Y|Ich habe weder Zeit ___ Geld. (ne … ne)|noch||*weder … noch*.
+Y|Entweder du kommst mit, ___ du bleibst zu Hause. (ya … ya)|oder||*entweder … oder*.
+Y|___ mein Bruder als auch meine Schwester wohnen in Köln. (hem … hem)|Sowohl|sowohl|*Sowohl … als auch*.
+Y|Er spricht nicht ___ Englisch, sondern auch Französisch. (sadece)|nur||*nicht nur … sondern auch*.
+Y|Weder ich ___ mein Mann haben das gewusst. (ne … ne)|noch||*weder … noch*.
+Y|Das Hotel war sowohl billig als ___ sauber. (hem … hem)|auch||*als auch*.
+Y|___ wir nehmen den Bus, oder wir laufen. (ya … ya)|Entweder|entweder|*Entweder … oder*.
+Y|Nicht nur die Kinder, sondern ___ die Eltern hatten Spaß. (… de)|auch||*sondern auch*.
+Y|Ich kann ___ schwimmen noch Rad fahren. (ne … ne)|weder||*weder … noch*.
+Y|Sie arbeitet sowohl am Wochenende ___ auch nachts. (hem … hem)|als||*sowohl … als auch*.
+S|Ich mag ___ Hunde als auch Katzen.|sowohl|weder|entweder|*sowohl … als auch*.
+S|Er hat ___ Auto noch Fahrrad.|weder|sowohl|entweder|*weder … noch*.
+S|Entweder wir gehen ins Kino ___ wir bleiben zu Hause.|oder|noch|als auch|*entweder … oder*.
+S|Sie spricht nicht nur Deutsch, ___ auch Arabisch.|sondern|aber|oder|*nicht nur … sondern auch*.
+S|Weder der Chef ___ die Kollegen waren da.|noch|oder|als auch|*weder … noch*.
+S|Der Film war sowohl lustig ___ spannend.|als auch|oder auch|noch|*sowohl … als auch*.
+S|___ du hilfst mir, oder ich mache es allein.|Entweder|Sowohl|Weder|*Entweder … oder*.
+S|Das ist nicht nur teuer, ___ auch schlecht.|sondern|sowohl|noch|*nicht nur … sondern auch*.
+H|Ich trinke weder Kaffee oder Tee.|Ich trinke weder Kaffee noch Tee.||*weder … noch*.
+H|Er spricht sowohl Englisch als auch Spanisch.|=|Doğru.
+H|Entweder wir fahren heute, noch wir fahren morgen.|Entweder wir fahren heute, oder wir fahren morgen.||*entweder … oder*.
+H|Sie ist nicht nur schön, aber auch klug.|Sie ist nicht nur schön, sondern auch klug.||*nicht nur … sondern auch*.
+H|Weder meine Mutter noch mein Vater spricht Deutsch.|=|Doğru.
+H|Ich habe weder keinen Hunger noch Durst.|Ich habe weder Hunger noch Durst.||*weder* zaten olumsuz: *kein* yok.
+H|Sowohl die Wohnung als auch die Lage sind gut.|=|Doğru.
+H|Er kann sowohl kochen als backen.|Er kann sowohl kochen als auch backen.||*sowohl … als auch*: *auch* düşmez.
+D|"weder … noch" ile birleştir.|Ich habe keine Zeit. Ich habe keine Lust.|Ich habe weder Zeit noch Lust.||*weder … noch*: *kein* düşer.
+D|"sowohl … als auch" ile birleştir.|Er spricht Türkisch. Er spricht Kurdisch.|Er spricht sowohl Türkisch als auch Kurdisch.||*sowohl … als auch*.
+D|"entweder … oder" ile birleştir.|Wir fahren mit dem Bus. Oder wir nehmen ein Taxi.|Entweder wir fahren mit dem Bus, oder wir nehmen ein Taxi.|Entweder fahren wir mit dem Bus, oder wir nehmen ein Taxi.|*entweder … oder*.
+D|"nicht nur … sondern auch" ile birleştir.|Sie ist intelligent. Sie ist auch fleißig.|Sie ist nicht nur intelligent, sondern auch fleißig.||*nicht nur … sondern auch*.
+D|"weder … noch" ile birleştir.|Mein Bruder kommt nicht. Meine Schwester kommt nicht.|Weder mein Bruder noch meine Schwester kommt.|Weder mein Bruder noch meine Schwester kommen.|*weder … noch*.
+D|"sowohl … als auch" ile birleştir.|Die Kinder hatten Spaß. Die Eltern hatten Spaß.|Sowohl die Kinder als auch die Eltern hatten Spaß.||Çoğul özne → *hatten*.
+D|"entweder … oder" ile birleştir.|Du lernst jetzt. Oder du darfst nicht ausgehen.|Entweder du lernst jetzt, oder du darfst nicht ausgehen.|Entweder lernst du jetzt, oder du darfst nicht ausgehen.|*entweder … oder*.
+D|"nicht nur … sondern auch" ile birleştir.|Er kocht gut. Er backt auch gut.|Er kocht nicht nur gut, sondern backt auch gut.|Er kann nicht nur gut kochen, sondern auch gut backen.|*nicht nur … sondern auch*.
+C|Hem Türkçe hem Almanca konuşuyorum.|Ich spreche sowohl Türkisch als auch Deutsch.||*sowohl … als auch*.
+C|Ne vaktim var ne param.|Ich habe weder Zeit noch Geld.||*weder … noch*.
+C|Ya bugün ya yarın gelirim.|Ich komme entweder heute oder morgen.|Entweder komme ich heute oder morgen.|*entweder … oder*.
+C|Sadece akıllı değil, aynı zamanda çok çalışkan.|Er ist nicht nur klug, sondern auch sehr fleißig.|Sie ist nicht nur klug, sondern auch sehr fleißig./Er ist nicht nur intelligent, sondern auch sehr fleißig.|*nicht nur … sondern auch*.
+C|Ne annem ne babam Almanca konuşuyor.|Weder meine Mutter noch mein Vater spricht Deutsch.|Weder meine Mutter noch mein Vater sprechen Deutsch.|*weder … noch*.
+C|Otel hem ucuz hem temizdi.|Das Hotel war sowohl billig als auch sauber.|Das Hotel war sowohl günstig als auch sauber.|*sowohl … als auch*.
+K|Ich kann weder kochen noch backen.|Ne yemek yapabiliyorum ne pasta.
+K|Sie lernt sowohl Deutsch als auch Englisch.|Hem Almanca hem İngilizce öğreniyor.
+K|Entweder du hilfst mir oder ich mache es allein.|Ya bana yardım edersin ya da tek başıma yaparım.
+K|Das Essen war nicht nur lecker, sondern auch billig.|Yemek sadece lezzetli değil, aynı zamanda ucuzdu.
+O|Wir suchen für unser Café eine Aushilfe. Sie sollten sowohl freundlich als auch zuverlässig sein. Sie arbeiten entweder am Samstag oder am Sonntag. Erfahrung ist nicht nur willkommen, sondern auch wichtig. Wir können Ihnen leider weder ein Auto noch eine Wohnung anbieten.|Kafemiz için yardımcı eleman arıyoruz. Hem güler yüzlü hem güvenilir olmalısınız. Ya cumartesi ya pazar çalışırsınız. Deneyim sadece memnuniyetle karşılanmıyor, aynı zamanda önemli. Maalesef size ne araba ne de daire sunabiliyoruz.|Wann arbeitet man?~Entweder am Samstag oder am Sonntag.~Am Samstag und am Sonntag.~Von Montag bis Freitag.|Was bietet das Café nicht an?~Weder ein Auto noch eine Wohnung.~Kein Geld.~Keine Erfahrung.
+O|Mein Nachbar Herr Yıldız ist ein besonderer Mann. Er spricht nicht nur Türkisch und Deutsch, sondern auch Griechisch. Er kann sowohl Autos reparieren als auch Möbel bauen. Aber er hat weder einen Fernseher noch ein Handy. Er sagt: „Entweder lebe ich richtig, oder ich schaue zu."|Komşum Bay Yıldız özel bir adam. Sadece Türkçe ve Almanca değil, Yunanca da konuşuyor. Hem araba tamir edebiliyor hem mobilya yapabiliyor. Ama ne televizyonu ne de cep telefonu var. Diyor ki: "Ya gerçekten yaşarım ya da izlerim."|Welche Sprachen spricht Herr Yıldız?~Türkisch, Deutsch und Griechisch.~Nur Türkisch und Deutsch.~Türkisch und Englisch.|Was hat Herr Yıldız nicht?~Weder einen Fernseher noch ein Handy.~Kein Auto.~Keine Möbel.
+O|Für die Reise nach Istanbul haben wir zwei Möglichkeiten: Entweder wir fliegen direkt, oder wir fahren mit dem Auto über Bulgarien. Das Flugzeug ist sowohl schneller als auch bequemer. Mit dem Auto können wir aber nicht nur Geld sparen, sondern auch viel sehen.|İstanbul seyahati için iki seçeneğimiz var: Ya doğrudan uçarız ya da Bulgaristan üzerinden arabayla gideriz. Uçak hem daha hızlı hem daha rahat. Ama arabayla sadece para biriktirmekle kalmayız, aynı zamanda çok şey görürüz.|Welche Vorteile hat das Flugzeug?~Es ist schneller und bequemer.~Es ist billiger.~Man sieht mehr.|Was ist der Vorteil des Autos?~Man spart Geld und sieht viel.~Es ist schneller.~Es ist bequemer.
