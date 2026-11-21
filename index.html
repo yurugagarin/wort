@@ -893,6 +893,18 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 .kzr span{font-weight:700;font-size:13.5px}
 .kzr i{font-style:normal;font-size:11.5px;font-weight:700}
 .kzr.own{border:2px solid var(--das)}
+.kzpk{display:flex;flex-direction:column;gap:10px}
+.btn.backto{justify-content:flex-start;text-align:left;font-size:13.5px;background:var(--card2)}
+details.kzt-d{padding:12px 14px}
+details.kzt-d>summary{display:flex;align-items:center;gap:10px}
+details.kzt-d>summary .kzt-n{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+details.kzt-d>summary .kzt-n b{font-size:15px}
+details.kzt-d>summary .kzt-n small{font-size:12px;font-weight:500;color:var(--ink3)}
+details.kzt-d>summary .kzt-n i{font-style:normal;font-weight:700}
+details.kzt-d[open]>summary{margin-bottom:10px}
+details.kzt-d .card{box-shadow:none}
+details.kzt-d .ezc{box-shadow:none}
+.kzw{width:100%}.kzw td{padding:7px 8px;border-top:1px solid var(--line);vertical-align:top}.kzw tr:first-child td{border-top:0}
 .kz-ok{color:var(--ok)}.kz-w{color:var(--wrn)}.kz-r{color:var(--bad)}.kz-n{color:var(--ink3)}
 .kzm{display:flex;flex-direction:column;padding:4px 14px}
 .kzmr{display:grid;grid-template-columns:minmax(0,220px) 22px minmax(0,1fr);gap:10px;align-items:start;border-top:1px solid var(--line);padding:10px 0}
@@ -6634,13 +6646,33 @@ function kzPickToday(d){
   return null;}
 function kzCard(id){var N=kzNeed(id),O=kzOwn(id);if(!N.length&&!O.length)return '';
   var miss=N.filter(function(t){return stTable(t)!=='oturdu';}).length;
-  return '<div class="card kzc"><div class="row"><div class="eyebrow">Önce bunları bil</div><div class="sp"></div><button class="link" data-act="kmap">Harita</button></div>'+
+  return '<div class="card kzc"><div class="row"><div class="eyebrow">Önce bunları bil</div><div class="sp"></div>'+(X&&X.kind==='topic'?'<button class="link" data-act="ttab" data-v="tab">Tabloları aç</button> · ':'')+'<button class="link" data-act="kmap">Harita</button></div>'+
     (N.length?'<div class="kzl">'+N.map(kzChip).join('')+'</div>':'<p class="small muted" style="margin-top:6px">Bu konu için ön koşul tablo yok.</p>')+
     (miss?'<p class="small" style="margin-top:8px">'+miss+' tablo henüz oturmadı. Konu planı bu konunun adımından önce Tablo bloğunda bunları getirir.</p>':'')+
     (O.length?'<div class="eyebrow" style="margin-top:12px">Bu konuyla öğrenilen tablo</div><div class="kzl">'+O.map(kzChip).join('')+'</div>':'')+'</div>';}
 function kzUsersCard(tid){var U=kzUsers(tid);if(!U.length)return '';
   return '<div class="card kzc"><div class="row"><div class="eyebrow">Bu tabloyu kullanan konular</div><div class="sp"></div><button class="link" data-act="kmap">Harita</button></div><div class="kzl">'+
     U.map(function(u){var g=u[0],st=tstat(g[0]);return '<button class="kzr" data-act="topic" data-id="'+g[0]+'"><span lang="de">'+esc(g[2])+'</span><i class="kz-'+(st==='ok'?'ok':st==='wip'?'w':'n')+'">'+g[1]+(u[1]==='o'?' · bu konunun tablosu':' · ön koşul')+'</i></button>';}).join('')+'</div></div>';}
+/* konunun tabloları ve kelimeleri tek yerde: konu sayfasında "Tablolar" sekmesi, Öğren'in ilk adımı, test girişleri.
+   Tablo salt okunur çizilir (yeşil: oturan hücre, sarı: yarı yolda); "Ezberle" tablo sayfasını açar. */
+function kzRoCell(t,r,c,e){var v=t.rows[r][c+1],k=r+'-'+c,dr=t.drill.indexOf(c)>=0,st=e.c[k]||0;
+  return '<span class="'+(dr&&st>=2?'m':dr&&st===1?'h1':'')+(String(v).length<=8?' nw':'')+'" lang="de">'+esc(v)+'</span>';}
+function kzTblBody(t){
+  if(t.kind==='kural'||!t.rows)return '<div style="padding:2px 4px">'+(t.ex||[]).slice(0,5).map(function(e){return '<div class="gsent"><b lang="de">'+esc(e[0])+'</b><span>'+esc(e[1])+'</span></div>';}).join('')+'</div>';
+  return ezTable(t,kzRoCell);}
+function kzList(id){return kzNeed(id).map(function(t){return [t,'n'];}).concat(kzOwn(id).map(function(t){return [t,'o'];}));}
+function kzTables(id,mode){
+  return kzList(id).map(function(x,i,L){var t=EZBY[x[0]],st=stTable(t.id),Lb=KZST[st]||KZST.yeni,open=mode!=='pre'&&(st!=='oturdu'||(mode==='tab'&&L.length<=2));
+    return '<details class="card kzt-d"'+(open?' open':'')+'><summary><span class="kzt-n"><b lang="de">'+esc(t.t)+'</b><small>'+(x[1]==='o'?'bu konunun tablosu':'ön koşul')+' · <i class="kz-'+Lb[1]+'">'+Lb[0]+'</i></small></span><button class="btn sm" data-act="ezopen" data-id="'+t.id+'">Ezberle ›</button></summary>'+kzTblBody(t)+'</details>';}).join('');}
+function kzWords(id,open){var wl=GW[id]||[];if(!wl.length)return '';var added=wordsAdded(id);
+  return '<details class="card kzt-d"'+(open?' open':'')+'><summary><span class="kzt-n"><b>Konunun kelimeleri</b><small>'+wl.length+' kelime · '+(added>=wl.length?'hepsi kelime tekrarında':added?added+' tanesi kelime tekrarında':'henüz kelime tekrarında değil')+'</small></span>'+
+    (added<wl.length?'<button class="btn sm" data-act="gwadd" data-id="'+id+'">Kelimelerime ekle</button>':'')+'</summary>'+
+    '<table class="ezt kzw"><tbody>'+wl.map(function(w){var a=ART(w[3]);return '<tr><td><b lang="de"'+(a?' style="color:var(--'+a+')"':'')+'>'+(a?a+' ':'')+esc(w[0])+'</b></td><td lang="de" class="muted">'+esc(w[1]||'')+'</td><td>'+esc(w[2])+'</td></tr>';}).join('')+'</tbody></table></details>';}
+function kzPack(id,mode){var T=kzTables(id,mode==='anla'?'pre':mode),W=kzWords(id,mode==='tab');if(!T&&!W)return '';
+  /* Öğren'in ilk adımı (köprü): konunun kelimeleri açık, tablolar kapalı satırlar (dokununca açılır, "Ezberle" ile tabloya gidilir) */
+  if(mode==='anla')return '<div class="kzpk"><div class="eyebrow" style="margin:6px 4px 0">Bu konunun kelimeleri ve tabloları</div>'+kzWords(id,true)+T+'</div>';
+  if(mode==='pre')return '<details class="card"><summary>Bu konunun tabloları ve kelimeleri</summary><div class="kzpk" style="margin-top:10px">'+T+W+'</div></details>';
+  return '<div class="kzpk">'+(mode==='anla'?'<div class="eyebrow" style="margin:6px 4px 0">Bu konunun tabloları ve kelimeleri · önce bunlara bak</div>':'')+T+W+'</div>';}
 var KZACT={kmap:function(){openPage({kind:'kmap',v:'konu'});},kmapv:function(b){X.v=b.dataset.v;drawPage();}};
 function pKmap(){
   var v=X.v||'konu',b='<div><div class="eyebrow">Harita</div><h1>Tablolar ve konular</h1><p class="muted" style="margin-top:4px">Bir konuyu rahat öğrenmek için önce ezberlemen gereken tablolar. Renk: yeşil oturdu · sarı öğreniliyor ya da tekrar zamanı · kırmızı henüz çalışmadın. Bir tabloya ya da konuya dokun.</p></div>';
@@ -7213,12 +7245,24 @@ function vIlerleme(){
 
 /* ================= SAYFALAR (tam ekran) ================= */
 function stopSay(){if(typeof SAYQ!=='undefined'){SAYQ++;try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}}}
-function openPage(x){stopSay();if(X)STACK.push(X);if(!x.day)x.day=today();X=x;var p=$('page');p.hidden=false;document.body.style.overflow='hidden';drawPage();p.scrollTop=0;}
+function openPage(x){stopSay();if(X){X._sy=$('page').scrollTop;STACK.push(X);}if(!x.day)x.day=today();X=x;var p=$('page');p.hidden=false;document.body.style.overflow='hidden';drawPage();p.scrollTop=0;}
 function closePage(){
   stopSay();if(X&&X.timer)clearInterval(X.timer);
-  if(STACK.length){X=STACK.pop();drawPage();$('page').scrollTop=0;return;}
+  if(STACK.length){X=STACK.pop();drawPage();$('page').scrollTop=X._sy||0;return;}
   var pk=X&&X.kind;X=null;$('page').hidden=true;document.body.style.overflow='';render();sessAfterClose(pk);
 }
+/* tablo akışı (tablo sayfası, ezber testi, boş tablo) bir dersten ya da konu sayfasından açıldıysa "Bitti" ve "Kaldığın yere dön"
+   o derse, aynı adıma ve aynı kaydırma yerine döner; Bugün'den açıldıysa eskisi gibi her şeyi kapatır */
+var EZK={ez:1,ezq:1,ezfill:1};
+function ezBackTo(){for(var i=STACK.length-1;i>=0;i--){if(!EZK[STACK[i].kind])return STACK[i];}return null;}
+function ezBackLbl(){var y=ezBackTo();if(!y||!GBY[y.id])return '';var g=GBY[y.id];
+  if(y.kind==='topic')return g[2]+' · konu sayfası';
+  if(y.kind!=='lesson')return g[2];
+  var w=STT[y.stg]||'';if(y.stg==='anla'&&GL[y.id]&&(y.i==null||y.i<0))w+=' · adım '+((y.as||0)+1)+'/'+ANLA.length;else if(y.i!=null&&y.i>=0&&y.items&&y.i<y.items.length)w+=' · soru '+(y.i+1)+'/'+y.items.length;
+  return g[2]+' · '+w;}
+function ezBackBtn(){var l=ezBackLbl();return l?'<button class="btn wide backto" data-act="ezdone">‹ Kaldığın yere dön · <span lang="de">'+esc(l)+'</span></button>':'';}
+function ezDone(){stopSay();if(X&&X.timer)clearInterval(X.timer);if(!ezBackTo()){closeAll();return;}
+  while(X&&EZK[X.kind]&&STACK.length)X=STACK.pop();drawPage();$('page').scrollTop=X._sy||0;}
 function closeAll(){stopSay();if(X&&X.timer)clearInterval(X.timer);var pk=X&&X.kind;STACK=[];X=null;$('page').hidden=true;document.body.style.overflow='';render();sessAfterClose(pk);}
 function drawPage(){
   if(!X)return;
@@ -7284,8 +7328,10 @@ function pTopic(){
   b+=kzCard(id);
   b+=topicHistHtml(id);
   if(lsData()[id]){var lr=S.rd&&S.rd[id];b+='<div class="card" style="padding:6px"><div class="tiles"><button class="tile" data-act="lsopen" data-id="'+id+'" style="--c:var(--spr)"><i>¶</i><span style="flex:1"><b>Okuma: <span lang="de">'+esc(lsData()[id].t)+'</span></b><span>'+(lr&&lr.q?'okundu '+lsAgoTxt(lr.d)+' · '+lr.q[0]+' / '+lr.q[1]+' doğru':'bu konuyla yazılmış metin · 9 adım, ~20 dk')+'</span></span><span class="chev">›</span></button></div></div>';}
-  b+='<div class="seg">'+[['ders','Ders'],['not','Notlarım'],['kel','Kelimeler'],['orn','Örnekler']].map(function(o){return '<button class="'+(tab===o[0]?'on':'')+'" data-act="ttab" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
+  b+='<div class="seg">'+[['ders','Ders'],['tab','Tablolar'],['kel','Kelimeler'],['orn','Örnekler'],['not','Notlarım']].map(function(o){return '<button class="'+(tab===o[0]?'on':'')+'" data-act="ttab" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';
   if(tab==='ders')b+=dersHtml(id);
+  else if(tab==='tab')b+='<p class="small muted">Bu konuyu rahat kurmak için bilmen gereken tablolar ve konunun kendi kelimeleri. Hepsi konu planına bağlı: <b>Tablo bloğu</b> bu konunun adımından önce henüz oturmamış ön koşul tablosunu getirir; kelimeleri "Kelimelerime ekle" ile kelime tekrarına alırsın. İstediğin an buradan bakabilir, "Ezberle" ile tabloyu çalışabilirsin. Yeşil hücre oturdu, sarı yarı yolda.</p>'+
+    (kzPack(id,'tab')||'<p class="note">Bu konuya bağlı tablo ya da kelime listesi yok.</p>');
   else if(tab==='kel'){
     var wl=GW[id]||[],added=wordsAdded(id);
     b+='<p class="small muted">Bu konuyu kullanabilmek için bilmen gereken kelimeler ve biçimleri. Kelime tekrarına eklersen her gün aralıklı olarak sorulur.</p>'+
@@ -7489,14 +7535,14 @@ function lessonIntro(){
   var g=GBY[X.id],k=X.stg,n=X.items.length,b='<div><div class="eyebrow">'+STT[k]+' · '+esc(g[1])+'</div><h1 lang="de">'+esc(g[2])+'</h1></div>';
   if(k==='anla'&&GL[X.id])return anlaHtml();
   if(k==='anla'){
-    b+='<p class="muted">Acele etme: önce kuralı oku, örneklere bak. Sonra 3 kısa soru (en az 2\'si doğru olmalı).</p>'+sumHtml(X.id)+
+    b+='<p class="muted">Acele etme: önce kuralı oku, örneklere bak. Sonra 3 kısa soru (en az 2\'si doğru olmalı).</p>'+sumHtml(X.id)+kzPack(X.id,'anla')+
       '<div class="eyebrow" style="margin:4px">Örnek cümleler · sesli oku</div>'+exHtml(g)+
       '<div class="tipbox"><div class="eyebrow">Kendine anlat</div><p>Özete bakmadan, kuralı Türkçe tek bir cümleyle yüksek sesle söyle: <b>ne zaman</b> kullanılır, <b>nasıl</b> kurulur? Kendine açıklamak, okuyup geçmekten çok daha kalıcıdır.</p></div>'+
       '<button class="btn lime big wide" data-act="lgo">Anladım · 3 kontrol sorusu</button>';
     return b;
   }
   var what={tani:'12 soru: şıklı ve yazarak boşluk, hata bulma, cümle kurma. Sorular her seferinde başka. Geçmek için %75.',kur:'15 soru: yazarak boşluk, hata bul ve düzelt, dönüştür, Türkçeden çevir, cümle kur ve kısa bir okuma parçası. Geçmek için %70. ä ö ü ß için tuşlar var; ae, oe, ue, ss yazman da kabul.',rv:'13 soru: hiç görmediğin ya da en uzun süredir görmediğin sorular; geçen sefer yanlış yaptıkların öne alınır; 2\'si önceki konulardan. Geçmek için %80.',pek:'13 soru: tekrar gibi, hiç görmediğin sorularla. Geçmek için %80; iki ayrı günde geçince konu pekiştir listesinden çıkar.',free:'12 karışık soru; aşamaya sayılmaz.'}[k]||'';
-  b+=notesBox(X.id,k==='rv'||k==='pek')+recallCard(X.id)+
+  b+=notesBox(X.id,k==='rv'||k==='pek')+recallCard(X.id)+kzPack(X.id,'pre')+
     '<details class="card"><summary>Uzun özet</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(X.id)+'</div></details>'+
     '<p class="muted">'+what+'</p><button class="btn lime big wide" data-act="lgo">Başla</button>';
   return b;
@@ -8799,7 +8845,8 @@ var ACT={
   importtext:function(){var t=$('impText');if(t&&t.value.trim())importJSON(t.value.trim());},
   reset:function(){if(confirm('Bütün WORT verileri silinecek. Önce yedek aldın mı?')&&confirm('Emin misin? Bu geri alınamaz.')){S=blank();S.rz=Date.now();save();W.q=null;lastScore=null;closeAll();toast('Sıfırlandı');}},
   close:function(){closePage();},
-  closeall:function(){closeAll();}
+  closeall:function(){closeAll();},
+  ezdone:function(){ezDone();}
 };
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-act]');if(!b||b.disabled)return;
@@ -9244,7 +9291,7 @@ function ezEnd(){
     save();
   }
   var wrong=X.items.filter(function(it,i){return X.res[i]==='no';}),acc=n?X.ok/n:0;
-  var b='<div class="center" style="padding:16px 0 4px"><div class="eyebrow">Ezber testi bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
+  var b=ezBackBtn()+'<div class="center" style="padding:16px 0 4px"><div class="eyebrow">Ezber testi bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
     '<p class="muted" style="margin-top:6px">'+(X.retry?'Yanlışların üstünden geçtin.':acc>=.8?'Geçtin (%80 ve üstü).':'%80 olmadı: yarın yeniden sorulacak. Hafıza tekniğini bir kez oku, tabloyu ritimle dinle, sonra "Boş tabloyu doldur" ile dene.')+'</p></div>';
   b+=ezEndTable();
   b+='<div class="card"><div class="eyebrow">Tablolar · sıradaki tekrar</div><ul class="tl" style="margin-top:6px">'+Object.keys(X.per).map(function(tid){return ezLi(EZBY[tid]);}).join('')+'</ul>'+
@@ -9254,7 +9301,7 @@ function ezEnd(){
     '<button class="btn lime big wide" data-act="ezwrong">Yanlış yaptığım '+wrong.length+' soruyu tekrar et</button>';
   if(X.tids.length===1){var t9=EZBY[X.tids[0]];if(!X.retry&&t9.kind!=='kural'&&ezFillCells(t9).length>=4)b+='<button class="btn big wide" data-act="ezfill" data-id="'+t9.id+'">Bir adım daha: boş tabloyu doldur</button>';
     b+='<button class="btn big wide" data-act="ezopen" data-id="'+X.tids[0]+'">Tabloya dön</button>';}
-  b+='<button class="btn'+(wrong.length?'':' lime')+' big wide" data-act="closeall">Bitti</button>';
+  b+='<button class="btn'+(wrong.length?'':' lime')+' big wide" data-act="ezdone">'+(ezBackTo()?'Bitti · kaldığın yere dön':'Bitti')+'</button>';
   return b;
 }
 /* test sonunda tablonun kendisi: bu testte yanlış bilinen hücreler kırmızı */
@@ -9381,6 +9428,7 @@ function pEz(){
     '<div class="card"><div class="row"><b class="big num" style="font-size:30px">%'+pct(p)+'</b><div class="sp"></div><div class="small muted" style="text-align:right">'+esc(ezStatus(t.id))+'<br>'+Math.round(p*nc)+' / '+nc+' '+(kural?'cümle':'hücre')+' oturdu'+(function(){var e=ezpeek(t.id),h=ezCells(t).filter(function(x){return (e.c[x.k]||0)===1;}).length;return h?'<br><span style="color:var(--das)">'+h+' yarı yolda</span>':'';})()+'</div></div><div style="margin-top:8px">'+bar(p,'var(--das)','thick')+'</div>'+
     (ezPart(t)?'<p class="small" style="margin-top:8px"><b>Parça '+(ezPart(t).i+1)+' / '+ezPart(t).n+'</b>'+(ezPart(t).name?' · '+esc(ezPart(t).name):'')+'</p>':'')+ezActs(t,kural,nc)+'</div>';
   if(X.sess)b=b.replace('<div class="card">',ezSessCard(t,kural)+'<div class="card">');
+  b=ezBackBtn()+b;
   if(!kural){
     b+='<div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn'+(X.hide?' dark':'')+'" data-act="ezhide">'+(X.hide?'✓ Kapalı · dokunarak aç':'Kapat ve hatırla')+'</button>'+
       '<button class="btn'+(patOn(t)?' dark':'')+'" data-act="ezpat">'+(patOn(t)?'✓ Desenler renkli':'Desenleri göster')+'</button><div class="sp"></div>'+(X.hide?'<button class="link" data-act="ezhide">Hepsini aç</button>':'')+'</div>'+ezTable(t);
@@ -9420,7 +9468,7 @@ function pEzFill(){
   if(!X.res8)b+='<div class="keys" style="justify-content:center">'+['ä','ö','ü','ß'].map(function(k){return '<button class="key" data-act="fk" data-v="'+k+'" lang="de">'+k+'</button>';}).join('')+'</div>'+
     '<button class="btn lime big wide" data-act="ezfcheck">Kontrol et</button>';
   else b+=(cells.some(function(c){return X.res8[c.k]!=='ok';})?'<button class="btn lime big wide" data-act="ezfagain">Yanlışları yeniden doldur</button>':'')+
-    '<button class="btn big wide" data-act="ezopen" data-id="'+t.id+'">Tabloya dön</button><button class="btn big wide" data-act="closeall">Bitti</button>';
+    '<button class="btn big wide" data-act="ezopen" data-id="'+t.id+'">Tabloya dön</button><button class="btn big wide" data-act="ezdone">'+(ezBackTo()?'Bitti · kaldığın yere dön':'Bitti')+'</button>';
   return {t:'Boş tablo',b:b};
 }
 function ezFillCheck(){
@@ -11336,7 +11384,7 @@ function anlaHtml(){
   b+='<div><div class="eyebrow">Öğren · kural · '+(k+1)+'/'+n+'</div><h1>'+esc(sc[1])+'</h1></div>';
   if(ekData()[id])b+='<button class="link" style="align-self:flex-start" data-act="ekopen" data-id="'+id+'">Takıldın mı? Sade anlatımı aç</button>';
   var nextBtn='<button class="btn lime big wide" data-act="anext">Devam</button>';
-  if(sc[0]==='kopru')b+=preQ(false)+'<p class="muted">Yeni bir şeyi ancak bildiğin bir şeye bağlarsan aklında kalır. <b lang="de">'+esc(g[2])+'</b> şunlara dayanıyor:</p>'+glKopru(gl);
+  if(sc[0]==='kopru')b+=preQ(false)+'<p class="muted">Yeni bir şeyi ancak bildiğin bir şeye bağlarsan aklında kalır. <b lang="de">'+esc(g[2])+'</b> şunlara dayanıyor:</p>'+glKopru(gl)+kzPack(id,'anla');
   else if(sc[0]==='hub')b+=(gl.hub||[]).map(function(h){return hubHtml(h,id,'anla');}).join('');
   else if(sc[0]==='mantik')b+=ruleCard(id)+'<div class="sum"><p>'+rich(gl.mantik)+'</p></div><details class="card"><summary>Kuralların kısa özeti</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+sumHtml(id)+'</div></details>';
   else if(sc[0]==='adim'){var ad=X.ad||1,tot=gl.adim?gl.adim.s.length:0;

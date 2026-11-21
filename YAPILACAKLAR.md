@@ -262,3 +262,8 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Tablo bloğu her gün tablonun kendisiyle açılır: üstte "Bugünün Tablo bloğu" adımları (bak ve sesli oku, kapat ve hatırla, test ya da küçük tablolarda boş tabloyu doldur). Eskiden ilk günden sonra doğrudan teste geçiyordu.
 - [x] Ezber testi bitince tablonun tamamı görünür; o testte yanlış bilinen hücreler kırmızı. Altında "Bir adım daha: boş tabloyu doldur".
 - [x] Denetim: 33 yeni konunun 1683 sorusu doğru cevapla tek tek çözüldü (hepsi kabul), başka-cevap ve başka-sıra kontrolleri tutarlı, her konuda Öğren/Uygula/Tekrar/Pekiştir karışımı doğru; tablo bloğu küçük, büyük ve kural tablolarıyla; 10 günlük simülasyon; hata yok.
+
+## Tur 25 · Konunun tabloları ve kelimeleri, kaldığın yere dönüş (21 Kasım)
+- [x] Konu sayfasında yeni "Tablolar" sekmesi: konunun ön koşul tabloları ve kendi tablosu tam hâliyle (yeşil oturan, sarı yarı yolda hücre, durum, "Ezberle ›"), altında konunun kelimeleri (ör. Verben mit Dativ: helfen, danken, gefallen…) ve "Kelimelerime ekle". "Önce bunları bil" kartında "Tabloları aç".
+- [x] Öğren'in ilk adımı ("Bildiğin yerden başla"): mevcut ezber bağlantıları aynen duruyor; altına konunun kelimeleri (açık) ve tablolar (dokununca açılır) eklendi. Test girişlerinde kapalı "Bu konunun tabloları ve kelimeleri".
+- [x] Dersten ya da konu sayfasından bir tabloya gidince: tablo sayfasının, test sonunun ve boş tablonun en üstünde "‹ Kaldığın yere dön · konu · aşama · adım"; "Bitti" ve "Geri" seni aynı adıma ve aynı kaydırma yerine götürür. Bugün'den açılan Tablo bloğu eskisi gibi oturumla devam eder.
