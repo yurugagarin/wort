@@ -282,3 +282,9 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Uygulama gece açık kalırsa dünkü yarım ders ekranı "Yeni günde bu adım baştan" diye açılır.
 - [x] Değişmeyen kural: Üret'ten önce 3+ gün ara verilirse konu Öğren'den baştan (önceki kayıt saklanır).
 - [x] Sekmeye fareyle tıkladıktan sonra Enter'a basınca sekme yeniden açılıyordu; düğmeden odak kaldırıldı.
+
+## Tur 28 · Tablolarda "ezberledim" işareti ve üç adımlı ezber yolu (22 Kasım)
+- [x] Her tablo satırının başında kutu: dokununca "ezberledim" (✓). Testle iki ayrı günde doğru bilinen satır ✓✓ (oturdu) olur; elle kaldırılmadıysa kendiliğinden işaretlenir. Üstte "10 / 27 satır ✓" ve "Yalnız ezberlemediklerim" süzgeci. Telefonda geniş tablolarda ilk kartta.
+- [x] Odak: bazı satırlar işaretliyse test soruları işaretlenmemiş satırlardan gelir; işaretlilerden her testte 2–3 hücre yoklanır, yanlış çıkarsa işaret kalkar ve sonuçta "İşareti kaldırılan satırlar" gösterilir. Boş tablo yalnız işaretsiz satırları sorar. Parçalı tablolarda işaretli satırlar tamam sayılır, sıradaki parçaya geçilir.
+- [x] Tablo sayfasında konudaki gibi yol: 1 Ezberle (parça parça, dinle ve sesli tekrar et, kapat ve hatırla, bildiğin satırları işaretle) → 2 Test et (çoğu yazarak 12 soru, %80, yanlışları hemen yeniden) → 3 Hatırla (1-3-7-14-30-60 gün aralıklı; küçük tabloda önce boş tablo, büyükte test). Sıradaki adım vurgulu, "ⓘ Neden böyle?" açıklaması (geri çağırma, parça parça, aralıklı tekrar, yazarak üretme, bildiğini sanma yanılgısı).
+- [x] İşaretler cihazlar arasında eşitlenir (son değişiklik kazanır).
