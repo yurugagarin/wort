@@ -894,6 +894,15 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 .kzr i{font-style:normal;font-size:11.5px;font-weight:700}
 .kzr.own{border:2px solid var(--das)}
 .kzpk{display:flex;flex-direction:column;gap:10px}
+.ezmk{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line2,#c9bfae);background:var(--card);margin-right:8px;vertical-align:middle;font-size:12px;font-weight:800;color:var(--ok);flex:none;line-height:1}
+.ezmk:hover{border-color:var(--ok)}
+.ezmk.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.ezmk.ok{border-color:var(--ok);background:var(--ok);color:#fff;font-size:10px}
+.ezt tr.mk td,.ezt tr.mk th{opacity:.55}.ezt tr.mk th .ezmk{opacity:1}
+.ezl.mk{opacity:.55}
+.ezpath{margin-top:12px}.ezpath .ezpb{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ezpath .ezps{font-style:normal;font-weight:500;color:var(--ink3)}.ezpath .ezpn{font-style:normal;font-weight:700;color:var(--ink2)}
+.ezunm{border:2px solid var(--bad)}
 .livec{border:2px solid var(--lime,#d6e54a)}
 .livr{gap:10px;align-items:center;margin-top:8px}
 .nkc{border:2px solid var(--lime,#d6e54a)}
@@ -8898,6 +8907,8 @@ var ACT={
   ezcol:function(b){var c=+b.dataset.c;X.hc=X.hc||{};if(X.hc[c])delete X.hc[c];else{X.hc[c]=1;var t=EZBY[X.id];t.rows.forEach(function(r,i){delete X.rev[i+'-'+c];});ezMarkStep(X.id,'h');}X.hide=Object.keys(X.hc).length>0;drawPage();},
   ezrev:function(b){X.rev[b.dataset.k]=1;var t=EZBY[X.id],p=b.dataset.k.split('-'),v=t&&t.rows[+p[0]]&&t.rows[+p[0]][+p[1]+1];if(v&&sayable(v))say(ezStrip(v));drawPage();},
   ezgo:function(b){startEz([b.dataset.id],null,!!b.dataset.mix);},
+  ezmk:function(b){var t=EZBY[b.dataset.id],r=+b.dataset.r;if(!t)return;ezMkSet(t.id,r,!ezRowMk(t.id,r));save();var sy=$('page').scrollTop;drawPage();$('page').scrollTop=sy;},
+  ezonlyu:function(){X.onlyU=!X.onlyU;drawPage();},
   ezmix:function(){var d=ezDueList().slice(0,4).map(function(t){return t.id;});if(!d.length){toast('Tekrar bekleyen tablo yok');return;}startEz(d);},
   ezwrong:function(){startEz(X.tids,wrongCopy());},
   say:function(b){say(b.dataset.t,b.dataset.r?+b.dataset.r:undefined);},
@@ -9349,12 +9360,13 @@ var EZPART={partizip:{by:'r',p:[[0,1,2,3,4,5,6,7,8],[9,10,11,12,13,14,15],[16,17
 function ezPart(t){
   var P=EZPART[t.id];if(!P||!t.rows)return null;var e=ezpeek(t.id),cs=ezCells(t);
   var parts=P.p.map(function(ix){return cs.filter(function(x){return ix.indexOf(P.by==='r'?x.r:x.c)>=0;}).map(function(x){return x.k;});});
-  for(var i=0;i<parts.length;i++)if(parts[i].some(function(k){return !(e.c[k]>=1);}))
+  for(var i=0;i<parts.length;i++)if(parts[i].some(function(k){return !(e.c[k]>=1)&&!ezRowMk(t.id,+String(k).split('-')[0]);}))
     return {i:i,n:parts.length,keys:parts[i],prev:[].concat.apply([],parts.slice(0,i)),name:P.n?P.n[i]:''};
   return null;
 }
 function ezInPart(t,k){var p=ezPart(t);return !p||p.keys.indexOf(k)>=0;}
 function ezPick(t,n){
+  var fo=ezPickFocus(t,n);if(fo)return fo;
   var pt=ezPart(t);
   if(pt&&n>=6){var e0=ezpeek(t.id),all=ezCells(t),mine=shuffle(all.filter(function(x){return pt.keys.indexOf(x.k)>=0;})).slice(0,Math.min(12,n)-Math.min(3,pt.prev.length));
     var old=shuffle(all.filter(function(x){return pt.prev.indexOf(x.k)>=0;})).sort(function(a,b){return (e0.c[a.k]||0)-(e0.c[b.k]||0);}).slice(0,3);
@@ -9381,7 +9393,10 @@ function startEz(tids,only,mixErr){
 function ezMark(it,ok){var e=ezs(it.tz),t=today();e.v=8;e.cd=e.cd||{};
   if(!ok){e.c[it.k]=0;delete e.cd[it.k];}
   else if(e.cd[it.k]!==t){e.c[it.k]=(e.c[it.k]||0)+1;e.cd[it.k]=t;}
-  e.last=t;}
+  e.last=t;
+  var tb=EZBY[it.tz];if(tb&&tb.rows&&/^\d+-\d+$/.test(String(it.k))){var r=+String(it.k).split('-')[0];
+    if(!ok&&ezRowMk(it.tz,r)){ezMkSet(it.tz,r,false);if(X){X.unm=X.unm||[];if(!X.unm.some(function(u){return u[0]===it.tz&&u[1]===r;}))X.unm.push([it.tz,r]);}}
+    else if(ok&&ezkGet(it.tz)[r]==null&&ezRowSet(tb,r))ezMkSet(it.tz,r,true);}}
 function ezRecord(ok){var it=X.items[X.i];X.res[X.i]=ok?'ok':'no';if(ok)X.ok++;if(it.tz)ezMark(it,ok);var d=xday();d.ez=(d.ez||0)+1;save();}
 function pEzq(){
   var n=X.items.length,ttl=X.tids.length>1?'Karışık ezber':esc(EZBY[X.tids[0]].t);
@@ -9414,7 +9429,7 @@ function ezEnd(){
   var wrong=X.items.filter(function(it,i){return X.res[i]==='no';}),acc=n?X.ok/n:0;
   var b=ezBackBtn()+'<div class="center" style="padding:16px 0 4px"><div class="eyebrow">Ezber testi bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
     '<p class="muted" style="margin-top:6px">'+(X.retry?'Yanlışların üstünden geçtin.':acc>=.8?'Geçtin (%80 ve üstü).':'%80 olmadı: yarın yeniden sorulacak. Hafıza tekniğini bir kez oku, tabloyu ritimle dinle, sonra "Boş tabloyu doldur" ile dene.')+'</p></div>';
-  b+=ezEndTable();
+  b+=ezUnmNote()+ezEndTable();
   b+='<div class="card"><div class="eyebrow">Tablolar · sıradaki tekrar</div><ul class="tl" style="margin-top:6px">'+Object.keys(X.per).map(function(tid){return ezLi(EZBY[tid]);}).join('')+'</ul>'+
     Object.keys(X.per).map(function(tid){return ezNextLine(tid);}).join('')+'<p class="small muted" style="margin-top:6px">Bir hücre <b>iki ayrı günde</b> doğru bilinince "oturdu" sayılır; yüzde, oturan hücrelerin oranıdır.</p></div>';
   if(wrong.length)b+='<div class="card"><div class="eyebrow">Doğrusu</div>'+wrong.map(function(it){
@@ -9500,14 +9515,14 @@ function ezTable(t,cellFn){
   if(t.cols.length>=4){ /* geniş tablo: telefonda her sütun ayrı kart, masaüstünde tam tablo (doldurmada yalnız biri çizilir) */
     return '<div class="ezcards">'+t.cols.map(function(cn,c){
       return '<div class="ezc'+(cellFn===ezCell&&X.hc&&X.hc[c]?' hid':'')+'"><div class="ezh"><b lang="de"'+(cellFn===ezCell&&t.drill.indexOf(c)>=0?' class="ezcolb" data-act="ezcol" data-c="'+c+'" role="button"':'')+'>'+esc(cn)+(cellFn===ezCell&&t.drill.indexOf(c)>=0?' <small>'+(X.hc&&X.hc[c]?'aç':'kapat')+'</small>':'')+'</b>'+(sp&&!colTR(t,c)&&sayable(t.rows[0][c+1])&&cellFn===ezCell?'<button class="spk" data-act="say" data-t="'+esc(t.rows.filter(function(r){return sayable(r[c+1]);}).map(function(r){return (labDe(t)?r[0].replace(/\(.*?\)/g,'')+' ':'')+ezStrip(r[c+1]);}).join(', '))+'" aria-label="dinle">🔊</button>':'')+'</div>'+
-        t.rows.map(function(row,r){return '<div class="ezl"><span class="lb" lang="de">'+esc(row[0])+'</span>'+cellFn(t,r,c,e)+'</div>';}).join('')+'</div>';}).join('')+'</div>'+
+        t.rows.map(function(row,r){if(!ezRowShow(t,r,cellFn))return '';return '<div class="ezl'+(ezMkOn(t,cellFn)&&ezRowMk(t.id,r)?' mk':'')+'"><span class="lb" lang="de">'+(c===0&&ezMkOn(t,cellFn)?ezMkBtn(t,r):'')+esc(row[0])+'</span>'+cellFn(t,r,c,e)+'</div>';}).join('')+'</div>';}).join('')+'</div>'+
       (cellFn===ezCell?'<div class="card ezt-w ezwide">'+ezGrid(t,cellFn,e,sp)+'</div>':'');
   }
   return '<div class="card ezt-w">'+ezGrid(t,cellFn,e,sp&&cellFn===ezCell)+'</div>';
 }
 function ezGrid(t,cellFn,e,sp){
   return '<table class="ezt'+(t.phr?' phr':'')+'"><thead><tr><th></th>'+t.cols.map(function(cn,c){var hb=cellFn===ezCell&&t.drill.indexOf(c)>=0;return '<th'+(hb?' class="ezcolb" data-act="ezcol" data-c="'+c+'" role="button"':'')+'>'+esc(cn)+(hb?' <small>'+(X.hc&&X.hc[c]?'aç':'kapat')+'</small>':'')+'</th>';}).join('')+(sp?'<th class="s"></th>':'')+'</tr></thead><tbody>'+
-    t.rows.map(function(row,r){return '<tr><th lang="de">'+esc(row[0])+(t.base&&t.base[r]?'<small class="bh">'+esc(t.base[r])+'</small>':'')+'</th>'+row.slice(1).map(function(v,c){return '<td>'+cellFn(t,r,c,e)+'</td>';}).join('')+
+    t.rows.map(function(row,r){if(!ezRowShow(t,r,cellFn))return '';var mo=ezMkOn(t,cellFn);return '<tr'+(mo&&ezRowMk(t.id,r)?' class="mk"':'')+'><th lang="de">'+(mo?ezMkBtn(t,r):'')+esc(row[0])+(t.base&&t.base[r]?'<small class="bh">'+esc(t.base[r])+'</small>':'')+'</th>'+row.slice(1).map(function(v,c){return '<td>'+cellFn(t,r,c,e)+'</td>';}).join('')+
       (sp?'<td class="s"><button class="spk" data-act="say" data-t="'+esc(ezSayRow(t,r))+'" aria-label="dinle">🔊</button></td>':'')+'</tr>';}).join('')+'</tbody></table>';
 }
 /* hafıza teknikleri: tek satırlık başlıklar; "Bu benim yolum" ile istediğin kadarını seç, seçilenler açık kalır ve yanlış cevaptan sonra "Senin yolun" olarak geri gelir */
@@ -9531,18 +9546,51 @@ function ezSessCard(t,kural){var d=day(),w=d.ezw&&GBY[d.ezw],fm=X.fm&&ezStep(t)=
   return '<div class="card ezsess"><div class="eyebrow">Bugünün Tablo bloğu</div>'+(w?'<p class="small" style="margin-top:4px">Sıradaki konun <b lang="de">'+esc(w[2])+'</b> için ön koşul.</p>':'')+
     '<ol class="small">'+(kural?'<li>Örnek cümleleri sesli oku.</li><li>Karışık kelimelerden cümleleri kendin kur.</li>':
       '<li>Tabloya bak, hücreleri sesli oku (1–2 dk).</li><li><b>Kapat ve hatırla</b>: hücreleri kapat, aklından söyle, dokunarak kontrol et.</li><li>'+(fm?'<b>Boş tabloyu doldur</b>: bitince blok tamamlanır; yanlışların doğrusu tablonun içinde görünür.':'<b>Test</b> (12 soru): bitince blok tamamlanır; sonunda tablonun tamamı, yanlışların kırmızı işaretli hâliyle görünür.')+'</li>')+'</ol></div>';}
-function ezActs(t,kural,nc){
-  var k=ezStep(t),fill=!kural&&ezFillCells(t).length,b='<div class="ezacts">',sf=X.kind==='ez'&&X.sess&&X.fm&&k===0&&fill,mx=X.kind==='ez'&&X.sess?' data-mix="1"':'';
-  if(sf)b+='<button class="btn lime big" data-act="ezfill" data-id="'+t.id+'">Boş tabloyu doldur · bugünün adımı</button>';
-  else if(k===1)b+='<button class="btn lime big" data-act="ezchant" data-id="'+t.id+'">1 · Dinle ve tekrar et</button>';
-  else if(k===2)b+='<button class="btn lime big" data-act="ezhide" data-on="1">2 · Kapat ve hatırla</button>';
-  else b+='<button class="btn lime big" data-act="ezgo" data-id="'+t.id+'"'+mx+'>'+(kural?'Cümle kurarak çalış':(k===3?'3 · ':'')+'Test et · '+Math.min(12,nc)+' soru')+'</button>';
-  b+='<div class="row" style="gap:8px;flex-wrap:wrap;justify-content:center">'+
-    (k===1||k===2||sf?'<button class="btn sm" data-act="ezgo" data-id="'+t.id+'"'+mx+'>Test et</button>':'')+
-    (fill&&!sf?'<button class="btn sm" data-act="ezfill" data-id="'+t.id+'">Boş tabloyu doldur</button>':'')+
-    (canSay()&&k!==1?'<button class="btn sm" data-act="ezchant" data-id="'+t.id+'">🔊 Ritimle dinle</button>':'')+'</div>';
-  return b+'</div>';
-}
+function ezActs(t,kural,nc){return ezPath(t,kural,nc);}
+/* ---- satır işaretleri: "ezberledim" (22 Kasım) ----
+   S.ezk[tablo][satır] = 'YYYY-AA-GG' (ezberledim dedin) ya da '-YYYY-AA-GG' (işareti kaldırdın). İşaretli satırlar testte azalır
+   ama hiç kalkmaz: her testte 2–3 hücresi yoklanır (insan bildiğini olduğundan fazla sanır); yanlış çıkarsa işaret kalkar.
+   Satırın bütün hücreleri iki ayrı günde doğru bilinince (oturdu) satır kendiliğinden işaretlenir (elle kaldırılmadıysa).
+   Bazı satırlar işaretliyse test, boş tablo ve parçalar işaretlenmemiş satırlara yoğunlaşır. */
+function ezkGet(tid){return (S.ezk&&S.ezk[tid])||{};}
+function ezRowMk(tid,r){var v=ezkGet(tid)[r];return !!v&&String(v).charAt(0)!=='-';}
+function ezRowCells(t,r){return ezCells(t).filter(function(x){return x.r===r;});}
+function ezRowSet(t,r){var e=ezpeek(t.id),cs=ezRowCells(t,r);return cs.length>0&&cs.every(function(x){return (e.c[x.k]||0)>=2;});}
+function ezMkSet(tid,r,on){S.ezk=S.ezk||{};var o=S.ezk[tid]||(S.ezk[tid]={});o[r]=(on?'':'-')+today();}
+function ezMkCount(t){var n=0;(t.rows||[]).forEach(function(row,r){if(ezRowMk(t.id,r))n++;});return n;}
+function ezFocus(t){if(!t||!t.rows||t.kind==='kural')return false;var n=ezMkCount(t);return n>0&&n<t.rows.length;}
+function ezMkBtn(t,r){var on=ezRowMk(t.id,r),ok=on&&ezRowSet(t,r);
+  return '<button class="ezmk'+(ok?' ok':on?' on':'')+'" data-act="ezmk" data-id="'+t.id+'" data-r="'+r+'" aria-pressed="'+on+'" title="'+(ok?'Testle oturdu':on?'Ezberledim dedin · testte ara ara yoklanır · kaldırmak için dokun':'Ezberlediysen işaretle')+'">'+(ok?'✓✓':on?'✓':'')+'</button>';}
+function ezMkOn(t,cellFn){return cellFn===ezCell&&X&&X.kind==='ez'&&t.rows&&t.kind!=='kural';}
+function ezRowShow(t,r,cellFn){return !(ezMkOn(t,cellFn)&&X.onlyU&&ezRowMk(t.id,r));}
+function ezPickFocus(t,n){if(!ezFocus(t)||n<4)return null;var e=ezpeek(t.id),cs=ezCells(t),pt=ezPart(t),
+    w=function(a,b){return Math.min(e.c[a.k]||0,3)-Math.min(e.c[b.k]||0,3);},
+    un=shuffle(cs.filter(function(x){return !ezRowMk(t.id,x.r);})).sort(w),
+    mk=shuffle(cs.filter(function(x){return ezRowMk(t.id,x.r);})).sort(w);
+  if(pt)un.sort(function(a,b){return (pt.keys.indexOf(b.k)>=0?1:0)-(pt.keys.indexOf(a.k)>=0?1:0);});
+  var nv=Math.min(mk.length,Math.max(2,Math.round(n*.2))),nu=Math.min(un.length,n-nv);nv=Math.min(mk.length,n-nu);
+  return shuffle(un.slice(0,nu).concat(mk.slice(0,nv)));}
+function ezUnmNote(){var U=(X&&X.unm)||[];if(!U.length)return '';
+  return '<div class="card ezunm"><div class="eyebrow">İşareti kaldırılan satırlar</div><p class="small" style="margin-top:6px">"Ezberledim" demiştin ama bu testte yanlış çıktı; bunlara yeniden yoğunlaşalım:</p><div class="kzl" style="margin-top:6px">'+
+    U.map(function(u){var t=EZBY[u[0]];return '<span class="tag no" lang="de">'+esc(t.rows[u[1]][0])+'</span>';}).join('')+'</div></div>';}
+/* üç adımlı yol: Ezberle → Test et → Hatırla (aralıklı) */
+function ezPath(t,kural,nc){
+  var e=ezpeek(t.id),st=S.ezst&&S.ezst[t.id]||{},fill=!kural&&ezFillCells(t).length>=4,mx=X.kind==='ez'&&X.sess?' data-mix="1"':'',
+    nR=t.rows?t.rows.length:0,nM=nR?ezMkCount(t):0,tested=(e.n||0)>0,learned=kural||tested||!!st.h||(nR>0&&nM>=nR),due=ezDue(t.id),fmNow=fill&&ezCells(t).length<=16&&(!e.fl||e.fl<e.last),
+    cur=!learned?1:!tested?2:3,sf=(X.kind==='ez'&&X.sess?X.fm:fmNow)&&fill&&tested&&due,nq=Math.min(12,nc),pt=ezPart(t);
+  var L=function(i,ttl,desc,stat,btns){var now=cur===i,done=i<cur||(i===3&&tested&&!due);
+    return '<li class="'+(now&&!(i===3&&!due&&!sf)?'now':done?'done':'')+'"><span class="n">'+(i<cur?'✓':i)+'</span><span class="tx"><b>'+ttl+(stat?' <i class="ezps">· '+stat+'</i>':'')+'</b><span>'+desc+'</span>'+(btns?'<div class="ezpb">'+btns+'</div>':'')+'</span></li>';};
+  var b1=kural?'':(canSay()?'<button class="btn sm'+(cur===1&&!st.l?' lime':'')+'" data-act="ezchant" data-id="'+t.id+'">🔊 Dinle ve tekrar et</button>':'')+'<button class="btn sm'+(cur===1&&(st.l||!canSay())?' lime':'')+'" data-act="ezhide" data-on="1">Kapat ve hatırla</button>';
+  var b2='<button class="btn sm'+(cur===2||(cur===3&&due&&!sf)?' lime':'')+'" data-act="ezgo" data-id="'+t.id+'"'+mx+'>'+(kural?'Cümle kurarak çalış':'Test et · '+nq+' soru')+'</button>';
+  var b3=fill?'<button class="btn sm'+(sf?' lime':'')+'" data-act="ezfill" data-id="'+t.id+'">Boş tabloyu doldur</button>':'';
+  var h='<ol class="path ezpath">'+
+    L(1,'Ezberle',kural?'Örnek cümleleri sesli oku, her birini kendi cümlenle bir kez söyle.':(pt?'Parça parça: şimdi '+(pt.i+1)+'. parça'+(pt.name?' (<i class="ezpn">'+esc(pt.name)+'</i>)':'')+'. ':'')+'Dinle ve sesli tekrar et; sonra "Kapat ve hatırla" ile hücreleri kapat, aklından söyle, dokunup kontrol et. Bildiğin satırları ✓ ile işaretle.',nR?nM+' / '+nR+' satır ✓':'',b1)+
+    L(2,'Test et',kural?'Karışık kelimelerden cümleleri kendin kur; bütün doğru sıralar kabul.':'Çoğu yazarak '+nq+' soru. '+(ezFocus(t)?'İşaretlemediğin satırlar ağırlıkta; işaretlilerden 2–3 hücre yoklanır, yanlış çıkarsa işaret kalkar. ':'')+'%80 = geçti; yanlışları hemen yeniden çöz.',e.best!=null?'en iyi %'+e.best:'',b2)+
+    L(3,'Hatırla','Aralıklı tekrar: 1 · 3 · 7 · 14 · 30 · 60 gün sonra. Tekrar günü '+(fill?'önce boş tabloyu ezberden doldur, sonra test et':'test et')+'. Bir hücre iki ayrı günde doğru bilinince oturur.',tested?(due?'<span style="color:var(--wrn)">tekrar zamanı geldi</span>':e.due?'sıradaki '+trShort(e.due):'')+(e.n?' · '+e.n+'. tekrar':''):'',tested?b3+b2:b3)+
+    '</ol>'+
+    '<details class="ihelp"><summary>ⓘ Neden böyle?</summary><p class="note" style="margin-top:6px"><b>Hatırlamak, tekrar okumaktan güçlüdür:</b> kapatıp aklından söylemek ve yazmak (test) bilgiyi okumaktan çok daha kalıcı yapar. <b>Parça parça:</b> 5–9 satırlık gruplar akılda daha kolay tutulur. <b>Aralıklı tekrar:</b> tam unutmaya başladığın anda hatırlamak (1-3-7-14… gün) en uzun kalıcılığı verir. <b>Yazarak üretmek</b> şıktan tanımaktan zordur ama kalıcıdır. <b>Bildiğini sanma yanılgısı:</b> insan bildiğini olduğundan fazla sanır; bu yüzden işaretli satırlar da ara ara yoklanır.</p></details>';
+  return h;}
+
 function pEz(){
   var t=EZBY[X.id],p=ezProg(t.id),kural=t.kind==='kural',nc=ezCells(t).length;
   var b='<div><div class="eyebrow">'+LV[t.lv]+' · '+esc(t.cat)+'</div><h1>'+esc(t.t)+'</h1><p class="muted small" lang="de" style="margin-top:4px">'+esc(t.s)+'</p></div>'+
@@ -9552,7 +9600,10 @@ function pEz(){
   b=ezBackBtn()+b;
   if(!kural){
     b+='<div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn'+(X.hide?' dark':'')+'" data-act="ezhide">'+(X.hide?'✓ Kapalı · dokunarak aç':'Kapat ve hatırla')+'</button>'+
-      '<button class="btn'+(patOn(t)?' dark':'')+'" data-act="ezpat">'+(patOn(t)?'✓ Desenler renkli':'Desenleri göster')+'</button><div class="sp"></div>'+(X.hide?'<button class="link" data-act="ezhide">Hepsini aç</button>':'')+'</div>'+ezTable(t);
+      '<button class="btn'+(patOn(t)?' dark':'')+'" data-act="ezpat">'+(patOn(t)?'✓ Desenler renkli':'Desenleri göster')+'</button>'+
+      (ezMkCount(t)?'<button class="btn'+(X.onlyU?' dark':'')+'" data-act="ezonlyu">'+(X.onlyU?'✓ Yalnız ezberlemediklerim':'Yalnız ezberlemediklerim')+'</button>':'')+
+      '<div class="sp"></div><span class="small muted">'+ezMkCount(t)+' / '+t.rows.length+' satır ✓</span>'+(X.hide?'<button class="link" data-act="ezhide">Hepsini aç</button>':'')+'</div>'+
+      (ezMkCount(t)?'':'<p class="small muted" style="margin:-4px 4px 0">Satırın başındaki kutuya dokunarak ezberlediğin satırları işaretle; test ve tekrarlar işaretlemediklerine yoğunlaşır.</p>')+ezTable(t);
   }
   b+=memHtml(t);
   b+='<div class="tipbox"><div class="eyebrow">Ezber notu</div><p>'+rich(t.tip)+'</p></div>';
@@ -9572,10 +9623,10 @@ function isWide(){return !!(window.matchMedia&&matchMedia('(min-width:1000px)').
 var WIDE0=null;window.addEventListener('resize',function(){var w=isWide();if(WIDE0!==null&&w!==WIDE0&&X&&X.kind==='ezfill')drawPage();WIDE0=w;});
 function visIn(sel){return [].filter.call(document.querySelectorAll(sel),function(x){return x.offsetParent!==null;})[0]||null;}
 function ezFillOK(t,c,v){return t.drill.indexOf(c)>=0&&!!v&&v!=='—'&&!colTR(t,c)&&!/[→…]/.test(v);}
-function ezFillCells(t){return ezCells(t).filter(function(x){return x.s==null&&ezFillOK(t,x.c,t.rows[x.r][x.c+1])&&ezInPart(t,x.k);});}
+function ezFillCells(t){var fo=ezFocus(t);return ezCells(t).filter(function(x){return x.s==null&&ezFillOK(t,x.c,t.rows[x.r][x.c+1])&&ezInPart(t,x.k)&&!(fo&&ezRowMk(t.id,x.r));});}
 function ezFillCell(t,r,c,e){
   var k=r+'-'+c,v=t.rows[r][c+1];
-  if(!ezFillOK(t,c,v)||!ezInPart(t,k))return '<span class="fx" lang="de">'+esc(v)+'</span>';
+  if(!ezFillOK(t,c,v)||!ezInPart(t,k)||(ezFocus(t)&&ezRowMk(t.id,r)))return '<span class="fx" lang="de">'+esc(v)+'</span>';
   var val=X.vals[k]||'',res=X.res8&&X.res8[k];
   if(res)return '<span class="fres '+(res==='ok'?'ok':'no')+'" lang="de">'+(res==='ok'?esc(val):'<s>'+esc(val||'—')+'</s> <b>'+esc(ezStrip(v))+'</b>')+'</span>';
   return '<input class="fin" lang="de" data-in="ezf" data-k="'+k+'" value="'+esc(val)+'" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-label="'+esc(t.rows[r][0]+' '+t.cols[c])+'">';
@@ -9584,7 +9635,7 @@ function pEzFill(){
   var t=EZBY[X.id],cells=ezFillCells(t),b='<div><div class="eyebrow">Boş tabloyu doldur · '+LV[t.lv]+'</div><h1>'+esc(t.t)+'</h1></div>';
   if(!X.res8)b+='<p class="muted">Tabloyu ezberden yaz. Bakmadan yazmak, okumaktan çok daha kalıcıdır. Bilmediğin hücreyi boş bırak. ä ö ü ß için alttaki tuşlar var.</p>';
   else{var ok=0;cells.forEach(function(c){if(X.res8[c.k]==='ok')ok++;});
-    b+='<div class="card center"><div class="big num">'+ok+' / '+cells.length+'</div><p class="muted" style="margin-top:6px">'+(ok/cells.length>=.8?'Çok iyi: tablo oturuyor.':'Kırmızıların doğrusu yanında. Hafıza tekniğini bir kez oku, sonra yanlışları yeniden doldur.')+'</p></div>';}
+    b+=ezUnmNote()+'<div class="card center"><div class="big num">'+ok+' / '+cells.length+'</div><p class="muted" style="margin-top:6px">'+(ok/cells.length>=.8?'Çok iyi: tablo oturuyor.':'Kırmızıların doğrusu yanında. Hafıza tekniğini bir kez oku, sonra yanlışları yeniden doldur.')+'</p></div>';}
   b+=ezTable(t,ezFillCell);
   if(!X.res8)b+='<div class="keys" style="justify-content:center">'+['ä','ö','ü','ß'].map(function(k){return '<button class="key" data-act="fk" data-v="'+k+'" lang="de">'+k+'</button>';}).join('')+'</div>'+
     '<button class="btn lime big wide" data-act="ezfcheck">Kontrol et</button>';
@@ -11614,6 +11665,7 @@ function mergeS(L,R){
   M.gsum=cp(L.gsum||{});for(id in (R.gsum||{}))if(M.gsum[id]==null||rN)M.gsum[id]=R.gsum[id];
   if(L.kp0||R.kp0){var k0=[L.kp0,R.kp0].filter(Boolean).sort()[0];M.kp0=k0;M.kpn0=k0===L.kp0?L.kpn0:R.kpn0;}
   var qr={};(L.qrep||[]).concat(R.qrep||[]).forEach(function(r){if(r&&r.id&&(!qr[r.id]||r.off))qr[r.id]=cp(r);});M.qrep=Object.keys(qr).map(function(k){return qr[k];}).slice(-200);
+  M.ezk=cp(L.ezk||{});for(id in (R.ezk||{})){M.ezk[id]=M.ezk[id]||{};for(var rk in R.ezk[id]){var ea=M.ezk[id][rk],eb=R.ezk[id][rk],da=String(ea||'').replace('-',''),db=String(eb||'').replace('-','');if(ea==null||db>da||(db===da&&String(eb).charAt(0)!=='-'))M.ezk[id][rk]=eb;}}
   M.pek=cp(L.pek||{});for(id in (R.pek||{})){var pa=M.pek[id],pb=R.pek[id];if(!pa||(pb.u||0)>(pa.u||0))M.pek[id]=cp(pb);}
   M.ez=M.ez||{};for(id in (R.ez||{})){var x=M.ez[id],y=R.ez[id];if(!x){M.ez[id]=cp(y);continue;}
     var eb=cp(((y.n||0)>(x.n||0)||((y.n||0)===(x.n||0)&&(y.last||'')>(x.last||'')))?y:x);
