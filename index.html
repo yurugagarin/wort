@@ -861,6 +861,7 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 .fx{color:var(--ink3)}
 .ezwr{color:var(--bad);font-weight:700}
 .ezsess ol{margin:8px 0 0 18px;display:grid;gap:4px}
+.ezsteps li.ok{color:var(--ok)}.ezsteps li.now b{background:var(--lime,#d6e54a);padding:0 4px;border-radius:4px}
 .szalt{font-family:var(--f-disp);font-size:16.5px;line-height:1.4;padding:3px 0;color:var(--ink)}
 .szh{font-size:12px!important;color:var(--ink3);margin-top:6px!important}
 .dkplay .btn{font-size:17px}
@@ -6414,8 +6415,8 @@ function sessLaunch(id){if(SESS){SESS.cur=id;SESS.last=null;var t0=taskDefs(day(
   if(id==='gram'){var nx=gNext();if(nx){startStage(nx.g[0],nx.k);return;}startStage(todayTopic()[0],'free');return;}
   /* Tablo bloğu her zaman tablonun kendisiyle açılır (bak, sesli oku, kapat-hatırla), sonra günün adımı: 16 ve daha az hücreli
      tabloda tekrar günleri sırayla boş tablo / test (ipucusuz yazmak en güçlü hatırlama); test bitince tablonun tamamı yine görünür */
-  if(id==='ez'){var et=ezToday(),ee=ezpeek(et.id),fm=!!ee.last&&et.kind!=='kural'&&ezCells(et).length<=16&&ezFillCells(et).length>=4&&(!ee.fl||ee.fl<ee.last);
-    openPage({kind:'ez',id:et.id,hide:false,rev:{},sess:1,fm:fm});return;}
+  if(id==='ez'){var et=ezToday(),P=ezPlan(day());
+    openPage({kind:'ez',id:et.id,hide:false,rev:{},sess:1,fm:ezPlanNext(P)==='fill'});return;}
   if(id==='oku'){lsOpen(lsPick());return;}
   openPage({kind:'yaz'});
 }
@@ -6651,7 +6652,9 @@ var KZST={oturdu:['oturdu','ok'],tekrar:['tekrar zamanı','w'],ogren:['öğrenil
 function kzChip(tid){var s=stTable(tid),L=KZST[s]||KZST.yeni;return '<button class="kzr" data-act="ezopen" data-id="'+tid+'"><span>'+esc(EZBY[tid].t)+'</span><i class="kz-'+L[1]+'">'+L[0]+'</i></button>';}
 /* bugünün tablosu: konu planındaki sıradaki adımın bilinmeyen ön koşulu önce */
 function kzPickToday(d){
-  var nl=kpNextLearn(),ids=[],why='';
+  var nl=kpNextLearn(),ids=[],why='',t0=today();
+  /* tekrarı bir günden fazla geciken tablo bekletilmez */
+  var late=ezDueList().filter(function(x){return ezpeek(x.id).due<t0;});if(late.length)return late[0];
   if(nl){kzNeed(nl.g[0]).forEach(function(t){if(ezProg(t)<.8&&!ezDue(t)&&ids.indexOf(t)<0)ids.push(t);});if(ids.length){d.ezw=nl.g[0];return EZBY[ids[0]];}}
   var due=ezDueList();if(due.length)return due[0];
   gLearning().forEach(function(g){kzOwn(g[0]).concat(kzNeed(g[0])).forEach(function(t){if(ezProg(t)<.8&&ids.indexOf(t)<0)ids.push(t);});});
@@ -6727,7 +6730,11 @@ function kpDay(){var d=day();if(!S.kp0)return d;if(!d.kp)d.kp=1;
 /* açık öğrenme adımı kalmadıysa (Üret yarın açılacak, haftalık yeni konu sınırı doldu) konu bloğu yapılan kadarla tamam */
 function kpSync(){var d=kpDay(),nx=kpNextLearn(),n=d.kls||0;if(!nx){if(d.kcap!==n){d.kcap=n;save();}}else if(d.kcap!=null){delete d.kcap;save();}return d;}
 function kpFrac(d){
-  var tab=d.ezt?1:Math.min(1,(d.ez||0)/12),T=d.kT||2,n=d.kls||0,konu;
+  if(!d.ezp&&!kpFrac.busy&&d.kp&&d===S.days[today()]){kpFrac.busy=1;try{ezPlan(d);}catch(e){}kpFrac.busy=0;}
+  var P=d.ezp,tab;
+  if(P&&P.s&&P.s.length){var pd=P.s.filter(function(x){return P.ok&&P.ok[x];}).length;tab=pd>=P.s.length?1:pd?pd/P.s.length:Math.min(.45,(d.ez||0)/24);}
+  else tab=d.ezt?1:Math.min(1,(d.ez||0)/12);
+  var T=d.kT||2,n=d.kls||0,konu;
   if(n>=T||(d.kcap!=null&&n>=d.kcap))konu=1;else konu=Math.min(.99,(n+Math.min(.5,(d.g||0)/30))/T);
   var R=(d.kRl||[]).length,dn=Object.keys(d.kRd||{}).length,tek=R?Math.min(1,dn/R):1;
   return {tab:tab,konu:konu,tek:tek};}
@@ -6753,9 +6760,9 @@ function kpTasks(d){
   function did(fl){return gl.filter(fl).map(function(e){return (GBY[e.ref]?GBY[e.ref][2]:e.ref)+' · '+(LGS[e.s]||e.s).replace(/^Aşama \d · /,'')+(e.n?' '+e.c+'/'+e.n:'')+(e.ok?' ✓':PASS[e.s]?' ✗':'');});}
   var tasks=[
     {id:'ez',c:'var(--das)',t:'Tablo',sub:et.t+(d.ezw&&GBY[d.ezw]?' · '+GBY[d.ezw][2]+' için ön koşul':''),
-      s:f.tab>=1?'Tamam · '+et.t:et.t+(d.ez?' · '+Math.min(d.ez,12)+' / 12 cevap':''),
-      need:f.tab<1?'Bir tablo testi ya da boş tabloyu doldurma':'',
-      how:'Bir ezber tablosu: tekrar zamanı gelen, yoksa öğrendiğin konunun tablosu. Tablo testi ya da boş tabloyu doldurma = 25.'},
+      s:f.tab>=1?'Tamam · '+et.t:et.t+(ezPlan(d)?' · '+ezPlanLine(d.ezp):''),
+      need:f.tab<1&&ezPlan(d)?'Sıradaki: '+EZSTEP[ezPlanNext(d.ezp)]:'',
+      how:'Bugünün tablosu: tekrar zamanı geçen, sıradaki konunun ön koşulu ya da öğrendiğin konunun tablosu. Önce bak ve ezberle, sonra test (12 soru), sonra boş tabloyu doldur; bütün adımlar = 25.'},
     {id:'gram',c:'var(--les)',t:'Konu',did:did(function(e){return e.s!=='rv'&&e.s!=='pek';}),
       sub:f.konu>=1?(n?n+' adım tamam':'Bugün açık adım yok'):(nl?kpLbl(nl):'Bugün açık adım yok'),
       s:f.konu>=1?'Tamam · '+n+' adım'+(n<T?' (bugünlük açık adım kalmadı)':''):n+' / '+T+' adım'+(nl?' · sıradaki: '+kpLbl(nl):''),
@@ -6769,7 +6776,7 @@ function kpTasks(d){
   ];
   return tasks.map(function(t,i){var k=KPK[t.id];t.n=i+1;t.f=f[k];t.max=MAXK[k];t.p=Math.round(MAXK[k]*f[k]);return t;});
 }
-function kpTaskMin(t){var d=day();if(t.f>=1)return 0;if(t.id==='ez')return 8;
+function kpTaskMin(t){var d=day();if(t.f>=1)return 0;if(t.id==='ez'){var P=ezPlan(d),nx=ezPlanNext(P);return !P?8:((P.ok&&P.ok.test?0:6)+(P.s.indexOf('fill')>=0&&!(P.ok&&P.ok.fill)?4:0)+(P.s.indexOf('mix')>=0&&!(P.ok&&P.ok.mix)?5:0))||4;}
   if(t.id==='gram'){var nl=kpNextLearn();return nl?Math.max(kpStepMin(nl.k),(Math.max(1,(d.kT||2)-(d.kls||0)))*17):0;}
   var R=(d.kRl||[]).length,dn=Object.keys(d.kRd||{}).length;return Math.max(0,R-dn)*10;}
 
@@ -8812,7 +8819,7 @@ var ACT={
     if(LIBT[v]){if(TAB!=='kutup')goTab('kutup');openPage({kind:'lib',v:v});return;}
     if(v===TAB){navStop();if(X){X._sy=$('page').scrollTop;HPUSH=1;}STACK=[];X=null;$('page').hidden=true;document.body.style.overflow='';OPEN=null;render();window.scrollTo(0,0);return;}
     HPUSH=1;goTab(v);},
-  task:function(b){var id=b.dataset.id;if(id==='ez'&&ezDueList().length>1){ACT.ezmix();return;}sessLaunch(id);},
+  task:function(b){var id=b.dataset.id;if(id==='ez'&&!day().kp&&ezDueList().length>1){ACT.ezmix();return;}sessLaunch(id);},
 
   review:function(){if(W.hard&&W0){W=W0;W0=null;}if(!W.q||W.stale||W.day!==today())buildQueue();openPage({kind:'review'});},
   rvok:function(){if(!wGuard())return;var id=W.q.shift();W.seen[id]=1;introDone(id);prRebuild();W.cur=null;W.pick=null;drawPage();$('page').scrollTop=0;setStreak();},
@@ -8909,6 +8916,7 @@ var ACT={
   ezgo:function(b){startEz([b.dataset.id],null,!!b.dataset.mix);},
   ezmk:function(b){var t=EZBY[b.dataset.id],r=+b.dataset.r;if(!t)return;ezMkSet(t.id,r,!ezRowMk(t.id,r));save();var sy=$('page').scrollTop;drawPage();$('page').scrollTop=sy;},
   ezonlyu:function(){X.onlyU=!X.onlyU;drawPage();},
+  ezpmix:function(){var P=ezPlan(day());if(!P||!P.mix||!P.mix.length)return;startEz(P.mix.filter(function(id){return EZBY[id];}));if(X&&X.kind==='ezq')X.pmix=1;},
   ezmix:function(){var d=ezDueList().slice(0,4).map(function(t){return t.id;});if(!d.length){toast('Tekrar bekleyen tablo yok');return;}startEz(d);},
   ezwrong:function(){startEz(X.tids,wrongCopy());},
   say:function(b){say(b.dataset.t,b.dataset.r?+b.dataset.r:undefined);},
@@ -9409,10 +9417,14 @@ function pEzq(){
 }
 /* test ya da tablo doldurma sonucu: tablo başına zamanlama */
 function ezSchedule(per,retry){
+  /* bir günün sonucu o günkü denemelerin hepsidir: test %80 ama boş tablo %60 ise tablo yarın yeniden gelir.
+     Tekrar günü gelmeden yapılan başarılı çalışma aralığı uzatmaz. */
   var t=today(),tid;
   for(tid in per){var e=ezs(tid),acc=per[tid][0]/per[tid][1];e.last=t;e.v=8;
-    if(!retry){if(acc>=.8){if(!e.due||e.due<=t){if(e.sd!==t){e.n=(e.n||0)+1;e.sd=t;}e.due=addD(t,EZI[Math.min(e.n-1,EZI.length-1)]);}}
-      else{e.n=Math.max(0,(e.n||0)-1);e.due=addD(t,1);}
+    if(!retry){if(!e.dr||e.dr.d!==t)e.dr={d:t,n0:e.n||0,u0:e.due||'',ok:1};
+      var ok=!!e.dr.ok&&acc>=.8;e.dr.ok=ok?1:0;
+      if(ok){if(!e.dr.u0||e.dr.u0<=t){e.n=e.dr.n0+1;e.sd=t;e.due=addD(t,EZI[Math.min(e.n-1,EZI.length-1)]);}}
+      else{e.n=Math.max(0,e.dr.n0-1);e.due=addD(t,1);}
       e.best=Math.max(e.best||0,Math.round(acc*100));}}
 }
 function ezEnd(){
@@ -9422,7 +9434,7 @@ function ezEnd(){
     X.items.forEach(function(it,i){if(!it.tz)return;var p=per[it.tz]||(per[it.tz]=[0,0]);p[1]++;if(X.res[i]==='ok')p[0]++;});
     X.per=per;ezSchedule(per,X.retry);
     var tot=0;X.tids.forEach(function(id){tot+=ezCells(EZBY[id]).length;});
-    if(!X.retry&&n>=Math.min(6,tot)){var d=xday();d.ezt=(d.ezt||0)+1;}
+    if(!X.retry&&n>=Math.min(6,tot)){var d=xday();d.ezt=(d.ezt||0)+1;if(X.pmix){if(d.ezp&&d.ezp.mix)ezPlanDone(d.ezp.id,'mix');}else if(X.tids.length===1)ezPlanDone(X.tids[0],'test');}
     lgAdd({k:'e',ref:X.tids.join(','),s:X.retry?'retry':'test',c:X.ok,n:n,ok:!X.retry&&n&&X.ok/n>=.8?1:0,nx:X.tids.length===1?ezpeek(X.tids[0]).due||'':''});
     save();
   }
@@ -9435,11 +9447,17 @@ function ezEnd(){
   if(wrong.length)b+='<div class="card"><div class="eyebrow">Doğrusu</div>'+wrong.map(function(it){
       return '<div class="gsent">'+(it.t==='sz'?'<b lang="de">'+esc(it.de)+'</b><span>'+esc(it.tr)+'</span>':'<span>'+(it.qh?it.qh.replace(/<span class="ezq-a">.*?<\/span>/,'').replace(/<[^>]+>/g,' '):esc(it.q||''))+'</span><b lang="de">'+esc(it.c)+'</b>')+'</div>';}).join('')+'</div>'+
     '<button class="btn lime big wide" data-act="ezwrong">Yanlış yaptığım '+wrong.length+' soruyu tekrar et</button>';
-  if(X.tids.length===1){var t9=EZBY[X.tids[0]];if(!X.retry&&t9.kind!=='kural'&&ezFillCells(t9).length>=4)b+='<button class="btn big wide" data-act="ezfill" data-id="'+t9.id+'">Bir adım daha: boş tabloyu doldur</button>';
+  var P9=X.pmix?day().ezp:X.tids.length===1?ezPlanFor(X.tids[0]):null,n9=ezPlanNext(P9);
+  if(X.tids.length===1){var t9=EZBY[X.tids[0]];
+    if(n9==='fill')b=b.replace('data-act="ezwrong"','data-act="ezwrong" style="background:var(--card2);color:var(--ink)"');
+    if(!X.retry&&n9!=='fill'&&t9.kind!=='kural'&&ezFillCells(t9).length>=4)b+='<button class="btn big wide" data-act="ezfill" data-id="'+t9.id+'">Bir adım daha: boş tabloyu doldur</button>';
     b+='<button class="btn big wide" data-act="ezopen" data-id="'+X.tids[0]+'">Tabloya dön</button>';}
-  b+='<button class="btn'+(wrong.length?'':' lime')+' big wide" data-act="ezdone">'+(ezBackTo()?'Bitti · kaldığın yere dön':'Bitti')+'</button>';
+  b+=n9?'<button class="btn big wide" data-act="ezdone">Şimdilik bırak · Tablo bloğu yarım kalır</button>':'<button class="btn'+(wrong.length?'':' lime')+' big wide" data-act="ezdone">'+(ezBackTo()?'Bitti · kaldığın yere dön':P9?'Bitti · Tablo bloğu tamam ✓':'Bitti')+'</button>';
+  if(n9)b=ezNextStepBtn(P9.id,n9)+b+ezNextStepBtn(P9.id,n9);
   return b;
 }
+function ezNextStepBtn(tid,st){return '<div class="card ezsess center" style="padding:12px"><div class="eyebrow">Tablo bloğu · sıradaki adım</div>'+
+  (st==='mix'?'<button class="btn lime big wide" style="margin-top:8px" data-act="ezpmix">Karışık tekrar · 12 soru →</button>':st==='fill'?'<button class="btn lime big wide" style="margin-top:8px" data-act="ezfill" data-id="'+tid+'">Boş tabloyu doldur →</button>':'<button class="btn lime big wide" style="margin-top:8px" data-act="ezgo" data-id="'+tid+'" data-mix="1">Test et · 12 soru →</button>')+'</div>';}
 /* test sonunda tablonun kendisi: bu testte yanlış bilinen hücreler kırmızı */
 function ezEndTable(){
   if(X.tids.length!==1)return '';var t=EZBY[X.tids[0]];if(!t||t.kind==='kural'||!t.rows)return '';
@@ -9542,10 +9560,29 @@ function memHtml(t){
 }
 /* tablo sayfasında tek ana düğme: yeni tabloda sırayla 1 · Dinle ve tekrar et → 2 · Kapat ve hatırla → 3 · Test et */
 function ezStep(t){var st=S.ezst&&S.ezst[t.id]||{};if(t.kind==='kural'||ezpeek(t.id).n>0)return 0;if(!st.l&&canSay())return 1;if(!st.h)return 2;return 3;}
-function ezSessCard(t,kural){var d=day(),w=d.ezw&&GBY[d.ezw],fm=X.fm&&ezStep(t)===0;
-  return '<div class="card ezsess"><div class="eyebrow">Bugünün Tablo bloğu</div>'+(w?'<p class="small" style="margin-top:4px">Sıradaki konun <b lang="de">'+esc(w[2])+'</b> için ön koşul.</p>':'')+
-    '<ol class="small">'+(kural?'<li>Örnek cümleleri sesli oku.</li><li>Karışık kelimelerden cümleleri kendin kur.</li>':
-      '<li>Tabloya bak, hücreleri sesli oku (1–2 dk).</li><li><b>Kapat ve hatırla</b>: hücreleri kapat, aklından söyle, dokunarak kontrol et.</li><li>'+(fm?'<b>Boş tabloyu doldur</b>: bitince blok tamamlanır; yanlışların doğrusu tablonun içinde görünür.':'<b>Test</b> (12 soru): bitince blok tamamlanır; sonunda tablonun tamamı, yanlışların kırmızı işaretli hâliyle görünür.')+'</li>')+'</ol></div>';}
+
+/* ---- Bugünün Tablo bloğu: adım planı (23 Kasım) ----
+   Blok bugünün tablosuyla yapılır ve o tablonun bugünkü BÜTÜN adımları bitmeden tamam sayılmaz:
+   1) test (12 soru, çoğu yazarak)  2) boş tabloyu doldur (tablo doldurmaya uygunsa). Kural tablolarında yalnız cümle kurma.
+   Önce tabloya bakmak, dinlemek, kapat-hatırla her zaman açık (sayfanın kendisi). d.ezp={id,s:[adımlar],ok:{adım:1}} gün içinde sabit. */
+var EZSTEP={test:'Test (12 soru)',fill:'Boş tabloyu doldur',mix:'Karışık tekrar'};
+function ezPlan(d){d=d||day();if(!d.kp)return null;var t=ezToday();if(!t)return null;
+  if(!d.ezp||d.ezp.id!==t.id){var fill=t.kind!=='kural'&&!!t.rows&&ezFillCells(t).length>=4,
+      /* tekrar zamanı gelen öteki tablolar bekletilmez: hepsi (en çok 4) bir karışık testte */
+      mix=ezDueList().filter(function(x){return x.id!==t.id;}).slice(0,4).map(function(x){return x.id;});
+    var e0=ezpeek(t.id),t0=today();
+    /* bugün bu tablo zaten test edildiyse ya da dolduruldaysa o adım yapılmış sayılır (plan sonradan kurulduysa) */
+    d.ezp={id:t.id,s:(fill?['test','fill']:['test']).concat(mix.length?['mix']:[]),ok:{}};if(d.ezt&&e0.last===t0&&e0.sd===t0||lgDay(t0).some(function(x){return x.k==='e'&&x.ref===t.id&&x.s==='test';}))d.ezp.ok.test=1;if(fill&&e0.fl===t0)d.ezp.ok.fill=1;if(mix.length)d.ezp.mix=mix;save();}
+  return d.ezp;}
+function ezPlanFor(tid){var d=day();return d.kp&&d.ezp&&d.ezp.id===tid?d.ezp:(d.kp&&ezToday()&&ezToday().id===tid?ezPlan(d):null);}
+function ezPlanNext(P){if(!P)return null;for(var i=0;i<P.s.length;i++)if(!(P.ok&&P.ok[P.s[i]]))return P.s[i];return null;}
+function ezPlanDone(tid,step){var P=ezPlanFor(tid);if(!P||P.s.indexOf(step)<0)return;P.ok=P.ok||{};if(!P.ok[step]){P.ok[step]=1;save();}}
+function ezPlanLine(P){return P.s.map(function(s){return (P.ok&&P.ok[s]?'✓ ':'')+EZSTEP[s];}).join(' · ');}
+function ezSessCard(t,kural){var d=day(),w=d.ezw&&GBY[d.ezw],P=ezPlanFor(t.id),nx=ezPlanNext(P);
+  var steps=P?P.s.map(function(st,i){var ok=P.ok&&P.ok[st];return '<li class="'+(ok?'ok':st===nx?'now':'')+'">'+(ok?'✓ ':'')+'<b>'+EZSTEP[st]+'</b>'+(st==='test'?(kural?': karışık kelimelerden cümleleri kur.':': çoğu yazarak; yanlışları hemen yeniden çöz.'):st==='mix'?': tekrar zamanı gelen öteki tablolar ('+P.mix.map(function(id){return EZBY[id]?EZBY[id].t:id;}).join(', ')+'), 12 soru.':': tabloyu ezberden yaz; yanlışların doğrusu tablonun içinde görünür.')+'</li>';}).join(''):'';
+  return '<div class="card ezsess"><div class="eyebrow">Bugünün Tablo bloğu'+(P?' · '+P.s.length+' adım':'')+'</div>'+(w?'<p class="small" style="margin-top:4px">Sıradaki konun <b lang="de">'+esc(w[2])+'</b> için ön koşul.</p>':'')+
+    '<p class="small" style="margin-top:6px">'+(kural?'Önce örnek cümleleri sesli oku.':ezpeek(t.id).last||(S.ezst&&S.ezst[t.id]&&S.ezst[t.id].h)?'İstersen önce tabloya bak, sesli oku, <b>Kapat ve hatırla</b> ile kendini yokla; bildiğin satırları ✓ işaretle.':'Bu tablo yeni: önce <b>ezberle</b>. Tabloya bak, sesli oku (🔊), sonra <b>Kapat ve hatırla</b> ile hücreleri kapatıp aklından söyle; bildiğin satırları ✓ işaretle.')+' Sonra:</p>'+
+    '<ol class="small ezsteps">'+steps+'</ol>'+(P?'<p class="small muted" style="margin-top:6px">'+(nx?'Blok, '+(P.s.length>1?P.s.length+' adımın hepsi':'bu adım')+' bitince tamam olur.':'<b style="color:var(--ok)">Bugünün tablo adımları tamam ✓</b>')+'</p>':'')+(nx==='mix'||(nx&&P.ok&&P.ok.test&&nx!=='fill')?ezNextStepBtn(t.id,nx):'')+'</div>';}
 function ezActs(t,kural,nc){return ezPath(t,kural,nc);}
 /* ---- satır işaretleri: "ezberledim" (22 Kasım) ----
    S.ezk[tablo][satır] = 'YYYY-AA-GG' (ezberledim dedin) ya da '-YYYY-AA-GG' (işareti kaldırdın). İşaretli satırlar testte azalır
@@ -9581,7 +9618,8 @@ function ezPath(t,kural,nc){
   var L=function(i,ttl,desc,stat,btns){var now=cur===i,done=i<cur||(i===3&&tested&&!due);
     return '<li class="'+(now&&!(i===3&&!due&&!sf)?'now':done?'done':'')+'"><span class="n">'+(i<cur?'✓':i)+'</span><span class="tx"><b>'+ttl+(stat?' <i class="ezps">· '+stat+'</i>':'')+'</b><span>'+desc+'</span>'+(btns?'<div class="ezpb">'+btns+'</div>':'')+'</span></li>';};
   var b1=kural?'':(canSay()?'<button class="btn sm'+(cur===1&&!st.l?' lime':'')+'" data-act="ezchant" data-id="'+t.id+'">🔊 Dinle ve tekrar et</button>':'')+'<button class="btn sm'+(cur===1&&(st.l||!canSay())?' lime':'')+'" data-act="ezhide" data-on="1">Kapat ve hatırla</button>';
-  var b2='<button class="btn sm'+(cur===2||(cur===3&&due&&!sf)?' lime':'')+'" data-act="ezgo" data-id="'+t.id+'"'+mx+'>'+(kural?'Cümle kurarak çalış':'Test et · '+nq+' soru')+'</button>';
+  var PL=ezPlanFor(t.id),pn=ezPlanNext(PL);if(PL&&pn){sf=pn==='fill';if(pn==='mix')PL=null;}
+  var b2='<button class="btn sm'+((PL&&pn)?(pn==='test'&&cur!==1?' lime':''):(cur===2||(cur===3&&due&&!sf))?' lime':'')+'" data-act="ezgo" data-id="'+t.id+'"'+(PL?' data-mix="1"':mx)+'>'+(kural?'Cümle kurarak çalış':'Test et · '+nq+' soru')+'</button>';
   var b3=fill?'<button class="btn sm'+(sf?' lime':'')+'" data-act="ezfill" data-id="'+t.id+'">Boş tabloyu doldur</button>':'';
   var h='<ol class="path ezpath">'+
     L(1,'Ezberle',kural?'Örnek cümleleri sesli oku, her birini kendi cümlenle bir kez söyle.':(pt?'Parça parça: şimdi '+(pt.i+1)+'. parça'+(pt.name?' (<i class="ezpn">'+esc(pt.name)+'</i>)':'')+'. ':'')+'Dinle ve sesli tekrar et; sonra "Kapat ve hatırla" ile hücreleri kapat, aklından söyle, dokunup kontrol et. Bildiğin satırları ✓ ile işaretle.',nR?nM+' / '+nR+' satır ✓':'',b1)+
@@ -9646,12 +9684,13 @@ function pEzFill(){
   if(!X.res8)b+='<div class="keys" style="justify-content:center">'+['ä','ö','ü','ß'].map(function(k){return '<button class="key" data-act="fk" data-v="'+k+'" lang="de">'+k+'</button>';}).join('')+'</div>'+
     '<button class="btn lime big wide" data-act="ezfcheck">Kontrol et</button>';
   else b+=(cells.some(function(c){return X.res8[c.k]!=='ok';})?'<button class="btn lime big wide" data-act="ezfagain">Yanlışları yeniden doldur</button>':'')+
-    '<button class="btn big wide" data-act="ezopen" data-id="'+t.id+'">Tabloya dön</button><button class="btn big wide" data-act="ezdone">'+(ezBackTo()?'Bitti · kaldığın yere dön':'Bitti')+'</button>';
+    '<button class="btn big wide" data-act="ezopen" data-id="'+t.id+'">Tabloya dön</button>'+(function(){var P=ezPlanFor(t.id),nx=ezPlanNext(P);
+      return nx?ezNextStepBtn(P.id,nx)+'<button class="btn big wide" data-act="ezdone">Şimdilik bırak · Tablo bloğu yarım kalır</button>':'<button class="btn big wide'+(cells.some(function(c){return X.res8[c.k]!=='ok';})?'':' lime')+'" data-act="ezdone">'+(ezBackTo()?'Bitti · kaldığın yere dön':P?'Bitti · Tablo bloğu tamam ✓':'Bitti')+'</button>';})();
   return {t:'Boş tablo',b:b};
 }
 function ezFillCheck(){
   var t=EZBY[X.id],cells=X.again&&X.fk?ezCells(t).filter(function(x){return X.fk.indexOf(x.k)>=0;}):ezFillCells(t),ok=0,d=xday();X.res8={};X.fk=cells.map(function(x){return x.k;});
-  var nf=0,prev=X.again&&X.prev||{};ezs(t.id).fl=today();
+  var nf=0,prev=X.again&&X.prev||{};ezs(t.id).fl=today();if(!X.again)ezPlanDone(t.id,'fill');
   cells.forEach(function(c){var v=X.vals[c.k]||'',acc=ezAcc(t,c.k),good=!!v.trim()&&acc.some(function(a){return ezN(a)===ezN(v);});
     X.res8[c.k]=good?'ok':'no';if(good)ok++;if(prev[c.k]==='ok')return;if(v.trim())nf++;ezMark({tz:t.id,k:c.k},good);});
   var per={};per[t.id]=[ok,cells.length];ezSchedule(per,X.again);
@@ -11797,7 +11836,7 @@ setInterval(function(){if(!document.hidden&&syOn())sync(true);},120000);
 document.addEventListener('visibilitychange',function(){if(syOn())sync(true);});
 window.addEventListener('online',function(){if(syOn())sync(true);});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js');}catch(e){}
-window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__us={qbb:qbBuild,qb:qbData,qbItem:qbItem,qbO:qbOItems,startStage:startStage,restart:gRestart,next:gNext,nextAct:nextAct,focus:wFocus,hits:fxHits,merge:mergeS,build:usBuild,mcs:mcs,itxt:fxItemText};window.__wb={et:ensureTarget,act:wActive,lim:wLim,nc:wNewCap,merge:mergeDay,bq:buildQueue,pend:wPend,day:day,cap:wCap,ready:wordsReady,due:dueSorted};window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__wreset=wReset;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
+window.__ps=prepSatz;window.__tyOk=tyOk;window.__mcs=mcs;window.__fs={next:fsNext,ivl:fsIvl,init:fsInit,add:addD};window.__rvRight=rvRight;window.__rvJudge=rvJudge;window.__rvOpts=rvOpts;window.__rp=rpText;window.__an=analyze;window.__ku=kalipUsed;window.__ezChunks=ezChunks;window.__pickNew=pickNew;window.__ez={item:ezItem,start:startEz,insent:ezInSent,by:EZBY,acc:ezAcc,fill:ezFillCells,plan:ezPlan,today:ezToday,pick:kzPickToday,cells:ezCells};window.__us={qbb:qbBuild,qb:qbData,qbItem:qbItem,qbO:qbOItems,startStage:startStage,restart:gRestart,next:gNext,nextAct:nextAct,focus:wFocus,hits:fxHits,merge:mergeS,build:usBuild,mcs:mcs,itxt:fxItemText};window.__wb={et:ensureTarget,act:wActive,lim:wLim,nc:wNewCap,merge:mergeDay,bq:buildQueue,pend:wPend,day:day,cap:wCap,ready:wordsReady,due:dueSorted};window.__W=function(){return W;};window.__card=card;window.__ck={req:ckReq,miss:ckMiss,sat:isSat,type:rvType};window.__wl=wordLinks;window.__smap=smapHtml;window.__rvRetryType=rvRetryType;window.__wreset=wReset;window.__ex={data:exData,gram:exGram,wort:exWort,prompt:exPrompt,list:exList};window.__ls={data:lsData,look:lsGloss,pick:lsPick,ids:lsIds,gaps:lsGaps,rank:lsRank,key:lsKey,marks:lsMarks,kind:lsKind,wc:lsWc,day:day,today:today,save:save,gNext:gNext,gToday:gToday,frac:frac,todayTopic:todayTopic,lgAdd:lgAdd};window.__smn=function(de){var p=smParse(de);return p?smNotes(smOrder(p),p.end):null;};window.__ezItem=ezItem;window.__ezAcc=ezAcc;window.WORT={get S(){return S;},get X(){return X;},POOL:POOL,G:G,EZ:EZ,total:total,streak:streak,rule:rule,plural:plural,tprog:tprog,tstat:tstat,nextAct:nextAct,levels:levels,mergeS:mergeS,get SY(){return SY;},diagnose:diagnose,szDiag:szDiag,checkText:checkText,GL:GL,HUB:HUB};
 })();
 </script>
 </body>

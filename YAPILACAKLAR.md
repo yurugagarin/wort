@@ -288,3 +288,13 @@ Sorun: konu görevi günde tek aşamayla bitiyordu, günün konusu gün boyu sab
 - [x] Odak: bazı satırlar işaretliyse test soruları işaretlenmemiş satırlardan gelir; işaretlilerden her testte 2–3 hücre yoklanır, yanlış çıkarsa işaret kalkar ve sonuçta "İşareti kaldırılan satırlar" gösterilir. Boş tablo yalnız işaretsiz satırları sorar. Parçalı tablolarda işaretli satırlar tamam sayılır, sıradaki parçaya geçilir.
 - [x] Tablo sayfasında konudaki gibi yol: 1 Ezberle (parça parça, dinle ve sesli tekrar et, kapat ve hatırla, bildiğin satırları işaretle) → 2 Test et (çoğu yazarak 12 soru, %80, yanlışları hemen yeniden) → 3 Hatırla (1-3-7-14-30-60 gün aralıklı; küçük tabloda önce boş tablo, büyükte test). Sıradaki adım vurgulu, "ⓘ Neden böyle?" açıklaması (geri çağırma, parça parça, aralıklı tekrar, yazarak üretme, bildiğini sanma yanılgısı).
 - [x] İşaretler cihazlar arasında eşitlenir (son değişiklik kazanır).
+
+## Tur 29 · Tablo bloğu bütün adımlar bitmeden tamam sayılmaz + tam denetim (23 Kasım)
+- [x] Hata: Tablo bloğu test bitince tamam sayılıyordu; "boş tabloyu doldur" isteğe bağlı bir düğmeydi, oturum konuya geçiyordu.
+- [x] Bugünün tablo planı (gün içinde sabit): Test (12 soru) → Boş tabloyu doldur (tablo uygunsa) → Karışık tekrar (tekrar zamanı gelen öteki tablolar, en çok 4, 12 soru). Blok ancak hepsi bitince 25; yarım kalırsa adım oranında (ör. 13/25). Testin sonunda "Bitti" yerine "Boş tabloyu doldur →", "Şimdilik bırak · Tablo bloğu yarım kalır"; yeniden açınca sıradaki adım vurgulu. Bugün'deki satırda adımlar ✓ ile.
+- [x] Yeni tabloda önce Ezberle vurgulu (bak, dinle, kapat-hatırla), sonra test; plan kartında "Bu tablo yeni: önce ezberle".
+- [x] Hata: Bugün'de Tablo satırına tıklayınca, birden çok tablo tekrar bekliyorsa eski karışık test açılıp günün tablosu atlanıyordu.
+- [x] Hata (simülasyonla bulundu): günde tek tablo yapıldığı için tekrar zamanı gelen tablolar 2–3 gün bekliyordu; artık hepsi aynı gün karışık tekrarda. Bir günden fazla geciken tablo, yeni ön koşul tablosundan önce gelir.
+- [x] Aralıklı tekrar: günün sonucu o günkü bütün denemeler (test geçip boş tabloda kalırsan tablo yarın yeniden gelir); aynı gün iki kez düşüş yok.
+- [x] Plan sonradan kurulursa bugün yapılmış test/doldurma sayılır.
+- [x] Denetim: 35 tablonun 635 hücresi test sorusu olarak ve boş tablo hücreleri doğru cevapla tek tek çözüldü (masaüstü + telefon, hepsi kabul); 21 günlük gerçek akış simülasyonu (tablo test + doldurma + karışık tekrar + konu + tekrar; her gün 100, tekrarlar zamanında, aralıklar 1-3-7-14 gün uzuyor); gezinme (sekmeler, geri/ileri, yenileme, yarım ders), "Nerede kalmıştık?", satır işaretleri, tam gün; hata yok.
