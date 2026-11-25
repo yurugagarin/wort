@@ -6750,6 +6750,10 @@ function weekNewN(){var m=monday(today()),n=0;G.forEach(function(g){var x=S.gx[g
 function kpQuotaLeft(){return Math.max(0,(S.set.tpw||3)-weekNewN());}
 /* bugünün planı gün başında sabitlenir: öğrenme adımı hedefi ve tekrar listesi (en çok 2: önce zamanı gelenler, sonra pekiştir listesi) */
 function kpDay(){var d=day();if(!S.kp0)return d;if(!d.kp)d.kp=1;
+  /* yeni kuraldan önce bugün yapılıp geçilemeyen denemeler de sayılsın (günlük kayıttan, bir kez) */
+  if(!d.kbf){d.kbf=1;lgDay(today()).forEach(function(e){if(e.k!=='g'||!GBY[e.ref]||e.ok||!e.n)return;var c=kpCredit(false,e.c/e.n);
+    if((e.s==='rv'||e.s==='pek')&&(d.kRl||[]).indexOf(e.ref)>=0){d.kRd=d.kRd||{};if(d.kRd[e.ref]==null)d.kRd[e.ref]=c;}
+    else if((e.s==='tani'||e.s==='kur')&&!stgDone(e.ref,e.s)){d.kat=d.kat||{};var ak=e.ref+'|'+e.s;if(d.kat[ak]==null){d.kat[ak]=c;d.kls=(d.kls||0)+1;}}});save();}
   if(d.kT==null)d.kT=S.set.tps||2;
   /* liste gün içinde yalnız büyür (eşitlemeyle gelen yeni tekrarlar, sonradan eklenen pekiştir konuları); en çok 2 */
   var L=d.kRl||[],n0=L.length,dn=d.kRd||{};
