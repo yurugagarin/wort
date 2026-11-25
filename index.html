@@ -895,6 +895,36 @@ em.pat{font-style:normal;background:color-mix(in srgb,var(--die) 24%,transparent
 .kzr i{font-style:normal;font-size:11.5px;font-weight:700}
 .kzr.own{border:2px solid var(--das)}
 .kzpk{display:flex;flex-direction:column;gap:10px}
+.dl{display:none}
+.dls{margin:-4px 0 2px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:12.5px}
+.dls summary{display:flex;align-items:center;gap:10px;padding:7px 12px;cursor:pointer;list-style:none}.dls summary::-webkit-details-marker{display:none}
+.dls-p{display:inline-flex;gap:4px}.dls-p i{width:18px;height:6px;border-radius:3px;background:var(--line);display:block}.dls-p i.d{background:var(--c)}.dls-p i.h{background:color-mix(in srgb,var(--c) 45%,var(--line))}
+.dls-m{margin-left:auto;color:var(--ink3);font-weight:700}
+.dl-in{padding:6px 14px 12px;border-top:1px solid var(--line)}
+@media (min-width:1240px){
+  .page.has-dl{padding-right:300px}
+  .dls{display:none}
+  .dl{display:block;position:fixed;right:22px;top:76px;width:270px;max-height:calc(100vh - 96px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 16px 12px;box-shadow:var(--lift);z-index:6;font-size:12.5px}
+}
+.dl-in .dl-t{margin-top:6px}
+.dl-in ol,.dl ol{list-style:none;margin:0;padding:0;position:relative}
+.dl-t{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}.dl-t b{font-size:24px;font-family:var(--f-disp)}.dl-t small{font-size:12px;color:var(--ink3)}
+.dl-b{margin-top:10px}.dl-h{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:4px}.dl-h span{color:var(--ink3);font-weight:700}
+.dl-b.dl-done .dl-h b::after{content:" ✓";color:var(--ok)}
+.dl ol{list-style:none;margin:0;padding:0;position:relative}
+.dl-in ol li,.dl ol li{display:flex;gap:10px;position:relative;padding:5px 0}
+.dl-in ol li>i,.dl ol li>i{flex:none;width:12px;height:12px;border-radius:50%;border:2px solid var(--line2,#c9bfae);background:var(--card);margin-top:3px;position:relative;z-index:1}
+.dl-in ol li:not(:last-child)::after,.dl ol li:not(:last-child)::after{content:"";position:absolute;left:5px;top:17px;bottom:-5px;width:2px;background:var(--line)}
+.dl-in ol li>div,.dl ol li>div{flex:1;min-width:0}
+.dl-l{display:flex;justify-content:space-between;gap:6px}.dl-l b{font-weight:600;line-height:1.3}.dl-l span{color:var(--ink3);white-space:nowrap;font-size:11.5px}
+.dl-s{color:var(--ink3);font-size:11.5px;margin-top:1px}
+.dl-ok>i{background:var(--ok)!important;border-color:var(--ok)!important}.dl-ok .dl-l b{color:var(--ink2)}
+.dl-next>i{border-color:var(--ink2)!important}
+.dl-here>i{background:var(--lime,#d6e54a)!important;border-color:var(--ink)!important;width:14px!important;height:14px!important;margin-left:-1px}
+.dl-here .dl-l b{font-weight:800}.dl-me{background:var(--lime,#d6e54a);color:#222;border-radius:5px;padding:0 5px;font-weight:800}
+.dl-todo .dl-l b{color:var(--ink3);font-weight:500}
+.dl-off{border:1.5px dashed var(--wrn);border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;margin-bottom:6px}.dl-off span{color:var(--ink3);font-size:11.5px}
+.dl-fin{margin-top:10px;color:var(--ok);font-weight:700}
 .ezmk{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line2,#c9bfae);background:var(--card);margin-right:8px;vertical-align:middle;font-size:12px;font-weight:800;color:var(--ok);flex:none;line-height:1}
 .ezmk:hover{border-color:var(--ok)}
 .ezmk.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
@@ -6428,7 +6458,7 @@ function pSbreak(){
   var T=taskDefs(day()),nx=sessNext(),done=T.filter(function(t){return t.f>=1;}).length,last=T.filter(function(t){return t.f>=1;}).slice(-1)[0];
   var L0=SESS&&SESS.last,fail=L0&&!L0.ok,cu=SESS&&SESS.cur&&T.filter(function(t){return t.id===SESS.cur;})[0];
   var b='<div class="sb-top">'+dots4(T)+'<div class="eyebrow">Günün çalışması · '+done+' / '+T.length+'</div>'+
-    (fail?'<h1>'+esc(L0.txt)+' · bu sefer olmadı</h1><p class="muted small">Konu günün sonunda yeniden gelecek'+(L0.need>0?': '+L0.need+' soru daha = Konu tamam':'')+'.</p>':cu&&cu.f>=1?'<h1>'+esc(TLAB[cu.id])+' tamam ✓</h1>':cu?'<h1>Kısa bir ara</h1>':last?'<h1>'+esc(TLAB[last.id])+' tamam ✓</h1>':'<h1>Kısa bir ara</h1>')+'<p class="muted">Bugünün puanı: <b>'+total(day())+'</b> / 100</p></div>';
+    (fail&&day().kp?'<h1>'+esc(L0.txt)+' · geçilmedi</h1><p class="muted small">Görevin sayıldı, puanı doğruluğun oranında kırıldı. Bu aşama yarın yeni sorularla yeniden gelecek; bugün tekrar etmen gerekmiyor.</p>':fail?'<h1>'+esc(L0.txt)+' · bu sefer olmadı</h1><p class="muted small">Konu günün sonunda yeniden gelecek'+(L0.need>0?': '+L0.need+' soru daha = Konu tamam':'')+'.</p>':cu&&cu.f>=1?'<h1>'+esc(TLAB[cu.id])+' tamam ✓</h1>':cu?'<h1>Kısa bir ara</h1>':last?'<h1>'+esc(TLAB[last.id])+' tamam ✓</h1>':'<h1>Kısa bir ara</h1>')+'<p class="muted">Bugünün puanı: <b>'+total(day())+'</b> / 100</p></div>';
   b+='<div class="card sb-next" style="--c:'+nx.c+'"><div class="eyebrow">Sırada · ~'+taskMin(nx)+' dk</div><div class="sb-t">'+esc(TLAB[nx.id])+'</div><div class="muted">'+esc(taskSub(nx))+(SESS&&SESS.skip&&SESS.skip[nx.id]&&L0&&L0.id===nx.id&&L0.need>0?' · '+L0.need+' soru daha = Konu tamam':'')+'</div></div>';
   b+='<div class="dock"><button class="btn lime big wide" data-act="snext">Devam: '+esc(TLAB[nx.id])+' →</button><button class="link center" data-act="spause">Ara ver · sonra Bugün\'den devam ederim</button></div>';
   return {t:'Günün çalışması',b:b};
@@ -6715,7 +6745,7 @@ function kpStart(){if(S.kp0)return;var t=today();S.kp0=t;
   /* eski konulara başlangıç günü: ilk aşamanın tarihi (yeniden başlananlarda önceki kayıt) */
   G.forEach(function(g){var x=S.gx[g[0]];if(!x||x.s0)return;var v=[];[x.stg||{},(x.prev&&x.prev.stg)||{}].forEach(function(o){for(var k in o)if(/^\d{4}-\d\d-\d\d$/.test(String(o[k])))v.push(o[k]);});if(v.length)x.s0=v.sort()[0];});
   S.kpn0=tlProg();var d=day();d.kp=1;save();}
-function dayDone(d){return !!d&&(d.kp?total(d)>=100:wordDone(d));}
+function dayDone(d){if(!d)return false;if(!d.kp)return wordDone(d);if(total(d)>=100)return true;var k=kpDone(d);return k.tab&&k.konu&&k.tek;}
 function weekNewN(){var m=monday(today()),n=0;G.forEach(function(g){var x=S.gx[g[0]];if(x&&x.s0&&x.s0>=m)n++;});return n;}
 function kpQuotaLeft(){return Math.max(0,(S.set.tpw||3)-weekNewN());}
 /* bugünün planı gün başında sabitlenir: öğrenme adımı hedefi ve tekrar listesi (en çok 2: önce zamanı gelenler, sonra pekiştir listesi) */
@@ -6729,27 +6759,44 @@ function kpDay(){var d=day();if(!S.kp0)return d;if(!d.kp)d.kp=1;
   return d;}
 /* açık öğrenme adımı kalmadıysa (Üret yarın açılacak, haftalık yeni konu sınırı doldu) konu bloğu yapılan kadarla tamam */
 function kpSync(){var d=kpDay(),nx=kpNextLearn(),n=d.kls||0;if(!nx){if(d.kcap!==n){d.kcap=n;save();}}else if(d.kcap!=null){delete d.kcap;save();}return d;}
+/* ---- deneme sayılır (25 Kasım) ----
+   Bir aşamayı (Öğren testi, Uygula, Tekrar, Pekiştir, tablo adımları) sonuna kadar yaptıysan bugünkü görevin yapılmış sayılır.
+   Geçtiysen tam puan; geçemediysen puan doğruluğun oranında kırılır (en az %40, en çok %80). Geçilemeyen aşama bugün
+   yeniden istenmez (aynı soruları hatırlayıp geçmek öğrenme değil): yarın yeniden gelir. */
+function kpCredit(pass,acc){return pass?1:Math.max(.4,Math.min(.8,acc||0));}
+function kpCr(v){return v===true?1:typeof v==='number'?v:v?1:0;}
+function kpAtt(d){var a=d.kat||{},o=[],k;for(k in a)o.push([k,kpCr(a[k])]);return o;}
+function kpAttN(d){var n=kpAtt(d).length;return d.kat?Math.max(n,d.kls||0):(d.kls||0);}
+function kpTried(id,k){var d=day();return !!(d.kp&&d.kat&&d.kat[id+'|'+k]!=null);}
+/* bloklar tamam mı (puandan bağımsız) */
+function kpDone(d){var P=d.ezp,R=d.kRl||[],dn=d.kRd||{},T=d.kT||2,n=kpAttN(d);
+  return {tab:P&&P.s&&P.s.length?P.s.every(function(x){return P.ok&&P.ok[x]!=null&&P.ok[x]!==0;}):!!d.ezt,
+    konu:n>=T||(d.kcap!=null&&n>=d.kcap),
+    tek:R.every(function(id){return dn[id]!=null&&dn[id]!==0;})};}
 function kpFrac(d){
   if(!d.ezp&&!kpFrac.busy&&d.kp&&d===S.days[today()]){kpFrac.busy=1;try{ezPlan(d);}catch(e){}kpFrac.busy=0;}
   var P=d.ezp,tab;
-  if(P&&P.s&&P.s.length){var pd=P.s.filter(function(x){return P.ok&&P.ok[x];}).length;tab=pd>=P.s.length?1:pd?pd/P.s.length:Math.min(.45,(d.ez||0)/24);}
+  if(P&&P.s&&P.s.length){var pc=0,pd=0;P.s.forEach(function(x){var v=P.ok&&P.ok[x];if(v!=null&&v!==0){pd++;pc+=kpCr(v);}});tab=pd?pc/P.s.length:Math.min(.45,(d.ez||0)/24);}
   else tab=d.ezt?1:Math.min(1,(d.ez||0)/12);
-  var T=d.kT||2,n=d.kls||0,konu;
-  if(n>=T||(d.kcap!=null&&n>=d.kcap))konu=1;else konu=Math.min(.99,(n+Math.min(.5,(d.g||0)/30))/T);
-  var R=(d.kRl||[]).length,dn=Object.keys(d.kRd||{}).length,tek=R?Math.min(1,dn/R):1;
+  /* konu: her adım eşit pay; yapılan adımların payı (geçilmediyse kırık), bugünlük açık adım kalmadıysa yapılan adımlar bütünü oluşturur */
+  var T=d.kT||2,n=kpAttN(d),cr=d.kat?kpAtt(d).reduce(function(a,x){return a+x[1];},0)+Math.max(0,(d.kls||0)-kpAtt(d).length):(d.kls||0),konu;
+  if(n>=T)konu=Math.min(1,cr/n);
+  else if(d.kcap!=null&&n>=d.kcap)konu=n?Math.min(1,cr/n):1;
+  else konu=Math.min(.99,(cr+Math.min(.5,(d.g||0)/30))/T);
+  var RL=d.kRl||[],dn=d.kRd||{},tek=RL.length?Math.min(1,RL.reduce(function(a,id){return a+kpCr(dn[id]);},0)/RL.length):1;
   return {tab:tab,konu:konu,tek:tek};}
 /* sıradaki öğrenme adımı: öncelikli konu → bugün Anla'sı okunan konunun Tanı'sı → öğrenmekte olunan konuların aşamaları
    (bugün adım atılmamış olan önce) → yeni konu (haftalık sınır ve aynı anda en çok GLIM konu). Tekrarlar ayrı blokta. */
 function kpStepped(){var o={};lgDay(today()).forEach(function(e){if(e.k==='g'&&e.ok&&(e.s==='tani'||e.s==='kur'||e.s==='uret'))o[e.ref]=1;});return o;}
 function kpNextLearn(){
   var t=today(),q=kpQuotaLeft(),i,x,dn=kpStepped();
-  function ok(id){var a=nextAct(id);return a.k&&a.k!=='rv'?a:null;}
+  function ok(id){var a=nextAct(id);return a.k&&a.k!=='rv'&&!kpTried(id,a.k)?a:null;}
   if(S.gfocus&&GBY[S.gfocus]){var fa=ok(S.gfocus),fn=tstat(S.gfocus)==='next';if(fa&&(!fn||q>0))return {g:GBY[S.gfocus],k:fa.k,nw:fn};}
-  for(i=0;i<G.length;i++){x=gpeek(G[i][0]);if(x.stg&&x.stg.anla===t&&!x.stg.tani)return {g:G[i],k:'tani'};}
+  for(i=0;i<G.length;i++){x=gpeek(G[i][0]);if(x.stg&&x.stg.anla===t&&!x.stg.tani&&!kpTried(G[i][0],'tani'))return {g:G[i],k:'tani'};}
   var L=gLearning(),open=L.filter(function(g){return ok(g[0]);});
   open.sort(function(a,b){var p=gpeek(a[0]).pri?0:1,r=gpeek(b[0]).pri?0:1;if(p!==r)return p-r;return (dn[a[0]]?1:0)-(dn[b[0]]?1:0);});
   if(open.length)return {g:open[0],k:ok(open[0][0]).k};
-  if(q>0&&L.length<GLIM&&!L.some(function(g){return gpeek(g[0]).rst;})){var nx=G.filter(function(g){return tstat(g[0])==='next';}),np=nx.filter(function(g){return gpeek(g[0]).pri;});if(np[0]||nx[0])return {g:np[0]||nx[0],k:'anla',nw:1};}
+  if(q>0&&L.length<GLIM&&!kpAtt(day()).some(function(a){return a[1]<1;})&&!L.some(function(g){return gpeek(g[0]).rst;})){var nx=G.filter(function(g){return tstat(g[0])==='next';}),np=nx.filter(function(g){return gpeek(g[0]).pri;});if(np[0]||nx[0])return {g:np[0]||nx[0],k:'anla',nw:1};}
   return null;}
 function kpNextReview(){var d=kpDay(),dn=d.kRd||{},L=(d.kRl||[]).filter(function(id){return !dn[id]&&GBY[id];});if(!L.length)return null;var id=L[0];return {g:GBY[id],k:tdue(id)?'rv':'pek'};}
 function kpLbl(n){if(!n)return '';var k=n.k;return (n.nw?'Yeni konu · ':'')+n.g[2]+' · '+(k==='anla'||k==='tani'?'Öğren':k==='kur'?'Uygula':k==='uret'?'Üret':k==='rv'?'Tekrar':'Pekiştir');}
@@ -6764,18 +6811,20 @@ function kpTasks(d){
       need:f.tab<1&&ezPlan(d)?'Sıradaki: '+EZSTEP[ezPlanNext(d.ezp)]:'',
       how:'Bugünün tablosu: tekrar zamanı geçen, sıradaki konunun ön koşulu ya da öğrendiğin konunun tablosu. Önce bak ve ezberle, sonra test (12 soru), sonra boş tabloyu doldur; bütün adımlar = 25.'},
     {id:'gram',c:'var(--les)',t:'Konu',did:did(function(e){return e.s!=='rv'&&e.s!=='pek';}),
-      sub:f.konu>=1?(n?n+' adım tamam':'Bugün açık adım yok'):(nl?kpLbl(nl):'Bugün açık adım yok'),
-      s:f.konu>=1?'Tamam · '+n+' adım'+(n<T?' (bugünlük açık adım kalmadı)':''):n+' / '+T+' adım'+(nl?' · sıradaki: '+kpLbl(nl):''),
+      sub:kpDone(d).konu?(kpAttN(d)?kpAttN(d)+' adım tamam'+(f.konu<.999?' · geçilemeyen var, puan kırıldı':''):'Bugün açık adım yok'):(nl?kpLbl(nl)+kpLiveTxt(nl):'Bugün açık adım yok'),
+      s:kpDone(d).konu?'Tamam · '+kpAttN(d)+' adım'+(kpAttN(d)<T?' (bugünlük açık adım kalmadı)':''):kpAttN(d)+' / '+T+' adım'+(nl?' · sıradaki: '+kpLbl(nl):''),
       need:f.konu<1&&nl?'Sıradaki: '+kpLbl(nl):'',
-      how:'Günde '+T+' öğrenme adımı = 50. Adım: Öğren (Anla + Tanı), Uygula (Kur) ya da Üret. Haftada en çok '+(S.set.tpw||3)+' yeni konu açılır; açık adım kalmazsa yapılan kadarı yeter.'},
+      how:'Günde '+T+' öğrenme adımı = 50 (her adım '+Math.round(50/T)+'). Adım: Öğren (kural + test), Uygula ya da Üret. Bir adımı sonuna kadar yaptıysan sayılır; geçemediysen puanı doğruluğun oranında kırılır ve o aşama yarın yeniden gelir. Haftada en çok '+(S.set.tpw||3)+' yeni konu açılır; açık adım kalmazsa yapılan kadarı yeter.'},
     {id:'grv',c:'var(--wrn)',t:'Tekrar',did:did(function(e){return e.s==='rv'||e.s==='pek';}),
-      sub:!R.length?'Bugün tekrar yok':f.tek>=1?'Tamam':(nr?nr.g[2]+' · '+(nr.k==='rv'?'tekrar':'pekiştir'):'Tamam'),
-      s:!R.length?'Bugün tekrar yok · tam puan':Object.keys(dn).length+' / '+R.length+' tekrar',
+      sub:!R.length?'Bugün tekrar yok':kpDone(d).tek?'Tamam'+(f.tek<.999?' · geçilemeyen var, puan kırıldı':''):(nr?nr.g[2]+' · '+(nr.k==='rv'?'tekrar':'pekiştir')+kpLiveTxt(nr):'Tamam'),
+      s:!R.length?'Bugün tekrar yok · tam puan':R.filter(function(id){return dn[id]!=null;}).length+' / '+R.length+' tekrar',
       need:nr?nr.g[2]+(nr.k==='pek'?' · pekiştirme testi':' · tekrar testi'):'',
-      how:'Tekrar zamanı gelen konular (en çok 2), yer kalırsa pekiştir listendeki konular. Her biri hiç görmediğin sorularla; geçmek için %80.'}
+      how:'Tekrar zamanı gelen konular (en çok 2), yer kalırsa pekiştir listendeki konular. Her biri hiç görmediğin sorularla; geçmek için %80. Geçemezsen görev yine sayılır, puan kırılır, konu yarın yeniden gelir.'}
   ];
-  return tasks.map(function(t,i){var k=KPK[t.id];t.n=i+1;t.f=f[k];t.max=MAXK[k];t.p=Math.round(MAXK[k]*f[k]);return t;});
+  var dn0=kpDone(d);
+  return tasks.map(function(t,i){var k=KPK[t.id];t.n=i+1;t.pf=f[k];t.f=dn0[k]?1:Math.min(.99,f[k]);t.max=MAXK[k];t.p=Math.round(MAXK[k]*f[k]);t.cut=dn0[k]&&f[k]<.999;return t;});
 }
+function kpLiveTxt(n){if(!n)return '';var L=LIVE[liveKey(n.g[0],n.k)];if(!liveStarted(L)&&n.k==='anla')L=LIVE[liveKey(n.g[0],'tani')];return liveStarted(L)?' · '+liveWhere(L).replace(/^.*? · (?=soru|adım)/,'')+' (yarım)':'';}
 function kpTaskMin(t){var d=day();if(t.f>=1)return 0;if(t.id==='ez'){var P=ezPlan(d),nx=ezPlanNext(P);return !P?8:((P.ok&&P.ok.test?0:6)+(P.s.indexOf('fill')>=0&&!(P.ok&&P.ok.fill)?4:0)+(P.s.indexOf('mix')>=0&&!(P.ok&&P.ok.mix)?5:0))||4;}
   if(t.id==='gram'){var nl=kpNextLearn();return nl?Math.max(kpStepMin(nl.k),(Math.max(1,(d.kT||2)-(d.kls||0)))*17):0;}
   var R=(d.kRl||[]).length,dn=Object.keys(d.kRd||{}).length;return Math.max(0,R-dn)*10;}
@@ -6868,7 +6917,7 @@ function vBugunKp(){
     '<ul class="tasks2">'+T.map(function(x){var st=x.f>=1?'d':nx&&nx.id===x.id?'n':x.f>0?'h':'';
       return '<li><button class="t2r '+st+'" style="--c:'+x.c+'" data-act="task" data-id="'+x.id+'"><span class="ic">'+(x.f>=1?'✓':st==='n'?'▶':'')+'</span><span class="tx"><b>'+esc(x.t)+(x.id!=='grv'||x.f<1?'':'')+'</b><span>'+esc(x.f>=1&&x.did&&x.did.length?x.did.join(' · '):x.sub||x.s)+'</span></span><span class="pt num">'+x.p+'<small>/'+x.max+'</small></span></button></li>';}).join('')+'</ul>'+
     (nx?'<button class="btn lime big wide" data-act="sgo">'+(done?'Devam et · '+esc(kpTaskName(nx))+' →':'Başla →')+'</button>':'<button class="btn lime big wide" data-act="sdone">Bugünün planı tamam ✓ · özeti gör</button>')+
-    '<details class="howto"><summary>ⓘ Plan ve puan nasıl çalışır?</summary><ul>'+T.map(function(x){return '<li><b>'+esc(x.t)+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+'<li>Seri: planın tamamlandığı (100 puan) her gün. Haftada 7 gün seri = 1 dondurma hakkı.</li><li>Kelime, okuma ve yazma serbest: puana ve seriye girmez.</li></ul></details></div>';
+    '<details class="howto"><summary>ⓘ Plan ve puan nasıl çalışır?</summary><ul>'+T.map(function(x){return '<li><b>'+esc(x.t)+' · '+x.max+'</b> '+esc(x.how)+'</li>';}).join('')+'<li>Seri: planın üç bloğunu da bitirdiğin her gün (geçemediğin aşama olsa da). Haftada 7 gün seri = 1 dondurma hakkı.</li><li>Kelime, okuma ve yazma serbest: puana ve seriye girmez.</li></ul></details></div>';
   var LGT=lgDay(t);
   L+='<div class="card"><div class="row"><div class="eyebrow">Bugün yaptıkların · '+LGT.length+'</div><div class="sp"></div><button class="link" data-act="dayv" data-v="'+t+'">Ayrıntı</button></div>'+(LGT.length?lgHtml(LGT.slice(-6))+(LGT.length>6?'<p class="small muted">… ve '+(LGT.length-6)+' kayıt daha</p>':''):'<p class="small muted" style="margin-top:6px">Henüz bir şey yapılmadı.</p>')+'</div>';
   R+=freeCard();
@@ -7284,6 +7333,54 @@ function ezBackBtn(){var l=ezBackLbl();return l?'<button class="btn wide backto"
 function ezDone(){stopSay();if(X&&X.timer)clearInterval(X.timer);if(!ezBackTo()){closeAll();return;}
   while(X&&EZK[X.kind]&&STACK.length)X=STACK.pop();drawPage();$('page').scrollTop=X._sy||0;}
 function closeAll(){stopSay();if(X&&X.timer)clearInterval(X.timer);var pk=X&&X.kind;STACK=[];X=null;$('page').hidden=true;document.body.style.overflow='';render();window.scrollTo(0,ROOTY[TAB]||0);sessAfterClose(pk);}
+
+/* ================= GÜNÜN ÇİZGİSİ (25 Kasım) =================
+   Ders, tablo ve ara ekranlarında yanda (geniş ekran) ya da üstte (dar ekran) bugünün planı: üç blok, Konu'nun adımları ve
+   her adımın puanı, nerede olduğun ("Buradasın · soru 5/12"), neyin bittiği ve sırada ne olduğu. Çıkıp girince aynı yer görünür. */
+var DLK={lesson:1,uret:1,ez:1,ezq:1,ezfill:1,sbreak:1,topic:1};
+function dlOn(){return !!(X&&DLK[X.kind]&&S.kp0&&day().kp);}
+function dlHere(o,id,k){return o&&o.kind==='lesson'&&o.id===id&&(o.stg===k||(k==='anla'&&o.stg==='tani')||(k==='tani'&&o.stg==='anla'));}
+function dlPos(o){if(!o)return '';if(o.kind==='lesson'){if(o.i<0)return o.stg==='anla'&&GL[o.id]?'kural · adım '+((o.as||0)+1)+' / '+ANLA.length:'giriş';if(o.i>=o.items.length)return 'bitti';return 'soru '+(o.i+1)+' / '+o.items.length;}
+  if(o.kind==='uret')return 'yazıyorsun';if(o.kind==='ezq')return o.i>=o.items.length?'bitti':'soru '+(o.i+1)+' / '+o.items.length;if(o.kind==='ezfill')return o.res8?'sonuç':'dolduruyorsun';if(o.kind==='ez')return 'tabloya bakıyorsun';return '';}
+function dlRow(st,lbl,pts,sub){return '<li class="dl-'+st+'"><i></i><div><div class="dl-l"><b lang="de">'+lbl+'</b>'+(pts?'<span class="num">'+pts+'</span>':'')+'</div>'+(sub?'<div class="dl-s">'+sub+'</div>':'')+'</div></li>';}
+function dayline(){
+  var d=kpDay(),T=kpTasks(d),f=kpFrac(d),dn=kpDone(d),here=X,found=false,h='',K=d.kT||2,i,nA=kpAtt(d).length,cap=dn.konu&&nA>0&&nA<K,per=Math.round(50/(cap?nA:K)),LGd=lgDay(today());
+  var P=ezPlan(d),et=ezToday(),inTab=here&&((here.kind==='ez'||here.kind==='ezfill')&&P&&here.id===P.id||here.kind==='ezq'&&P&&(here.pmix||here.tids&&here.tids.length===1&&here.tids[0]===P.id));
+  /* Tablo */
+  h+='<div class="dl-b'+(dn.tab?' dl-done':'')+'"><div class="dl-h"><b>Tablo</b><span class="num">'+T[0].p+' / 25</span></div><ol>';
+  if(P)P.s.forEach(function(st){var v=P.ok&&P.ok[st],nx=ezPlanNext(P)===st,me=inTab&&(st==='test'&&here.kind==='ezq'&&!here.pmix||st==='fill'&&here.kind==='ezfill'||st==='mix'&&here.pmix||here.kind==='ez'&&nx);
+    if(me)found=true;var nm=st==='test'||st==='fill'?esc(et?et.t:'')+' · '+EZSTEP[st].toLowerCase():EZSTEP[st];
+    h+=dlRow(me?'here':v!=null&&v!==0?'ok':nx?'next':'todo',nm,v!=null&&v!==0?Math.round(25/P.s.length*kpCr(v))+'/'+Math.round(25/P.s.length):Math.round(25/P.s.length)+' puan',me?'<span class="dl-me">Buradasın</span> · '+dlPos(here):v!=null&&v!==0&&kpCr(v)<1?'geçilmedi, puan kırıldı':nx&&!me?'sıradaki':'');});
+  h+='</ol></div>';
+  /* Konu */
+  var att=kpAtt(d),nl=kpNextLearn();
+  h+='<div class="dl-b'+(dn.konu?' dl-done':'')+'"><div class="dl-h"><b>Konu</b><span class="num">'+T[1].p+' / 50</span></div><ol>';
+  for(i=0;i<Math.max(K,att.length);i++){
+    if(i<att.length){var pk=att[i][0].split('|'),gg=GBY[pk[0]],cr=att[i][1],lb=(gg?gg[2]:pk[0])+' · '+(pk[1]==='tani'?'Öğren':pk[1]==='kur'?'Uygula':'Üret'),meA=here&&here.kind==='lesson'&&here.id===pk[0]&&(here.stg===pk[1]||pk[1]==='tani'&&here.stg==='anla')||here&&here.kind==='uret'&&here.id===pk[0]&&pk[1]==='uret';if(meA)found=true;
+      h+=dlRow('ok',esc(lb),Math.round(per*cr)+'/'+per,(meA?'<span class="dl-me">Buradasın</span> · '+dlPos(here)+' · ':'')+(cr<1?'geçilmedi, puan kırıldı · yarın yeniden':'tamam'));continue;}
+    if(i===att.length&&nl){var me2=dlHere(here,nl.g[0],nl.k),sub='',x2=gpeek(nl.g[0]);if(me2)found=true;
+      if(nl.k==='anla'||nl.k==='tani'){var kd=x2.stg&&x2.stg.anla;sub=(kd?'✓ kural':'kural')+' → test';}
+      h+=dlRow(me2?'here':'next',esc(kpLbl(nl)),per+' puan',me2?'<span class="dl-me">Buradasın</span> · '+(here.stg==='anla'?'kural':here.stg==='tani'?'test':STT[here.stg]||'')+' · '+dlPos(here):'sıradaki'+(sub?' · '+sub:'')+kpLiveTxt(nl));continue;}
+    h+=dlRow('todo','Adım '+(i+1),cap?'':per+' puan',d.kcap!=null&&!nl?'bugün açık adım kalmadı · '+(nA?'Konu puanı yapılan adımdan':'Konu tam puan'):'önceki adım bitince belli olur');}
+  h+='</ol></div>';
+  /* Tekrar */
+  var R=d.kRl||[],rd=d.kRd||{},nr=kpNextReview();
+  h+='<div class="dl-b'+(dn.tek?' dl-done':'')+'"><div class="dl-h"><b>Tekrar</b><span class="num">'+T[2].p+' / 25</span></div><ol>';
+  if(!R.length)h+=dlRow('ok','Bugün tekrar yok','25/25','');
+  R.forEach(function(id){var g=GBY[id],v=rd[id],lk=LGd.filter(function(e){return e.k==='g'&&e.ref===id&&(e.s==='rv'||e.s==='pek');})[0],k=lk?lk.s:tdue(id)?'rv':'pek',me3=here&&here.kind==='lesson'&&here.id===id&&(here.stg==='rv'||here.stg==='pek'),pr=Math.round(25/R.length);if(me3)found=true;
+    h+=dlRow(me3?'here':v!=null&&v!==0?'ok':nr&&nr.g[0]===id?'next':'todo',esc(g?g[2]:id)+' · '+(k==='rv'?'tekrar':'pekiştir'),v!=null&&v!==0?Math.round(pr*kpCr(v))+'/'+pr:pr+' puan',me3?'<span class="dl-me">Buradasın</span> · '+dlPos(here):v!=null&&v!==0&&kpCr(v)<1?'geçilmedi, puan kırıldı · yarın yeniden':nr&&nr.g[0]===id?'sıradaki':'');});
+  h+='</ol></div>';
+  var off='';if(here&&!found&&(here.kind==='lesson'||here.kind==='ezq'||here.kind==='ezfill'||here.kind==='ez'||here.kind==='uret')){var on=here.kind==='lesson'||here.kind==='uret'?(GBY[here.id]?GBY[here.id][2]:'')+' · '+(STT[here.stg]||'Üret'):here.kind==='ezq'?(here.tids||[]).map(function(t){return EZBY[t]?EZBY[t].t:t;}).join(', '):(EZBY[here.id]?EZBY[here.id].t:'');
+    off='<div class="dl-off"><b>Şu an plan dışındasın</b><span lang="de">'+esc(on)+' · '+esc(dlPos(here))+'</span><span>Bu çalışma bugünün puanına sayılmaz.</span></div>';}
+  if(here&&here.kind==='topic')off='';
+  var tot=total(d),all=dn.tab&&dn.konu&&dn.tek;
+  var body='<div class="dl-t"><span class="eyebrow">Bugünün planı</span><b class="num">'+tot+'<small>/100</small></b></div>'+off+h+(all?'<p class="dl-fin">Bugünün planı tamam ✓</p>':'');
+  return {side:'<aside class="dl">'+body+'</aside>',strip:dlStrip(d,T,nl,P,here,found,tot,body)};}
+function dlStrip(d,T,nl,P,here,found,tot,body){var where='';
+  if(here&&here.kind==='lesson'&&found)where=(GBY[here.id]?GBY[here.id][2]:'')+' · '+(STT[here.stg]||'')+' · '+dlPos(here);
+  else if(here&&/^ez/.test(here.kind)&&found)where='Tablo · '+dlPos(here);
+  return '<details class="dls"><summary><span class="dls-p">'+T.map(function(t){return '<i class="'+(t.f>=1?'d':t.f>0?'h':'')+'" style="--c:'+t.c+'"></i>';}).join('')+'</span><span><b class="num">'+tot+'</b>/100'+(where?' · Buradasın: '+esc(where):'')+'</span><span class="dls-m">plan ▾</span></summary><div class="dl-in">'+body+'</div></details>';}
+
 /* ================= GEZİNME (21 Kasım) =================
    1) Her sekmenin kendi sayfa yığını var: Bugün'de bir ders açıkken Yol'a ya da Kütüphane'ye geçip dönünce ders aynı soruda,
       aynı kaydırma yerinde durur. Açık sekmeye yeniden dokunmak o sekmenin köküne götürür (tarayıcının geri tuşu ile geri gelinir).
@@ -7291,7 +7388,7 @@ function closeAll(){stopSay();if(X&&X.timer)clearInterval(X.timer);var pk=X&&X.k
    3) Bugün açılıp bitmeyen dersler (LIVE) saklanır: aynı aşamayı yeniden açınca (Bugün'deki Devam, konu sayfası) kaldığın
       sorudan devam eder; Bugün'ün üstünde "Yarım kalan" kartı.
    4) Sayfa yenilense ya da kapanıp açılsa da (aynı gün) sekme, açık sayfalar, yarım dersler ve günün oturumu geri gelir. */
-var ROOTY={},NAV={},LIVE={},HL=[],HI=-1,HE={},HSK=0,HQ=0,HON=0,HPUSH=0;
+var DLC={side:'',strip:''},ROOTY={},NAV={},LIVE={},HL=[],HI=-1,HE={},HSK=0,HQ=0,HON=0,HPUSH=0;
 function navView(){return {t:TAB,X:X,S:STACK.slice()};}
 function navEq(a,b){if(!a||!b||a.t!==b.t||a.X!==b.X||a.S.length!==b.S.length)return false;for(var i=0;i<a.S.length;i++)if(a.S[i]!==b.S[i])return false;return true;}
 function navStop(){stopSay();if(X&&X.timer){clearInterval(X.timer);X.timer=null;if(X.run){X.run=false;X.end=true;}}}
@@ -7393,9 +7490,10 @@ function drawPage(){
   if(!X)return;
   var k=X.kind,r=k==='topic'?pTopic():k==='lesson'?pLesson():k==='uret'?pUret():k==='ez'?pEz():k==='ezq'?pEzq():k==='hub'?pHub():k==='hubs'?pHubs():k==='ezfill'?pEzFill():k==='dikt'?pDikt():k==='err'?pErr():k==='review'?pReview():k==='satz'?pSatz():k==='luck'?pLuck():k==='blitz'?pBlitz():k==='add'?pAdd():k==='set'?pSet():k==='ptest'?pTest():k==='mine'?pMine():k==='note'?pNote():k==='kalip'?pKalip():k==='rapor'?pRapor():k==='wlist'?pWlist():k==='match'?pMatch():k==='wcard'?pWcard():k==='day'?pDay():k==='sbreak'?pSbreak():k==='sdone'?pSdone():k==='yaz'?pYaz():k==='lib'?pLib():k==='lese'?pLese():k==='salat'?pSalat():k==='plq'?pPlq():k==='hsb'||k==='rfb'?pTg():k==='mem'?pMem():k==='exam'?pExam():k==='ek'?pEk():k==='exams'?pExams():k==='tline'?pTline():k==='kmap'?pKmap():{t:'',b:''};
   X.qnT=String(r.t||'').replace(/<[^>]+>/g,'').replace(/&[a-z#0-9]+;/g,' ').trim();
+  if(dlOn()){try{DLC=dayline();}catch(e){DLC={side:'',strip:''};}}
   if(k!=='rapor'){var qc=qCtx();if(X.qnOpen)r.b=qnPanel()+r.b;else if(qc.r)r.b+='<button class="link center qnlink" data-act="qn">? Kafam karıştı · not yaz (Defter\'e gider)</button>';}
   if(KBDK[k])r.b+='<p class="kbd note center">'+(k==='dikt'?'Klavye: Enter kontrol et · Enter devam · Esc kapat':'Klavye: 1–4 şık seç · Enter devam · Esc kapat')+'</p>';
-  $('page').innerHTML='<div class="pbar"><button class="back" data-act="close">'+ICON.back+'Geri</button><div class="ttl">'+(r.t||'')+'</div><div class="rt">'+(r.r||'')+'</div>'+(k==='rapor'?'':'<button class="qbtn'+(X.qnOpen?' on':'')+'" data-act="qn" title="Kafamı karıştı · not yaz" aria-label="Kafamı karıştı, not yaz">?</button>')+'</div><div class="pin">'+r.b+'</div>'+(r.f||'');
+  $('page').innerHTML='<div class="pbar"><button class="back" data-act="close">'+ICON.back+'Geri</button><div class="ttl">'+(r.t||'')+'</div><div class="rt">'+(r.r||'')+'</div>'+(k==='rapor'?'':'<button class="qbtn'+(X.qnOpen?' on':'')+'" data-act="qn" title="Kafamı karıştı · not yaz" aria-label="Kafamı karıştı, not yaz">?</button>')+'</div><div class="pin">'+(dlOn()?DLC.strip:'')+r.b+'</div>'+(r.f||'')+(dlOn()?DLC.side:'');$('page').classList.toggle('has-dl',dlOn());
   autoFocusIn();
   hSoon();
 }
@@ -7734,7 +7832,9 @@ function lessonEnd(){
     if(k==='kur'&&X.pass){gsAdd(id);delete x.rst;delete x.prev;}
     if(X.pass&&((first&&(k==='tani'||k==='kur'))||k==='rv')){var xd=gDayInit(xday(),X.day);xd.gs=1;xd.gsn=(xd.gsn||0)+1;}
     if(k==='anla'&&X.pass&&!x.s0)x.s0=t;
-    var kd=xday();if(kd.kp&&X.pass){if(first&&(k==='tani'||k==='kur'))kd.kls=(kd.kls||0)+1;if(k==='rv'||k==='pek'){kd.kRd=kd.kRd||{};kd.kRd[id]=1;}}
+    var kd=xday();X.cr=kpCredit(X.pass,acc);
+    if(kd.kp){if(first&&(k==='tani'||k==='kur')){kd.kat=kd.kat||{};var ak=id+'|'+k;if(kd.kat[ak]==null)kd.kls=(kd.kls||0)+1;kd.kat[ak]=Math.max(kpCr(kd.kat[ak]),X.cr);}
+      if(k==='rv'||k==='pek'){kd.kRd=kd.kRd||{};kd.kRd[id]=Math.max(kpCr(kd.kRd[id]),X.cr);}}
     if(k==='pek'&&X.pass){x.pkd=x.pkd||[];if(x.pkd.indexOf(t)<0)x.pkd.push(t);var pe=S.pek&&S.pek[id];if(pe&&!pe.off&&pe.d!==t){pe.n=(pe.n||0)+1;pe.d=t;pe.u=Date.now();if(pe.n>=2){pe.off=1;X.pekOut=1;}}}
     if(k==='rv'){if(X.pass){if(x.rv.indexOf(t)<0)x.rv.push(t);delete x.lapse;x.due=addD(t,RVI[Math.min(x.rv.length-1,RVI.length-1)]);}else{x.due=addD(t,1);x.lapse=t;}}
     if(tstat(id)==='ok'&&!S.gdone[id])S.gdone[id]=t;
@@ -7742,7 +7842,7 @@ function lessonEnd(){
     /* bugün gerçekten çalışılan konu, günün konusu olur (Bugün'de başlık ile yapılan iş ayrışmasın) */
     if(X.pass&&k!=='free'&&k!=='retry'&&(!d.gtDone||d.gt===id)){d.gt=id;d.gtDone=1;}
     lgAdd({d:t,k:'g',ref:id,s:k,c:X.ok,n:n,ok:X.pass&&k!=='free'&&k!=='retry'?1:0,nx:k==='rv'?x.due:''});
-    if(SESS&&PASS[k]){var sid=(k==='rv'||k==='pek')&&day().kp?'grv':'gram';SESS.last={id:sid,ok:X.pass,txt:STT[k].replace(/^Aşama \d · /,'')+' · '+X.ok+'/'+n,need:Math.max(0,Math.ceil(PASS[k]*n-1e-9)-X.ok)};SESS.skip=SESS.skip||{};if(X.pass)delete SESS.skip[sid];else SESS.skip[sid]=1;}
+    if(SESS&&PASS[k]){var sid=(k==='rv'||k==='pek')&&day().kp?'grv':'gram';SESS.last={id:sid,ok:X.pass,cr:X.cr,txt:STT[k].replace(/^Aşama \d · /,'')+' · '+X.ok+'/'+n,need:Math.max(0,Math.ceil(PASS[k]*n-1e-9)-X.ok)};SESS.skip=SESS.skip||{};if(X.pass||day().kp)delete SESS.skip[sid];else SESS.skip[sid]=1;}
     /* tek dikkat noktası: bu turda en sık yapılan hata türü; bir sonraki aşamanın "Önce hatırla" kartında yine görünür */
     if(k!=='retry'){var cn={},top=null;(X.dgs||[]).forEach(function(q){cn[q.cat]=(cn[q.cat]||0)+1;if(!top||cn[q.cat]>cn[top.cat])top=q;});
       if(top)x.fx={t:ERRC[top.cat][0],n:cn[top.cat],q:oneLine(top.think||''),stg:k,d:t};else if(x.fx&&x.fx.stg!==k)delete x.fx;}
@@ -7756,6 +7856,9 @@ function lessonEnd(){
   else if(k==='rv')msg=X.pass?'Tekrar başarılı. '+(tstat(id)==='ok'?'Bu konu artık oturdu; arada bir yine sorulacak.':'Bir sonraki tekrar daha ileri bir günde.'):'Bu sefer %80 olmadı; konu yarın tekrar karşına gelecek. Unutup yeniden hatırlamak öğrenmenin parçası.';
   else msg=X.pass?'Geçtin! Aşama tamam.':'Aşama geçilmedi: '+n+' sorudan en az '+Math.ceil(PASS[k]*n-1e-9)+' doğru lazım. Cevapladığın sorular puana kısmen sayıldı. Aşağıdaki dikkat noktasına bak ve yeniden dene: bu sefer çoğunlukla başka sorular gelir.';
   if(k==='anla'&&!X.pass)msg='3 sorudan en az 2\'si gerekli. Kural kartına bir kez daha bak, sonra yeniden dene.';
+  var kdE=xday(),kpFail=kdE.kp&&!X.pass&&(k==='tani'||k==='kur'||k==='rv'||k==='pek');
+  if(kpFail){var ptE='%'+Math.round(X.cr*100);
+    msg=(k==='rv'||k==='pek'?'Bu sefer %80 olmadı.':'Bu aşama bugün geçilmedi: '+n+' sorudan en az '+Math.ceil(PASS[k]*n-1e-9)+' doğru lazımdı.')+' Bugünkü görevin yine de sayıldı; puan doğruluğun oranında kırıldı: bu adımın puanının '+ptE+' kadarını aldın. '+(k==='rv'||k==='pek'?'Konu':'Bu aşama')+' yarın yeni sorularla yeniden gelecek; bugün tekrar etmen gerekmiyor.';}
   var b='<div class="center" style="padding:16px 0 4px"><div class="eyebrow">'+STT[k]+' bitti</div><div class="big num" style="margin-top:8px">'+X.ok+' / '+n+'</div>'+
     '<p class="muted" style="margin-top:6px">'+esc(msg)+'</p></div>';
   if(x.fx&&x.fx.stg===k&&x.fx.d===t)b+='<div class="tipbox"><div class="eyebrow">Bu turda en çok</div><p><b>'+esc(x.fx.t)+'</b> ('+x.fx.n+' kez)'+(x.fx.q?' · bir dahaki sefere: '+rich(x.fx.q):'')+'</p></div>';
@@ -7766,11 +7869,12 @@ function lessonEnd(){
     if(X.pass&&(k==='tani'||k==='kur'))b+='<div class="tipbox"><div class="eyebrow">Bugünün konu adımları · '+Math.min(kl0,kT0)+' / '+kT0+'</div><p>'+(kl0>=kT0?'Konu bloğu tamam.'+(kpNextReview()?' Sırada tekrar: <b lang="de">'+esc(kpNextReview().g[2])+'</b>.':''):kn?'Sıradaki adım: <b lang="de">'+esc(kpLbl(kn))+'</b>':'Bugün açık adım kalmadı; konu bloğu yaptığın kadarıyla tamam.')+'</p></div>';}
   else if(GT.d.gv&&X.pass&&GSTEP[k])b+='<div class="tipbox"><div class="eyebrow">Bugünün konu adımları · '+Math.min(GT.n,GT.T)+' / '+GT.T+'</div><p>'+(GT.n>=GT.T?'Konu görevi tamam. İstersen bir adım daha atabilirsin'+(gn?': <b lang="de">'+esc(gLbl(gn))+'</b>':'')+'.':gn?'Sıradaki adım: <b lang="de">'+esc(gLbl(gn))+'</b>':'Bugün açık adım kalmadı; konu görevi yaptığın kadarıyla tamam.')+'</p></div>';
   if(gother)b+='<button class="btn lime big wide" data-act="lesson" data-id="'+gn.g[0]+'" data-s="'+gn.k+'">Sıradaki adım: '+esc(kd0.kp?kpLbl(gn):gLbl(gn))+'</button>';
-  if(a.k)b+='<button class="btn'+(gother?'':' lime')+' big wide" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">'+(a.k===k?'Aşamayı yeniden dene':(k==='free'||k==='retry')?'Şimdi: '+ACTB[a.k]:'Devam: '+ACTB[a.k])+'</button>';
+  if(a.k&&kpFail&&a.k===k)b+='<button class="btn big wide" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">İstersen bugün yeniden dene (gerekmiyor)</button>';
+  else if(a.k)b+='<button class="btn'+(gother?'':' lime')+' big wide" data-act="lesson" data-id="'+id+'" data-s="'+a.k+'">'+(a.k===k?'Aşamayı yeniden dene':(k==='free'||k==='retry')?'Şimdi: '+ACTB[a.k]:'Devam: '+ACTB[a.k])+'</button>';
   else if(!a.k&&a.wait)b+='<div class="wait">'+esc(nextReview(id).replace(/^./,function(c){return c.toUpperCase();}))+'. O gün Bugün sayfasında ve Sırada kartında çıkacak.</div>';
   if(wrong.length)b+='<button class="btn big wide" data-act="lwrong">Yanlış yaptığım '+wrong.length+' soruyu tekrar et</button>';
   if(added<wl.length&&k!=='retry')b+='<button class="btn dark big wide" data-act="gwadd" data-id="'+id+'">Konunun '+(wl-added)+' kelimesini yeni kelime sırasına al</button>';
-  b+='<button class="btn big wide" data-act="topic" data-id="'+id+'">Konuya dön</button><button class="btn'+(a.k?'':' lime')+' big wide" data-act="closeall">Bitti</button>';
+  b+='<button class="btn big wide" data-act="topic" data-id="'+id+'">Konuya dön</button><button class="btn'+(a.k&&!(kpFail&&a.k===k&&!gother)?'':' lime')+' big wide" data-act="closeall">'+(SESS&&day().kp?'Bitti · günün planına devam':'Bitti')+'</button>';
   return b;
 }
 
@@ -8903,7 +9007,7 @@ var ACT={
   uclaude:function(){var x=gpeek(X.id);if(!(x.wd||'').trim()){toast('Önce birkaç cümle yaz');return;}copyText(uretPrompt(X.id,x.wd),'Kopyalandı · claude.ai sohbetine yapıştır');},
   usave:function(){var id=X.id,x=gxs(id),txt=(x.wd||'').trim(),t=today();
     if(sentN(txt)<3){toast('En az 3 cümle yaz (her biri en az 3 kelime)');return;}
-    var first=!x.stg.uret;x.w=(x.w||[]).concat([{d:t,t:txt}]);delete x.wd;x.last=t;if(first){x.stg.uret=t;if(!x.due||x.due<=t)x.due=addD(t,1);var ud=day();if(ud.kp)ud.kls=(ud.kls||0)+1;}
+    var first=!x.stg.uret;x.w=(x.w||[]).concat([{d:t,t:txt}]);delete x.wd;x.last=t;if(first){x.stg.uret=t;if(!x.due||x.due<=t)x.due=addD(t,1);var ud=day();if(ud.kp){ud.kat=ud.kat||{};if(ud.kat[id+'|uret']==null)ud.kls=(ud.kls||0)+1;ud.kat[id+'|uret']=1;}}
     var d=gDayInit(day());d.g=(d.g||0)+3;if(first){d.gs=1;d.gsn=(d.gsn||0)+1;}d.sch=(d.sch?d.sch.replace(/\s+$/,'')+'\n':'')+txt;if(!d.gtDone||d.gt===id){d.gt=id;d.gtDone=1;}
     lgAdd({k:'g',ref:id,s:'uret',c:sentN(txt),n:sentN(txt),ok:1,nx:x.due});lgBump('y','',function(e){e.n=sentN(d.sch);});save();
     closePage();toast('Üret tamam · cümlelerin Schreiben görevine de sayıldı');},
@@ -9434,7 +9538,7 @@ function ezEnd(){
     X.items.forEach(function(it,i){if(!it.tz)return;var p=per[it.tz]||(per[it.tz]=[0,0]);p[1]++;if(X.res[i]==='ok')p[0]++;});
     X.per=per;ezSchedule(per,X.retry);
     var tot=0;X.tids.forEach(function(id){tot+=ezCells(EZBY[id]).length;});
-    if(!X.retry&&n>=Math.min(6,tot)){var d=xday();d.ezt=(d.ezt||0)+1;if(X.pmix){if(d.ezp&&d.ezp.mix)ezPlanDone(d.ezp.id,'mix');}else if(X.tids.length===1)ezPlanDone(X.tids[0],'test');}
+    if(!X.retry&&n>=Math.min(6,tot)){var d=xday();d.ezt=(d.ezt||0)+1;if(X.pmix){if(d.ezp&&d.ezp.mix)ezPlanDone(d.ezp.id,'mix',n?X.ok/n:0);}else if(X.tids.length===1)ezPlanDone(X.tids[0],'test',n?X.ok/n:0);}
     lgAdd({k:'e',ref:X.tids.join(','),s:X.retry?'retry':'test',c:X.ok,n:n,ok:!X.retry&&n&&X.ok/n>=.8?1:0,nx:X.tids.length===1?ezpeek(X.tids[0]).due||'':''});
     save();
   }
@@ -9576,7 +9680,7 @@ function ezPlan(d){d=d||day();if(!d.kp)return null;var t=ezToday();if(!t)return 
   return d.ezp;}
 function ezPlanFor(tid){var d=day();return d.kp&&d.ezp&&d.ezp.id===tid?d.ezp:(d.kp&&ezToday()&&ezToday().id===tid?ezPlan(d):null);}
 function ezPlanNext(P){if(!P)return null;for(var i=0;i<P.s.length;i++)if(!(P.ok&&P.ok[P.s[i]]))return P.s[i];return null;}
-function ezPlanDone(tid,step){var P=ezPlanFor(tid);if(!P||P.s.indexOf(step)<0)return;P.ok=P.ok||{};if(!P.ok[step]){P.ok[step]=1;save();}}
+function ezPlanDone(tid,step,acc){var P=ezPlanFor(tid);if(!P||P.s.indexOf(step)<0)return;P.ok=P.ok||{};var c=acc==null?1:kpCredit(acc>=.8,acc);if(P.ok[step]==null||kpCr(P.ok[step])<c){P.ok[step]=c;save();}}
 function ezPlanLine(P){return P.s.map(function(s){return (P.ok&&P.ok[s]?'✓ ':'')+EZSTEP[s];}).join(' · ');}
 function ezSessCard(t,kural){var d=day(),w=d.ezw&&GBY[d.ezw],P=ezPlanFor(t.id),nx=ezPlanNext(P);
   var steps=P?P.s.map(function(st,i){var ok=P.ok&&P.ok[st];return '<li class="'+(ok?'ok':st===nx?'now':'')+'">'+(ok?'✓ ':'')+'<b>'+EZSTEP[st]+'</b>'+(st==='test'?(kural?': karışık kelimelerden cümleleri kur.':': çoğu yazarak; yanlışları hemen yeniden çöz.'):st==='mix'?': tekrar zamanı gelen öteki tablolar ('+P.mix.map(function(id){return EZBY[id]?EZBY[id].t:id;}).join(', ')+'), 12 soru.':': tabloyu ezberden yaz; yanlışların doğrusu tablonun içinde görünür.')+'</li>';}).join(''):'';
@@ -9690,10 +9794,11 @@ function pEzFill(){
 }
 function ezFillCheck(){
   var t=EZBY[X.id],cells=X.again&&X.fk?ezCells(t).filter(function(x){return X.fk.indexOf(x.k)>=0;}):ezFillCells(t),ok=0,d=xday();X.res8={};X.fk=cells.map(function(x){return x.k;});
-  var nf=0,prev=X.again&&X.prev||{};ezs(t.id).fl=today();if(!X.again)ezPlanDone(t.id,'fill');
+  var nf=0,prev=X.again&&X.prev||{};ezs(t.id).fl=today();if(!X.again)X.planFill=1;
   cells.forEach(function(c){var v=X.vals[c.k]||'',acc=ezAcc(t,c.k),good=!!v.trim()&&acc.some(function(a){return ezN(a)===ezN(v);});
     X.res8[c.k]=good?'ok':'no';if(good)ok++;if(prev[c.k]==='ok')return;if(v.trim())nf++;ezMark({tz:t.id,k:c.k},good);});
   var per={};per[t.id]=[ok,cells.length];ezSchedule(per,X.again);
+  if(X.planFill){X.planFill=0;ezPlanDone(t.id,'fill',cells.length?ok/cells.length:0);}
   d.ez=(d.ez||0)+nf;X.nfTot=(X.nfTot||0)+nf;if(!X.ezted&&X.nfTot>=Math.min(6,cells.length)){d.ezt=(d.ezt||0)+1;X.ezted=1;}
   lgAdd({k:'e',ref:t.id,s:X.again?'fill2':'fill',c:ok,n:cells.length,ok:!X.again&&ok/cells.length>=.8?1:0,nx:ezpeek(t.id).due||''});save();
 }
@@ -11669,7 +11774,9 @@ function mergeDay(a,b){
   if(!src&&m.nk!=null){var nks=[a.nk,b.nk].filter(function(v){return v!=null;}),rks=[a.rk,b.rk].filter(function(v){return v!=null;});
     m.nk=Math.min.apply(null,nks);if(rks.length)m.rk=Math.min.apply(null,rks);}
   wClamp(m);
-  if(a.kRd||b.kRd){m.kRd=cp(a.kRd||{});for(k in (b.kRd||{}))m.kRd[k]=1;}
+  if(a.kRd||b.kRd){m.kRd=cp(a.kRd||{});for(k in (b.kRd||{}))m.kRd[k]=Math.max(kpCr(m.kRd[k]),kpCr(b.kRd[k]));}
+  if(a.kat||b.kat){m.kat=cp(a.kat||{});for(k in (b.kat||{}))m.kat[k]=Math.max(kpCr(m.kat[k]),kpCr(b.kat[k]));m.kls=Math.max(m.kls||0,Object.keys(m.kat).length);}
+  if(a.ezp&&b.ezp&&a.ezp.id===b.ezp.id){m.ezp=cp(a.ezp);m.ezp.ok=m.ezp.ok||{};for(k in (b.ezp.ok||{}))m.ezp.ok[k]=Math.max(kpCr(m.ezp.ok[k]),kpCr(b.ezp.ok[k]));}
   if(a.wd||b.wd){m.wd=cp(a.wd||{});for(k in (b.wd||{}))m.wd[k]=1;var nwd=Object.keys(m.wd).length;if((m.w||0)<nwd)m.w=nwd;}
   return m;
 }
